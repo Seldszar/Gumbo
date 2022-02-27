@@ -1,0 +1,77 @@
+{
+  "scripts": {
+    "build:chrome": "webpack --env platform=chrome --mode=production",
+    "build:firefox": "webpack --env platform=firefox --mode=production",
+    "develop:chrome": "webpack --env platform=chrome --mode=development --watch",
+    "develop:firefox": "webpack --env platform=firefox --mode=development --watch",
+    "prepare": "husky install",
+    "test": "eslint --ext=js,ts,tsx ."
+  },
+  "dependencies": {
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@floating-ui/react-dom": "^0.4.3",
+    "framer-motion": "^6.2.8",
+    "ky": "^0.29.0",
+    "lodash-es": "^4.17.21",
+    "preact": "^10.6.6",
+    "react-router-dom": "^6.2.1",
+    "react-use": "^17.3.2",
+    "swr": "^1.2.2",
+    "webextension-polyfill": "^0.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@emotion/babel-plugin": "^11.7.2",
+    "@prefresh/babel-plugin": "^0.4.3",
+    "@seldszar/yael": "^2.2.0",
+    "@types/lodash-es": "^4.17.6",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "@types/webextension-polyfill": "^0.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-macros": "^3.1.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "dotenv-webpack": "^7.1.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.2",
+    "fork-ts-checker-webpack-plugin": "^7.2.1",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "mini-css-extract-plugin": "^2.5.3",
+    "postcss": "^8.4.7",
+    "postcss-loader": "^6.2.1",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.23",
+    "twin.macro": "^2.8.2",
+    "typescript": "^4.5.5",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "emotion"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --fix"
+  }
+}

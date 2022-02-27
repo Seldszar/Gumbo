@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Gumbo: Twitch Companion",
+  "short_name": "Gumbo",
+  "version": "0.0.0",
+  "description": "Swollen companion keeping you updated on your Twitch experience",
+  "applications": {
+    "gecko": {
+      "id": "{4c0090e4-256b-4a71-b834-b94c51e6f175}"
+    }
+  },
+  "permissions": [
+    "alarms",
+    "identity",
+    "notifications",
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "icons": {
+    "48": "icon-48.png",
+    "96": "icon-96.png"
+  },
+  "browser_action": {
+    "default_title": "Gumbo: Twitch Companion",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  }
+}

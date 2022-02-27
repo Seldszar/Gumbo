@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    name: Release Please
+    runs-on: ubuntu-latest
+
+    outputs:
+      created: ${{ steps.release.outputs.release_created }}
+      version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+
+    steps:
+      - id: release
+        name: Release
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: simple
+
+  submit:
+    name: Submit
+    runs-on: ubuntu-latest
+
+    needs:
+      - release-please
+
+    if: github.event_name == 'workflow_dispatch' || needs.release-please.outputs.created
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - chrome
+          - firefox
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install
+        run: yarn install
+
+      - name: Build
+        run: yarn build:${{ matrix.platform }}
+        env:
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+
+      - name: Update Manifest
+        run: npx dot-json@1 dist/manifest.json version ${{ needs.release-please.outputs.version }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.platform }}-artifact
+          path: dist
+
+      - name: Submit
+        run: |
+          case ${{ matrix.platform }} in
+            chrome)
+              cd dist && npx chrome-webstore-upload-cli@1 upload --auto-publish
+              ;;
+            firefox)
+              cd dist && npx web-ext-submit@6
+              ;;
+          esac
+        env:
+          CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}

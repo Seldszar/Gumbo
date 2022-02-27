@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.tsx",
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+      ]
+    }
+  ]
+}
