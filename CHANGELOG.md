@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.3](https://github.com/Seldszar/Gumbo/compare/v1.0.2...v1.0.3) (2022-02-28)
+
+
+### Bug Fixes
+
+* required environment variables ([ae80d55](https://github.com/Seldszar/Gumbo/commit/ae80d55fbb0b341b2332a033d92fdb53a8cab3f1))
+
 ### [1.0.2](https://github.com/Seldszar/Gumbo/compare/v1.0.1...v1.0.2) (2022-02-28)
 
 
