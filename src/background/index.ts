@@ -217,6 +217,10 @@ browser.alarms.onAlarm.addListener(() => {
   refresh();
 });
 
+browser.alarms.create({
+  periodInMinutes: 1,
+});
+
 browser.notifications.onClicked.addListener((notificationId) => {
   browser.tabs.create({
     url: `https://twitch.tv/${notificationId}`,
@@ -225,10 +229,6 @@ browser.notifications.onClicked.addListener((notificationId) => {
 
 browser.runtime.onInstalled.addListener(async () => {
   await Promise.allSettled(map(stores, (store) => store.migrate()));
-
-  browser.alarms.create({
-    periodInMinutes: 1,
-  });
 
   refresh(false);
 });
