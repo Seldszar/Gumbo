@@ -6,7 +6,7 @@
   "description": "Swollen companion keeping you updated on your Twitch experience",
   "applications": {
     "gecko": {
-      "id": "{4c0090e4-256b-4a71-b834-b94c51e6f175}"
+      "id": "{59a39734-1e66-452e-a7b8-cc79f72062f0}"
     }
   },
   "permissions": [
