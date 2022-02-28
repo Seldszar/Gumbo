@@ -182,7 +182,27 @@ async function refresh(withNotifications = true) {
 }
 
 const messageHandlers: Record<string, (...args: any[]) => Promise<any>> = {
-  request: ([url, params]) => request(url, params),
+  async authorize() {
+    const loginUrl = new URL("https://id.twitch.tv/oauth2/authorize");
+
+    loginUrl.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
+    loginUrl.searchParams.set("redirect_uri", browser.identity.getRedirectURL("/callback"));
+    loginUrl.searchParams.set("response_type", "token");
+    loginUrl.searchParams.set("scope", "user:edit:follows user:read:follows");
+
+    const result = await browser.identity.launchWebAuthFlow({
+      url: loginUrl.href,
+      interactive: true,
+    });
+
+    const url = new URL(result);
+    const params = new URLSearchParams(url.hash.substring(1));
+
+    stores.accessToken.set(params.get("access_token"));
+  },
+  async request([url, params]) {
+    return request(url, params);
+  },
 };
 
 const storageChangeHandlers: Record<string, Dictionary<(change: Storage.StorageChange) => void>> = {

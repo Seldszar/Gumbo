@@ -5,12 +5,8 @@ import browser from "webextension-polyfill";
 
 import { useSettings } from "./hooks";
 
-export const backgroundFetcher: Fetcher<any, [string, any]> = (url, params = {}) => {
-  return browser.runtime.sendMessage({
-    args: [url, params],
-    type: "request",
-  });
-};
+export const backgroundFetcher: Fetcher<any, [string, any]> = (url, params = {}) =>
+  browser.runtime.sendMessage({ type: "request", args: [url, params] });
 
 export interface UseQueryListResponse {
   fetchMore(): void;
