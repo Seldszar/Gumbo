@@ -1,9 +1,11 @@
+require("dotenv/config");
+
 const path = require("path");
+const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 
 const { EntryWrapperPlugin } = require("@seldszar/yael");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const DotenvWebpackPlugin = require("dotenv-webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -36,7 +38,9 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new DotenvWebpackPlugin(),
+      new webpack.EnvironmentPlugin({
+        TWITCH_CLIENT_ID: undefined,
+      }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
           mode: "write-references",
