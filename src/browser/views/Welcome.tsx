@@ -3,8 +3,6 @@ import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
 import browser from "webextension-polyfill";
 
-import { useAccessToken } from "@/browser/helpers/hooks";
-
 import Button from "@/browser/components/Button";
 import Hero from "@/browser/components/Hero";
 import Section from "@/browser/components/Section";
@@ -14,26 +12,9 @@ const Wrapper = styled.div`
 `;
 
 const Welcome: FC = () => {
-  const [, store] = useAccessToken();
-
-  const [{ loading }, onButtonClick] = useAsyncFn(async () => {
-    const loginUrl = new URL("https://id.twitch.tv/oauth2/authorize");
-
-    loginUrl.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
-    loginUrl.searchParams.set("redirect_uri", browser.identity.getRedirectURL("/callback"));
-    loginUrl.searchParams.set("response_type", "token");
-    loginUrl.searchParams.set("scope", "user:edit:follows user:read:follows");
-
-    const result = await browser.identity.launchWebAuthFlow({
-      url: loginUrl.href,
-      interactive: true,
-    });
-
-    const url = new URL(result);
-    const params = new URLSearchParams(url.hash.substring(1));
-
-    store.set(params.get("access_token"));
-  });
+  const [{ loading }, onButtonClick] = useAsyncFn(() =>
+    browser.runtime.sendMessage({ type: "authorize" })
+  );
 
   return (
     <Wrapper>
