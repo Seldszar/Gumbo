@@ -172,13 +172,25 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
   ]);
 }
 
-async function refresh(withNotifications = true) {
-  const currentUser = await refreshCurrentUser(await stores.accessToken.get());
+let isRefreshing = false;
 
-  await Promise.all([
-    refreshFollowedStreams(currentUser, withNotifications),
-    refreshFollowedUsers(currentUser),
-  ]);
+async function refresh(withNotifications = true) {
+  if (isRefreshing) {
+    return;
+  }
+
+  isRefreshing = true;
+
+  try {
+    const currentUser = await refreshCurrentUser(await stores.accessToken.get());
+
+    await Promise.all([
+      refreshFollowedStreams(currentUser, withNotifications),
+      refreshFollowedUsers(currentUser),
+    ]);
+  } catch {} // eslint-disable-line no-empty
+
+  isRefreshing = false;
 }
 
 const messageHandlers: Record<string, (...args: any[]) => Promise<any>> = {
@@ -227,10 +239,24 @@ browser.notifications.onClicked.addListener((notificationId) => {
   });
 });
 
-browser.runtime.onInstalled.addListener(async () => {
-  await Promise.allSettled(map(stores, (store) => store.migrate()));
+async function setup(migrate = false): Promise<void> {
+  if (migrate) {
+    await Promise.allSettled(map(stores, (store) => store.migrate()));
+  }
 
-  refresh(false);
+  await refresh(false);
+}
+
+browser.runtime.onInstalled.addListener(async (detail) => {
+  if (detail.reason === "browser_update") {
+    return;
+  }
+
+  setup(true);
+});
+
+browser.runtime.onStartup.addListener(() => {
+  setup(false);
 });
 
 browser.runtime.onMessage.addListener(async (message) => {
