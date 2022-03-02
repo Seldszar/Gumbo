@@ -26,6 +26,20 @@
     - `yarn build:chrome` if you want to build for Google Chrome
     - `yarn build:firefox` if you want to build for Mozilla Firefox
 
+## Frequently Asked Questions
+
+### When I'm logging in, I get a blank page
+
+It's probably due to an active browser extension affecting the browser's tabs, like [Conex](https://addons.mozilla.org/en-US/firefox/addon/conex/) or similar.
+
+- https://github.com/Seldszar/Gumbo/issues/5#issuecomment-1056918389
+
+### Are sound notifications supported?
+
+Not officially, Manifest V3 doesn't provide the ability to play audio from a service worker. Workarounds exist, but aren't worth the trouble.
+
+- https://bugs.chromium.org/p/chromium/issues/detail?id=1131236
+
 ## Author
 
 Alexandre Breteau - [@0xSeldszar](https://twitter.com/0xSeldszar)
