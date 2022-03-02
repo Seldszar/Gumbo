@@ -3,11 +3,12 @@ import tw, { styled } from "twin.macro";
 
 import { formatTime } from "@/browser/helpers/time";
 
+import Anchor from "../Anchor";
 import Image from "../Image";
 
 const StyledImage = styled(Image)``;
 
-const Wrapper = styled.a`
+const Wrapper = styled(Anchor)`
   ${tw`cursor-pointer flex items-center px-4 py-2 h-20 hover:bg-white/10`}
 `;
 

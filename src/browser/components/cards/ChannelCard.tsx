@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
+import Anchor from "../Anchor";
 import ContextMenu from "../ContextMenu";
 
 export interface WrapperProps {
   isLive?: boolean;
 }
 
-const Wrapper = styled.a<WrapperProps>`
+const Wrapper = styled(Anchor)<WrapperProps>`
   ${tw`cursor-pointer flex items-center px-4 py-2 hover:bg-white/10`}
 
   ${(props) =>
