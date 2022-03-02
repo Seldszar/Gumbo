@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
+import Anchor from "../Anchor";
 import ContextMenu from "../ContextMenu";
 import Image from "../Image";
 import Uptime from "../Uptime";
@@ -8,7 +9,7 @@ import ViewerCount from "../ViewerCount";
 
 const StyledImage = styled(Image)``;
 
-const Wrapper = styled.a`
+const Wrapper = styled(Anchor)`
   ${tw`cursor-pointer flex items-center px-4 py-2 h-20 hover:bg-white/10`}
 `;
 

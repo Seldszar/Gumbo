@@ -2,6 +2,8 @@ import { PropsOf } from "@emotion/react";
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
+import Anchor from "./Anchor";
+
 const Icon = styled.svg`
   ${tw`ml-1 opacity-50 stroke-current w-4`}
 
@@ -11,7 +13,7 @@ const Icon = styled.svg`
   stroke-width: 1.5px;
 `;
 
-const Wrapper = styled.a`
+const Wrapper = styled(Anchor)`
   ${tw`inline-flex items-center hover:underline`}
 `;
 
