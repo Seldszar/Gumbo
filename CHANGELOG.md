@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Seldszar/Gumbo/compare/v1.0.3...v1.1.0) (2022-03-02)
+
+
+### Features
+
+* hide reruns from followed streams ([5f2baca](https://github.com/Seldszar/Gumbo/commit/5f2baca26d845b46b2563c75564b2a4bf05fbf2c))
+
 ### [1.0.3](https://github.com/Seldszar/Gumbo/compare/v1.0.2...v1.0.3) (2022-02-28)
 
 
