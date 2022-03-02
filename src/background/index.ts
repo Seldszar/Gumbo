@@ -1,5 +1,5 @@
 import ky from "ky";
-import { castArray, chunk, find, map, reject, some, sortBy } from "lodash-es";
+import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
 import { Dictionary } from "@/common/types";
@@ -68,17 +68,32 @@ async function fetchFollowedUsers(userId: string, after?: string): Promise<any[]
 }
 
 async function fetchFollowedStreams(userId: string, after?: string): Promise<any[]> {
-  const { data: followedUsers, pagination } = await request("streams/followed", {
+  const { data: followedStreams, pagination } = await request("streams/followed", {
     user_id: userId,
     first: 100,
     after,
   });
 
-  if (pagination.cursor) {
-    followedUsers.push(...(await fetchFollowedStreams(userId, pagination.cursor)));
+  const { data: streams } = await request("streams", {
+    user_id: map(followedStreams, "user_id"),
+    first: 100,
+  });
+
+  for (const followedStream of followedStreams) {
+    const stream = find(streams, {
+      user_id: followedStream.user_id,
+    });
+
+    if (stream == null) {
+      followedStream.type = "rerun";
+    }
   }
 
-  return followedUsers;
+  if (pagination.cursor) {
+    followedStreams.push(...(await fetchFollowedStreams(userId, pagination.cursor)));
+  }
+
+  return followedStreams;
 }
 
 async function filterNewStreams(streams: any[]): Promise<any[]> {
@@ -119,7 +134,13 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
   if (currentUser) {
     followedStreams = await fetchFollowedStreams(currentUser.id);
 
-    const { notifications } = await stores.settings.get();
+    const { notifications, streams } = await stores.settings.get();
+
+    if (!streams.withReruns) {
+      followedStreams = filter(followedStreams, {
+        type: "live",
+      });
+    }
 
     if (showNotifications && notifications.enabled) {
       let newStreams = await filterNewStreams(followedStreams);

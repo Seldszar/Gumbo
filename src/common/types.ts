@@ -1,6 +1,7 @@
 export type Dictionary<T> = Record<string, T>;
 
 export interface StreamSettings {
+  withReruns: boolean;
   withFilters: boolean;
   selectedLanguages: string[];
 }

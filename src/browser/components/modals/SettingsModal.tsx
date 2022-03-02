@@ -88,7 +88,12 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
       children: (
         <>
           <Field>
-            <Switch {...register("streams.withFilters")}>Filter streams by language</Switch>
+            <StyledSwitch {...register("streams.withReruns")}>
+              Show Reruns in followed streams
+            </StyledSwitch>
+            <StyledSwitch {...register("streams.withFilters")}>
+              Filter streams by language
+            </StyledSwitch>
           </Field>
           <Field>
             <CheckboxGrid
