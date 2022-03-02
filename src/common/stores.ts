@@ -1,3 +1,4 @@
+import { defaultsDeep } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
 import { Settings } from "./types";
@@ -98,6 +99,8 @@ export class Store<T> {
       state.version = migration.version;
     }
 
+    defaultsDeep(state.value, this.options.defaultValue);
+
     await this.areaStorage.set({
       [this.name]: state,
     });
@@ -128,6 +131,7 @@ export const stores = {
         selectedUsers: [],
       },
       streams: {
+        withReruns: true,
         withFilters: false,
         selectedLanguages: [],
       },

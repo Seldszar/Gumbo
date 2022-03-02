@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 import ContextMenu from "../ContextMenu";
 import Image from "../Image";
 import Uptime from "../Uptime";
+import ViewerCount from "../ViewerCount";
 
 const StyledImage = styled(Image)``;
 
@@ -43,14 +44,8 @@ const ChannelName = styled.div`
   ${tw`flex-1 truncate`}
 `;
 
-const ViewerCount = styled.div`
-  ${tw`ml-2 flex flex-none text-red-400`}
-
-  font-feature-settings: "tnum";
-
-  svg {
-    ${tw`block fill-current mr-1 w-4`}
-  }
+const StyledViewerCount = styled(ViewerCount)`
+  ${tw`ml-2 flex-none`}
 `;
 
 const StreamTitle = styled.div`
@@ -102,16 +97,7 @@ const StreamCard: FC<StreamCardProps> = (props) => {
       <Inner>
         <Title>
           <ChannelName>{stream.user_name || stream.user_login}</ChannelName>
-          <ViewerCount>
-            <svg viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M5 7a5 5 0 116.192 4.857A2 2 0 0013 13h1a3 3 0 013 3v2h-2v-2a1 1 0 00-1-1h-1a3.99 3.99 0 01-3-1.354A3.99 3.99 0 017 15H6a1 1 0 00-1 1v2H3v-2a3 3 0 013-3h1a2 2 0 001.808-1.143A5.002 5.002 0 015 7zm5 3a3 3 0 110-6 3 3 0 010 6z"
-                clipRule="evenodd"
-              />
-            </svg>
-            {stream.viewer_count.toLocaleString("en-US")}
-          </ViewerCount>
+          <StyledViewerCount stream={stream} />
         </Title>
         <StreamTitle title={stream.title}>{stream.title}</StreamTitle>
         <GameName title={stream.game_name}>{stream.game_name}</GameName>
