@@ -9,6 +9,8 @@ import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
+import { setupErrorTracking } from "@/common/helpers";
+
 import { backgroundFetcher } from "./helpers/queries";
 
 init({
@@ -16,6 +18,8 @@ init({
 });
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
+  setupErrorTracking();
+
   const App = (
     <SWRConfig value={{ fetcher: backgroundFetcher }}>
       <HashRouter>
