@@ -1,6 +1,7 @@
 import type { EntryWrapper } from "@seldszar/yael";
 
 import { Global } from "@emotion/react";
+import { init } from "@sentry/browser";
 import { domAnimation, LazyMotion } from "framer-motion";
 import React, { ExoticComponent } from "react";
 import ReactDOM from "react-dom";
@@ -9,6 +10,10 @@ import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
 import { backgroundFetcher } from "./helpers/queries";
+
+init({
+  dsn: process.env.SENTRY_DSN,
+});
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
   const App = (

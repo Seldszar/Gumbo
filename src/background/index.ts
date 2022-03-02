@@ -1,9 +1,14 @@
+import { init } from "@sentry/browser";
 import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
 import { Dictionary } from "@/common/types";
 import { stores } from "@/common/stores";
+
+init({
+  dsn: process.env.SENTRY_DSN,
+});
 
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",
