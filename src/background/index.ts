@@ -224,7 +224,7 @@ const messageHandlers: Record<string, (...args: any[]) => Promise<any>> = {
     loginUrl.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
     loginUrl.searchParams.set("redirect_uri", browser.identity.getRedirectURL("/callback"));
     loginUrl.searchParams.set("response_type", "token");
-    loginUrl.searchParams.set("scope", "user:edit:follows user:read:follows");
+    loginUrl.searchParams.set("scope", "user:read:follows");
 
     const result = await browser.identity.launchWebAuthFlow({
       url: loginUrl.href,
@@ -271,7 +271,7 @@ async function setup(migrate = false): Promise<void> {
   await refresh(false);
 }
 
-browser.runtime.onInstalled.addListener(async (detail) => {
+browser.runtime.onInstalled.addListener((detail) => {
   if (detail.reason === "browser_update") {
     return;
   }
@@ -283,7 +283,7 @@ browser.runtime.onStartup.addListener(() => {
   setup(false);
 });
 
-browser.runtime.onMessage.addListener(async (message) => {
+browser.runtime.onMessage.addListener((message) => {
   const { [message.type]: handler } = messageHandlers;
 
   if (handler == null) {
