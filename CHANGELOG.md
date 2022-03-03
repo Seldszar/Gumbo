@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.1.1](https://github.com/Seldszar/Gumbo/compare/v1.1.0...v1.1.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* restore auxiliary click default behavior ([5405345](https://github.com/Seldszar/Gumbo/commit/540534503be7c131172a3c89e4ed956186944317))
+* webworker sentry initialization & context ([51ed850](https://github.com/Seldszar/Gumbo/commit/51ed850e3bbdfd474da1b0ffc1a7d91254e31288))
+
 ## [1.1.0](https://github.com/Seldszar/Gumbo/compare/v1.0.3...v1.1.0) (2022-03-02)
 
 
