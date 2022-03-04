@@ -8,8 +8,10 @@
     "alarms",
     "background",
     "notifications",
-    "storage",
-    "webNavigation"
+    "storage"
+  ],
+  "host_permissions": [
+    "https://gumbo.seldszar.fr/*"
   ],
   "background": {
     "service_worker": "background.js"

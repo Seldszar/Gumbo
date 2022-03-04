@@ -13,7 +13,7 @@
     "alarms",
     "notifications",
     "storage",
-    "webNavigation"
+    "https://gumbo.seldszar.fr/*"
   ],
   "background": {
     "scripts": [

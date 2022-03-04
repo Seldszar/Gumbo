@@ -293,22 +293,22 @@ browser.storage.onChanged.addListener((changes, areaName) => {
   }
 });
 
-browser.webNavigation.onBeforeNavigate.addListener(
-  async (details) => {
+browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+  if (
+    changeInfo.status === "complete" &&
+    tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)
+  ) {
     if (await stores.currentUser.get()) {
       return;
     }
 
-    const url = new URL(details.url);
+    const url = new URL(tab.url);
     const hashParams = new URLSearchParams(url.hash.substring(1));
 
-    await stores.accessToken.set(hashParams.get("access_token"));
-  },
-  {
-    url: [
-      {
-        urlPrefix: process.env.TWITCH_REDIRECT_URI,
-      },
-    ],
+    const accessToken = hashParams.get("access_token");
+
+    if (accessToken) {
+      await stores.accessToken.set(accessToken);
+    }
   }
-);
+});
