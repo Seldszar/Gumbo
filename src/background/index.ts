@@ -28,7 +28,7 @@ export const client = ky.extend({
   },
 });
 
-async function request(url: string, params: Record<string, any> = {}) {
+async function request(url: string, params: Dictionary<any> = {}) {
   const searchParams = new URLSearchParams();
 
   for (const [name, value] of Object.entries(params ?? {})) {
@@ -217,13 +217,13 @@ async function refresh(withNotifications = true) {
   isRefreshing = false;
 }
 
-const messageHandlers: Record<string, (...args: any[]) => Promise<any>> = {
+const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   async request([url, params]) {
     return request(url, params);
   },
 };
 
-const storageChangeHandlers: Record<string, Dictionary<(change: Storage.StorageChange) => void>> = {
+const storageChangeHandlers: Dictionary<Dictionary<(change: Storage.StorageChange) => void>> = {
   sync: {
     accessToken() {
       refresh(false);
