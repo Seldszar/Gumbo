@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.2](https://github.com/Seldszar/Gumbo/compare/v1.1.1...v1.1.2) (2022-03-04)
+
+
+### Bug Fixes
+
+* replace auth flow ([6cd6adb](https://github.com/Seldszar/Gumbo/commit/6cd6adbeac4f860eb26676cbd97e0def66740cbd))
+
 ### [1.1.1](https://github.com/Seldszar/Gumbo/compare/v1.1.0...v1.1.1) (2022-03-02)
 
 
