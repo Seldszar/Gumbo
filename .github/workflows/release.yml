@@ -48,6 +48,7 @@ jobs:
         run: yarn build:${{ matrix.platform }}
         env:
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_REDIRECT_URI: ${{ secrets.TWITCH_REDIRECT_URI }}
 
       - name: Update Manifest
         run: npx dot-json@1 dist/manifest.json version ${{ needs.release-please.outputs.version }}
