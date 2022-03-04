@@ -40,6 +40,7 @@ module.exports = (env, argv) => {
     plugins: [
       new webpack.EnvironmentPlugin({
         TWITCH_CLIENT_ID: undefined,
+        TWITCH_REDIRECT_URI: undefined,
         SENTRY_DSN: null,
       }),
       new ForkTsCheckerWebpackPlugin({

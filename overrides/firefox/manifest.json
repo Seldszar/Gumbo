@@ -11,9 +11,9 @@
   },
   "permissions": [
     "alarms",
-    "identity",
     "notifications",
-    "storage"
+    "storage",
+    "webNavigation"
   ],
   "background": {
     "scripts": [

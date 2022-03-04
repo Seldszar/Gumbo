@@ -7,9 +7,9 @@
   "permissions": [
     "alarms",
     "background",
-    "identity",
     "notifications",
-    "storage"
+    "storage",
+    "webNavigation"
   ],
   "background": {
     "service_worker": "background.js"

@@ -218,24 +218,6 @@ async function refresh(withNotifications = true) {
 }
 
 const messageHandlers: Record<string, (...args: any[]) => Promise<any>> = {
-  async authorize() {
-    const loginUrl = new URL("https://id.twitch.tv/oauth2/authorize");
-
-    loginUrl.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
-    loginUrl.searchParams.set("redirect_uri", browser.identity.getRedirectURL("/callback"));
-    loginUrl.searchParams.set("response_type", "token");
-    loginUrl.searchParams.set("scope", "user:read:follows");
-
-    const result = await browser.identity.launchWebAuthFlow({
-      url: loginUrl.href,
-      interactive: true,
-    });
-
-    const url = new URL(result);
-    const params = new URLSearchParams(url.hash.substring(1));
-
-    stores.accessToken.set(params.get("access_token"));
-  },
   async request([url, params]) {
     return request(url, params);
   },
@@ -310,3 +292,23 @@ browser.storage.onChanged.addListener((changes, areaName) => {
     handler(change);
   }
 });
+
+browser.webNavigation.onBeforeNavigate.addListener(
+  async (details) => {
+    if (await stores.currentUser.get()) {
+      return;
+    }
+
+    const url = new URL(details.url);
+    const hashParams = new URLSearchParams(url.hash.substring(1));
+
+    await stores.accessToken.set(hashParams.get("access_token"));
+  },
+  {
+    url: [
+      {
+        urlPrefix: process.env.TWITCH_REDIRECT_URI,
+      },
+    ],
+  }
+);
