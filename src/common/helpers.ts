@@ -19,3 +19,16 @@ export function setupErrorTracking() {
     });
   });
 }
+
+export async function readAsDataURL(blob: Blob): Promise<string> {
+  const reader = new FileReader();
+
+  return new Promise((resolve, reject) => {
+    reader.addEventListener("error", reject);
+    reader.addEventListener("load", () => {
+      resolve(reader.result as string);
+    });
+
+    reader.readAsDataURL(blob);
+  });
+}
