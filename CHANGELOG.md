@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.5](https://github.com/Seldszar/Gumbo/compare/v1.1.4...v1.1.5) (2022-03-05)
+
+
+### Bug Fixes
+
+* **store:** state fallback ([cc9c228](https://github.com/Seldszar/Gumbo/commit/cc9c228a702741471947a26614e455313fe3a7d5))
+
 ### [1.1.4](https://github.com/Seldszar/Gumbo/compare/v1.1.3...v1.1.4) (2022-03-05)
 
 
