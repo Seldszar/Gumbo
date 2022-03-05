@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.6](https://github.com/Seldszar/Gumbo/compare/v1.1.5...v1.1.6) (2022-03-05)
+
+
+### Bug Fixes
+
+* **notifications:** fallback & ignore errors ([d98d729](https://github.com/Seldszar/Gumbo/commit/d98d729c9f7c0dbad0c7d2b54f474c3c129f1d8d))
+
 ### [1.1.5](https://github.com/Seldszar/Gumbo/compare/v1.1.4...v1.1.5) (2022-03-05)
 
 
