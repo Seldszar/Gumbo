@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Seldszar/Gumbo/compare/v1.1.6...v1.2.0) (2022-03-05)
+
+
+### Features
+
+* followed streams sorting ([61b7823](https://github.com/Seldszar/Gumbo/commit/61b7823c81aafb4c1e24f1b70df8fae1d7df7d4d))
+
 ### [1.1.6](https://github.com/Seldszar/Gumbo/compare/v1.1.5...v1.1.6) (2022-03-05)
 
 
