@@ -4,6 +4,7 @@ import browser from "webextension-polyfill";
 export function setupErrorTracking() {
   init({
     dsn: process.env.SENTRY_DSN,
+    denyUrls: [/static-cdn\.jtvnw\.net/],
   });
 
   configureScope(async (scope) => {
