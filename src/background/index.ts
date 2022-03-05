@@ -1,8 +1,8 @@
 import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
-import browser, { Storage } from "webextension-polyfill";
+import browser, { Notifications, Storage } from "webextension-polyfill";
 
-import { setupErrorTracking } from "@/common/helpers";
+import { readAsDataURL, setupErrorTracking } from "@/common/helpers";
 import { Dictionary } from "@/common/types";
 import { stores } from "@/common/stores";
 
@@ -157,20 +157,28 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
       for (const streams of chunk(newStreams, 100)) {
         const users = await fetchUsers(map(streams, "user_id"));
 
-        streams.forEach((stream) => {
-          const user = find(users, {
-            id: stream.user_id,
-          });
-
-          browser.notifications.create(user.login, {
-            title: `${user.display_name || user.login} is online`,
+        streams.forEach(async (stream) => {
+          const options: Notifications.CreateNotificationOptions = {
+            iconUrl: browser.runtime.getURL("icon-128.png"),
+            title: `${stream.user_name || stream.user_login} is online`,
             contextMessage: "Click to open the channel page",
             eventTime: Date.parse(stream.started_at),
-            iconUrl: user.profile_image_url,
             message: stream.title,
             isClickable: true,
             type: "basic",
-          });
+          };
+
+          try {
+            const user = find(users, {
+              id: stream.user_id,
+            });
+
+            if (user) {
+              options.iconUrl = await readAsDataURL(await ky(user.profile_image_url).blob());
+            }
+          } catch {} // eslint-disable-line no-empty
+
+          browser.notifications.create(`stream:${stream.user_login}`, options);
         });
       }
     }
@@ -240,9 +248,17 @@ browser.alarms.create({
 });
 
 browser.notifications.onClicked.addListener((notificationId) => {
-  browser.tabs.create({
-    url: `https://twitch.tv/${notificationId}`,
-  });
+  const [type, data] = notificationId.split(":");
+
+  switch (type) {
+    case "stream": {
+      browser.tabs.create({
+        url: `https://twitch.tv/${data}`,
+      });
+
+      break;
+    }
+  }
 });
 
 async function setup(migrate = false): Promise<void> {
