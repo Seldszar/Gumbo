@@ -1,23 +1,13 @@
-import { configureScope, init } from "@sentry/browser";
+import { init } from "@sentry/browser";
 import browser from "webextension-polyfill";
 
 export function setupErrorTracking() {
+  const manifest = browser.runtime.getManifest();
+
   init({
     dsn: process.env.SENTRY_DSN,
     denyUrls: [/static-cdn\.jtvnw\.net/],
-  });
-
-  configureScope(async (scope) => {
-    const [manifest, platformInfo] = await Promise.all([
-      browser.runtime.getManifest(),
-      browser.runtime.getPlatformInfo(),
-    ]);
-
-    scope.setContext("extension", {
-      id: browser.runtime.id,
-      version: manifest.version,
-      platformInfo,
-    });
+    release: manifest.version,
   });
 }
 
