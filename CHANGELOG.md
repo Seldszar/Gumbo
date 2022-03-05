@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.4](https://github.com/Seldszar/Gumbo/compare/v1.1.3...v1.1.4) (2022-03-05)
+
+
+### Bug Fixes
+
+* notification icon & id ([097cfff](https://github.com/Seldszar/Gumbo/commit/097cfffeac96dc1dd7c6946c6e3a43c792a7ee23))
+
 ### [1.1.3](https://github.com/Seldszar/Gumbo/compare/v1.1.2...v1.1.3) (2022-03-04)
 
 
