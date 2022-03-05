@@ -56,14 +56,14 @@ export class Store<T> {
   }
 
   async getState(): Promise<StoreState<T>> {
-    const items = await this.areaStorage.get({
-      [this.name]: {
+    const items = await this.areaStorage.get(this.name);
+
+    return (
+      items[this.name] ?? {
         value: this.options.defaultValue,
         version: 1,
-      },
-    });
-
-    return items[this.name];
+      }
+    );
   }
 
   async get(): Promise<T> {
