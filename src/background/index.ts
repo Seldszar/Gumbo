@@ -2,7 +2,7 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
 import browser, { Notifications, Storage } from "webextension-polyfill";
 
-import { readAsDataURL, setupErrorTracking } from "@/common/helpers";
+import { setupErrorTracking } from "@/common/helpers";
 import { Dictionary } from "@/common/types";
 import { stores } from "@/common/stores";
 
@@ -157,29 +157,32 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
       for (const streams of chunk(newStreams, 100)) {
         const users = await fetchUsers(map(streams, "user_id"));
 
-        streams.forEach(async (stream) => {
-          const options: Notifications.CreateNotificationOptions = {
-            iconUrl: browser.runtime.getURL("icon-128.png"),
-            title: `${stream.user_name || stream.user_login} is online`,
-            contextMessage: "Click to open the channel page",
-            eventTime: Date.parse(stream.started_at),
-            message: stream.title,
-            isClickable: true,
-            type: "basic",
-          };
+        Promise.allSettled(
+          streams.map(async (stream) => {
+            const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
+              browser.notifications.create(`stream:${stream.user_login}`, {
+                title: `${stream.user_name || stream.user_login} is online`,
+                contextMessage: "Click to open the channel page",
+                eventTime: Date.parse(stream.started_at),
+                message: stream.title,
+                isClickable: true,
+                type: "basic",
+                iconUrl,
+              });
 
-          try {
-            const user = find(users, {
-              id: stream.user_id,
-            });
+            try {
+              const user = find(users, {
+                id: stream.user_id,
+              });
 
-            if (user) {
-              options.iconUrl = await readAsDataURL(await ky(user.profile_image_url).blob());
-            }
-          } catch {} // eslint-disable-line no-empty
+              if (user) {
+                return await create(user.profile_image_url);
+              }
+            } catch {} // eslint-disable-line no-empty
 
-          browser.notifications.create(`stream:${stream.user_login}`, options);
-        });
+            await create();
+          })
+        );
       }
     }
   }
