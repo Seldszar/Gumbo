@@ -74,5 +74,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix"
-  }
+  },
+  "browserslist": [
+    "last 2 years"
+  ]
 }
