@@ -16,6 +16,11 @@ export interface ChannelSettings {
   liveOnly: boolean;
 }
 
+export interface FollowedStreamState {
+  sortDirection: "asc" | "desc";
+  sortField: string;
+}
+
 export interface Settings {
   channels: ChannelSettings;
   notifications: NotificationSettings;
