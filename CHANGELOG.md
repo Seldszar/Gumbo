@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.2.1](https://github.com/Seldszar/Gumbo/compare/v1.2.0...v1.2.1) (2022-03-06)
+
+
+### Bug Fixes
+
+* followed streams state persistence ([e97c814](https://github.com/Seldszar/Gumbo/commit/e97c814064ed6ae8fbc86eff57fe871139f531f4))
+* **settings:** update ([c945efa](https://github.com/Seldszar/Gumbo/commit/c945efa77c13ce1ff061860c0dd799b937593c25))
+
 ## [1.2.0](https://github.com/Seldszar/Gumbo/compare/v1.1.6...v1.2.0) (2022-03-05)
 
 
