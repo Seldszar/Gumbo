@@ -9,6 +9,7 @@ import { LANGUAGE_OPTIONS } from "@/common/constants";
 
 import CheckboxGrid from "../CheckboxGrid";
 import Modal from "../Modal";
+import Section from "../Section";
 import Switch from "../Switch";
 
 const TabList = styled.div`
@@ -51,16 +52,6 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
 
   const pageTabs = [
     {
-      title: "Channels",
-      children: (
-        <>
-          <Field>
-            <Switch {...register("channels.liveOnly")}>Show live channels only</Switch>
-          </Field>
-        </>
-      ),
-    },
-    {
       title: "Notifications",
       children: (
         <>
@@ -81,6 +72,16 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
             />
           </Field>
         </>
+      ),
+    },
+    {
+      title: "Search",
+      children: (
+        <Section title="Channels">
+          <Field>
+            <Switch {...register("channels.liveOnly")}>Show live channels only</Switch>
+          </Field>
+        </Section>
       ),
     },
     {

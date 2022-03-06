@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Header = styled.div`
-  ${tw`flex mb-2 text-lg text-white/50`}
+  ${tw`mb-2 text-lg text-white/50`}
 `;
 
 const Wrapper = styled.div`
