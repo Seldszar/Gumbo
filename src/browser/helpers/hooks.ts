@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Store, stores } from "@/common/stores";
+import { FollowedStreamState } from "@/common/types";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());
@@ -79,4 +80,24 @@ export function useAccessToken() {
 
 export function useSettings() {
   return useStore(stores.settings);
+}
+
+export type UseFollowedStreamsStateReturn = [
+  FollowedStreamState,
+  {
+    setSortDirection(value: "desc" | "asc"): void;
+    setSortField(value: string): void;
+  }
+];
+
+export function useFollowedStreamsState(): UseFollowedStreamsStateReturn {
+  const [value, store] = useStore(stores.followedStreamState);
+
+  return [
+    value,
+    {
+      setSortDirection: (value) => store.set((state) => ({ ...state, sortDirection: value })),
+      setSortField: (value) => store.set((state) => ({ ...state, sortField: value })),
+    },
+  ];
 }

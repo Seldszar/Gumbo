@@ -1,7 +1,7 @@
 import { defaultsDeep } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
-import { Settings } from "./types";
+import { FollowedStreamState, Settings } from "./types";
 
 export type StoreAreaName = "local" | "managed" | "sync";
 
@@ -135,6 +135,12 @@ export const stores = {
         withFilters: false,
         selectedLanguages: [],
       },
+    },
+  }),
+  followedStreamState: new Store<FollowedStreamState>("sync", "followedStreamState", {
+    defaultValue: {
+      sortField: "viewer_count",
+      sortDirection: "desc",
     },
   }),
 };

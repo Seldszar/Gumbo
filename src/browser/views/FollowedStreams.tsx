@@ -3,7 +3,7 @@ import { orderBy } from "lodash-es";
 import tw, { styled } from "twin.macro";
 
 import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useFollowedStreams } from "@/browser/helpers/hooks";
+import { useFollowedStreams, useFollowedStreamsState } from "@/browser/helpers/hooks";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
 import SearchInput from "@/browser/components/SearchInput";
@@ -28,24 +28,23 @@ const Item = styled.div``;
 
 const FollowedStreams: FC = () => {
   const [followedStreams, { isLoading }] = useFollowedStreams();
+  const [state, { setSortDirection, setSortField }] = useFollowedStreamsState();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortField, setSortField] = useState("viewer_count");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
   const filteredStreams = useMemo(() => {
-    let direction = sortDirection;
+    let { sortDirection } = state;
 
-    if (sortField === "started_at") {
-      direction = direction === "asc" ? "desc" : "asc";
+    if (state.sortField === "started_at") {
+      sortDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
     return orderBy(
       filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
-      sortField,
-      direction
+      state.sortField,
+      sortDirection
     );
-  }, [sortField, sortDirection, followedStreams, searchQuery]);
+  }, [state, followedStreams, searchQuery]);
 
   const children = useMemo(() => {
     if (isLoading) {
@@ -75,7 +74,7 @@ const FollowedStreams: FC = () => {
 
       <FilterWrapper>
         <FilterSelect
-          value={sortField}
+          value={state.sortField}
           onChange={setSortField}
           options={[
             {
@@ -97,7 +96,7 @@ const FollowedStreams: FC = () => {
           ]}
         />
         <FilterSelect
-          value={sortDirection}
+          value={state.sortDirection}
           onChange={setSortDirection}
           options={[
             {
