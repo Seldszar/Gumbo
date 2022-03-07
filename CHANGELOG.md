@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/Seldszar/Gumbo/compare/v1.2.1...v1.3.0) (2022-03-07)
+
+
+### Features
+
+* add followed users ([42c39de](https://github.com/Seldszar/Gumbo/commit/42c39dee34a7b6ad3ac7bfd08d8310173396655b))
+
+
+### Bug Fixes
+
+* **background:** alarm creation ([98bcb32](https://github.com/Seldszar/Gumbo/commit/98bcb328ce728c2a9b9bc3ae8d82199306a20638))
+
 ### [1.2.1](https://github.com/Seldszar/Gumbo/compare/v1.2.0...v1.2.1) (2022-03-06)
 
 
