@@ -80,7 +80,7 @@ const VideoCard: FC<VideoCardProps> = (props) => {
         <UserName>{video.user_name || video.user_login}</UserName>
         <Details>
           <li>{createdAt?.toLocaleString()}</li>
-          <li>{video.view_count} views</li>
+          <li>{video.view_count.toLocaleString()} views</li>
         </Details>
       </Inner>
     </Wrapper>

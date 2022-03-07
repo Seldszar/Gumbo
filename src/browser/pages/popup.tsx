@@ -11,6 +11,7 @@ import SearchCategories from "@/browser/views/search/SearchCategories";
 import SearchChannels from "@/browser/views/search/SearchChannels";
 import CategoryDetail from "@/browser/views/CategoryDetail";
 import FollowedStreams from "@/browser/views/FollowedStreams";
+import FollowedUsers from "@/browser/views/FollowedUsers";
 import Search from "@/browser/views/Search";
 import TopCategories from "@/browser/views/TopCategories";
 import TopStreams from "@/browser/views/TopStreams";
@@ -45,6 +46,10 @@ const PopupPage: FC = () => {
               <Route path="streams">
                 <Route index element={<TopStreams />} />
                 <Route path="followed" element={<FollowedStreams />} />
+              </Route>
+              <Route path="users">
+                <Route index element={<FollowedUsers />} />
+                <Route path="followed" element={<FollowedUsers />} />
               </Route>
               <Route path="search" element={<Search />}>
                 <Route index element={<Navigate to="channels" />} />

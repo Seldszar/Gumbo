@@ -50,6 +50,12 @@ const Sidebar: FC<SidebarProps> = (props) => (
           <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
         </svg>
       </StyledLink>
+      <StyledLink title="Followed Users" to="/users/followed">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="4" />
+          <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+        </svg>
+      </StyledLink>
       <Separator />
       <StyledLink title="Top Streams" to="/streams" end>
         <svg viewBox="0 0 24 24">
