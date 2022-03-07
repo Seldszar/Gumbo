@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Store, stores } from "@/common/stores";
-import { FollowedStreamState } from "@/common/types";
+import { FollowedStreamState, FollowedUserState } from "@/common/types";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());
@@ -82,7 +82,7 @@ export function useSettings() {
   return useStore(stores.settings);
 }
 
-export type UseFollowedStreamsStateReturn = [
+export type UseFollowedStreamStateReturn = [
   FollowedStreamState,
   {
     setSortDirection(value: "desc" | "asc"): void;
@@ -90,7 +90,7 @@ export type UseFollowedStreamsStateReturn = [
   }
 ];
 
-export function useFollowedStreamsState(): UseFollowedStreamsStateReturn {
+export function useFollowedStreamState(): UseFollowedStreamStateReturn {
   const [value, store] = useStore(stores.followedStreamState);
 
   return [
@@ -98,6 +98,28 @@ export function useFollowedStreamsState(): UseFollowedStreamsStateReturn {
     {
       setSortDirection: (value) => store.set((state) => ({ ...state, sortDirection: value })),
       setSortField: (value) => store.set((state) => ({ ...state, sortField: value })),
+    },
+  ];
+}
+
+export type UseFollowedUserStateReturn = [
+  FollowedUserState,
+  {
+    setSortDirection(value: "desc" | "asc"): void;
+    setSortField(value: string): void;
+    setStatus(value: boolean | null): void;
+  }
+];
+
+export function useFollowedUserState(): UseFollowedUserStateReturn {
+  const [value, store] = useStore(stores.followedUserState);
+
+  return [
+    value,
+    {
+      setSortDirection: (value) => store.set((state) => ({ ...state, sortDirection: value })),
+      setSortField: (value) => store.set((state) => ({ ...state, sortField: value })),
+      setStatus: (value) => store.set((state) => ({ ...state, status: value })),
     },
   ];
 }

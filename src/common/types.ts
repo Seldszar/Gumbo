@@ -21,6 +21,12 @@ export interface FollowedStreamState {
   sortField: string;
 }
 
+export interface FollowedUserState {
+  sortDirection: "asc" | "desc";
+  sortField: string;
+  status: boolean | null;
+}
+
 export interface Settings {
   channels: ChannelSettings;
   notifications: NotificationSettings;

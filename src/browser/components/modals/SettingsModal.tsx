@@ -26,10 +26,6 @@ const Tab = styled.button<TabProps>`
   ${(props) => props.isActive && tw`(bg-neutral-900 text-purple-500)!`}
 `;
 
-const Field = styled.div`
-  ${tw`mb-6 last:mb-0`}
-`;
-
 const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
@@ -55,13 +51,13 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
       title: "Notifications",
       children: (
         <>
-          <Field>
+          <Section>
             <StyledSwitch {...register("notifications.enabled")}>Enable notifications</StyledSwitch>
             <StyledSwitch {...register("notifications.withFilters")}>
               Filter notifications by channel
             </StyledSwitch>
-          </Field>
-          <Field>
+          </Section>
+          <Section>
             <CheckboxGrid
               {...register("notifications.selectedUsers")}
               disabled={!settings.notifications.withFilters}
@@ -70,7 +66,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                 value: user.id,
               }))}
             />
-          </Field>
+          </Section>
         </>
       ),
     },
@@ -78,9 +74,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
       title: "Search",
       children: (
         <Section title="Channels">
-          <Field>
-            <Switch {...register("channels.liveOnly")}>Show live channels only</Switch>
-          </Field>
+          <Switch {...register("channels.liveOnly")}>Show live channels only</Switch>
         </Section>
       ),
     },
@@ -88,21 +82,21 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
       title: "Streams",
       children: (
         <>
-          <Field>
+          <Section>
             <StyledSwitch {...register("streams.withReruns")}>
               Show Reruns in followed streams
             </StyledSwitch>
             <StyledSwitch {...register("streams.withFilters")}>
               Filter streams by language
             </StyledSwitch>
-          </Field>
-          <Field>
+          </Section>
+          <Section>
             <CheckboxGrid
               {...register("streams.selectedLanguages")}
               disabled={!settings.streams.withFilters}
               options={LANGUAGE_OPTIONS}
             />
-          </Field>
+          </Section>
         </>
       ),
     },

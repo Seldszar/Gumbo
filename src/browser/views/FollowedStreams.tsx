@@ -3,7 +3,7 @@ import { orderBy } from "lodash-es";
 import tw, { styled } from "twin.macro";
 
 import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useFollowedStreams, useFollowedStreamsState } from "@/browser/helpers/hooks";
+import { useFollowedStreams, useFollowedStreamState } from "@/browser/helpers/hooks";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
 import SearchInput from "@/browser/components/SearchInput";
@@ -28,7 +28,7 @@ const Item = styled.div``;
 
 const FollowedStreams: FC = () => {
   const [followedStreams, { isLoading }] = useFollowedStreams();
-  const [state, { setSortDirection, setSortField }] = useFollowedStreamsState();
+  const [state, { setSortDirection, setSortField }] = useFollowedStreamState();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -59,12 +59,16 @@ const FollowedStreams: FC = () => {
       return <Splash>No streams found</Splash>;
     }
 
-    return filteredStreams.map((stream) => (
-      <Item key={stream.id}>
-        <StreamCard stream={stream} />
-      </Item>
-    ));
-  }, [filteredStreams, isLoading]);
+    return (
+      <>
+        {filteredStreams.map((stream) => (
+          <Item key={stream.id}>
+            <StreamCard stream={stream} />
+          </Item>
+        ))}
+      </>
+    );
+  }, [filteredStreams, followedStreams, isLoading]);
 
   return (
     <Wrapper>
@@ -91,7 +95,7 @@ const FollowedStreams: FC = () => {
             },
             {
               value: "viewer_count",
-              label: "Viewer Count",
+              label: "Viewers",
             },
           ]}
         />
