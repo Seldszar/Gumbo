@@ -1,6 +1,6 @@
 import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
-import browser, { Notifications, Storage } from "webextension-polyfill";
+import browser, { Storage } from "webextension-polyfill";
 
 import { setupErrorTracking } from "@/common/helpers";
 import { Dictionary } from "@/common/types";
@@ -219,7 +219,7 @@ async function refresh(withNotifications = true) {
   try {
     const currentUser = await refreshCurrentUser(await stores.accessToken.get());
 
-    await Promise.all([
+    await Promise.allSettled([
       refreshFollowedStreams(currentUser, withNotifications),
       refreshFollowedUsers(currentUser),
     ]);
@@ -246,10 +246,6 @@ browser.alarms.onAlarm.addListener(() => {
   refresh();
 });
 
-browser.alarms.create({
-  periodInMinutes: 1,
-});
-
 browser.notifications.onClicked.addListener((notificationId) => {
   const [type, data] = notificationId.split(":");
 
@@ -268,6 +264,10 @@ async function setup(migrate = false): Promise<void> {
   if (migrate) {
     await Promise.allSettled(map(stores, (store) => store.migrate()));
   }
+
+  browser.alarms.create({
+    periodInMinutes: 1,
+  });
 
   await refresh(false);
 }
