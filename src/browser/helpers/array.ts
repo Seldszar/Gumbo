@@ -1,3 +1,5 @@
+import { escapeRegExp } from "lodash-es";
+
 import { Dictionary } from "@/common/types";
 
 export function isEmpty<T extends unknown[]>(value?: T): value is undefined {
@@ -17,7 +19,7 @@ export function filterList<T extends Dictionary<any>, K extends keyof T>(
     return values;
   }
 
-  const searchPattern = new RegExp(searchQuery, "i");
+  const searchPattern = new RegExp(escapeRegExp(searchQuery), "i");
 
   return values.filter((value) =>
     searchFields.some((fieldName) => searchPattern.test(value[fieldName]))
