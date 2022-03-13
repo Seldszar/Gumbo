@@ -84,7 +84,7 @@ const FollowedStreams: FC = () => {
           onChange={setSearchQuery}
           actionButtons={[
             {
-              onClick: () => browser.runtime.sendMessage({ type: "refresh", args: [true] }),
+              onClick: () => browser.runtime.sendMessage({ type: "refresh", args: [true, true] }),
               children: <RefreshIcon isRefreshing={isRefreshing} />,
             },
           ]}

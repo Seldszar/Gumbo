@@ -207,8 +207,12 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
   ]);
 }
 
-async function refresh(withNotifications = true) {
-  await Promise.allSettled([stores.isRefreshing.set(true), browser.alarms.clear()]);
+async function refresh(withNotifications = true, resetAlarm = false) {
+  await stores.isRefreshing.set(true);
+
+  if (resetAlarm) {
+    browser.alarms.clear("refresh");
+  }
 
   try {
     const currentUser = await refreshCurrentUser(await stores.accessToken.get());
@@ -219,12 +223,13 @@ async function refresh(withNotifications = true) {
     ]);
   } catch {} // eslint-disable-line no-empty
 
-  await Promise.allSettled([
-    stores.isRefreshing.set(false),
-    browser.alarms.create({
-      delayInMinutes: 1,
-    }),
-  ]);
+  if (resetAlarm) {
+    browser.alarms.create("refresh", {
+      periodInMinutes: 1,
+    });
+  }
+
+  await stores.isRefreshing.set(false);
 }
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
@@ -235,7 +240,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
 const storageChangeHandlers: Dictionary<Dictionary<(change: Storage.StorageChange) => void>> = {
   sync: {
     accessToken() {
-      refresh(false);
+      refresh(false, true);
     },
   },
 };
@@ -263,7 +268,7 @@ async function setup(migrate = false): Promise<void> {
     await Promise.allSettled(map(stores, (store) => store.migrate()));
   }
 
-  await refresh(false);
+  await refresh(false, true);
 }
 
 browser.runtime.onInstalled.addListener((detail) => {
