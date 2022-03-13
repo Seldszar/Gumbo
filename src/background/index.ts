@@ -109,7 +109,7 @@ async function filterNewStreams(streams: any[]): Promise<any[]> {
   );
 }
 
-async function refreshCurrentUser(accessToken: string) {
+async function refreshCurrentUser(accessToken: string | null) {
   let currentUser = null;
 
   if (accessToken) {
@@ -196,7 +196,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
   const manifest = browser.runtime.getManifest();
   const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
 
-  await Promise.all([
+  await Promise.allSettled([
     stores.followedStreams.set(followedStreams),
     browserAction.setBadgeBackgroundColor({
       color: "#000000",
@@ -207,14 +207,8 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
   ]);
 }
 
-let isRefreshing = false;
-
 async function refresh(withNotifications = true) {
-  if (isRefreshing) {
-    return;
-  }
-
-  isRefreshing = true;
+  await Promise.allSettled([stores.isRefreshing.set(true), browser.alarms.clear()]);
 
   try {
     const currentUser = await refreshCurrentUser(await stores.accessToken.get());
@@ -225,13 +219,17 @@ async function refresh(withNotifications = true) {
     ]);
   } catch {} // eslint-disable-line no-empty
 
-  isRefreshing = false;
+  await Promise.allSettled([
+    stores.isRefreshing.set(false),
+    browser.alarms.create({
+      delayInMinutes: 1,
+    }),
+  ]);
 }
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
-  async request([url, params]) {
-    return request(url, params);
-  },
+  refresh,
+  request,
 };
 
 const storageChangeHandlers: Dictionary<Dictionary<(change: Storage.StorageChange) => void>> = {
@@ -265,10 +263,6 @@ async function setup(migrate = false): Promise<void> {
     await Promise.allSettled(map(stores, (store) => store.migrate()));
   }
 
-  browser.alarms.create({
-    periodInMinutes: 1,
-  });
-
   await refresh(false);
 }
 
@@ -291,7 +285,7 @@ browser.runtime.onMessage.addListener((message) => {
     throw new RangeError();
   }
 
-  return handler(message.args);
+  return handler(...message.args);
 });
 
 browser.storage.onChanged.addListener((changes, areaName) => {

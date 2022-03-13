@@ -1,11 +1,17 @@
 import React, { FC, useMemo, useState } from "react";
 import { orderBy } from "lodash-es";
 import tw, { styled } from "twin.macro";
+import browser from "webextension-polyfill";
 
 import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useFollowedStreams, useFollowedStreamState } from "@/browser/helpers/hooks";
+import {
+  useFollowedStreams,
+  useFollowedStreamState,
+  useIsRefreshing,
+} from "@/browser/helpers/hooks";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
+import RefreshIcon from "@/browser/components/RefreshIcon";
 import SearchInput from "@/browser/components/SearchInput";
 import Select from "@/browser/components/Select";
 import Splash from "@/browser/components/Splash";
@@ -27,6 +33,7 @@ const FilterSelect = styled(Select)``;
 const Item = styled.div``;
 
 const FollowedStreams: FC = () => {
+  const [isRefreshing] = useIsRefreshing();
   const [followedStreams, { isLoading }] = useFollowedStreams();
   const [state, { setSortDirection, setSortField }] = useFollowedStreamState();
 
@@ -73,7 +80,15 @@ const FollowedStreams: FC = () => {
   return (
     <Wrapper>
       <Header>
-        <SearchInput onChange={setSearchQuery} />
+        <SearchInput
+          onChange={setSearchQuery}
+          actionButtons={[
+            {
+              onClick: () => browser.runtime.sendMessage({ type: "refresh", args: [true] }),
+              children: <RefreshIcon isRefreshing={isRefreshing} />,
+            },
+          ]}
+        />
       </Header>
 
       <FilterWrapper>

@@ -108,11 +108,14 @@ export class Store<T> {
 }
 
 export const stores = {
-  accessToken: new Store<any>("sync", "accessToken", {
+  accessToken: new Store<string | null>("sync", "accessToken", {
     defaultValue: null,
   }),
   currentUser: new Store<any>("local", "currentUser", {
     defaultValue: null,
+  }),
+  isRefreshing: new Store<boolean>("local", "isRefreshing", {
+    defaultValue: false,
   }),
   followedStreams: new Store<any[]>("local", "followedStreams", {
     defaultValue: [],
