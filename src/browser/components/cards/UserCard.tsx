@@ -1,15 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, HTMLAttributes, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
-import Anchor from "../Anchor";
-import ContextMenu from "../ContextMenu";
+import Card from "../Card";
 
 export interface WrapperProps {
   isLive?: boolean;
 }
 
-const Wrapper = styled(Anchor)<WrapperProps>`
-  ${tw`cursor-pointer flex items-center px-4 py-2 hover:bg-white/10`}
+const Wrapper = styled(Card)<WrapperProps>`
+  ${tw`flex items-center px-4 py-2`}
 
   ${(props) =>
     props.isLive &&
@@ -44,20 +43,9 @@ const Detail = styled.div`
   ${tw`text-sm leading-tight text-white text-opacity-50 truncate`}
 `;
 
-const EllipsisButton = styled.button`
-  ${tw`ml-3 -mr-1 p-1 text-white text-opacity-25 transition hover:text-opacity-100`}
-
-  svg {
-    ${tw`flex-none stroke-current w-5`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
-`;
-
 export interface UserCardProps {
+  onTogglePinClick?(): void;
+  isPinned?: boolean;
   isLive?: boolean;
   user: any;
 }
@@ -65,8 +53,85 @@ export interface UserCardProps {
 const UserCard: FC<UserCardProps> = (props) => {
   const { user } = props;
 
+  const actionButtons = useMemo(() => {
+    const result = new Array<HTMLAttributes<HTMLButtonElement>>();
+
+    if (props.onTogglePinClick) {
+      result.push({
+        onClick(event) {
+          event.stopPropagation();
+          event.preventDefault();
+
+          props.onTogglePinClick?.();
+        },
+        children: props.isPinned ? (
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="3" x2="21" y2="21" />
+            <path d="M15 4.5l-3.249 3.249m-2.57 1.433l-2.181 .818l-1.5 1.5l7 7l1.5 -1.5l.82 -2.186m1.43 -2.563l3.25 -3.251" />
+            <line x1="9" y1="15" x2="4.5" y2="19.5" />
+            <line x1="14.5" y1="4" x2="20" y2="9.5" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24">
+            <path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" />
+            <line x1="9" y1="15" x2="4.5" y2="19.5" />
+            <line x1="14.5" y1="4" x2="20" y2="9.5" />
+          </svg>
+        ),
+      });
+    }
+
+    return result;
+  }, [props.isPinned, props.onTogglePinClick]);
+
   return (
-    <Wrapper target="_blank" href={`https://twitch.tv/${user.login}`} isLive={props.isLive}>
+    <Wrapper
+      to={`https://twitch.tv/${user.login}`}
+      actionButtons={actionButtons}
+      isLive={props.isLive}
+      ellipsisMenu={{
+        items: [
+          {
+            type: "link",
+            children: "Popout",
+            onClick() {
+              open(`https://twitch.tv/${user.login}/popout`, "_blank");
+            },
+          },
+          {
+            type: "link",
+            children: "Chat",
+            onClick() {
+              open(`https://twitch.tv/${user.login}/chat`, "_blank");
+            },
+          },
+          {
+            type: "separator",
+          },
+          {
+            type: "link",
+            children: "About",
+            onClick() {
+              open(`https://twitch.tv/${user.login}/about`, "_blank");
+            },
+          },
+          {
+            type: "link",
+            children: "Schedule",
+            onClick() {
+              open(`https://twitch.tv/${user.login}/schedule`, "_blank");
+            },
+          },
+          {
+            type: "link",
+            children: "Videos",
+            onClick() {
+              open(`https://twitch.tv/${user.login}/videos`, "_blank");
+            },
+          },
+        ],
+      }}
+    >
       <Thumbnail>
         <ThumbnailImage style={{ backgroundImage: `url("${user.profile_image_url}")` }} />
       </Thumbnail>
@@ -77,61 +142,6 @@ const UserCard: FC<UserCardProps> = (props) => {
         <Detail title={user.description}>{user.description || "No description"}</Detail>
         <Detail>{user.view_count.toLocaleString()} views</Detail>
       </Inner>
-      <ContextMenu
-        placement="bottom-end"
-        menu={{
-          items: [
-            {
-              type: "link",
-              children: "Popout",
-              onClick() {
-                open(`https://twitch.tv/${user.login}/popout`, "_blank");
-              },
-            },
-            {
-              type: "link",
-              children: "Chat",
-              onClick() {
-                open(`https://twitch.tv/${user.login}/chat`, "_blank");
-              },
-            },
-            {
-              type: "separator",
-            },
-            {
-              type: "link",
-              children: "About",
-              onClick() {
-                open(`https://twitch.tv/${user.login}/about`, "_blank");
-              },
-            },
-            {
-              type: "link",
-              children: "Schedule",
-              onClick() {
-                open(`https://twitch.tv/${user.login}/schedule`, "_blank");
-              },
-            },
-            {
-              type: "link",
-              children: "Videos",
-              onClick() {
-                open(`https://twitch.tv/${user.login}/videos`, "_blank");
-              },
-            },
-          ],
-        }}
-      >
-        {(ref) => (
-          <EllipsisButton ref={ref}>
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="12" cy="19" r="1" />
-              <circle cx="12" cy="5" r="1" />
-            </svg>
-          </EllipsisButton>
-        )}
-      </ContextMenu>
     </Wrapper>
   );
 };

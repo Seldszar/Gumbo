@@ -7,6 +7,7 @@ import {
   useFollowedStreams,
   useFollowedUsers,
   useFollowedUserState,
+  usePinnedUsers,
 } from "@/browser/helpers/hooks";
 
 import UserCard from "@/browser/components/cards/UserCard";
@@ -34,6 +35,7 @@ const FollowedUsers: FC = () => {
   const [followedStreams] = useFollowedStreams();
   const [followedUsers, { isLoading }] = useFollowedUsers();
   const [state, { setSortDirection, setSortField, setStatus }] = useFollowedUserState();
+  const [pinnedUsers, { toggle }] = usePinnedUsers();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -75,12 +77,17 @@ const FollowedUsers: FC = () => {
       <>
         {items.map(({ user, stream }) => (
           <Item key={user.id}>
-            <UserCard user={user} isLive={!!stream} />
+            <UserCard
+              user={user}
+              isLive={!!stream}
+              onTogglePinClick={() => toggle(user.id)}
+              isPinned={pinnedUsers.includes(user.id)}
+            />
           </Item>
         ))}
       </>
     );
-  }, [items, followedUsers, isLoading]);
+  }, [items, followedUsers, pinnedUsers, isLoading]);
 
   return (
     <Wrapper>

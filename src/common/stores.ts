@@ -123,6 +123,9 @@ export const stores = {
   followedUsers: new Store<any[]>("local", "followedUsers", {
     defaultValue: [],
   }),
+  pinnedUsers: new Store<string[]>("sync", "pinnedUsers", {
+    defaultValue: [],
+  }),
   settings: new Store<Settings>("sync", "settings", {
     defaultValue: {
       channels: {
