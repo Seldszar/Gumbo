@@ -82,6 +82,10 @@ export function useSettings() {
   return useStore(stores.settings);
 }
 
+export function useIsRefreshing() {
+  return useStore(stores.isRefreshing);
+}
+
 export type UseFollowedStreamStateReturn = [
   FollowedStreamState,
   {
