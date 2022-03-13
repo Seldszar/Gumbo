@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.4.1](https://github.com/Seldszar/Gumbo/compare/v1.4.0...v1.4.1) (2022-03-13)
+
+
+### Bug Fixes
+
+* list filtering ([58f9036](https://github.com/Seldszar/Gumbo/commit/58f903639ddc536661893d0a9811131d9cde3df2))
+* resettable refresh periodic alarm ([f5538d3](https://github.com/Seldszar/Gumbo/commit/f5538d3e19edeab571df8ecb95fd8f9dfa29d169))
+
 ## [1.4.0](https://github.com/Seldszar/Gumbo/compare/v1.3.0...v1.4.0) (2022-03-13)
 
 
