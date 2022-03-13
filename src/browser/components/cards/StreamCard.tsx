@@ -1,16 +1,15 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, HTMLAttributes, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import Anchor from "../Anchor";
-import ContextMenu from "../ContextMenu";
+import Card from "../Card";
 import Image from "../Image";
 import Uptime from "../Uptime";
 import ViewerCount from "../ViewerCount";
 
 const StyledImage = styled(Image)``;
 
-const Wrapper = styled(Anchor)`
-  ${tw`cursor-pointer flex items-center px-4 py-2 h-20 hover:bg-white/10`}
+const Wrapper = styled(Card)`
+  ${tw`flex items-center px-4 py-2 h-20`}
 `;
 
 const Thumbnail = styled.div`
@@ -57,20 +56,9 @@ const GameName = styled.div`
   ${tw`text-sm leading-tight text-white text-opacity-50 truncate`}
 `;
 
-const EllipsisButton = styled.button`
-  ${tw`ml-3 -mr-1 p-1 text-white text-opacity-25 transition hover:text-opacity-100`}
-
-  svg {
-    ${tw`flex-none stroke-current w-5`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
-`;
-
 export interface StreamCardProps {
+  onTogglePinClick?(): void;
+  isPinned?: boolean;
   stream: any;
 }
 
@@ -87,8 +75,84 @@ const StreamCard: FC<StreamCardProps> = (props) => {
     [stream.thumbnail_url]
   );
 
+  const actionButtons = useMemo(() => {
+    const result = new Array<HTMLAttributes<HTMLButtonElement>>();
+
+    if (props.onTogglePinClick) {
+      result.push({
+        onClick(event) {
+          event.stopPropagation();
+          event.preventDefault();
+
+          props.onTogglePinClick?.();
+        },
+        children: props.isPinned ? (
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="3" x2="21" y2="21" />
+            <path d="M15 4.5l-3.249 3.249m-2.57 1.433l-2.181 .818l-1.5 1.5l7 7l1.5 -1.5l.82 -2.186m1.43 -2.563l3.25 -3.251" />
+            <line x1="9" y1="15" x2="4.5" y2="19.5" />
+            <line x1="14.5" y1="4" x2="20" y2="9.5" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24">
+            <path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" />
+            <line x1="9" y1="15" x2="4.5" y2="19.5" />
+            <line x1="14.5" y1="4" x2="20" y2="9.5" />
+          </svg>
+        ),
+      });
+    }
+
+    return result;
+  }, [props.isPinned, props.onTogglePinClick]);
+
   return (
-    <Wrapper target="_blank" href={`https://twitch.tv/${stream.user_login}`}>
+    <Wrapper
+      to={`https://twitch.tv/${stream.user_login}`}
+      actionButtons={actionButtons}
+      ellipsisMenu={{
+        items: [
+          {
+            type: "link",
+            children: "Popout",
+            onClick() {
+              open(`https://twitch.tv/${stream.user_login}/popout`, "_blank");
+            },
+          },
+          {
+            type: "link",
+            children: "Chat",
+            onClick() {
+              open(`https://twitch.tv/${stream.user_login}/chat`, "_blank");
+            },
+          },
+          {
+            type: "separator",
+          },
+          {
+            type: "link",
+            children: "About",
+            onClick() {
+              open(`https://twitch.tv/${stream.user_login}/about`, "_blank");
+            },
+          },
+          {
+            type: "link",
+            children: "Schedule",
+            onClick() {
+              open(`https://twitch.tv/${stream.user_login}/schedule`, "_blank");
+            },
+          },
+          {
+            type: "link",
+            children: "Videos",
+            onClick() {
+              open(`https://twitch.tv/${stream.user_login}/videos`, "_blank");
+            },
+          },
+        ],
+      }}
+    >
       <Thumbnail>
         <ThumbnailPicture>
           <StyledImage src={backgroundImage} />
@@ -103,61 +167,6 @@ const StreamCard: FC<StreamCardProps> = (props) => {
         <StreamTitle title={stream.title}>{stream.title}</StreamTitle>
         <GameName title={stream.game_name}>{stream.game_name}</GameName>
       </Inner>
-      <ContextMenu
-        placement="bottom-end"
-        menu={{
-          items: [
-            {
-              type: "link",
-              children: "Popout",
-              onClick() {
-                open(`https://twitch.tv/${stream.user_login}/popout`, "_blank");
-              },
-            },
-            {
-              type: "link",
-              children: "Chat",
-              onClick() {
-                open(`https://twitch.tv/${stream.user_login}/chat`, "_blank");
-              },
-            },
-            {
-              type: "separator",
-            },
-            {
-              type: "link",
-              children: "About",
-              onClick() {
-                open(`https://twitch.tv/${stream.user_login}/about`, "_blank");
-              },
-            },
-            {
-              type: "link",
-              children: "Schedule",
-              onClick() {
-                open(`https://twitch.tv/${stream.user_login}/schedule`, "_blank");
-              },
-            },
-            {
-              type: "link",
-              children: "Videos",
-              onClick() {
-                open(`https://twitch.tv/${stream.user_login}/videos`, "_blank");
-              },
-            },
-          ],
-        }}
-      >
-        {(ref) => (
-          <EllipsisButton ref={ref}>
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="12" cy="19" r="1" />
-              <circle cx="12" cy="5" r="1" />
-            </svg>
-          </EllipsisButton>
-        )}
-      </ContextMenu>
     </Wrapper>
   );
 };

@@ -3,13 +3,13 @@ import tw, { styled } from "twin.macro";
 
 import { parseFormatDuration } from "@/browser/helpers/time";
 
-import Anchor from "../Anchor";
+import Card from "../Card";
 import Image from "../Image";
 
 const StyledImage = styled(Image)``;
 
-const Wrapper = styled(Anchor)`
-  ${tw`cursor-pointer flex items-center px-4 py-2 h-20 hover:bg-white/10`}
+const Wrapper = styled(Card)`
+  ${tw`flex items-center px-4 py-2 h-20`}
 `;
 
 const Thumbnail = styled.div`
@@ -68,7 +68,7 @@ const VideoCard: FC<VideoCardProps> = (props) => {
   const durationString = useMemo(() => parseFormatDuration(video.duration), [video.duration]);
 
   return (
-    <Wrapper target="_blank" href={video.url}>
+    <Wrapper to={video.url}>
       <Thumbnail>
         <ThumbnailPicture>
           <StyledImage src={previewImage} />

@@ -1,3 +1,4 @@
+import { xor } from "lodash-es";
 import { useEffect, useState } from "react";
 
 import { Store, stores } from "@/common/stores";
@@ -124,6 +125,24 @@ export function useFollowedUserState(): UseFollowedUserStateReturn {
       setSortDirection: (value) => store.set((state) => ({ ...state, sortDirection: value })),
       setSortField: (value) => store.set((state) => ({ ...state, sortField: value })),
       setStatus: (value) => store.set((state) => ({ ...state, status: value })),
+    },
+  ];
+}
+
+export type UsePinnedUsersReturn = [
+  string[],
+  {
+    toggle(value: string): void;
+  }
+];
+
+export function usePinnedUsers(): UsePinnedUsersReturn {
+  const [state, store] = useStore(stores.pinnedUsers);
+
+  return [
+    state,
+    {
+      toggle: (value) => store.set((state) => xor(state, [value])),
     },
   ];
 }

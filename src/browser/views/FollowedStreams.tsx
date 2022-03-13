@@ -8,6 +8,7 @@ import {
   useFollowedStreams,
   useFollowedStreamState,
   useIsRefreshing,
+  usePinnedUsers,
 } from "@/browser/helpers/hooks";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
@@ -36,6 +37,7 @@ const FollowedStreams: FC = () => {
   const [isRefreshing] = useIsRefreshing();
   const [followedStreams, { isLoading }] = useFollowedStreams();
   const [state, { setSortDirection, setSortField }] = useFollowedStreamState();
+  const [pinnedUsers, { toggle }] = usePinnedUsers();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -48,10 +50,10 @@ const FollowedStreams: FC = () => {
 
     return orderBy(
       filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
-      state.sortField,
-      sortDirection
+      [(stream) => pinnedUsers.includes(stream.user_id), state.sortField],
+      ["desc", sortDirection]
     );
-  }, [state, followedStreams, searchQuery]);
+  }, [state, followedStreams, pinnedUsers, searchQuery]);
 
   const children = useMemo(() => {
     if (isLoading) {
@@ -70,12 +72,16 @@ const FollowedStreams: FC = () => {
       <>
         {filteredStreams.map((stream) => (
           <Item key={stream.id}>
-            <StreamCard stream={stream} />
+            <StreamCard
+              stream={stream}
+              onTogglePinClick={() => toggle(stream.user_id)}
+              isPinned={pinnedUsers.includes(stream.user_id)}
+            />
           </Item>
         ))}
       </>
     );
-  }, [filteredStreams, followedStreams, isLoading]);
+  }, [filteredStreams, followedStreams, isLoading, pinnedUsers]);
 
   return (
     <Wrapper>
