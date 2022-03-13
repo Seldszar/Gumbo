@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Seldszar/Gumbo/compare/v1.4.1...v1.5.0) (2022-03-13)
+
+
+### Features
+
+* pinned streams ([2d58adf](https://github.com/Seldszar/Gumbo/commit/2d58adf275da51dfff02d21b08e8acb26bfcc43d))
+
 ### [1.4.1](https://github.com/Seldszar/Gumbo/compare/v1.4.0...v1.4.1) (2022-03-13)
 
 
