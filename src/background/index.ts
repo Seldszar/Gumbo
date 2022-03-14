@@ -3,8 +3,8 @@ import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodas
 import browser, { Storage } from "webextension-polyfill";
 
 import { setupErrorTracking } from "@/common/helpers";
-import { Dictionary } from "@/common/types";
 import { stores } from "@/common/stores";
+import { Dictionary } from "@/common/types";
 
 setupErrorTracking();
 
