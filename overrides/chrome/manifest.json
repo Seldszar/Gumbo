@@ -8,7 +8,8 @@
     "alarms",
     "background",
     "notifications",
-    "storage"
+    "storage",
+    "unlimitedStorage"
   ],
   "host_permissions": [
     "https://gumbo.seldszar.fr/*"

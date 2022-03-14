@@ -13,6 +13,7 @@
     "alarms",
     "notifications",
     "storage",
+    "unlimitedStorage",
     "https://gumbo.seldszar.fr/*"
   ],
   "background": {
