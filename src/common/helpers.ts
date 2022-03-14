@@ -8,11 +8,11 @@ export function setupErrorTracking() {
     dsn: process.env.SENTRY_DSN,
     release: manifest.version,
     ignoreErrors: [
-      "AbortError:",
-      "Corruption:",
-      "InvalidStateError:",
-      "IO error:",
-      "QuotaExceededError:",
+      /^AbortError:/i,
+      /^Corruption:/i,
+      /^InvalidStateError:/i,
+      /^IO error:/i,
+      /^QuotaExceededError:/i,
     ],
   });
 }
