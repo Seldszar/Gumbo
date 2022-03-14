@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.5.2](https://github.com/Seldszar/Gumbo/compare/v1.5.1...v1.5.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* **sentry:** ignore storage-related errors ([ca55557](https://github.com/Seldszar/Gumbo/commit/ca55557b73e9ecb529fcec3400b86f49e82b5219))
+
 ### [1.5.1](https://github.com/Seldszar/Gumbo/compare/v1.5.0...v1.5.1) (2022-03-14)
 
 
