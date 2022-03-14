@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from "react";
-import { orderBy } from "lodash-es";
+import { groupBy, orderBy } from "lodash-es";
 import tw, { styled } from "twin.macro";
 import browser from "webextension-polyfill";
 
@@ -29,6 +29,16 @@ const FilterWrapper = styled.div`
   ${tw`bg-gradient-to-b from-transparent to-black/20 flex gap-6 justify-end py-3 px-4`}
 `;
 
+const Group = styled.div`
+  &::after {
+    ${tw`block border-b border-neutral-800 content mx-4 my-1`}
+  }
+
+  &:last-of-type::after {
+    ${tw`hidden`}
+  }
+`;
+
 const FilterSelect = styled(Select)``;
 
 const Item = styled.div``;
@@ -48,10 +58,15 @@ const FollowedStreams: FC = () => {
       sortDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
-    return orderBy(
-      filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
-      [(stream) => pinnedUsers.includes(stream.user_id), state.sortField],
-      ["desc", sortDirection]
+    return Object.values(
+      groupBy(
+        orderBy(
+          filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
+          [(stream) => pinnedUsers.includes(stream.user_id), state.sortField],
+          ["desc", sortDirection]
+        ),
+        (stream) => (pinnedUsers.includes(stream.user_id) ? 0 : 1)
+      )
     );
   }, [state, followedStreams, pinnedUsers, searchQuery]);
 
@@ -69,17 +84,21 @@ const FollowedStreams: FC = () => {
     }
 
     return (
-      <>
-        {filteredStreams.map((stream) => (
-          <Item key={stream.id}>
-            <StreamCard
-              stream={stream}
-              onTogglePinClick={() => toggle(stream.user_id)}
-              isPinned={pinnedUsers.includes(stream.user_id)}
-            />
-          </Item>
+      <div>
+        {filteredStreams.map((streams, index) => (
+          <Group key={index}>
+            {streams.map((stream) => (
+              <Item key={stream.id}>
+                <StreamCard
+                  stream={stream}
+                  onTogglePinClick={() => toggle(stream.user_id)}
+                  isPinned={pinnedUsers.includes(stream.user_id)}
+                />
+              </Item>
+            ))}
+          </Group>
         ))}
-      </>
+      </div>
     );
   }, [filteredStreams, followedStreams, isLoading, pinnedUsers]);
 

@@ -3,17 +3,14 @@ import { useEffect, useState } from "react";
 
 import { Store, stores } from "@/common/stores";
 import { FollowedStreamState, FollowedUserState } from "@/common/types";
+import { useHarmonicIntervalFn } from "react-use";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());
 
-  useEffect(() => {
-    const handle = setInterval(() => setNow(new Date()), interval);
-
-    return () => {
-      clearInterval(handle);
-    };
-  }, [interval]);
+  useHarmonicIntervalFn(() => {
+    setNow(new Date());
+  }, interval);
 
   return now;
 }

@@ -12,7 +12,7 @@ const Uptime: FC<UptimeProps> = (props) => {
   const now = useNow();
 
   const timeString = useMemo(
-    () => formatTime(now.getTime() - props.startDate.getTime(), false),
+    () => formatTime(now.getTime() - props.startDate.getTime()),
     [props.startDate, now]
   );
 
