@@ -27,7 +27,7 @@ const ThumbnailPicture = styled.div`
 `;
 
 const StyledStreamUptime = styled(Uptime)`
-  ${tw`absolute bg-black/75 bottom-px flex font-medium px-1 right-px rounded`}
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 right-0 rounded-tl`}
 
   font-feature-settings: "tnum";
 `;

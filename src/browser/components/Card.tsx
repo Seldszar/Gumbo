@@ -22,9 +22,9 @@ const ActionButton = styled.button`
 const ActionMenu = styled.button`
   ${tw`absolute pointer-events-none invisible inset-y-0 pl-12 pr-3 right-0`}
 
-  background-image: linear-gradient(to right, transparent, ${theme<string>(
-    "colors.neutral.800"
-  )} ${theme<string>("spacing.9")});
+  background-image: linear-gradient(to right, transparent, rgba(38, 38, 38, 0.75) ${theme<string>(
+    "spacing.9"
+  )});
 `;
 
 const Wrapper = styled(Anchor)`
