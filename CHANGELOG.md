@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.5.1](https://github.com/Seldszar/Gumbo/compare/v1.5.0...v1.5.1) (2022-03-14)
+
+
+### Bug Fixes
+
+* unlimited storage ([09b5b88](https://github.com/Seldszar/Gumbo/commit/09b5b885726889986bdcaebf9fdf6a75c0c115bb))
+
 ## [1.5.0](https://github.com/Seldszar/Gumbo/compare/v1.4.1...v1.5.0) (2022-03-13)
 
 
