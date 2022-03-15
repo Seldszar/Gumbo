@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.5.3](https://github.com/Seldszar/Gumbo/compare/v1.5.2...v1.5.3) (2022-03-14)
+
+
+### Bug Fixes
+
+* **sentry:** update ignored errors ([8471ea6](https://github.com/Seldszar/Gumbo/commit/8471ea683170d743bed5e86eb44f180a555a1d62))
+* uptime format & action menu background opacity ([44825a3](https://github.com/Seldszar/Gumbo/commit/44825a3f53973b1a1065767b96694a98f49d408b))
+
 ### [1.5.2](https://github.com/Seldszar/Gumbo/compare/v1.5.1...v1.5.2) (2022-03-14)
 
 
