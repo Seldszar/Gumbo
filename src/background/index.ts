@@ -3,7 +3,7 @@ import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodas
 import browser, { Storage } from "webextension-polyfill";
 
 import { setupErrorTracking } from "@/common/helpers";
-import { stores } from "@/common/stores";
+import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
 
 setupErrorTracking();
@@ -232,9 +232,44 @@ async function refresh(withNotifications = true, resetAlarm = false) {
   await stores.isRefreshing.set(false);
 }
 
+async function backup(): Promise<any> {
+  const [followedStreamState, followedUserState, pinnedUsers, settings] = await Promise.all([
+    stores.followedStreamState.getState(),
+    stores.followedUserState.getState(),
+    stores.pinnedUsers.getState(),
+    stores.settings.getState(),
+  ]);
+
+  return {
+    followedStreamState,
+    followedUserState,
+    pinnedUsers,
+    settings,
+  };
+}
+
+async function restore(data: any): Promise<void> {
+  const restoreStore = async (store: Store<unknown>) => {
+    const state = data[store.name];
+
+    if (state) {
+      await store.restore(state);
+    }
+  };
+
+  await Promise.all([
+    restoreStore(stores.followedStreamState),
+    restoreStore(stores.followedUserState),
+    restoreStore(stores.pinnedUsers),
+    restoreStore(stores.settings),
+  ]);
+}
+
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
+  backup,
   refresh,
   request,
+  restore,
 };
 
 const storageChangeHandlers: Dictionary<Dictionary<(change: Storage.StorageChange) => void>> = {

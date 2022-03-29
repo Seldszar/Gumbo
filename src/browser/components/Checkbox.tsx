@@ -10,7 +10,7 @@ interface ControlProps {
 }
 
 const Control = styled.div<ControlProps>`
-  ${tw`bg-black flex flex-none h-6 items-center justify-center rounded text-white w-6`}
+  ${tw`bg-black/50 flex flex-none h-6 items-center justify-center rounded text-white w-6`}
 
   svg {
     ${tw`stroke-current w-4`}

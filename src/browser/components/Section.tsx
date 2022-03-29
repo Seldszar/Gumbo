@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Header = styled.div`
-  ${tw`mb-3 text-lg text-white/50`}
+  ${tw`font-medium mb-3 text-white/50 text-sm uppercase`}
 `;
 
 const Wrapper = styled.div`
