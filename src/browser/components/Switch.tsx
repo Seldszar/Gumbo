@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
-const Wrapper = styled.label`
+const Wrapper = styled.fieldset`
   ${tw`cursor-pointer flex items-center disabled:(cursor-default opacity-25)`}
 `;
 
@@ -14,7 +14,7 @@ interface ControlProps {
 }
 
 const Control = styled.div<ControlProps>`
-  ${tw`bg-black flex justify-start p-1 rounded-full w-12`}
+  ${tw`bg-black/50 flex justify-start p-1 rounded-full w-12`}
 
   ${(props) =>
     props.isChecked &&
@@ -34,11 +34,16 @@ const Inner = styled.div`
 export interface SwitchProps {
   value?: boolean;
   className?: string;
+  disabled?: boolean;
   onChange?(checked: boolean): void;
 }
 
 const Switch: FC<SwitchProps> = (props) => (
-  <Wrapper className={props.className} onClick={() => props.onChange?.(!props.value)}>
+  <Wrapper
+    disabled={props.disabled}
+    className={props.className}
+    onClick={() => props.onChange?.(!props.value)}
+  >
     {props.children && <Inner>{props.children}</Inner>}
 
     <Control isChecked={props.value}>

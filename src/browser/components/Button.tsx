@@ -50,10 +50,13 @@ const Wrapper = styled(m.button)<WrapperProps>`
   ${(props) => {
     switch (props.color) {
       case "purple":
-        return tw`bg-purple-500 hover:bg-purple-400 disabled:bg-purple-500!`;
+        return tw`bg-purple-500 hover:bg-purple-400 active:bg-purple-600 disabled:bg-purple-500!`;
+
+      case "transparent":
+        return tw`hover:bg-white/10 active:bg-black/25 disabled:bg-transparent!`;
 
       default:
-        return tw`bg-neutral-700 hover:bg-neutral-600 disabled:bg-neutral-700!`;
+        return tw`bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-800 disabled:bg-neutral-700!`;
     }
   }}
 
