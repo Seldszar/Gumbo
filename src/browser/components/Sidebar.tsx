@@ -36,11 +36,12 @@ const Footer = styled.div`
 `;
 
 export interface SidebarProps {
+  className?: string;
   user: any;
 }
 
 const Sidebar: FC<SidebarProps> = (props) => (
-  <Wrapper>
+  <Wrapper className={props.className}>
     <Header>
       <StyledLogo />
     </Header>

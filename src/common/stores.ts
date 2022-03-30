@@ -157,6 +157,9 @@ export const stores = {
   }),
   settings: new Store<Settings>("local", "settings", {
     defaultValue: {
+      general: {
+        fontSize: "medium",
+      },
       channels: {
         liveOnly: false,
       },

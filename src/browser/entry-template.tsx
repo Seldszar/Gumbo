@@ -2,74 +2,79 @@ import type { EntryWrapper } from "@seldszar/yael";
 
 import { Global } from "@emotion/react";
 import { domAnimation, LazyMotion } from "framer-motion";
-import React, { ExoticComponent } from "react";
+import React, { ExoticComponent, FC } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
-import { setupErrorTracking } from "@/common/helpers";
+import { getBaseFontSize, setupErrorTracking } from "@/common/helpers";
 
+import { useSettings } from "./helpers/hooks";
 import { backgroundFetcher } from "./helpers/queries";
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
   setupErrorTracking();
 
-  const App = (
-    <SWRConfig value={{ fetcher: backgroundFetcher }}>
-      <HashRouter>
-        <LazyMotion features={domAnimation} strict>
-          <GlobalStyles />
+  const App: FC = () => {
+    const [settings] = useSettings();
 
-          <Global
-            styles={css`
-              ::selection {
-                ${tw`bg-purple-500 text-white`}
-              }
+    return (
+      <SWRConfig value={{ fetcher: backgroundFetcher }}>
+        <HashRouter>
+          <LazyMotion features={domAnimation} strict>
+            <GlobalStyles />
 
-              ::-webkit-scrollbar {
-                ${tw`bg-black/25`}
+            <Global
+              styles={css`
+                ::selection {
+                  ${tw`bg-purple-500 text-white`}
+                }
 
-                height: ${theme("spacing.2")};
-                width: ${theme("spacing.2")};
-              }
+                ::-webkit-scrollbar {
+                  ${tw`bg-black/25`}
 
-              ::-webkit-scrollbar-track,
-              ::-webkit-scrollbar-thumb {
-                background-clip: padding-box;
-                border: 1px solid ${theme`colors.transparent`};
-              }
+                  height: ${theme`spacing.2`};
+                  width: ${theme`spacing.2`};
+                }
 
-              ::-webkit-scrollbar-thumb {
-                ${tw`bg-purple-500 hover:bg-purple-600 active:bg-purple-400`}
-              }
+                ::-webkit-scrollbar-track,
+                ::-webkit-scrollbar-thumb {
+                  background-clip: padding-box;
+                  border: 1px solid ${theme`colors.transparent`};
+                }
 
-              * {
-                scrollbar-color: ${theme`colors.purple.500`} ${theme`colors.transparent`};
-                scrollbar-width: thin;
-              }
+                ::-webkit-scrollbar-thumb {
+                  ${tw`bg-purple-500 hover:bg-purple-600 active:bg-purple-400`}
+                }
 
-              html,
-              body {
-                font-size: 14px;
-                height: 600px;
-                width: 420px;
-              }
+                * {
+                  scrollbar-color: ${theme`colors.purple.500`} ${theme`colors.transparent`};
+                  scrollbar-width: thin;
+                }
 
-              body {
-                ${tw`bg-neutral-900 text-white overflow-hidden`}
-              }
-            `}
-          />
+                html,
+                body {
+                  font-size: ${getBaseFontSize(settings.general.fontSize)};
+                  height: 600px;
+                  width: 420px;
+                }
 
-          <Component />
-        </LazyMotion>
-      </HashRouter>
-    </SWRConfig>
-  );
+                body {
+                  ${tw`bg-neutral-900 text-white overflow-hidden`}
+                }
+              `}
+            />
+
+            <Component />
+          </LazyMotion>
+        </HashRouter>
+      </SWRConfig>
+    );
+  };
 
   if (target === "web") {
-    ReactDOM.render(App, document.body);
+    ReactDOM.render(<App />, document.body);
   }
 };
 

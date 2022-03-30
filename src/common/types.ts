@@ -1,5 +1,12 @@
 export type Dictionary<T> = Record<string, T>;
 
+export type FontSize = "smallest" | "small" | "medium" | "large" | "largest";
+export type SortDirection = "asc" | "desc";
+
+export interface GeneralSettings {
+  fontSize: FontSize;
+}
+
 export interface StreamSettings {
   withReruns: boolean;
   withFilters: boolean;
@@ -17,17 +24,18 @@ export interface ChannelSettings {
 }
 
 export interface FollowedStreamState {
-  sortDirection: "asc" | "desc";
+  sortDirection: SortDirection;
   sortField: string;
 }
 
 export interface FollowedUserState {
-  sortDirection: "asc" | "desc";
+  sortDirection: SortDirection;
   sortField: string;
   status: boolean | null;
 }
 
 export interface Settings {
+  general: GeneralSettings;
   channels: ChannelSettings;
   notifications: NotificationSettings;
   streams: StreamSettings;

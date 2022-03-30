@@ -16,3 +16,21 @@ export function setupErrorTracking() {
     ],
   });
 }
+
+export function getBaseFontSize(value: string): string {
+  switch (value) {
+    case "smallest":
+      return "12px";
+
+    case "small":
+      return "13px";
+
+    case "large":
+      return "15px";
+
+    case "largest":
+      return "16px";
+  }
+
+  return "14px";
+}
