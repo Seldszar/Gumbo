@@ -4,8 +4,17 @@ import tw, { styled } from "twin.macro";
 
 import ContextMenu from "@/browser/components/ContextMenu";
 
-const Wrapper = styled.div`
-  ${tw`cursor-pointer flex text-neutral-400 text-sm hover:text-white`}
+interface WrapperProps {
+  fullWidth?: boolean;
+}
+
+const Wrapper = styled.div<WrapperProps>`
+  ${tw`cursor-pointer flex`}
+
+  ${(props) =>
+    props.fullWidth
+      ? tw`bg-neutral-700 pl-4 pr-3 py-2 rounded shadow-lg hover:bg-neutral-600`
+      : tw`text-neutral-400 text-sm hover:text-white`}
 `;
 
 const Inner = styled.div`
@@ -30,6 +39,7 @@ export interface SelectProps<T> {
   onChange(value: T): void;
   className?: string;
   options: SelectOption<T>[];
+  fullWidth?: boolean;
   value: T;
 }
 
@@ -40,6 +50,7 @@ const Select: FC<SelectProps<any>> = (props) => {
 
   return (
     <ContextMenu
+      fullWidth={props.fullWidth}
       placement="bottom-end"
       menu={{
         items: options.map((option) => {
@@ -63,7 +74,7 @@ const Select: FC<SelectProps<any>> = (props) => {
       }}
     >
       {(ref) => (
-        <Wrapper className={props.className} ref={ref}>
+        <Wrapper fullWidth={props.fullWidth} className={props.className} ref={ref}>
           <Inner>{selectedOption?.label ?? "Unknown"}</Inner>
           <Icon viewBox="0 0 24 24">
             <polyline points="6 9 12 15 18 9" />

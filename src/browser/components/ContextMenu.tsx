@@ -1,4 +1,4 @@
-import { flip, offset, Placement, shift, useFloating } from "@floating-ui/react-dom";
+import { flip, offset, Placement, shift, size, useFloating } from "@floating-ui/react-dom";
 import { useDomEvent } from "framer-motion";
 import React, { FC, ReactNode, Ref } from "react";
 import { createPortal } from "react-dom";
@@ -7,26 +7,54 @@ import tw, { styled, theme } from "twin.macro";
 
 import Menu, { MenuProps } from "./Menu";
 
-const Panel = styled.div`
-  ${tw`fixed bg-black py-2 rounded shadow-lg z-20`}
+interface PanelProps {
+  fullWidth?: boolean;
+}
+
+const Panel = styled.div<PanelProps>`
+  ${tw`fixed bg-black max-h-80 py-2 rounded shadow-lg z-20`}
 
   max-width: ${theme<string>("spacing.64")};
   min-width: ${theme<string>("spacing.48")};
+
+  ${(props) => props.fullWidth && tw`max-w-none min-w-0`}
 `;
 
 interface ContextMenu {
   children(ref: Ref<never>): ReactNode;
   menu: MenuProps;
   placement?: Placement;
+  fullWidth?: boolean;
 }
 
 const ContextMenu: FC<ContextMenu> = (props) => {
   const [isOpen, toggleOpen] = useToggle(false);
 
   const { floating, reference, refs, x, y } = useFloating({
-    middleware: [flip(), shift(), offset(4)],
     placement: props.placement,
     strategy: "fixed",
+    middleware: [
+      flip(),
+      shift(),
+      offset(4),
+      size({
+        apply({ reference }) {
+          if (!props.fullWidth) {
+            return;
+          }
+
+          const element = refs.floating.current;
+
+          if (element == null) {
+            return;
+          }
+
+          Object.assign(element.style, {
+            width: `${reference.width}px`,
+          });
+        },
+      }),
+    ],
   });
 
   useClickAway(
@@ -57,7 +85,7 @@ const ContextMenu: FC<ContextMenu> = (props) => {
   const children = (
     <>
       {isOpen && (
-        <Panel ref={floating} style={{ top: y ?? "", left: x ?? "" }}>
+        <Panel fullWidth={props.fullWidth} ref={floating} style={{ top: y ?? "", left: x ?? "" }}>
           <Menu {...props.menu} />
         </Panel>
       )}

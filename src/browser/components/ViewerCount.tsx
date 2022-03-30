@@ -23,6 +23,7 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 export interface ViewerCountProps {
+  className?: string;
   stream: any;
 }
 
@@ -58,7 +59,7 @@ const ViewerCount: FC<ViewerCountProps> = (props) => {
   }, [stream.type]);
 
   return (
-    <Wrapper type={stream.type} title={status?.title}>
+    <Wrapper type={stream.type} title={status?.title} className={props.className}>
       {stream.viewer_count.toLocaleString("en-US")}
       {status?.icon}
     </Wrapper>

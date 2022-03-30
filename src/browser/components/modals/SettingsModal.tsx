@@ -10,8 +10,10 @@ import { LANGUAGE_OPTIONS } from "@/common/constants";
 import Accordion from "../Accordion";
 import Button from "../Button";
 import CheckboxGrid from "../CheckboxGrid";
+import FormField from "../FormField";
 import Modal from "../Modal";
 import Section from "../Section";
+import Select from "../Select";
 import Switch from "../Switch";
 
 const StyledAccordion = styled(Accordion)`
@@ -90,6 +92,39 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
 
   return (
     <Modal isOpen={props.isOpen} title="Settings" onClose={props.onClose}>
+      <StyledAccordion title="General">
+        <Section>
+          <FormField title="Font Size">
+            <Select
+              {...register("general.fontSize")}
+              fullWidth
+              options={[
+                {
+                  label: "Smallest",
+                  value: "smallest",
+                },
+                {
+                  label: "Small",
+                  value: "small",
+                },
+                {
+                  label: "Medium",
+                  value: "medium",
+                },
+                {
+                  label: "Large",
+                  value: "large",
+                },
+                {
+                  label: "Largest",
+                  value: "largest",
+                },
+              ]}
+            />
+          </FormField>
+        </Section>
+      </StyledAccordion>
+
       <StyledAccordion title="Notifications">
         <Section>
           <StyledSwitch {...register("notifications.enabled")}>Enable notifications</StyledSwitch>
