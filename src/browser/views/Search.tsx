@@ -9,18 +9,18 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-900 via-neutral-900 to-transparent flex-none p-3 sticky top-0 z-20`}
+  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-20`}
 `;
 
 const TabList = styled.div`
-  ${tw`bg-black flex flex-none -mt-20 pt-24 px-4`}
+  ${tw`bg-white dark:bg-black flex flex-none -mt-20 pt-24 px-4`}
 `;
 
 const Tab = styled(NavLink)`
-  ${tw`flex-auto px-4 py-2 rounded-t text-center hover:text-white`}
+  ${tw`flex-auto px-4 py-2 rounded-t text-center hover:(text-black dark:text-white)`}
 
   &.active {
-    ${tw`(bg-neutral-900 text-purple-500)!`}
+    ${tw`(bg-neutral-100 dark:bg-neutral-900 text-purple-500)!`}
   }
 `;
 

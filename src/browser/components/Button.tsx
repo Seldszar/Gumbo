@@ -56,7 +56,7 @@ const Wrapper = styled(m.button)<WrapperProps>`
         return tw`hover:bg-white/10 active:bg-black/25 disabled:bg-transparent!`;
 
       default:
-        return tw`bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-800 disabled:bg-neutral-700!`;
+        return tw`bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 disabled:bg-neutral-300! dark:(bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-800 disabled:bg-neutral-700!)`;
     }
   }}
 

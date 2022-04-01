@@ -2,9 +2,11 @@ export type Dictionary<T> = Record<string, T>;
 
 export type FontSize = "smallest" | "small" | "medium" | "large" | "largest";
 export type SortDirection = "asc" | "desc";
+export type Theme = "dark" | "light";
 
 export interface GeneralSettings {
   fontSize: FontSize;
+  theme: Theme;
 }
 
 export interface StreamSettings {

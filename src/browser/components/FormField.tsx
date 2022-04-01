@@ -6,13 +6,13 @@ const Wrapper = styled.fieldset`
 `;
 
 const Header = styled.div`
-  ${tw`text-white/50`}
+  ${tw`text-black dark:text-white`}
 `;
 
 const Inner = styled.div``;
 
 const Footer = styled.div`
-  ${tw`text-sm text-white/50`}
+  ${tw`text-sm text-white/50 dark:text-white/50`}
 `;
 
 interface FormFieldProps {

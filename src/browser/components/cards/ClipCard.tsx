@@ -17,7 +17,7 @@ const Thumbnail = styled.div`
 `;
 
 const ThumbnailPicture = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded shadow text-sm w-24`}
+  ${tw`bg-white dark:bg-black overflow-hidden relative rounded shadow text-sm w-24`}
 
   padding-top: 56.25%;
 
@@ -27,7 +27,7 @@ const ThumbnailPicture = styled.div`
 `;
 
 const Duration = styled.div`
-  ${tw`absolute bg-black/75 bottom-px flex font-medium px-1 right-px rounded`}
+  ${tw`absolute bg-white/75 dark:bg-black/75 bottom-px flex font-medium px-1 right-px rounded`}
 
   font-feature-settings: "tnum";
 `;
@@ -41,14 +41,14 @@ const Title = styled.div`
 `;
 
 const StreamTitle = styled.div`
-  ${tw`text-sm leading-tight text-white text-opacity-50 truncate`}
+  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
 `;
 
 const Details = styled.ul`
   ${tw`flex -mx-2`}
 
   li {
-    ${tw`text-sm leading-tight mx-2 text-white text-opacity-50 truncate`}
+    ${tw`text-sm leading-tight mx-2 text-black/50 dark:text-white/50 truncate`}
   }
 `;
 

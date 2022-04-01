@@ -12,7 +12,7 @@ interface PanelProps {
 }
 
 const Panel = styled.div<PanelProps>`
-  ${tw`fixed bg-black max-h-80 py-2 rounded shadow-lg z-20`}
+  ${tw`fixed bg-white dark:bg-black max-h-80 py-2 rounded shadow-lg z-20`}
 
   max-width: ${theme<string>("spacing.64")};
   min-width: ${theme<string>("spacing.48")};

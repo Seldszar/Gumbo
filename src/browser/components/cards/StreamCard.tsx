@@ -27,7 +27,7 @@ const ThumbnailPicture = styled.div`
 `;
 
 const StyledStreamUptime = styled(Uptime)`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 right-0 rounded-tl`}
+  ${tw`absolute bg-white/75 dark:bg-black/75 bottom-0 font-medium px-1 right-0 rounded-tl`}
 
   font-feature-settings: "tnum";
 `;
@@ -49,11 +49,11 @@ const StyledViewerCount = styled(ViewerCount)`
 `;
 
 const StreamTitle = styled.div`
-  ${tw`text-sm leading-tight text-white text-opacity-50 truncate`}
+  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
 `;
 
 const GameName = styled.div`
-  ${tw`text-sm leading-tight text-white text-opacity-50 truncate`}
+  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
 `;
 
 export interface StreamCardProps {

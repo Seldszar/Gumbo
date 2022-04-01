@@ -7,7 +7,7 @@ import Checkbox from "./Checkbox";
 const Wrapper = styled.fieldset``;
 
 const PresetButton = styled.button`
-  ${tw`font-medium mx-3 text-sm text-neutral-400 uppercase hover:text-white disabled:(cursor-default opacity-25 text-neutral-400)!`}
+  ${tw`font-medium mx-3 text-sm text-neutral-600 dark:text-neutral-400 uppercase hover:(text-black dark:text-white) disabled:(cursor-default opacity-25 text-neutral-600 dark:text-neutral-400)!`}
 `;
 
 const PresetList = styled.div`

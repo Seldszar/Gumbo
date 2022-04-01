@@ -6,7 +6,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  ${tw`flex gap-1 text-neutral-400`}
+  ${tw`flex gap-1 text-neutral-600 dark:text-neutral-400`}
 
   font-feature-settings: "tnum";
 
@@ -19,7 +19,7 @@ const Wrapper = styled.div<WrapperProps>`
     stroke-width: 2px;
   }
 
-  ${(props) => props.type === "live" && tw`text-red-400`}
+  ${(props) => props.type === "live" && tw`text-red-600 dark:text-red-400`}
 `;
 
 export interface ViewerCountProps {

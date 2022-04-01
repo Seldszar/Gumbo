@@ -24,7 +24,7 @@ const Thumbnail = styled.div`
 `;
 
 const ThumbnailImage = styled.div`
-  ${tw`bg-black bg-center bg-cover h-12 rounded-full text-sm w-12`}
+  ${tw`bg-white dark:bg-black bg-center bg-cover h-12 rounded-full text-sm w-12`}
 `;
 
 const Inner = styled.div`
@@ -40,7 +40,7 @@ const ChannelName = styled.div`
 `;
 
 const Detail = styled.div`
-  ${tw`text-sm leading-tight text-white text-opacity-50 truncate`}
+  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
 `;
 
 export interface UserCardProps {

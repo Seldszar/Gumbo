@@ -6,7 +6,7 @@ import ProfileBadge from "./ProfileBadge";
 import SidebarLink from "./SidebarLink";
 
 const Wrapper = styled.div`
-  ${tw`bg-gradient-to-r grid content-between from-transparent to-black/20 w-16`}
+  ${tw`bg-gradient-to-r grid content-between from-transparent to-black/10 dark:to-black/20 w-16`}
 `;
 
 const Header = styled.div`
@@ -26,7 +26,7 @@ const Inner = styled.div`
 `;
 
 const Separator = styled.hr`
-  ${tw`border-white/10 m-1`}
+  ${tw`border-black/10 dark:border-white/10 m-1`}
 `;
 
 const StyledLink = styled(SidebarLink)``;

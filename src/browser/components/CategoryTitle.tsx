@@ -9,10 +9,10 @@ const Wrapper = styled.div`
 `;
 
 const Background = styled.div`
-  ${tw`absolute bg-black inset-0 -mt-20 overflow-hidden`}
+  ${tw`absolute bg-white dark:bg-black inset-0 -mt-20 overflow-hidden`}
 
   &::after {
-    ${tw`absolute inset-0 bg-gradient-to-b content from-transparent to-black z-10`}
+    ${tw`absolute inset-0 bg-gradient-to-b content from-transparent to-white dark:to-black z-10`}
   }
 `;
 
@@ -54,10 +54,10 @@ const TabList = styled.div`
 `;
 
 const Tab = styled(NavLink)`
-  ${tw`flex-auto px-4 py-2 rounded-t text-center hover:text-white`}
+  ${tw`flex-auto px-4 py-2 rounded-t text-center hover:(text-black dark:text-white)`}
 
   &.active {
-    ${tw`(bg-neutral-900 text-purple-500)!`}
+    ${tw`(bg-neutral-100 dark:bg-neutral-900 text-purple-500)!`}
   }
 `;
 

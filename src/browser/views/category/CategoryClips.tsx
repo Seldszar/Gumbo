@@ -11,7 +11,7 @@ import Select from "@/browser/components/Select";
 import Splash from "@/browser/components/Splash";
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-transparent to-black/20 flex gap-6 justify-end py-3 px-4`}
+  ${tw`bg-gradient-to-b from-transparent to-black/10 dark:to-black/20 flex gap-6 justify-end py-3 px-4`}
 `;
 
 const FilterSelect = styled(Select)``;
