@@ -51,7 +51,7 @@ const FollowedStreams: FC = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredStreams = useMemo(() => {
+  const itemGroups = useMemo(() => {
     let { sortDirection } = state;
 
     if (state.sortField === "started_at") {
@@ -79,13 +79,13 @@ const FollowedStreams: FC = () => {
       return <Splash>No streams online</Splash>;
     }
 
-    if (isEmpty(filteredStreams)) {
+    if (isEmpty(itemGroups)) {
       return <Splash>No streams found</Splash>;
     }
 
     return (
       <div>
-        {filteredStreams.map((streams, index) => (
+        {itemGroups.map((streams, index) => (
           <Group key={index}>
             {streams.map((stream) => (
               <Item key={stream.id}>
@@ -100,7 +100,7 @@ const FollowedStreams: FC = () => {
         ))}
       </div>
     );
-  }, [filteredStreams, followedStreams, isLoading, pinnedUsers]);
+  }, [itemGroups, followedStreams, isLoading, pinnedUsers]);
 
   return (
     <Wrapper>
