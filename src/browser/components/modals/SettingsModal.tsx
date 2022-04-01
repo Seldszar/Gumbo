@@ -25,7 +25,7 @@ const StyledSwitch = styled(Switch)`
 `;
 
 const ButtonGrid = styled.div`
-  ${tw`gap-3 grid grid-cols-2`}
+  ${tw`gap-3 grid grid-cols-2 mt-6`}
 `;
 
 interface SettingsModalProps {
