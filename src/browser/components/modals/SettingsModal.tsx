@@ -94,7 +94,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
     <Modal isOpen={props.isOpen} title="Settings" onClose={props.onClose}>
       <StyledAccordion title="General">
         <Section>
-          <FormField title="Font Size">
+          <FormField title="Font size">
             <Select
               {...register("general.fontSize")}
               fullWidth

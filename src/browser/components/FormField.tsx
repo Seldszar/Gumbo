@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.fieldset`
-  ${tw`grid gap-2 mb-3 last:mb-0 disabled:opacity-25`}
+  ${tw`grid gap-1 mb-4 last:mb-0 disabled:opacity-25`}
 `;
 
 const Header = styled.div`

@@ -132,25 +132,25 @@ async function refreshFollowedUsers(currentUser: any) {
 }
 
 async function refreshFollowedStreams(currentUser: any, showNotifications = true) {
+  const settings = await stores.settings.get();
+
   let followedStreams = [];
 
   if (currentUser) {
     followedStreams = await fetchFollowedStreams(currentUser.id);
 
-    const { notifications, streams } = await stores.settings.get();
-
-    if (!streams.withReruns) {
+    if (!settings.streams.withReruns) {
       followedStreams = filter(followedStreams, {
         type: "live",
       });
     }
 
-    if (showNotifications && notifications.enabled) {
+    if (showNotifications && settings.notifications.enabled) {
       let newStreams = await filterNewStreams(followedStreams);
 
-      if (notifications.withFilters) {
+      if (settings.notifications.withFilters) {
         newStreams = newStreams.filter((stream) =>
-          notifications.selectedUsers.includes(stream.user_id)
+          settings.notifications.selectedUsers.includes(stream.user_id)
         );
       }
 
@@ -273,7 +273,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
 };
 
 const storageChangeHandlers: Dictionary<Dictionary<(change: Storage.StorageChange) => void>> = {
-  sync: {
+  local: {
     accessToken() {
       refresh(false, true);
     },
