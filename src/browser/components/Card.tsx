@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes, useMemo } from "react";
-import tw, { styled, theme } from "twin.macro";
+import tw, { styled } from "twin.macro";
 
 import { MenuProps } from "./Menu";
 
@@ -7,7 +7,7 @@ import Anchor from "./Anchor";
 import ContextMenu from "./ContextMenu";
 
 const ActionButton = styled.button`
-  ${tw`mr-1 last:mr-0 p-1 pointer-events-auto rounded transition text-neutral-400 hover:text-white`}
+  ${tw`p-1 rounded transition text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
 
   svg {
     ${tw`flex-none stroke-current w-5`}
@@ -19,19 +19,15 @@ const ActionButton = styled.button`
   }
 `;
 
-const ActionMenu = styled.button`
-  ${tw`absolute pointer-events-none invisible inset-y-0 pl-12 pr-3 right-0`}
-
-  background-image: linear-gradient(to right, transparent, rgba(38, 38, 38, 0.75) ${theme<string>(
-    "spacing.9"
-  )});
+const ActionMenu = styled.div`
+  ${tw`flex gap-1 items-center -mr-1 pl-3`}
 `;
 
 const Wrapper = styled(Anchor)`
-  ${tw`relative hover:bg-neutral-800`}
+  ${tw`relative hover:(bg-neutral-200 dark:bg-neutral-800)`}
 
-  &:hover ${ActionMenu} {
-    ${tw`visible`}
+  :not(:hover) ${ActionMenu} {
+    ${tw`hidden`}
   }
 `;
 

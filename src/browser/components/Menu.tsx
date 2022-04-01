@@ -4,11 +4,11 @@ import tw, { styled } from "twin.macro";
 const Wrapper = styled.ul``;
 
 const Separator = styled.li`
-  ${tw`bg-white/10 h-px mx-2 my-1`}
+  ${tw`bg-black/10 dark:bg-white/10 h-px mx-2 my-1`}
 `;
 
 const Link = styled.li`
-  ${tw`cursor-pointer flex font-medium gap-4 items-center px-4 py-2 hover:bg-white/10`}
+  ${tw`cursor-pointer flex font-medium gap-4 items-center px-4 py-2 hover:bg-black/10 dark:hover:bg-white/10`}
 `;
 
 const ItemIcon = styled.div`

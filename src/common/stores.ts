@@ -159,6 +159,7 @@ export const stores = {
     defaultValue: {
       general: {
         fontSize: "medium",
+        theme: "dark",
       },
       channels: {
         liveOnly: false,

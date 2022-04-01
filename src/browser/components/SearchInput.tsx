@@ -3,11 +3,11 @@ import { useDebounce, useMount } from "react-use";
 import tw, { styled } from "twin.macro";
 
 const ActionBadge = styled.div`
-  ${tw`absolute bg-purple-500 content h-2 pointer-events-none ring-2 ring-neutral-800 right-0 rounded-full top-0 w-2`}
+  ${tw`absolute bg-purple-500 content h-2 pointer-events-none ring-2 ring-neutral-200 dark:ring-neutral-800 right-0 rounded-full top-0 w-2`}
 `;
 
 const ActionButton = styled.button`
-  ${tw`flex flex-none text-neutral-400 hover:text-white`}
+  ${tw`flex flex-none text-neutral-600 dark:text-neutral-400 hover:(text-black dark:text-white)`}
 
   svg {
     ${tw`stroke-current w-5`}
@@ -28,7 +28,7 @@ const ActionList = styled.ul`
 `;
 
 const SearchIcon = styled.svg`
-  ${tw`block flex-none mr-3 pointer-events-none stroke-current text-neutral-400 w-5`}
+  ${tw`block flex-none mr-3 pointer-events-none stroke-current text-neutral-600 dark:text-neutral-400 w-5`}
 
   fill: none;
   stroke-linecap: round;
@@ -37,18 +37,18 @@ const SearchIcon = styled.svg`
 `;
 
 const Wrapper = styled.label`
-  ${tw`flex bg-neutral-800 cursor-text px-4 rounded-full shadow-md`}
+  ${tw`flex bg-neutral-200 dark:bg-neutral-800 cursor-text px-4 rounded-full shadow-md`}
 
   input {
-    ${tw`appearance-none bg-transparent flex-1 outline-none py-2 text-white`}
+    ${tw`appearance-none bg-transparent flex-1 outline-none py-2 text-black dark:text-white`}
   }
 
   &:focus,
   &:focus-within {
-    ${tw`bg-black ring-2 ring-inset ring-purple-500`}
+    ${tw`bg-white dark:bg-black ring-2 ring-inset ring-purple-500`}
 
     ${ActionBadge} {
-      ${tw`ring-black`}
+      ${tw`ring-white dark:ring-black`}
     }
   }
 `;

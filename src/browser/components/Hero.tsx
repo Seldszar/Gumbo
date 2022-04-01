@@ -26,7 +26,7 @@ const Author = styled.div`
 `;
 
 const Description = styled.div`
-  ${tw`leading-tight text-white/50`}
+  ${tw`leading-tight text-black/50 dark:text-white/50`}
 `;
 
 interface HeroProps {

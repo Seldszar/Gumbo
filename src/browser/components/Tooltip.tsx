@@ -5,7 +5,7 @@ import { useHoverDirty } from "react-use";
 import tw, { styled } from "twin.macro";
 
 const Panel = styled.div`
-  ${tw`fixed bg-purple-500 max-w-full pointer-events-none px-4 py-2 rounded shadow-lg z-20`}
+  ${tw`fixed bg-purple-500 max-w-full pointer-events-none px-4 py-2 rounded shadow-lg text-white z-20`}
 `;
 
 interface ContextMenu {

@@ -2,7 +2,7 @@ import type { EntryWrapper } from "@seldszar/yael";
 
 import { Global } from "@emotion/react";
 import { domAnimation, LazyMotion } from "framer-motion";
-import React, { ExoticComponent, FC } from "react";
+import React, { ExoticComponent, FC, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
@@ -19,6 +19,10 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
   const App: FC = () => {
     const [settings] = useSettings();
 
+    useEffect(() => {
+      document.documentElement.classList.toggle("dark", settings.general.theme === "dark");
+    }, [settings.general.theme]);
+
     return (
       <SWRConfig value={{ fetcher: backgroundFetcher }}>
         <HashRouter>
@@ -32,7 +36,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
                 }
 
                 ::-webkit-scrollbar {
-                  ${tw`bg-black/25`}
+                  ${tw`bg-black/10 dark:bg-black/25`}
 
                   height: ${theme`spacing.2`};
                   width: ${theme`spacing.2`};
@@ -61,7 +65,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
                 }
 
                 body {
-                  ${tw`bg-neutral-900 text-white overflow-hidden`}
+                  ${tw`bg-neutral-100 text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
                 }
               `}
             />

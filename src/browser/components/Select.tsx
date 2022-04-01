@@ -13,8 +13,8 @@ const Wrapper = styled.div<WrapperProps>`
 
   ${(props) =>
     props.fullWidth
-      ? tw`bg-neutral-700 pl-4 pr-3 py-2 rounded shadow-lg hover:bg-neutral-600`
-      : tw`text-neutral-400 text-sm hover:text-white`}
+      ? tw`pl-4 pr-3 py-2 rounded shadow-lg bg-neutral-300 hover:bg-neutral-400 dark:(bg-neutral-700 hover:bg-neutral-600)`
+      : tw`text-sm text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
 `;
 
 const Inner = styled.div`

@@ -2,11 +2,11 @@ import React, { ReactNode, FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.div`
-  ${tw`bg-neutral-900 px-6 relative rounded shadow-lg`}
+  ${tw`bg-neutral-100 dark:bg-neutral-900 px-6 relative rounded shadow-lg`}
 `;
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-900 via-neutral-900 to-transparent flex items-start py-6 sticky top-0 z-10`}
+  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex items-start py-6 sticky top-0 z-10`}
 `;
 
 const Title = styled.div`
@@ -14,7 +14,7 @@ const Title = styled.div`
 `;
 
 const CloseButton = styled.button`
-  ${tw`flex-none -mr-1 -mt-1 p-1 text-white opacity-50 hover:opacity-100`}
+  ${tw`flex-none -mr-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
 
   svg {
     ${tw`stroke-current w-6`}

@@ -122,6 +122,22 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
               ]}
             />
           </FormField>
+          <FormField title="Theme">
+            <Select
+              {...register("general.theme")}
+              fullWidth
+              options={[
+                {
+                  label: "Dark",
+                  value: "dark",
+                },
+                {
+                  label: "Light",
+                  value: "light",
+                },
+              ]}
+            />
+          </FormField>
         </Section>
       </StyledAccordion>
 

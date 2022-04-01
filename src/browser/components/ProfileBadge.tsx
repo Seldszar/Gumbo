@@ -10,7 +10,7 @@ import ContextMenu from "./ContextMenu";
 import Image from "./Image";
 
 const Wrapper = styled.button`
-  ${tw`bg-black flex-none h-10 overflow-hidden relative rounded-full w-10`}
+  ${tw`bg-white dark:bg-black flex-none h-10 overflow-hidden relative rounded-full w-10`}
 `;
 
 const ProfileImage = styled(Image)`
