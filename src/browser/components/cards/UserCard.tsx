@@ -24,7 +24,7 @@ const Thumbnail = styled.div`
 `;
 
 const ThumbnailImage = styled.div`
-  ${tw`bg-white dark:bg-black bg-center bg-cover h-12 rounded-full text-sm w-12`}
+  ${tw`bg-black bg-center bg-cover h-12 rounded-full text-sm w-12`}
 `;
 
 const Inner = styled.div`
