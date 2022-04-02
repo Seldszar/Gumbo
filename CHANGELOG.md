@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.6.0](https://github.com/Seldszar/Gumbo/compare/v1.5.3...v1.6.0) (2022-04-02)
+
+
+### Features
+
+* font size customization ([7730370](https://github.com/Seldszar/Gumbo/commit/7730370b60cf0fc247b33f9733f44dc81eb525c0))
+* group pinned users ([97a1f67](https://github.com/Seldszar/Gumbo/commit/97a1f67da883f705c269caecd4e82abaadbde469))
+* light theme ([a5e0680](https://github.com/Seldszar/Gumbo/commit/a5e068058859d3852e770a436ff94b17edcdf959))
+* move settings to local storage with import/export feature ([6a0f00c](https://github.com/Seldszar/Gumbo/commit/6a0f00c3dc2ed5856fb8df7ab883ae1024efec4f))
+
+
+### Bug Fixes
+
+* light theme ([940c2b8](https://github.com/Seldszar/Gumbo/commit/940c2b83871cb07a27cf716d8e6d8390e410d584))
+
 ### [1.5.3](https://github.com/Seldszar/Gumbo/compare/v1.5.2...v1.5.3) (2022-03-14)
 
 
