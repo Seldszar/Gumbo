@@ -7,7 +7,7 @@ import Tooltip from "../Tooltip";
 const StyledImage = styled(Image)``;
 
 const Wrapper = styled.div`
-  ${tw`bg-white dark:bg-black cursor-pointer overflow-hidden relative rounded shadow text-sm`}
+  ${tw`bg-black cursor-pointer overflow-hidden relative rounded shadow text-sm`}
 
   padding-top: 133.333%;
 

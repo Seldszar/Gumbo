@@ -17,7 +17,7 @@ const Thumbnail = styled.div`
 `;
 
 const ThumbnailPicture = styled.div`
-  ${tw`bg-white dark:bg-black overflow-hidden relative rounded shadow text-sm w-24`}
+  ${tw`bg-black overflow-hidden relative rounded shadow text-sm w-24`}
 
   padding-top: 56.25%;
 
@@ -27,7 +27,7 @@ const ThumbnailPicture = styled.div`
 `;
 
 const Duration = styled.div`
-  ${tw`absolute bg-white/75 dark:bg-black/75 bottom-px flex font-medium px-1 right-px rounded`}
+  ${tw`absolute bg-black/75 bottom-px flex font-medium px-1 right-px rounded text-white`}
 
   font-feature-settings: "tnum";
 `;
