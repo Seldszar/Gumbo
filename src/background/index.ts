@@ -351,10 +351,6 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     changeInfo.status === "complete" &&
     tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)
   ) {
-    if (await stores.currentUser.get()) {
-      return;
-    }
-
     const url = new URL(tab.url);
     const hashParams = new URLSearchParams(url.hash.substring(1));
 
