@@ -162,7 +162,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
             const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
               browser.notifications.create(`stream:${stream.user_login}`, {
                 title: `${stream.user_name || stream.user_login} is online`,
-                contextMessage: "Click to open the channel page",
+                contextMessage: stream.game_name,
                 eventTime: Date.parse(stream.started_at),
                 message: stream.title,
                 isClickable: true,
