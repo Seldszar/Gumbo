@@ -138,6 +138,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
               ]}
             />
           </FormField>
+          <StyledSwitch {...register("general.withBadge")}>Show icon badge</StyledSwitch>
         </Section>
       </StyledAccordion>
 
