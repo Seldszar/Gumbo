@@ -7,6 +7,7 @@ export type Theme = "dark" | "light";
 export interface GeneralSettings {
   fontSize: FontSize;
   theme: Theme;
+  withBadge: boolean;
 }
 
 export interface StreamSettings {

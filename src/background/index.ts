@@ -1,6 +1,6 @@
 import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
-import browser, { Storage } from "webextension-polyfill";
+import browser from "webextension-polyfill";
 
 import { setupErrorTracking } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
@@ -187,24 +187,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
     }
   }
 
-  let text = "";
-
-  if (followedStreams.length > 0) {
-    text = followedStreams.length.toLocaleString("en-US");
-  }
-
-  const manifest = browser.runtime.getManifest();
-  const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
-
-  await Promise.allSettled([
-    stores.followedStreams.set(followedStreams),
-    browserAction.setBadgeBackgroundColor({
-      color: "#000000",
-    }),
-    browserAction.setBadgeText({
-      text,
-    }),
-  ]);
+  await stores.followedStreams.set(followedStreams);
 }
 
 async function refresh(withNotifications = true, resetAlarm = false) {
@@ -232,6 +215,31 @@ async function refresh(withNotifications = true, resetAlarm = false) {
   await stores.isRefreshing.set(false);
 }
 
+async function refreshActionBadge(): Promise<void> {
+  const manifest = browser.runtime.getManifest();
+  const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
+
+  const [followedStreams, settings] = await Promise.all([
+    stores.followedStreams.get(),
+    stores.settings.get(),
+  ]);
+
+  let text = "";
+
+  if (settings.general.withBadge && followedStreams.length > 0) {
+    text = followedStreams.length.toLocaleString("en-US");
+  }
+
+  await Promise.allSettled([
+    browserAction.setBadgeBackgroundColor({
+      color: "#000000",
+    }),
+    browserAction.setBadgeText({
+      text,
+    }),
+  ]);
+}
+
 async function backup(): Promise<any> {
   const [followedStreamState, followedUserState, pinnedUsers, settings] = await Promise.all([
     stores.followedStreamState.getState(),
@@ -249,7 +257,7 @@ async function backup(): Promise<any> {
 }
 
 async function restore(data: any): Promise<void> {
-  const restoreStore = async (store: Store<unknown>) => {
+  const restoreStore = async (store: Store<any>) => {
     const state = data[store.name];
 
     if (state) {
@@ -270,14 +278,6 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   refresh,
   request,
   restore,
-};
-
-const storageChangeHandlers: Dictionary<Dictionary<(change: Storage.StorageChange) => void>> = {
-  local: {
-    accessToken() {
-      refresh(false, true);
-    },
-  },
 };
 
 browser.alarms.onAlarm.addListener(() => {
@@ -328,24 +328,6 @@ browser.runtime.onMessage.addListener((message) => {
   return handler(...message.args);
 });
 
-browser.storage.onChanged.addListener((changes, areaName) => {
-  const { [areaName]: handlers } = storageChangeHandlers;
-
-  if (handlers == null) {
-    return;
-  }
-
-  for (const [name, change] of Object.entries(changes)) {
-    const { [name]: handler } = handlers;
-
-    if (handler == null) {
-      continue;
-    }
-
-    handler(change);
-  }
-});
-
 browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (
     changeInfo.status === "complete" &&
@@ -360,4 +342,20 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
       await stores.accessToken.set(accessToken);
     }
   }
+});
+
+stores.accessToken.onChange(() => {
+  refresh(false, true);
+});
+
+stores.followedStreams.onChange(() => {
+  refreshActionBadge();
+});
+
+stores.settings.onChange((newValue, oldValue) => {
+  if (newValue.general.withBadge === oldValue?.general.withBadge) {
+    return;
+  }
+
+  refreshActionBadge();
 });

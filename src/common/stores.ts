@@ -7,6 +7,7 @@ export type StoreAreaName = "local" | "managed" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;
 
 export interface StoreOptions<T> {
+  onChange?(newValue: T, oldValue?: T): void;
   migrations?: StoreMigration[];
   defaultValue: T;
 }
@@ -19,6 +20,8 @@ export interface StoreState<T> {
 export type StoreChange<T> = (newValue: T, oldValue?: T) => void;
 
 export class Store<T> {
+  private listeners = new Set<StoreChange<T>>();
+
   private get areaStorage() {
     return browser.storage[this.areaName];
   }
@@ -29,25 +32,33 @@ export class Store<T> {
     readonly options: StoreOptions<T>
   ) {}
 
-  onChange(callback: StoreChange<T>): () => void {
-    const listener = (changes: Record<string, Storage.StorageChange>, areaName: string) => {
-      if (areaName !== this.areaName) {
-        return;
-      }
+  applyChange(changes: Record<string, Storage.StorageChange>, areaName: string) {
+    if (areaName !== this.areaName) {
+      return;
+    }
 
-      const { [this.name]: change } = changes;
+    const { [this.name]: change } = changes;
 
-      if (change == null) {
-        return;
-      }
+    if (change == null) {
+      return;
+    }
 
-      callback(change.newValue.value, change.oldValue.value);
-    };
+    this.listeners.forEach((listener) => {
+      listener(change.newValue.value, change.oldValue.value);
+    });
+  }
 
-    browser.storage.onChanged.addListener(listener);
+  onChange(listener: StoreChange<T>): () => void {
+    const promise = this.get();
+
+    promise.then((value) => {
+      listener(value);
+    });
+
+    this.listeners.add(listener);
 
     return () => {
-      browser.storage.onChanged.removeListener(listener);
+      this.listeners.delete(listener);
     };
   }
 
@@ -160,6 +171,7 @@ export const stores = {
       general: {
         fontSize: "medium",
         theme: "dark",
+        withBadge: true,
       },
       channels: {
         liveOnly: false,
@@ -217,3 +229,9 @@ export const stores = {
     ],
   }),
 };
+
+browser.storage.onChanged.addListener((changes, areaName) => {
+  for (const store of Object.values(stores)) {
+    store.applyChange(changes, areaName);
+  }
+});
