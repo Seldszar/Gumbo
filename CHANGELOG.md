@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.7.0](https://github.com/Seldszar/Gumbo/compare/v1.6.0...v1.7.0) (2022-04-20)
+
+
+### Features
+
+* display category in notifications ([1f9a6f2](https://github.com/Seldszar/Gumbo/commit/1f9a6f23a42471decb803d40e068ee51ba458e1e))
+* icon badge visibility ([8a46ce4](https://github.com/Seldszar/Gumbo/commit/8a46ce41ff14b02fadb83da70e803eb6efbed843))
+* refresh top streams & categories ([038fa0f](https://github.com/Seldszar/Gumbo/commit/038fa0fd108928f453cf05d0e0839cb56dd515ba))
+
+
+### Bug Fixes
+
+* remove auth user check ([4435598](https://github.com/Seldszar/Gumbo/commit/4435598dc94fb0f7f69ba8acf6c21e1b3fe910e2))
+
 ## [1.6.0](https://github.com/Seldszar/Gumbo/compare/v1.5.3...v1.6.0) (2022-04-02)
 
 
