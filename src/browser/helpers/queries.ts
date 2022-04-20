@@ -10,44 +10,51 @@ export const backgroundFetcher: Fetcher<any, [string, any]> = (url, params = {})
 
 export interface UseQueryListResponse {
   fetchMore(): void;
+  refresh(): void;
   isLoadingMore: boolean;
   hasMore: boolean;
   isLoading: boolean;
+  isRefreshing: boolean;
   error?: Error;
 }
 
 export type UseQueryListReturn<T> = [T[] | undefined, UseQueryListResponse];
 
 export function useQueryList(url: string, params?: any): UseQueryListReturn<any> {
-  const { data, error, setSize, size } = useSWRInfinite((pageIndex, previousPageData) => {
-    if (params == null) {
-      return null;
-    }
-
-    if (pageIndex > 0) {
-      const cursor = get(previousPageData, "pagination.cursor");
-
-      if (cursor == null) {
+  const { data, error, isValidating, mutate, setSize, size } = useSWRInfinite(
+    (pageIndex, previousPageData) => {
+      if (params == null) {
         return null;
       }
 
-      return [url, { ...params, after: cursor }];
-    }
+      if (pageIndex > 0) {
+        const cursor = get(previousPageData, "pagination.cursor");
 
-    return [url, params];
-  });
+        if (cursor == null) {
+          return null;
+        }
+
+        return [url, { ...params, after: cursor }];
+      }
+
+      return [url, params];
+    }
+  );
 
   const pageData = get(data, size - 1);
   const isLoading = data == null && error == null;
   const isLoadingMore = isLoading || (size > 0 && pageData == null);
+  const isRefreshing = isValidating && data?.length === size;
   const hasMore = isLoading || isLoadingMore || has(pageData, "pagination.cursor");
 
   return [
     data?.flatMap((page) => page.data),
     {
       fetchMore: () => setSize((size) => size + 1),
+      refresh: () => mutate(),
       isLoading,
       isLoadingMore,
+      isRefreshing,
       hasMore,
       error,
     },

@@ -6,6 +6,7 @@ import { useStreams } from "@/browser/helpers/queries";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
 import MoreButton from "@/browser/components/MoreButton";
+import RefreshIcon from "@/browser/components/RefreshIcon";
 import SearchInput from "@/browser/components/SearchInput";
 import Splash from "@/browser/components/Splash";
 
@@ -24,7 +25,8 @@ const LoadMore = styled.div`
 `;
 
 const TopStreams: FC = () => {
-  const [streams, { error, fetchMore, hasMore, isLoadingMore }] = useStreams();
+  const [streams, { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
+    useStreams();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -68,7 +70,15 @@ const TopStreams: FC = () => {
   return (
     <Wrapper>
       <Header>
-        <SearchInput onChange={setSearchQuery} />
+        <SearchInput
+          onChange={setSearchQuery}
+          actionButtons={[
+            {
+              onClick: () => refresh(),
+              children: <RefreshIcon isRefreshing={isRefreshing} />,
+            },
+          ]}
+        />
       </Header>
 
       {children}
