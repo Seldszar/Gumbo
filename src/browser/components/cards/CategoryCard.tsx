@@ -6,8 +6,8 @@ import Tooltip from "../Tooltip";
 
 const StyledImage = styled(Image)``;
 
-const Wrapper = styled.div`
-  ${tw`bg-black cursor-pointer overflow-hidden relative rounded shadow text-sm`}
+const Picture = styled.div`
+  ${tw`bg-black cursor-pointer mb-1 overflow-hidden relative rounded shadow text-sm`}
 
   padding-top: 133.333%;
 
@@ -15,6 +15,12 @@ const Wrapper = styled.div`
     ${tw`absolute h-full inset-0 object-cover w-full`}
   }
 `;
+
+const Name = styled.div`
+  ${tw`font-medium text-white truncate`}
+`;
+
+const Wrapper = styled.div``;
 
 export interface CategoryCardProps {
   category: any;
@@ -29,13 +35,12 @@ const CategoryCard: FC<CategoryCardProps> = (props) => {
   );
 
   return (
-    <Tooltip content={category.name}>
-      {(ref) => (
-        <Wrapper ref={ref}>
-          <StyledImage src={boxArtUrl} />
-        </Wrapper>
-      )}
-    </Tooltip>
+    <Wrapper>
+      <Picture>
+        <StyledImage src={boxArtUrl} />
+      </Picture>
+      <Tooltip content={category.name}>{(ref) => <Name ref={ref}>{category.name}</Name>}</Tooltip>
+    </Wrapper>
   );
 };
 
