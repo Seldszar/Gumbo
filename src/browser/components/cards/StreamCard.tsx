@@ -1,6 +1,8 @@
 import React, { FC, HTMLAttributes, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
+import { openUrl, template } from "@/common/helpers";
+
 import Card from "../Card";
 import Image from "../Image";
 import Uptime from "../Uptime";
@@ -71,7 +73,7 @@ const StreamCard: FC<StreamCardProps> = (props) => {
   );
 
   const backgroundImage = useMemo(
-    () => stream.thumbnail_url.replace("{width}", 96).replace("{height}", 54),
+    () => template(stream.thumbnail_url, { "{width}": 96, "{height}": 54 }),
     [stream.thumbnail_url]
   );
 
@@ -115,15 +117,15 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           {
             type: "link",
             children: "Popout",
-            onClick() {
-              open(`https://twitch.tv/${stream.user_login}/popout`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
             },
           },
           {
             type: "link",
             children: "Chat",
-            onClick() {
-              open(`https://twitch.tv/${stream.user_login}/chat`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${stream.user_login}/chat`, event);
             },
           },
           {
@@ -132,22 +134,22 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           {
             type: "link",
             children: "About",
-            onClick() {
-              open(`https://twitch.tv/${stream.user_login}/about`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${stream.user_login}/about`, event);
             },
           },
           {
             type: "link",
             children: "Schedule",
-            onClick() {
-              open(`https://twitch.tv/${stream.user_login}/schedule`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${stream.user_login}/schedule`, event);
             },
           },
           {
             type: "link",
             children: "Videos",
-            onClick() {
-              open(`https://twitch.tv/${stream.user_login}/videos`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${stream.user_login}/videos`, event);
             },
           },
         ],

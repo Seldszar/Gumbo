@@ -1,5 +1,11 @@
 import { init } from "@sentry/browser";
+import { reduce } from "lodash-es";
+import { MouseEvent } from "react";
 import browser from "webextension-polyfill";
+
+import { ClickBehavior } from "./constants";
+import { stores } from "./stores";
+import { Dictionary } from "./types";
 
 export function setupErrorTracking() {
   const manifest = browser.runtime.getManifest();
@@ -33,4 +39,56 @@ export function getBaseFontSize(value: string): string {
   }
 
   return "14px";
+}
+
+export async function openUrl(url: string, event?: MouseEvent): Promise<void> {
+  event?.stopPropagation();
+  event?.preventDefault();
+
+  const settings = await stores.settings.get();
+
+  let {
+    general: { clickBehavior },
+  } = settings;
+
+  let active = true;
+
+  if (event) {
+    if (event.button > 1) {
+      return;
+    }
+
+    if (event.button > 0) {
+      active = false;
+    }
+
+    if (event.shiftKey) {
+      clickBehavior = ClickBehavior.CreateTab
+        ? ClickBehavior.CreateWindow
+        : ClickBehavior.CreateTab;
+    }
+  }
+
+  switch (clickBehavior) {
+    case ClickBehavior.CreateTab: {
+      browser.tabs.create({
+        active,
+        url,
+      });
+
+      break;
+    }
+
+    case ClickBehavior.CreateWindow: {
+      browser.windows.create({
+        url,
+      });
+
+      break;
+    }
+  }
+}
+
+export function template(input: string, data: Dictionary<unknown>) {
+  return reduce(data, (result, value, key) => result.replace(key, String(value)), input);
 }

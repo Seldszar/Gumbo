@@ -2,6 +2,8 @@ import React, { FC, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
+import { template } from "@/common/helpers";
+
 import Image from "./Image";
 
 const Wrapper = styled.div`
@@ -70,7 +72,7 @@ const CategoryTitle: FC<CategoryTitleProps> = (props) => {
   const { category } = props;
 
   const boxArtUrl = useMemo(
-    () => category.box_art_url.replace("{width}", 78).replace("{height}", 104),
+    () => template(category.box_art_url, { "{width}": 78, "{height}": 104 }),
     [category.box_art_url]
   );
 
