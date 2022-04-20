@@ -1,6 +1,8 @@
 import React, { FC, HTMLAttributes, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
+import { openUrl } from "@/common/helpers";
+
 import Card from "../Card";
 
 export interface WrapperProps {
@@ -94,15 +96,15 @@ const UserCard: FC<UserCardProps> = (props) => {
           {
             type: "link",
             children: "Popout",
-            onClick() {
-              open(`https://twitch.tv/${user.login}/popout`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${user.login}/popout`, event);
             },
           },
           {
             type: "link",
             children: "Chat",
-            onClick() {
-              open(`https://twitch.tv/${user.login}/chat`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${user.login}/chat`, event);
             },
           },
           {
@@ -111,22 +113,22 @@ const UserCard: FC<UserCardProps> = (props) => {
           {
             type: "link",
             children: "About",
-            onClick() {
-              open(`https://twitch.tv/${user.login}/about`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${user.login}/about`, event);
             },
           },
           {
             type: "link",
             children: "Schedule",
-            onClick() {
-              open(`https://twitch.tv/${user.login}/schedule`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${user.login}/schedule`, event);
             },
           },
           {
             type: "link",
             children: "Videos",
-            onClick() {
-              open(`https://twitch.tv/${user.login}/videos`, "_blank");
+            onClick(event) {
+              openUrl(`https://twitch.tv/${user.login}/videos`, event);
             },
           },
         ],

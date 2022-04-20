@@ -1,6 +1,8 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
+import { template } from "@/common/helpers";
+
 import { formatTime } from "@/browser/helpers/time";
 
 import Card from "../Card";
@@ -60,7 +62,7 @@ const ClipCard: FC<ClipCardProps> = (props) => {
   const { clip } = props;
 
   const previewImage = useMemo(
-    () => clip.thumbnail_url.replace("{width}", 96).replace("{height}", 54),
+    () => template(clip.thumbnail_url, { "{width}": 96, "{height}": 54 }),
     [clip.thumbnail_url]
   );
 

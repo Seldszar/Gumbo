@@ -140,3 +140,8 @@ export const LANGUAGE_OPTIONS = [
     title: "Other",
   },
 ];
+
+export enum ClickBehavior {
+  CreateTab,
+  CreateWindow,
+}

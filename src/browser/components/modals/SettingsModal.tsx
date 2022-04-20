@@ -3,9 +3,9 @@ import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 import browser from "webextension-polyfill";
 
-import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
+import { ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
 
-import { LANGUAGE_OPTIONS } from "@/common/constants";
+import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
 
 import Accordion from "../Accordion";
 import Button from "../Button";
@@ -134,6 +134,22 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                 {
                   label: "Light",
                   value: "light",
+                },
+              ]}
+            />
+          </FormField>
+          <FormField title="Click Behavior">
+            <Select
+              {...register("general.clickBehavior")}
+              fullWidth
+              options={[
+                {
+                  label: "Open in new tab",
+                  value: ClickBehavior.CreateTab,
+                },
+                {
+                  label: "Open in new window",
+                  value: ClickBehavior.CreateWindow,
                 },
               ]}
             />

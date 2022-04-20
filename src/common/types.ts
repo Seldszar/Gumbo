@@ -1,3 +1,5 @@
+import { ClickBehavior } from "./constants";
+
 export type Dictionary<T> = Record<string, T>;
 
 export type FontSize = "smallest" | "small" | "medium" | "large" | "largest";
@@ -5,6 +7,7 @@ export type SortDirection = "asc" | "desc";
 export type Theme = "dark" | "light";
 
 export interface GeneralSettings {
+  clickBehavior: ClickBehavior;
   fontSize: FontSize;
   theme: Theme;
   withBadge: boolean;

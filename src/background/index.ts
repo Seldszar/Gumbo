@@ -2,7 +2,7 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
 import browser from "webextension-polyfill";
 
-import { setupErrorTracking } from "@/common/helpers";
+import { openUrl, setupErrorTracking } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
 
@@ -289,11 +289,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
 
   switch (type) {
     case "stream": {
-      browser.tabs.create({
-        url: `https://twitch.tv/${data}`,
-      });
-
-      break;
+      openUrl(`https://twitch.tv/${data}`);
     }
   }
 });

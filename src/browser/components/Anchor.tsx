@@ -1,21 +1,17 @@
-import React, { AnchorHTMLAttributes, FC, MouseEventHandler } from "react";
-import browser from "webextension-polyfill";
+import React, { AnchorHTMLAttributes, forwardRef, MouseEventHandler } from "react";
 
-const Anchor: FC<AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
-  const onAuxClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
-    switch (event.button) {
-      case 1: {
-        event.preventDefault();
+import { openUrl } from "@/common/helpers";
 
-        browser.tabs.create({
-          url: event.currentTarget.href,
-          active: false,
-        });
-      }
-    }
-  };
+const Anchor = forwardRef<HTMLAnchorElement, AnchorHTMLAttributes<HTMLAnchorElement>>(
+  (props, ref) => {
+    const onClick: MouseEventHandler<HTMLAnchorElement> = (event) =>
+      openUrl(event.currentTarget.href, event);
 
-  return <a {...props} onAuxClick={onAuxClick} />;
-};
+    const onAuxClick: MouseEventHandler<HTMLAnchorElement> = (event) =>
+      openUrl(event.currentTarget.href, event);
+
+    return <a {...props} ref={ref} onClick={onClick} onAuxClick={onAuxClick} />;
+  }
+);
 
 export default Anchor;

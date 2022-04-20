@@ -1,6 +1,8 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
+import { template } from "@/common/helpers";
+
 import { parseFormatDuration } from "@/browser/helpers/time";
 
 import Card from "../Card";
@@ -60,7 +62,7 @@ const VideoCard: FC<VideoCardProps> = (props) => {
   const { video } = props;
 
   const previewImage = useMemo(
-    () => video.thumbnail_url.replace("%{width}", 96).replace("%{height}", 54),
+    () => template(video.thumbnail_url, { "%{width}": 96, "%{height}": 54 }),
     [video.thumbnail_url]
   );
 

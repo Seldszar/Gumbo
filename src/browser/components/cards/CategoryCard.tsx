@@ -1,6 +1,8 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
+import { template } from "@/common/helpers";
+
 import Image from "../Image";
 import Tooltip from "../Tooltip";
 
@@ -30,7 +32,7 @@ const CategoryCard: FC<CategoryCardProps> = (props) => {
   const { category } = props;
 
   const boxArtUrl = useMemo(
-    () => category.box_art_url.replace("{width}", 78).replace("{height}", 104),
+    () => template(category.box_art_url, { "{width}": 78, "{height}": 104 }),
     [category.box_art_url]
   );
 
