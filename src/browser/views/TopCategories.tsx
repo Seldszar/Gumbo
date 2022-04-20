@@ -7,6 +7,7 @@ import { useTopCategories } from "@/browser/helpers/queries";
 
 import CategoryCard from "@/browser/components/cards/CategoryCard";
 import MoreButton from "@/browser/components/MoreButton";
+import RefreshIcon from "@/browser/components/RefreshIcon";
 import SearchInput from "@/browser/components/SearchInput";
 import Splash from "@/browser/components/Splash";
 
@@ -19,7 +20,7 @@ const Header = styled.div`
 `;
 
 const Grid = styled.div`
-  ${tw`gap-3 grid grid-cols-4 p-3`}
+  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-3`}
 `;
 
 const Item = styled(Link)``;
@@ -29,7 +30,8 @@ const LoadMore = styled.div`
 `;
 
 const TopCategories: FC = () => {
-  const [topCategories, { error, fetchMore, hasMore, isLoadingMore }] = useTopCategories();
+  const [topCategories, { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
+    useTopCategories();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -75,7 +77,15 @@ const TopCategories: FC = () => {
   return (
     <Wrapper>
       <Header>
-        <SearchInput onChange={setSearchQuery} />
+        <SearchInput
+          onChange={setSearchQuery}
+          actionButtons={[
+            {
+              onClick: () => refresh(),
+              children: <RefreshIcon isRefreshing={isRefreshing} />,
+            },
+          ]}
+        />
       </Header>
 
       {children}
