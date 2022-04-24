@@ -32,5 +32,8 @@
       "16": "icon-16.png",
       "32": "icon-32.png"
     }
+  },
+  "commands": {
+    "_execute_browser_action": {}
   }
 }
