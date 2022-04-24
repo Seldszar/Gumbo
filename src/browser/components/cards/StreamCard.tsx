@@ -3,6 +3,8 @@ import tw, { styled } from "twin.macro";
 
 import { openUrl, template } from "@/common/helpers";
 
+import { useClickAction } from "@/browser/helpers/hooks";
+
 import Card from "../Card";
 import Image from "../Image";
 import Uptime from "../Uptime";
@@ -77,6 +79,8 @@ const StreamCard: FC<StreamCardProps> = (props) => {
     [stream.thumbnail_url]
   );
 
+  const defaultAction = useClickAction(stream.user_login);
+
   const actionButtons = useMemo(() => {
     const result = new Array<HTMLAttributes<HTMLButtonElement>>();
 
@@ -110,22 +114,29 @@ const StreamCard: FC<StreamCardProps> = (props) => {
 
   return (
     <Wrapper
-      to={`https://twitch.tv/${stream.user_login}`}
+      to={defaultAction}
       actionButtons={actionButtons}
       ellipsisMenu={{
         items: [
           {
             type: "link",
-            children: "Popout",
+            children: "Open channel",
             onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
+              openUrl(`https://twitch.tv/${stream.user_login}`, event);
             },
           },
           {
             type: "link",
-            children: "Chat",
+            children: "Open chat",
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}/chat`, event);
+            },
+          },
+          {
+            type: "link",
+            children: "Popout",
+            onClick(event) {
+              openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
             },
           },
           {

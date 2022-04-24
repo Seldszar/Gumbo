@@ -3,7 +3,7 @@ import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 import browser from "webextension-polyfill";
 
-import { ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
+import { ClickAction, ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
 
 import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
 
@@ -134,6 +134,26 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                 {
                   label: "Light",
                   value: "light",
+                },
+              ]}
+            />
+          </FormField>
+          <FormField title="Click Action">
+            <Select
+              {...register("general.clickAction")}
+              fullWidth
+              options={[
+                {
+                  label: "Open channel",
+                  value: ClickAction.OpenChannel,
+                },
+                {
+                  label: "Open chat",
+                  value: ClickAction.OpenChat,
+                },
+                {
+                  label: "Popout",
+                  value: ClickAction.Popout,
                 },
               ]}
             />
