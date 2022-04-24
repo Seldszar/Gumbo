@@ -73,6 +73,7 @@ const ContextMenu: FC<ContextMenu> = (props) => {
   );
 
   useDomEvent(refs.reference, "click", (event) => {
+    event.stopPropagation();
     event.preventDefault();
 
     toggleOpen();
