@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.8.0](https://github.com/Seldszar/Gumbo/compare/v1.7.0...v1.8.0) (2022-04-24)
+
+
+### Features
+
+* click action ([b5be640](https://github.com/Seldszar/Gumbo/commit/b5be640a37d57295ad6715b3678165fb238fce02))
+* click behavior ([58abfde](https://github.com/Seldszar/Gumbo/commit/58abfded728ec9caf0edece46105c8fa7eee6e17))
+* commands ([e506033](https://github.com/Seldszar/Gumbo/commit/e506033e1bccaa7b2e393c34fb757dba6f06ecc1))
+
+
+### Bug Fixes
+
+* context menu event propagation ([ccb1797](https://github.com/Seldszar/Gumbo/commit/ccb1797de0b85ccd6b9a6a149a297fb53153502a))
+
 ## [1.7.0](https://github.com/Seldszar/Gumbo/compare/v1.6.0...v1.7.0) (2022-04-20)
 
 
