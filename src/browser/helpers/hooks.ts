@@ -1,9 +1,10 @@
 import { xor } from "lodash-es";
 import { useEffect, useState } from "react";
+import { useHarmonicIntervalFn } from "react-use";
 
+import { ClickAction } from "@/common/constants";
 import { Store, stores } from "@/common/stores";
 import { FollowedStreamState, FollowedUserState } from "@/common/types";
-import { useHarmonicIntervalFn } from "react-use";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());
@@ -142,4 +143,18 @@ export function usePinnedUsers(): UsePinnedUsersReturn {
       toggle: (value) => store.set((state) => xor(state, [value])),
     },
   ];
+}
+
+export function useClickAction(userLogin: string): string {
+  const [settings] = useSettings();
+
+  switch (settings.general.clickAction) {
+    case ClickAction.Popout:
+      return `https://twitch.tv/${userLogin}/popout`;
+
+    case ClickAction.OpenChat:
+      return `https://twitch.tv/${userLogin}/chat`;
+  }
+
+  return `https://twitch.tv/${userLogin}`;
 }

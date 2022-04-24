@@ -141,6 +141,12 @@ export const LANGUAGE_OPTIONS = [
   },
 ];
 
+export enum ClickAction {
+  OpenChannel,
+  OpenChat,
+  Popout,
+}
+
 export enum ClickBehavior {
   CreateTab,
   CreateWindow,

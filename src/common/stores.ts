@@ -1,7 +1,7 @@
 import { defaultsDeep } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
-import { ClickBehavior } from "./constants";
+import { ClickAction, ClickBehavior } from "./constants";
 import { FollowedStreamState, FollowedUserState, Settings } from "./types";
 
 export type StoreAreaName = "local" | "managed" | "sync";
@@ -171,6 +171,7 @@ export const stores = {
     defaultValue: {
       general: {
         clickBehavior: ClickBehavior.CreateTab,
+        clickAction: ClickAction.OpenChannel,
         fontSize: "medium",
         theme: "dark",
         withBadge: true,

@@ -1,4 +1,4 @@
-import { ClickBehavior } from "./constants";
+import { ClickAction, ClickBehavior } from "./constants";
 
 export type Dictionary<T> = Record<string, T>;
 
@@ -8,6 +8,7 @@ export type Theme = "dark" | "light";
 
 export interface GeneralSettings {
   clickBehavior: ClickBehavior;
+  clickAction: ClickAction;
   fontSize: FontSize;
   theme: Theme;
   withBadge: boolean;

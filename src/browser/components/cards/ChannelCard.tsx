@@ -3,6 +3,8 @@ import tw, { css, styled } from "twin.macro";
 
 import { openUrl } from "@/common/helpers";
 
+import { useClickAction } from "@/browser/helpers/hooks";
+
 import Card from "../Card";
 
 export interface WrapperProps {
@@ -56,24 +58,33 @@ export interface ChannelCardProps {
 const ChannelCard: FC<ChannelCardProps> = (props) => {
   const { channel } = props;
 
+  const defaultAction = useClickAction(channel.broadcaster_login);
+
   return (
     <Wrapper
-      to={`https://twitch.tv/${channel.broadcaster_login}`}
+      to={defaultAction}
       isLive={channel.is_live}
       ellipsisMenu={{
         items: [
           {
             type: "link",
-            children: "Popout",
+            children: "Open channel",
             onClick(event) {
-              openUrl(`https://twitch.tv/${channel.broadcaster_login}/popout`, event);
+              openUrl(`https://twitch.tv/${channel.broadcaster_login}`, event);
             },
           },
           {
             type: "link",
-            children: "Chat",
+            children: "Open chat",
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}/chat`, event);
+            },
+          },
+          {
+            type: "link",
+            children: "Popout",
+            onClick(event) {
+              openUrl(`https://twitch.tv/${channel.broadcaster_login}/popout`, event);
             },
           },
           {
