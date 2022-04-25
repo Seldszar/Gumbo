@@ -1,5 +1,6 @@
 # Changelog
 
+
 ## [1.8.0](https://github.com/Seldszar/Gumbo/compare/v1.7.0...v1.8.0) (2022-04-24)
 
 

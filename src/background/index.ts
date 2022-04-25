@@ -8,8 +8,6 @@ import { Dictionary } from "@/common/types";
 
 setupErrorTracking();
 
-Object.assign(globalThis, { browser });
-
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",
   headers: {
@@ -151,7 +149,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
 
   if (currentUser) {
     followedStreams = await fetchFollowedStreams(currentUser.id);
-    console.log(settings.notifications);
+
     if (!settings.streams.withReruns) {
       followedStreams = filter(followedStreams, {
         type: "live",
