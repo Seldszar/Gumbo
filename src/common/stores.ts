@@ -181,6 +181,7 @@ export const stores = {
       },
       notifications: {
         enabled: true,
+        gameChangeEnabled: false,
         withFilters: false,
         selectedUsers: [],
       },

@@ -8,6 +8,8 @@ import { Dictionary } from "@/common/types";
 
 setupErrorTracking();
 
+Object.assign(globalThis, { browser });
+
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",
   headers: {
@@ -109,6 +111,17 @@ async function filterNewStreams(streams: any[]): Promise<any[]> {
   );
 }
 
+async function filterNewStreamsWithGame(streams: any[]): Promise<any[]> {
+  const followedStreams = await stores.followedStreams.get();
+
+  return reject(streams, (stream) =>
+    some(followedStreams, {
+      id: stream.id,
+      game_id: stream.game_id,
+    })
+  );
+}
+
 async function refreshCurrentUser(accessToken: string | null) {
   let currentUser = null;
 
@@ -138,7 +151,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
 
   if (currentUser) {
     followedStreams = await fetchFollowedStreams(currentUser.id);
-
+    console.log(settings.notifications);
     if (!settings.streams.withReruns) {
       followedStreams = filter(followedStreams, {
         type: "live",
@@ -160,8 +173,11 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
         Promise.allSettled(
           streams.map(async (stream) => {
             const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-              browser.notifications.create(`stream:${stream.user_login}`, {
-                title: `${stream.user_name || stream.user_login} is online`,
+              // The notification is given a random number to prevent duplicated IDs
+              // Once an ID is used then a new notification couldn't be used with the same ID as an old one.
+              // If a stream goes live twice in a single browser session then the second notification won't get sent.
+              browser.notifications.create(`stream:${stream.user_login}:${Math.random()}`, {
+                title: `${stream.user_name || stream.user_login} Is Online`,
                 contextMessage: stream.game_name,
                 eventTime: Date.parse(stream.started_at),
                 message: stream.title,
@@ -169,7 +185,6 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
                 type: "basic",
                 iconUrl,
               });
-
             try {
               const user = find(users, {
                 id: stream.user_id,
@@ -183,6 +198,50 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
             await create();
           })
         );
+      }
+      if (settings.notifications.gameChangeEnabled) {
+        let newGameStreams = await filterNewStreamsWithGame(followedStreams);
+
+        if (settings.notifications.withFilters) {
+          newGameStreams = newGameStreams.filter((stream) =>
+            settings.notifications.selectedUsers.includes(stream.user_id)
+          );
+        }
+
+        // This will prevent two notifications being sent out when a stream goes live.
+        newGameStreams = newGameStreams.filter((gameStream) => {
+          return !newStreams.some((stream) => gameStream.id == stream.id);
+        });
+
+        for (const streams of chunk(newGameStreams, 100)) {
+          const users = await fetchUsers(map(streams, "user_id"));
+
+          Promise.allSettled(
+            streams.map(async (stream) => {
+              const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
+                browser.notifications.create(`stream:${stream.user_login}:${Math.random()}`, {
+                  title: `${stream.user_name || stream.user_login} Changed Game`,
+                  eventTime: Date.parse(stream.started_at),
+                  message: stream.game_name,
+                  isClickable: true,
+                  type: "basic",
+                  iconUrl,
+                });
+
+              try {
+                const user = find(users, {
+                  id: stream.user_id,
+                });
+
+                if (user) {
+                  return await create(user.profile_image_url);
+                }
+              } catch {} // eslint-disable-line no-empty
+
+              await create();
+            })
+          );
+        }
       }
     }
   }

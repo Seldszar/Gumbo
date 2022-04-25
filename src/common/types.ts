@@ -22,6 +22,7 @@ export interface StreamSettings {
 
 export interface NotificationSettings {
   enabled: boolean;
+  gameChangeEnabled: boolean;
   withFilters: boolean;
   selectedUsers: string[];
 }
