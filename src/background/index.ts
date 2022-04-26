@@ -160,7 +160,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
         Promise.allSettled(
           streams.map(async (stream) => {
             const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-              browser.notifications.create(`stream:${stream.user_login}`, {
+              browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
                 title: `${stream.user_name || stream.user_login} is online`,
                 contextMessage: stream.game_name,
                 eventTime: Date.parse(stream.started_at),
@@ -285,7 +285,7 @@ browser.alarms.onAlarm.addListener(() => {
 });
 
 browser.notifications.onClicked.addListener((notificationId) => {
-  const [type, data] = notificationId.split(":");
+  const [, type, data] = notificationId.split(":");
 
   switch (type) {
     case "stream": {
