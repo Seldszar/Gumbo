@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.1](https://github.com/Seldszar/Gumbo/compare/v1.8.0...v1.8.1) (2022-04-26)
+
+
+### Bug Fixes
+
+* notification id ([0f68d68](https://github.com/Seldszar/Gumbo/commit/0f68d68e3d3ff4bfbf0fd104bffaab2b87789be3))
+
 ## [1.8.0](https://github.com/Seldszar/Gumbo/compare/v1.7.0...v1.8.0) (2022-04-24)
 
 
