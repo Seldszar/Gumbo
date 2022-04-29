@@ -273,8 +273,13 @@ async function restore(data: any): Promise<void> {
   ]);
 }
 
+async function ping(): Promise<Date> {
+  return new Date();
+}
+
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   backup,
+  ping,
   refresh,
   request,
   restore,
