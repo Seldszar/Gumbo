@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.2](https://github.com/Seldszar/Gumbo/compare/v1.8.1...v1.8.2) (2022-04-29)
+
+
+### Bug Fixes
+
+* reload alert ([db64d99](https://github.com/Seldszar/Gumbo/commit/db64d995f8135e2eed8fc5dc3b33787b1b2d9bfd))
+
 ### [1.8.1](https://github.com/Seldszar/Gumbo/compare/v1.8.0...v1.8.1) (2022-04-26)
 
 
