@@ -25,6 +25,15 @@ export const client = ky.extend({
         request.headers.set("Authorization", `Bearer ${accessToken}`);
       },
     ],
+    afterResponse: [
+      async (input, options, response) => {
+        if (response.status === 401) {
+          await stores.accessToken.set(null);
+        }
+
+        return response;
+      },
+    ],
   },
 });
 
@@ -219,7 +228,8 @@ async function refreshActionBadge(): Promise<void> {
   const manifest = browser.runtime.getManifest();
   const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
 
-  const [followedStreams, settings] = await Promise.all([
+  const [currentUser, followedStreams, settings] = await Promise.all([
+    stores.currentUser.get(),
     stores.followedStreams.get(),
     stores.settings.get(),
   ]);
@@ -230,12 +240,21 @@ async function refreshActionBadge(): Promise<void> {
     text = followedStreams.length.toLocaleString("en-US");
   }
 
+  const getIconPath = (size: number) =>
+    browser.runtime.getURL(currentUser ? `icon-${size}.png` : `icon-gray-${size}.png`);
+
   await Promise.allSettled([
     browserAction.setBadgeBackgroundColor({
       color: "#000000",
     }),
     browserAction.setBadgeText({
       text,
+    }),
+    browserAction.setIcon({
+      path: {
+        16: getIconPath(16),
+        32: getIconPath(32),
+      },
     }),
   ]);
 }
