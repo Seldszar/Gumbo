@@ -1,6 +1,8 @@
 import { xor } from "lodash-es";
+import pTimeout from "p-timeout";
 import { useEffect, useState } from "react";
-import { useHarmonicIntervalFn } from "react-use";
+import { useEffectOnce, useHarmonicIntervalFn, useInterval } from "react-use";
+import browser from "webextension-polyfill";
 
 import { ClickAction } from "@/common/constants";
 import { Store, stores } from "@/common/stores";
@@ -157,4 +159,22 @@ export function useClickAction(userLogin: string): string {
   }
 
   return `https://twitch.tv/${userLogin}`;
+}
+
+export function usePingError(): [Error | null, () => void] {
+  const [error, setError] = useState<Error | null>(null);
+
+  const check = () => {
+    const promise = pTimeout(browser.runtime.sendMessage({ type: "ping", args: [] }), 1000);
+
+    promise.then(
+      () => setError(null),
+      (error) => setError(error)
+    );
+  };
+
+  useEffectOnce(check);
+  useInterval(check, 30000);
+
+  return [error, check];
 }

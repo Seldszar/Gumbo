@@ -1,6 +1,27 @@
 # Changelog
 
 
+### [1.8.3](https://github.com/Seldszar/Gumbo/compare/v1.8.2...v1.8.3) (2022-04-30)
+
+
+### Bug Fixes
+
+* clear access token when expired & badge icon ([4014e1c](https://github.com/Seldszar/Gumbo/commit/4014e1c28c53be4bc5745f5ffa66198d72e377df))
+
+### [1.8.2](https://github.com/Seldszar/Gumbo/compare/v1.8.1...v1.8.2) (2022-04-29)
+
+
+### Bug Fixes
+
+* reload alert ([db64d99](https://github.com/Seldszar/Gumbo/commit/db64d995f8135e2eed8fc5dc3b33787b1b2d9bfd))
+
+### [1.8.1](https://github.com/Seldszar/Gumbo/compare/v1.8.0...v1.8.1) (2022-04-26)
+
+
+### Bug Fixes
+
+* notification id ([0f68d68](https://github.com/Seldszar/Gumbo/commit/0f68d68e3d3ff4bfbf0fd104bffaab2b87789be3))
+
 ## [1.8.0](https://github.com/Seldszar/Gumbo/compare/v1.7.0...v1.8.0) (2022-04-24)
 
 

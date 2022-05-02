@@ -25,6 +25,15 @@ export const client = ky.extend({
         request.headers.set("Authorization", `Bearer ${accessToken}`);
       },
     ],
+    afterResponse: [
+      async (input, options, response) => {
+        if (response.status === 401) {
+          await stores.accessToken.set(null);
+        }
+
+        return response;
+      },
+    ],
   },
 });
 
@@ -171,11 +180,9 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
         Promise.allSettled(
           streams.map(async (stream) => {
             const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-              // The notification is given a random number to prevent duplicated IDs
-              // Once an ID is used then a new notification couldn't be used with the same ID as an old one.
-              // If a stream goes live twice in a single browser session then the second notification won't get sent.
-              browser.notifications.create(`stream:${stream.user_login}:${Math.random()}`, {
-                title: `${stream.user_name || stream.user_login} Is Online`,
+
+              browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
+                title: `${stream.user_name || stream.user_login} is online`,
                 contextMessage: stream.game_name,
                 eventTime: Date.parse(stream.started_at),
                 message: stream.title,
@@ -217,7 +224,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
           Promise.allSettled(
             streams.map(async (stream) => {
               const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-                browser.notifications.create(`stream:${stream.user_login}:${Math.random()}`, {
+                browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
                   title: `${stream.user_name || stream.user_login} Changed Game`,
                   eventTime: Date.parse(stream.started_at),
                   message: stream.game_name,
@@ -276,7 +283,8 @@ async function refreshActionBadge(): Promise<void> {
   const manifest = browser.runtime.getManifest();
   const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
 
-  const [followedStreams, settings] = await Promise.all([
+  const [currentUser, followedStreams, settings] = await Promise.all([
+    stores.currentUser.get(),
     stores.followedStreams.get(),
     stores.settings.get(),
   ]);
@@ -287,12 +295,21 @@ async function refreshActionBadge(): Promise<void> {
     text = followedStreams.length.toLocaleString("en-US");
   }
 
+  const getIconPath = (size: number) =>
+    browser.runtime.getURL(currentUser ? `icon-${size}.png` : `icon-gray-${size}.png`);
+
   await Promise.allSettled([
     browserAction.setBadgeBackgroundColor({
       color: "#000000",
     }),
     browserAction.setBadgeText({
       text,
+    }),
+    browserAction.setIcon({
+      path: {
+        16: getIconPath(16),
+        32: getIconPath(32),
+      },
     }),
   ]);
 }
@@ -330,8 +347,13 @@ async function restore(data: any): Promise<void> {
   ]);
 }
 
+async function ping(): Promise<Date> {
+  return new Date();
+}
+
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   backup,
+  ping,
   refresh,
   request,
   restore,
@@ -342,7 +364,7 @@ browser.alarms.onAlarm.addListener(() => {
 });
 
 browser.notifications.onClicked.addListener((notificationId) => {
-  const [type, data] = notificationId.split(":");
+  const [, type, data] = notificationId.split(":");
 
   switch (type) {
     case "stream": {
