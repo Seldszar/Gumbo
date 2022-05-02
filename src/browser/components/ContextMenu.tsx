@@ -1,5 +1,5 @@
 import { flip, offset, Placement, shift, size, useFloating } from "@floating-ui/react-dom";
-import { useDomEvent } from "framer-motion";
+import { AnimatePresence, m, useDomEvent, Variants } from "framer-motion";
 import React, { FC, ReactNode, Ref } from "react";
 import { createPortal } from "react-dom";
 import { useClickAway, useToggle } from "react-use";
@@ -11,7 +11,7 @@ interface PanelProps {
   fullWidth?: boolean;
 }
 
-const Panel = styled.div<PanelProps>`
+const Panel = styled(m.div)<PanelProps>`
   ${tw`fixed bg-white dark:bg-black max-h-80 py-2 rounded shadow-lg z-20`}
 
   max-width: ${theme<string>("spacing.64")};
@@ -19,6 +19,24 @@ const Panel = styled.div<PanelProps>`
 
   ${(props) => props.fullWidth && tw`max-w-none min-w-0`}
 `;
+
+const panelVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.1,
+    },
+  },
+};
 
 interface ContextMenu {
   children(ref: Ref<never>): ReactNode;
@@ -84,13 +102,21 @@ const ContextMenu: FC<ContextMenu> = (props) => {
   });
 
   const children = (
-    <>
+    <AnimatePresence initial={false}>
       {isOpen && (
-        <Panel fullWidth={props.fullWidth} ref={floating} style={{ top: y ?? "", left: x ?? "" }}>
+        <Panel
+          fullWidth={props.fullWidth}
+          ref={floating}
+          style={{ top: y ?? "", left: x ?? "" }}
+          variants={panelVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
           <Menu {...props.menu} />
         </Panel>
       )}
-    </>
+    </AnimatePresence>
   );
 
   const portal = createPortal(children, document.body);
