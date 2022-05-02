@@ -1,12 +1,12 @@
 import { get, has } from "lodash-es";
 import useSWR, { Fetcher } from "swr";
 import useSWRInfinite from "swr/infinite";
-import browser from "webextension-polyfill";
 
 import { useSettings } from "./hooks";
+import { sendRuntimeMessage } from "./runtime";
 
 export const backgroundFetcher: Fetcher<any, [string, any]> = (url, params = {}) =>
-  browser.runtime.sendMessage({ type: "request", args: [url, params] });
+  sendRuntimeMessage("request", url, params);
 
 export interface UseQueryListResponse {
   fetchMore(): void;

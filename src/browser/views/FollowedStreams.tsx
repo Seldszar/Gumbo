@@ -1,7 +1,6 @@
 import React, { FC, useMemo, useState } from "react";
 import { groupBy, orderBy } from "lodash-es";
 import tw, { styled } from "twin.macro";
-import browser from "webextension-polyfill";
 
 import { filterList, isEmpty } from "@/browser/helpers/array";
 import {
@@ -10,6 +9,7 @@ import {
   useIsRefreshing,
   usePinnedUsers,
 } from "@/browser/helpers/hooks";
+import { sendRuntimeMessage } from "@/browser/helpers/runtime";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
 import RefreshIcon from "@/browser/components/RefreshIcon";
@@ -109,7 +109,7 @@ const FollowedStreams: FC = () => {
           onChange={setSearchQuery}
           actionButtons={[
             {
-              onClick: () => browser.runtime.sendMessage({ type: "refresh", args: [true, true] }),
+              onClick: () => sendRuntimeMessage("refresh", true, true),
               children: <RefreshIcon isRefreshing={isRefreshing} />,
             },
           ]}
