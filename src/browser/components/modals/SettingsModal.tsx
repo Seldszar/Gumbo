@@ -149,11 +149,11 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
               fullWidth
               options={[
                 {
-                  label: "Open in new tab",
+                  label: "Open in a new tab",
                   value: ClickBehavior.CreateTab,
                 },
                 {
-                  label: "Open in new window",
+                  label: "Open in a new window",
                   value: ClickBehavior.CreateWindow,
                 },
               ]}
