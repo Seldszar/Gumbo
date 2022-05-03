@@ -319,9 +319,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
 });
 
 async function setup(migrate = false): Promise<void> {
-  if (migrate) {
-    await Promise.allSettled(map(stores, (store) => store.migrate()));
-  }
+  await Promise.allSettled(map(stores, (store) => store.setup(migrate)));
 
   await refresh(false, true);
 }
