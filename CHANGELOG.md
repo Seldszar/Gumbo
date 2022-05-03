@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.4](https://github.com/Seldszar/Gumbo/compare/v1.8.3...v1.8.4) (2022-05-03)
+
+
+### Bug Fixes
+
+* store change behavior ([db5e8c0](https://github.com/Seldszar/Gumbo/commit/db5e8c08d590f257fdf89f8ff19c492043a9c135)), closes [#46](https://github.com/Seldszar/Gumbo/issues/46)
+
 ### [1.8.3](https://github.com/Seldszar/Gumbo/compare/v1.8.2...v1.8.3) (2022-04-30)
 
 
