@@ -1,12 +1,13 @@
 import { xor } from "lodash-es";
 import pTimeout from "p-timeout";
-import { useEffect, useState } from "react";
-import { useEffectOnce, useHarmonicIntervalFn, useInterval } from "react-use";
-import browser from "webextension-polyfill";
+import { RefObject, useCallback, useEffect, useState } from "react";
+import { useEffectOnce, useHarmonicIntervalFn } from "react-use";
 
 import { ClickAction } from "@/common/constants";
 import { Store, stores } from "@/common/stores";
 import { FollowedStreamState, FollowedUserState } from "@/common/types";
+
+import { sendRuntimeMessage } from "./runtime";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());
@@ -165,7 +166,7 @@ export function usePingError(): [Error | null, () => void] {
   const [error, setError] = useState<Error | null>(null);
 
   const check = () => {
-    const promise = pTimeout(browser.runtime.sendMessage({ type: "ping", args: [] }), 1000);
+    const promise = pTimeout(sendRuntimeMessage("ping"), 1000);
 
     promise.then(
       () => setError(null),
@@ -174,7 +175,32 @@ export function usePingError(): [Error | null, () => void] {
   };
 
   useEffectOnce(check);
-  useInterval(check, 30000);
+  useHarmonicIntervalFn(check, 30000);
 
   return [error, check];
+}
+
+export function useHover(ref: RefObject<Element>): boolean {
+  const [value, setValue] = useState(false);
+
+  const handleMouseEnter = useCallback(() => setValue(true), []);
+  const handleMouseLeave = useCallback(() => setValue(false), []);
+
+  useEffect(() => {
+    const node = ref.current;
+
+    if (node == null) {
+      return;
+    }
+
+    node.addEventListener("mouseenter", handleMouseEnter);
+    node.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      node.removeEventListener("mouseenter", handleMouseEnter);
+      node.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [ref.current]);
+
+  return value;
 }

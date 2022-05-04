@@ -1,11 +1,11 @@
 import { get, set } from "lodash-es";
 import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
-import browser from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
 
 import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
+import { sendRuntimeMessage } from "@/browser/helpers/runtime";
 
 import Accordion from "../Accordion";
 import Button from "../Button";
@@ -46,19 +46,9 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
 
   const onExportClick: MouseEventHandler<HTMLButtonElement> = async () => {
     const url = URL.createObjectURL(
-      new Blob(
-        [
-          JSON.stringify(
-            await browser.runtime.sendMessage({
-              type: "backup",
-              args: [],
-            })
-          ),
-        ],
-        {
-          type: "application/json",
-        }
-      )
+      new Blob([JSON.stringify(await sendRuntimeMessage("backup"))], {
+        type: "application/json",
+      })
     );
 
     const anchor = document.createElement("a");
@@ -77,12 +67,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
       const file = input.files?.item(0);
 
       if (file?.type === "application/json") {
-        const data = JSON.parse(await file.text());
-
-        await browser.runtime.sendMessage({
-          type: "restore",
-          args: [data],
-        });
+        await sendRuntimeMessage("restore", JSON.parse(await file.text()));
       }
     });
 
@@ -164,11 +149,11 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
               fullWidth
               options={[
                 {
-                  label: "Open in new tab",
+                  label: "Open in a new tab",
                   value: ClickBehavior.CreateTab,
                 },
                 {
-                  label: "Open in new window",
+                  label: "Open in a new window",
                   value: ClickBehavior.CreateWindow,
                 },
               ]}

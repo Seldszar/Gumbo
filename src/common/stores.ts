@@ -33,6 +33,18 @@ export class Store<T> {
     readonly options: StoreOptions<T>
   ) {}
 
+  async setup(migrate = false): Promise<void> {
+    if (migrate) {
+      await this.migrate();
+    }
+
+    const value = await this.get();
+
+    this.listeners.forEach((listener) => {
+      listener(value);
+    });
+  }
+
   applyChange(changes: Record<string, Storage.StorageChange>, areaName: string) {
     if (areaName !== this.areaName) {
       return;
@@ -50,12 +62,6 @@ export class Store<T> {
   }
 
   onChange(listener: StoreChange<T>): () => void {
-    const promise = this.get();
-
-    promise.then((value) => {
-      listener(value);
-    });
-
     this.listeners.add(listener);
 
     return () => {
