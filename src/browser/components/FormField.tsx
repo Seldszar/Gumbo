@@ -16,6 +16,7 @@ const Footer = styled.div`
 `;
 
 interface FormFieldProps {
+  children?: ReactNode;
   className?: string;
   helpText?: ReactNode;
   disabled?: boolean;

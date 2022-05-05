@@ -28,6 +28,7 @@ const Inner = styled.div`
 `;
 
 interface AccordionProps {
+  children?: ReactNode;
   className?: string;
   title?: ReactNode;
   isOpen?: boolean;

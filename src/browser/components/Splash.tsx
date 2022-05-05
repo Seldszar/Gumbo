@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 import Spinner from "./Spinner";
@@ -16,8 +16,9 @@ const Inner = styled.div`
 `;
 
 export interface SplashProps {
-  isLoading?: boolean;
+  children?: ReactNode;
   className?: string;
+  isLoading?: boolean;
 }
 
 const Splash: FC<SplashProps> = (props) => (

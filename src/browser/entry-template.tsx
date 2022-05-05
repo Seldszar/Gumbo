@@ -3,7 +3,7 @@ import type { EntryWrapper } from "@seldszar/yael";
 import { Global } from "@emotion/react";
 import { domAnimation, LazyMotion } from "framer-motion";
 import React, { ExoticComponent, FC, useEffect } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
@@ -13,8 +13,10 @@ import { getBaseFontSize, setupErrorTracking } from "@/common/helpers";
 import { useSettings } from "./helpers/hooks";
 import { backgroundFetcher } from "./helpers/queries";
 
-const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
-  setupErrorTracking();
+setupErrorTracking();
+
+const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
+  const root = createRoot(document.body);
 
   const App: FC = () => {
     const [settings] = useSettings();
@@ -77,9 +79,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component, { target }) => {
     );
   };
 
-  if (target === "web") {
-    ReactDOM.render(<App />, document.body);
-  }
+  root.render(<App />);
 };
 
 export default wrapper;

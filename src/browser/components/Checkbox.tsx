@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.button`
@@ -29,10 +29,11 @@ const Inner = styled.div`
 `;
 
 export interface CheckboxProps {
-  value?: boolean;
+  onChange?(checked: boolean): void;
+  children?: ReactNode;
   className?: string;
   disabled?: boolean;
-  onChange?(checked: boolean): void;
+  value?: boolean;
 }
 
 const Checkbox: FC<CheckboxProps> = (props) => (

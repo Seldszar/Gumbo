@@ -32,6 +32,7 @@ const Inner = styled.div`
 
 export interface PanelProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;
+  children?: ReactNode;
   className?: string;
   title?: ReactNode;
 }

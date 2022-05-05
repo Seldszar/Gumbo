@@ -34,7 +34,7 @@ interface ContextMenu {
 }
 
 const Tooltip: FC<ContextMenu> = (props) => {
-  const { floating, reference, refs, x, y } = useFloating({
+  const { floating, reference, refs, x, y } = useFloating<Element>({
     middleware: [autoPlacement(), offset(4)],
     strategy: "fixed",
   });
