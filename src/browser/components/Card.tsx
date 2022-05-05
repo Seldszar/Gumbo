@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, useMemo } from "react";
+import React, { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { MenuProps } from "./Menu";
@@ -32,8 +32,9 @@ const Wrapper = styled(Anchor)`
 `;
 
 export interface CardProps {
-  className?: string;
   actionButtons?: HTMLAttributes<HTMLButtonElement>[];
+  children?: ReactNode;
+  className?: string;
   ellipsisMenu?: MenuProps;
   to: string;
 }

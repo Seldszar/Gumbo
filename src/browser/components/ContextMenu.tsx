@@ -48,7 +48,7 @@ interface ContextMenu {
 const ContextMenu: FC<ContextMenu> = (props) => {
   const [isOpen, toggleOpen] = useToggle(false);
 
-  const { floating, reference, refs, x, y } = useFloating({
+  const { floating, reference, refs, x, y } = useFloating<Element>({
     placement: props.placement,
     strategy: "fixed",
     middleware: [

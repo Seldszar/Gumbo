@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 `;
 
 interface Props {
+  children?: ReactNode;
   className?: string;
   title?: ReactNode;
 }

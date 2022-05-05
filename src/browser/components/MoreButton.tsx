@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 
 import Button from "./Button";
 
 export interface MoreButtonProps {
+  children?: ReactNode;
   isLoading: boolean;
   fetchMore(): void;
 }

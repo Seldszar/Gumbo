@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const Wrapper = styled.fieldset`
@@ -32,10 +32,11 @@ const Inner = styled.div`
 `;
 
 export interface SwitchProps {
-  value?: boolean;
+  onChange?(checked: boolean): void;
+  children?: ReactNode;
   className?: string;
   disabled?: boolean;
-  onChange?(checked: boolean): void;
+  value?: boolean;
 }
 
 const Switch: FC<SwitchProps> = (props) => (
