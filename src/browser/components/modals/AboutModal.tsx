@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 import ExternalAnchor from "../ExternalAnchor";
 import Hero from "../Hero";
 import Modal from "../Modal";
+import Panel from "../Panel";
 import Section from "../Section";
 
 const LinkList = styled.div`
@@ -19,9 +20,9 @@ interface AboutModalProps {
   isOpen?: boolean;
 }
 
-const AboutModal: FC<AboutModalProps> = (props) => {
-  return (
-    <Modal isOpen={props.isOpen} onClose={props.onClose}>
+const AboutModal: FC<AboutModalProps> = (props) => (
+  <Modal isOpen={props.isOpen}>
+    <Panel onClose={props.onClose}>
       <Section>
         <Hero />
       </Section>
@@ -32,8 +33,8 @@ const AboutModal: FC<AboutModalProps> = (props) => {
           <Link href="https://github.com/seldszar/gumbo/releases">Release Notes</Link>
         </LinkList>
       </Section>
-    </Modal>
-  );
-};
+    </Panel>
+  </Modal>
+);
 
 export default AboutModal;

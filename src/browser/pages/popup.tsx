@@ -17,7 +17,7 @@ import TopCategories from "@/browser/views/TopCategories";
 import TopStreams from "@/browser/views/TopStreams";
 import Welcome from "@/browser/views/Welcome";
 
-import ReloadAlert from "@/browser/components/alerts/ReloadAlert";
+import ReloadModal from "@/browser/components/modals/ReloadModal";
 
 import Sidebar from "@/browser/components/Sidebar";
 import Splash from "@/browser/components/Splash";
@@ -32,10 +32,6 @@ const Inner = styled.div`
 
 const Body = styled.div`
   ${tw`flex-1 overflow-y-scroll`}
-`;
-
-const Footer = styled.div`
-  ${tw`flex-none sticky bottom-0`}
 `;
 
 const PopupPage: FC = () => {
@@ -85,11 +81,7 @@ const PopupPage: FC = () => {
         )}
       </Inner>
 
-      {error && (
-        <Footer>
-          <ReloadAlert />
-        </Footer>
-      )}
+      <ReloadModal isOpen={!!error} />
     </Wrapper>
   );
 };
