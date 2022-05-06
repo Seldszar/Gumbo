@@ -2,6 +2,7 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
 import browser from "webextension-polyfill";
 
+import { AUTHORIZE_URL } from "@/common/constants";
 import { openUrl, setupErrorTracking } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
@@ -27,8 +28,15 @@ export const client = ky.extend({
     ],
     afterResponse: [
       async (input, options, response) => {
-        if (response.status === 401) {
-          await stores.accessToken.set(null);
+        if (response.status === 401 && (await stores.accessToken.set(null))) {
+          browser.notifications.create(`${Date.now()}:authorize`, {
+            title: "Access Expired",
+            contextMessage: "Click to re-authorize",
+            message: "Your access has expired, please re-authorize to keep using Gumbo",
+            iconUrl: browser.runtime.getURL("icon-96.png"),
+            isClickable: true,
+            type: "basic",
+          });
         }
 
         return response;
@@ -292,11 +300,16 @@ async function restore(data: any): Promise<void> {
   ]);
 }
 
+async function authorize(): Promise<void> {
+  return openUrl(AUTHORIZE_URL);
+}
+
 async function ping(): Promise<Date> {
   return new Date();
 }
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
+  authorize,
   backup,
   ping,
   refresh,
@@ -312,9 +325,11 @@ browser.notifications.onClicked.addListener((notificationId) => {
   const [, type, data] = notificationId.split(":");
 
   switch (type) {
-    case "stream": {
-      openUrl(`https://twitch.tv/${data}`);
-    }
+    case "authorize":
+      return authorize();
+
+    case "stream":
+      return openUrl(`https://twitch.tv/${data}`);
   }
 });
 
@@ -346,7 +361,7 @@ browser.runtime.onMessage.addListener((message) => {
   return handler(...message.args);
 });
 
-browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (
     changeInfo.status === "complete" &&
     tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)
@@ -357,7 +372,7 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     const accessToken = hashParams.get("access_token");
 
     if (accessToken) {
-      await stores.accessToken.set(accessToken);
+      stores.accessToken.set(accessToken);
     }
   }
 });

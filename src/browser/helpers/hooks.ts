@@ -28,8 +28,8 @@ export type UseStoreReturn<T> = [
   T,
   {
     isLoading: boolean;
-    set(value: T): Promise<void>;
-    set(updater: (value: T) => T): Promise<void>;
+    set(value: T): Promise<boolean>;
+    set(updater: (value: T) => T): Promise<boolean>;
   }
 ];
 
