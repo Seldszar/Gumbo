@@ -8,7 +8,7 @@ const Wrapper = styled(m.div)`
   ${tw`backdrop-blur-md bg-black/50 grid fixed inset-0 overflow-auto z-20`}
 `;
 
-const Inner = styled.div`
+const Inner = styled(m.div)`
   ${tw`m-auto p-6 w-full`}
 `;
 
@@ -21,6 +21,21 @@ const wrapperVariants: Variants = {
   },
   show: {
     opacity: 1,
+    transition: {
+      duration: 0.25,
+    },
+  },
+};
+
+const innerVariants: Variants = {
+  hide: {
+    scale: 0.9,
+    transition: {
+      duration: 0.25,
+    },
+  },
+  show: {
+    scale: 1,
     transition: {
       duration: 0.25,
     },
@@ -45,7 +60,7 @@ const Modal: FC<ModalProps> = (props) => {
             `}
           />
 
-          <Inner>{props.children}</Inner>
+          <Inner variants={innerVariants}>{props.children}</Inner>
         </Wrapper>
       )}
     </AnimatePresence>
