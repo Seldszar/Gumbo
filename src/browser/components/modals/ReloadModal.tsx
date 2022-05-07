@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
-import browser from "webextension-polyfill";
 
 import Button from "../Button";
 import Modal from "../Modal";

@@ -1,5 +1,5 @@
 import { defaultsDeep } from "lodash-es";
-import browser, { Storage } from "webextension-polyfill";
+import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
 import { FollowedStreamState, FollowedUserState, Settings } from "./types";
