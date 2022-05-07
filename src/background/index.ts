@@ -30,8 +30,8 @@ export const client = ky.extend({
         if (response.status === 401 && (await stores.accessToken.set(null))) {
           browser.notifications.create(`${Date.now()}:authorize`, {
             title: "Access Expired",
-            contextMessage: "Click to re-authorize",
-            message: "Your access has expired, please re-authorize to keep using Gumbo",
+            contextMessage: "Click to authorize",
+            message: "Your Twitch access token expired, please re-authorize to get a new one.",
             iconUrl: browser.runtime.getURL("icon-96.png"),
             isClickable: true,
             type: "basic",
