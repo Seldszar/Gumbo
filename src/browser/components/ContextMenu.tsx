@@ -56,19 +56,13 @@ const ContextMenu: FC<ContextMenu> = (props) => {
       shift(),
       offset(4),
       size({
-        apply({ reference }) {
+        apply({ elements, rects }) {
           if (!props.fullWidth) {
             return;
           }
 
-          const element = refs.floating.current;
-
-          if (element == null) {
-            return;
-          }
-
-          Object.assign(element.style, {
-            width: `${reference.width}px`,
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
           });
         },
       }),
