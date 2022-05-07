@@ -1,3 +1,4 @@
+import { AnimatePresence, m, Variants } from "framer-motion";
 import React, { FC, ReactNode } from "react";
 import { useToggle } from "react-use";
 import tw, { styled } from "twin.macro";
@@ -23,9 +24,26 @@ const Title = styled.div`
   ${tw`flex-1 text-lg`}
 `;
 
+const Collapse = styled(m.div)``;
+
 const Inner = styled.div`
   ${tw`p-4`}
 `;
+
+const collapseVariants: Variants = {
+  hide: {
+    height: 0,
+    transition: {
+      ease: "easeOut",
+    },
+  },
+  show: {
+    height: "auto",
+    transition: {
+      ease: "easeOut",
+    },
+  },
+};
 
 interface AccordionProps {
   children?: ReactNode;
@@ -48,7 +66,13 @@ const Accordion: FC<AccordionProps> = (props) => {
         </Header>
       )}
 
-      {isOpen && <Inner>{props.children}</Inner>}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <Collapse variants={collapseVariants} initial="hide" animate="show" exit="hide">
+            <Inner>{props.children}</Inner>
+          </Collapse>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 };
