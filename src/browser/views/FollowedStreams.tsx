@@ -2,6 +2,8 @@ import React, { FC, useMemo, useState } from "react";
 import { groupBy, orderBy } from "lodash-es";
 import tw, { styled } from "twin.macro";
 
+import { sendRuntimeMessage } from "@/common/helpers";
+
 import { filterList, isEmpty } from "@/browser/helpers/array";
 import {
   useFollowedStreams,
@@ -9,7 +11,6 @@ import {
   useIsRefreshing,
   usePinnedUsers,
 } from "@/browser/helpers/hooks";
-import { sendRuntimeMessage } from "@/browser/helpers/runtime";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
 import RefreshIcon from "@/browser/components/RefreshIcon";

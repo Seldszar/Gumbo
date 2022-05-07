@@ -3,9 +3,9 @@ import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 import { ClickAction, ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
+import { sendRuntimeMessage } from "@/common/helpers";
 
 import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
-import { sendRuntimeMessage } from "@/browser/helpers/runtime";
 
 import Accordion from "../Accordion";
 import Button from "../Button";

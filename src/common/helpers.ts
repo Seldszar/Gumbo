@@ -91,3 +91,7 @@ export async function openUrl(url: string, event?: MouseEvent): Promise<void> {
 export function template(input: string, data: Dictionary<unknown>) {
   return reduce(data, (result, value, key) => result.replace(key, String(value)), input);
 }
+
+export function sendRuntimeMessage<T extends unknown[], V>(type: string, ...args: T): Promise<V> {
+  return browser.runtime.sendMessage({ type, args });
+}

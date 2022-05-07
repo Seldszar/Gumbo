@@ -2,8 +2,9 @@ import { get, has } from "lodash-es";
 import useSWR, { Fetcher } from "swr";
 import useSWRInfinite from "swr/infinite";
 
+import { sendRuntimeMessage } from "@/common/helpers";
+
 import { useSettings } from "./hooks";
-import { sendRuntimeMessage } from "./runtime";
 
 export const backgroundFetcher: Fetcher<any, [string, any]> = (url, params = {}) =>
   sendRuntimeMessage("request", url, params);

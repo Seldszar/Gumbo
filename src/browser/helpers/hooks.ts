@@ -4,10 +4,9 @@ import { RefObject, useCallback, useEffect, useState } from "react";
 import { useEffectOnce, useHarmonicIntervalFn } from "react-use";
 
 import { ClickAction } from "@/common/constants";
+import { sendRuntimeMessage } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { FollowedStreamState, FollowedUserState } from "@/common/types";
-
-import { sendRuntimeMessage } from "./runtime";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());

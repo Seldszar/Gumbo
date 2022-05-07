@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { sendRuntimeMessage } from "@/browser/helpers/runtime";
+import { sendRuntimeMessage } from "@/common/helpers";
 
 import Button from "@/browser/components/Button";
 import Hero from "@/browser/components/Hero";
