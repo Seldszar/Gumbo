@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
-import browser from "webextension-polyfill";
 
 import Logo from "./Logo";
 import Wordmark from "./Wordmark";

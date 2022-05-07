@@ -1,6 +1,5 @@
 import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
-import browser from "webextension-polyfill";
 
 import { AUTHORIZE_URL } from "@/common/constants";
 import { openUrl, setupErrorTracking } from "@/common/helpers";

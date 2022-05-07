@@ -43,6 +43,9 @@ module.exports = (env, argv) => {
         TWITCH_REDIRECT_URI: undefined,
         SENTRY_DSN: null,
       }),
+      new webpack.ProvidePlugin({
+        browser: "webextension-polyfill",
+      }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
           mode: "write-references",

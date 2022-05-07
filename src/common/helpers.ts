@@ -1,7 +1,6 @@
 import { init } from "@sentry/browser";
 import { reduce } from "lodash-es";
 import { MouseEvent } from "react";
-import browser from "webextension-polyfill";
 
 import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
