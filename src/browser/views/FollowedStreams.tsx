@@ -16,6 +16,7 @@ import StreamCard from "@/browser/components/cards/StreamCard";
 import RefreshIcon from "@/browser/components/RefreshIcon";
 import SearchInput from "@/browser/components/SearchInput";
 import Select from "@/browser/components/Select";
+import SortableSelect from "../components/SortableSelect";
 import Splash from "@/browser/components/Splash";
 
 const Wrapper = styled.div`
@@ -118,9 +119,11 @@ const FollowedStreams: FC = () => {
       </Header>
 
       <FilterWrapper>
-        <FilterSelect
+        <SortableSelect
           value={state.sortField}
-          onChange={setSortField}
+          direction={state.sortDirection}
+          onValueChange={setSortField}
+          onDirectionChange={setSortDirection}
           options={[
             {
               value: "user_login",
@@ -137,20 +140,6 @@ const FollowedStreams: FC = () => {
             {
               value: "viewer_count",
               label: "Viewers",
-            },
-          ]}
-        />
-        <FilterSelect
-          value={state.sortDirection}
-          onChange={setSortDirection}
-          options={[
-            {
-              value: "asc",
-              label: "Ascending",
-            },
-            {
-              value: "desc",
-              label: "Descending",
             },
           ]}
         />
