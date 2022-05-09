@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.8.5](https://github.com/Seldszar/Gumbo/compare/v1.8.4...v1.8.5) (2022-05-09)
+
+
+### Bug Fixes
+
+* access expired notification ([fab2687](https://github.com/Seldszar/Gumbo/commit/fab2687955218a93717ba0bec07f15b8d9568d4e))
+* expired token message ([e28fd4d](https://github.com/Seldszar/Gumbo/commit/e28fd4d3eccd9120c9cb4c66ee237fc3d882a76b))
+
 ### [1.8.4](https://github.com/Seldszar/Gumbo/compare/v1.8.3...v1.8.4) (2022-05-03)
 
 
