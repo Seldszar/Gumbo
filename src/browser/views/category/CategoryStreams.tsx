@@ -6,11 +6,12 @@ import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useStreams } from "@/browser/helpers/queries";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
+
 import MoreButton from "@/browser/components/MoreButton";
 import Splash from "@/browser/components/Splash";
 
 const List = styled.div`
-  ${tw`pt-2`}
+  ${tw`pt-3`}
 `;
 
 const Item = styled.div``;

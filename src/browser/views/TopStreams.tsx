@@ -5,6 +5,7 @@ import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useStreams } from "@/browser/helpers/queries";
 
 import StreamCard from "@/browser/components/cards/StreamCard";
+
 import MoreButton from "@/browser/components/MoreButton";
 import RefreshIcon from "@/browser/components/RefreshIcon";
 import SearchInput from "@/browser/components/SearchInput";

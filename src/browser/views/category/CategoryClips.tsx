@@ -6,19 +6,16 @@ import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useClips } from "@/browser/helpers/queries";
 
 import ClipCard from "@/browser/components/cards/ClipCard";
+
+import FilterBar from "@/browser/components/FilterBar";
 import MoreButton from "@/browser/components/MoreButton";
-import Select from "@/browser/components/Select";
 import Splash from "@/browser/components/Splash";
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-transparent to-black/10 dark:to-black/20 flex gap-6 justify-end py-3 px-4`}
+  ${tw`py-3 px-4`}
 `;
 
-const FilterSelect = styled(Select)``;
-
-const List = styled.div`
-  ${tw`pt-2`}
-`;
+const List = styled.div``;
 
 const Item = styled.div``;
 
@@ -90,25 +87,30 @@ const CategoryClips: FC = () => {
   return (
     <>
       <Header>
-        <FilterSelect
-          value={duration}
-          onChange={setDuration}
-          options={[
+        <FilterBar
+          filters={[
             {
-              value: null,
-              label: "All Time",
-            },
-            {
-              value: 86400000,
-              label: "Last 24 Hours",
-            },
-            {
-              value: 604800000,
-              label: "Last 7 Days",
-            },
-            {
-              value: 2592000000,
-              label: "Last 30 Days",
+              onChange: setDuration,
+              side: "left",
+              value: duration,
+              options: [
+                {
+                  value: null,
+                  label: "All Time",
+                },
+                {
+                  value: 86400000,
+                  label: "Last 24 Hours",
+                },
+                {
+                  value: 604800000,
+                  label: "Last 7 Days",
+                },
+                {
+                  value: 2592000000,
+                  label: "Last 30 Days",
+                },
+              ],
             },
           ]}
         />

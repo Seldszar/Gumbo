@@ -6,6 +6,7 @@ import { isEmpty } from "@/browser/helpers/array";
 import { useSearchChannels } from "@/browser/helpers/queries";
 
 import ChannelCard from "@/browser/components/cards/ChannelCard";
+
 import MoreButton from "@/browser/components/MoreButton";
 import Splash from "@/browser/components/Splash";
 

@@ -30,20 +30,20 @@ const Icon = styled.svg`
   stroke-width: 2px;
 `;
 
-export interface SelectOption<T> {
+export interface SelectOption {
   label: ReactNode;
-  value: T;
+  value: any;
 }
 
-export interface SelectProps<T> {
-  onChange(value: T): void;
+export interface SelectProps {
+  onChange(value: any): void;
   className?: string;
-  options: SelectOption<T>[];
+  options: SelectOption[];
   fullWidth?: boolean;
-  value: T;
+  value: any;
 }
 
-const Select: FC<SelectProps<any>> = (props) => {
+const Select: FC<SelectProps> = (props) => {
   const { options, value } = props;
 
   const selectedOption = useMemo(() => find(options, { value }), [options, value]);
