@@ -6,19 +6,16 @@ import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useVideos } from "@/browser/helpers/queries";
 
 import VideoCard from "@/browser/components/cards/VideoCard";
+
+import FilterBar from "@/browser/components/FilterBar";
 import MoreButton from "@/browser/components/MoreButton";
-import Select from "@/browser/components/Select";
 import Splash from "@/browser/components/Splash";
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-transparent to-black/10 dark:to-black/20 flex gap-6 justify-end py-3 px-4`}
+  ${tw`py-3 px-4`}
 `;
 
-const FilterSelect = styled(Select)``;
-
-const List = styled.div`
-  ${tw`pt-2`}
-`;
+const List = styled.div``;
 
 const Item = styled.div``;
 
@@ -82,65 +79,72 @@ const CategoryVideos: FC = () => {
   return (
     <>
       <Header>
-        <FilterSelect
-          value={period}
-          onChange={setPeriod}
-          options={[
+        <FilterBar
+          filters={[
             {
-              value: "all",
-              label: "All Time",
+              onChange: setPeriod,
+              side: "left",
+              value: period,
+              options: [
+                {
+                  value: "all",
+                  label: "All Time",
+                },
+                {
+                  value: "day",
+                  label: "Last Day",
+                },
+                {
+                  value: "week",
+                  label: "Last Week",
+                },
+                {
+                  value: "month",
+                  label: "Last Month",
+                },
+              ],
             },
             {
-              value: "day",
-              label: "Last Day",
+              onChange: setType,
+              side: "left",
+              value: type,
+              options: [
+                {
+                  value: "all",
+                  label: "All Videos",
+                },
+                {
+                  value: "upload",
+                  label: "Uploads",
+                },
+                {
+                  value: "archive",
+                  label: "Archives",
+                },
+                {
+                  value: "highlight",
+                  label: "Highlights",
+                },
+              ],
             },
             {
-              value: "week",
-              label: "Last Week",
-            },
-            {
-              value: "month",
-              label: "Last Month",
-            },
-          ]}
-        />
-        <FilterSelect
-          value={sort}
-          onChange={setSort}
-          options={[
-            {
-              value: "time",
-              label: "Time",
-            },
-            {
-              value: "trending",
-              label: "Trending",
-            },
-            {
-              value: "views",
-              label: "Views",
-            },
-          ]}
-        />
-        <FilterSelect
-          value={type}
-          onChange={setType}
-          options={[
-            {
-              value: "all",
-              label: "All Videos",
-            },
-            {
-              value: "upload",
-              label: "Uploads",
-            },
-            {
-              value: "archive",
-              label: "Archives",
-            },
-            {
-              value: "highlight",
-              label: "Highlights",
+              onChange: setSort,
+              side: "right",
+              value: sort,
+              options: [
+                {
+                  value: "time",
+                  label: "Time",
+                },
+                {
+                  value: "trending",
+                  label: "Trending",
+                },
+                {
+                  value: "views",
+                  label: "Views",
+                },
+              ],
             },
           ]}
         />

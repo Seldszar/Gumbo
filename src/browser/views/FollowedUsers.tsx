@@ -11,9 +11,9 @@ import {
 } from "@/browser/helpers/hooks";
 
 import UserCard from "@/browser/components/cards/UserCard";
+
+import FilterBar from "@/browser/components/FilterBar";
 import SearchInput from "@/browser/components/SearchInput";
-import Select from "@/browser/components/Select";
-import SortableSelect from "../components/SortableSelect";
 import Splash from "@/browser/components/Splash";
 
 const Wrapper = styled.div`
@@ -24,8 +24,8 @@ const Header = styled.div`
   ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
 `;
 
-const FilterWrapper = styled.div`
-  ${tw`bg-gradient-to-b from-transparent to-black/10 dark:to-black/20 flex gap-6 justify-end py-3 px-4`}
+const StyledFilterBar = styled(FilterBar)`
+  ${tw`px-4 pb-3 pt-1`}
 `;
 
 const Group = styled.div`
@@ -37,8 +37,6 @@ const Group = styled.div`
     ${tw`hidden`}
   }
 `;
-
-const FilterSelect = styled(Select)``;
 
 const Item = styled.div``;
 
@@ -115,43 +113,46 @@ const FollowedUsers: FC = () => {
         <SearchInput onChange={setSearchQuery} />
       </Header>
 
-      <FilterWrapper>
-        <SortableSelect
-          value={state.sortField}
-          direction={state.sortDirection}
-          onValueChange={setSortField}
-          onDirectionChange={setSortDirection}
-          options={[
-            {
-              value: "login",
-              label: "Name",
-            },
-            {
-              value: "view_count",
-              label: "Views",
-            },
-          ]}
-        />
-
-        <FilterSelect
-          value={state.status}
-          onChange={setStatus}
-          options={[
-            {
-              value: null,
-              label: "Any",
-            },
-            {
-              value: true,
-              label: "Online Only",
-            },
-            {
-              value: false,
-              label: "Offline Only",
-            },
-          ]}
-        />
-      </FilterWrapper>
+      <StyledFilterBar
+        direction={state.sortDirection}
+        onDirectionChange={setSortDirection}
+        filters={[
+          {
+            onChange: setStatus,
+            side: "left",
+            value: state.status,
+            options: [
+              {
+                value: null,
+                label: "Any",
+              },
+              {
+                value: true,
+                label: "Online Only",
+              },
+              {
+                value: false,
+                label: "Offline Only",
+              },
+            ],
+          },
+          {
+            onChange: setSortField,
+            side: "right",
+            value: state.sortField,
+            options: [
+              {
+                value: "login",
+                label: "Name",
+              },
+              {
+                value: "view_count",
+                label: "Views",
+              },
+            ],
+          },
+        ]}
+      />
 
       {children}
     </Wrapper>

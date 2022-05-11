@@ -6,6 +6,7 @@ import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useTopCategories } from "@/browser/helpers/queries";
 
 import CategoryCard from "@/browser/components/cards/CategoryCard";
+
 import MoreButton from "@/browser/components/MoreButton";
 import RefreshIcon from "@/browser/components/RefreshIcon";
 import SearchInput from "@/browser/components/SearchInput";
