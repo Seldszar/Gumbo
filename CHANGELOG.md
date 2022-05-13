@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.7](https://github.com/Seldszar/Gumbo/compare/v1.8.6...v1.8.7) (2022-05-13)
+
+
+### Bug Fixes
+
+* clear alarms during setup ([4a4512e](https://github.com/Seldszar/Gumbo/commit/4a4512e5af8a75eb8dae762bba046560a2da6bf6)), closes [#51](https://github.com/Seldszar/Gumbo/issues/51)
+
 ### [1.8.6](https://github.com/Seldszar/Gumbo/compare/v1.8.5...v1.8.6) (2022-05-13)
 
 
