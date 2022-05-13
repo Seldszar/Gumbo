@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.6](https://github.com/Seldszar/Gumbo/compare/v1.8.5...v1.8.6) (2022-05-13)
+
+
+### Bug Fixes
+
+* reset action ([9dc4149](https://github.com/Seldszar/Gumbo/commit/9dc4149d01609835fef993e2ab01ecd95f16bd19))
+
 ### [1.8.5](https://github.com/Seldszar/Gumbo/compare/v1.8.4...v1.8.5) (2022-05-09)
 
 
