@@ -1,11 +1,13 @@
 import { get, set } from "lodash-es";
-import React, { FC, MouseEventHandler } from "react";
+import React, { FC, MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { ClickAction, ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
 import { sendRuntimeMessage } from "@/common/helpers";
 
 import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
+
+import ResetModal from "./ResetModal";
 
 import Accordion from "../Accordion";
 import Button from "../Button";
@@ -25,8 +27,8 @@ const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-const ButtonGrid = styled.div`
-  ${tw`gap-3 grid grid-cols-2 mt-6`}
+const ButtonGroup = styled.div`
+  ${tw`gap-3 grid`}
 `;
 
 interface SettingsModalProps {
@@ -35,6 +37,8 @@ interface SettingsModalProps {
 }
 
 const SettingsModal: FC<SettingsModalProps> = (props) => {
+  const [isResetModalOpen, setResetModalOpen] = useState(false);
+
   const [settings, store] = useSettings();
   const [followedUsers] = useFollowedUsers();
 
@@ -211,33 +215,60 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
           </Section>
         </StyledAccordion>
 
-        <ButtonGrid>
-          <Button
-            onClick={onImportClick}
-            icon={
-              <svg viewBox="0 0 24 24">
-                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                <polyline points="7 9 12 4 17 9" />
-                <line x1="12" y1="4" x2="12" y2="16" />
-              </svg>
-            }
-          >
-            Import Settings
-          </Button>
-          <Button
-            onClick={onExportClick}
-            icon={
-              <svg viewBox="0 0 24 24">
-                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                <polyline points="7 11 12 16 17 11" />
-                <line x1="12" y1="4" x2="12" y2="16" />
-              </svg>
-            }
-          >
-            Export Settings
-          </Button>
-        </ButtonGrid>
+        <StyledAccordion title="Advanced">
+          <Section title="Settings Management">
+            <ButtonGroup>
+              <Button
+                onClick={onImportClick}
+                fullWidth
+                icon={
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                    <polyline points="7 9 12 4 17 9" />
+                    <line x1="12" y1="4" x2="12" y2="16" />
+                  </svg>
+                }
+              >
+                Import Settings
+              </Button>
+              <Button
+                onClick={onExportClick}
+                fullWidth
+                icon={
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                    <polyline points="7 11 12 16 17 11" />
+                    <line x1="12" y1="4" x2="12" y2="16" />
+                  </svg>
+                }
+              >
+                Export Settings
+              </Button>
+            </ButtonGroup>
+          </Section>
+          <Section title="Danger Zone">
+            <Button
+              onClick={() => setResetModalOpen(true)}
+              color="red"
+              fullWidth
+              icon={
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 9v2m0 4v.01" />
+                  <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                </svg>
+              }
+            >
+              Reset Extension
+            </Button>
+          </Section>
+        </StyledAccordion>
       </Panel>
+
+      <ResetModal
+        isOpen={isResetModalOpen}
+        onCancel={() => setResetModalOpen(false)}
+        onConfirm={() => sendRuntimeMessage("reset")}
+      />
     </Modal>
   );
 };

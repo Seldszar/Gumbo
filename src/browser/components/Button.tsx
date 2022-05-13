@@ -52,6 +52,9 @@ const Wrapper = styled(m.button)<WrapperProps>`
       case "purple":
         return tw`bg-purple-500 hover:bg-purple-400 active:bg-purple-600 disabled:bg-purple-500!`;
 
+      case "red":
+        return tw`bg-red-500 hover:bg-red-400 active:bg-red-600 disabled:bg-red-500!`;
+
       case "transparent":
         return tw`hover:bg-white/10 active:bg-black/25 disabled:bg-transparent!`;
 
