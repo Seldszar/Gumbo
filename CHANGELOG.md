@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.8](https://github.com/Seldszar/Gumbo/compare/v1.8.7...v1.8.8) (2022-05-13)
+
+
+### Bug Fixes
+
+* skip expired alarms ([ee97ba6](https://github.com/Seldszar/Gumbo/commit/ee97ba67282d31c5fe9dfe519a485075c9963ae7)), closes [#51](https://github.com/Seldszar/Gumbo/issues/51)
+
 ### [1.8.7](https://github.com/Seldszar/Gumbo/compare/v1.8.6...v1.8.7) (2022-05-13)
 
 
