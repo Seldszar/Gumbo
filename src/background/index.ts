@@ -2,7 +2,7 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
 
 import { AUTHORIZE_URL } from "@/common/constants";
-import { openUrl, setupErrorTracking } from "@/common/helpers";
+import { openUrl, settlePromises, setupErrorTracking } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
 
@@ -173,32 +173,30 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
       for (const streams of chunk(newStreams, 100)) {
         const users = await fetchUsers(map(streams, "user_id"));
 
-        Promise.allSettled(
-          streams.map(async (stream) => {
-            const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-              browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
-                title: `${stream.user_name || stream.user_login} is online`,
-                contextMessage: stream.game_name,
-                eventTime: Date.parse(stream.started_at),
-                message: stream.title,
-                isClickable: true,
-                type: "basic",
-                iconUrl,
-              });
+        settlePromises(streams, async (stream) => {
+          const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
+            browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
+              title: `${stream.user_name || stream.user_login} is online`,
+              contextMessage: stream.game_name,
+              eventTime: Date.parse(stream.started_at),
+              message: stream.title,
+              isClickable: true,
+              type: "basic",
+              iconUrl,
+            });
 
-            try {
-              const user = find(users, {
-                id: stream.user_id,
-              });
+          try {
+            const user = find(users, {
+              id: stream.user_id,
+            });
 
-              if (user) {
-                return await create(user.profile_image_url);
-              }
-            } catch {} // eslint-disable-line no-empty
+            if (user) {
+              return await create(user.profile_image_url);
+            }
+          } catch {} // eslint-disable-line no-empty
 
-            await create();
-          })
-        );
+          await create();
+        });
       }
     }
   }
@@ -343,9 +341,14 @@ browser.notifications.onClicked.addListener((notificationId) => {
   }
 });
 
-async function setup(migrate = false): Promise<void> {
-  await Promise.allSettled(map(stores, (store) => store.setup(migrate)));
+async function setup(migrate = false, clearAlarms = false): Promise<void> {
+  if (clearAlarms) {
+    await browser.alarms.clearAll();
+  }
 
+  const allStores = Object.values(stores);
+
+  await settlePromises(allStores, (store) => store.setup(migrate));
   await refresh(false, true);
 }
 
@@ -358,7 +361,7 @@ browser.runtime.onInstalled.addListener((detail) => {
 });
 
 browser.runtime.onStartup.addListener(() => {
-  setup(false);
+  setup(false, true);
 });
 
 browser.runtime.onMessage.addListener((message) => {

@@ -95,3 +95,7 @@ export function template(input: string, data: Dictionary<unknown>) {
 export function sendRuntimeMessage<T extends unknown[], V>(type: string, ...args: T): Promise<V> {
   return browser.runtime.sendMessage({ type, args });
 }
+
+export function settlePromises<T, V>(values: Iterable<T>, iteratee: (value: T) => Promise<V>) {
+  return Promise.allSettled(Array.from(values, iteratee));
+}
