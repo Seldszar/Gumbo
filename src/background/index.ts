@@ -321,7 +321,11 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   restore,
 };
 
-browser.alarms.onAlarm.addListener(() => {
+browser.alarms.onAlarm.addListener((alarm) => {
+  if (Date.now() > alarm.scheduledTime + 60_000) {
+    return;
+  }
+
   refresh();
 });
 
@@ -337,11 +341,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
   }
 });
 
-async function setup(migrate = false, clearAlarms = false): Promise<void> {
-  if (clearAlarms) {
-    await browser.alarms.clearAll();
-  }
-
+async function setup(migrate = false): Promise<void> {
   const allStores = Object.values(stores);
 
   await settlePromises(allStores, (store) => store.setup(migrate));
@@ -357,7 +357,7 @@ browser.runtime.onInstalled.addListener((detail) => {
 });
 
 browser.runtime.onStartup.addListener(() => {
-  setup(false, true);
+  setup();
 });
 
 browser.runtime.onMessage.addListener((message) => {
