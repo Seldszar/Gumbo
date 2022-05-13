@@ -205,8 +205,6 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
 }
 
 async function refresh(withNotifications = true, resetAlarm = false) {
-  await stores.isRefreshing.set(true);
-
   if (resetAlarm) {
     browser.alarms.clear("refresh");
   }
@@ -225,8 +223,6 @@ async function refresh(withNotifications = true, resetAlarm = false) {
       periodInMinutes: 1,
     });
   }
-
-  await stores.isRefreshing.set(false);
 }
 
 async function refreshActionBadge(): Promise<void> {
