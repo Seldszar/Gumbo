@@ -52,12 +52,12 @@ export class Store<T> {
 
     const { [this.name]: change } = changes;
 
-    if (change == null) {
+    if (change?.newValue == null) {
       return;
     }
 
     this.listeners.forEach((listener) => {
-      listener(change.newValue.value, change.oldValue.value);
+      listener(change.newValue?.value, change.oldValue?.value);
     });
   }
 
