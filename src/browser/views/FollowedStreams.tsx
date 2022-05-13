@@ -1,5 +1,6 @@
 import React, { FC, useMemo, useState } from "react";
 import { groupBy, orderBy } from "lodash-es";
+import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage } from "@/common/helpers";
@@ -8,7 +9,6 @@ import { filterList, isEmpty } from "@/browser/helpers/array";
 import {
   useFollowedStreams,
   useFollowedStreamState,
-  useIsRefreshing,
   usePinnedUsers,
 } from "@/browser/helpers/hooks";
 
@@ -44,17 +44,18 @@ const Group = styled.div`
 const Item = styled.div``;
 
 const FollowedStreams: FC = () => {
-  const [isRefreshing] = useIsRefreshing();
-  const [followedStreams, { isLoading }] = useFollowedStreams();
-  const [state, { setSortDirection, setSortField }] = useFollowedStreamState();
-  const [pinnedUsers, { toggle }] = usePinnedUsers();
-
   const [searchQuery, setSearchQuery] = useState("");
 
-  const itemGroups = useMemo(() => {
-    let { sortDirection } = state;
+  const [followedStreams, { isLoading }] = useFollowedStreams();
+  const [followedStreamState, { setSortDirection, setSortField }] = useFollowedStreamState();
+  const [pinnedUsers, { toggle }] = usePinnedUsers();
 
-    if (state.sortField === "started_at") {
+  const [refreshState, doRefresh] = useAsyncFn(() => sendRuntimeMessage("refresh", true, true), []);
+
+  const itemGroups = useMemo(() => {
+    let { sortDirection } = followedStreamState;
+
+    if (followedStreamState.sortField === "started_at") {
       sortDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
@@ -62,13 +63,13 @@ const FollowedStreams: FC = () => {
       groupBy(
         orderBy(
           filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
-          [(stream) => pinnedUsers.includes(stream.user_id), state.sortField],
+          [(stream) => pinnedUsers.includes(stream.user_id), followedStreamState.sortField],
           ["desc", sortDirection]
         ),
         (stream) => (pinnedUsers.includes(stream.user_id) ? 0 : 1)
       )
     );
-  }, [state, followedStreams, pinnedUsers, searchQuery]);
+  }, [followedStreamState, followedStreams, pinnedUsers, searchQuery]);
 
   const children = useMemo(() => {
     if (isLoading) {
@@ -109,21 +110,21 @@ const FollowedStreams: FC = () => {
           onChange={setSearchQuery}
           actionButtons={[
             {
-              onClick: () => sendRuntimeMessage("refresh", true, true),
-              children: <RefreshIcon isRefreshing={isRefreshing} />,
+              onClick: () => doRefresh(),
+              children: <RefreshIcon isRefreshing={refreshState.loading} />,
             },
           ]}
         />
       </Header>
 
       <StyledFilterBar
-        direction={state.sortDirection}
+        direction={followedStreamState.sortDirection}
         onDirectionChange={setSortDirection}
         filters={[
           {
             onChange: setSortField,
             side: "right",
-            value: state.sortField,
+            value: followedStreamState.sortField,
             options: [
               {
                 value: "user_login",

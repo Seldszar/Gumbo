@@ -41,18 +41,18 @@ const Group = styled.div`
 const Item = styled.div``;
 
 const FollowedUsers: FC = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [followedStreams] = useFollowedStreams();
   const [followedUsers, { isLoading }] = useFollowedUsers();
-  const [state, { setSortDirection, setSortField, setStatus }] = useFollowedUserState();
+  const [followedUserState, { setSortDirection, setSortField, setStatus }] = useFollowedUserState();
   const [pinnedUsers, { toggle }] = usePinnedUsers();
-
-  const [searchQuery, setSearchQuery] = useState("");
 
   const itemGroups = useMemo(() => {
     const users = orderBy(
       filterList(followedUsers, ["description", "login"], searchQuery),
-      state.sortField,
-      state.sortDirection
+      followedUserState.sortField,
+      followedUserState.sortDirection
     );
 
     return Object.values(
@@ -63,7 +63,7 @@ const FollowedUsers: FC = () => {
             type: "live",
           });
 
-          if ([!!stream, null].includes(state.status)) {
+          if ([!!stream, null].includes(followedUserState.status)) {
             result.push({ stream, user });
           }
 
@@ -72,7 +72,7 @@ const FollowedUsers: FC = () => {
         ({ user }) => (pinnedUsers.includes(user.id) ? 0 : 1)
       )
     );
-  }, [state, followedUsers, followedStreams, pinnedUsers, searchQuery]);
+  }, [followedUserState, followedUsers, followedStreams, pinnedUsers, searchQuery]);
 
   const children = useMemo(() => {
     if (isLoading) {
@@ -114,13 +114,13 @@ const FollowedUsers: FC = () => {
       </Header>
 
       <StyledFilterBar
-        direction={state.sortDirection}
+        direction={followedUserState.sortDirection}
         onDirectionChange={setSortDirection}
         filters={[
           {
             onChange: setStatus,
             side: "left",
-            value: state.status,
+            value: followedUserState.status,
             options: [
               {
                 value: null,
@@ -139,7 +139,7 @@ const FollowedUsers: FC = () => {
           {
             onChange: setSortField,
             side: "right",
-            value: state.sortField,
+            value: followedUserState.sortField,
             options: [
               {
                 value: "login",
