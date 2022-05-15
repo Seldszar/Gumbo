@@ -1,12 +1,17 @@
 import ky from "ky";
-import { castArray, chunk, filter, find, map, reject, some, sortBy } from "lodash-es";
+import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
-import { AUTHORIZE_URL } from "@/common/constants";
+import { AUTHORIZE_URL, NotificationType } from "@/common/constants";
 import { openUrl, settlePromises, setupErrorTracking } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
 
 setupErrorTracking();
+
+interface StreamNotification {
+  type: NotificationType;
+  stream: any;
+}
 
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",
@@ -115,14 +120,37 @@ async function fetchFollowedStreams(userId: string, after?: string): Promise<any
   return followedStreams;
 }
 
-async function filterNewStreams(streams: any[]): Promise<any[]> {
-  const followedStreams = await stores.followedStreams.get();
+async function getStreamNotifications(streams: any[]): Promise<StreamNotification[]> {
+  const [followedStreams, settings] = await Promise.all([
+    stores.followedStreams.get(),
+    stores.settings.get(),
+  ]);
 
-  return reject(streams, (stream) =>
-    some(followedStreams, {
-      id: stream.id,
-    })
-  );
+  const {
+    notifications: { selectedUsers, withCategoryChanges, withFilters },
+  } = settings;
+
+  if (withFilters) {
+    streams = streams.filter((stream) => selectedUsers.includes(stream.user_id));
+  }
+
+  const result = new Array<StreamNotification>();
+
+  streams.forEach((stream) => {
+    const oldStream = find(followedStreams, {
+      user_id: stream.user_id,
+    });
+
+    if (oldStream == null) {
+      return result.push({ stream, type: NotificationType.StreamOnline });
+    }
+
+    if (withCategoryChanges && oldStream.game_id !== stream.game_id) {
+      return result.push({ stream, type: NotificationType.CategoryChanged });
+    }
+  });
+
+  return result;
 }
 
 async function refreshCurrentUser(accessToken: string | null) {
@@ -162,23 +190,18 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
     }
 
     if (showNotifications && settings.notifications.enabled) {
-      let newStreams = await filterNewStreams(followedStreams);
+      const notifications = await getStreamNotifications(followedStreams);
 
-      if (settings.notifications.withFilters) {
-        newStreams = newStreams.filter((stream) =>
-          settings.notifications.selectedUsers.includes(stream.user_id)
-        );
-      }
+      for (const items of chunk(notifications, 100)) {
+        const users = await fetchUsers(map(items, "stream.user_id"));
 
-      for (const streams of chunk(newStreams, 100)) {
-        const users = await fetchUsers(map(streams, "user_id"));
-
-        settlePromises(streams, async (stream) => {
+        settlePromises(items, async ({ stream, type }) => {
           const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
             browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
-              title: `${stream.user_name || stream.user_login} is online`,
+              title: `${stream.user_name || stream.user_login} ${
+                type === NotificationType.CategoryChanged ? "changed category" : "is online"
+              }`,
               contextMessage: stream.game_name,
-              eventTime: Date.parse(stream.started_at),
               message: stream.title,
               isClickable: true,
               type: "basic",

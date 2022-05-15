@@ -23,6 +23,7 @@ export interface StreamSettings {
 export interface NotificationSettings {
   enabled: boolean;
   withFilters: boolean;
+  withCategoryChanges: boolean;
   selectedUsers: string[];
 }
 

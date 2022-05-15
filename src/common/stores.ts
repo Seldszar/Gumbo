@@ -191,6 +191,7 @@ export const stores = {
       notifications: {
         enabled: true,
         withFilters: false,
+        withCategoryChanges: false,
         selectedUsers: [],
       },
       streams: {
