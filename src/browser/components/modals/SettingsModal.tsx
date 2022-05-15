@@ -173,6 +173,12 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
           <Section>
             <StyledSwitch {...register("notifications.enabled")}>Enable notifications</StyledSwitch>
             <StyledSwitch
+              {...register("notifications.withCategoryChanges")}
+              disabled={!settings.notifications.enabled}
+            >
+              Include category change notifications
+            </StyledSwitch>
+            <StyledSwitch
               {...register("notifications.withFilters")}
               disabled={!settings.notifications.enabled}
             >
