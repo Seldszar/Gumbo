@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/Seldszar/Gumbo/compare/v1.8.8...v1.9.0) (2022-05-16)
+
+
+### Features
+
+* category change notifications ([6d9d344](https://github.com/Seldszar/Gumbo/commit/6d9d344f9e91307867126c968ad8631bb66e55d4))
+
 ### [1.8.8](https://github.com/Seldszar/Gumbo/compare/v1.8.7...v1.8.8) (2022-05-13)
 
 
