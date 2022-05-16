@@ -24,7 +24,7 @@ const Wrapper = styled(Card)<WrapperProps>`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none mr-4`}
+  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
 `;
 
 const ThumbnailImage = styled.div`

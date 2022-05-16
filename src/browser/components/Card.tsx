@@ -20,7 +20,7 @@ const ActionButton = styled.button`
 `;
 
 const ActionMenu = styled.div`
-  ${tw`flex gap-1 items-center -mr-1 pl-3`}
+  ${tw`flex gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
 `;
 
 const Wrapper = styled(Anchor)`

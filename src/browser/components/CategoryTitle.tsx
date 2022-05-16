@@ -26,7 +26,7 @@ const BackgroundImage = styled(Image)`
 `;
 
 const Aside = styled.div`
-  ${tw`flex-none mr-4 py-4 relative self-end w-16 z-10`}
+  ${tw`flex-none ltr:mr-4 rtl:ml-4 py-4 relative self-end w-16 z-10`}
 `;
 
 const Thumbnail = styled.div`

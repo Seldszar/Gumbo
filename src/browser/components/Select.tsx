@@ -22,7 +22,7 @@ const Inner = styled.div`
 `;
 
 const Icon = styled.svg`
-  ${tw`flex-none ml-1 stroke-current w-5`}
+  ${tw`flex-none ltr:ml-1 rtl:mr-1 stroke-current w-5`}
 
   fill: none;
   stroke-linecap: round;

@@ -28,7 +28,7 @@ const Control = styled.div<ControlProps>`
 `;
 
 const Inner = styled.div`
-  ${tw`flex-1 mr-4 truncate`}
+  ${tw`flex-1 ltr:mr-4 rtl:ml-4 truncate`}
 `;
 
 export interface SwitchProps {

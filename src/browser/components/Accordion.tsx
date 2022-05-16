@@ -8,10 +8,10 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
-  ${tw`cursor-pointer flex items-center p-4 rounded shadow-lg text-black dark:text-white`}
+  ${tw`cursor-pointer flex gap-4 items-center p-4 rounded shadow-lg text-black dark:text-white`}
 
   svg {
-    ${tw`flex-none ml-4 stroke-current w-6`}
+    ${tw`flex-none stroke-current w-6`}
 
     fill: none;
     stroke-linecap: round;

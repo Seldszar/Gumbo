@@ -14,7 +14,7 @@ const Title = styled.div`
 `;
 
 const CloseButton = styled.button`
-  ${tw`flex-none -mr-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
+  ${tw`flex-none ltr:-mr-1 rtl:-ml-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
 
   svg {
     ${tw`stroke-current w-6`}

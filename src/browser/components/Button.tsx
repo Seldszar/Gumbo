@@ -6,7 +6,7 @@ import tw, { css, styled } from "twin.macro";
 import Spinner from "./Spinner";
 
 const Icon = styled.div`
-  ${tw`flex-none mr-2`}
+  ${tw`flex-none`}
 
   svg {
     ${tw`stroke-current w-6`}
@@ -18,9 +18,7 @@ const Icon = styled.div`
   }
 `;
 
-const Inner = styled.div`
-  ${tw`flex-1`}
-`;
+const Inner = styled.div``;
 
 const Loading = styled.div`
   ${tw`absolute grid inset-0 place-content-center`}
@@ -37,7 +35,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled(m.button)<WrapperProps>`
-  ${tw`flex items-center px-4 py-2 relative rounded transition disabled:(cursor-default opacity-25)!`}
+  ${tw`flex gap-2 place-content-center px-4 py-2 relative rounded transition disabled:(cursor-default opacity-25)!`}
 
   ${(props) =>
     props.isLoading &&

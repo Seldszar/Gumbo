@@ -12,7 +12,7 @@ export interface WrapperProps {
 }
 
 const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`flex items-center px-4 py-2`}
+  ${tw`flex gap-4 items-center px-4 py-2`}
 
   ${(props) =>
     props.isLive &&
@@ -24,7 +24,7 @@ const Wrapper = styled(Card)<WrapperProps>`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none mr-4`}
+  ${tw`flex-none`}
 `;
 
 const ThumbnailImage = styled.div`
