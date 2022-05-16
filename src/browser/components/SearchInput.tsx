@@ -23,12 +23,12 @@ const ActionList = styled.ul`
   ${tw`flex flex-none items-center self-center`}
 
   li {
-    ${tw`ml-4 relative`}
+    ${tw`ltr:ml-4 rtl:mr-4 relative`}
   }
 `;
 
 const SearchIcon = styled.svg`
-  ${tw`block flex-none mr-3 pointer-events-none stroke-current text-neutral-600 dark:text-neutral-400 w-5`}
+  ${tw`block flex-none ltr:mr-3 rtl:ml-3 pointer-events-none stroke-current text-neutral-600 dark:text-neutral-400 w-5`}
 
   fill: none;
   stroke-linecap: round;

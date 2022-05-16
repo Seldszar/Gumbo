@@ -17,7 +17,7 @@ const Wrapper = styled(Card)`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none mr-4`}
+  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
 `;
 
 const ThumbnailPicture = styled.div`
@@ -31,7 +31,7 @@ const ThumbnailPicture = styled.div`
 `;
 
 const StyledStreamUptime = styled(Uptime)`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 right-0 rounded-tl text-white`}
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-white`}
 
   font-feature-settings: "tnum";
 `;
@@ -49,7 +49,7 @@ const ChannelName = styled.div`
 `;
 
 const StyledViewerCount = styled(ViewerCount)`
-  ${tw`ml-2 flex-none`}
+  ${tw`ltr:ml-2 rtl:mr-2 flex-none`}
 `;
 
 const StreamTitle = styled.div`

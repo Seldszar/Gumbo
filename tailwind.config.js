@@ -15,7 +15,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Asap", "sans-serif"],
+        sans: ["Noto Sans Display", "sans-serif"],
       },
     },
   },

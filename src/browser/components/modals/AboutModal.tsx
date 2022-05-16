@@ -8,12 +8,10 @@ import Panel from "../Panel";
 import Section from "../Section";
 
 const LinkList = styled.div`
-  ${tw`flex flex-wrap justify-center -mx-3`}
+  ${tw`flex flex-wrap justify-center gap-x-6`}
 `;
 
-const Link = styled(ExternalAnchor)`
-  ${tw`mx-3`}
-`;
+const Link = styled(ExternalAnchor)``;
 
 interface AboutModalProps {
   onClose?(): void;

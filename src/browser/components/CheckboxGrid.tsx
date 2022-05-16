@@ -7,11 +7,11 @@ import Checkbox from "./Checkbox";
 const Wrapper = styled.fieldset``;
 
 const PresetButton = styled.button`
-  ${tw`font-medium mx-3 text-sm text-neutral-600 dark:text-neutral-400 uppercase hover:(text-black dark:text-white) disabled:(cursor-default opacity-25 text-neutral-600 dark:text-neutral-400)!`}
+  ${tw`font-medium text-sm text-neutral-600 dark:text-neutral-400 uppercase hover:(text-black dark:text-white) disabled:(cursor-default opacity-25 text-neutral-600 dark:text-neutral-400)!`}
 `;
 
 const PresetList = styled.div`
-  ${tw`flex flex-wrap mb-3 -mx-3`}
+  ${tw`flex flex-wrap gap-x-6 mb-3`}
 `;
 
 const Grid = styled.div`

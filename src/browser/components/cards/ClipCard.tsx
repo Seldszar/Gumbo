@@ -15,7 +15,7 @@ const Wrapper = styled(Card)`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none mr-4`}
+  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
 `;
 
 const ThumbnailPicture = styled.div`
@@ -29,7 +29,7 @@ const ThumbnailPicture = styled.div`
 `;
 
 const Duration = styled.div`
-  ${tw`absolute bg-black/75 bottom-px flex font-medium px-1 right-px rounded text-white`}
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-white`}
 
   font-feature-settings: "tnum";
 `;
@@ -47,10 +47,10 @@ const StreamTitle = styled.div`
 `;
 
 const Details = styled.ul`
-  ${tw`flex -mx-2`}
+  ${tw`flex gap-x-4`}
 
   li {
-    ${tw`text-sm leading-tight mx-2 text-black/50 dark:text-white/50 truncate`}
+    ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
   }
 `;
 
