@@ -7,11 +7,24 @@ import Modal from "../Modal";
 import Panel from "../Panel";
 import Section from "../Section";
 
+const allLinks = [
+  {
+    title: "Source Code",
+    url: "https://github.com/seldszar/gumbo",
+  },
+  {
+    title: "Bugs & Suggestions",
+    url: "https://github.com/seldszar/gumbo/issue",
+  },
+  {
+    title: "Release Notes",
+    url: "https://github.com/seldszar/gumbo/releases",
+  },
+];
+
 const LinkList = styled.div`
   ${tw`flex flex-wrap justify-center gap-x-6`}
 `;
-
-const Link = styled(ExternalAnchor)``;
 
 interface AboutModalProps {
   onClose?(): void;
@@ -26,9 +39,11 @@ const AboutModal: FC<AboutModalProps> = (props) => (
       </Section>
       <Section>
         <LinkList>
-          <Link href="https://github.com/seldszar/gumbo">Repository</Link>
-          <Link href="https://github.com/seldszar/gumbo/issues">Support</Link>
-          <Link href="https://github.com/seldszar/gumbo/releases">Release Notes</Link>
+          {allLinks.map((props, index) => (
+            <ExternalAnchor key={index} href={props.url}>
+              {props.title}
+            </ExternalAnchor>
+          ))}
         </LinkList>
       </Section>
     </Panel>
