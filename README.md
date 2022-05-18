@@ -5,11 +5,19 @@
 ## Install
 
 [link-chrome]: https://chrome.google.com/webstore/detail/gumbo-twitch-companion/aalmjfpohaedoddkobnibokclgeefamn 'Version published on Chrome Web Store'
-[link-firefox]: https://addons.mozilla.org/firefox/addon/gumbo-twitch-companion/ 'Version published on Mozilla Add-ons'
+[link-firefox]: https://addons.mozilla.org/firefox/addon/gumbo-twitch-companion 'Version published on Mozilla Add-ons'
 
 [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome.svg" width="48" alt="Chrome" valign="middle">][link-chrome] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/aalmjfpohaedoddkobnibokclgeefamn.svg?label=%20">][link-chrome] also compatible with [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge.svg" width="24" alt="Edge" valign="middle">][link-chrome] [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera.svg" width="24" alt="Opera" valign="middle">][link-chrome]
 
 [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox.svg" width="48" alt="Firefox" valign="middle">][link-firefox] [<img valign="middle" src="https://img.shields.io/amo/v/gumbo-twitch-companion.svg?label=%20">][link-firefox]
+
+## Supporting Gumbo
+
+Gumbo is a free extension that does not collect or sell personal user data.
+
+Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.
+
+If you'd like to help my initiative, please consider contributing using [PayPal](https://go.seldszar.fr/paypal) or [Coinbase](https://go.seldszar.fr/coinbase).
 
 ## Build
 
@@ -40,6 +48,9 @@ Not officially, Manifest V3 doesn't provide the ability to play audio from a ser
 
 - https://bugs.chromium.org/p/chromium/issues/detail?id=1131236
 
-## Author
+## License
 
-Alexandre Breteau - [@0xSeldszar](https://twitter.com/0xSeldszar)
+Copyright (c) 2022-present Alexandre Breteau
+
+This software is released under the terms of the MIT License.
+See the [LICENSE](LICENSE) file for further information.
