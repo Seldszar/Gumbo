@@ -7,6 +7,10 @@ const Header = styled.div`
 
 const Wrapper = styled.div`
   ${tw`mb-6 last:mb-0`}
+
+  p {
+    ${tw`mb-2 last:mb-0`}
+  }
 `;
 
 interface Props {
