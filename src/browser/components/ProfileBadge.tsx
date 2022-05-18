@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 import { useAccessToken } from "../helpers/hooks";
 
 import AboutModal from "./modals/AboutModal";
+import DonateModal from "./modals/DonateModal";
 import SettingsModal from "./modals/SettingsModal";
 
 import ContextMenu from "./ContextMenu";
@@ -25,8 +26,9 @@ interface ProfileBadgeProps {
 const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
   const [, store] = useAccessToken();
 
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isAboutOpen, setAboutOpen] = useState(false);
+  const [isDonateOpen, setDonateOpen] = useState(false);
+  const [isSettingsOpen, setSettingsOpen] = useState(false);
 
   return (
     <>
@@ -66,6 +68,21 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
             },
             {
               type: "link",
+              children: "Donate",
+              icon: (
+                <svg viewBox="0 0 24 24">
+                  <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                </svg>
+              ),
+              onClick() {
+                setDonateOpen(true);
+              },
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "link",
               children: "Logout",
               icon: (
                 <svg viewBox="0 0 24 24">
@@ -87,8 +104,9 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
         )}
       </ContextMenu>
 
-      <SettingsModal isOpen={isSettingsOpen} onClose={() => setSettingsOpen(false)} />
       <AboutModal isOpen={isAboutOpen} onClose={() => setAboutOpen(false)} />
+      <DonateModal isOpen={isDonateOpen} onClose={() => setDonateOpen(false)} />
+      <SettingsModal isOpen={isSettingsOpen} onClose={() => setSettingsOpen(false)} />
     </>
   );
 };
