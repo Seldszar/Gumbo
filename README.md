@@ -2,6 +2,12 @@
 
 > Swollen companion keeping you updated on your Twitch experience
 
+Gumbo is a spiritual successor of Twitch Now allowing you to access your Twitch experience outside the main ecosystem.
+
+From its user interface, you can check your followed channels and track live streams, as well as discover the popular streams and categories of the moment, all with the possibility to personalize your experience thanks to the multitude of preferences at your disposal.
+
+This extension also informs you when a channel goes online, with the option to pick the notifications you want.
+
 ## Install
 
 [link-chrome]: https://chrome.google.com/webstore/detail/gumbo-twitch-companion/aalmjfpohaedoddkobnibokclgeefamn 'Version published on Chrome Web Store'
@@ -10,14 +16,6 @@
 [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome.svg" width="48" alt="Chrome" valign="middle">][link-chrome] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/aalmjfpohaedoddkobnibokclgeefamn.svg?label=%20">][link-chrome] also compatible with [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge.svg" width="24" alt="Edge" valign="middle">][link-chrome] [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera.svg" width="24" alt="Opera" valign="middle">][link-chrome]
 
 [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox.svg" width="48" alt="Firefox" valign="middle">][link-firefox] [<img valign="middle" src="https://img.shields.io/amo/v/gumbo-twitch-companion.svg?label=%20">][link-firefox]
-
-## Supporting Gumbo
-
-Gumbo is a free extension that does not collect or sell personal user data.
-
-Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.
-
-If you'd like to help my initiative, please consider contributing using [PayPal](https://go.seldszar.fr/paypal) or [Coinbase](https://go.seldszar.fr/coinbase).
 
 ## Build
 
@@ -34,13 +32,21 @@ If you'd like to help my initiative, please consider contributing using [PayPal]
     - `yarn build:chrome` if you want to build for Google Chrome
     - `yarn build:firefox` if you want to build for Mozilla Firefox
 
+## Contributing
+
+### Donating
+
+Gumbo is a free extension that does not collect or sell personal user data.
+
+Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.
+
+If you'd like to help my initiative, please consider contributing using [PayPal](https://go.seldszar.fr/paypal) or [Coinbase](https://go.seldszar.fr/coinbase).
+
+### Translating
+
+You can help translate Gumbo by [registering on Weblate](https://hosted.weblate.org/accounts/register), and join the [translation project](https://hosted.weblate.org/projects/gumbo).
+
 ## Frequently Asked Questions
-
-### When I'm logging in, I get a blank page
-
-It's probably due to an active browser extension affecting the browser's tabs, like [Conex](https://addons.mozilla.org/en-US/firefox/addon/conex/) or similar.
-
-- https://github.com/Seldszar/Gumbo/issues/5#issuecomment-1056918389
 
 ### Are sound notifications supported?
 

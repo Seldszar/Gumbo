@@ -266,9 +266,6 @@
   "optionValue_unknown": {
     "message": "Unknown"
   },
-  "optionValue_videos": {
-    "message": "Videos"
-  },
   "optionValue_videoType_all": {
     "message": "All videos"
   },
@@ -280,6 +277,9 @@
   },
   "optionValue_videoType_upload": {
     "message": "Uploads"
+  },
+  "optionValue_videos": {
+    "message": "Videos"
   },
   "titleText_advanced": {
     "message": "Advanced"
