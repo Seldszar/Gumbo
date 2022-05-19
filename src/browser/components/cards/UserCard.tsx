@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
-import { openUrl } from "@/common/helpers";
+import { openUrl, t } from "@/common/helpers";
 
 import { useClickAction } from "@/browser/helpers/hooks";
 
@@ -95,21 +95,21 @@ const UserCard: FC<UserCardProps> = (props) => {
         items: [
           {
             type: "link",
-            children: "Open channel",
+            children: t("optionValue_openChannel"),
             onClick(event) {
               openUrl(`https://twitch.tv/${user.login}`, event);
             },
           },
           {
             type: "link",
-            children: "Open chat",
+            children: t("optionValue_openChat"),
             onClick(event) {
               openUrl(`https://twitch.tv/${user.login}/chat`, event);
             },
           },
           {
             type: "link",
-            children: "Popout",
+            children: t("optionValue_popout"),
             onClick(event) {
               openUrl(`https://twitch.tv/${user.login}/popout`, event);
             },
@@ -119,21 +119,21 @@ const UserCard: FC<UserCardProps> = (props) => {
           },
           {
             type: "link",
-            children: "About",
+            children: t("optionValue_about"),
             onClick(event) {
               openUrl(`https://twitch.tv/${user.login}/about`, event);
             },
           },
           {
             type: "link",
-            children: "Schedule",
+            children: t("optionValue_schedule"),
             onClick(event) {
               openUrl(`https://twitch.tv/${user.login}/schedule`, event);
             },
           },
           {
             type: "link",
-            children: "Videos",
+            children: t("optionValue_videos"),
             onClick(event) {
               openUrl(`https://twitch.tv/${user.login}/videos`, event);
             },
@@ -146,8 +146,10 @@ const UserCard: FC<UserCardProps> = (props) => {
       </Thumbnail>
       <Inner>
         <UserName>{user.display_name || user.login}</UserName>
-        <Detail title={user.description}>{user.description || "No description"}</Detail>
-        <Detail>{user.view_count.toLocaleString()} views</Detail>
+        <Detail title={user.description}>
+          {user.description || t("detailText_noDescription")}
+        </Detail>
+        <Detail>{t("detailText_viewCount", user.view_count.toLocaleString())}</Detail>
       </Inner>
     </Wrapper>
   );

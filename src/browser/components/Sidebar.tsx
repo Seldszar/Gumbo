@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import Logo from "./Logo";
 import ProfileBadge from "./ProfileBadge";
 import SidebarLink from "./SidebarLink";
@@ -46,25 +48,25 @@ const Sidebar: FC<SidebarProps> = (props) => (
       <StyledLogo />
     </Header>
     <Inner>
-      <StyledLink title="Followed Streams" to="/streams/followed">
+      <StyledLink title={t("titleText_followedStreams")} to="/streams/followed">
         <svg viewBox="0 0 24 24">
           <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
         </svg>
       </StyledLink>
-      <StyledLink title="Followed Users" to="/users/followed">
+      <StyledLink title={t("titleText_followedUsers")} to="/users/followed">
         <svg viewBox="0 0 24 24">
           <circle cx="12" cy="7" r="4" />
           <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
         </svg>
       </StyledLink>
       <Separator />
-      <StyledLink title="Top Streams" to="/streams" end>
+      <StyledLink title={t("titleText_topStreams")} to="/streams" end>
         <svg viewBox="0 0 24 24">
           <path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z" />
           <rect x="3" y="6" width="12" height="12" rx="2" />
         </svg>
       </StyledLink>
-      <StyledLink title="Top Categories" to="/categories">
+      <StyledLink title={t("titleText_topCategories")} to="/categories">
         <svg viewBox="0 0 24 24">
           <rect x="4" y="4" width="6" height="6" rx="1" />
           <rect x="14" y="4" width="6" height="6" rx="1" />
@@ -73,7 +75,7 @@ const Sidebar: FC<SidebarProps> = (props) => (
         </svg>
       </StyledLink>
       <Separator />
-      <StyledLink title="Search" to="/search">
+      <StyledLink title={t("titleText_search")} to="/search">
         <svg viewBox="0 0 24 24">
           <circle cx="10" cy="10" r="7" />
           <line x1="21" y1="21" x2="15" y2="15" />

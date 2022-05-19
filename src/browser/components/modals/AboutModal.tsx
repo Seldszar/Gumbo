@@ -1,5 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
+
+import { t } from "@/common/helpers";
 
 import ExternalAnchor from "../ExternalAnchor";
 import Hero from "../Hero";
@@ -9,15 +11,15 @@ import Section from "../Section";
 
 const allLinks = [
   {
-    title: "Source Code",
+    title: t("linkText_repository"),
     url: "https://github.com/seldszar/gumbo",
   },
   {
-    title: "Bugs & Suggestions",
+    title: t("linkText_issues"),
     url: "https://github.com/seldszar/gumbo/issue",
   },
   {
-    title: "Release Notes",
+    title: t("linkText_releases"),
     url: "https://github.com/seldszar/gumbo/releases",
   },
 ];
@@ -27,7 +29,7 @@ const LinkList = styled.div`
 `;
 
 interface AboutModalProps {
-  onClose?(): void;
+  onClose?: MouseEventHandler<HTMLButtonElement>;
   isOpen?: boolean;
 }
 

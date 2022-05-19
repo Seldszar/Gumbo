@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { sendRuntimeMessage } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "@/common/helpers";
 
 import Button from "@/browser/components/Button";
 import Hero from "@/browser/components/Hero";
@@ -28,7 +28,7 @@ const Welcome: FC = () => (
           </svg>
         }
       >
-        Login with Twitch
+        {t("buttonText_login")}
       </Button>
     </Section>
   </Wrapper>

@@ -8,7 +8,7 @@ import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
-import { getBaseFontSize, setupErrorTracking } from "@/common/helpers";
+import { getBaseFontSize, setupErrorTracking, t } from "@/common/helpers";
 
 import { useSettings } from "./helpers/hooks";
 import { backgroundFetcher } from "./helpers/queries";
@@ -17,6 +17,9 @@ setupErrorTracking();
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
   const root = createRoot(document.body);
+
+  document.documentElement.dir = t("@@bidi_dir");
+  document.documentElement.lang = t("@@ui_locale");
 
   const App: FC = () => {
     const [settings] = useSettings();

@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { template } from "@/common/helpers";
+import { t, template } from "@/common/helpers";
 
 import { parseFormatDuration } from "@/browser/helpers/time";
 
@@ -81,8 +81,8 @@ const VideoCard: FC<VideoCardProps> = (props) => {
         <Title title={video.title}>{video.title}</Title>
         <UserName>{video.user_name || video.user_login}</UserName>
         <Details>
-          <li>{createdAt?.toLocaleString()}</li>
-          <li>{video.view_count.toLocaleString()} views</li>
+          <li>{createdAt.toLocaleString()}</li>
+          <li>{t("detailText_viewCount", video.view_count.toLocaleString())}</li>
         </Details>
       </Inner>
     </Wrapper>

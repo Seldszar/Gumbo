@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import { isEmpty } from "@/browser/helpers/array";
 import { useSearchChannels } from "@/browser/helpers/queries";
 
@@ -26,7 +28,7 @@ const SearchChannels: FC = () => {
   });
 
   if (searchQuery.length === 0) {
-    return <Splash>Start typing to search channels</Splash>;
+    return <Splash>{t("messageText_typeSearchChannels")}</Splash>;
   }
 
   if (error) {
@@ -38,7 +40,7 @@ const SearchChannels: FC = () => {
   }
 
   if (isEmpty(channels)) {
-    return <Splash>No channels found</Splash>;
+    return <Splash>{t("errorText_emptyChannels")}</Splash>;
   }
 
   return (
@@ -54,7 +56,7 @@ const SearchChannels: FC = () => {
       {hasMore && (
         <LoadMore>
           <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
-            Load More
+            {t("buttonText_loadMore")}
           </MoreButton>
         </LoadMore>
       )}

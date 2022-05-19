@@ -6,6 +6,8 @@ import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
 import { Dictionary } from "./types";
 
+export const t = browser.i18n.getMessage;
+
 export function setupErrorTracking() {
   const manifest = browser.runtime.getManifest();
 

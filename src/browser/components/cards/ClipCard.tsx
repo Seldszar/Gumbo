@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { template } from "@/common/helpers";
+import { t, template } from "@/common/helpers";
 
 import { formatTime } from "@/browser/helpers/time";
 
@@ -81,8 +81,8 @@ const ClipCard: FC<ClipCardProps> = (props) => {
         <Title title={clip.title}>{clip.title}</Title>
         <UserName>{clip.broadcaster_name}</UserName>
         <Details>
-          <li>{createdAt?.toLocaleString()}</li>
-          <li>{clip.view_count} views</li>
+          <li>{createdAt.toLocaleString()}</li>
+          <li>{t("detailText_viewCount", clip.view_count.toLocaleString())}</li>
         </Details>
       </Inner>
     </Wrapper>

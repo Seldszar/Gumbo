@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { openUrl, template } from "@/common/helpers";
+import { openUrl, t, template } from "@/common/helpers";
 
 import { useClickAction } from "@/browser/helpers/hooks";
 
@@ -120,21 +120,21 @@ const StreamCard: FC<StreamCardProps> = (props) => {
         items: [
           {
             type: "link",
-            children: "Open channel",
+            children: t("optionValue_openChannel"),
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}`, event);
             },
           },
           {
             type: "link",
-            children: "Open chat",
+            children: t("optionValue_openChat"),
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}/chat`, event);
             },
           },
           {
             type: "link",
-            children: "Popout",
+            children: t("optionValue_popout"),
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
             },
@@ -144,21 +144,21 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           },
           {
             type: "link",
-            children: "About",
+            children: t("optionValue_about"),
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}/about`, event);
             },
           },
           {
             type: "link",
-            children: "Schedule",
+            children: t("optionValue_schedule"),
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}/schedule`, event);
             },
           },
           {
             type: "link",
-            children: "Videos",
+            children: t("optionValue_videos"),
             onClick(event) {
               openUrl(`https://twitch.tv/${stream.user_login}/videos`, event);
             },
@@ -177,8 +177,10 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           <UserName>{stream.user_name || stream.user_login}</UserName>
           <StyledViewerCount stream={stream} />
         </Title>
-        <StreamTitle title={stream.title}>{stream.title}</StreamTitle>
-        <GameName title={stream.game_name}>{stream.game_name}</GameName>
+        <StreamTitle title={stream.title}>{stream.title || t("detailText_noTitle")}</StreamTitle>
+        <GameName title={stream.game_name}>
+          {stream.game_name || t("detailText_noCategory")}
+        </GameName>
       </Inner>
     </Wrapper>
   );

@@ -1,6 +1,8 @@
 import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import Button from "../Button";
 import Modal from "../Modal";
 
@@ -21,7 +23,7 @@ const Title = styled.div`
   ${tw`text-xl`}
 `;
 
-const Mesage = styled.div`
+const Message = styled.div`
   ${tw`mb-6 text-black/50 dark:text-white/50`}
 `;
 
@@ -43,19 +45,15 @@ const ResetModal: FC<ResetModalProps> = (props) => (
         <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
       </Icon>
 
-      <Title>You are about to reset Gumbo!</Title>
-      <Mesage>
-        All data is going to be deleted and you will be logged out.
-        <br />
-        Are you sure you want to proceed?
-      </Mesage>
+      <Title>{t("confirmTitle_reset")}</Title>
+      <Message>{t("confirmMessage_reset")}</Message>
 
       <ButtonGroup>
         <Button color="red" onClick={props.onConfirm}>
-          Confirm
+          {t("buttonText_confirm")}
         </Button>
         <Button color="transparent" onClick={props.onCancel}>
-          Cancel
+          {t("buttonText_cancel")}
         </Button>
       </ButtonGroup>
     </Inner>
