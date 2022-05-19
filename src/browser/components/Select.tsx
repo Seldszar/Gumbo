@@ -9,11 +9,11 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  ${tw`cursor-pointer flex`}
+  ${tw`cursor-pointer flex gap-1`}
 
   ${(props) =>
     props.fullWidth
-      ? tw`pl-4 pr-3 py-2 rounded shadow-lg bg-neutral-300 hover:bg-neutral-400 dark:(bg-neutral-700 hover:bg-neutral-600)`
+      ? tw`py-2 rounded shadow-lg bg-neutral-300 hover:bg-neutral-400 dark:(bg-neutral-700 hover:bg-neutral-600) ltr:(pl-4 pr-3) rtl:(pl-3 pr-4)`
       : tw`text-sm text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
 `;
 
@@ -22,7 +22,7 @@ const Inner = styled.div`
 `;
 
 const Icon = styled.svg`
-  ${tw`flex-none ltr:ml-1 rtl:mr-1 stroke-current w-5`}
+  ${tw`flex-none stroke-current w-5`}
 
   fill: none;
   stroke-linecap: round;

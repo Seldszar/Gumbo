@@ -42,12 +42,12 @@ const Title = styled.div`
   ${tw`font-medium truncate`}
 `;
 
-const StreamTitle = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
+const UserName = styled.div`
+  ${tw`text-sm leading-tight text-black/50 dark:text-white/50`}
 `;
 
 const Details = styled.ul`
-  ${tw`flex gap-x-4`}
+  ${tw`flex gap-4`}
 
   li {
     ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
@@ -79,7 +79,7 @@ const ClipCard: FC<ClipCardProps> = (props) => {
       </Thumbnail>
       <Inner>
         <Title title={clip.title}>{clip.title}</Title>
-        <StreamTitle title={clip.broadcaster_name}>{clip.broadcaster_name}</StreamTitle>
+        <UserName>{clip.broadcaster_name}</UserName>
         <Details>
           <li>{createdAt?.toLocaleString()}</li>
           <li>{clip.view_count} views</li>

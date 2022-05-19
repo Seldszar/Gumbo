@@ -41,15 +41,15 @@ const Inner = styled.div`
 `;
 
 const Title = styled.div`
-  ${tw`flex font-medium`}
+  ${tw`flex font-medium gap-2`}
 `;
 
-const ChannelName = styled.div`
+const UserName = styled.div`
   ${tw`flex-1 truncate`}
 `;
 
 const StyledViewerCount = styled(ViewerCount)`
-  ${tw`ltr:ml-2 rtl:mr-2 flex-none`}
+  ${tw`flex-none`}
 `;
 
 const StreamTitle = styled.div`
@@ -174,7 +174,7 @@ const StreamCard: FC<StreamCardProps> = (props) => {
       </Thumbnail>
       <Inner>
         <Title>
-          <ChannelName>{stream.user_name || stream.user_login}</ChannelName>
+          <UserName>{stream.user_name || stream.user_login}</UserName>
           <StyledViewerCount stream={stream} />
         </Title>
         <StreamTitle title={stream.title}>{stream.title}</StreamTitle>

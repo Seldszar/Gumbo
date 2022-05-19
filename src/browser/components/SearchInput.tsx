@@ -20,15 +20,15 @@ const ActionButton = styled.button`
 `;
 
 const ActionList = styled.ul`
-  ${tw`flex flex-none items-center self-center`}
+  ${tw`flex flex-none gap-4 items-center self-center`}
 
   li {
-    ${tw`ltr:ml-4 rtl:mr-4 relative`}
+    ${tw`relative`}
   }
 `;
 
 const SearchIcon = styled.svg`
-  ${tw`block flex-none ltr:mr-3 rtl:ml-3 pointer-events-none stroke-current text-neutral-600 dark:text-neutral-400 w-5`}
+  ${tw`block flex-none pointer-events-none stroke-current text-neutral-600 dark:text-neutral-400 w-5`}
 
   fill: none;
   stroke-linecap: round;
@@ -37,7 +37,7 @@ const SearchIcon = styled.svg`
 `;
 
 const Wrapper = styled.label`
-  ${tw`flex bg-neutral-200 dark:bg-neutral-800 cursor-text px-4 rounded-full shadow-md`}
+  ${tw`bg-neutral-200 dark:bg-neutral-800 cursor-text flex gap-3 px-4 rounded-full shadow-md`}
 
   input {
     ${tw`appearance-none bg-transparent flex-1 outline-none py-2 text-black dark:text-white`}
