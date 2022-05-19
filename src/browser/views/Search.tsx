@@ -2,6 +2,8 @@ import React, { FC, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import SearchInput from "@/browser/components/SearchInput";
 
 const Wrapper = styled.div`
@@ -34,8 +36,8 @@ const Search: FC = () => {
       </Header>
 
       <TabList>
-        <Tab to="channels">Channels</Tab>
-        <Tab to="categories">Categories</Tab>
+        <Tab to="channels">{t("titleText_channels")}</Tab>
+        <Tab to="categories">{t("titleText_categories")}</Tab>
       </TabList>
 
       <Outlet context={{ searchQuery }} />

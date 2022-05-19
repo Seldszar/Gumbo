@@ -2,6 +2,8 @@ import { find } from "lodash-es";
 import React, { FC, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import ContextMenu from "@/browser/components/ContextMenu";
 
 interface WrapperProps {
@@ -75,7 +77,7 @@ const Select: FC<SelectProps> = (props) => {
     >
       {(ref) => (
         <Wrapper fullWidth={props.fullWidth} className={props.className} ref={ref}>
-          <Inner>{selectedOption?.label ?? "Unknown"}</Inner>
+          <Inner>{selectedOption?.label ?? t("optionValue_unknown")}</Inner>
           <Icon viewBox="0 0 24 24">
             <polyline points="6 9 12 15 18 9" />
           </Icon>

@@ -2,6 +2,8 @@ import React, { FC, useMemo, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useVideos } from "@/browser/helpers/queries";
 
@@ -52,7 +54,7 @@ const CategoryVideos: FC = () => {
     }
 
     if (isEmpty(filteredVideos)) {
-      return <Splash>No videos found</Splash>;
+      return <Splash>{t("errorText_emptyVideos")}</Splash>;
     }
 
     return (
@@ -68,7 +70,7 @@ const CategoryVideos: FC = () => {
         {hasMore && (
           <LoadMore>
             <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
-              Load More
+              {t("buttonText_loadMore")}
             </MoreButton>
           </LoadMore>
         )}
@@ -88,19 +90,19 @@ const CategoryVideos: FC = () => {
               options: [
                 {
                   value: "all",
-                  label: "All Time",
+                  label: t("optionValue_period_allTime"),
                 },
                 {
                   value: "day",
-                  label: "Last Day",
+                  label: t("optionValue_period_lastDay"),
                 },
                 {
                   value: "week",
-                  label: "Last Week",
+                  label: t("optionValue_period_lastWeek"),
                 },
                 {
                   value: "month",
-                  label: "Last Month",
+                  label: t("optionValue_period_lastMonth"),
                 },
               ],
             },
@@ -111,19 +113,19 @@ const CategoryVideos: FC = () => {
               options: [
                 {
                   value: "all",
-                  label: "All Videos",
+                  label: t("optionValue_videoType_all"),
                 },
                 {
                   value: "upload",
-                  label: "Uploads",
+                  label: t("optionValue_videoType_upload"),
                 },
                 {
                   value: "archive",
-                  label: "Archives",
+                  label: t("optionValue_videoType_archive"),
                 },
                 {
                   value: "highlight",
-                  label: "Highlights",
+                  label: t("optionValue_videoType_highlight"),
                 },
               ],
             },
@@ -134,15 +136,15 @@ const CategoryVideos: FC = () => {
               options: [
                 {
                   value: "time",
-                  label: "Time",
+                  label: t("optionValue_sort_time"),
                 },
                 {
                   value: "trending",
-                  label: "Trending",
+                  label: t("optionValue_sort_trending"),
                 },
                 {
                   value: "views",
-                  label: "Views",
+                  label: t("optionValue_sort_views"),
                 },
               ],
             },

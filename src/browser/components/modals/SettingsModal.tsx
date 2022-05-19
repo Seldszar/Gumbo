@@ -3,11 +3,9 @@ import React, { FC, MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { ClickAction, ClickBehavior, LANGUAGE_OPTIONS } from "@/common/constants";
-import { sendRuntimeMessage } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "@/common/helpers";
 
 import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
-
-import ResetModal from "./ResetModal";
 
 import Accordion from "../Accordion";
 import Button from "../Button";
@@ -18,6 +16,8 @@ import Panel from "../Panel";
 import Section from "../Section";
 import Select from "../Select";
 import Switch from "../Switch";
+
+import ResetModal from "./ResetModal";
 
 const StyledAccordion = styled(Accordion)`
   ${tw`mb-3 last:mb-0`}
@@ -32,7 +32,7 @@ const ButtonGroup = styled.div`
 `;
 
 interface SettingsModalProps {
-  onClose?(): void;
+  onClose?: MouseEventHandler<HTMLButtonElement>;
   isOpen?: boolean;
 }
 
@@ -82,107 +82,111 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
 
   return (
     <Modal isOpen={props.isOpen}>
-      <Panel title="Settings" onClose={props.onClose}>
-        <StyledAccordion title="General">
+      <Panel title={t("titleText_settings")} onClose={props.onClose}>
+        <StyledAccordion title={t("titleText_general")}>
           <Section>
-            <FormField title="Font size">
+            <FormField title={t("optionTitle_fontSize")}>
               <Select
                 {...register("general.fontSize")}
                 fullWidth
                 options={[
                   {
-                    label: "Smallest",
+                    label: t("optionValue_fontSize_smallest"),
                     value: "smallest",
                   },
                   {
-                    label: "Small",
+                    label: t("optionValue_fontSize_small"),
                     value: "small",
                   },
                   {
-                    label: "Medium",
+                    label: t("optionValue_fontSize_medium"),
                     value: "medium",
                   },
                   {
-                    label: "Large",
+                    label: t("optionValue_fontSize_large"),
                     value: "large",
                   },
                   {
-                    label: "Largest",
+                    label: t("optionValue_fontSize_largest"),
                     value: "largest",
                   },
                 ]}
               />
             </FormField>
-            <FormField title="Theme">
+            <FormField title={t("optionTitle_theme")}>
               <Select
                 {...register("general.theme")}
                 fullWidth
                 options={[
                   {
-                    label: "Dark",
+                    label: t("optionValue_theme_dark"),
                     value: "dark",
                   },
                   {
-                    label: "Light",
+                    label: t("optionValue_theme_light"),
                     value: "light",
                   },
                 ]}
               />
             </FormField>
-            <FormField title="Click Action">
+            <FormField title={t("optionTitle_clickAction")}>
               <Select
                 {...register("general.clickAction")}
                 fullWidth
                 options={[
                   {
-                    label: "Open channel",
+                    label: t("optionValue_openChannel"),
                     value: ClickAction.OpenChannel,
                   },
                   {
-                    label: "Open chat",
+                    label: t("optionValue_openChat"),
                     value: ClickAction.OpenChat,
                   },
                   {
-                    label: "Popout",
+                    label: t("optionValue_popout"),
                     value: ClickAction.Popout,
                   },
                 ]}
               />
             </FormField>
-            <FormField title="Click Behavior">
+            <FormField title={t("optionTitle_clickBehavior")}>
               <Select
                 {...register("general.clickBehavior")}
                 fullWidth
                 options={[
                   {
-                    label: "Open in a new tab",
+                    label: t("optionValue_clickBehavior_createTab"),
                     value: ClickBehavior.CreateTab,
                   },
                   {
-                    label: "Open in a new window",
+                    label: t("optionValue_clickBehavior_createWindow"),
                     value: ClickBehavior.CreateWindow,
                   },
                 ]}
               />
             </FormField>
-            <StyledSwitch {...register("general.withBadge")}>Show icon badge</StyledSwitch>
+            <StyledSwitch {...register("general.withBadge")}>
+              {t("inputLabel_showIconBadge")}
+            </StyledSwitch>
           </Section>
         </StyledAccordion>
 
-        <StyledAccordion title="Notifications">
+        <StyledAccordion title={t("titleText_notifications")}>
           <Section>
-            <StyledSwitch {...register("notifications.enabled")}>Enable notifications</StyledSwitch>
+            <StyledSwitch {...register("notifications.enabled")}>
+              {t("inputLabel_enableNotifications")}
+            </StyledSwitch>
             <StyledSwitch
               {...register("notifications.withCategoryChanges")}
               disabled={!settings.notifications.enabled}
             >
-              Include category change notifications
+              {t("inputLabel_categoryChangeNotifications")}
             </StyledSwitch>
             <StyledSwitch
               {...register("notifications.withFilters")}
               disabled={!settings.notifications.enabled}
             >
-              Filter notifications by channel
+              {t("inputLabel_filterNotificationsByChannel")}
             </StyledSwitch>
           </Section>
           <Section>
@@ -197,19 +201,21 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
           </Section>
         </StyledAccordion>
 
-        <StyledAccordion title="Search">
-          <Section title="Channels">
-            <StyledSwitch {...register("channels.liveOnly")}>Show live channels only</StyledSwitch>
+        <StyledAccordion title={t("titleText_search")}>
+          <Section title={t("titleText_channels")}>
+            <StyledSwitch {...register("channels.liveOnly")}>
+              {t("inputLabel_showLiveChannelsOnly")}
+            </StyledSwitch>
           </Section>
         </StyledAccordion>
 
-        <StyledAccordion title="Streams">
+        <StyledAccordion title={t("titleText_streams")}>
           <Section>
             <StyledSwitch {...register("streams.withReruns")}>
-              Show Reruns in followed streams
+              {t("inputLabel_showRerunsInFollowedStreams")}
             </StyledSwitch>
             <StyledSwitch {...register("streams.withFilters")}>
-              Filter streams by language
+              {t("inputLabel_filterStreamsByLanguage")}
             </StyledSwitch>
           </Section>
           <Section>
@@ -221,8 +227,8 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
           </Section>
         </StyledAccordion>
 
-        <StyledAccordion title="Advanced">
-          <Section title="Settings Management">
+        <StyledAccordion title={t("titleText_advanced")}>
+          <Section title={t("titleText_settingsManagement")}>
             <ButtonGroup>
               <Button
                 onClick={onImportClick}
@@ -235,7 +241,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                   </svg>
                 }
               >
-                Import Settings
+                {t("buttonText_importSettings")}
               </Button>
               <Button
                 onClick={onExportClick}
@@ -248,11 +254,11 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                   </svg>
                 }
               >
-                Export Settings
+                {t("buttonText_exportSettings")}
               </Button>
             </ButtonGroup>
           </Section>
-          <Section title="Danger Zone">
+          <Section title={t("titleText_dangerZone")}>
             <Button
               onClick={() => setResetModalOpen(true)}
               color="red"
@@ -264,7 +270,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                 </svg>
               }
             >
-              Reset Extension
+              {t("buttonText_resetExtension")}
             </Button>
           </Section>
         </StyledAccordion>

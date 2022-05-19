@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import Button from "../Button";
 import Modal from "../Modal";
+import Renderer from "../Renderer";
 
 const Inner = styled.div`
   ${tw`flex flex-col items-center text-center`}
@@ -21,7 +24,7 @@ const Title = styled.div`
   ${tw`text-xl`}
 `;
 
-const Mesage = styled.div`
+const Message = styled.div`
   ${tw`mb-6 text-black/50 dark:text-white/50`}
 `;
 
@@ -39,8 +42,10 @@ const ReloadModal: FC<ReloadModalProps> = (props) => (
         <path d="M9.5 15.25a3.5 3.5 0 0 1 5 0" />
       </Icon>
 
-      <Title>Uh-oh, Gumbo is not responding anymore!</Title>
-      <Mesage>Please use the button below to reload the extension</Mesage>
+      <Title>{t("confirmTitle_reload")}</Title>
+      <Message>
+        <Renderer content={t("confirmMessage_reload")} />
+      </Message>
 
       <Button
         color="purple"
@@ -52,7 +57,7 @@ const ReloadModal: FC<ReloadModalProps> = (props) => (
         }
         onClick={() => browser.runtime.reload()}
       >
-        Reload the extension
+        {t("buttonText_reloadExtension")}
       </Button>
     </Inner>
   </Modal>

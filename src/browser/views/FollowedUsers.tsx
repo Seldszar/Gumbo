@@ -2,6 +2,8 @@ import { find, groupBy, orderBy } from "lodash-es";
 import React, { FC, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import { filterList, isEmpty } from "@/browser/helpers/array";
 import {
   useFollowedStreams,
@@ -80,11 +82,11 @@ const FollowedUsers: FC = () => {
     }
 
     if (isEmpty(followedUsers)) {
-      return <Splash>No following users</Splash>;
+      return <Splash>{t("errorText_emptyFollowingUsers")}</Splash>;
     }
 
     if (isEmpty(itemGroups)) {
-      return <Splash>No users found</Splash>;
+      return <Splash>{t("errorText_emptyUsers")}</Splash>;
     }
 
     return (
@@ -124,15 +126,15 @@ const FollowedUsers: FC = () => {
             options: [
               {
                 value: null,
-                label: "Any",
+                label: t("optionValue_status_any"),
               },
               {
                 value: true,
-                label: "Online Only",
+                label: t("optionValue_status_onlineOnly"),
               },
               {
                 value: false,
-                label: "Offline Only",
+                label: t("optionValue_status_offlineOnly"),
               },
             ],
           },
@@ -143,11 +145,11 @@ const FollowedUsers: FC = () => {
             options: [
               {
                 value: "login",
-                label: "Name",
+                label: t("optionValue_sort_name"),
               },
               {
                 value: "view_count",
-                label: "Views",
+                label: t("optionValue_sort_views"),
               },
             ],
           },

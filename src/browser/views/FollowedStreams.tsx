@@ -3,7 +3,7 @@ import { groupBy, orderBy } from "lodash-es";
 import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
 
-import { sendRuntimeMessage } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "@/common/helpers";
 
 import { filterList, isEmpty } from "@/browser/helpers/array";
 import {
@@ -77,11 +77,11 @@ const FollowedStreams: FC = () => {
     }
 
     if (isEmpty(followedStreams)) {
-      return <Splash>No streams online</Splash>;
+      return <Splash>{t("errorText_emptyOnlineStreams")}</Splash>;
     }
 
     if (isEmpty(itemGroups)) {
-      return <Splash>No streams found</Splash>;
+      return <Splash>{t("errorText_emptyStreams")}</Splash>;
     }
 
     return (
@@ -128,19 +128,19 @@ const FollowedStreams: FC = () => {
             options: [
               {
                 value: "user_login",
-                label: "Broadcaster",
+                label: t("optionValue_sort_login"),
               },
               {
                 value: "game_name",
-                label: "Category",
+                label: t("optionValue_sort_category"),
               },
               {
                 value: "started_at",
-                label: "Uptime",
+                label: t("optionValue_sort_uptime"),
               },
               {
                 value: "viewer_count",
-                label: "Viewers",
+                label: t("optionValue_sort_viewers"),
               },
             ],
           },

@@ -1,10 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
+
+import { t } from "@/common/helpers";
 
 import Anchor from "../Anchor";
 import Button from "../Button";
 import Modal from "../Modal";
 import Panel from "../Panel";
+import Renderer from "../Renderer";
 import Section from "../Section";
 
 const allDonateButtons = [
@@ -39,27 +42,22 @@ const ButtonGrid = styled.div`
 `;
 
 interface DonateModalProps {
-  onClose?(): void;
+  onClose?: MouseEventHandler<HTMLButtonElement>;
   isOpen?: boolean;
 }
 
 const DonateModal: FC<DonateModalProps> = (props) => (
   <Modal isOpen={props.isOpen}>
-    <Panel title="Donate" onClose={props.onClose}>
+    <Panel title={t("titleText_donate")} onClose={props.onClose}>
       <Section>
-        <p>Gumbo is a free extension that does not collect or sell personal user data.</p>
-        <p>
-          Donations, although optional but greatly appreciated, help support my work and encourage
-          me to offer the best quality products possible.
-        </p>
-        <p>Thank you for your support!</p>
+        <Renderer content={t("messageText_donate")} />
       </Section>
       <Section>
         <ButtonGrid>
           {allDonateButtons.map((props, index) => (
             <Anchor key={index} href={props.url}>
               <Button fullWidth icon={props.icon}>
-                Donate with {props.name}
+                {t("buttonText_donateWith", props.name)}
               </Button>
             </Anchor>
           ))}

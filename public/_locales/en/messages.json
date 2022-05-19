@@ -1,0 +1,341 @@
+{
+  "buttonText_cancel": {
+    "message": "Cancel"
+  },
+  "buttonText_confirm": {
+    "message": "Confirm"
+  },
+  "buttonText_donateWith": {
+    "message": "Donate with $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Export Settings"
+  },
+  "buttonText_importSettings": {
+    "message": "Import Settings"
+  },
+  "buttonText_loadMore": {
+    "message": "Load More"
+  },
+  "buttonText_login": {
+    "message": "Login with Twitch"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Reload the Extension"
+  },
+  "buttonText_resetExtension": {
+    "message": "Reset Extension"
+  },
+  "buttonText_selectAll": {
+    "message": "Select All"
+  },
+  "buttonText_selectNone": {
+    "message": "Select None"
+  },
+  "confirmMessage_reload": {
+    "message": "Please use the button below to reload the extension."
+  },
+  "confirmMessage_reset": {
+    "message": "All data is going to be deleted and you will be logged out.<br />Are you sure you want to proceed?"
+  },
+  "confirmTitle_reload": {
+    "message": "Uh-oh, Gumbo is not responding anymore!"
+  },
+  "confirmTitle_reset": {
+    "message": "You are about to reset Gumbo!"
+  },
+  "detailText_noCategory": {
+    "message": "No category"
+  },
+  "detailText_noDescription": {
+    "message": "No description"
+  },
+  "detailText_noTitle": {
+    "message": "No title"
+  },
+  "detailText_viewCount": {
+    "message": "$1 views"
+  },
+  "errorText_emptyCategories": {
+    "message": "No categories found"
+  },
+  "errorText_emptyChannels": {
+    "message": "No channels found"
+  },
+  "errorText_emptyClips": {
+    "message": "No clips found"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "No following users"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "No streams online"
+  },
+  "errorText_emptyStreams": {
+    "message": "No streams found"
+  },
+  "errorText_emptyUsers": {
+    "message": "No users found"
+  },
+  "errorText_emptyVideos": {
+    "message": "No videos found"
+  },
+  "extensionDescription": {
+    "message": "Swollen companion keeping you updated on your Twitch experience"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch Companion"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Include category change notifications"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Enable notifications"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Filter notifications by channel"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Filter streams by language"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Show online streams count"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Show live channels only"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Show Reruns in followed streams"
+  },
+  "linkText_issues": {
+    "message": "Bugs & Suggestions"
+  },
+  "linkText_releases": {
+    "message": "Release Notes"
+  },
+  "linkText_repository": {
+    "message": "Source Code"
+  },
+  "linkText_translate": {
+    "message": "Translate"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo is a free extension that does not collect or sell personal user data.</p><p>Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.</p><p>Thank you for your support!</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Start typing to search categories"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Start typing to search channels"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Click to authorize"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Your Twitch access token expired, please re-authorize to get a new one."
+  },
+  "notificationMessage_changedCategory": {
+    "message": "$1 changed category!"
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 is online!"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Access Expired"
+  },
+  "optionTitle_clickAction": {
+    "message": "Click Action"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Click Behavior"
+  },
+  "optionTitle_fontSize": {
+    "message": "Font Size"
+  },
+  "optionTitle_theme": {
+    "message": "Theme"
+  },
+  "optionValue_about": {
+    "message": "About"
+  },
+  "optionValue_aboutHelp": {
+    "message": "About & Help"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Open in a new tab"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Open in a new window"
+  },
+  "optionValue_donate": {
+    "message": "Donate"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Large"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Largest"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Medium"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Small"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Smallest"
+  },
+  "optionValue_logout": {
+    "message": "Logout"
+  },
+  "optionValue_openChannel": {
+    "message": "Open channel"
+  },
+  "optionValue_openChat": {
+    "message": "Open chat"
+  },
+  "optionValue_period_allTime": {
+    "message": "All time"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Last day"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Last $1 days"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Last $1 hours"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Last month"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Last week"
+  },
+  "optionValue_popout": {
+    "message": "Popout"
+  },
+  "optionValue_schedule": {
+    "message": "Schedule"
+  },
+  "optionValue_search": {
+    "message": "Search"
+  },
+  "optionValue_settings": {
+    "message": "Settings"
+  },
+  "optionValue_sort_category": {
+    "message": "Category"
+  },
+  "optionValue_sort_login": {
+    "message": "Broadcaster"
+  },
+  "optionValue_sort_name": {
+    "message": "Name"
+  },
+  "optionValue_sort_time": {
+    "message": "Time"
+  },
+  "optionValue_sort_trending": {
+    "message": "Trending"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Uptime"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Viewers"
+  },
+  "optionValue_sort_views": {
+    "message": "Views"
+  },
+  "optionValue_status_any": {
+    "message": "Any"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Offline only"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Online only"
+  },
+  "optionValue_theme_dark": {
+    "message": "Dark"
+  },
+  "optionValue_theme_light": {
+    "message": "Light"
+  },
+  "optionValue_unknown": {
+    "message": "Unknown"
+  },
+  "optionValue_videos": {
+    "message": "Videos"
+  },
+  "optionValue_videoType_all": {
+    "message": "All videos"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Archives"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Highlights"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Uploads"
+  },
+  "titleText_advanced": {
+    "message": "Advanced"
+  },
+  "titleText_categories": {
+    "message": "Categories"
+  },
+  "titleText_channels": {
+    "message": "Channels"
+  },
+  "titleText_clips": {
+    "message": "Clips"
+  },
+  "titleText_dangerZone": {
+    "message": "Danger Zone"
+  },
+  "titleText_donate": {
+    "message": "Donate"
+  },
+  "titleText_followedStreams": {
+    "message": "Followed Streams"
+  },
+  "titleText_followedUsers": {
+    "message": "Followed Users"
+  },
+  "titleText_general": {
+    "message": "General"
+  },
+  "titleText_live": {
+    "message": "Live"
+  },
+  "titleText_notifications": {
+    "message": "Notifications"
+  },
+  "titleText_rerun": {
+    "message": "Rerun"
+  },
+  "titleText_search": {
+    "message": "Search"
+  },
+  "titleText_settings": {
+    "message": "Settings"
+  },
+  "titleText_settingsManagement": {
+    "message": "Settings Management"
+  },
+  "titleText_streams": {
+    "message": "Streams"
+  },
+  "titleText_topCategories": {
+    "message": "Top Categories"
+  },
+  "titleText_topStreams": {
+    "message": "Top Streams"
+  },
+  "titleText_videos": {
+    "message": "Videos"
+  }
+}

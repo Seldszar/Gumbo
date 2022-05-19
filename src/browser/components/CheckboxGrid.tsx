@@ -2,6 +2,8 @@ import { map, xor } from "lodash-es";
 import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import Checkbox from "./Checkbox";
 
 const Wrapper = styled.fieldset``;
@@ -40,9 +42,11 @@ const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
   return (
     <Wrapper className={props.className} disabled={props.disabled}>
       <PresetList>
-        <PresetButton onClick={() => props.onChange?.([])}>Select None</PresetButton>
+        <PresetButton onClick={() => props.onChange?.([])}>
+          {t("buttonText_selectNone")}
+        </PresetButton>
         <PresetButton onClick={() => props.onChange?.(map(props.options, "value"))}>
-          Select All
+          {t("buttonText_selectAll")}
         </PresetButton>
       </PresetList>
       <Grid>

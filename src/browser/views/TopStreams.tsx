@@ -1,6 +1,8 @@
 import React, { FC, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "@/common/helpers";
+
 import { filterList, isEmpty } from "@/browser/helpers/array";
 import { useStreams } from "@/browser/helpers/queries";
 
@@ -46,7 +48,7 @@ const TopStreams: FC = () => {
     }
 
     if (isEmpty(filteredStreams)) {
-      return <Splash>No streams found</Splash>;
+      return <Splash>{t("errorText_emptyStreams")}</Splash>;
     }
 
     return (
@@ -60,7 +62,7 @@ const TopStreams: FC = () => {
         {hasMore && (
           <LoadMore>
             <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
-              Load More
+              {t("buttonText_loadMore")}
             </MoreButton>
           </LoadMore>
         )}

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
-import { openUrl } from "@/common/helpers";
+import { openUrl, t } from "@/common/helpers";
 
 import { useClickAction } from "@/browser/helpers/hooks";
 
@@ -64,21 +64,21 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
         items: [
           {
             type: "link",
-            children: "Open channel",
+            children: t("optionValue_openChannel"),
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}`, event);
             },
           },
           {
             type: "link",
-            children: "Open chat",
+            children: t("optionValue_openChat"),
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}/chat`, event);
             },
           },
           {
             type: "link",
-            children: "Popout",
+            children: t("optionValue_popout"),
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}/popout`, event);
             },
@@ -88,21 +88,21 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
           },
           {
             type: "link",
-            children: "About",
+            children: t("optionValue_about"),
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}/about`, event);
             },
           },
           {
             type: "link",
-            children: "Schedule",
+            children: t("optionValue_schedule"),
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}/schedule`, event);
             },
           },
           {
             type: "link",
-            children: "Videos",
+            children: t("optionValue_videos"),
             onClick(event) {
               openUrl(`https://twitch.tv/${channel.broadcaster_login}/videos`, event);
             },

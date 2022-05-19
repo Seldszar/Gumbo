@@ -2,7 +2,7 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
 import { AUTHORIZE_URL, NotificationType } from "@/common/constants";
-import { openUrl, settlePromises, setupErrorTracking } from "@/common/helpers";
+import { openUrl, settlePromises, setupErrorTracking, t } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
 
@@ -34,9 +34,9 @@ export const client = ky.extend({
       async (input, options, response) => {
         if (response.status === 401 && (await stores.accessToken.set(null))) {
           browser.notifications.create(`${Date.now()}:authorize`, {
-            title: "Access Expired",
-            contextMessage: "Click to authorize",
-            message: "Your Twitch access token expired, please re-authorize to get a new one.",
+            title: t("notificationTitle_accessExpired"),
+            contextMessage: t("notificationContextMessage_accessExpired"),
+            message: t("notificationMessage_accessExpired"),
             iconUrl: browser.runtime.getURL("icon-96.png"),
             isClickable: true,
             type: "basic",
@@ -198,9 +198,12 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
         settlePromises(items, async ({ stream, type }) => {
           const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
             browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
-              title: `${stream.user_name || stream.user_login} ${
-                type === NotificationType.CategoryChanged ? "changed category" : "is online"
-              }`,
+              title: t(
+                type === NotificationType.CategoryChanged
+                  ? "notificationMessage_changedCategory"
+                  : "notificationMessage_streamOnline",
+                stream.user_name || stream.user_login
+              ),
               contextMessage: stream.game_name,
               message: stream.title,
               isClickable: true,

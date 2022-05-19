@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { template } from "@/common/helpers";
+import { t, template } from "@/common/helpers";
 
 import Image from "./Image";
 
@@ -93,9 +93,9 @@ const CategoryTitle: FC<CategoryTitleProps> = (props) => {
           <Name>{category.name}</Name>
         </Title>
         <TabList>
-          <Tab to="streams">Streams</Tab>
-          <Tab to="videos">Videos</Tab>
-          <Tab to="clips">Clips</Tab>
+          <Tab to="streams">{t("titleText_streams")}</Tab>
+          <Tab to="videos">{t("titleText_videos")}</Tab>
+          <Tab to="clips">{t("titleText_clips")}</Tab>
         </TabList>
       </Inner>
     </Wrapper>
