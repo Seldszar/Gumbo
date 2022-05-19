@@ -12,7 +12,7 @@ export interface WrapperProps {
 }
 
 const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`flex gap-4 items-center px-4 py-2`}
+  ${tw`flex items-center px-4 py-2`}
 
   ${(props) =>
     props.isLive &&
@@ -24,7 +24,7 @@ const Wrapper = styled(Card)<WrapperProps>`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none`}
+  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
 `;
 
 const ThumbnailImage = styled.div`
@@ -35,12 +35,8 @@ const Inner = styled.div`
   ${tw`flex-1 overflow-hidden`}
 `;
 
-const Title = styled.div`
-  ${tw`flex font-medium`}
-`;
-
-const ChannelName = styled.div`
-  ${tw`flex-1 truncate`}
+const UserName = styled.div`
+  ${tw`font-medium`}
 `;
 
 const Detail = styled.div`
@@ -149,9 +145,7 @@ const UserCard: FC<UserCardProps> = (props) => {
         <ThumbnailImage style={{ backgroundImage: `url("${user.profile_image_url}")` }} />
       </Thumbnail>
       <Inner>
-        <Title>
-          <ChannelName>{user.display_name || user.login}</ChannelName>
-        </Title>
+        <UserName>{user.display_name || user.login}</UserName>
         <Detail title={user.description}>{user.description || "No description"}</Detail>
         <Detail>{user.view_count.toLocaleString()} views</Detail>
       </Inner>

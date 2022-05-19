@@ -43,11 +43,11 @@ const Title = styled.div`
 `;
 
 const UserName = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
+  ${tw`text-sm leading-tight text-black/50 dark:text-white/50`}
 `;
 
 const Details = styled.ul`
-  ${tw`flex gap-x-4`}
+  ${tw`flex gap-4`}
 
   li {
     ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}

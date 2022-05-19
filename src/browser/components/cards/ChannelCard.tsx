@@ -35,15 +35,11 @@ const Inner = styled.div`
   ${tw`flex-1 overflow-hidden`}
 `;
 
-const Title = styled.div`
-  ${tw`flex font-medium`}
+const UserName = styled.div`
+  ${tw`font-medium`}
 `;
 
-const ChannelName = styled.div`
-  ${tw`flex-1 truncate`}
-`;
-
-const StreamTitle = styled.div`
+const ChannelTitle = styled.div`
   ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
 `;
 
@@ -118,10 +114,8 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
         <ThumbnailImage style={{ backgroundImage: `url("${channel.thumbnail_url}")` }} />
       </Thumbnail>
       <Inner>
-        <Title>
-          <ChannelName>{channel.display_name || channel.broadcaster_login}</ChannelName>
-        </Title>
-        <StreamTitle title={channel.title}>{channel.title}</StreamTitle>
+        <UserName>{channel.display_name || channel.broadcaster_login}</UserName>
+        <ChannelTitle title={channel.title}>{channel.title}</ChannelTitle>
         <GameName title={channel.game_name}>{channel.game_name}</GameName>
       </Inner>
     </Wrapper>

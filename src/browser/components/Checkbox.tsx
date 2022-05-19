@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.button`
-  ${tw`cursor-pointer flex items-center text-left disabled:(cursor-default opacity-25)`}
+  ${tw`cursor-pointer flex gap-3 items-center text-left disabled:(cursor-default opacity-25)`}
 `;
 
 interface ControlProps {
@@ -25,7 +25,7 @@ const Control = styled.div<ControlProps>`
 `;
 
 const Inner = styled.div`
-  ${tw`flex-1 ml-3 truncate`}
+  ${tw`flex-1 truncate`}
 `;
 
 export interface CheckboxProps {

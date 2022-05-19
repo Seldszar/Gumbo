@@ -7,7 +7,7 @@ import { template } from "@/common/helpers";
 import Image from "./Image";
 
 const Wrapper = styled.div`
-  ${tw`flex px-4 relative`}
+  ${tw`flex gap-4 px-4 relative`}
 `;
 
 const Background = styled.div`
@@ -26,7 +26,7 @@ const BackgroundImage = styled(Image)`
 `;
 
 const Aside = styled.div`
-  ${tw`flex-none ltr:mr-4 rtl:ml-4 py-4 relative self-end w-16 z-10`}
+  ${tw`flex-none py-4 relative self-end w-16 z-10`}
 `;
 
 const Thumbnail = styled.div`
@@ -87,6 +87,7 @@ const CategoryTitle: FC<CategoryTitleProps> = (props) => {
           <ThumbnailImage src={boxArtUrl} />
         </Thumbnail>
       </Aside>
+
       <Inner>
         <Title>
           <Name>{category.name}</Name>

@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const Wrapper = styled.fieldset`
-  ${tw`cursor-pointer flex items-center disabled:(cursor-default opacity-25)`}
+  ${tw`cursor-pointer flex gap-4 items-center disabled:(cursor-default opacity-25)`}
 `;
 
 const Handle = styled.div`
@@ -28,7 +28,7 @@ const Control = styled.div<ControlProps>`
 `;
 
 const Inner = styled.div`
-  ${tw`flex-1 ltr:mr-4 rtl:ml-4 truncate`}
+  ${tw`flex-1 truncate`}
 `;
 
 export interface SwitchProps {
