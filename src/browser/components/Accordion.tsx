@@ -7,17 +7,23 @@ const Wrapper = styled.div`
   ${tw`bg-neutral-200 dark:bg-neutral-800 overflow-hidden rounded shadow-lg`}
 `;
 
+interface IconProps {
+  isOpen?: boolean;
+}
+
+const Icon = styled.svg<IconProps>`
+  ${tw`flex-none stroke-current transition w-6`}
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+
+  ${(props) => props.isOpen && tw`rotate-90`}
+`;
+
 const Header = styled.div`
   ${tw`cursor-pointer flex gap-4 items-center p-4 rounded shadow-lg text-black dark:text-white`}
-
-  svg {
-    ${tw`flex-none stroke-current w-6`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
 `;
 
 const Title = styled.div`
@@ -60,9 +66,9 @@ const Accordion: FC<AccordionProps> = (props) => {
       {props.title && (
         <Header onClick={() => toggleOpen()}>
           <Title>{props.title}</Title>
-          <svg viewBox="0 0 24 24">
-            <polyline points={isOpen ? "6 9 12 15 18 9" : "9 6 15 12 9 18"} />
-          </svg>
+          <Icon viewBox="0 0 24 24" isOpen={isOpen}>
+            <polyline points="9 6 15 12 9 18" />
+          </Icon>
         </Header>
       )}
 
