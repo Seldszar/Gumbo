@@ -16,16 +16,20 @@ const allLinks = [
   },
   {
     title: t("linkText_issues"),
-    url: "https://github.com/seldszar/gumbo/issue",
+    url: "https://github.com/seldszar/gumbo/issues",
   },
   {
     title: t("linkText_releases"),
     url: "https://github.com/seldszar/gumbo/releases",
   },
+  {
+    title: t("linkText_translate"),
+    url: "https://hosted.weblate.org/projects/gumbo",
+  },
 ];
 
-const LinkList = styled.div`
-  ${tw`flex flex-wrap justify-center gap-x-6`}
+const LinkGrid = styled.div`
+  ${tw`grid grid-cols-2 gap-x-6 gap-y-1 place-items-center`}
 `;
 
 interface AboutModalProps {
@@ -40,13 +44,13 @@ const AboutModal: FC<AboutModalProps> = (props) => (
         <Hero />
       </Section>
       <Section>
-        <LinkList>
+        <LinkGrid>
           {allLinks.map((props, index) => (
             <ExternalAnchor key={index} href={props.url}>
               {props.title}
             </ExternalAnchor>
           ))}
-        </LinkList>
+        </LinkGrid>
       </Section>
     </Panel>
   </Modal>
