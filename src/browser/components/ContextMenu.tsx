@@ -75,13 +75,13 @@ const ContextMenu: FC<ContextMenu> = (props) => {
       const target = event.target as Element;
       const node = refs.reference.current;
 
-      if (event.type === "click" && (target === node || node?.contains(target))) {
+      if (event.type === "mousedown" && node?.contains(target)) {
         return;
       }
 
       toggleOpen(false);
     },
-    ["click", "contextmenu"]
+    ["mousedown", "contextmenu"]
   );
 
   useDomEvent(refs.reference, "click", (event) => {
