@@ -14,7 +14,7 @@ interface ControlProps {
 }
 
 const Control = styled.div<ControlProps>`
-  ${tw`bg-black/50 flex justify-start p-1 rounded-full w-12`}
+  ${tw`bg-black/50 flex flex-none justify-start p-1 rounded-full w-12`}
 
   ${(props) =>
     props.isChecked &&
@@ -28,7 +28,7 @@ const Control = styled.div<ControlProps>`
 `;
 
 const Inner = styled.div`
-  ${tw`flex-1 truncate`}
+  ${tw`flex-1 leading-tight`}
 `;
 
 export interface SwitchProps {
