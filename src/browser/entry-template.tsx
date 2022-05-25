@@ -65,12 +65,13 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
                 html,
                 body {
                   font-size: ${getBaseFontSize(settings.general.fontSize)};
-                  height: 600px;
-                  width: 420px;
                 }
 
                 body {
                   ${tw`bg-neutral-100 text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
+
+                  height: 600px;
+                  width: 420px;
                 }
               `}
             />
