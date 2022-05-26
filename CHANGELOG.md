@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.10.0](https://github.com/Seldszar/Gumbo/compare/v1.9.0...v1.10.0) (2022-05-25)
+
+
+### Features
+
+* setup localization ([b5b3043](https://github.com/Seldszar/Gumbo/commit/b5b30430a003dead045fbbb25d4f43fe3216919a))
+
+
+### Bug Fixes
+
+* about links ([a14c369](https://github.com/Seldszar/Gumbo/commit/a14c369525f6b98bb69eb3b78f77979fd010b1cd))
+* badge color ([019f805](https://github.com/Seldszar/Gumbo/commit/019f805ffba0edbafee11fcd44ca00551c9068b9))
+* cache control mode ([a1e1f62](https://github.com/Seldszar/Gumbo/commit/a1e1f62badf4ea02cdb84d67f50ba5060df798ef))
+* context menu close behavior ([e6debe7](https://github.com/Seldszar/Gumbo/commit/e6debe77cafaaad5a95d1fd2f7ed2e3af3f355cb))
+* donate links ([e5f3ad3](https://github.com/Seldszar/Gumbo/commit/e5f3ad3fed64bf595c18c1f57819dc986d414e16))
+* sidebar scrolling ([111a6dd](https://github.com/Seldszar/Gumbo/commit/111a6dd8e4ee9ce68327cb85d302d9f20a6e54ec))
+* switch label ([0291a88](https://github.com/Seldszar/Gumbo/commit/0291a889a3de470fd6ef2266068472d1f666f476))
+
 ## [1.9.0](https://github.com/Seldszar/Gumbo/compare/v1.8.8...v1.9.0) (2022-05-16)
 
 
