@@ -1,0 +1,341 @@
+{
+  "buttonText_cancel": {
+    "message": "Annuler"
+  },
+  "buttonText_confirm": {
+    "message": "Confirmer"
+  },
+  "buttonText_donateWith": {
+    "message": "Faire un don avec $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Exporter les réglages"
+  },
+  "buttonText_importSettings": {
+    "message": "Importer les réglages"
+  },
+  "buttonText_loadMore": {
+    "message": "Charger davantage"
+  },
+  "buttonText_login": {
+    "message": "Se connecter avec Twitch"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Recharger l’extension"
+  },
+  "buttonText_resetExtension": {
+    "message": "Réinitialiser l’extension"
+  },
+  "buttonText_selectAll": {
+    "message": "Sélectionner tout"
+  },
+  "buttonText_selectNone": {
+    "message": "Ne rien sélectionner"
+  },
+  "confirmMessage_reload": {
+    "message": "Veuillez utiliser le bouton ci-dessous pour recharger l’extension."
+  },
+  "confirmMessage_reset": {
+    "message": "Toutes les données vont être supprimées et vous serez déconnecté.<br />Êtes-vous sûr de vouloir continuer ?"
+  },
+  "confirmTitle_reload": {
+    "message": "Oh oh, Gumbo ne répond plus !"
+  },
+  "confirmTitle_reset": {
+    "message": "Vous allez réinitialiser Gumbo !"
+  },
+  "detailText_noCategory": {
+    "message": "Aucune catégorie"
+  },
+  "detailText_noDescription": {
+    "message": "Aucune description"
+  },
+  "detailText_noTitle": {
+    "message": "Aucun titre"
+  },
+  "detailText_viewCount": {
+    "message": "$1 vues"
+  },
+  "errorText_emptyCategories": {
+    "message": "Aucune catégorie trouvée"
+  },
+  "errorText_emptyChannels": {
+    "message": "Aucune chaîne trouvée"
+  },
+  "errorText_emptyClips": {
+    "message": "Aucun clip trouvé"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Aucun utilisateur ne suit"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Aucun stream en ligne"
+  },
+  "errorText_emptyStreams": {
+    "message": "Aucun stream trouvé"
+  },
+  "errorText_emptyUsers": {
+    "message": "Aucun utilisateur trouvé"
+  },
+  "errorText_emptyVideos": {
+    "message": "Aucune vidéo trouvée"
+  },
+  "extensionDescription": {
+    "message": "Le compagnon gonflé qui vous tient à jour de votre expérience Twitch"
+  },
+  "extensionName": {
+    "message": "Gumbo : le compagnon Twitch"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Inclure les notifications de changement de catégorie"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Activer les notifications"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Filtrer les notifications par chaîne"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Filtrer les streams par langue"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Afficher le nombre de streams en ligne"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "N’afficher que les chaînes en ligne"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Afficher les rediffusions dans les streams suivis"
+  },
+  "linkText_issues": {
+    "message": "Bogues et suggestions"
+  },
+  "linkText_releases": {
+    "message": "Notes de version"
+  },
+  "linkText_repository": {
+    "message": "Code source"
+  },
+  "linkText_translate": {
+    "message": "Traduire"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo est une extension gratuite qui ne collecte ni ne revend les données personnelles des utilisateurs.</p><p>Les dons, bien que facultatifs mais grandement appréciés, m’aident à soutenir mon travail et m’encouragent à offrir un produit de la meilleure qualité possible.</p><p>Merci pour votre soutien !</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Commencez à taper pour rechercher des catégories"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Commencez à taper pour rechercher des chaînes"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Cliquez pour autoriser"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Votre jeton d’accès Twitch a expiré, veuillez ré-autoriser pour en obtenir un nouveau."
+  },
+  "notificationMessage_changedCategory": {
+    "message": "$1 a changé de catégorie !"
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 est en ligne !"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Accès expiré"
+  },
+  "optionTitle_clickAction": {
+    "message": "Action du clic"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Comportement du clic"
+  },
+  "optionTitle_fontSize": {
+    "message": "Taille de la police"
+  },
+  "optionTitle_theme": {
+    "message": "Thème"
+  },
+  "optionValue_about": {
+    "message": "À propos"
+  },
+  "optionValue_aboutHelp": {
+    "message": "À propos & aide"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Ouvrir dans un nouvel onglet"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Ouvrir dans une nouvelle fenêtre"
+  },
+  "optionValue_donate": {
+    "message": "Faire un don"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Grande"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "La plus grande"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Moyenne"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Petite"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "La plus petite"
+  },
+  "optionValue_logout": {
+    "message": "Se déconnecter"
+  },
+  "optionValue_openChannel": {
+    "message": "Ouvrir la chaîne"
+  },
+  "optionValue_openChat": {
+    "message": "Ouvrir le chat"
+  },
+  "optionValue_period_allTime": {
+    "message": "Depuis toujours"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Dernier jour"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Derniers $1 jours"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Dernières $1 heures"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Mois dernier"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Semaine dernière"
+  },
+  "optionValue_popout": {
+    "message": "Fenêtre contextuelle"
+  },
+  "optionValue_schedule": {
+    "message": "Programme"
+  },
+  "optionValue_search": {
+    "message": "Recherche"
+  },
+  "optionValue_settings": {
+    "message": "Réglages"
+  },
+  "optionValue_sort_category": {
+    "message": "Catégorie"
+  },
+  "optionValue_sort_login": {
+    "message": "Diffuseur"
+  },
+  "optionValue_sort_name": {
+    "message": "Nom"
+  },
+  "optionValue_sort_time": {
+    "message": "Temps"
+  },
+  "optionValue_sort_trending": {
+    "message": "Tendance"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Durée"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Spectateurs"
+  },
+  "optionValue_sort_views": {
+    "message": "Vues"
+  },
+  "optionValue_status_any": {
+    "message": "Tout"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Hors ligne uniquement"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "En ligne uniquement"
+  },
+  "optionValue_theme_dark": {
+    "message": "Foncé"
+  },
+  "optionValue_theme_light": {
+    "message": "Clair"
+  },
+  "optionValue_unknown": {
+    "message": "Inconnu"
+  },
+  "optionValue_videos": {
+    "message": "Vidéos"
+  },
+  "optionValue_videoType_all": {
+    "message": "Toutes les vidéos"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Archives"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Mises en avant"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Téléchargements"
+  },
+  "titleText_advanced": {
+    "message": "Avancé"
+  },
+  "titleText_categories": {
+    "message": "Catégories"
+  },
+  "titleText_channels": {
+    "message": "Chaînes"
+  },
+  "titleText_clips": {
+    "message": "Clips"
+  },
+  "titleText_dangerZone": {
+    "message": "Zone dangereuse"
+  },
+  "titleText_donate": {
+    "message": "Doner"
+  },
+  "titleText_followedStreams": {
+    "message": "Streams suivis"
+  },
+  "titleText_followedUsers": {
+    "message": "Utilisateurs suivis"
+  },
+  "titleText_general": {
+    "message": "Général"
+  },
+  "titleText_live": {
+    "message": "En direct"
+  },
+  "titleText_notifications": {
+    "message": "Notifications"
+  },
+  "titleText_rerun": {
+    "message": "Rediffusion"
+  },
+  "titleText_search": {
+    "message": "Recherche"
+  },
+  "titleText_settings": {
+    "message": "Réglages"
+  },
+  "titleText_settingsManagement": {
+    "message": "Gestion des paramètres"
+  },
+  "titleText_streams": {
+    "message": "Streams"
+  },
+  "titleText_topCategories": {
+    "message": "Catégories populaires"
+  },
+  "titleText_topStreams": {
+    "message": "Streams populaires"
+  },
+  "titleText_videos": {
+    "message": "Vidéos"
+  }
+}
