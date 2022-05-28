@@ -16,7 +16,7 @@ const allLinks = [
   },
   {
     title: t("linkText_issues"),
-    url: "https://github.com/seldszar/gumbo/issue",
+    url: "https://github.com/seldszar/gumbo/issues",
   },
   {
     title: t("linkText_releases"),
