@@ -272,6 +272,9 @@ async function refreshActionBadge(): Promise<void> {
     browser.runtime.getURL(currentUser ? `icon-${size}.png` : `icon-gray-${size}.png`);
 
   await Promise.allSettled([
+    browserAction.setBadgeBackgroundColor({
+      color: "#a3a3a3",
+    }),
     browserAction.setBadgeText({
       text,
     }),
