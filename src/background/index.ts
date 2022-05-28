@@ -205,8 +205,8 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
                   : "notificationMessage_streamOnline",
                 stream.user_name || stream.user_login
               ),
-              contextMessage: stream.game_name,
-              message: stream.title,
+              contextMessage: stream.game_name || t("detailText_noCategory"),
+              message: stream.title || t("detailText_noTitle"),
               isClickable: true,
               type: "basic",
               iconUrl,
