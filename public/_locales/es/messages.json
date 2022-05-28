@@ -6,7 +6,7 @@
     "message": "Confirmar"
   },
   "buttonText_donateWith": {
-    "message": "Contribuir con 1$"
+    "message": "Donar con $1"
   },
   "buttonText_exportSettings": {
     "message": "Exportar opciones"
@@ -33,7 +33,7 @@
     "message": "Seleccionar ninguno"
   },
   "confirmMessage_reload": {
-    "message": "Por favor usa el botón de debajo para recargar la extensión"
+    "message": "Por favor usa el botón de debajo para recargar la extensión."
   },
   "confirmMessage_reset": {
     "message": "Toda la información será borrada y se te desconectará.<br />¿Estás seguro que quieres continuar?"
@@ -52,6 +52,9 @@
   },
   "detailText_noTitle": {
     "message": "Sin título"
+  },
+  "detailText_viewCount": {
+    "message": "$1 vistas"
   },
   "errorText_emptyCategories": {
     "message": "No se han encontrado categorías"
@@ -83,6 +86,9 @@
   "extensionName": {
     "message": "Gumbo: Compañero de Twitch"
   },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Incluir notificaciones de cambio de categoría"
+  },
   "inputLabel_enableNotifications": {
     "message": "Activar notificaciones"
   },
@@ -97,6 +103,9 @@
   },
   "inputLabel_showLiveChannelsOnly": {
     "message": "Mostrar solo canales en directo"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Mostrar las repeticiones en los streams seguidos"
   },
   "linkText_issues": {
     "message": "Bugs & Sugerencias"
@@ -114,10 +123,10 @@
     "message": "<p>Gumbo es una extensión gratuita que no recolecta ni vende datos personales del usuario.</p><p>Las donaciones, aunque opcionales son muy apreciadas, ayudan a respaldar mi trabajo y me animan a ofrecer productos de la mejor calidad posible.</p><p>¡Gracias por tu apoyo!</p>"
   },
   "messageText_typeSearchCategories": {
-    "message": "Escribe para comenzar la búsqueda de categorías"
+    "message": "Empieza a escribir para buscar categorías"
   },
   "messageText_typeSearchChannels": {
-    "message": "Escribe para comenzar la búsqueda de canales"
+    "message": "Empieza a escribir para buscar canales"
   },
   "notificationContextMessage_accessExpired": {
     "message": "Clic para autorizar"
@@ -133,6 +142,12 @@
   },
   "notificationTitle_accessExpired": {
     "message": "Acceso expirado"
+  },
+  "optionTitle_clickAction": {
+    "message": "Acción de clic"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Comportamiento de clic"
   },
   "optionTitle_fontSize": {
     "message": "Tamaño de la fuente"
@@ -155,6 +170,21 @@
   "optionValue_donate": {
     "message": "Donar"
   },
+  "optionValue_fontSize_large": {
+    "message": "Grande"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Más grande"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Medio"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Pequeño"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Más pequeño"
+  },
   "optionValue_logout": {
     "message": "Desconectar"
   },
@@ -164,8 +194,29 @@
   "optionValue_openChat": {
     "message": "Abrir chat"
   },
+  "optionValue_period_allTime": {
+    "message": "Todo el tiempo"
+  },
   "optionValue_period_lastDay": {
     "message": "Último día"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Últimos $1 días"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Últimas $1 horas"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Último mes"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Última semana"
+  },
+  "optionValue_popout": {
+    "message": "Abrir el vídeo"
+  },
+  "optionValue_schedule": {
+    "message": "Horario"
   },
   "optionValue_search": {
     "message": "Buscar"
@@ -176,8 +227,17 @@
   "optionValue_sort_category": {
     "message": "Categoría"
   },
+  "optionValue_sort_login": {
+    "message": "Emisora"
+  },
   "optionValue_sort_name": {
     "message": "Nombre"
+  },
+  "optionValue_sort_time": {
+    "message": "Tiempo"
+  },
+  "optionValue_sort_trending": {
+    "message": "Tendencias"
   },
   "optionValue_sort_uptime": {
     "message": "Tiempo en directo"
@@ -187,6 +247,9 @@
   },
   "optionValue_sort_views": {
     "message": "Visualizaciones"
+  },
+  "optionValue_status_any": {
+    "message": "Cualquier"
   },
   "optionValue_status_offlineOnly": {
     "message": "Solo desconectados"
@@ -206,11 +269,20 @@
   "optionValue_videoType_all": {
     "message": "Todos los vídeos"
   },
+  "optionValue_videoType_archive": {
+    "message": "Archivos"
+  },
   "optionValue_videoType_highlight": {
     "message": "Destacados"
   },
+  "optionValue_videoType_upload": {
+    "message": "Vídeos en línea"
+  },
   "optionValue_videos": {
     "message": "Vídeos"
+  },
+  "titleText_advanced": {
+    "message": "Avanzado"
   },
   "titleText_categories": {
     "message": "Categorías"
@@ -220,6 +292,9 @@
   },
   "titleText_clips": {
     "message": "Clips"
+  },
+  "titleText_dangerZone": {
+    "message": "Zona de peligro"
   },
   "titleText_donate": {
     "message": "Donar"
@@ -233,8 +308,14 @@
   "titleText_general": {
     "message": "General"
   },
+  "titleText_live": {
+    "message": "En vivo"
+  },
   "titleText_notifications": {
     "message": "Notificaciones"
+  },
+  "titleText_rerun": {
+    "message": "Vuelva a ejecutar"
   },
   "titleText_search": {
     "message": "Buscar"
