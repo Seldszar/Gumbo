@@ -6,29 +6,26 @@ import { openUrl, t } from "@/common/helpers";
 import { useClickAction } from "@/browser/helpers/hooks";
 
 import Card from "../Card";
+import Image from "../Image";
 
 export interface WrapperProps {
   isLive?: boolean;
 }
 
 const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`flex items-center px-4 py-2`}
+  ${tw`flex h-20 items-center px-4`}
 
   ${(props) =>
     props.isLive &&
     css`
-      ${ThumbnailImage} {
+      ${Thumbnail} {
         ${tw`ring-2 ring-offset-2 ring-offset-neutral-900 ring-red-500`}
       }
     `}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
-`;
-
-const ThumbnailImage = styled.div`
-  ${tw`bg-black bg-center bg-cover h-12 rounded-full text-sm w-12`}
+  ${tw`bg-black flex-none ltr:mr-4 rtl:ml-4 overflow-hidden relative rounded-full shadow-md w-12`}
 `;
 
 const Inner = styled.div`
@@ -36,15 +33,15 @@ const Inner = styled.div`
 `;
 
 const UserName = styled.div`
-  ${tw`font-medium`}
+  ${tw`font-medium truncate`}
+`;
+
+const CategoryName = styled.div`
+  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
 `;
 
 const ChannelTitle = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
-`;
-
-const GameName = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
+  ${tw`mt-px text-black/50 dark:text-white/50 text-sm truncate`}
 `;
 
 export interface ChannelCardProps {
@@ -111,12 +108,12 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
       }}
     >
       <Thumbnail>
-        <ThumbnailImage style={{ backgroundImage: `url("${channel.thumbnail_url}")` }} />
+        <Image src={channel.thumbnail_url} ratio={1} />
       </Thumbnail>
       <Inner>
         <UserName>{channel.display_name || channel.broadcaster_login}</UserName>
+        <CategoryName title={channel.game_name}>{channel.game_name}</CategoryName>
         <ChannelTitle title={channel.title}>{channel.title}</ChannelTitle>
-        <GameName title={channel.game_name}>{channel.game_name}</GameName>
       </Inner>
     </Wrapper>
   );

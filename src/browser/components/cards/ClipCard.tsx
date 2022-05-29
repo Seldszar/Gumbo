@@ -8,28 +8,16 @@ import { formatTime } from "@/browser/helpers/time";
 import Card from "../Card";
 import Image from "../Image";
 
-const StyledImage = styled(Image)``;
-
 const Wrapper = styled(Card)`
-  ${tw`flex items-center px-4 py-2 h-20`}
+  ${tw`flex h-20 items-center px-4`}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
-`;
-
-const ThumbnailPicture = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded shadow text-sm w-24`}
-
-  padding-top: 56.25%;
-
-  ${StyledImage} {
-    ${tw`absolute h-full inset-0 object-cover w-full`}
-  }
+  ${tw`bg-black flex-none ltr:mr-4 rtl:ml-4 overflow-hidden relative rounded shadow-md w-24`}
 `;
 
 const Duration = styled.div`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-white`}
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-sm text-white`}
 
   font-feature-settings: "tnum";
 `;
@@ -43,15 +31,11 @@ const Title = styled.div`
 `;
 
 const UserName = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50`}
+  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
 `;
 
 const Details = styled.ul`
-  ${tw`flex gap-4`}
-
-  li {
-    ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
-  }
+  ${tw`flex gap-4 mt-px text-black/50 dark:text-white/50 text-sm truncate`}
 `;
 
 export interface ClipCardProps {
@@ -72,10 +56,8 @@ const ClipCard: FC<ClipCardProps> = (props) => {
   return (
     <Wrapper to={clip.url}>
       <Thumbnail>
-        <ThumbnailPicture>
-          <StyledImage src={previewImage} />
-          <Duration>{timeString}</Duration>
-        </ThumbnailPicture>
+        <Image src={previewImage} ratio={9 / 16} />
+        <Duration>{timeString}</Duration>
       </Thumbnail>
       <Inner>
         <Title title={clip.title}>{clip.title}</Title>

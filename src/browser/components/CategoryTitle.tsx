@@ -84,7 +84,7 @@ const CategoryTitle: FC<CategoryTitleProps> = (props) => {
 
       <Aside>
         <Thumbnail>
-          <ThumbnailImage src={boxArtUrl} />
+          <ThumbnailImage src={boxArtUrl} ratio={4 / 3} />
         </Thumbnail>
       </Aside>
 

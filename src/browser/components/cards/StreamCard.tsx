@@ -10,28 +10,16 @@ import Image from "../Image";
 import Uptime from "../Uptime";
 import ViewerCount from "../ViewerCount";
 
-const StyledImage = styled(Image)``;
-
 const Wrapper = styled(Card)`
-  ${tw`flex items-center px-4 py-2 h-20`}
+  ${tw`flex h-20 items-center px-4`}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
-`;
-
-const ThumbnailPicture = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded shadow text-sm w-24`}
-
-  padding-top: 56.25%;
-
-  ${StyledImage} {
-    ${tw`absolute h-full inset-0 object-cover w-full`}
-  }
+  ${tw`bg-black flex-none ltr:mr-4 rtl:ml-4 overflow-hidden relative rounded shadow-md w-24`}
 `;
 
 const StyledStreamUptime = styled(Uptime)`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-white`}
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-sm text-white`}
 
   font-feature-settings: "tnum";
 `;
@@ -52,12 +40,12 @@ const StyledViewerCount = styled(ViewerCount)`
   ${tw`flex-none`}
 `;
 
-const StreamTitle = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
+const CategoryName = styled.div`
+  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
 `;
 
-const GameName = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
+const StreamTitle = styled.div`
+  ${tw`mt-px text-black/50 dark:text-white/50 text-sm truncate`}
 `;
 
 export interface StreamCardProps {
@@ -167,20 +155,18 @@ const StreamCard: FC<StreamCardProps> = (props) => {
       }}
     >
       <Thumbnail>
-        <ThumbnailPicture>
-          <StyledImage src={backgroundImage} />
-          {startDate && <StyledStreamUptime startDate={startDate} />}
-        </ThumbnailPicture>
+        <Image src={backgroundImage} ratio={9 / 16} />
+        {startDate && <StyledStreamUptime startDate={startDate} />}
       </Thumbnail>
       <Inner>
         <Title>
           <UserName>{stream.user_name || stream.user_login}</UserName>
           <StyledViewerCount stream={stream} />
         </Title>
-        <StreamTitle title={stream.title}>{stream.title || t("detailText_noTitle")}</StreamTitle>
-        <GameName title={stream.game_name}>
+        <CategoryName title={stream.game_name}>
           {stream.game_name || t("detailText_noCategory")}
-        </GameName>
+        </CategoryName>
+        <StreamTitle title={stream.title}>{stream.title || t("detailText_noTitle")}</StreamTitle>
       </Inner>
     </Wrapper>
   );

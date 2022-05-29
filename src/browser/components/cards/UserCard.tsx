@@ -6,29 +6,26 @@ import { openUrl, t } from "@/common/helpers";
 import { useClickAction } from "@/browser/helpers/hooks";
 
 import Card from "../Card";
+import Image from "../Image";
 
 export interface WrapperProps {
   isLive?: boolean;
 }
 
 const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`flex items-center px-4 py-2`}
+  ${tw`flex h-20 items-center px-4`}
 
   ${(props) =>
     props.isLive &&
     css`
-      ${ThumbnailImage} {
+      ${Thumbnail} {
         ${tw`ring-2 ring-offset-2 ring-offset-neutral-900 ring-red-500`}
       }
     `}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
-`;
-
-const ThumbnailImage = styled.div`
-  ${tw`bg-black bg-center bg-cover h-12 rounded-full text-sm w-12`}
+  ${tw`bg-black flex-none ltr:mr-4 rtl:ml-4 overflow-hidden relative rounded-full shadow-md w-12`}
 `;
 
 const Inner = styled.div`
@@ -36,11 +33,15 @@ const Inner = styled.div`
 `;
 
 const UserName = styled.div`
-  ${tw`font-medium`}
+  ${tw`font-medium truncate`}
 `;
 
-const Detail = styled.div`
-  ${tw`text-sm leading-tight text-black/50 dark:text-white/50 truncate`}
+const ViewCount = styled.div`
+  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
+`;
+
+const Description = styled.div`
+  ${tw`mt-px text-black/50 dark:text-white/50 text-sm truncate`}
 `;
 
 export interface UserCardProps {
@@ -142,14 +143,14 @@ const UserCard: FC<UserCardProps> = (props) => {
       }}
     >
       <Thumbnail>
-        <ThumbnailImage style={{ backgroundImage: `url("${user.profile_image_url}")` }} />
+        <Image src={user.profile_image_url} ratio={1} />
       </Thumbnail>
       <Inner>
         <UserName>{user.display_name || user.login}</UserName>
-        <Detail title={user.description}>
+        <ViewCount>{t("detailText_viewCount", user.view_count.toLocaleString())}</ViewCount>
+        <Description title={user.description}>
           {user.description || t("detailText_noDescription")}
-        </Detail>
-        <Detail>{t("detailText_viewCount", user.view_count.toLocaleString())}</Detail>
+        </Description>
       </Inner>
     </Wrapper>
   );
