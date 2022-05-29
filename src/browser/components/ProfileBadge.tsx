@@ -13,11 +13,7 @@ import ContextMenu from "./ContextMenu";
 import Image from "./Image";
 
 const Wrapper = styled.button`
-  ${tw`bg-white dark:bg-black flex-none h-10 overflow-hidden relative rounded-full w-10`}
-`;
-
-const ProfileImage = styled(Image)`
-  ${tw`h-full w-full`}
+  ${tw`bg-white dark:bg-black flex-none overflow-hidden relative rounded-full w-10`}
 `;
 
 interface ProfileBadgeProps {
@@ -101,7 +97,7 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
       >
         {(ref) => (
           <Wrapper className={props.className} ref={ref}>
-            {props.user && <ProfileImage src={props.user.profile_image_url} />}
+            {props.user && <Image src={props.user.profile_image_url} ratio={1} />}
           </Wrapper>
         )}
       </ContextMenu>
