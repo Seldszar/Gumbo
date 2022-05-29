@@ -1,5 +1,15 @@
 # Changelog
 
+### [1.10.1](https://github.com/Seldszar/Gumbo/compare/v1.10.0...v1.10.1) (2022-05-29)
+
+
+### Bug Fixes
+
+* badge color ([ef73298](https://github.com/Seldszar/Gumbo/commit/ef73298fa3c6ed30414e2632561d64629f114450))
+* french translation & links ([ab9972a](https://github.com/Seldszar/Gumbo/commit/ab9972a72b0a29c7e506ef770c8a7b12c84a30c3))
+* notification default values ([7f19c1b](https://github.com/Seldszar/Gumbo/commit/7f19c1bac99be7b09ed7d5fbcc9da3ee6c649dcf))
+* update translations ([#60](https://github.com/Seldszar/Gumbo/issues/60)) ([4b21b0c](https://github.com/Seldszar/Gumbo/commit/4b21b0cfd2c04ac1e7be8eabe5cef409b66ce62c))
+
 ## [1.10.0](https://github.com/Seldszar/Gumbo/compare/v1.9.0...v1.10.0) (2022-05-25)
 
 
