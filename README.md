@@ -48,6 +48,13 @@ You can help translate Gumbo by [registering on Weblate](https://hosted.weblate.
 
 ## Frequently Asked Questions
 
+### Why does it break randomly?
+
+Gumbo can randomly break due to a bug with Chromium itself, with can put the extension in a limbo state.
+It's a known issue, which is unfortunately on the hands of the Chromium team.
+
+- https://bugs.chromium.org/p/chromium/issues/detail?id=1271154
+
 ### Are sound notifications supported?
 
 Not officially, Manifest V3 doesn't provide the ability to play audio from a service worker. Workarounds exist, but aren't worth the trouble.
