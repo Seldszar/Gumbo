@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.11.0](https://github.com/Seldszar/Gumbo/compare/v1.10.1...v1.11.0) (2022-05-31)
+
+
+### Features
+
+* badge color customization ([e7e5b68](https://github.com/Seldszar/Gumbo/commit/e7e5b68e17f5018379aafb070031f4b2a40f9bcd))
+* update card design & cleanup ([6d3be15](https://github.com/Seldszar/Gumbo/commit/6d3be151ca39d1527bd23200468e0ee1e7f26686))
+
+
+### Bug Fixes
+
+* update translations ([#63](https://github.com/Seldszar/Gumbo/issues/63)) ([1523715](https://github.com/Seldszar/Gumbo/commit/1523715d19aa2f8f67d8133eb861519ebffd3852))
+
 ### [1.10.1](https://github.com/Seldszar/Gumbo/compare/v1.10.0...v1.10.1) (2022-05-29)
 
 
