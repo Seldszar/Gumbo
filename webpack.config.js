@@ -1,5 +1,6 @@
 require("dotenv/config");
 
+const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const { merge } = require("webpack-merge");
@@ -60,6 +61,28 @@ module.exports = (env, argv) => {
           {
             from: "**/*",
             context: `overrides/${env.platform}`,
+          },
+          {
+            from: "**/*",
+            context: "locales",
+            filter: (resourcePath) => {
+              try {
+                const data = JSON.parse(fs.readFileSync(resourcePath, "utf-8"));
+
+                if (data.extensionName == null) {
+                  return false;
+                }
+              } catch {} // eslint-disable-line no-empty
+
+              return true;
+            },
+            to: (pathData) => {
+              const relativePath = path
+                .relative(pathData.context, pathData.absoluteFilename)
+                .replace(/\\/g, "/");
+
+              return `_locales/${relativePath.replace("nb_NO", "nb")}`;
+            },
           },
         ],
       }),
