@@ -46,7 +46,7 @@ const AboutModal: FC<AboutModalProps> = (props) => (
       <Section>
         <LinkGrid>
           {allLinks.map((props, index) => (
-            <ExternalAnchor key={index} href={props.url}>
+            <ExternalAnchor key={index} to={props.url}>
               {props.title}
             </ExternalAnchor>
           ))}

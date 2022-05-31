@@ -55,7 +55,7 @@ const DonateModal: FC<DonateModalProps> = (props) => (
       <Section>
         <ButtonGrid>
           {allDonateButtons.map((props, index) => (
-            <Anchor key={index} href={props.url}>
+            <Anchor key={index} to={props.url}>
               <Button fullWidth icon={props.icon}>
                 {t("buttonText_donateWith", props.name)}
               </Button>

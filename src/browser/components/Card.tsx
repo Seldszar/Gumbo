@@ -1,10 +1,42 @@
+import { PropsOf } from "@emotion/react";
 import React, { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { MenuProps } from "./Menu";
 
-import Anchor from "./Anchor";
 import ContextMenu from "./ContextMenu";
+
+const Aside = styled.div`
+  ${tw`flex-none ltr:mr-4 rtl:ml-4`}
+`;
+
+const Inner = styled.div`
+  ${tw`flex-1 overflow-hidden`}
+`;
+
+const Header = styled.div`
+  ${tw`flex gap-4 mb-px`}
+`;
+
+const HeaderBody = styled.div`
+  ${tw`flex-1 overflow-hidden`}
+`;
+
+const HeaderAside = styled.div`
+  ${tw`flex-none`}
+`;
+
+const Title = styled.div`
+  ${tw`font-medium truncate`}
+`;
+
+const Subtitle = styled.div`
+  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
+`;
+
+const Body = styled.div`
+  ${tw`text-black/50 dark:text-white/50 text-sm`}
+`;
 
 const ActionButton = styled.button`
   ${tw`p-1 rounded transition text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
@@ -19,34 +51,37 @@ const ActionButton = styled.button`
   }
 `;
 
-const ActionMenu = styled.div`
-  ${tw`flex gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
+const ActionList = styled.div`
+  ${tw`flex flex-none gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
 `;
 
-const Wrapper = styled(Anchor)`
-  ${tw`relative hover:(bg-neutral-200 dark:bg-neutral-800)`}
+const Wrapper = styled.div`
+  ${tw`flex items-center px-4 hover:(bg-neutral-200 dark:bg-neutral-800)`}
 
-  :not(:hover) ${ActionMenu} {
+  :not(:hover) ${ActionList} {
     ${tw`hidden`}
   }
 `;
 
 export interface CardProps {
-  actionButtons?: HTMLAttributes<HTMLButtonElement>[];
+  titleProps?: PropsOf<typeof Title>;
+  subtitleProps?: PropsOf<typeof Subtitle>;
+  aside?: ReactNode;
   children?: ReactNode;
+  headerAside?: ReactNode;
+  actionButtons?: HTMLAttributes<HTMLButtonElement>[];
+  overflowMenu?: MenuProps;
   className?: string;
-  ellipsisMenu?: MenuProps;
-  to: string;
 }
 
 const Card: FC<CardProps> = (props) => {
-  const actionMenu = useMemo(() => {
+  const actionList = useMemo(() => {
     const result =
       props.actionButtons?.map((props, index) => <ActionButton key={index} {...props} />) ?? [];
 
-    if (props.ellipsisMenu) {
+    if (props.overflowMenu) {
       result.push(
-        <ContextMenu placement="bottom-end" menu={props.ellipsisMenu}>
+        <ContextMenu placement="bottom-end" menu={props.overflowMenu}>
           {(ref) => (
             <ActionButton ref={ref}>
               <svg viewBox="0 0 24 24">
@@ -64,13 +99,27 @@ const Card: FC<CardProps> = (props) => {
       return null;
     }
 
-    return <ActionMenu>{result}</ActionMenu>;
-  }, [props.actionButtons, props.ellipsisMenu]);
+    return <ActionList>{result}</ActionList>;
+  }, [props.actionButtons, props.overflowMenu]);
 
   return (
-    <Wrapper target="_blank" href={props.to} className={props.className}>
-      {props.children}
-      {actionMenu}
+    <Wrapper className={props.className}>
+      {props.aside && <Aside>{props.aside}</Aside>}
+
+      <Inner>
+        <Header>
+          <HeaderBody>
+            <Title {...props.titleProps} />
+            <Subtitle {...props.subtitleProps} />
+          </HeaderBody>
+
+          {props.headerAside && <HeaderAside>{props.headerAside}</HeaderAside>}
+        </Header>
+
+        <Body>{props.children}</Body>
+      </Inner>
+
+      {actionList}
     </Wrapper>
   );
 };
