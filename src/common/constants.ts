@@ -143,6 +143,21 @@ export const LANGUAGE_OPTIONS = [
   },
 ];
 
+export const PRESET_COLORS = [
+  "#737373",
+  "#ef4444",
+  "#f97316",
+  "#eab308",
+  "#84cc16",
+  "#22c55e",
+  "#14b8a6",
+  "#0ea5e9",
+  "#6366f1",
+  "#a855f7",
+  "#d946ef",
+  "#ec4899",
+];
+
 export enum ClickAction {
   OpenChannel,
   OpenChat,

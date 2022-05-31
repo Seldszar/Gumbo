@@ -1,4 +1,4 @@
-import { defaultsDeep } from "lodash-es";
+import { defaultsDeep, set } from "lodash-es";
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
@@ -183,7 +183,10 @@ export const stores = {
         clickAction: ClickAction.OpenChannel,
         fontSize: "medium",
         theme: "dark",
-        withBadge: true,
+      },
+      badge: {
+        enabled: true,
+        color: "#737373",
       },
       channels: {
         liveOnly: false,
@@ -208,6 +211,7 @@ export const stores = {
 
         return store.get();
       },
+      (value) => set(value, "badge.enabled", value.general.withBadge),
     ],
   }),
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {

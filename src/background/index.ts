@@ -264,7 +264,7 @@ async function refreshActionBadge(): Promise<void> {
 
   let text = "";
 
-  if (settings.general.withBadge && followedStreams.length > 0) {
+  if (settings.badge.enabled && followedStreams.length > 0) {
     text = followedStreams.length.toLocaleString("en-US");
   }
 
@@ -273,7 +273,7 @@ async function refreshActionBadge(): Promise<void> {
 
   await Promise.allSettled([
     browserAction.setBadgeBackgroundColor({
-      color: "#a3a3a3",
+      color: settings.badge.color,
     }),
     browserAction.setBadgeText({
       text,
@@ -421,10 +421,6 @@ stores.followedStreams.onChange(() => {
   refreshActionBadge();
 });
 
-stores.settings.onChange((newValue, oldValue) => {
-  if (newValue.general.withBadge === oldValue?.general.withBadge) {
-    return;
-  }
-
+stores.settings.onChange(() => {
   refreshActionBadge();
 });

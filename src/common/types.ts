@@ -11,7 +11,11 @@ export interface GeneralSettings {
   clickAction: ClickAction;
   fontSize: FontSize;
   theme: Theme;
-  withBadge: boolean;
+}
+
+export interface BadgeSettings {
+  enabled: boolean;
+  color: string;
 }
 
 export interface StreamSettings {
@@ -44,6 +48,7 @@ export interface FollowedUserState {
 
 export interface Settings {
   general: GeneralSettings;
+  badge: BadgeSettings;
   channels: ChannelSettings;
   notifications: NotificationSettings;
   streams: StreamSettings;
