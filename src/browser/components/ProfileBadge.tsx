@@ -13,7 +13,7 @@ import ContextMenu from "./ContextMenu";
 import Image from "./Image";
 
 const Wrapper = styled.button`
-  ${tw`bg-white dark:bg-black flex-none overflow-hidden relative rounded-full w-10`}
+  ${tw`bg-white dark:bg-black flex-none overflow-hidden relative rounded-full w-10 hover:(ring-2 ring-offset-2 ring-offset-black ring-purple-500)`}
 `;
 
 interface ProfileBadgeProps {

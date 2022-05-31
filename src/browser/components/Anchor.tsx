@@ -1,17 +1,22 @@
-import React, { AnchorHTMLAttributes, forwardRef, MouseEventHandler } from "react";
+import React, { FC, MouseEventHandler, ReactNode } from "react";
 
 import { openUrl } from "@/common/helpers";
 
-const Anchor = forwardRef<HTMLAnchorElement, AnchorHTMLAttributes<HTMLAnchorElement>>(
-  (props, ref) => {
-    const onClick: MouseEventHandler<HTMLAnchorElement> = (event) =>
-      openUrl(event.currentTarget.href, event);
+export interface AnchorProps {
+  children?: ReactNode;
+  className?: string;
+  to: string;
+}
 
-    const onAuxClick: MouseEventHandler<HTMLAnchorElement> = (event) =>
-      openUrl(event.currentTarget.href, event);
+const Anchor: FC<AnchorProps> = (props) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) =>
+    openUrl(event.currentTarget.href, event);
 
-    return <a {...props} ref={ref} onClick={onClick} onAuxClick={onAuxClick} />;
-  }
-);
+  return (
+    <a className={props.className} href={props.to} onClick={handleClick} onAuxClick={handleClick}>
+      {props.children}
+    </a>
+  );
+};
 
 export default Anchor;

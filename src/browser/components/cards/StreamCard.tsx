@@ -5,17 +5,18 @@ import { openUrl, t, template } from "@/common/helpers";
 
 import { useClickAction } from "@/browser/helpers/hooks";
 
+import Anchor from "../Anchor";
 import Card from "../Card";
 import Image from "../Image";
 import Uptime from "../Uptime";
 import ViewerCount from "../ViewerCount";
 
 const Wrapper = styled(Card)`
-  ${tw`flex h-20 items-center px-4`}
+  ${tw`h-20`}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`bg-black flex-none ltr:mr-4 rtl:ml-4 overflow-hidden relative rounded shadow-md w-24`}
+  ${tw`bg-black overflow-hidden relative rounded shadow-md w-24`}
 `;
 
 const StyledStreamUptime = styled(Uptime)`
@@ -24,28 +25,8 @@ const StyledStreamUptime = styled(Uptime)`
   font-feature-settings: "tnum";
 `;
 
-const Inner = styled.div`
-  ${tw`flex-1 overflow-hidden`}
-`;
-
 const Title = styled.div`
-  ${tw`flex font-medium gap-2`}
-`;
-
-const UserName = styled.div`
-  ${tw`flex-1 truncate`}
-`;
-
-const StyledViewerCount = styled(ViewerCount)`
-  ${tw`flex-none`}
-`;
-
-const CategoryName = styled.div`
-  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
-`;
-
-const StreamTitle = styled.div`
-  ${tw`mt-px text-black/50 dark:text-white/50 text-sm truncate`}
+  ${tw`truncate`}
 `;
 
 export interface StreamCardProps {
@@ -101,74 +82,76 @@ const StreamCard: FC<StreamCardProps> = (props) => {
   }, [props.isPinned, props.onTogglePinClick]);
 
   return (
-    <Wrapper
-      to={defaultAction}
-      actionButtons={actionButtons}
-      ellipsisMenu={{
-        items: [
-          {
-            type: "link",
-            children: t("optionValue_openChannel"),
-            onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}`, event);
+    <Anchor to={defaultAction}>
+      <Wrapper
+        actionButtons={actionButtons}
+        overflowMenu={{
+          items: [
+            {
+              type: "link",
+              children: t("optionValue_openChannel"),
+              onClick(event) {
+                openUrl(`https://twitch.tv/${stream.user_login}`, event);
+              },
             },
-          },
-          {
-            type: "link",
-            children: t("optionValue_openChat"),
-            onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}/chat`, event);
+            {
+              type: "link",
+              children: t("optionValue_openChat"),
+              onClick(event) {
+                openUrl(`https://twitch.tv/${stream.user_login}/chat`, event);
+              },
             },
-          },
-          {
-            type: "link",
-            children: t("optionValue_popout"),
-            onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
+            {
+              type: "link",
+              children: t("optionValue_popout"),
+              onClick(event) {
+                openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
+              },
             },
-          },
-          {
-            type: "separator",
-          },
-          {
-            type: "link",
-            children: t("optionValue_about"),
-            onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}/about`, event);
+            {
+              type: "separator",
             },
-          },
-          {
-            type: "link",
-            children: t("optionValue_schedule"),
-            onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}/schedule`, event);
+            {
+              type: "link",
+              children: t("optionValue_about"),
+              onClick(event) {
+                openUrl(`https://twitch.tv/${stream.user_login}/about`, event);
+              },
             },
-          },
-          {
-            type: "link",
-            children: t("optionValue_videos"),
-            onClick(event) {
-              openUrl(`https://twitch.tv/${stream.user_login}/videos`, event);
+            {
+              type: "link",
+              children: t("optionValue_schedule"),
+              onClick(event) {
+                openUrl(`https://twitch.tv/${stream.user_login}/schedule`, event);
+              },
             },
-          },
-        ],
-      }}
-    >
-      <Thumbnail>
-        <Image src={backgroundImage} ratio={9 / 16} />
-        {startDate && <StyledStreamUptime startDate={startDate} />}
-      </Thumbnail>
-      <Inner>
-        <Title>
-          <UserName>{stream.user_name || stream.user_login}</UserName>
-          <StyledViewerCount stream={stream} />
-        </Title>
-        <CategoryName title={stream.game_name}>
-          {stream.game_name || t("detailText_noCategory")}
-        </CategoryName>
-        <StreamTitle title={stream.title}>{stream.title || t("detailText_noTitle")}</StreamTitle>
-      </Inner>
-    </Wrapper>
+            {
+              type: "link",
+              children: t("optionValue_videos"),
+              onClick(event) {
+                openUrl(`https://twitch.tv/${stream.user_login}/videos`, event);
+              },
+            },
+          ],
+        }}
+        titleProps={{
+          children: stream.user_name || stream.user_login,
+        }}
+        subtitleProps={{
+          children: stream.game_name || <i>{t("detailText_noCategory")}</i>,
+          title: stream.game_name,
+        }}
+        headerAside={<ViewerCount stream={stream} />}
+        aside={
+          <Thumbnail>
+            <Image src={backgroundImage} ratio={9 / 16} />
+            {startDate && <StyledStreamUptime startDate={startDate} />}
+          </Thumbnail>
+        }
+      >
+        <Title title={stream.title}>{stream.title || <i>{t("detailText_noTitle")}</i>}</Title>
+      </Wrapper>
+    </Anchor>
   );
 };
 

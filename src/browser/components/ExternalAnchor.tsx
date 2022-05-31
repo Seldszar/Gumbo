@@ -1,8 +1,7 @@
-import { PropsOf } from "@emotion/react";
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import Anchor from "./Anchor";
+import Anchor, { AnchorProps } from "./Anchor";
 
 const Icon = styled.svg`
   ${tw`flex-none opacity-50 stroke-current w-4`}
@@ -21,8 +20,8 @@ const Wrapper = styled(Anchor)`
   ${tw`inline-flex items-center gap-1 hover:underline`}
 `;
 
-const ExternalAnchor: FC<PropsOf<typeof Wrapper>> = (props) => (
-  <Wrapper {...props} target="_blank" rel="noreferrer">
+const ExternalAnchor: FC<AnchorProps> = (props) => (
+  <Wrapper className={props.className} to={props.to}>
     <Inner>{props.children}</Inner>
 
     <Icon viewBox="0 0 24 24">

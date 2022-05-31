@@ -5,15 +5,16 @@ import { t, template } from "@/common/helpers";
 
 import { formatTime } from "@/browser/helpers/time";
 
+import Anchor from "../Anchor";
 import Card from "../Card";
 import Image from "../Image";
 
 const Wrapper = styled(Card)`
-  ${tw`flex h-20 items-center px-4`}
+  ${tw`h-20`}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`bg-black flex-none ltr:mr-4 rtl:ml-4 overflow-hidden relative rounded shadow-md w-24`}
+  ${tw`bg-black overflow-hidden relative rounded shadow-md w-24`}
 `;
 
 const Duration = styled.div`
@@ -22,20 +23,8 @@ const Duration = styled.div`
   font-feature-settings: "tnum";
 `;
 
-const Inner = styled.div`
-  ${tw`flex-1 overflow-hidden`}
-`;
-
-const Title = styled.div`
-  ${tw`font-medium truncate`}
-`;
-
-const UserName = styled.div`
-  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
-`;
-
 const Details = styled.ul`
-  ${tw`flex gap-4 mt-px text-black/50 dark:text-white/50 text-sm truncate`}
+  ${tw`flex gap-4 truncate`}
 `;
 
 export interface ClipCardProps {
@@ -54,20 +43,28 @@ const ClipCard: FC<ClipCardProps> = (props) => {
   const timeString = useMemo(() => formatTime(clip.duration * 1000), [clip.duration]);
 
   return (
-    <Wrapper to={clip.url}>
-      <Thumbnail>
-        <Image src={previewImage} ratio={9 / 16} />
-        <Duration>{timeString}</Duration>
-      </Thumbnail>
-      <Inner>
-        <Title title={clip.title}>{clip.title}</Title>
-        <UserName>{clip.broadcaster_name}</UserName>
+    <Anchor to={clip.url}>
+      <Wrapper
+        titleProps={{
+          children: clip.title || <i>{t("detailText_noTitle")}</i>,
+          title: clip.title,
+        }}
+        subtitleProps={{
+          children: clip.broadcaster_name,
+        }}
+        aside={
+          <Thumbnail>
+            <Image src={previewImage} ratio={9 / 16} />
+            <Duration>{timeString}</Duration>
+          </Thumbnail>
+        }
+      >
         <Details>
           <li>{createdAt.toLocaleString()}</li>
           <li>{t("detailText_viewCount", clip.view_count.toLocaleString())}</li>
         </Details>
-      </Inner>
-    </Wrapper>
+      </Wrapper>
+    </Anchor>
   );
 };
 
