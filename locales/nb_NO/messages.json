@@ -35,6 +35,18 @@
   "confirmMessage_reload": {
     "message": "Bruk knappen nedenfor for å laste inn utvidelsen igjen."
   },
+  "confirmMessage_reset": {
+    "message": "Slett all data og logg ut?"
+  },
+  "confirmTitle_reload": {
+    "message": "Gumbo har sluttet å svare."
+  },
+  "confirmTitle_reset": {
+    "message": "Du er i ferd med å tilbakestille Gumbo."
+  },
+  "detailText_noCategory": {
+    "message": "Ikke kategorisert"
+  },
   "detailText_noDescription": {
     "message": "Ingen beskrivelse"
   },
@@ -67,6 +79,18 @@
   },
   "errorText_emptyVideos": {
     "message": "Fant ingen videoer"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Skru på merknader"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Filtrer merknader etter kanal"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Filtrer strømmer etter språk"
+  },
+  "linkText_issues": {
+    "message": "Feil og forslag"
   },
   "linkText_releases": {
     "message": "Utgivelsesnotater"
