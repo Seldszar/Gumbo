@@ -1,1 +1,182 @@
-{}
+{
+  "buttonText_cancel": {
+    "message": "Avbryt"
+  },
+  "buttonText_confirm": {
+    "message": "Bekreft"
+  },
+  "buttonText_donateWith": {
+    "message": "Doner med $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Eksporter innstillinger"
+  },
+  "buttonText_importSettings": {
+    "message": "Importer innstillinger"
+  },
+  "buttonText_loadMore": {
+    "message": "Last inn mer"
+  },
+  "buttonText_login": {
+    "message": "Logg inn med Twitch"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Last inn utvidelsen igjen"
+  },
+  "buttonText_resetExtension": {
+    "message": "Tilbakestill utvidelsen"
+  },
+  "buttonText_selectAll": {
+    "message": "Velg alt"
+  },
+  "buttonText_selectNone": {
+    "message": "Fravelg alt"
+  },
+  "confirmMessage_reload": {
+    "message": "Bruk knappen nedenfor for å laste inn utvidelsen igjen."
+  },
+  "detailText_noDescription": {
+    "message": "Ingen beskrivelse"
+  },
+  "detailText_noTitle": {
+    "message": "Uten navn"
+  },
+  "detailText_viewCount": {
+    "message": "$1 visninger"
+  },
+  "errorText_emptyCategories": {
+    "message": "Fant ingen kategorier"
+  },
+  "errorText_emptyChannels": {
+    "message": "Fant ingen kanaler"
+  },
+  "errorText_emptyClips": {
+    "message": "Fant ingen klipp"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Ingen brukere følger"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Ingen tilgjengelige strømmer"
+  },
+  "errorText_emptyStreams": {
+    "message": "Fant ingen strømmer"
+  },
+  "errorText_emptyUsers": {
+    "message": "Fant ingen brukere"
+  },
+  "errorText_emptyVideos": {
+    "message": "Fant ingen videoer"
+  },
+  "linkText_releases": {
+    "message": "Utgivelsesnotater"
+  },
+  "linkText_repository": {
+    "message": "Kildekode"
+  },
+  "linkText_translate": {
+    "message": "Oversett"
+  },
+  "optionValue_sort_category": {
+    "message": "Kategori"
+  },
+  "optionValue_sort_login": {
+    "message": "Kringkaster"
+  },
+  "optionValue_sort_name": {
+    "message": "Navn"
+  },
+  "optionValue_sort_time": {
+    "message": "Tid"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Seere"
+  },
+  "optionValue_sort_views": {
+    "message": "Visninger"
+  },
+  "optionValue_status_any": {
+    "message": "Vilkårlig"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Kun frakoblede"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Kun påloggede"
+  },
+  "optionValue_theme_dark": {
+    "message": "Mørk"
+  },
+  "optionValue_theme_light": {
+    "message": "Lys"
+  },
+  "optionValue_unknown": {
+    "message": "Ukjent"
+  },
+  "optionValue_videoType_all": {
+    "message": "Alle videoer"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Arkiv"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Høydepunkter"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Opplastninger"
+  },
+  "optionValue_videos": {
+    "message": "Videoer"
+  },
+  "titleText_advanced": {
+    "message": "Avansert"
+  },
+  "titleText_categories": {
+    "message": "Kategorier"
+  },
+  "titleText_channels": {
+    "message": "Kanaler"
+  },
+  "titleText_clips": {
+    "message": "Klipp"
+  },
+  "titleText_dangerZone": {
+    "message": "Faresone"
+  },
+  "titleText_donate": {
+    "message": "Doner"
+  },
+  "titleText_followedStreams": {
+    "message": "Fulgte strømmer"
+  },
+  "titleText_followedUsers": {
+    "message": "Fulgte brukere"
+  },
+  "titleText_general": {
+    "message": "Generelt"
+  },
+  "titleText_notifications": {
+    "message": "Merknader"
+  },
+  "titleText_rerun": {
+    "message": "Reprise"
+  },
+  "titleText_search": {
+    "message": "Søk"
+  },
+  "titleText_settings": {
+    "message": "Innstillinger"
+  },
+  "titleText_streams": {
+    "message": "Strømmer"
+  },
+  "titleText_topCategories": {
+    "message": "Toppkategorier"
+  },
+  "titleText_topStreams": {
+    "message": "Toppstrømmer"
+  },
+  "titleText_videos": {
+    "message": "Videoer"
+  }
+}
