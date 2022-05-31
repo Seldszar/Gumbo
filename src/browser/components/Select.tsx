@@ -11,7 +11,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  ${tw`cursor-pointer flex gap-1`}
+  ${tw`cursor-pointer flex gap-1 disabled:(cursor-default opacity-25)!`}
 
   ${(props) =>
     props.fullWidth

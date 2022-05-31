@@ -10,6 +10,7 @@ import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
 import Accordion from "../Accordion";
 import Button from "../Button";
 import CheckboxGrid from "../CheckboxGrid";
+import ColorSelect from "../ColorSelect";
 import FormField from "../FormField";
 import Modal from "../Modal";
 import Panel from "../Panel";
@@ -165,9 +166,10 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                 ]}
               />
             </FormField>
-            <StyledSwitch {...register("general.withBadge")}>
+            <StyledSwitch {...register("badge.enabled")}>
               {t("inputLabel_showIconBadge")}
             </StyledSwitch>
+            <ColorSelect {...register("badge.color")} disabled={!settings.badge.enabled} />
           </Section>
         </StyledAccordion>
 

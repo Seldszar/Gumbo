@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const Wrapper = styled.fieldset`
-  ${tw`cursor-pointer flex gap-4 items-center disabled:(cursor-default opacity-25)`}
+  ${tw`cursor-pointer flex gap-4 items-center disabled:(cursor-default opacity-25)!`}
 `;
 
 const Handle = styled.div`
