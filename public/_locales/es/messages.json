@@ -284,6 +284,9 @@
   "titleText_advanced": {
     "message": "Avanzado"
   },
+  "titleText_badge": {
+    "message": "Insignia"
+  },
   "titleText_categories": {
     "message": "Categorías"
   },

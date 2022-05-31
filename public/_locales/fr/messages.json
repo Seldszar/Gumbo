@@ -284,6 +284,9 @@
   "titleText_advanced": {
     "message": "Avancés"
   },
+  "titleText_badge": {
+    "message": "Badge"
+  },
   "titleText_categories": {
     "message": "Catégories"
   },
