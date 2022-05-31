@@ -166,6 +166,11 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
                 ]}
               />
             </FormField>
+          </Section>
+        </StyledAccordion>
+
+        <StyledAccordion title={t("titleText_badge")}>
+          <Section>
             <StyledSwitch {...register("badge.enabled")}>
               {t("inputLabel_showIconBadge")}
             </StyledSwitch>
