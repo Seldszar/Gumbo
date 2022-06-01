@@ -27,14 +27,14 @@ const ColorInput = styled(Input)`
   ${tw`col-span-4`}
 `;
 
-export interface ColorSelectProps {
+export interface ColorPickerProps {
   onChange?(value: string): void;
   className?: string;
   disabled?: boolean;
   value?: string;
 }
 
-const ColorSelect: FC<ColorSelectProps> = (props) => (
+const ColorPicker: FC<ColorPickerProps> = (props) => (
   <Wrapper className={props.className} disabled={props.disabled}>
     {PRESET_COLORS.map((color, index) => (
       <Button
@@ -50,4 +50,4 @@ const ColorSelect: FC<ColorSelectProps> = (props) => (
   </Wrapper>
 );
 
-export default ColorSelect;
+export default ColorPicker;

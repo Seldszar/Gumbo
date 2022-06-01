@@ -9,8 +9,7 @@ export interface AnchorProps {
 }
 
 const Anchor: FC<AnchorProps> = (props) => {
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) =>
-    openUrl(event.currentTarget.href, event);
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => openUrl(props.to, event);
 
   return (
     <a className={props.className} href={props.to} onClick={handleClick} onAuxClick={handleClick}>
