@@ -335,7 +335,7 @@ async function reset(): Promise<void> {
     browser.storage.sync.clear(),
   ]);
 
-  await setup(true);
+  await setup();
 }
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
@@ -368,10 +368,10 @@ browser.notifications.onClicked.addListener((notificationId) => {
   }
 });
 
-async function setup(migrate = false): Promise<void> {
+async function setup(): Promise<void> {
   const allStores = Object.values(stores);
 
-  await settlePromises(allStores, (store) => store.setup(migrate));
+  await settlePromises(allStores, (store) => store.setup(true));
   await refresh(false, true);
 }
 
@@ -380,7 +380,7 @@ browser.runtime.onInstalled.addListener((detail) => {
     return;
   }
 
-  setup(true);
+  setup();
 });
 
 browser.runtime.onStartup.addListener(() => {
