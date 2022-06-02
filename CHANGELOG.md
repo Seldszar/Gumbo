@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.11.2](https://github.com/Seldszar/Gumbo/compare/v1.11.1...v1.11.2) (2022-06-02)
+
+
+### Bug Fixes
+
+* catch store migration errors ([79a14e9](https://github.com/Seldszar/Gumbo/commit/79a14e949a18b5135dfeefad13d935d851377181))
+* initial store version & update migration ([f643503](https://github.com/Seldszar/Gumbo/commit/f643503401141e504072315355cd8dcaae274650))
+
 ## [1.11.1](https://github.com/Seldszar/Gumbo/compare/v1.11.0...v1.11.1) (2022-06-02)
 
 
