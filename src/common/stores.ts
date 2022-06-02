@@ -130,7 +130,10 @@ export class Store<T> {
         break;
       }
 
-      state.value = await migration(state.value);
+      try {
+        state.value = await migration(state.value);
+      } catch {} // eslint-disable-line no-empty
+
       state.version = version;
     }
 
