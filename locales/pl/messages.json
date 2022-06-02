@@ -1,1 +1,224 @@
-{}
+{
+  "buttonText_cancel": {
+    "message": "Anuluj"
+  },
+  "buttonText_confirm": {
+    "message": "Zatwierdź"
+  },
+  "buttonText_donateWith": {
+    "message": "Daj pan $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Eksportuj ustawienia"
+  },
+  "buttonText_importSettings": {
+    "message": "Importuj ustawienia"
+  },
+  "buttonText_loadMore": {
+    "message": "Załaduj więcej"
+  },
+  "buttonText_login": {
+    "message": "Zaloguj za pomocą Twitch"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Przeładuj rozszerzenie"
+  },
+  "buttonText_resetExtension": {
+    "message": "Zresetuj rozszerzenie"
+  },
+  "buttonText_selectAll": {
+    "message": "Zaznacz wszystkie"
+  },
+  "buttonText_selectNone": {
+    "message": "Odznacz wszystkie"
+  },
+  "confirmMessage_reload": {
+    "message": "Użyj przycisku niżej by przeładować rozszerzenie."
+  },
+  "confirmTitle_reload": {
+    "message": "O cholibka, Gumbo nie odpowiada!"
+  },
+  "confirmTitle_reset": {
+    "message": "Za chwilę zresetujesz Gumbo!"
+  },
+  "detailText_noCategory": {
+    "message": "Brak kategorii"
+  },
+  "detailText_noDescription": {
+    "message": "Brak opisu"
+  },
+  "detailText_noTitle": {
+    "message": "Brak tytułu"
+  },
+  "detailText_viewCount": {
+    "message": "$1 wyświetleń"
+  },
+  "errorText_emptyChannels": {
+    "message": "Nie znaleziono kanałów"
+  },
+  "errorText_emptyClips": {
+    "message": "Nie znaleziono klipów"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Brak transmisji na żywo"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Włącz powiadomienia"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Filtruj powiadomienia według kanału"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Filtruj transmisje według języka"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Pokaż tylko kanały transmitujące na żywo"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Pokazuj powtórki na liście śledzonych transmisji"
+  },
+  "linkText_issues": {
+    "message": "Błędy & Sugestie"
+  },
+  "linkText_repository": {
+    "message": "Kod źródłowy"
+  },
+  "linkText_translate": {
+    "message": "Przetłumacz"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Kliknij by autoryzować"
+  },
+  "notificationMessage_changedCategory": {
+    "message": "$1 zmienił kategorię!"
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 jest online!"
+  },
+  "optionTitle_theme": {
+    "message": "Motyw"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Otwórz w nowej karcie"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Otwórz w nowym oknie"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Duży"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Największy"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Średni"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Mały"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Najmniejszy"
+  },
+  "optionValue_logout": {
+    "message": "Wyloguj się"
+  },
+  "optionValue_openChat": {
+    "message": "Otwórz czat"
+  },
+  "optionValue_period_allTime": {
+    "message": "Od zawsze"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Ostatni dzień"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Ostatnie $1 dni"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Ostatnie $1 godziny"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Ostatni miesiąc"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Ostatni tydzień"
+  },
+  "optionValue_search": {
+    "message": "Szukaj"
+  },
+  "optionValue_settings": {
+    "message": "Ustawienia"
+  },
+  "optionValue_sort_category": {
+    "message": "Kategoria"
+  },
+  "optionValue_sort_name": {
+    "message": "Nazwa"
+  },
+  "optionValue_sort_time": {
+    "message": "Czas"
+  },
+  "optionValue_sort_trending": {
+    "message": "Najpopularniejsze"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Tylko na żywo"
+  },
+  "optionValue_theme_dark": {
+    "message": "Ciemny"
+  },
+  "optionValue_theme_light": {
+    "message": "Jasny"
+  },
+  "optionValue_unknown": {
+    "message": "Nieznany"
+  },
+  "optionValue_videoType_all": {
+    "message": "Wszystkie filmiki"
+  },
+  "optionValue_videos": {
+    "message": "Filmy"
+  },
+  "titleText_categories": {
+    "message": "Kategorie"
+  },
+  "titleText_channels": {
+    "message": "Kanały"
+  },
+  "titleText_clips": {
+    "message": "Klipy"
+  },
+  "titleText_followedStreams": {
+    "message": "Śledzone transmisje"
+  },
+  "titleText_followedUsers": {
+    "message": "Śledzeni użytkownicy"
+  },
+  "titleText_live": {
+    "message": "Na żywo"
+  },
+  "titleText_notifications": {
+    "message": "Powiadomienia"
+  },
+  "titleText_rerun": {
+    "message": "Powtórka"
+  },
+  "titleText_search": {
+    "message": "Szukaj"
+  },
+  "titleText_settings": {
+    "message": "Ustawienia"
+  },
+  "titleText_streams": {
+    "message": "Transmisje"
+  },
+  "titleText_topCategories": {
+    "message": "Najpopularniejsze kategorie"
+  },
+  "titleText_topStreams": {
+    "message": "Najpopularniejsze transmisje"
+  },
+  "titleText_videos": {
+    "message": "Filmy"
+  }
+}
