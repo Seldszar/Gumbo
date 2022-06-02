@@ -1,4 +1,4 @@
-import { defaultsDeep, set } from "lodash-es";
+import { defaultsDeep, get, set } from "lodash-es";
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
@@ -75,7 +75,7 @@ export class Store<T> {
     return (
       items[this.name] ?? {
         value: this.options.defaultValue,
-        version: 1,
+        version: (this.options.migrations?.length ?? 0) + 1,
       }
     );
   }
@@ -211,7 +211,15 @@ export const stores = {
 
         return store.get();
       },
-      (value) => set(value, "badge.enabled", value.general.withBadge),
+      (value) => {
+        const withBadge = get(value, "general.withBadge");
+
+        if (typeof withBadge === "boolean") {
+          set(value, "badge.enabled", withBadge);
+        }
+
+        return value;
+      },
     ],
   }),
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
