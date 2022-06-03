@@ -1,1 +1,68 @@
-{}
+{
+  "buttonText_cancel": {
+    "message": "취소"
+  },
+  "buttonText_confirm": {
+    "message": "확인"
+  },
+  "buttonText_exportSettings": {
+    "message": "설정 내보내기"
+  },
+  "buttonText_importSettings": {
+    "message": "설정 가져오기"
+  },
+  "buttonText_loadMore": {
+    "message": "더 보기"
+  },
+  "buttonText_login": {
+    "message": "Twitch로 로그인"
+  },
+  "buttonText_resetExtension": {
+    "message": "확장 프로그램 재설정"
+  },
+  "buttonText_selectAll": {
+    "message": "전체 선택"
+  },
+  "buttonText_selectNone": {
+    "message": "전체 해제"
+  },
+  "confirmMessage_reset": {
+    "message": "모든 데이터가 삭제되고 로그아웃됩니다.<br />계속하시겠습니까?"
+  },
+  "confirmTitle_reset": {
+    "message": "Gumbo를 재설정하려고 합니다!"
+  },
+  "detailText_noCategory": {
+    "message": "카테고리 없음"
+  },
+  "detailText_noDescription": {
+    "message": "설명 없음"
+  },
+  "detailText_noTitle": {
+    "message": "제목 없음"
+  },
+  "detailText_viewCount": {
+    "message": "$1회 시청"
+  },
+  "errorText_emptyCategories": {
+    "message": "카테고리를 찾을 수 없습니다"
+  },
+  "errorText_emptyChannels": {
+    "message": "채널을 찾을 수 없습니다"
+  },
+  "errorText_emptyClips": {
+    "message": "클립을 찾을 수 없습니다"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "팔로우 중인 채널이 없습니다"
+  },
+  "errorText_emptyVideos": {
+    "message": "동영상을 찾을 수 없습니다"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "카테고리 변경 알림 포함"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "알림 활성화"
+  }
+}
