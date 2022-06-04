@@ -35,6 +35,18 @@
   "confirmMessage_reload": {
     "message": "Bruk knappen nedenfor for å laste inn utvidelsen igjen."
   },
+  "confirmMessage_reset": {
+    "message": "Slett all data og logg ut?"
+  },
+  "confirmTitle_reload": {
+    "message": "Gumbo har sluttet å svare."
+  },
+  "confirmTitle_reset": {
+    "message": "Du er i ferd med å tilbakestille Gumbo."
+  },
+  "detailText_noCategory": {
+    "message": "Ikke kategorisert"
+  },
   "detailText_noDescription": {
     "message": "Ingen beskrivelse"
   },
@@ -68,6 +80,36 @@
   "errorText_emptyVideos": {
     "message": "Fant ingen videoer"
   },
+  "extensionDescription": {
+    "message": "Den tykkfalne kompanjongen holder deg oppdatert på Twitch"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch-kompanjong"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Inkluder merknader om kategoriendringer"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Skru på merknader"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Filtrer merknader etter kanal"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Filtrer strømmer etter språk"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Vis antall strømmer som sendes"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Kun vis kanaler med direktesending"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Vis repriser i fulgte strømmer"
+  },
+  "linkText_issues": {
+    "message": "Feil og forslag"
+  },
   "linkText_releases": {
     "message": "Utgivelsesnotater"
   },
@@ -76,6 +118,111 @@
   },
   "linkText_translate": {
     "message": "Oversett"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo er en fri utvidelse som ikke samler eller selger personvernsdata.</p><p>Donasjoner er valgfritt, men settes stor pris på. Hjelp til å støtte mitt arbeide, og oppfordre meg til å levere det best mulige produktet.</p><p>Takk for din støtte.</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Begynn å skrive for å søke etter kategorier"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Begynn å skrive for å søke etter kanaler"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Klikk for å identitetsbekrefte"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Ditt Twitch-symbol har utløpt. Identitetsbekreft deg igjen for å få deg et nytt."
+  },
+  "notificationMessage_changedCategory": {
+    "message": "$1 endret kategori."
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 er pålogget."
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Tilgangen har utløpt"
+  },
+  "optionTitle_clickAction": {
+    "message": "Klikk-handling"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Klikk-adferd"
+  },
+  "optionTitle_fontSize": {
+    "message": "Skriftstørrelse"
+  },
+  "optionTitle_theme": {
+    "message": "Drakt"
+  },
+  "optionValue_about": {
+    "message": "Om"
+  },
+  "optionValue_aboutHelp": {
+    "message": "Om og hjelp"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Åpne i ny fane"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Åpne i nytt vindu"
+  },
+  "optionValue_donate": {
+    "message": "Doner"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Stor"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Størst"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Middels"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Lite"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Minst"
+  },
+  "optionValue_logout": {
+    "message": "Logg ut"
+  },
+  "optionValue_openChannel": {
+    "message": "Åpne kanal"
+  },
+  "optionValue_openChat": {
+    "message": "Åpne sludring"
+  },
+  "optionValue_period_allTime": {
+    "message": "Siden begynnelsen"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Siste dag"
+  },
+  "optionValue_period_lastDays": {
+    "message": "De siste $1 dagene"
+  },
+  "optionValue_period_lastHours": {
+    "message": "De siste $1 timene"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Siste måned"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Siste uke"
+  },
+  "optionValue_popout": {
+    "message": "Oppsprett"
+  },
+  "optionValue_schedule": {
+    "message": "Sendeplan"
+  },
+  "optionValue_search": {
+    "message": "Søk"
+  },
+  "optionValue_settings": {
+    "message": "Innstillinger"
   },
   "optionValue_sort_category": {
     "message": "Kategori"
@@ -88,6 +235,12 @@
   },
   "optionValue_sort_time": {
     "message": "Tid"
+  },
+  "optionValue_sort_trending": {
+    "message": "På vei opp"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Oppetid"
   },
   "optionValue_sort_viewers": {
     "message": "Seere"
@@ -131,6 +284,9 @@
   "titleText_advanced": {
     "message": "Avansert"
   },
+  "titleText_badge": {
+    "message": "Skilt"
+  },
   "titleText_categories": {
     "message": "Kategorier"
   },
@@ -155,6 +311,9 @@
   "titleText_general": {
     "message": "Generelt"
   },
+  "titleText_live": {
+    "message": "Direkte"
+  },
   "titleText_notifications": {
     "message": "Merknader"
   },
@@ -166,6 +325,9 @@
   },
   "titleText_settings": {
     "message": "Innstillinger"
+  },
+  "titleText_settingsManagement": {
+    "message": "Innstillingshåndtering"
   },
   "titleText_streams": {
     "message": "Strømmer"
