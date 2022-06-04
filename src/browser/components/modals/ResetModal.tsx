@@ -5,6 +5,7 @@ import { t } from "@/common/helpers";
 
 import Button from "../Button";
 import Modal from "../Modal";
+import Renderer from "../Renderer";
 
 const Inner = styled.div`
   ${tw`flex flex-col items-center text-center`}
@@ -46,7 +47,9 @@ const ResetModal: FC<ResetModalProps> = (props) => (
       </Icon>
 
       <Title>{t("confirmTitle_reset")}</Title>
-      <Message>{t("confirmMessage_reset")}</Message>
+      <Message>
+        <Renderer content={t("confirmMessage_reset")} />
+      </Message>
 
       <ButtonGroup>
         <Button color="red" onClick={props.onConfirm}>
