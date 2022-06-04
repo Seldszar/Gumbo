@@ -10,6 +10,13 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const localeReplacements = [
+  {
+    source: "nb_NO",
+    target: "no",
+  },
+];
+
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
 
@@ -81,7 +88,10 @@ module.exports = (env, argv) => {
                 .relative(pathData.context, pathData.absoluteFilename)
                 .replace(/\\/g, "/");
 
-              return `_locales/${relativePath.replace("nb_NO", "nb")}`;
+              return `_locales/${localeReplacements.reduce(
+                (result, { source, target }) => result.replace(source, target),
+                relativePath
+              )}`;
             },
           },
         ],
