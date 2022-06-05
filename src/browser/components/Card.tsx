@@ -15,7 +15,7 @@ const Inner = styled.div`
 `;
 
 const Header = styled.div`
-  ${tw`flex gap-4 mb-px`}
+  ${tw`flex gap-2 mb-px`}
 `;
 
 const HeaderBody = styled.div`
@@ -31,7 +31,7 @@ const Title = styled.div`
 `;
 
 const Subtitle = styled.div`
-  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-xs truncate`}
+  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-sm leading-tight truncate`}
 `;
 
 const Body = styled.div`
