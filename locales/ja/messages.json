@@ -1,41 +1,20 @@
 {
-  "buttonText_reloadExtension": {
-    "message": ""
-  },
   "detailText_noCategory": {
-    "message": ""
-  },
-  "errorText_emptyOnlineStreams": {
     "message": ""
   },
   "inputLabel_filterNotificationsByChannel": {
     "message": ""
   },
-  "linkText_translate": {
-    "message": ""
-  },
   "notificationTitle_accessExpired": {
-    "message": ""
-  },
-  "optionValue_clickBehavior_createWindow": {
     "message": ""
   },
   "optionValue_openChannel": {
     "message": ""
   },
-  "optionValue_popout": {
-    "message": ""
-  },
   "optionValue_sort_trending": {
     "message": ""
   },
-  "optionValue_theme_light": {
-    "message": ""
-  },
   "titleText_badge": {
-    "message": ""
-  },
-  "titleText_general": {
     "message": ""
   },
   "titleText_topCategories": {
