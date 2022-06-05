@@ -1,11 +1,5 @@
 {
-  "inputLabel_filterNotificationsByChannel": {
-    "message": ""
-  },
   "optionValue_openChannel": {
-    "message": ""
-  },
-  "titleText_badge": {
     "message": ""
   }
 }
