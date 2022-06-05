@@ -31,11 +31,11 @@ const Title = styled.div`
 `;
 
 const Subtitle = styled.div`
-  ${tw`font-medium -mt-1 text-black/50 dark:text-white/50 text-sm leading-tight truncate`}
+  ${tw`text-neutral-600 dark:text-neutral-400 text-sm leading-tight truncate`}
 `;
 
 const Body = styled.div`
-  ${tw`text-black/50 dark:text-white/50 text-sm`}
+  ${tw`text-neutral-600 dark:text-neutral-400 text-sm`}
 `;
 
 const ActionButton = styled.button`

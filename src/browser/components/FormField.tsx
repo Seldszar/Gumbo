@@ -12,7 +12,7 @@ const Header = styled.div`
 const Inner = styled.div``;
 
 const Footer = styled.div`
-  ${tw`text-sm text-white/50 dark:text-white/50`}
+  ${tw`text-sm text-neutral-600 dark:text-neutral-400`}
 `;
 
 interface FormFieldProps {

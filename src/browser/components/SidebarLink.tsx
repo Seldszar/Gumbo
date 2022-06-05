@@ -6,7 +6,7 @@ import tw, { styled } from "twin.macro";
 import Tooltip from "./Tooltip";
 
 const Wrapper = styled(NavLink)`
-  ${tw`grid p-2 place-content-center text-black dark:text-white opacity-50 hover:opacity-100`}
+  ${tw`grid p-2 place-content-center text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
 
   svg {
     ${tw`stroke-current w-6`}
@@ -18,7 +18,7 @@ const Wrapper = styled(NavLink)`
   }
 
   &.active {
-    ${tw`(opacity-100 text-purple-500)!`}
+    ${tw`text-purple-500!`}
   }
 `;
 

@@ -11,7 +11,7 @@ const Picture = styled.div`
 `;
 
 const Name = styled.div`
-  ${tw`font-medium text-white truncate`}
+  ${tw`font-medium text-black dark:text-white truncate`}
 `;
 
 const Wrapper = styled.div``;
