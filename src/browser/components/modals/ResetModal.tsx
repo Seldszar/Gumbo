@@ -25,7 +25,7 @@ const Title = styled.div`
 `;
 
 const Message = styled.div`
-  ${tw`mb-6 text-black/50 dark:text-white/50`}
+  ${tw`mb-6 text-neutral-600 dark:text-neutral-400`}
 `;
 
 const ButtonGroup = styled.div`
