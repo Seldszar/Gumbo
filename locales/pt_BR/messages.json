@@ -1,23 +1,11 @@
 {
-  "detailText_noCategory": {
-    "message": ""
-  },
   "inputLabel_filterNotificationsByChannel": {
-    "message": ""
-  },
-  "notificationTitle_accessExpired": {
     "message": ""
   },
   "optionValue_openChannel": {
     "message": ""
   },
-  "optionValue_sort_trending": {
-    "message": ""
-  },
   "titleText_badge": {
-    "message": ""
-  },
-  "titleText_topCategories": {
     "message": ""
   }
 }
