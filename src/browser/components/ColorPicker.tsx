@@ -20,7 +20,9 @@ const Button = styled.button<ButtonProps>`
   background-color: ${(props) => props.color};
   padding-top: 100%;
 
-  ${(props) => props.isSelected && tw`ring-2 ring-inset ring-offset-2 ring-offset-white ring-black`}
+  ${(props) =>
+    props.isSelected &&
+    tw`ring-2 ring-inset ring-offset-2 ring-offset-purple-500 ring-white dark:ring-black`}
 `;
 
 const ColorInput = styled(Input)`
