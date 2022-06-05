@@ -35,6 +35,9 @@
   "confirmMessage_reload": {
     "message": "Użyj przycisku niżej by przeładować rozszerzenie."
   },
+  "confirmMessage_reset": {
+    "message": ""
+  },
   "confirmTitle_reload": {
     "message": "O cholibka, Gumbo nie odpowiada!"
   },
@@ -53,14 +56,38 @@
   "detailText_viewCount": {
     "message": "$1 wyświetleń"
   },
+  "errorText_emptyCategories": {
+    "message": ""
+  },
   "errorText_emptyChannels": {
     "message": "Nie znaleziono kanałów"
   },
   "errorText_emptyClips": {
     "message": "Nie znaleziono klipów"
   },
+  "errorText_emptyFollowingUsers": {
+    "message": ""
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Brak transmisji na żywo"
+  },
+  "errorText_emptyStreams": {
+    "message": ""
+  },
+  "errorText_emptyUsers": {
+    "message": ""
+  },
+  "errorText_emptyVideos": {
+    "message": ""
+  },
+  "extensionDescription": {
+    "message": ""
+  },
+  "extensionName": {
+    "message": ""
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": ""
   },
   "inputLabel_enableNotifications": {
     "message": "Włącz powiadomienia"
@@ -71,6 +98,9 @@
   "inputLabel_filterStreamsByLanguage": {
     "message": "Filtruj transmisje według języka"
   },
+  "inputLabel_showIconBadge": {
+    "message": ""
+  },
   "inputLabel_showLiveChannelsOnly": {
     "message": "Pokaż tylko kanały transmitujące na żywo"
   },
@@ -80,14 +110,29 @@
   "linkText_issues": {
     "message": "Błędy & Sugestie"
   },
+  "linkText_releases": {
+    "message": ""
+  },
   "linkText_repository": {
     "message": "Kod źródłowy"
   },
   "linkText_translate": {
     "message": "Przetłumacz"
   },
+  "messageText_donate": {
+    "message": ""
+  },
+  "messageText_typeSearchCategories": {
+    "message": ""
+  },
+  "messageText_typeSearchChannels": {
+    "message": ""
+  },
   "notificationContextMessage_accessExpired": {
     "message": "Kliknij by autoryzować"
+  },
+  "notificationMessage_accessExpired": {
+    "message": ""
   },
   "notificationMessage_changedCategory": {
     "message": "$1 zmienił kategorię!"
@@ -95,14 +140,35 @@
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
   },
+  "notificationTitle_accessExpired": {
+    "message": ""
+  },
+  "optionTitle_clickAction": {
+    "message": ""
+  },
+  "optionTitle_clickBehavior": {
+    "message": ""
+  },
+  "optionTitle_fontSize": {
+    "message": ""
+  },
   "optionTitle_theme": {
     "message": "Motyw"
+  },
+  "optionValue_about": {
+    "message": ""
+  },
+  "optionValue_aboutHelp": {
+    "message": ""
   },
   "optionValue_clickBehavior_createTab": {
     "message": "Otwórz w nowej karcie"
   },
   "optionValue_clickBehavior_createWindow": {
     "message": "Otwórz w nowym oknie"
+  },
+  "optionValue_donate": {
+    "message": ""
   },
   "optionValue_fontSize_large": {
     "message": "Duży"
@@ -121,6 +187,9 @@
   },
   "optionValue_logout": {
     "message": "Wyloguj się"
+  },
+  "optionValue_openChannel": {
+    "message": ""
   },
   "optionValue_openChat": {
     "message": "Otwórz czat"
@@ -143,6 +212,12 @@
   "optionValue_period_lastWeek": {
     "message": "Ostatni tydzień"
   },
+  "optionValue_popout": {
+    "message": ""
+  },
+  "optionValue_schedule": {
+    "message": ""
+  },
   "optionValue_search": {
     "message": "Szukaj"
   },
@@ -152,6 +227,9 @@
   "optionValue_sort_category": {
     "message": "Kategoria"
   },
+  "optionValue_sort_login": {
+    "message": ""
+  },
   "optionValue_sort_name": {
     "message": "Nazwa"
   },
@@ -160,6 +238,21 @@
   },
   "optionValue_sort_trending": {
     "message": "Najpopularniejsze"
+  },
+  "optionValue_sort_uptime": {
+    "message": ""
+  },
+  "optionValue_sort_viewers": {
+    "message": ""
+  },
+  "optionValue_sort_views": {
+    "message": ""
+  },
+  "optionValue_status_any": {
+    "message": ""
+  },
+  "optionValue_status_offlineOnly": {
+    "message": ""
   },
   "optionValue_status_onlineOnly": {
     "message": "Tylko na żywo"
@@ -176,8 +269,23 @@
   "optionValue_videoType_all": {
     "message": "Wszystkie filmiki"
   },
+  "optionValue_videoType_archive": {
+    "message": ""
+  },
+  "optionValue_videoType_highlight": {
+    "message": ""
+  },
+  "optionValue_videoType_upload": {
+    "message": ""
+  },
   "optionValue_videos": {
     "message": "Filmy"
+  },
+  "titleText_advanced": {
+    "message": ""
+  },
+  "titleText_badge": {
+    "message": ""
   },
   "titleText_categories": {
     "message": "Kategorie"
@@ -188,11 +296,20 @@
   "titleText_clips": {
     "message": "Klipy"
   },
+  "titleText_dangerZone": {
+    "message": ""
+  },
+  "titleText_donate": {
+    "message": ""
+  },
   "titleText_followedStreams": {
     "message": "Śledzone transmisje"
   },
   "titleText_followedUsers": {
     "message": "Śledzeni użytkownicy"
+  },
+  "titleText_general": {
+    "message": ""
   },
   "titleText_live": {
     "message": "Na żywo"
@@ -208,6 +325,9 @@
   },
   "titleText_settings": {
     "message": "Ustawienia"
+  },
+  "titleText_settingsManagement": {
+    "message": ""
   },
   "titleText_streams": {
     "message": "Transmisje"
