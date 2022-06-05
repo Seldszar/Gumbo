@@ -62,9 +62,6 @@
   "errorText_emptyOnlineStreams": {
     "message": "Brak transmisji na żywo"
   },
-  "extensionDescription": {
-    "message": ""
-  },
   "inputLabel_enableNotifications": {
     "message": "Włącz powiadomienia"
   },
@@ -97,9 +94,6 @@
   },
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
-  },
-  "optionTitle_fontSize": {
-    "message": ""
   },
   "optionTitle_theme": {
     "message": "Motyw"
@@ -166,9 +160,6 @@
   },
   "optionValue_sort_trending": {
     "message": "Najpopularniejsze"
-  },
-  "optionValue_status_any": {
-    "message": ""
   },
   "optionValue_status_onlineOnly": {
     "message": "Tylko na żywo"
