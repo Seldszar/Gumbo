@@ -1,173 +1,86 @@
 {
-  "buttonText_confirm": {
-    "message": ""
-  },
   "buttonText_exportSettings": {
-    "message": ""
-  },
-  "buttonText_loadMore": {
     "message": ""
   },
   "buttonText_reloadExtension": {
     "message": ""
   },
-  "buttonText_selectAll": {
-    "message": ""
-  },
   "confirmMessage_reload": {
-    "message": ""
-  },
-  "confirmTitle_reload": {
     "message": ""
   },
   "detailText_noCategory": {
     "message": ""
   },
-  "detailText_noTitle": {
-    "message": ""
-  },
   "errorText_emptyCategories": {
-    "message": ""
-  },
-  "errorText_emptyClips": {
     "message": ""
   },
   "errorText_emptyOnlineStreams": {
     "message": ""
   },
-  "errorText_emptyUsers": {
-    "message": ""
-  },
   "extensionDescription": {
-    "message": ""
-  },
-  "inputLabel_categoryChangeNotifications": {
     "message": ""
   },
   "inputLabel_filterNotificationsByChannel": {
     "message": ""
   },
-  "inputLabel_showIconBadge": {
-    "message": ""
-  },
   "inputLabel_showRerunsInFollowedStreams": {
-    "message": ""
-  },
-  "linkText_releases": {
     "message": ""
   },
   "linkText_translate": {
     "message": ""
   },
-  "messageText_typeSearchCategories": {
-    "message": ""
-  },
   "notificationContextMessage_accessExpired": {
-    "message": ""
-  },
-  "notificationMessage_changedCategory": {
     "message": ""
   },
   "notificationTitle_accessExpired": {
     "message": ""
   },
-  "optionTitle_clickBehavior": {
-    "message": ""
-  },
   "optionTitle_theme": {
-    "message": ""
-  },
-  "optionValue_aboutHelp": {
     "message": ""
   },
   "optionValue_clickBehavior_createWindow": {
     "message": ""
   },
-  "optionValue_fontSize_large": {
-    "message": ""
-  },
   "optionValue_fontSize_medium": {
-    "message": ""
-  },
-  "optionValue_fontSize_smallest": {
     "message": ""
   },
   "optionValue_openChannel": {
     "message": ""
   },
-  "optionValue_period_allTime": {
-    "message": ""
-  },
   "optionValue_period_lastDays": {
-    "message": ""
-  },
-  "optionValue_period_lastMonth": {
     "message": ""
   },
   "optionValue_popout": {
     "message": ""
   },
-  "optionValue_search": {
-    "message": ""
-  },
   "optionValue_sort_category": {
-    "message": ""
-  },
-  "optionValue_sort_name": {
     "message": ""
   },
   "optionValue_sort_trending": {
     "message": ""
   },
-  "optionValue_sort_viewers": {
-    "message": ""
-  },
   "optionValue_status_any": {
-    "message": ""
-  },
-  "optionValue_status_onlineOnly": {
     "message": ""
   },
   "optionValue_theme_light": {
     "message": ""
   },
-  "optionValue_videoType_all": {
-    "message": ""
-  },
   "optionValue_videoType_highlight": {
-    "message": ""
-  },
-  "optionValue_videos": {
     "message": ""
   },
   "titleText_badge": {
     "message": ""
   },
-  "titleText_channels": {
-    "message": ""
-  },
   "titleText_dangerZone": {
-    "message": ""
-  },
-  "titleText_followedStreams": {
     "message": ""
   },
   "titleText_general": {
     "message": ""
   },
-  "titleText_notifications": {
-    "message": ""
-  },
   "titleText_search": {
     "message": ""
   },
-  "titleText_settingsManagement": {
-    "message": ""
-  },
   "titleText_topCategories": {
-    "message": ""
-  },
-  "titleText_videos": {
     "message": ""
   }
 }

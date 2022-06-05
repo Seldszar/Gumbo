@@ -62,13 +62,7 @@
   "errorText_emptyOnlineStreams": {
     "message": "Brak transmisji na żywo"
   },
-  "errorText_emptyUsers": {
-    "message": ""
-  },
   "extensionDescription": {
-    "message": ""
-  },
-  "inputLabel_categoryChangeNotifications": {
     "message": ""
   },
   "inputLabel_enableNotifications": {
@@ -95,9 +89,6 @@
   "linkText_translate": {
     "message": "Przetłumacz"
   },
-  "messageText_typeSearchCategories": {
-    "message": ""
-  },
   "notificationContextMessage_accessExpired": {
     "message": "Kliknij by autoryzować"
   },
@@ -107,17 +98,11 @@
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
   },
-  "optionTitle_clickAction": {
-    "message": ""
-  },
   "optionTitle_fontSize": {
     "message": ""
   },
   "optionTitle_theme": {
     "message": "Motyw"
-  },
-  "optionValue_aboutHelp": {
-    "message": ""
   },
   "optionValue_clickBehavior_createTab": {
     "message": "Otwórz w nowej karcie"
@@ -164,9 +149,6 @@
   "optionValue_period_lastWeek": {
     "message": "Ostatni tydzień"
   },
-  "optionValue_schedule": {
-    "message": ""
-  },
   "optionValue_search": {
     "message": "Szukaj"
   },
@@ -184,9 +166,6 @@
   },
   "optionValue_sort_trending": {
     "message": "Najpopularniejsze"
-  },
-  "optionValue_sort_viewers": {
-    "message": ""
   },
   "optionValue_status_any": {
     "message": ""
@@ -206,14 +185,8 @@
   "optionValue_videoType_all": {
     "message": "Wszystkie filmiki"
   },
-  "optionValue_videoType_highlight": {
-    "message": ""
-  },
   "optionValue_videos": {
     "message": "Filmy"
-  },
-  "titleText_badge": {
-    "message": ""
   },
   "titleText_categories": {
     "message": "Kategorie"
@@ -223,9 +196,6 @@
   },
   "titleText_clips": {
     "message": "Klipy"
-  },
-  "titleText_donate": {
-    "message": ""
   },
   "titleText_followedStreams": {
     "message": "Śledzone transmisje"
