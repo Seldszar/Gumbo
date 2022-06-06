@@ -29,7 +29,7 @@ const Thumbnail = styled.div`
   ${tw`bg-black overflow-hidden relative rounded-full shadow-md w-12`}
 `;
 
-const Title = styled.div`
+const CategoryName = styled.div`
   ${tw`truncate`}
 `;
 
@@ -99,8 +99,8 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
           children: channel.display_name || channel.broadcaster_login,
         }}
         subtitleProps={{
-          children: channel.game_name || <i>{t("detailText_noCategory")}</i>,
-          title: channel.game_name,
+          children: channel.title || <i>{t("detailText_noTitle")}</i>,
+          title: channel.title,
         }}
         aside={
           <Thumbnail>
@@ -108,7 +108,9 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
           </Thumbnail>
         }
       >
-        <Title title={channel.title}>{channel.title || <i>{t("detailText_noTitle")}</i>}</Title>
+        <CategoryName title={channel.game_name}>
+          {channel.game_name || <i>{t("detailText_noCategory")}</i>}
+        </CategoryName>
       </Wrapper>
     </Anchor>
   );

@@ -24,7 +24,7 @@ const Duration = styled.div`
 `;
 
 const Details = styled.ul`
-  ${tw`flex gap-4 truncate`}
+  ${tw`flex gap-4`}
 `;
 
 export interface ClipCardProps {

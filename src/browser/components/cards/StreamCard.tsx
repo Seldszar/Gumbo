@@ -26,6 +26,14 @@ const StyledStreamUptime = styled(Uptime)`
 `;
 
 const Title = styled.div`
+  ${tw`flex gap-2`}
+`;
+
+const UserName = styled.div`
+  ${tw`flex-1 truncate`}
+`;
+
+const CategoryName = styled.div`
   ${tw`truncate`}
 `;
 
@@ -135,13 +143,17 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           ],
         }}
         titleProps={{
-          children: stream.user_name || stream.user_login,
+          children: (
+            <Title>
+              <UserName>{stream.user_name || stream.user_login}</UserName>
+              <ViewerCount stream={stream} />
+            </Title>
+          ),
         }}
         subtitleProps={{
-          children: stream.game_name || <i>{t("detailText_noCategory")}</i>,
-          title: stream.game_name,
+          children: stream.title || <i>{t("detailText_noTitle")}</i>,
+          title: stream.title,
         }}
-        headerAside={<ViewerCount stream={stream} />}
         aside={
           <Thumbnail>
             <Image src={backgroundImage} ratio={9 / 16} />
@@ -149,7 +161,9 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           </Thumbnail>
         }
       >
-        <Title title={stream.title}>{stream.title || <i>{t("detailText_noTitle")}</i>}</Title>
+        <CategoryName title={stream.game_name}>
+          {stream.game_name || <i>{t("detailText_noCategory")}</i>}
+        </CategoryName>
       </Wrapper>
     </Anchor>
   );
