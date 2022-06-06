@@ -6,7 +6,7 @@ import { template } from "@/common/helpers";
 import Image from "../Image";
 import Tooltip from "../Tooltip";
 
-const Picture = styled.div`
+const Cover = styled.div`
   ${tw`bg-black mb-1 overflow-hidden relative rounded shadow`}
 `;
 
@@ -30,9 +30,9 @@ const CategoryCard: FC<CategoryCardProps> = (props) => {
 
   return (
     <Wrapper>
-      <Picture>
+      <Cover>
         <Image src={boxArtUrl} ratio={4 / 3} />
-      </Picture>
+      </Cover>
       <Tooltip content={category.name}>{(ref) => <Name ref={ref}>{category.name}</Name>}</Tooltip>
     </Wrapper>
   );

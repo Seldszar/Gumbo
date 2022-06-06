@@ -29,10 +29,6 @@ const Thumbnail = styled.div`
   ${tw`bg-black overflow-hidden relative rounded-full shadow-md w-12`}
 `;
 
-const Description = styled.div`
-  ${tw`truncate`}
-`;
-
 export interface UserCardProps {
   onTogglePinClick?(): void;
   isPinned?: boolean;
@@ -134,7 +130,8 @@ const UserCard: FC<UserCardProps> = (props) => {
           children: user.display_name || user.login,
         }}
         subtitleProps={{
-          children: t("detailText_viewCount", user.view_count.toLocaleString()),
+          children: user.description || <i>{t("detailText_noDescription")}</i>,
+          title: user.description,
         }}
         aside={
           <Thumbnail>
@@ -142,9 +139,7 @@ const UserCard: FC<UserCardProps> = (props) => {
           </Thumbnail>
         }
       >
-        <Description title={user.description}>
-          {user.description || <i>{t("detailText_noDescription")}</i>}
-        </Description>
+        {t("detailText_viewCount", user.view_count.toLocaleString())}
       </Wrapper>
     </Anchor>
   );

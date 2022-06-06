@@ -14,18 +14,6 @@ const Inner = styled.div`
   ${tw`flex-1 overflow-hidden`}
 `;
 
-const Header = styled.div`
-  ${tw`flex gap-2 mb-px`}
-`;
-
-const HeaderBody = styled.div`
-  ${tw`flex-1 overflow-hidden`}
-`;
-
-const HeaderAside = styled.div`
-  ${tw`flex-none`}
-`;
-
 const Title = styled.div`
   ${tw`font-medium truncate`}
 `;
@@ -35,7 +23,7 @@ const Subtitle = styled.div`
 `;
 
 const Body = styled.div`
-  ${tw`text-neutral-600 dark:text-neutral-400 text-sm`}
+  ${tw`text-neutral-600 dark:text-neutral-400 text-sm leading-tight`}
 `;
 
 const ActionButton = styled.button`
@@ -68,7 +56,6 @@ export interface CardProps {
   subtitleProps?: PropsOf<typeof Subtitle>;
   aside?: ReactNode;
   children?: ReactNode;
-  headerAside?: ReactNode;
   actionButtons?: HTMLAttributes<HTMLButtonElement>[];
   overflowMenu?: MenuProps;
   className?: string;
@@ -107,15 +94,8 @@ const Card: FC<CardProps> = (props) => {
       {props.aside && <Aside>{props.aside}</Aside>}
 
       <Inner>
-        <Header>
-          <HeaderBody>
-            <Title {...props.titleProps} />
-            <Subtitle {...props.subtitleProps} />
-          </HeaderBody>
-
-          {props.headerAside && <HeaderAside>{props.headerAside}</HeaderAside>}
-        </Header>
-
+        <Title {...props.titleProps} />
+        <Subtitle {...props.subtitleProps} />
         <Body>{props.children}</Body>
       </Inner>
 
