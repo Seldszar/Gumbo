@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.11.3](https://github.com/Seldszar/Gumbo/compare/v1.11.2...v1.11.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* card subtitle ([67cab39](https://github.com/Seldszar/Gumbo/commit/67cab3997698f47cbbb29164261a82c31b27d081))
+* color picker ring ([ef63562](https://github.com/Seldszar/Gumbo/commit/ef63562de83e301ad0abfe1da4c4a79c0cb017a1))
+* profile badge offset ring ([4c04d9b](https://github.com/Seldszar/Gumbo/commit/4c04d9bd429b8bdb66d320449dba9a5c09e00a3c))
+* reset modal message ([3eb7211](https://github.com/Seldszar/Gumbo/commit/3eb721155e6fa82a75825749bc599b80ee8a34d6))
+* revert card design & cleanup ([6c8b7a7](https://github.com/Seldszar/Gumbo/commit/6c8b7a7a9b5ee9c812b54d596e424226d4df6830))
+* text color ([5ef58cc](https://github.com/Seldszar/Gumbo/commit/5ef58cc5c3f798c1952a0109af485e98586fb54b))
+* update translations ([#66](https://github.com/Seldszar/Gumbo/issues/66)) ([aec6eeb](https://github.com/Seldszar/Gumbo/commit/aec6eeb3815ee5b7a05d4b084cda644af65c7453))
+* update translations ([#75](https://github.com/Seldszar/Gumbo/issues/75)) ([c0b1fe5](https://github.com/Seldszar/Gumbo/commit/c0b1fe542d7f4ea8e5a64ec5f991f15a2fc1bf7e))
+
 ## [1.11.2](https://github.com/Seldszar/Gumbo/compare/v1.11.1...v1.11.2) (2022-06-02)
 
 
