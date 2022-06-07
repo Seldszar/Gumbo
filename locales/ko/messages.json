@@ -81,7 +81,7 @@
     "message": "동영상을 찾을 수 없습니다"
   },
   "extensionDescription": {
-    "message": "Swollen companion keeping you updated on your Twitch experience"
+    "message": "Twitch의 최신 정보를 제공하는 좋은 동반자"
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
@@ -120,7 +120,7 @@
     "message": "번역하기"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo는 개인 사용자 데이터를 수집하거나 판매하지 않는 무료 확장 프로그램입니다.</p><p>기부는 선택 사항이지만 매우 감사합니다, 제가 가능한 최고 품질의 제품을 제공할 수 있도록 지원합니다.</p><p>지원해주셔서 감사합니다!</p>"
+    "message": "<p>Gumbo는 개인 사용자 데이터를 수집하거나 판매하지 않는 무료 확장 프로그램입니다.</p><p>기부는 선택 사항이지만 감사하게 생각하고 있으며, 저에게 동기부여와 함께 작업이 최고의 품질을 제공하는 데에 있어 큰 도움이 됩니다.</p><p>지원해주셔서 감사합니다!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "검색에 카테고리를 입력하세요"
@@ -228,10 +228,10 @@
     "message": "카테고리"
   },
   "optionValue_sort_login": {
-    "message": "방송인"
+    "message": "채널 이름(ID)"
   },
   "optionValue_sort_name": {
-    "message": "이름"
+    "message": "이름(ID)"
   },
   "optionValue_sort_time": {
     "message": "시간"
