@@ -7,6 +7,7 @@ import { parseFormatDuration } from "@/browser/helpers/time";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
+import ChannelName from "../ChannelName";
 import Image from "../Image";
 
 const Wrapper = styled(Card)`
@@ -50,7 +51,7 @@ const VideoCard: FC<VideoCardProps> = (props) => {
           title: video.title,
         }}
         subtitleProps={{
-          children: video.user_name || video.user_login,
+          children: <ChannelName login={video.user_login} name={video.user_name} />,
         }}
         aside={
           <Thumbnail>

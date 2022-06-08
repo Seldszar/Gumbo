@@ -7,6 +7,7 @@ import { useClickAction } from "@/browser/helpers/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
+import ChannelName from "../ChannelName";
 import Image from "../Image";
 import Uptime from "../Uptime";
 import ViewerCount from "../ViewerCount";
@@ -29,7 +30,7 @@ const Title = styled.div`
   ${tw`flex gap-2`}
 `;
 
-const UserName = styled.div`
+const UserName = styled(ChannelName)`
   ${tw`flex-1 truncate`}
 `;
 
@@ -145,7 +146,7 @@ const StreamCard: FC<StreamCardProps> = (props) => {
         titleProps={{
           children: (
             <Title>
-              <UserName>{stream.user_name || stream.user_login}</UserName>
+              <UserName login={stream.user_login} name={stream.user_name} />
               <ViewerCount stream={stream} />
             </Title>
           ),

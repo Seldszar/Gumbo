@@ -7,6 +7,7 @@ import { useClickAction } from "@/browser/helpers/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
+import ChannelName from "../ChannelName";
 import Image from "../Image";
 
 export interface WrapperProps {
@@ -127,7 +128,7 @@ const UserCard: FC<UserCardProps> = (props) => {
           ],
         }}
         titleProps={{
-          children: user.display_name || user.login,
+          children: <ChannelName login={user.login} name={user.display_name} />,
         }}
         subtitleProps={{
           children: user.description || <i>{t("detailText_noDescription")}</i>,
