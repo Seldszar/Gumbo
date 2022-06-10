@@ -9,6 +9,7 @@ import { useFollowedUsers, useSettings } from "@/browser/helpers/hooks";
 
 import Accordion from "../Accordion";
 import Button from "../Button";
+import ChannelName from "../ChannelName";
 import CheckboxGrid from "../CheckboxGrid";
 import ColorPicker from "../ColorPicker";
 import FormField from "../FormField";
@@ -201,7 +202,7 @@ const SettingsModal: FC<SettingsModalProps> = (props) => {
               {...register("notifications.selectedUsers")}
               disabled={!settings.notifications.enabled || !settings.notifications.withFilters}
               options={followedUsers.map((user) => ({
-                title: user.display_name || user.login,
+                title: <ChannelName login={user.login} name={user.display_name} />,
                 value: user.id,
               }))}
             />
