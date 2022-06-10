@@ -1,0 +1,344 @@
+{
+  "buttonText_cancel": {
+    "message": "Abbrechen"
+  },
+  "buttonText_confirm": {
+    "message": "Bestätigen"
+  },
+  "buttonText_donateWith": {
+    "message": "Spenden mit $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Einstellungen exportieren"
+  },
+  "buttonText_importSettings": {
+    "message": "Einstellungen importieren"
+  },
+  "buttonText_loadMore": {
+    "message": "mehr anzeigen"
+  },
+  "buttonText_login": {
+    "message": "Mit Twitch einloggen"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Erweiterung neu laden"
+  },
+  "buttonText_resetExtension": {
+    "message": "Erweiterung zurücksetzen"
+  },
+  "buttonText_selectAll": {
+    "message": "Alles auswählen"
+  },
+  "buttonText_selectNone": {
+    "message": "Nichts auswählen"
+  },
+  "confirmMessage_reload": {
+    "message": "Bitte benutze den unteren Button, um die Erweiterung neu zu laden."
+  },
+  "confirmMessage_reset": {
+    "message": "Alle Daten werden gelöscht und du wirst ausgeloggt.<br />Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "confirmTitle_reload": {
+    "message": "Oh-oh, Gumbo reagiert nicht mehr!"
+  },
+  "confirmTitle_reset": {
+    "message": "Du bist dabei Gumbo zurückzusetzen!"
+  },
+  "detailText_noCategory": {
+    "message": "Keine Kategorie"
+  },
+  "detailText_noDescription": {
+    "message": "Keine Beschreibung"
+  },
+  "detailText_noTitle": {
+    "message": "Kein Titel"
+  },
+  "detailText_viewCount": {
+    "message": "$1 Aufrufe"
+  },
+  "errorText_emptyCategories": {
+    "message": "Keine Kategorien gefunden"
+  },
+  "errorText_emptyChannels": {
+    "message": "Keine Kanäle gefunden"
+  },
+  "errorText_emptyClips": {
+    "message": "Keine Clips gefunden"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Keine gefolgten Streamer"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Keine Streams verfügbar"
+  },
+  "errorText_emptyStreams": {
+    "message": "Keine Streams gefunden"
+  },
+  "errorText_emptyUsers": {
+    "message": "Keine Streamer gefunden"
+  },
+  "errorText_emptyVideos": {
+    "message": "Keine Videos gefunden"
+  },
+  "extensionDescription": {
+    "message": "Dein Begleiter mit der geschwollenen Brust hält dich über deine Twitch Erlebnisse auf dem laufenden"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch Begleiter"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Benachrichtigung über Kategorieänderungen mit einbeziehen"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Benachrichtigungen aktivieren"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Benachrichtigungen nach Kanal sortieren"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Streams nach Sprache sortieren"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Anzahl der online Streams anzeigen"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Zeige nur Kanäle an, die online sind"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Zeige Wiederholungen in gefolgten Kanälen an"
+  },
+  "linkText_issues": {
+    "message": "Fehler und Vorschläge"
+  },
+  "linkText_releases": {
+    "message": "Versionshinweise"
+  },
+  "linkText_repository": {
+    "message": "Quelltext"
+  },
+  "linkText_translate": {
+    "message": "Übersetzen"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo ist eine kostenlose Erweiterung, die keine persönlichen Benutzerdaten sammelt oder verkauft.</p><p>Spenden sind freiwillig, aber sehr willkommen. Ihr unterstützt meine Arbeit und ermöglicht es mir, die bestmögliche Qualität zu liefern.</p><p>Vielen Dank für eure Unterstützung!</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Beginne zu tippen, um Kategorien zu durchsuchen"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Beginne zu tippen, um Kanäle zu durchsuchen"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Klicke hier, um dich zu autorisieren"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Dein Twitch-Zugangstoken ist abgelaufen. Bitte autorisiere dich erneut, um einen neuen Token zu erhalten."
+  },
+  "notificationMessage_changedCategory": {
+    "message": "$1 Kategorie wurde geändert!"
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 ist online!"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Der Zugang ist abgelaufen"
+  },
+  "optionTitle_clickAction": {
+    "message": "Aktion klicken"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Klickverhalten"
+  },
+  "optionTitle_fontSize": {
+    "message": "Schriftgröße"
+  },
+  "optionTitle_theme": {
+    "message": "Motiv"
+  },
+  "optionValue_about": {
+    "message": "Über"
+  },
+  "optionValue_aboutHelp": {
+    "message": "Über und Hilfe"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Im neuen Tab öffnen"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Im neuen Fenster öffnen"
+  },
+  "optionValue_donate": {
+    "message": "Spenden"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Groß"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Größte"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Mittel"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Klein"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Kleinste"
+  },
+  "optionValue_logout": {
+    "message": "Ausloggen"
+  },
+  "optionValue_openChannel": {
+    "message": "Kanal öffnen"
+  },
+  "optionValue_openChat": {
+    "message": "Chat öffnen"
+  },
+  "optionValue_period_allTime": {
+    "message": "Immer"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Letzter Tag"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Die letzten $1 Tage"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Die letzten $1 Stunden"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Letzter Monat"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Letzte Woche"
+  },
+  "optionValue_popout": {
+    "message": "Popout"
+  },
+  "optionValue_schedule": {
+    "message": "Zeitplan"
+  },
+  "optionValue_search": {
+    "message": "Suchen"
+  },
+  "optionValue_settings": {
+    "message": "Einstellungen"
+  },
+  "optionValue_sort_category": {
+    "message": "Kategorie"
+  },
+  "optionValue_sort_login": {
+    "message": "Streamer"
+  },
+  "optionValue_sort_name": {
+    "message": "Name"
+  },
+  "optionValue_sort_time": {
+    "message": "Zeit"
+  },
+  "optionValue_sort_trending": {
+    "message": "im Trend"
+  },
+  "optionValue_sort_uptime": {
+    "message": "online seit"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Zuschauer"
+  },
+  "optionValue_sort_views": {
+    "message": "Aufrufe"
+  },
+  "optionValue_status_any": {
+    "message": "Alle"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Nur offline"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Nur online"
+  },
+  "optionValue_theme_dark": {
+    "message": "Dunkel"
+  },
+  "optionValue_theme_light": {
+    "message": "Hell"
+  },
+  "optionValue_unknown": {
+    "message": "Unbekannt"
+  },
+  "optionValue_videoType_all": {
+    "message": "Alle Videos"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Archiv"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Highlights"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Uploads"
+  },
+  "optionValue_videos": {
+    "message": "Videos"
+  },
+  "titleText_advanced": {
+    "message": "Erweitert"
+  },
+  "titleText_badge": {
+    "message": "Abzeichen"
+  },
+  "titleText_categories": {
+    "message": "Kategorien"
+  },
+  "titleText_channels": {
+    "message": "Kanäle"
+  },
+  "titleText_clips": {
+    "message": "Clips"
+  },
+  "titleText_dangerZone": {
+    "message": "Gefahrenzone"
+  },
+  "titleText_donate": {
+    "message": "Spenden"
+  },
+  "titleText_followedStreams": {
+    "message": "gefolgte Kanäle"
+  },
+  "titleText_followedUsers": {
+    "message": "gefolgte Streamer"
+  },
+  "titleText_general": {
+    "message": "Allgemein"
+  },
+  "titleText_live": {
+    "message": "Live"
+  },
+  "titleText_notifications": {
+    "message": "Benachrichtigungen"
+  },
+  "titleText_rerun": {
+    "message": "Wiederholung"
+  },
+  "titleText_search": {
+    "message": "Suchen"
+  },
+  "titleText_settings": {
+    "message": "Einstellungen"
+  },
+  "titleText_settingsManagement": {
+    "message": "Einstellungen verwalten"
+  },
+  "titleText_streams": {
+    "message": "Streams"
+  },
+  "titleText_topCategories": {
+    "message": "Top Kategorien"
+  },
+  "titleText_topStreams": {
+    "message": "Top Streamer"
+  },
+  "titleText_videos": {
+    "message": "Videos"
+  }
+}
