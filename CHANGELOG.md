@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.12.0](https://github.com/Seldszar/Gumbo/compare/v1.11.3...v1.12.0) (2022-06-10)
+
+
+### Features
+
+* show channel login if different ([b503608](https://github.com/Seldszar/Gumbo/commit/b5036081b6d255bf9caaa45ba465cca87fae5aa7))
+
+
+### Bug Fixes
+
+* update translations ([#81](https://github.com/Seldszar/Gumbo/issues/81)) ([c82211b](https://github.com/Seldszar/Gumbo/commit/c82211b733809435b489b608271563d9ff963de9))
+
 ## [1.11.3](https://github.com/Seldszar/Gumbo/compare/v1.11.2...v1.11.3) (2022-06-07)
 
 
