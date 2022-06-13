@@ -15,7 +15,7 @@
     "message": "Einstellungen importieren"
   },
   "buttonText_loadMore": {
-    "message": "mehr anzeigen"
+    "message": "Mehr anzeigen"
   },
   "buttonText_login": {
     "message": "Mit Twitch einloggen"
@@ -27,7 +27,7 @@
     "message": "Erweiterung zurücksetzen"
   },
   "buttonText_selectAll": {
-    "message": "Alles auswählen"
+    "message": "Alle auswählen"
   },
   "buttonText_selectNone": {
     "message": "Nichts auswählen"
@@ -81,7 +81,7 @@
     "message": "Keine Videos gefunden"
   },
   "extensionDescription": {
-    "message": "Dein Begleiter mit der geschwollenen Brust hält dich über deine Twitch Erlebnisse auf dem laufenden"
+    "message": "Dein Begleiter mit der geschwollenen Brust hält dich bei Twitch auf dem Laufenden"
   },
   "extensionName": {
     "message": "Gumbo: Twitch Begleiter"
@@ -102,19 +102,19 @@
     "message": "Anzahl der online Streams anzeigen"
   },
   "inputLabel_showLiveChannelsOnly": {
-    "message": "Zeige nur Kanäle an, die online sind"
+    "message": "Zeige nur Kanäle, die online sind"
   },
   "inputLabel_showRerunsInFollowedStreams": {
     "message": "Zeige Wiederholungen in gefolgten Kanälen an"
   },
   "linkText_issues": {
-    "message": "Fehler und Vorschläge"
+    "message": "Fehler & Vorschläge"
   },
   "linkText_releases": {
-    "message": "Versionshinweise"
+    "message": "Release Notes"
   },
   "linkText_repository": {
-    "message": "Quelltext"
+    "message": "Quellcode"
   },
   "linkText_translate": {
     "message": "Übersetzen"
@@ -153,13 +153,13 @@
     "message": "Schriftgröße"
   },
   "optionTitle_theme": {
-    "message": "Motiv"
+    "message": "Thema"
   },
   "optionValue_about": {
     "message": "Über"
   },
   "optionValue_aboutHelp": {
-    "message": "Über und Hilfe"
+    "message": "Über & Hilfe"
   },
   "optionValue_clickBehavior_createTab": {
     "message": "Im neuen Tab öffnen"
@@ -240,7 +240,7 @@
     "message": "im Trend"
   },
   "optionValue_sort_uptime": {
-    "message": "online seit"
+    "message": "Laufzeit"
   },
   "optionValue_sort_viewers": {
     "message": "Zuschauer"
@@ -303,10 +303,10 @@
     "message": "Spenden"
   },
   "titleText_followedStreams": {
-    "message": "gefolgte Kanäle"
+    "message": "Followed Kanäle"
   },
   "titleText_followedUsers": {
-    "message": "gefolgte Streamer"
+    "message": "Followed Streamer"
   },
   "titleText_general": {
     "message": "Allgemein"
