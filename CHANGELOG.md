@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.12.1](https://github.com/Seldszar/Gumbo/compare/v1.12.0...v1.12.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* settings channel name ([5513af0](https://github.com/Seldszar/Gumbo/commit/5513af0a808947218fe9966a9d1975d9bb9b17d0))
+* update translations ([#83](https://github.com/Seldszar/Gumbo/issues/83)) ([bd900d4](https://github.com/Seldszar/Gumbo/commit/bd900d4c1ab9fb889b5676d969bc8e0b3e09814a))
+
 ## [1.12.0](https://github.com/Seldszar/Gumbo/compare/v1.11.3...v1.12.0) (2022-06-10)
 
 
