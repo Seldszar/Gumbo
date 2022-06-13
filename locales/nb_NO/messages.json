@@ -36,13 +36,13 @@
     "message": "Bruk knappen nedenfor for å laste inn utvidelsen igjen."
   },
   "confirmMessage_reset": {
-    "message": "Slett all data og logg ut?"
+    "message": "Alle data kommer til å bli slettet og du vil bli logget ut.<br />Er du sikker på at du vil fortsette?"
   },
   "confirmTitle_reload": {
-    "message": "Gumbo har sluttet å svare."
+    "message": "Gumbo svarer ikke lenger!"
   },
   "confirmTitle_reset": {
-    "message": "Du er i ferd med å tilbakestille Gumbo."
+    "message": "Du er i ferd med å tilbakestille Gumbo!"
   },
   "detailText_noCategory": {
     "message": "Ikke kategorisert"
@@ -135,10 +135,10 @@
     "message": "Ditt Twitch-symbol har utløpt. Identitetsbekreft deg igjen for å få deg et nytt."
   },
   "notificationMessage_changedCategory": {
-    "message": "$1 endret kategori."
+    "message": "$1 endret kategori!"
   },
   "notificationMessage_streamOnline": {
-    "message": "$1 er pålogget."
+    "message": "$1 er pålogget!"
   },
   "notificationTitle_accessExpired": {
     "message": "Tilgangen har utløpt"
