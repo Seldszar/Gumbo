@@ -1,4 +1,3 @@
-import { init } from "@sentry/browser";
 import { reduce } from "lodash-es";
 import { MouseEvent } from "react";
 
@@ -7,22 +6,6 @@ import { stores } from "./stores";
 import { Dictionary } from "./types";
 
 export const t = browser.i18n.getMessage;
-
-export function setupErrorTracking() {
-  const manifest = browser.runtime.getManifest();
-
-  init({
-    dsn: process.env.SENTRY_DSN,
-    release: manifest.version,
-    ignoreErrors: [
-      /^AbortError:/i,
-      /^Corruption:/i,
-      /^InvalidStateError:/i,
-      /^IO error:/i,
-      /^QuotaExceededError:/i,
-    ],
-  });
-}
 
 export function getBaseFontSize(value: string): string {
   switch (value) {

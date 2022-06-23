@@ -2,11 +2,9 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
 import { AUTHORIZE_URL, NotificationType } from "@/common/constants";
-import { openUrl, settlePromises, setupErrorTracking, t } from "@/common/helpers";
+import { openUrl, settlePromises, t } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
-
-setupErrorTracking();
 
 interface StreamNotification {
   type: NotificationType;

@@ -11,7 +11,6 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@floating-ui/react-dom": "^0.7.1",
-    "@sentry/browser": "^6.19.7",
     "framer-motion": "^6.3.4",
     "ky": "^0.30.0",
     "lodash-es": "^4.17.21",
