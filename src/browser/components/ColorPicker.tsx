@@ -6,7 +6,7 @@ import { PRESET_COLORS } from "@/common/constants";
 import Input from "./Input";
 
 const Wrapper = styled.fieldset`
-  ${tw`gap-2 grid grid-cols-8`}
+  ${tw`flex flex-wrap gap-2`}
 `;
 
 interface ButtonProps {
@@ -15,10 +15,9 @@ interface ButtonProps {
 }
 
 const Button = styled.button<ButtonProps>`
-  ${tw`rounded shadow-lg disabled:(cursor-default opacity-25)!`}
+  ${tw`h-10 rounded shadow-lg w-10 disabled:(cursor-default opacity-25)!`}
 
   background-color: ${(props) => props.color};
-  padding-top: 100%;
 
   ${(props) =>
     props.isSelected &&
@@ -26,7 +25,7 @@ const Button = styled.button<ButtonProps>`
 `;
 
 const ColorInput = styled(Input)`
-  ${tw`col-span-4`}
+  ${tw`w-32`}
 `;
 
 export interface ColorPickerProps {

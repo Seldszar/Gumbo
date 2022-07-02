@@ -67,9 +67,6 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
 
                 body {
                   ${tw`bg-neutral-100 text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
-
-                  height: 600px;
-                  width: 420px;
                 }
               `}
             />

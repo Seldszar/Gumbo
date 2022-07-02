@@ -109,6 +109,7 @@ module.exports = (env, argv) => {
       target: "web",
       entry: {
         popup: "./src/browser/pages/popup.tsx",
+        settings: "./src/browser/pages/settings.tsx",
       },
       plugins: [
         new EntryWrapperPlugin({
@@ -119,6 +120,11 @@ module.exports = (env, argv) => {
           template: "./src/browser/entry-template.html",
           filename: "popup.html",
           chunks: ["popup"],
+        }),
+        new HtmlWebpackPlugin({
+          template: "./src/browser/entry-template.html",
+          filename: "settings.html",
+          chunks: ["settings"],
         }),
       ],
     }),
