@@ -7,7 +7,6 @@ import { useAccessToken } from "../helpers/hooks";
 
 import AboutModal from "./modals/AboutModal";
 import DonateModal from "./modals/DonateModal";
-import SettingsModal from "./modals/SettingsModal";
 
 import ContextMenu from "./ContextMenu";
 import Image from "./Image";
@@ -26,7 +25,6 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
 
   const [isAboutOpen, setAboutOpen] = useState(false);
   const [isDonateOpen, setDonateOpen] = useState(false);
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
 
   return (
     <>
@@ -44,7 +42,7 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
                 </svg>
               ),
               onClick() {
-                setSettingsOpen(true);
+                open(browser.runtime.getURL("settings.html"), "_blank");
               },
             },
             {
@@ -104,7 +102,6 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
 
       <AboutModal isOpen={isAboutOpen} onClose={() => setAboutOpen(false)} />
       <DonateModal isOpen={isDonateOpen} onClose={() => setDonateOpen(false)} />
-      <SettingsModal isOpen={isSettingsOpen} onClose={() => setSettingsOpen(false)} />
     </>
   );
 };

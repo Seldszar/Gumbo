@@ -284,6 +284,9 @@
   "titleText_advanced": {
     "message": "Advanced"
   },
+  "titleText_backgroundColor": {
+    "message": "Background Color"
+  },
   "titleText_badge": {
     "message": "Badge"
   },

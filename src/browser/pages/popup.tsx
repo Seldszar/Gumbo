@@ -1,21 +1,22 @@
+import { css, Global } from "@emotion/react";
 import React, { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { useCurrentUser, usePingError } from "@/browser/helpers/hooks";
 
-import CategoryClips from "@/browser/views/category/CategoryClips";
-import CategoryStreams from "@/browser/views/category/CategoryStreams";
-import CategoryVideos from "@/browser/views/category/CategoryVideos";
-import SearchCategories from "@/browser/views/search/SearchCategories";
-import SearchChannels from "@/browser/views/search/SearchChannels";
-import CategoryDetail from "@/browser/views/CategoryDetail";
-import FollowedStreams from "@/browser/views/FollowedStreams";
-import FollowedUsers from "@/browser/views/FollowedUsers";
-import Search from "@/browser/views/Search";
-import TopCategories from "@/browser/views/TopCategories";
-import TopStreams from "@/browser/views/TopStreams";
-import Welcome from "@/browser/views/Welcome";
+import CategoryClips from "@/browser/views/popup/category/CategoryClips";
+import CategoryStreams from "@/browser/views/popup/category/CategoryStreams";
+import CategoryVideos from "@/browser/views/popup/category/CategoryVideos";
+import SearchCategories from "@/browser/views/popup/search/SearchCategories";
+import SearchChannels from "@/browser/views/popup/search/SearchChannels";
+import CategoryDetail from "@/browser/views/popup/CategoryDetail";
+import FollowedStreams from "@/browser/views/popup/FollowedStreams";
+import FollowedUsers from "@/browser/views/popup/FollowedUsers";
+import Search from "@/browser/views/popup/Search";
+import TopCategories from "@/browser/views/popup/TopCategories";
+import TopStreams from "@/browser/views/popup/TopStreams";
+import Welcome from "@/browser/views/popup/Welcome";
 
 import ReloadModal from "@/browser/components/modals/ReloadModal";
 
@@ -44,6 +45,15 @@ const PopupPage: FC = () => {
 
   return (
     <Wrapper>
+      <Global
+        styles={css`
+          body {
+            height: 600px;
+            width: 420px;
+          }
+        `}
+      />
+
       <Inner>
         {currentUser ? (
           <>
