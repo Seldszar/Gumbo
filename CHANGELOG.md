@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.13.0](https://github.com/Seldszar/Gumbo/compare/v1.12.1...v1.13.0) (2022-07-13)
+
+
+### Features
+
+* settings page ([5b47f6e](https://github.com/Seldszar/Gumbo/commit/5b47f6e11d33235f87d98d2fb3e4edcc095550e4))
+
+
+### Bug Fixes
+
+* page header ([c477aa0](https://github.com/Seldszar/Gumbo/commit/c477aa0d2e894f3c47e960e013898422aca59a4a))
+* update translations ([#86](https://github.com/Seldszar/Gumbo/issues/86)) ([538f1c2](https://github.com/Seldszar/Gumbo/commit/538f1c2f5a218a4e270e222777c65ddc30d838e3))
+
 ## [1.12.1](https://github.com/Seldszar/Gumbo/compare/v1.12.0...v1.12.1) (2022-06-13)
 
 
