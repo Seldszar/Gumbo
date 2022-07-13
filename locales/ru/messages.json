@@ -1,0 +1,347 @@
+{
+  "buttonText_cancel": {
+    "message": "Отмена"
+  },
+  "buttonText_confirm": {
+    "message": "Подтвердить"
+  },
+  "buttonText_donateWith": {
+    "message": "Задонатить $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Экспорт настроек"
+  },
+  "buttonText_importSettings": {
+    "message": "Импорт настроек"
+  },
+  "buttonText_loadMore": {
+    "message": "Загрузить ещё"
+  },
+  "buttonText_login": {
+    "message": "Войти в Twitch"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Перезагрузить расширение"
+  },
+  "buttonText_resetExtension": {
+    "message": "Сбросить расширение"
+  },
+  "buttonText_selectAll": {
+    "message": "Выбрать всё"
+  },
+  "buttonText_selectNone": {
+    "message": "Отменить выбор"
+  },
+  "confirmMessage_reload": {
+    "message": "Пожалуйста, используйте кнопку ниже, чтобы перезагрузить расширение."
+  },
+  "confirmMessage_reset": {
+    "message": "Все данные будут удалены, и вы выйдите с аккаунта. <br />Вы уверены, что хотите продолжить?"
+  },
+  "confirmTitle_reload": {
+    "message": "Ой-йо, Gumbo больше не отвечает!"
+  },
+  "confirmTitle_reset": {
+    "message": "Вы собираетесь сбросить Gumbo!"
+  },
+  "detailText_noCategory": {
+    "message": "Без категории"
+  },
+  "detailText_noDescription": {
+    "message": "Без описания"
+  },
+  "detailText_noTitle": {
+    "message": "Без названия"
+  },
+  "detailText_viewCount": {
+    "message": "$1 просмотров"
+  },
+  "errorText_emptyCategories": {
+    "message": "Категория не найдена"
+  },
+  "errorText_emptyChannels": {
+    "message": "Канал не найден"
+  },
+  "errorText_emptyClips": {
+    "message": "Клипы не найдены"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Нет отслеживаемых пользователей"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Нет стримов онлайн"
+  },
+  "errorText_emptyStreams": {
+    "message": "Стримы не найдены"
+  },
+  "errorText_emptyUsers": {
+    "message": "Пользователи не найдены"
+  },
+  "errorText_emptyVideos": {
+    "message": "Видео не найдены"
+  },
+  "extensionDescription": {
+    "message": "Пухлый компаньон сохраняющий актуальными ваши ощущения от Twitch"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch компаньон"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Включить уведомления об изменении категории"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Включить уведомления"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Фильтр уведомлений по каналам"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Фильтр стримов по языку"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Показывать счётчик идущих стримов"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Показывать только каналы в сети"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Показывать Повторы в отслеживаемых стримах"
+  },
+  "linkText_issues": {
+    "message": "Ошибки и предложения"
+  },
+  "linkText_releases": {
+    "message": "Заметки о выпуске"
+  },
+  "linkText_repository": {
+    "message": "Исходный код"
+  },
+  "linkText_translate": {
+    "message": "Перевод"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo - это бесплатное расширение, которое не собирает и не продает личные данные</p><p>Донаты, хоть и необязательны, но очень ценны, так как поддерживают мою работу и побуждают меня предлагать продукты самого высокого качества.</p><p>Спасибо за вашу поддержку!</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Начните печатать для поиска категории"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Начните печатать для поиска каналов"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Нажмите для авторизации"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Ваш токен доступа к Twitch просрочен, пожалуйста пере-авторизуйтесь для получения нового."
+  },
+  "notificationMessage_changedCategory": {
+    "message": "$1 изменил(а) категорию!"
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 онлайн!"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Срок действия истек"
+  },
+  "optionTitle_clickAction": {
+    "message": "Действие при нажатии"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Поведение при нажатии"
+  },
+  "optionTitle_fontSize": {
+    "message": "Размер шрифта"
+  },
+  "optionTitle_theme": {
+    "message": "Тема"
+  },
+  "optionValue_about": {
+    "message": "Описание"
+  },
+  "optionValue_aboutHelp": {
+    "message": "Описание и Помощь"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Открыть в новой вкладке"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Открыть в новом окне"
+  },
+  "optionValue_donate": {
+    "message": "Донат"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Большой"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Огромный"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Средний"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Маленький"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Мелкий"
+  },
+  "optionValue_logout": {
+    "message": "Выйти"
+  },
+  "optionValue_openChannel": {
+    "message": "Открыть канал"
+  },
+  "optionValue_openChat": {
+    "message": "Открыть чат"
+  },
+  "optionValue_period_allTime": {
+    "message": "За всё время"
+  },
+  "optionValue_period_lastDay": {
+    "message": "За день"
+  },
+  "optionValue_period_lastDays": {
+    "message": "За $1 дней"
+  },
+  "optionValue_period_lastHours": {
+    "message": "За $1 часов"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "За месяц"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "За неделю"
+  },
+  "optionValue_popout": {
+    "message": "В окне"
+  },
+  "optionValue_schedule": {
+    "message": "Расписание"
+  },
+  "optionValue_search": {
+    "message": "Поиск"
+  },
+  "optionValue_settings": {
+    "message": "Настройки"
+  },
+  "optionValue_sort_category": {
+    "message": "Категория"
+  },
+  "optionValue_sort_login": {
+    "message": "Ведущий"
+  },
+  "optionValue_sort_name": {
+    "message": "Название"
+  },
+  "optionValue_sort_time": {
+    "message": "Время"
+  },
+  "optionValue_sort_trending": {
+    "message": "В топе"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Продолжительность"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Зрители"
+  },
+  "optionValue_sort_views": {
+    "message": "Просмотры"
+  },
+  "optionValue_status_any": {
+    "message": "Любой"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Только оффлайн"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Только онлайн"
+  },
+  "optionValue_theme_dark": {
+    "message": "Тёмная"
+  },
+  "optionValue_theme_light": {
+    "message": "Светлая"
+  },
+  "optionValue_unknown": {
+    "message": "Неизвестно"
+  },
+  "optionValue_videoType_all": {
+    "message": "Все видео"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Записи"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Хайлайты"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Загрузки"
+  },
+  "optionValue_videos": {
+    "message": "Видео"
+  },
+  "titleText_advanced": {
+    "message": "Расширенные"
+  },
+  "titleText_backgroundColor": {
+    "message": "Цвет фона"
+  },
+  "titleText_badge": {
+    "message": "Ярлык"
+  },
+  "titleText_categories": {
+    "message": "Категории"
+  },
+  "titleText_channels": {
+    "message": "Каналы"
+  },
+  "titleText_clips": {
+    "message": "Клипы"
+  },
+  "titleText_dangerZone": {
+    "message": "Опасная зона"
+  },
+  "titleText_donate": {
+    "message": "Донат"
+  },
+  "titleText_followedStreams": {
+    "message": "Отслеживаемые стримы"
+  },
+  "titleText_followedUsers": {
+    "message": "Отслеживаемые пользователи"
+  },
+  "titleText_general": {
+    "message": "Основные"
+  },
+  "titleText_live": {
+    "message": "В сети"
+  },
+  "titleText_notifications": {
+    "message": "Уведомления"
+  },
+  "titleText_rerun": {
+    "message": "Повтор"
+  },
+  "titleText_search": {
+    "message": "Поиск"
+  },
+  "titleText_settings": {
+    "message": "Настройки"
+  },
+  "titleText_settingsManagement": {
+    "message": "Управление настройками"
+  },
+  "titleText_streams": {
+    "message": "Стримы"
+  },
+  "titleText_topCategories": {
+    "message": "Топ категорий"
+  },
+  "titleText_topStreams": {
+    "message": "Топ стримов"
+  },
+  "titleText_videos": {
+    "message": "Видео"
+  }
+}

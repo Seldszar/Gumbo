@@ -284,6 +284,9 @@
   "titleText_advanced": {
     "message": "Avansert"
   },
+  "titleText_backgroundColor": {
+    "message": "Bakgrunnsfarge"
+  },
   "titleText_badge": {
     "message": "Skilt"
   },

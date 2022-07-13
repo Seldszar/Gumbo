@@ -284,6 +284,9 @@
   "titleText_advanced": {
     "message": "Avanzado"
   },
+  "titleText_backgroundColor": {
+    "message": "Color de fondo"
+  },
   "titleText_badge": {
     "message": "Insignia"
   },
