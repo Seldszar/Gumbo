@@ -284,6 +284,9 @@
   "titleText_advanced": {
     "message": "고급"
   },
+  "titleText_backgroundColor": {
+    "message": "배경색"
+  },
   "titleText_badge": {
     "message": "배지"
   },
