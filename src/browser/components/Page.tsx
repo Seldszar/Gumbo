@@ -20,7 +20,7 @@ const StyledLogo = styled(Logo)`
 `;
 
 const StyledWordmark = styled(Wordmark)`
-  ${tw`flex-shrink-0 h-6 ml-2`}
+  ${tw`flex-shrink-0 h-6 ltr:ml-2 rt:mr-2`}
 `;
 
 const Divider = styled.div`
