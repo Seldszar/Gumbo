@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.14.0](https://github.com/Seldszar/Gumbo/compare/v1.13.0...v1.14.0) (2022-08-09)
+
+
+### Features
+
+* pinned categories ([b624caf](https://github.com/Seldszar/Gumbo/commit/b624cafe5510929cc0741fba48ef453050f6a7e8))
+
+
+### Bug Fixes
+
+* response caching ([95cba5c](https://github.com/Seldszar/Gumbo/commit/95cba5c418a66c0d701dc11bcbf2ee9d787195a0))
+
 ## [1.13.0](https://github.com/Seldszar/Gumbo/compare/v1.12.1...v1.13.0) (2022-07-13)
 
 
