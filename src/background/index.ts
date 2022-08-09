@@ -286,16 +286,19 @@ async function refreshActionBadge(): Promise<void> {
 }
 
 async function backup(): Promise<any> {
-  const [followedStreamState, followedUserState, pinnedUsers, settings] = await Promise.all([
-    stores.followedStreamState.getState(),
-    stores.followedUserState.getState(),
-    stores.pinnedUsers.getState(),
-    stores.settings.getState(),
-  ]);
+  const [followedStreamState, followedUserState, pinnedCategories, pinnedUsers, settings] =
+    await Promise.all([
+      stores.followedStreamState.getState(),
+      stores.followedUserState.getState(),
+      stores.pinnedCategories.getState(),
+      stores.pinnedUsers.getState(),
+      stores.settings.getState(),
+    ]);
 
   return {
     followedStreamState,
     followedUserState,
+    pinnedCategories,
     pinnedUsers,
     settings,
   };
@@ -313,6 +316,7 @@ async function restore(data: any): Promise<void> {
   await Promise.all([
     restoreStore(stores.followedStreamState),
     restoreStore(stores.followedUserState),
+    restoreStore(stores.pinnedCategories),
     restoreStore(stores.pinnedUsers),
     restoreStore(stores.settings),
   ]);
