@@ -167,6 +167,9 @@ export const stores = {
   followedUsers: new Store<any[]>("local", "followedUsers", {
     defaultValue: [],
   }),
+  pinnedCategories: new Store<string[]>("local", "pinnedCategories", {
+    defaultValue: [],
+  }),
   pinnedUsers: new Store<string[]>("local", "pinnedUsers", {
     defaultValue: [],
     migrations: [

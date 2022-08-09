@@ -143,6 +143,24 @@ export function usePinnedUsers(): UsePinnedUsersReturn {
   ];
 }
 
+export type UsePinnedCategoriesReturn = [
+  string[],
+  {
+    toggle(value: string): void;
+  }
+];
+
+export function usePinnedCategories(): UsePinnedCategoriesReturn {
+  const [state, store] = useStore(stores.pinnedCategories);
+
+  return [
+    state,
+    {
+      toggle: (value) => store.set((state) => xor(state, [value])),
+    },
+  ];
+}
+
 export function useClickAction(userLogin: string): string {
   const [settings] = useSettings();
 

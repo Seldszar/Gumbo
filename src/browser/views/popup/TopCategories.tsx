@@ -1,3 +1,4 @@
+import { concat, sortBy, uniqBy } from "lodash";
 import React, { FC, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
@@ -5,7 +6,8 @@ import tw, { styled } from "twin.macro";
 import { t } from "@/common/helpers";
 
 import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useTopCategories } from "@/browser/helpers/queries";
+import { usePinnedCategories } from "@/browser/helpers/hooks";
+import { onceMiddleware, useCategories, useTopCategories } from "@/browser/helpers/queries";
 
 import CategoryCard from "@/browser/components/cards/CategoryCard";
 
@@ -33,14 +35,30 @@ const LoadMore = styled.div`
 `;
 
 const TopCategories: FC = () => {
+  const [pinnedCategories, { toggle }] = usePinnedCategories();
+
+  const [categories, { refresh: refreshCategories }] = useCategories(
+    {
+      id: pinnedCategories,
+    },
+    {
+      use: [onceMiddleware],
+    }
+  );
+
   const [topCategories, { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
     useTopCategories();
 
   const [searchQuery, setSearchQuery] = useState("");
 
+  const allCategories = useMemo(
+    () => uniqBy(concat(sortBy(categories, "name"), topCategories), "id"),
+    [categories, topCategories]
+  );
+
   const filteredCategories = useMemo(
-    () => filterList(topCategories, ["name"], searchQuery),
-    [topCategories, searchQuery]
+    () => filterList(allCategories, ["name"], searchQuery),
+    [allCategories, searchQuery]
   );
 
   const children = useMemo(() => {
@@ -61,7 +79,11 @@ const TopCategories: FC = () => {
         <Grid>
           {filteredCategories.map((category) => (
             <Item key={category.id} to={`/categories/${category.id}`}>
-              <CategoryCard category={category} />
+              <CategoryCard
+                category={category}
+                isPinned={pinnedCategories.includes(category.id)}
+                onTogglePinClick={() => toggle(category.id)}
+              />
             </Item>
           ))}
         </Grid>
@@ -84,8 +106,11 @@ const TopCategories: FC = () => {
           onChange={setSearchQuery}
           actionButtons={[
             {
-              onClick: () => refresh(),
               children: <RefreshIcon isRefreshing={isRefreshing} />,
+              onClick() {
+                refreshCategories();
+                refresh();
+              },
             },
           ]}
         />
