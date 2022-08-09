@@ -1,10 +1,35 @@
 import { get, has } from "lodash-es";
-import useSWR, { Fetcher } from "swr";
+import { useEffect, useState } from "react";
+import useSWR, { Fetcher, Middleware } from "swr";
 import useSWRInfinite from "swr/infinite";
 
 import { sendRuntimeMessage } from "@/common/helpers";
 
 import { useSettings } from "./hooks";
+
+export const onceMiddleware: Middleware = (useSWRNext) => (key, fetcher, config) => {
+  const [data, setData] = useState<any>();
+
+  const swr = useSWRNext(data ? null : key, fetcher, config);
+
+  useEffect(() => {
+    if (swr.data === undefined) {
+      return;
+    }
+
+    setData(swr.data);
+  }, [swr.data]);
+
+  return {
+    ...swr,
+    data,
+    mutate(data) {
+      setData(undefined);
+
+      return swr.mutate(data);
+    },
+  };
+};
 
 export const backgroundFetcher: Fetcher<any, [string, any]> = (url, params = {}) =>
   sendRuntimeMessage("request", url, params);
@@ -21,7 +46,7 @@ export interface UseQueryListResponse {
 
 export type UseQueryListReturn<T> = [T[] | undefined, UseQueryListResponse];
 
-export function useQueryList(url: string, params?: any): UseQueryListReturn<any> {
+export function useQueryList(url: string, params?: any, config?: any): UseQueryListReturn<any> {
   const { data, error, isValidating, mutate, setSize, size } = useSWRInfinite(
     (pageIndex, previousPageData) => {
       if (params == null) {
@@ -39,7 +64,8 @@ export function useQueryList(url: string, params?: any): UseQueryListReturn<any>
       }
 
       return [url, params];
-    }
+    },
+    config
   );
 
   const pageData = get(data, size - 1);
@@ -69,8 +95,8 @@ export interface UseQueryDetailResponse {
 
 export type UseQueryDetailReturn<T> = [T | undefined, UseQueryDetailResponse];
 
-export function useQueryDetail(url: string, params?: any): UseQueryDetailReturn<any> {
-  const { data, error } = useSWR(params ? [url, params] : null);
+export function useQueryDetail(url: string, params?: any, config?: any): UseQueryDetailReturn<any> {
+  const { data, error } = useSWR(params ? [url, params] : null, config);
 
   const isLoading = data == null && error == null;
 
@@ -135,6 +161,10 @@ export function useTopCategories(): UseQueryListReturn<any> {
   return useQueryList("games/top", {
     first: 100,
   });
+}
+
+export function useCategories(params?: any, config?: any): UseQueryListReturn<any> {
+  return useQueryList("games", { ...params, first: 100 }, config);
 }
 
 export function useCategory(id?: number | string): UseQueryDetailReturn<any> {
