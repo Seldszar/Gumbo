@@ -13,7 +13,7 @@ interface StreamNotification {
 
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",
-  cache: "no-cache",
+  cache: "no-store",
   headers: {
     "Client-ID": process.env.TWITCH_CLIENT_ID,
   },
