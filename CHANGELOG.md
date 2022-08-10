@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/Seldszar/Gumbo/compare/v1.14.0...v1.14.1) (2022-08-09)
+
+
+### Bug Fixes
+
+* pinned categories backup ([b72bf63](https://github.com/Seldszar/Gumbo/commit/b72bf638f1c6327bf0b2df6f4eea58a211e0f650))
+
 ## [1.14.0](https://github.com/Seldszar/Gumbo/compare/v1.13.0...v1.14.0) (2022-08-09)
 
 
