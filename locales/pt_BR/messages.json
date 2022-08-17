@@ -1,1 +1,17 @@
-{}
+{
+  "buttonText_cancel": {
+    "message": "Cancelar"
+  },
+  "buttonText_confirm": {
+    "message": "Confirmar"
+  },
+  "buttonText_donateWith": {
+    "message": "Apoiar com $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Exportar Configurações"
+  },
+  "buttonText_importSettings": {
+    "message": "Cancelar"
+  }
+}
