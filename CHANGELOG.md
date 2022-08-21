@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.2](https://github.com/Seldszar/Gumbo/compare/v1.14.1...v1.14.2) (2022-08-21)
+
+
+### Bug Fixes
+
+* **settings:** close window after reset ([99d1327](https://github.com/Seldszar/Gumbo/commit/99d1327f18163373a5fccf3f74c6ab8a40b88711))
+* store validation ([3ac10ee](https://github.com/Seldszar/Gumbo/commit/3ac10ee63f8fa70801aae823201e8449fc01b7d0))
+
 ## [1.14.1](https://github.com/Seldszar/Gumbo/compare/v1.14.0...v1.14.1) (2022-08-09)
 
 
