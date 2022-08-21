@@ -53,6 +53,12 @@ const AdvancedSettings: FC = () => {
     input.click();
   };
 
+  const onResetConfirm: MouseEventHandler<HTMLButtonElement> = async () => {
+    await sendRuntimeMessage("reset");
+
+    close();
+  };
+
   return (
     <Wrapper>
       <Section title={t("titleText_settingsManagement")}>
@@ -104,7 +110,7 @@ const AdvancedSettings: FC = () => {
       <ResetModal
         isOpen={isResetModalOpen}
         onCancel={() => setResetModalOpen(false)}
-        onConfirm={() => sendRuntimeMessage("reset")}
+        onConfirm={onResetConfirm}
       />
     </Wrapper>
   );
