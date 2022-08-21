@@ -1,4 +1,15 @@
-import { defaultsDeep, get, set } from "lodash-es";
+import {
+  any,
+  array,
+  boolean,
+  Describe,
+  enums,
+  mask,
+  nullable,
+  number,
+  object,
+  string,
+} from "superstruct";
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
@@ -10,6 +21,7 @@ export type StoreMigration = (value: any) => Promise<any>;
 export interface StoreOptions<T> {
   onChange?(newValue: T, oldValue?: T): void;
   migrations?: StoreMigration[];
+  schema: Describe<T>;
   defaultValue: T;
 }
 
@@ -70,17 +82,25 @@ export class Store<T> {
   }
 
   async getState(): Promise<StoreState<T>> {
-    const items = await this.areaStorage.get(this.name);
+    const state = {
+      value: this.options.defaultValue,
+      version: 1,
+    };
 
-    return (
-      items[this.name] ?? {
-        value: this.options.defaultValue,
-        version: (this.options.migrations?.length ?? 0) + 1,
+    try {
+      const { [this.name]: item } = await this.areaStorage.get(this.name);
+
+      if (item) {
+        state.value = this.validateValue(item.value);
       }
-    );
+    } catch {} // eslint-disable-line no-empty
+
+    return state;
   }
 
   async setState(state: StoreState<T>): Promise<void> {
+    state.value = this.validateValue(state.value);
+
     await this.areaStorage.set({
       [this.name]: state,
     });
@@ -137,52 +157,68 @@ export class Store<T> {
       state.version = version;
     }
 
-    defaultsDeep(state.value, this.options.defaultValue);
-
     await this.areaStorage.set({
       [this.name]: state,
     });
+  }
+
+  validateValue(value: T): T {
+    return mask(value, this.options.schema);
   }
 }
 
 export const stores = {
   accessToken: new Store<string | null>("local", "accessToken", {
+    schema: nullable(string()),
     defaultValue: null,
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "accessToken", {
-          defaultValue: value,
-        });
-
-        return store.get();
-      },
-    ],
   }),
   currentUser: new Store<any>("local", "currentUser", {
+    schema: nullable(object()),
     defaultValue: null,
   }),
   followedStreams: new Store<any[]>("local", "followedStreams", {
+    schema: array(any()),
     defaultValue: [],
   }),
   followedUsers: new Store<any[]>("local", "followedUsers", {
+    schema: array(any()),
     defaultValue: [],
   }),
   pinnedCategories: new Store<string[]>("local", "pinnedCategories", {
+    schema: array(string()),
     defaultValue: [],
   }),
   pinnedUsers: new Store<string[]>("local", "pinnedUsers", {
+    schema: array(string()),
     defaultValue: [],
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "pinnedUsers", {
-          defaultValue: value,
-        });
-
-        return store.get();
-      },
-    ],
   }),
   settings: new Store<Settings>("local", "settings", {
+    schema: object({
+      general: object({
+        clickAction: number(),
+        clickBehavior: number(),
+        fontSize: enums(["smallest", "small", "medium", "large", "largest"]),
+        theme: enums(["dark", "light"]),
+      }),
+      badge: object({
+        enabled: boolean(),
+        color: string(),
+      }),
+      channels: object({
+        liveOnly: boolean(),
+      }),
+      notifications: object({
+        enabled: boolean(),
+        withFilters: boolean(),
+        withCategoryChanges: boolean(),
+        selectedUsers: array(any()),
+      }),
+      streams: object({
+        withReruns: boolean(),
+        withFilters: boolean(),
+        selectedLanguages: array(any()),
+      }),
+    }),
     defaultValue: {
       general: {
         clickBehavior: ClickBehavior.CreateTab,
@@ -209,55 +245,28 @@ export const stores = {
         selectedLanguages: [],
       },
     },
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "settings", {
-          defaultValue: value,
-        });
-
-        return store.get();
-      },
-      (value) => {
-        const withBadge = get(value, "general.withBadge");
-
-        if (typeof withBadge === "boolean") {
-          set(value, "badge.enabled", withBadge);
-        }
-
-        return value;
-      },
-    ],
   }),
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
+    schema: object({
+      sortDirection: enums(["asc", "desc"]),
+      sortField: string(),
+    }),
     defaultValue: {
       sortField: "viewer_count",
       sortDirection: "desc",
     },
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "followedStreamState", {
-          defaultValue: value,
-        });
-
-        return store.get();
-      },
-    ],
   }),
   followedUserState: new Store<FollowedUserState>("local", "followedUserState", {
+    schema: object({
+      sortDirection: enums(["asc", "desc"]),
+      sortField: string(),
+      status: nullable(boolean()),
+    }),
     defaultValue: {
       sortField: "login",
       sortDirection: "asc",
       status: null,
     },
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "followedUserState", {
-          defaultValue: value,
-        });
-
-        return store.get();
-      },
-    ],
   }),
 };
 
