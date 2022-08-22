@@ -2,6 +2,7 @@ import {
   any,
   array,
   boolean,
+  defaulted,
   Describe,
   enums,
   mask,
@@ -163,7 +164,7 @@ export class Store<T> {
   }
 
   validateValue(value: T): T {
-    return mask(value, this.options.schema);
+    return mask(value, defaulted(this.options.schema, this.options.defaultValue));
   }
 }
 
