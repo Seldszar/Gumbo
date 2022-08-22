@@ -4,6 +4,7 @@
     "jsx": "react",
     "target": "esnext",
     "moduleResolution": "node",
+    "strictNullChecks": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": ".",
