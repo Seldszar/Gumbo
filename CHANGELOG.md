@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.3](https://github.com/Seldszar/Gumbo/compare/v1.14.2...v1.14.3) (2022-08-22)
+
+
+### Bug Fixes
+
+* **store:** apply default values during validation ([ded8710](https://github.com/Seldszar/Gumbo/commit/ded87108a45db95feee86b4f698ef9b77c7676e2))
+
 ## [1.14.2](https://github.com/Seldszar/Gumbo/compare/v1.14.1...v1.14.2) (2022-08-21)
 
 
