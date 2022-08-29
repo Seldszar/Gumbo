@@ -167,6 +167,7 @@ export enum ClickAction {
 export enum ClickBehavior {
   CreateTab,
   CreateWindow,
+  CreateCurrentTab,
 }
 
 export enum NotificationType {
