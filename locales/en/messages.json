@@ -161,6 +161,9 @@
   "optionValue_aboutHelp": {
     "message": "About & Help"
   },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Open in current tab"
+  },
   "optionValue_clickBehavior_createTab": {
     "message": "Open in a new tab"
   },

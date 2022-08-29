@@ -25,7 +25,7 @@ export function getBaseFontSize(value: string): string {
   return "14px";
 }
 
-export async function openUrl(url: string, event?: MouseEvent): Promise<void> {
+export async function openUrl(url: string, event?: MouseEvent, shiftKey = false): Promise<void> {
   event?.stopPropagation();
   event?.preventDefault();
 
@@ -42,15 +42,23 @@ export async function openUrl(url: string, event?: MouseEvent): Promise<void> {
       return;
     }
 
-    if (event.button > 0) {
+    if (event.ctrlKey || event.button > 0) {
       active = false;
+
+      if (clickBehavior === ClickBehavior.CreateCurrentTab) {
+        clickBehavior = ClickBehavior.CreateTab;
+      }
     }
 
     if (event.shiftKey) {
-      clickBehavior = ClickBehavior.CreateTab
-        ? ClickBehavior.CreateWindow
-        : ClickBehavior.CreateTab;
+      shiftKey = true;
     }
+  }
+
+  if (shiftKey) {
+    clickBehavior = ClickBehavior.CreateWindow
+      ? ClickBehavior.CreateTab
+      : ClickBehavior.CreateWindow;
   }
 
   switch (clickBehavior) {
@@ -70,6 +78,19 @@ export async function openUrl(url: string, event?: MouseEvent): Promise<void> {
 
       break;
     }
+
+    case ClickBehavior.CreateCurrentTab: {
+      browser.tabs.update(undefined, {
+        active,
+        url,
+      });
+
+      break;
+    }
+  }
+
+  if (active && typeof window === "object") {
+    window.close();
   }
 }
 

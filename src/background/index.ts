@@ -323,7 +323,7 @@ async function restore(data: any): Promise<void> {
 }
 
 async function authorize(): Promise<void> {
-  return openUrl(AUTHORIZE_URL);
+  return openUrl(AUTHORIZE_URL, undefined, true);
 }
 
 async function ping(): Promise<Date> {
@@ -366,7 +366,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
       return authorize();
 
     case "stream":
-      return openUrl(`https://twitch.tv/${data}`);
+      return openUrl(`https://twitch.tv/${data}`, undefined, true);
   }
 });
 

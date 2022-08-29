@@ -95,6 +95,10 @@ const GeneralSettings: FC = () => {
                 label: t("optionValue_clickBehavior_createWindow"),
                 value: ClickBehavior.CreateWindow,
               },
+              {
+                label: t("optionValue_clickBehavior_createCurrentTab"),
+                value: ClickBehavior.CreateCurrentTab,
+              },
             ]}
           />
         </FormField>
