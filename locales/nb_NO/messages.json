@@ -161,6 +161,9 @@
   "optionValue_aboutHelp": {
     "message": "Om og hjelp"
   },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Åpne i gjeldende fane"
+  },
   "optionValue_clickBehavior_createTab": {
     "message": "Åpne i ny fane"
   },

@@ -161,6 +161,9 @@
   "optionValue_aboutHelp": {
     "message": "정보 & 도움말"
   },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "현재 탭에서 열기"
+  },
   "optionValue_clickBehavior_createTab": {
     "message": "새 탭에서 열기"
   },
