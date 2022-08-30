@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.15.0](https://github.com/Seldszar/Gumbo/compare/v1.14.3...v1.15.0) (2022-08-30)
+
+
+### Features
+
+* open in current tab ([60954df](https://github.com/Seldszar/Gumbo/commit/60954dfdbac142a668163ecc38153f4731aeffad))
+
+
+### Bug Fixes
+
+* update translations ([#88](https://github.com/Seldszar/Gumbo/issues/88)) ([6567ec2](https://github.com/Seldszar/Gumbo/commit/6567ec2033709f631f55fb3bbcc02c117b0e8f2c))
+
 ## [1.14.3](https://github.com/Seldszar/Gumbo/compare/v1.14.2...v1.14.3) (2022-08-22)
 
 
