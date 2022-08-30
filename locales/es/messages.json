@@ -161,6 +161,9 @@
   "optionValue_aboutHelp": {
     "message": "Acerca de & Ayuda"
   },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Abrir en la pestaña actual"
+  },
   "optionValue_clickBehavior_createTab": {
     "message": "Abrir en una nueva pestaña"
   },

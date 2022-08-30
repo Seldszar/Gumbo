@@ -161,6 +161,9 @@
   "optionValue_aboutHelp": {
     "message": "Описание и Помощь"
   },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Открыть в текущей вкладке"
+  },
   "optionValue_clickBehavior_createTab": {
     "message": "Открыть в новой вкладке"
   },

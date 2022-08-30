@@ -161,6 +161,9 @@
   "optionValue_aboutHelp": {
     "message": "Informacje i pomoc"
   },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Otwórz w bieżącej karcie"
+  },
   "optionValue_clickBehavior_createTab": {
     "message": "Otwórz w nowej karcie"
   },
