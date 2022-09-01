@@ -19,11 +19,11 @@ const Title = styled.div`
 `;
 
 const Subtitle = styled.div`
-  ${tw`text-neutral-600 dark:text-neutral-400 text-sm leading-tight truncate`}
+  ${tw`text-neutral-600 dark:text-neutral-400 text-sm truncate`}
 `;
 
 const Body = styled.div`
-  ${tw`text-neutral-600 dark:text-neutral-400 text-sm leading-tight`}
+  ${tw`text-neutral-600 dark:text-neutral-400 text-sm`}
 `;
 
 const ActionButton = styled.button`
