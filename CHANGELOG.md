@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.15.1](https://github.com/Seldszar/Gumbo/compare/v1.15.0...v1.15.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* card line height ([69d9884](https://github.com/Seldszar/Gumbo/commit/69d9884cbf230232a8817e2962c9a9f717d1d6c7))
+* settings views ([eb27437](https://github.com/Seldszar/Gumbo/commit/eb27437a6dc94fb3ef08e66bcb17657d7a970877))
+
 ## [1.15.0](https://github.com/Seldszar/Gumbo/compare/v1.14.3...v1.15.0) (2022-08-30)
 
 
