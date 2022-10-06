@@ -15,7 +15,7 @@ const ChannelName: FC<ChannelNameProps> = (props) => {
   const displayName = useMemo(() => props.name || props.login, [props.login, props.name]);
 
   const isDifferent = useMemo(
-    () => displayName.toLowerCase() !== props.login.toLowerCase(),
+    () => displayName.toLowerCase().trim() !== props.login.toLowerCase().trim(),
     [displayName, props.login]
   );
 
