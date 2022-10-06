@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.2](https://github.com/Seldszar/Gumbo/compare/v1.15.1...v1.15.2) (2022-10-06)
+
+
+### Bug Fixes
+
+* channel name/login difference check ([00d9848](https://github.com/Seldszar/Gumbo/commit/00d9848e6d9de8ec5d26d1c3b77fc7700f66e9d8))
+
 ## [1.15.1](https://github.com/Seldszar/Gumbo/compare/v1.15.0...v1.15.1) (2022-09-01)
 
 
