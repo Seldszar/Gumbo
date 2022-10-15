@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.3](https://github.com/Seldszar/Gumbo/compare/v1.15.2...v1.15.3) (2022-10-15)
+
+
+### Bug Fixes
+
+* settings import ([b39cc3f](https://github.com/Seldszar/Gumbo/commit/b39cc3fc0b14b7ef07878c432011642897f44ca4))
+
 ## [1.15.2](https://github.com/Seldszar/Gumbo/compare/v1.15.1...v1.15.2) (2022-10-06)
 
 
