@@ -34,11 +34,6 @@ const AdvancedSettings: FC = () => {
   };
 
   const onImportClick: MouseEventHandler<HTMLButtonElement> = async () => {
-    const manifest = browser.runtime.getManifest();
-
-    const { document } =
-      manifest.manifest_version === 2 ? await browser.runtime.getBackgroundPage() : window;
-
     const input = document.createElement("input");
 
     input.addEventListener("change", async () => {
