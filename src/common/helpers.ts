@@ -1,4 +1,4 @@
-import { reduce } from "lodash-es";
+import { lowerCase, reduce } from "lodash-es";
 import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
@@ -106,6 +106,10 @@ export function settlePromises<T, V>(values: Iterable<T>, iteratee: (value: T) =
   return Promise.allSettled(Array.from(values, iteratee));
 }
 
+export function tokenify(input: string): string {
+  return lowerCase(input.toLowerCase());
+}
+
 export function matchString(input: string, searchString: string): boolean {
-  return input.toLowerCase().includes(searchString);
+  return tokenify(input).includes(tokenify(searchString));
 }
