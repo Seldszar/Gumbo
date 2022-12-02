@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Ajouter"
+  },
   "buttonText_cancel": {
     "message": "Annuler"
   },
@@ -67,6 +70,9 @@
   },
   "errorText_emptyFollowingUsers": {
     "message": "Aucun utilisateur suivi"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Aucune catégorie ignorée"
   },
   "errorText_emptyOnlineStreams": {
     "message": "Aucun stream en ligne"
@@ -284,6 +290,9 @@
   "optionValue_videos": {
     "message": "Vidéos"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "Saisissez une catégorie à ignorer"
+  },
   "titleText_advanced": {
     "message": "Avancés"
   },
@@ -316,6 +325,9 @@
   },
   "titleText_general": {
     "message": "Général"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Catégories ignorées"
   },
   "titleText_live": {
     "message": "En direct"
