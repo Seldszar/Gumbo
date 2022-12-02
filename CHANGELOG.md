@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.16.0](https://github.com/Seldszar/Gumbo/compare/v1.15.3...v1.16.0) (2022-12-02)
+
+
+### Features
+
+* add ignored categories ([36add55](https://github.com/Seldszar/Gumbo/commit/36add5575d0cbc39a85db407da307ad443d8e656))
+
+
+### Bug Fixes
+
+* token-based matching ([3b7b948](https://github.com/Seldszar/Gumbo/commit/3b7b948fc96187a5b7b7d7e7836c733dd1ad72c2))
+* update french translation ([#101](https://github.com/Seldszar/Gumbo/issues/101)) ([90c4676](https://github.com/Seldszar/Gumbo/commit/90c4676e58d234512235b8f0611abfb9d397cf7d))
+
 ## [1.15.3](https://github.com/Seldszar/Gumbo/compare/v1.15.2...v1.15.3) (2022-10-15)
 
 
