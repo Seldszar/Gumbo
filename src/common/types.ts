@@ -28,6 +28,7 @@ export interface NotificationSettings {
   enabled: boolean;
   withFilters: boolean;
   withCategoryChanges: boolean;
+  ignoredCategories: string[];
   selectedUsers: string[];
 }
 

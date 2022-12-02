@@ -212,7 +212,8 @@ export const stores = {
         enabled: boolean(),
         withFilters: boolean(),
         withCategoryChanges: boolean(),
-        selectedUsers: array(any()),
+        ignoredCategories: array(string()),
+        selectedUsers: array(string()),
       }),
       streams: object({
         withReruns: boolean(),
@@ -238,6 +239,7 @@ export const stores = {
         enabled: true,
         withFilters: false,
         withCategoryChanges: false,
+        ignoredCategories: [],
         selectedUsers: [],
       },
       streams: {

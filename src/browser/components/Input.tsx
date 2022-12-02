@@ -7,6 +7,7 @@ const Wrapper = styled.input`
 
 export interface InputProps {
   onChange?(value: string): void;
+  placeholder?: string;
   className?: string;
   value?: string;
 }
@@ -15,6 +16,7 @@ const Input: FC<InputProps> = (props) => (
   <Wrapper
     value={props.value}
     className={props.className}
+    placeholder={props.placeholder}
     onChange={(event) => props.onChange?.(event.target.value)}
   />
 );

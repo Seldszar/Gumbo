@@ -2,7 +2,7 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
 import { AUTHORIZE_URL, NotificationType } from "@/common/constants";
-import { openUrl, settlePromises, t } from "@/common/helpers";
+import { matchString, openUrl, settlePromises, t } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
 
@@ -126,7 +126,7 @@ async function getStreamNotifications(streams: any[]): Promise<StreamNotificatio
   ]);
 
   const {
-    notifications: { selectedUsers, withCategoryChanges, withFilters },
+    notifications: { ignoredCategories, selectedUsers, withCategoryChanges, withFilters },
   } = settings;
 
   if (withFilters) {
@@ -136,6 +136,10 @@ async function getStreamNotifications(streams: any[]): Promise<StreamNotificatio
   const result = new Array<StreamNotification>();
 
   streams.forEach((stream) => {
+    if (ignoredCategories.some((input) => matchString(stream.game_name, input))) {
+      return;
+    }
+
     const oldStream = find(followedStreams, {
       user_id: stream.user_id,
     });
