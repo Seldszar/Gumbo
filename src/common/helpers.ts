@@ -105,3 +105,7 @@ export function sendRuntimeMessage<T extends unknown[], V>(type: string, ...args
 export function settlePromises<T, V>(values: Iterable<T>, iteratee: (value: T) => Promise<V>) {
   return Promise.allSettled(Array.from(values, iteratee));
 }
+
+export function matchString(input: string, searchString: string): boolean {
+  return input.toLowerCase().includes(searchString);
+}

@@ -7,6 +7,7 @@ import { useFollowedUsers } from "@/browser/helpers/hooks";
 
 import ChannelName from "@/browser/components/ChannelName";
 import CheckboxGrid from "@/browser/components/CheckboxGrid";
+import ListManager from "@/browser/components/ListManager";
 import Section from "@/browser/components/Section";
 import Switch from "@/browser/components/Switch";
 
@@ -50,6 +51,13 @@ const NotificationSettings: FC = () => {
             title: <ChannelName login={user.login} name={user.display_name} />,
             value: user.id,
           }))}
+        />
+      </Section>
+      <Section title={t("titleText_ignoredCategories")}>
+        <ListManager
+          {...register("notifications.ignoredCategories")}
+          placeholder={t("placeholderText_ignoredCategories")}
+          emptyMessage={t("errorText_emptyIgnoredCategories")}
         />
       </Section>
     </Wrapper>
