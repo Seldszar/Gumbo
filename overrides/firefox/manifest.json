@@ -35,5 +35,6 @@
   },
   "commands": {
     "_execute_browser_action": {}
-  }
+  },
+  "options_page": "settings.html"
 }

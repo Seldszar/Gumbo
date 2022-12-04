@@ -87,19 +87,33 @@ const AdvancedSettings: FC = () => {
         </ButtonGroup>
       </Section>
       <Section title={t("titleText_dangerZone")}>
-        <Button
-          onClick={() => setResetModalOpen(true)}
-          color="red"
-          fullWidth
-          icon={
-            <svg viewBox="0 0 24 24">
-              <path d="M12 9v2m0 4v.01" />
-              <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
-            </svg>
-          }
-        >
-          {t("buttonText_resetExtension")}
-        </Button>
+        <ButtonGroup>
+          <Button
+            onClick={() => browser.runtime.reload()}
+            fullWidth
+            icon={
+              <svg viewBox="0 0 24 24">
+                <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+              </svg>
+            }
+          >
+            {t("buttonText_reloadExtension")}
+          </Button>
+          <Button
+            onClick={() => setResetModalOpen(true)}
+            color="red"
+            fullWidth
+            icon={
+              <svg viewBox="0 0 24 24">
+                <path d="M12 9v2m0 4v.01" />
+                <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+              </svg>
+            }
+          >
+            {t("buttonText_resetExtension")}
+          </Button>
+        </ButtonGroup>
       </Section>
 
       <ResetModal
