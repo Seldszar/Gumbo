@@ -134,9 +134,6 @@
   "notificationMessage_accessExpired": {
     "message": "Twitch 액세스 토큰이 만료되었습니다. 새 토큰을 받으려면 다시 인증하세요."
   },
-  "notificationMessage_changedCategory": {
-    "message": "$1 카테고리 변경!"
-  },
   "notificationMessage_streamOnline": {
     "message": "$1 생방송 중입니다!"
   },

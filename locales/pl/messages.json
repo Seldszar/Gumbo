@@ -134,9 +134,6 @@
   "notificationMessage_accessExpired": {
     "message": "Twój token dostępu Twitch wygasł, proszę ponownie autoryzuj, aby otrzymać nowy."
   },
-  "notificationMessage_changedCategory": {
-    "message": "$1 zmienił kategorię!"
-  },
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
   },

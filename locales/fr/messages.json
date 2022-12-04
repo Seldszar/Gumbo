@@ -140,9 +140,6 @@
   "notificationMessage_accessExpired": {
     "message": "Votre jeton d'accès Twitch a expiré, veuillez renouveler votre autorisation pour en obtenir un nouveau."
   },
-  "notificationMessage_changedCategory": {
-    "message": "$1 a changé de catégorie !"
-  },
   "notificationMessage_streamOnline": {
     "message": "$1 est en ligne !"
   },

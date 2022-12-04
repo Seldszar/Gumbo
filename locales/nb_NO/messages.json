@@ -134,9 +134,6 @@
   "notificationMessage_accessExpired": {
     "message": "Ditt Twitch-symbol har utløpt. Identitetsbekreft deg igjen for å få deg et nytt."
   },
-  "notificationMessage_changedCategory": {
-    "message": "$1 endret kategori!"
-  },
   "notificationMessage_streamOnline": {
     "message": "$1 er pålogget!"
   },
