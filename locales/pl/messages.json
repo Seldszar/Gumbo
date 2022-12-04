@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": ""
+  },
   "buttonText_cancel": {
     "message": "Anuluj"
   },
@@ -68,6 +71,9 @@
   "errorText_emptyFollowingUsers": {
     "message": "Brak następujących użytkowników"
   },
+  "errorText_emptyIgnoredCategories": {
+    "message": ""
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Brak transmisji na żywo"
   },
@@ -136,6 +142,9 @@
   },
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": ""
   },
   "notificationTitle_accessExpired": {
     "message": "Dostęp wygasł"
@@ -281,6 +290,9 @@
   "optionValue_videos": {
     "message": "Filmy"
   },
+  "placeholderText_ignoredCategories": {
+    "message": ""
+  },
   "titleText_advanced": {
     "message": "Zaawansowany"
   },
@@ -313,6 +325,9 @@
   },
   "titleText_general": {
     "message": "Ogólny"
+  },
+  "titleText_ignoredCategories": {
+    "message": ""
   },
   "titleText_live": {
     "message": "Na żywo"
