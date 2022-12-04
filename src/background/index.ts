@@ -198,18 +198,16 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
       for (const items of chunk(notifications, 100)) {
         const users = await fetchUsers(map(items, "stream.user_id"));
 
-        settlePromises(items, async ({ stream, type }) => {
+        settlePromises(items, async ({ stream }) => {
           const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
             browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
               title: t(
-                type === NotificationType.CategoryChanged
-                  ? "notificationMessage_changedCategory"
+                stream.game_name
+                  ? "notificationMessage_streamPlaying"
                   : "notificationMessage_streamOnline",
-                stream.user_name || stream.user_login
+                [stream.user_name || stream.user_login, stream.game_name]
               ),
-              contextMessage: stream.game_name || t("detailText_noCategory"),
               message: stream.title || t("detailText_noTitle"),
-              isClickable: true,
               type: "basic",
               iconUrl,
             });

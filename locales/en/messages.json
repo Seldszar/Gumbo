@@ -140,11 +140,11 @@
   "notificationMessage_accessExpired": {
     "message": "Your Twitch access token expired, please re-authorize to get a new one."
   },
-  "notificationMessage_changedCategory": {
-    "message": "$1 changed category!"
-  },
   "notificationMessage_streamOnline": {
     "message": "$1 is online!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 is playing $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Access Expired"
