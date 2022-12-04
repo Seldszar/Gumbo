@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.1](https://github.com/Seldszar/Gumbo/compare/v1.16.0...v1.16.1) (2022-12-04)
+
+
+### Bug Fixes
+
+* **settings:** add reload button & update manifest ([1988542](https://github.com/Seldszar/Gumbo/commit/1988542744cf1557e7bcdd1f1a9b455b155d2abb))
+
 ## [1.16.0](https://github.com/Seldszar/Gumbo/compare/v1.15.3...v1.16.0) (2022-12-02)
 
 
