@@ -24,7 +24,7 @@
     "message": "Login with Twitch"
   },
   "buttonText_reloadExtension": {
-    "message": "Reload the Extension"
+    "message": "Reload Extension"
   },
   "buttonText_resetExtension": {
     "message": "Reset Extension"
