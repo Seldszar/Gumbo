@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.2](https://github.com/Seldszar/Gumbo/compare/v1.16.1...v1.16.2) (2022-12-05)
+
+
+### Bug Fixes
+
+* cross-browser stream notifications ([ed5b43a](https://github.com/Seldszar/Gumbo/commit/ed5b43a439a7a549bc8b3220b380b7c8f91437e3))
+* update translations ([#115](https://github.com/Seldszar/Gumbo/issues/115)) ([6165c32](https://github.com/Seldszar/Gumbo/commit/6165c3290887e836ba3bd7330825a6624b0bfb3d))
+
 ## [1.16.1](https://github.com/Seldszar/Gumbo/compare/v1.16.0...v1.16.1) (2022-12-04)
 
 
