@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Добавить"
+  },
   "buttonText_cancel": {
     "message": "Отмена"
   },
@@ -133,9 +136,6 @@
   },
   "notificationMessage_accessExpired": {
     "message": "Ваш токен доступа к Twitch просрочен, пожалуйста пере-авторизуйтесь для получения нового."
-  },
-  "notificationMessage_changedCategory": {
-    "message": "$1 изменил(а) категорию!"
   },
   "notificationMessage_streamOnline": {
     "message": "$1 онлайн!"
