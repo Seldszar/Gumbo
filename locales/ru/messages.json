@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Добавить"
+  },
   "buttonText_cancel": {
     "message": "Отмена"
   },
