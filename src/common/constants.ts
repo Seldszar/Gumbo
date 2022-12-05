@@ -169,8 +169,3 @@ export enum ClickBehavior {
   CreateWindow,
   CreateCurrentTab,
 }
-
-export enum NotificationType {
-  CategoryChanged,
-  StreamOnline,
-}

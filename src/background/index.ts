@@ -1,15 +1,10 @@
 import ky from "ky";
 import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
-import { AUTHORIZE_URL, NotificationType } from "@/common/constants";
+import { AUTHORIZE_URL } from "@/common/constants";
 import { matchString, openUrl, settlePromises, t } from "@/common/helpers";
 import { Store, stores } from "@/common/stores";
 import { Dictionary } from "@/common/types";
-
-interface StreamNotification {
-  type: NotificationType;
-  stream: any;
-}
 
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",
@@ -119,7 +114,7 @@ async function fetchFollowedStreams(userId: string, after?: string): Promise<any
   return followedStreams;
 }
 
-async function getStreamNotifications(streams: any[]): Promise<StreamNotification[]> {
+async function getStreamNotifications(streams: any[]): Promise<any[]> {
   const [followedStreams, settings] = await Promise.all([
     stores.followedStreams.get(),
     stores.settings.get(),
@@ -129,31 +124,20 @@ async function getStreamNotifications(streams: any[]): Promise<StreamNotificatio
     notifications: { ignoredCategories, selectedUsers, withCategoryChanges, withFilters },
   } = settings;
 
-  if (withFilters) {
-    streams = streams.filter((stream) => selectedUsers.includes(stream.user_id));
-  }
-
-  const result = new Array<StreamNotification>();
-
-  streams.forEach((stream) => {
-    if (ignoredCategories.some((input) => matchString(stream.game_name, input))) {
-      return;
+  return streams.filter((stream) => {
+    if (
+      (withFilters && !selectedUsers.includes(stream.user_id)) ||
+      ignoredCategories.some(matchString.bind(null, stream.game_name))
+    ) {
+      return false;
     }
 
     const oldStream = find(followedStreams, {
       user_id: stream.user_id,
     });
 
-    if (oldStream == null) {
-      return result.push({ stream, type: NotificationType.StreamOnline });
-    }
-
-    if (withCategoryChanges && oldStream.game_id !== stream.game_id) {
-      return result.push({ stream, type: NotificationType.CategoryChanged });
-    }
+    return oldStream == null || (withCategoryChanges && oldStream.game_id !== stream.game_id);
   });
-
-  return result;
 }
 
 async function refreshCurrentUser(accessToken: string | null) {
@@ -196,17 +180,15 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
       const notifications = await getStreamNotifications(followedStreams);
 
       for (const items of chunk(notifications, 100)) {
-        const users = await fetchUsers(map(items, "stream.user_id"));
+        const users = await fetchUsers(map(items, "user_id"));
 
-        settlePromises(items, async ({ stream }) => {
+        settlePromises(items, async (stream) => {
           const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
             browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
-              title: t(
-                stream.game_name
-                  ? "notificationMessage_streamPlaying"
-                  : "notificationMessage_streamOnline",
-                [stream.user_name || stream.user_login, stream.game_name]
-              ),
+              title: t(`notificationMessage_stream${stream.game_name ? "Playing" : "Online"}`, [
+                stream.user_name || stream.user_login,
+                stream.game_name,
+              ]),
               message: stream.title || t("detailText_noTitle"),
               type: "basic",
               iconUrl,
