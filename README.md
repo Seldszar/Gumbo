@@ -2,11 +2,11 @@
 
 > Swollen companion keeping you updated on your Twitch experience
 
-Gumbo is a spiritual successor of Twitch Now allowing you to access your Twitch experience outside the main ecosystem.
+Gumbo is a spiritual successor to Twitch Now, allowing you to access your Twitch experience outside the main ecosystem.
 
-From its user interface, you can check your followed channels and track live streams, as well as discover the popular streams and categories of the moment, all with the possibility to personalize your experience thanks to the multitude of preferences at your disposal.
+From its user interface, you can check your followed channels and track live streams, as well as discover the popular streams and categories of the moment, all with the ability to customize your experience through a multitude of preferences at your disposal.
 
-This extension also informs you when a channel goes online, with the option to pick the notifications you want.
+This extension also informs you when a channel goes online or changes category, with the possibility to choose the notifications you want.
 
 ## Install
 
@@ -50,14 +50,15 @@ You can help translate Gumbo by [registering on Weblate](https://hosted.weblate.
 
 ### Why does it break randomly?
 
-Gumbo can randomly break due to a bug with Chromium itself, with can put the extension in a limbo state.
-It's a known issue, which is unfortunately on the hands of the Chromium team.
+Gumbo can break randomly due to a bug coming from Chromium, which can put the extension in a state of limbo.
+This is a known issue, which is unfortunately in the hands of the Chromium team.
 
 - https://bugs.chromium.org/p/chromium/issues/detail?id=1271154
 
 ### Are sound notifications supported?
 
-Not officially, Manifest V3 doesn't provide the ability to play audio from a service worker. Workarounds exist, but aren't worth the trouble.
+Not officially, Manifest V3 doesn't provide the ability to play audio from a service worker.
+Workarounds exist, but aren't worth the trouble.
 
 - https://bugs.chromium.org/p/chromium/issues/detail?id=1131236
 
