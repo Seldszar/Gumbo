@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Agregar"
+  },
   "buttonText_cancel": {
     "message": "Cancelar"
   },
@@ -21,7 +24,7 @@
     "message": "Conectar con Twitch"
   },
   "buttonText_reloadExtension": {
-    "message": "Recargar la extensión"
+    "message": "Recargar extensión"
   },
   "buttonText_resetExtension": {
     "message": "Restablecer extensión"
@@ -67,6 +70,9 @@
   },
   "errorText_emptyFollowingUsers": {
     "message": "No hay usuarios seguidos"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "No hay categorías ignoradas"
   },
   "errorText_emptyOnlineStreams": {
     "message": "No hay streams en directo"
@@ -123,7 +129,7 @@
     "message": "<p>Gumbo es una extensión gratuita que no recolecta ni vende datos personales del usuario.</p><p>Las donaciones, aunque opcionales son muy apreciadas, ayudan a respaldar mi trabajo y me animan a ofrecer productos de la mejor calidad posible.</p><p>¡Gracias por tu apoyo!</p>"
   },
   "messageText_typeSearchCategories": {
-    "message": "Empieza a escribir para buscar categorías"
+    "message": "Empieza a escribir para buscar en las categorías"
   },
   "messageText_typeSearchChannels": {
     "message": "Empieza a escribir para buscar canales"
@@ -136,6 +142,9 @@
   },
   "notificationMessage_streamOnline": {
     "message": "¡$1 está en directo!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "¡$1 está reproduciendose $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Acceso expirado"
@@ -281,6 +290,9 @@
   "optionValue_videos": {
     "message": "Vídeos"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "Ingrese una categoría para ignorar"
+  },
   "titleText_advanced": {
     "message": "Avanzado"
   },
@@ -313,6 +325,9 @@
   },
   "titleText_general": {
     "message": "General"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Categorías ignoradas"
   },
   "titleText_live": {
     "message": "En vivo"
