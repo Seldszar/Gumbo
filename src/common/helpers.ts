@@ -56,9 +56,8 @@ export async function openUrl(url: string, event?: MouseEvent, shiftKey = false)
   }
 
   if (shiftKey) {
-    clickBehavior = ClickBehavior.CreateWindow
-      ? ClickBehavior.CreateTab
-      : ClickBehavior.CreateWindow;
+    clickBehavior =
+      ClickBehavior[clickBehavior === ClickBehavior.CreateWindow ? "CreateTab" : "CreateWindow"];
   }
 
   switch (clickBehavior) {
