@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.3](https://github.com/Seldszar/Gumbo/compare/v1.16.2...v1.16.3) (2022-12-22)
+
+
+### Bug Fixes
+
+* shift-click behavior ([e1daba6](https://github.com/Seldszar/Gumbo/commit/e1daba63f9fb732fbbc50a127eb6752430cdfc63))
+* update translations ([#119](https://github.com/Seldszar/Gumbo/issues/119)) ([8221a11](https://github.com/Seldszar/Gumbo/commit/8221a119179956d2918baa513373fb6b74601bfd))
+
 ## [1.16.2](https://github.com/Seldszar/Gumbo/compare/v1.16.1...v1.16.2) (2022-12-05)
 
 
