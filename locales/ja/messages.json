@@ -1,1 +1,362 @@
-{}
+{
+  "buttonText_add": {
+    "message": "追加"
+  },
+  "buttonText_cancel": {
+    "message": "キャンセル"
+  },
+  "buttonText_confirm": {
+    "message": "確認"
+  },
+  "buttonText_donateWith": {
+    "message": "$1で寄付する"
+  },
+  "buttonText_exportSettings": {
+    "message": "設定のエクスポート"
+  },
+  "buttonText_importSettings": {
+    "message": "設定のインポート"
+  },
+  "buttonText_loadMore": {
+    "message": "もっと読み込む"
+  },
+  "buttonText_login": {
+    "message": "Twitchでログイン"
+  },
+  "buttonText_reloadExtension": {
+    "message": "拡張機能のリロード"
+  },
+  "buttonText_resetExtension": {
+    "message": "拡張機能のリセット"
+  },
+  "buttonText_selectAll": {
+    "message": "すべて選択"
+  },
+  "buttonText_selectNone": {
+    "message": "選択解除"
+  },
+  "confirmMessage_reload": {
+    "message": "下のボタンから拡張機能を再読み込みしてください。"
+  },
+  "confirmMessage_reset": {
+    "message": "すべてのデータが消去され、ログアウトします。<br />本当に実行してもよろしいですか？"
+  },
+  "confirmTitle_reload": {
+    "message": "あ、Gumboが反応しなくなった！"
+  },
+  "confirmTitle_reset": {
+    "message": "Gumboをリセットしようとしています！"
+  },
+  "detailText_noCategory": {
+    "message": "カテゴリなし"
+  },
+  "detailText_noDescription": {
+    "message": "説明なし"
+  },
+  "detailText_noTitle": {
+    "message": "タイトルなし"
+  },
+  "detailText_viewCount": {
+    "message": "$1再生"
+  },
+  "errorText_emptyCategories": {
+    "message": "カテゴリが見つかりません"
+  },
+  "errorText_emptyChannels": {
+    "message": "チャンネルが見つかりません"
+  },
+  "errorText_emptyClips": {
+    "message": "クリップが見つかりません"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "フォロー中のユーザーがいません"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "無視されたカテゴリはありません"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "オンラインの配信なし"
+  },
+  "errorText_emptyStreams": {
+    "message": "配信が見つかりません"
+  },
+  "errorText_emptyUsers": {
+    "message": "ユーザーが見つかりません"
+  },
+  "errorText_emptyVideos": {
+    "message": "ビデオが見つかりません"
+  },
+  "extensionDescription": {
+    "message": "ふくれたコンパニオンがTwitch体験をアップデート"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitchコンパニオン"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "カテゴリー変更通知を含む"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "通知を有効にする"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "チャンネルによる通知のフィルタリング"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "言語による配信のフィルタリング"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "オンライン配信のカウント表示"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "ライブチャンネルのみを表示"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "フォロー中のストリームで再放送を表示"
+  },
+  "linkText_issues": {
+    "message": "バグと提案"
+  },
+  "linkText_releases": {
+    "message": "リリースノート"
+  },
+  "linkText_repository": {
+    "message": "ソースコード"
+  },
+  "linkText_translate": {
+    "message": "翻訳"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumboは、ユーザーの個人情報を収集したり販売したりしない、無料の拡張機能です。</p><p>寄付は任意ですが、ぜひお願いします。私の仕事をサポートし、可能な限り最高の品質の製品を提供するための励みになります。</p><p>ご支援ありがとうございます。</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "カテゴリを検索するために入力を開始する"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "チャンネルを検索するために入力を開始する"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "クリックで認証"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Twitchのアクセストークンが期限切れです。再認証して新しいものを入手してください。"
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 がオンラインになりました！"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1が$2をプレイ中です！"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "アクセス権失効"
+  },
+  "optionTitle_clickAction": {
+    "message": "クリックアクション"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "クリックの動作"
+  },
+  "optionTitle_fontSize": {
+    "message": "フォントサイズ"
+  },
+  "optionTitle_theme": {
+    "message": "テーマ"
+  },
+  "optionValue_about": {
+    "message": "概要"
+  },
+  "optionValue_aboutHelp": {
+    "message": "概要とヘルプ"
+  },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "現在のタブで開く"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "新しいタブで開く"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "新しいウィンドウで開く"
+  },
+  "optionValue_donate": {
+    "message": "寄付"
+  },
+  "optionValue_fontSize_large": {
+    "message": "大"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "最大"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "中"
+  },
+  "optionValue_fontSize_small": {
+    "message": "小"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "最小"
+  },
+  "optionValue_logout": {
+    "message": "ログアウト"
+  },
+  "optionValue_openChannel": {
+    "message": "チャンネルを開く"
+  },
+  "optionValue_openChat": {
+    "message": "チャットを開く"
+  },
+  "optionValue_period_allTime": {
+    "message": "全て"
+  },
+  "optionValue_period_lastDay": {
+    "message": "1日"
+  },
+  "optionValue_period_lastDays": {
+    "message": "過去$1日間"
+  },
+  "optionValue_period_lastHours": {
+    "message": "過去$1時間"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "先月"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "先週"
+  },
+  "optionValue_popout": {
+    "message": "ポップアウト"
+  },
+  "optionValue_schedule": {
+    "message": "スケジュール"
+  },
+  "optionValue_search": {
+    "message": "検索"
+  },
+  "optionValue_settings": {
+    "message": "設定"
+  },
+  "optionValue_sort_category": {
+    "message": "カテゴリー"
+  },
+  "optionValue_sort_login": {
+    "message": "配信者"
+  },
+  "optionValue_sort_name": {
+    "message": "名前"
+  },
+  "optionValue_sort_time": {
+    "message": "時間"
+  },
+  "optionValue_sort_trending": {
+    "message": "トレンド"
+  },
+  "optionValue_sort_uptime": {
+    "message": "配信時間"
+  },
+  "optionValue_sort_viewers": {
+    "message": "視聴者"
+  },
+  "optionValue_sort_views": {
+    "message": "再生"
+  },
+  "optionValue_status_any": {
+    "message": "すべて"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "オフラインのみ"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "オンラインのみ"
+  },
+  "optionValue_theme_dark": {
+    "message": "ダーク"
+  },
+  "optionValue_theme_light": {
+    "message": "ライト"
+  },
+  "optionValue_unknown": {
+    "message": "不明"
+  },
+  "optionValue_videoType_all": {
+    "message": "すべてのビデオ"
+  },
+  "optionValue_videoType_archive": {
+    "message": "アーカイブス"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "ダイジェスト"
+  },
+  "optionValue_videoType_upload": {
+    "message": "アップロード"
+  },
+  "optionValue_videos": {
+    "message": "ビデオ"
+  },
+  "placeholderText_ignoredCategories": {
+    "message": "無視するカテゴリーを入力する"
+  },
+  "titleText_advanced": {
+    "message": "詳細"
+  },
+  "titleText_backgroundColor": {
+    "message": "背景色"
+  },
+  "titleText_badge": {
+    "message": "バッジ"
+  },
+  "titleText_categories": {
+    "message": "カテゴリ"
+  },
+  "titleText_channels": {
+    "message": "チャンネル"
+  },
+  "titleText_clips": {
+    "message": "クリップ"
+  },
+  "titleText_dangerZone": {
+    "message": "危険地帯"
+  },
+  "titleText_donate": {
+    "message": "寄付"
+  },
+  "titleText_followedStreams": {
+    "message": "フォローしている配信"
+  },
+  "titleText_followedUsers": {
+    "message": "フォローしているユーザー"
+  },
+  "titleText_general": {
+    "message": "一般"
+  },
+  "titleText_ignoredCategories": {
+    "message": "無視するカテゴリ"
+  },
+  "titleText_live": {
+    "message": "ライブ"
+  },
+  "titleText_notifications": {
+    "message": "通知"
+  },
+  "titleText_rerun": {
+    "message": "再放送"
+  },
+  "titleText_search": {
+    "message": "検索"
+  },
+  "titleText_settings": {
+    "message": "設定"
+  },
+  "titleText_settingsManagement": {
+    "message": "設定の構成"
+  },
+  "titleText_streams": {
+    "message": "配信"
+  },
+  "titleText_topCategories": {
+    "message": "トップのカテゴリ"
+  },
+  "titleText_topStreams": {
+    "message": "トップの配信"
+  },
+  "titleText_videos": {
+    "message": "ビデオ"
+  }
+}

@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Hinzufügen"
+  },
   "buttonText_cancel": {
     "message": "Abbrechen"
   },
@@ -68,6 +71,9 @@
   "errorText_emptyFollowingUsers": {
     "message": "Keine gefolgten Streamer"
   },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Keine ignorierten Kategorien"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Keine Streams verfügbar"
   },
@@ -136,6 +142,9 @@
   },
   "notificationMessage_streamOnline": {
     "message": "$1 ist online!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 spielt $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Der Zugang ist abgelaufen"
@@ -281,6 +290,9 @@
   "optionValue_videos": {
     "message": "Videos"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "Eine Kategorie eingeben, die ignoriert werden soll"
+  },
   "titleText_advanced": {
     "message": "Erweitert"
   },
@@ -313,6 +325,9 @@
   },
   "titleText_general": {
     "message": "Allgemein"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Ignorierte Kategorien"
   },
   "titleText_live": {
     "message": "Live"
