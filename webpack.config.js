@@ -33,7 +33,7 @@ module.exports = (env, argv) => {
         "react-dom/test-utils": "preact/test-utils",
         "react-dom": "preact/compat",
         "react/jsx-runtime": "preact/jsx-runtime",
-        "@": path.resolve("src"),
+        "~": path.resolve("src"),
       },
     },
     module: {

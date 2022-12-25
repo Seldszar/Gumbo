@@ -2,7 +2,7 @@ import { filter } from "lodash-es";
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { SortDirection } from "@/common/types";
+import { SortDirection } from "~/common/types";
 
 import Select, { SelectProps } from "./Select";
 import SortButton from "./SortButton";

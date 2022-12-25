@@ -1,6 +1,6 @@
 import { escapeRegExp } from "lodash-es";
 
-import { Dictionary } from "@/common/types";
+import { Dictionary } from "~/common/types";
 
 export function isEmpty<T extends unknown[]>(value?: T): value is undefined {
   return !value?.length;

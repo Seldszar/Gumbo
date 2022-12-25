@@ -1,9 +1,9 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t, template } from "@/common/helpers";
+import { t, template } from "~/common/helpers";
 
-import { formatTime } from "@/browser/helpers/time";
+import { formatTime } from "~/browser/helpers/time";
 
 import Anchor from "../Anchor";
 import Card from "../Card";

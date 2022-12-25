@@ -2,7 +2,7 @@ import React, { ReactNode, FC } from "react";
 import { useTitle } from "react-use";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 import Logo from "./Logo";
 import Wordmark from "./Wordmark";

@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { useFollowedUsers } from "@/browser/helpers/hooks";
+import { useFollowedUsers } from "~/browser/helpers/hooks";
 
-import ChannelName from "@/browser/components/ChannelName";
-import CheckboxGrid from "@/browser/components/CheckboxGrid";
-import ListManager from "@/browser/components/ListManager";
-import Section from "@/browser/components/Section";
-import Switch from "@/browser/components/Switch";
+import ChannelName from "~/browser/components/ChannelName";
+import CheckboxGrid from "~/browser/components/CheckboxGrid";
+import ListManager from "~/browser/components/ListManager";
+import Section from "~/browser/components/Section";
+import Switch from "~/browser/components/Switch";
 
-import { useSettingsContext } from "@/browser/pages/settings";
+import { useSettingsContext } from "~/browser/pages/settings";
 
 const Wrapper = styled.div``;
 

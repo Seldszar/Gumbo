@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 import { useAccessToken } from "../helpers/hooks";
 

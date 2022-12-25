@@ -2,16 +2,16 @@ import React, { FC, useMemo, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useClips } from "@/browser/helpers/queries";
+import { filterList, isEmpty } from "~/browser/helpers/array";
+import { useClips } from "~/browser/helpers/queries";
 
-import ClipCard from "@/browser/components/cards/ClipCard";
+import ClipCard from "~/browser/components/cards/ClipCard";
 
-import FilterBar from "@/browser/components/FilterBar";
-import MoreButton from "@/browser/components/MoreButton";
-import Splash from "@/browser/components/Splash";
+import FilterBar from "~/browser/components/FilterBar";
+import MoreButton from "~/browser/components/MoreButton";
+import Splash from "~/browser/components/Splash";
 
 const Header = styled.div`
   ${tw`py-3 px-4`}

@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t, template } from "@/common/helpers";
+import { t, template } from "~/common/helpers";
 
 import Image from "./Image";
 

@@ -2,7 +2,7 @@ import { concat, map, without } from "lodash-es";
 import React, { FC, FormEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 import Button from "./Button";
 import Input from "./Input";

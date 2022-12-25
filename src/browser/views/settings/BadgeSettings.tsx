@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import ColorPicker from "@/browser/components/ColorPicker";
-import Section from "@/browser/components/Section";
-import Switch from "@/browser/components/Switch";
+import ColorPicker from "~/browser/components/ColorPicker";
+import Section from "~/browser/components/Section";
+import Switch from "~/browser/components/Switch";
 
-import { useSettingsContext } from "@/browser/pages/settings";
+import { useSettingsContext } from "~/browser/pages/settings";
 
 const Wrapper = styled.div``;
 

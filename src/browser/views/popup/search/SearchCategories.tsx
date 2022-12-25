@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { isEmpty } from "@/browser/helpers/array";
-import { useSearchCategories } from "@/browser/helpers/queries";
+import { isEmpty } from "~/browser/helpers/array";
+import { useSearchCategories } from "~/browser/helpers/queries";
 
-import CategoryCard from "@/browser/components/cards/CategoryCard";
+import CategoryCard from "~/browser/components/cards/CategoryCard";
 
-import MoreButton from "@/browser/components/MoreButton";
-import Splash from "@/browser/components/Splash";
+import MoreButton from "~/browser/components/MoreButton";
+import Splash from "~/browser/components/Splash";
 
 const Grid = styled.div`
   ${tw`gap-3 grid grid-cols-4 p-3`}

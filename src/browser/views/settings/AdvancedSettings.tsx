@@ -1,12 +1,12 @@
 import React, { FC, MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { sendRuntimeMessage, t } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "~/common/helpers";
 
-import Section from "@/browser/components/Section";
-import Button from "@/browser/components/Button";
+import Section from "~/browser/components/Section";
+import Button from "~/browser/components/Button";
 
-import ResetModal from "@/browser/components/modals/ResetModal";
+import ResetModal from "~/browser/components/modals/ResetModal";
 
 const Wrapper = styled.div``;
 

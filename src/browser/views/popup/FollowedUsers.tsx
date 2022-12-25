@@ -2,21 +2,21 @@ import { find, groupBy, orderBy } from "lodash-es";
 import React, { FC, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "@/browser/helpers/array";
+import { filterList, isEmpty } from "~/browser/helpers/array";
 import {
   useFollowedStreams,
   useFollowedUsers,
   useFollowedUserState,
   usePinnedUsers,
-} from "@/browser/helpers/hooks";
+} from "~/browser/helpers/hooks";
 
-import UserCard from "@/browser/components/cards/UserCard";
+import UserCard from "~/browser/components/cards/UserCard";
 
-import FilterBar from "@/browser/components/FilterBar";
-import SearchInput from "@/browser/components/SearchInput";
-import Splash from "@/browser/components/Splash";
+import FilterBar from "~/browser/components/FilterBar";
+import SearchInput from "~/browser/components/SearchInput";
+import Splash from "~/browser/components/Splash";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}

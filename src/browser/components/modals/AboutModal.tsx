@@ -1,7 +1,7 @@
 import React, { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 import ExternalAnchor from "../ExternalAnchor";
 import Hero from "../Hero";

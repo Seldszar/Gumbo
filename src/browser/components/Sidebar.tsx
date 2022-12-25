@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 import Logo from "./Logo";
 import ProfileBadge from "./ProfileBadge";

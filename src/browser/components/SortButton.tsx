@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { SortDirection } from "@/common/types";
+import { SortDirection } from "~/common/types";
 
 const Wrapper = styled.button`
   ${tw`text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}

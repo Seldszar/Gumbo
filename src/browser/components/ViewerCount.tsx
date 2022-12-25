@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 interface WrapperProps {
   type: string;

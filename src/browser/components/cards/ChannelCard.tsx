@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
-import { openUrl, t } from "@/common/helpers";
+import { openUrl, t } from "~/common/helpers";
 
-import { useClickAction } from "@/browser/helpers/hooks";
+import { useClickAction } from "~/browser/helpers/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";

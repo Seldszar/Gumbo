@@ -3,21 +3,21 @@ import React, { createContext, FC, useContext } from "react";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
-import { Settings } from "@/common/types";
+import { t } from "~/common/helpers";
+import { Settings } from "~/common/types";
 
-import { usePingError, useSettings } from "@/browser/helpers/hooks";
+import { usePingError, useSettings } from "~/browser/helpers/hooks";
 
-import AdvancedSettings from "@/browser/views/settings/AdvancedSettings";
-import BadgeSettings from "@/browser/views/settings/BadgeSettings";
-import GeneralSettings from "@/browser/views/settings/GeneralSettings";
-import NotificationSettings from "@/browser/views/settings/NotificationSettings";
-import SearchSettings from "@/browser/views/settings/SearchSettings";
-import StreamSettings from "@/browser/views/settings/StreamSettings";
+import AdvancedSettings from "~/browser/views/settings/AdvancedSettings";
+import BadgeSettings from "~/browser/views/settings/BadgeSettings";
+import GeneralSettings from "~/browser/views/settings/GeneralSettings";
+import NotificationSettings from "~/browser/views/settings/NotificationSettings";
+import SearchSettings from "~/browser/views/settings/SearchSettings";
+import StreamSettings from "~/browser/views/settings/StreamSettings";
 
-import Page from "@/browser/components/Page";
+import Page from "~/browser/components/Page";
 
-import ReloadModal from "@/browser/components/modals/ReloadModal";
+import ReloadModal from "~/browser/components/modals/ReloadModal";
 
 const Wrapper = styled.div`
   ${tw`flex gap-6 items-start max-w-2xl w-full`}

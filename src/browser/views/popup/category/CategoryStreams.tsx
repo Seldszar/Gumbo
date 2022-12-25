@@ -2,15 +2,15 @@ import React, { FC, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useStreams } from "@/browser/helpers/queries";
+import { filterList, isEmpty } from "~/browser/helpers/array";
+import { useStreams } from "~/browser/helpers/queries";
 
-import StreamCard from "@/browser/components/cards/StreamCard";
+import StreamCard from "~/browser/components/cards/StreamCard";
 
-import MoreButton from "@/browser/components/MoreButton";
-import Splash from "@/browser/components/Splash";
+import MoreButton from "~/browser/components/MoreButton";
+import Splash from "~/browser/components/Splash";
 
 const List = styled.div`
   ${tw`pt-3`}

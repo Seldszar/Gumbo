@@ -2,7 +2,7 @@ import { map, xor } from "lodash-es";
 import React, { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
 import Checkbox from "./Checkbox";
 

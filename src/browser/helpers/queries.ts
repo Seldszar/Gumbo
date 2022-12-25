@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useSWR, { Fetcher, Middleware } from "swr";
 import useSWRInfinite from "swr/infinite";
 
-import { sendRuntimeMessage } from "@/common/helpers";
+import { sendRuntimeMessage } from "~/common/helpers";
 
 import { useSettings } from "./hooks";
 

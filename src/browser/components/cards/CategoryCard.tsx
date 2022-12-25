@@ -1,7 +1,7 @@
 import React, { FC, MouseEventHandler, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
-import { template } from "@/common/helpers";
+import { template } from "~/common/helpers";
 
 import Image from "../Image";
 import Tooltip from "../Tooltip";

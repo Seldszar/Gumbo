@@ -3,21 +3,21 @@ import { groupBy, orderBy } from "lodash-es";
 import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
 
-import { sendRuntimeMessage, t } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "@/browser/helpers/array";
+import { filterList, isEmpty } from "~/browser/helpers/array";
 import {
   useFollowedStreams,
   useFollowedStreamState,
   usePinnedUsers,
-} from "@/browser/helpers/hooks";
+} from "~/browser/helpers/hooks";
 
-import StreamCard from "@/browser/components/cards/StreamCard";
+import StreamCard from "~/browser/components/cards/StreamCard";
 
-import FilterBar from "@/browser/components/FilterBar";
-import RefreshIcon from "@/browser/components/RefreshIcon";
-import SearchInput from "@/browser/components/SearchInput";
-import Splash from "@/browser/components/Splash";
+import FilterBar from "~/browser/components/FilterBar";
+import RefreshIcon from "~/browser/components/RefreshIcon";
+import SearchInput from "~/browser/components/SearchInput";
+import Splash from "~/browser/components/Splash";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}

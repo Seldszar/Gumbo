@@ -3,25 +3,25 @@ import React, { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { useCurrentUser, usePingError } from "@/browser/helpers/hooks";
+import { useCurrentUser, usePingError } from "~/browser/helpers/hooks";
 
-import CategoryClips from "@/browser/views/popup/category/CategoryClips";
-import CategoryStreams from "@/browser/views/popup/category/CategoryStreams";
-import CategoryVideos from "@/browser/views/popup/category/CategoryVideos";
-import SearchCategories from "@/browser/views/popup/search/SearchCategories";
-import SearchChannels from "@/browser/views/popup/search/SearchChannels";
-import CategoryDetail from "@/browser/views/popup/CategoryDetail";
-import FollowedStreams from "@/browser/views/popup/FollowedStreams";
-import FollowedUsers from "@/browser/views/popup/FollowedUsers";
-import Search from "@/browser/views/popup/Search";
-import TopCategories from "@/browser/views/popup/TopCategories";
-import TopStreams from "@/browser/views/popup/TopStreams";
-import Welcome from "@/browser/views/popup/Welcome";
+import CategoryClips from "~/browser/views/popup/category/CategoryClips";
+import CategoryStreams from "~/browser/views/popup/category/CategoryStreams";
+import CategoryVideos from "~/browser/views/popup/category/CategoryVideos";
+import SearchCategories from "~/browser/views/popup/search/SearchCategories";
+import SearchChannels from "~/browser/views/popup/search/SearchChannels";
+import CategoryDetail from "~/browser/views/popup/CategoryDetail";
+import FollowedStreams from "~/browser/views/popup/FollowedStreams";
+import FollowedUsers from "~/browser/views/popup/FollowedUsers";
+import Search from "~/browser/views/popup/Search";
+import TopCategories from "~/browser/views/popup/TopCategories";
+import TopStreams from "~/browser/views/popup/TopStreams";
+import Welcome from "~/browser/views/popup/Welcome";
 
-import ReloadModal from "@/browser/components/modals/ReloadModal";
+import ReloadModal from "~/browser/components/modals/ReloadModal";
 
-import Sidebar from "@/browser/components/Sidebar";
-import Splash from "@/browser/components/Splash";
+import Sidebar from "~/browser/components/Sidebar";
+import Splash from "~/browser/components/Splash";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col h-full relative`}

@@ -1,17 +1,17 @@
 import React, { FC, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "@/browser/helpers/array";
-import { useStreams } from "@/browser/helpers/queries";
+import { filterList, isEmpty } from "~/browser/helpers/array";
+import { useStreams } from "~/browser/helpers/queries";
 
-import StreamCard from "@/browser/components/cards/StreamCard";
+import StreamCard from "~/browser/components/cards/StreamCard";
 
-import MoreButton from "@/browser/components/MoreButton";
-import RefreshIcon from "@/browser/components/RefreshIcon";
-import SearchInput from "@/browser/components/SearchInput";
-import Splash from "@/browser/components/Splash";
+import MoreButton from "~/browser/components/MoreButton";
+import RefreshIcon from "~/browser/components/RefreshIcon";
+import SearchInput from "~/browser/components/SearchInput";
+import Splash from "~/browser/components/Splash";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}

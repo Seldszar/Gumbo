@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { PRESET_COLORS } from "@/common/constants";
+import { PRESET_COLORS } from "~/common/constants";
 
 import Input from "./Input";
 

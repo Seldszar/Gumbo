@@ -2,9 +2,9 @@ import { find } from "lodash-es";
 import React, { FC, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import ContextMenu from "@/browser/components/ContextMenu";
+import ContextMenu from "~/browser/components/ContextMenu";
 
 interface WrapperProps {
   fullWidth?: boolean;

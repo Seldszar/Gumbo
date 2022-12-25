@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import { isEmpty } from "@/browser/helpers/array";
-import { useSearchChannels } from "@/browser/helpers/queries";
+import { isEmpty } from "~/browser/helpers/array";
+import { useSearchChannels } from "~/browser/helpers/queries";
 
-import ChannelCard from "@/browser/components/cards/ChannelCard";
+import ChannelCard from "~/browser/components/cards/ChannelCard";
 
-import MoreButton from "@/browser/components/MoreButton";
-import Splash from "@/browser/components/Splash";
+import MoreButton from "~/browser/components/MoreButton";
+import Splash from "~/browser/components/Splash";
 
 const List = styled.div``;
 

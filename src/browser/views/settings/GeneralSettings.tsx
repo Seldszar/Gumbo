@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { styled } from "twin.macro";
 
-import { ClickAction, ClickBehavior } from "@/common/constants";
-import { t } from "@/common/helpers";
+import { ClickAction, ClickBehavior } from "~/common/constants";
+import { t } from "~/common/helpers";
 
-import FormField from "@/browser/components/FormField";
-import Section from "@/browser/components/Section";
-import Select from "@/browser/components/Select";
+import FormField from "~/browser/components/FormField";
+import Section from "~/browser/components/Section";
+import Select from "~/browser/components/Select";
 
-import { useSettingsContext } from "@/browser/pages/settings";
+import { useSettingsContext } from "~/browser/pages/settings";
 
 const Wrapper = styled.div``;
 

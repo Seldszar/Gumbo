@@ -2,11 +2,11 @@ import React, { FC, useMemo, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { useCategory } from "@/browser/helpers/queries";
+import { useCategory } from "~/browser/helpers/queries";
 
-import CategoryTitle from "@/browser/components/CategoryTitle";
-import SearchInput from "@/browser/components/SearchInput";
-import Splash from "@/browser/components/Splash";
+import CategoryTitle from "~/browser/components/CategoryTitle";
+import SearchInput from "~/browser/components/SearchInput";
+import Splash from "~/browser/components/Splash";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}

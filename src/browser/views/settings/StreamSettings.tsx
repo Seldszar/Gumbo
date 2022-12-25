@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
-import { LANGUAGE_OPTIONS } from "@/common/constants";
-import { t } from "@/common/helpers";
+import { LANGUAGE_OPTIONS } from "~/common/constants";
+import { t } from "~/common/helpers";
 
-import CheckboxGrid from "@/browser/components/CheckboxGrid";
-import Section from "@/browser/components/Section";
-import Switch from "@/browser/components/Switch";
+import CheckboxGrid from "~/browser/components/CheckboxGrid";
+import Section from "~/browser/components/Section";
+import Switch from "~/browser/components/Switch";
 
-import { useSettingsContext } from "@/browser/pages/settings";
+import { useSettingsContext } from "~/browser/pages/settings";
 
 const Wrapper = styled.div``;
 

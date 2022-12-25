@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler, ReactNode } from "react";
 
-import { openUrl } from "@/common/helpers";
+import { openUrl } from "~/common/helpers";
 
 export interface AnchorProps {
   children?: ReactNode;

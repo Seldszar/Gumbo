@@ -2,9 +2,9 @@ import React, { FC, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "@/common/helpers";
+import { t } from "~/common/helpers";
 
-import SearchInput from "@/browser/components/SearchInput";
+import SearchInput from "~/browser/components/SearchInput";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
