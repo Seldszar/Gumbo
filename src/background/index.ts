@@ -350,7 +350,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
       return authorize();
 
     case "stream":
-      return openUrl(`https://twitch.tv/${data}`, undefined, true);
+      return openUrl(`https://twitch.tv/${data}`);
   }
 });
 
