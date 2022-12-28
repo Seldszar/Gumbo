@@ -71,6 +71,9 @@
   "errorText_emptyFollowingUsers": {
     "message": "Нет отслеживаемых пользователей"
   },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Нет скрытых категорий"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Нет стримов онлайн"
   },
