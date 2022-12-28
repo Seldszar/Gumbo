@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.4](https://github.com/Seldszar/Gumbo/compare/v1.16.3...v1.16.4) (2022-12-28)
+
+
+### Bug Fixes
+
+* stream notification click behavior ([7cf59a0](https://github.com/Seldszar/Gumbo/commit/7cf59a0688ae0625271806c4484c9164e9147e87))
+
 ## [1.16.3](https://github.com/Seldszar/Gumbo/compare/v1.16.2...v1.16.3) (2022-12-22)
 
 
