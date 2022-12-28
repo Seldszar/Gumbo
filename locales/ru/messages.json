@@ -140,6 +140,9 @@
   "notificationMessage_streamOnline": {
     "message": "$1 онлайн!"
   },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 играет в $2!"
+  },
   "notificationTitle_accessExpired": {
     "message": "Срок действия истек"
   },
@@ -284,6 +287,9 @@
   "optionValue_videos": {
     "message": "Видео"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "Введите категорию для скрытия"
+  },
   "titleText_advanced": {
     "message": "Расширенные"
   },
@@ -316,6 +322,9 @@
   },
   "titleText_general": {
     "message": "Основные"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Скрытые Категории"
   },
   "titleText_live": {
     "message": "В сети"
