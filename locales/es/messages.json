@@ -39,7 +39,7 @@
     "message": "Por favor usa el botón de debajo para recargar la extensión."
   },
   "confirmMessage_reset": {
-    "message": "Toda la información será borrada y se te desconectará.<br />¿Estás seguro que quieres continuar?"
+    "message": "Toda la información será borrada y se te desconectará.<br />¿Realmente quieres continuar?"
   },
   "confirmTitle_reload": {
     "message": "Oh no, ¡Gumbo ha dejado de responder!"
@@ -114,7 +114,7 @@
     "message": "Mostrar las repeticiones en los streams seguidos"
   },
   "linkText_issues": {
-    "message": "Bugs & Sugerencias"
+    "message": "Bugs y sugerencias"
   },
   "linkText_releases": {
     "message": "Notas de lanzamiento"
@@ -144,7 +144,7 @@
     "message": "¡$1 está en directo!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "¡$1 está reproduciendose $2!"
+    "message": "¡$1 está jugando $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Acceso expirado"
@@ -165,7 +165,7 @@
     "message": "Acerca de"
   },
   "optionValue_aboutHelp": {
-    "message": "Acerca de & Ayuda"
+    "message": "Acerca de y ayuda"
   },
   "optionValue_clickBehavior_createCurrentTab": {
     "message": "Abrir en la pestaña actual"
