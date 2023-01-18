@@ -1,1 +1,362 @@
-{}
+{
+  "buttonText_add": {
+    "message": "Ekle"
+  },
+  "buttonText_cancel": {
+    "message": "İptal"
+  },
+  "buttonText_confirm": {
+    "message": "Onayla"
+  },
+  "buttonText_donateWith": {
+    "message": "1 Dolar ile bağış yap"
+  },
+  "buttonText_exportSettings": {
+    "message": "Ayarları Dışarı Aktar"
+  },
+  "buttonText_importSettings": {
+    "message": "Ayarları İçeri Aktar"
+  },
+  "buttonText_loadMore": {
+    "message": "Daha fazla yükle"
+  },
+  "buttonText_login": {
+    "message": "Twitch ile giriş yap"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Eklentiyi Yeniden Yükle"
+  },
+  "buttonText_resetExtension": {
+    "message": "Eklentiyi Sıfırla"
+  },
+  "buttonText_selectAll": {
+    "message": "Tümünü Seç"
+  },
+  "buttonText_selectNone": {
+    "message": "Hiçbirini Seçme"
+  },
+  "confirmMessage_reload": {
+    "message": "Lütfen eklentiyi yeniden yüklemek için aşağıdaki düğmeyi kullanın."
+  },
+  "confirmMessage_reset": {
+    "message": "Tüm veriler silinecek ve oturumunuz kapatılacak.<br />Devam etmek istediğinizden emin misiniz?"
+  },
+  "confirmTitle_reload": {
+    "message": "Uh-oh, Gumbo artık yanıt vermiyor!"
+  },
+  "confirmTitle_reset": {
+    "message": "Gumbo'yu sıfırlamak üzeresiniz!"
+  },
+  "detailText_noCategory": {
+    "message": "Kategori yok"
+  },
+  "detailText_noDescription": {
+    "message": "Açıklama yok"
+  },
+  "detailText_noTitle": {
+    "message": "Başlık yok"
+  },
+  "detailText_viewCount": {
+    "message": "$1 görüntüleme"
+  },
+  "errorText_emptyCategories": {
+    "message": "Kategori bulunamadı"
+  },
+  "errorText_emptyChannels": {
+    "message": "Kanal bulunamadı"
+  },
+  "errorText_emptyClips": {
+    "message": "Klip bulunamadı"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Takip edilen kullanıcı yok"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Yoksayılan kategori yok"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Online yayın yok"
+  },
+  "errorText_emptyStreams": {
+    "message": "Yayıncı bulunamadı"
+  },
+  "errorText_emptyUsers": {
+    "message": "Kullanıcı bulunamadı"
+  },
+  "errorText_emptyVideos": {
+    "message": "Video bulunamadı"
+  },
+  "extensionDescription": {
+    "message": "Twitch deneyiminizi güncel tutan şişmiş arkadaşınız"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch Companion"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Kategori değişikliği bildirimlerini dahil et"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Bildirimleri etkinleştir"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Kanal bazında bildirimleri filtrele"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Dil bazında yayınları filtrele"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Çevrimiçi yayın sayısını göster"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Sadece canlı kanalları göster"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Takip edilen yayınlar içinde tekrar yayınları göster"
+  },
+  "linkText_issues": {
+    "message": "Hatalar ve Öneriler"
+  },
+  "linkText_releases": {
+    "message": "Sürüm Notları"
+  },
+  "linkText_repository": {
+    "message": "Kaynak Kodu"
+  },
+  "linkText_translate": {
+    "message": "Çeviri"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo, kişisel kullanıcı verilerini toplamayan ve satmayan ücretsiz bir eklentidir.</p><p>Bağışlar, isteğe bağlı olsa da büyük ölçüde değerlendirilir ve çalışmalarımı desteklememe ve mümkün olan en iyi kaliteli ürünler sunmama yardımcı olur.</p><p>Desteğiniz için teşekkür ederim!</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Kategorileri aramak için yazmaya başlayın"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Kanalları aramak için yazmaya başlayın"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Yetkilendirmek için tıklayın"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Twitch erişim tokeniniz'in süresi doldu, lütfen yeni bir tane almak için yeniden yetkilendirin."
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 çevrimiçi!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 $2 oynuyor!"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Erişim Süresi Doldu"
+  },
+  "optionTitle_clickAction": {
+    "message": "Tıklama Eylemi"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Tıklama Davranışı"
+  },
+  "optionTitle_fontSize": {
+    "message": "Yazı Boyutu"
+  },
+  "optionTitle_theme": {
+    "message": "Tema"
+  },
+  "optionValue_about": {
+    "message": "Hakkında"
+  },
+  "optionValue_aboutHelp": {
+    "message": "Hakkında & Yardım"
+  },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Mevcut sekmede aç"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Yeni sekmede aç"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Yeni pencerede aç"
+  },
+  "optionValue_donate": {
+    "message": "Bağış"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Büyük"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "En Büyük"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Orta"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Küçük"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "En Küçük"
+  },
+  "optionValue_logout": {
+    "message": "Oturumu Kapat"
+  },
+  "optionValue_openChannel": {
+    "message": "Kanalı Aç"
+  },
+  "optionValue_openChat": {
+    "message": "Sohbeti Aç"
+  },
+  "optionValue_period_allTime": {
+    "message": "Tüm zamanlar"
+  },
+  "optionValue_period_lastDay": {
+    "message": "dün"
+  },
+  "optionValue_period_lastDays": {
+    "message": "$1 dün"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Son $1 saat"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Geçem ay"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Geçen hafya"
+  },
+  "optionValue_popout": {
+    "message": "Popout"
+  },
+  "optionValue_schedule": {
+    "message": "Program"
+  },
+  "optionValue_search": {
+    "message": "Ara"
+  },
+  "optionValue_settings": {
+    "message": "Ayarlar"
+  },
+  "optionValue_sort_category": {
+    "message": "Kategoriler"
+  },
+  "optionValue_sort_login": {
+    "message": "Yayıncı"
+  },
+  "optionValue_sort_name": {
+    "message": "İsim"
+  },
+  "optionValue_sort_time": {
+    "message": "Zaman"
+  },
+  "optionValue_sort_trending": {
+    "message": "Popülerler"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Canlı Yayın Süresi"
+  },
+  "optionValue_sort_viewers": {
+    "message": "İzleyici"
+  },
+  "optionValue_sort_views": {
+    "message": "İzlenme"
+  },
+  "optionValue_status_any": {
+    "message": "Herhangi"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Sadece Çevrimdışı"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Sadece Çevrimiçi"
+  },
+  "optionValue_theme_dark": {
+    "message": "Karanlık"
+  },
+  "optionValue_theme_light": {
+    "message": "Aydınlık"
+  },
+  "optionValue_unknown": {
+    "message": "Bilinmeyen"
+  },
+  "optionValue_videoType_all": {
+    "message": "Bütün Videolar"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Arşivler"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Öneçıkanlar"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Yüklemeler"
+  },
+  "optionValue_videos": {
+    "message": "Videolar"
+  },
+  "placeholderText_ignoredCategories": {
+    "message": "Yoksaymak için bir kategori girin"
+  },
+  "titleText_advanced": {
+    "message": "Gelişmiş"
+  },
+  "titleText_backgroundColor": {
+    "message": "Arkaplan Rengi"
+  },
+  "titleText_badge": {
+    "message": "Rozet"
+  },
+  "titleText_categories": {
+    "message": "kategoriler"
+  },
+  "titleText_channels": {
+    "message": "Kanallar"
+  },
+  "titleText_clips": {
+    "message": "Klipler"
+  },
+  "titleText_dangerZone": {
+    "message": "Tehlikeli Bölge"
+  },
+  "titleText_donate": {
+    "message": "Bağış"
+  },
+  "titleText_followedStreams": {
+    "message": "Takip edilen Yayıncılar"
+  },
+  "titleText_followedUsers": {
+    "message": "Takip edilen Kullanıcılar"
+  },
+  "titleText_general": {
+    "message": "Genel"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Yoksayılan kategoriler"
+  },
+  "titleText_live": {
+    "message": "Canlı"
+  },
+  "titleText_notifications": {
+    "message": "Bildirimler"
+  },
+  "titleText_rerun": {
+    "message": "Tekrar Yayın"
+  },
+  "titleText_search": {
+    "message": "Arama"
+  },
+  "titleText_settings": {
+    "message": "Ayarlar"
+  },
+  "titleText_settingsManagement": {
+    "message": "Ayarlar Yönetimi"
+  },
+  "titleText_streams": {
+    "message": "Yayıncılar"
+  },
+  "titleText_topCategories": {
+    "message": "Top kategoriler"
+  },
+  "titleText_topStreams": {
+    "message": "Top yayıncılar"
+  },
+  "titleText_videos": {
+    "message": "Videolar"
+  }
+}
