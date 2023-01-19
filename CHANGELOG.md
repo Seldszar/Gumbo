@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.5](https://github.com/Seldszar/Gumbo/compare/v1.16.4...v1.16.5) (2023-01-19)
+
+
+### Bug Fixes
+
+* update translations ([#125](https://github.com/Seldszar/Gumbo/issues/125)) ([2c40f93](https://github.com/Seldszar/Gumbo/commit/2c40f932ace7e29976e3a7ce2cc2e5b3e1fa73dd))
+* update turkish translation ([#127](https://github.com/Seldszar/Gumbo/issues/127)) ([f57943b](https://github.com/Seldszar/Gumbo/commit/f57943b924682432c312ed3dec2283f26aef0132))
+
 ## [1.16.4](https://github.com/Seldszar/Gumbo/compare/v1.16.3...v1.16.4) (2022-12-28)
 
 
