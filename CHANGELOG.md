@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.6](https://github.com/Seldszar/Gumbo/compare/v1.16.5...v1.16.6) (2023-03-23)
+
+
+### Bug Fixes
+
+* unresponsive service worker workaround ([9465e0a](https://github.com/Seldszar/Gumbo/commit/9465e0a9b903ad466a922c6c791be61be84ca7d0))
+
 ## [1.16.5](https://github.com/Seldszar/Gumbo/compare/v1.16.4...v1.16.5) (2023-01-19)
 
 
