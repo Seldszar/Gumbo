@@ -8,10 +8,12 @@ import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
-import { getBaseFontSize, t } from "~/common/helpers";
+import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
 
 import { useSettings } from "./helpers/hooks";
 import { backgroundFetcher } from "./helpers/queries";
+
+setupSentry();
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
   const root = createRoot(document.body);

@@ -49,6 +49,7 @@ module.exports = (env, argv) => {
       new webpack.EnvironmentPlugin({
         TWITCH_CLIENT_ID: undefined,
         TWITCH_REDIRECT_URI: undefined,
+        SENTRY_DSN: null,
       }),
       new webpack.ProvidePlugin({
         browser: "webextension-polyfill",

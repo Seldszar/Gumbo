@@ -4,9 +4,11 @@ import ky from "ky";
 import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
 import { AUTHORIZE_URL } from "~/common/constants";
-import { matchString, openUrl, settlePromises, t } from "~/common/helpers";
+import { matchString, openUrl, settlePromises, setupSentry, t } from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
 import { Dictionary } from "~/common/types";
+
+setupSentry();
 
 export const client = ky.extend({
   prefixUrl: "https://api.twitch.tv/helix/",

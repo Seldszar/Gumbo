@@ -47,6 +47,7 @@ jobs:
       - name: Build
         run: yarn build:${{ matrix.platform }}
         env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_REDIRECT_URI: ${{ secrets.TWITCH_REDIRECT_URI }}
 
