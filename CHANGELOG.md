@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.7](https://github.com/Seldszar/Gumbo/compare/v1.16.6...v1.16.7) (2023-03-24)
+
+
+### Bug Fixes
+
+* restore sentry ([3626c46](https://github.com/Seldszar/Gumbo/commit/3626c46d08bf525aa3285aae79f4ba935ec9a4c2))
+
 ## [1.16.6](https://github.com/Seldszar/Gumbo/compare/v1.16.5...v1.16.6) (2023-03-23)
 
 
