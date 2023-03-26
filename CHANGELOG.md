@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.8](https://github.com/Seldszar/Gumbo/compare/v1.16.7...v1.16.8) (2023-03-26)
+
+
+### Bug Fixes
+
+* revert service worker workaround ([6f00bd2](https://github.com/Seldszar/Gumbo/commit/6f00bd2fae5ee32731cfa885740941c58a3cedd7))
+* revoke access token on logout ([3e17555](https://github.com/Seldszar/Gumbo/commit/3e17555d96e916c89749a57a5512b97fba769306))
+
 ## [1.16.7](https://github.com/Seldszar/Gumbo/compare/v1.16.6...v1.16.7) (2023-03-24)
 
 
