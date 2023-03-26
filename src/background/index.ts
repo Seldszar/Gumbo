@@ -1,5 +1,3 @@
-import "./workaround";
-
 import ky from "ky";
 import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
 
