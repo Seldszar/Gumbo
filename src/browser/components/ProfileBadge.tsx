@@ -1,9 +1,7 @@
 import React, { FC, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
-
-import { useAccessToken } from "../helpers/hooks";
+import { sendRuntimeMessage, t } from "~/common/helpers";
 
 import AboutModal from "./modals/AboutModal";
 import DonateModal from "./modals/DonateModal";
@@ -21,8 +19,6 @@ interface ProfileBadgeProps {
 }
 
 const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
-  const [, store] = useAccessToken();
-
   const [isAboutOpen, setAboutOpen] = useState(false);
   const [isDonateOpen, setDonateOpen] = useState(false);
 
@@ -87,7 +83,7 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
                 </svg>
               ),
               onClick() {
-                store.set(null);
+                sendRuntimeMessage("revoke");
               },
             },
           ],

@@ -328,6 +328,23 @@ async function reset(): Promise<void> {
   await setup();
 }
 
+async function revoke(): Promise<void> {
+  const token = await stores.accessToken.get();
+
+  if (token == null) {
+    return;
+  }
+
+  ky.post("https://id.twitch.tv/oauth2/revoke", {
+    body: new URLSearchParams({
+      client_id: process.env.TWITCH_CLIENT_ID as string,
+      token,
+    }),
+  });
+
+  await stores.accessToken.set(null);
+}
+
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   authorize,
   backup,
@@ -336,6 +353,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   request,
   reset,
   restore,
+  revoke,
 };
 
 browser.alarms.onAlarm.addListener((alarm) => {
