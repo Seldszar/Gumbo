@@ -323,18 +323,16 @@ async function reset(): Promise<void> {
 async function revoke(): Promise<void> {
   const token = await stores.accessToken.get();
 
-  if (token == null) {
-    return;
+  if (token) {
+    ky.post("https://id.twitch.tv/oauth2/revoke", {
+      body: new URLSearchParams({
+        client_id: process.env.TWITCH_CLIENT_ID as string,
+        token,
+      }),
+    });
   }
 
-  ky.post("https://id.twitch.tv/oauth2/revoke", {
-    body: new URLSearchParams({
-      client_id: process.env.TWITCH_CLIENT_ID as string,
-      token,
-    }),
-  });
-
-  await stores.accessToken.set(null);
+  await stores.accessToken.reset();
 }
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {

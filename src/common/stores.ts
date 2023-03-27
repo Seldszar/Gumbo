@@ -132,6 +132,10 @@ export class Store<T> {
     return true;
   }
 
+  async reset(): Promise<void> {
+    await this.set(this.options.defaultValue);
+  }
+
   async restore(state: StoreState<T>): Promise<void> {
     await this.setState(state);
     await this.migrate();
