@@ -368,11 +368,7 @@ async function setup(): Promise<void> {
   await settlePromises(Object.values(stores), (store) => store.setup(true));
 }
 
-browser.runtime.onInstalled.addListener((detail) => {
-  if (detail.reason === "browser_update") {
-    return;
-  }
-
+browser.runtime.onInstalled.addListener(() => {
   setup();
 });
 
