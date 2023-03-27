@@ -50,7 +50,7 @@ const FollowedStreams: FC = () => {
   const [followedStreamState, { setSortDirection, setSortField }] = useFollowedStreamState();
   const [pinnedUsers, { toggle }] = usePinnedUsers();
 
-  const [refreshState, doRefresh] = useAsyncFn(() => sendRuntimeMessage("refresh", true, true), []);
+  const [refreshState, doRefresh] = useAsyncFn(() => sendRuntimeMessage("refresh", true), []);
 
   const itemGroups = useMemo(() => {
     let { sortDirection } = followedStreamState;

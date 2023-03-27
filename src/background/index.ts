@@ -215,11 +215,7 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
   await stores.followedStreams.set(followedStreams);
 }
 
-async function refresh(withNotifications = true, resetAlarm = false) {
-  if (resetAlarm) {
-    browser.alarms.clear("refresh");
-  }
-
+async function refresh(withNotifications: boolean) {
   try {
     const currentUser = await refreshCurrentUser(await stores.accessToken.get());
 
@@ -229,11 +225,9 @@ async function refresh(withNotifications = true, resetAlarm = false) {
     ]);
   } catch {} // eslint-disable-line no-empty
 
-  if (resetAlarm) {
-    browser.alarms.create("refresh", {
-      periodInMinutes: 1,
-    });
-  }
+  browser.alarms.create("refresh", {
+    delayInMinutes: 1,
+  });
 }
 
 async function refreshActionBadge(): Promise<void> {
@@ -355,11 +349,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
 };
 
 browser.alarms.onAlarm.addListener((alarm) => {
-  if (Date.now() > alarm.scheduledTime + 60_000) {
-    return;
-  }
-
-  refresh();
+  refresh(Date.now() < alarm.scheduledTime + 300_000);
 });
 
 browser.notifications.onClicked.addListener((notificationId) => {
@@ -375,10 +365,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
 });
 
 async function setup(): Promise<void> {
-  const allStores = Object.values(stores);
-
-  await settlePromises(allStores, (store) => store.setup(true));
-  await refresh(false, true);
+  await settlePromises(Object.values(stores), (store) => store.setup(true));
 }
 
 browser.runtime.onInstalled.addListener((detail) => {
@@ -420,7 +407,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 stores.accessToken.onChange(() => {
-  refresh(false, true);
+  refresh(false);
 });
 
 stores.followedStreams.onChange(() => {
