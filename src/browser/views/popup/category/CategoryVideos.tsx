@@ -33,14 +33,14 @@ const CategoryVideos: FC = () => {
   const [type, setType] = useState("all");
 
   const [videos = [], { error, fetchMore, hasMore, isLoadingMore }] = useVideos({
-    game_id: category.id,
+    gameId: category.id,
     period,
     sort,
     type,
   });
 
   const filteredVideos = useMemo(
-    () => filterList(videos, ["description", "title", "user_login"], searchQuery),
+    () => filterList(videos, ["description", "title", "userLogin"], searchQuery),
     [videos, searchQuery]
   );
 

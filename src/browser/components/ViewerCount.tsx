@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+import { FollowedStream, HelixStream } from "~/common/types";
 
 interface WrapperProps {
   type: string;
@@ -26,7 +27,7 @@ const Wrapper = styled.div<WrapperProps>`
 
 export interface ViewerCountProps {
   className?: string;
-  stream: any;
+  stream: FollowedStream | HelixStream;
 }
 
 const ViewerCount: FC<ViewerCountProps> = (props) => {
@@ -60,7 +61,7 @@ const ViewerCount: FC<ViewerCountProps> = (props) => {
 
   return (
     <Wrapper type={stream.type} title={status.title} className={props.className}>
-      {stream.viewer_count.toLocaleString("en-US")}
+      {stream.viewerCount.toLocaleString("en-US")}
       {status.icon}
     </Wrapper>
   );

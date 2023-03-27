@@ -23,9 +23,9 @@ const LoadMore = styled.div`
 const SearchChannels: FC = () => {
   const { searchQuery } = useOutletContext<any>();
 
-  const [channels, { error, fetchMore, hasMore, isLoadingMore }] = useSearchChannels({
-    query: searchQuery,
-  });
+  const [channels, { error, fetchMore, hasMore, isLoadingMore }] = useSearchChannels(
+    searchQuery.length > 0 ? { query: searchQuery } : null
+  );
 
   if (searchQuery.length === 0) {
     return <Splash>{t("messageText_typeSearchChannels")}</Splash>;

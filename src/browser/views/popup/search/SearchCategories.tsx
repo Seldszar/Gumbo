@@ -25,9 +25,9 @@ const LoadMore = styled.div`
 const SearchCategories: FC = () => {
   const { searchQuery } = useOutletContext<any>();
 
-  const [categories, { error, fetchMore, hasMore, isLoadingMore }] = useSearchCategories({
-    query: searchQuery,
-  });
+  const [categories, { error, fetchMore, hasMore, isLoadingMore }] = useSearchCategories(
+    searchQuery.length > 0 ? { query: searchQuery } : null
+  );
 
   if (searchQuery.length === 0) {
     return <Splash>{t("messageText_typeSearchCategories")}</Splash>;

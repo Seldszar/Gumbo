@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
+import { CurrentUser } from "~/common/types";
 
 import AboutModal from "./modals/AboutModal";
 import DonateModal from "./modals/DonateModal";
@@ -15,7 +16,7 @@ const Wrapper = styled.button`
 
 interface ProfileBadgeProps {
   className?: string;
-  user: any;
+  user: CurrentUser;
 }
 
 const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
@@ -91,7 +92,7 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
       >
         {(ref) => (
           <Wrapper className={props.className} ref={ref}>
-            {props.user && <Image src={props.user.profile_image_url} ratio={1} />}
+            {props.user && <Image src={props.user.profileImageUrl} ratio={1} />}
           </Wrapper>
         )}
       </ContextMenu>

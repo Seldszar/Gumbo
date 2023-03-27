@@ -13,7 +13,6 @@
     "@floating-ui/react-dom": "^0.7.1",
     "@sentry/browser": "^7.45.0",
     "framer-motion": "^6.3.4",
-    "ky": "^0.30.0",
     "lodash-es": "^4.17.21",
     "p-timeout": "^5.0.2",
     "preact": "^10.7.2",

@@ -55,18 +55,18 @@ const FollowedStreams: FC = () => {
   const itemGroups = useMemo(() => {
     let { sortDirection } = followedStreamState;
 
-    if (followedStreamState.sortField === "started_at") {
+    if (followedStreamState.sortField === "startedAt") {
       sortDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
     return Object.values(
       groupBy(
         orderBy(
-          filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
-          [(stream) => pinnedUsers.includes(stream.user_id), followedStreamState.sortField],
+          filterList(followedStreams, ["gameName", "title", "userLogin"], searchQuery),
+          [(stream) => pinnedUsers.includes(stream.userId), followedStreamState.sortField],
           ["desc", sortDirection]
         ),
-        (stream) => (pinnedUsers.includes(stream.user_id) ? 0 : 1)
+        (stream) => (pinnedUsers.includes(stream.userId) ? 0 : 1)
       )
     );
   }, [followedStreamState, followedStreams, pinnedUsers, searchQuery]);
@@ -92,8 +92,8 @@ const FollowedStreams: FC = () => {
               <Item key={stream.id}>
                 <StreamCard
                   stream={stream}
-                  onTogglePinClick={() => toggle(stream.user_id)}
-                  isPinned={pinnedUsers.includes(stream.user_id)}
+                  onTogglePinClick={() => toggle(stream.userId)}
+                  isPinned={pinnedUsers.includes(stream.userId)}
                 />
               </Item>
             ))}
@@ -127,19 +127,19 @@ const FollowedStreams: FC = () => {
             value: followedStreamState.sortField,
             options: [
               {
-                value: "user_login",
+                value: "userLogin",
                 label: t("optionValue_sort_login"),
               },
               {
-                value: "game_name",
+                value: "gameName",
                 label: t("optionValue_sort_category"),
               },
               {
-                value: "started_at",
+                value: "startedAt",
                 label: t("optionValue_sort_uptime"),
               },
               {
-                value: "viewer_count",
+                value: "viewerCount",
                 label: t("optionValue_sort_viewers"),
               },
             ],

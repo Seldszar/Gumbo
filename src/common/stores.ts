@@ -14,7 +14,14 @@ import {
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
-import { FollowedStreamState, FollowedUserState, Settings } from "./types";
+import {
+  CurrentUser,
+  FollowedStream,
+  FollowedStreamState,
+  FollowedUser,
+  FollowedUserState,
+  Settings,
+} from "./types";
 
 export type StoreAreaName = "local" | "managed" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;
@@ -177,12 +184,33 @@ export const stores = {
     schema: nullable(string()),
     defaultValue: null,
   }),
-  currentUser: new Store<any>("local", "currentUser", {
-    schema: nullable(object()),
+  currentUser: new Store<CurrentUser | null>("local", "currentUser", {
+    schema: nullable(
+      object({
+        id: string(),
+        login: string(),
+        displayName: string(),
+        profileImageUrl: string(),
+      })
+    ),
     defaultValue: null,
   }),
-  followedStreams: new Store<any[]>("local", "followedStreams", {
-    schema: array(any()),
+  followedStreams: new Store<FollowedStream[]>("local", "followedStreams", {
+    schema: array(
+      object({
+        id: string(),
+        userId: string(),
+        userLogin: string(),
+        userName: string(),
+        gameId: string(),
+        gameName: string(),
+        type: string(),
+        title: string(),
+        viewerCount: number(),
+        startedAt: string(),
+        thumbnailUrl: string(),
+      })
+    ),
     defaultValue: [],
   }),
   pinnedCategories: new Store<string[]>("local", "pinnedCategories", {
@@ -252,17 +280,17 @@ export const stores = {
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
-      sortField: string(),
+      sortField: enums(["gameName", "startedAt", "userLogin", "viewerCount"]),
     }),
     defaultValue: {
-      sortField: "viewer_count",
+      sortField: "viewerCount",
       sortDirection: "desc",
     },
   }),
   followedUserState: new Store<FollowedUserState>("local", "followedUserState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
-      sortField: string(),
+      sortField: enums(["followedAt", "login"]),
       status: nullable(boolean()),
     }),
     defaultValue: {

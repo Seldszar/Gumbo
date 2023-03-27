@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
+import { HelixVideo } from "~/common/types";
 
 import { parseFormatDuration } from "~/browser/helpers/time";
 
@@ -29,18 +30,18 @@ const Details = styled.ul`
 `;
 
 export interface VideoCardProps {
-  video: any;
+  video: HelixVideo;
 }
 
 const VideoCard: FC<VideoCardProps> = (props) => {
   const { video } = props;
 
   const previewImage = useMemo(
-    () => template(video.thumbnail_url, { "%{width}": 96, "%{height}": 54 }),
-    [video.thumbnail_url]
+    () => template(video.thumbnailUrl, { "%{width}": 96, "%{height}": 54 }),
+    [video.thumbnailUrl]
   );
 
-  const createdAt = useMemo(() => new Date(video.created_at), [video.created_at]);
+  const createdAt = useMemo(() => new Date(video.createdAt), [video.createdAt]);
   const durationString = useMemo(() => parseFormatDuration(video.duration), [video.duration]);
 
   return (
@@ -51,7 +52,7 @@ const VideoCard: FC<VideoCardProps> = (props) => {
           title: video.title,
         }}
         subtitleProps={{
-          children: <ChannelName login={video.user_login} name={video.user_name} />,
+          children: <ChannelName login={video.userLogin} name={video.userName} />,
         }}
         aside={
           <Thumbnail>
@@ -62,7 +63,7 @@ const VideoCard: FC<VideoCardProps> = (props) => {
       >
         <Details>
           <li>{createdAt.toLocaleString()}</li>
-          <li>{t("detailText_viewCount", video.view_count.toLocaleString())}</li>
+          <li>{t("detailText_viewCount", video.viewCount.toLocaleString())}</li>
         </Details>
       </Wrapper>
     </Anchor>

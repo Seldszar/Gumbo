@@ -4,6 +4,16 @@ import useSWR, { Fetcher, Middleware, SWRConfiguration } from "swr";
 import useSWRInfinite, { SWRInfiniteConfiguration } from "swr/infinite";
 
 import { sendRuntimeMessage } from "~/common/helpers";
+import {
+  HelixCategorySearchResult,
+  HelixChannelSearchResult,
+  HelixClip,
+  HelixFollowedChannel,
+  HelixGame,
+  HelixStream,
+  HelixUser,
+  HelixVideo,
+} from "~/common/types";
 
 import { useCurrentUser, useSettings } from "./hooks";
 
@@ -47,7 +57,7 @@ export interface UseQueryListResponse {
 export type UseQueryListReturn<T> = [T[] | undefined, UseQueryListResponse];
 
 export function useQueryList<T = any>(
-  url: string,
+  path: string,
   params?: any,
   config?: SWRInfiniteConfiguration
 ): UseQueryListReturn<T> {
@@ -64,10 +74,10 @@ export function useQueryList<T = any>(
           return null;
         }
 
-        return [url, { ...params, after: cursor }];
+        return [path, { ...params, after: cursor }];
       }
 
-      return [url, params];
+      return [path, params];
     },
     config
   );
@@ -114,15 +124,15 @@ export function useQueryDetail<T = any>(
   ];
 }
 
-export function useClips(params?: any, config?: any) {
-  return useQueryList("clips", { ...params, first: 100 }, config);
+export function useClips(params?: any, config?: SWRInfiniteConfiguration) {
+  return useQueryList<HelixClip>("clips", { ...params, first: 100 }, config);
 }
 
-export function useVideos(params?: any, config?: any) {
-  return useQueryList("videos", { ...params, first: 100 }, config);
+export function useVideos(params?: any, config?: SWRInfiniteConfiguration) {
+  return useQueryList<HelixVideo>("videos", { ...params, first: 100 }, config);
 }
 
-export function useStreams(params?: any, config?: any) {
+export function useStreams(params?: any, config?: SWRInfiniteConfiguration) {
   const [settings, { isLoading }] = useSettings();
 
   const queryParams = useMemo(() => {
@@ -137,10 +147,10 @@ export function useStreams(params?: any, config?: any) {
     };
   }, [isLoading, params, settings]);
 
-  return useQueryList("streams", queryParams, config);
+  return useQueryList<HelixStream>("streams", queryParams, config);
 }
 
-export function useSearchChannels(params?: any, config?: any) {
+export function useSearchChannels(params?: any, config?: SWRInfiniteConfiguration) {
   const [settings, { isLoading }] = useSettings();
 
   const queryParams = useMemo(() => {
@@ -150,39 +160,54 @@ export function useSearchChannels(params?: any, config?: any) {
 
     return {
       ...params,
-      live_only: settings.channels.liveOnly,
+      liveOnly: settings.channels.liveOnly,
       first: 100,
     };
   }, [isLoading, params, settings]);
 
-  return useQueryList("search/channels", queryParams, config);
+  return useQueryList<HelixChannelSearchResult>("search/channels", queryParams, config);
 }
 
-export function useSearchCategories(params?: any, config?: any) {
-  return useQueryList("search/categories", params ? { ...params, first: 100 } : null, config);
+export function useSearchCategories(params?: any, config?: SWRInfiniteConfiguration) {
+  const queryParams = useMemo(() => {
+    if (params == null) {
+      return null;
+    }
+
+    return {
+      ...params,
+      first: 100,
+    };
+  }, [params]);
+
+  return useQueryList<HelixCategorySearchResult>("search/categories", queryParams, config);
 }
 
-export function useTopCategories(params?: any, config?: any) {
-  return useQueryList("games/top", { ...params, first: 100 }, config);
+export function useTopCategories(params?: any, config?: SWRInfiniteConfiguration) {
+  return useQueryList<HelixGame>("games/top", { ...params, first: 100 }, config);
 }
 
-export function useCategories(params?: any, config?: any) {
-  return useQueryList("games", { ...params, first: 100 }, config);
+export function useCategories(params?: any, config?: SWRInfiniteConfiguration) {
+  return useQueryList<HelixGame>("games", { ...params, first: 100 }, config);
 }
 
-export function useCategory(id?: number | string, config?: any) {
-  return useQueryDetail("games", id ? { id } : null, config);
+export function useCategory(id?: number | string, config?: SWRConfiguration) {
+  return useQueryDetail<HelixGame>("games", id ? { id } : null, config);
 }
 
 export function useFollowedChannels() {
   const [currentUser] = useCurrentUser();
 
   return useSWR(currentUser ? ["followedChannels", currentUser.id] : null, async () => {
+    if (currentUser == null) {
+      return [];
+    }
+
     const fetchPage = async (after?: string) => {
       const { data, pagination } = await backgroundFetcher([
         "channels/followed",
         {
-          user_id: currentUser.id,
+          userId: currentUser.id,
           first: 100,
           after,
         },
@@ -192,7 +217,7 @@ export function useFollowedChannels() {
         data.push(...(await fetchPage(pagination.cursor)));
       }
 
-      return data as any[];
+      return data as HelixFollowedChannel[];
     };
 
     return fetchPage();
@@ -212,7 +237,7 @@ export function useUsersByIds(userIds: string[]) {
           },
         ]);
 
-        return data;
+        return data as HelixUser[];
       })
     );
 

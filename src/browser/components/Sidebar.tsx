@@ -2,6 +2,7 @@ import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+import { CurrentUser } from "~/common/types";
 
 import Logo from "./Logo";
 import ProfileBadge from "./ProfileBadge";
@@ -45,7 +46,7 @@ const Footer = styled.div`
 
 export interface SidebarProps {
   className?: string;
-  user: any;
+  user: CurrentUser;
 }
 
 const Sidebar: FC<SidebarProps> = (props) => (

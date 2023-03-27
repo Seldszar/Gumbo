@@ -2,6 +2,7 @@ import { FC, MouseEventHandler, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { template } from "~/common/helpers";
+import { HelixCategorySearchResult, HelixGame } from "~/common/types";
 
 import Image from "../Image";
 import Tooltip from "../Tooltip";
@@ -73,15 +74,15 @@ const Wrapper = styled.div``;
 export interface CategoryCardProps {
   onTogglePinClick?(): void;
   isPinned?: boolean;
-  category: any;
+  category: HelixGame | HelixCategorySearchResult;
 }
 
 const CategoryCard: FC<CategoryCardProps> = (props) => {
   const { category } = props;
 
   const boxArtUrl = useMemo(
-    () => template(category.box_art_url, { "{width}": 78, "{height}": 104 }),
-    [category.box_art_url]
+    () => template(category.boxArtUrl, { "{width}": 78, "{height}": 104 }),
+    [category.boxArtUrl]
   );
 
   const onTogglePinClick: MouseEventHandler<HTMLButtonElement> = (event) => {

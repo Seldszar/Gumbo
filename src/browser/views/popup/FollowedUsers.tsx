@@ -51,27 +51,27 @@ const FollowedUsers: FC = () => {
   const [pinnedUsers, { toggle }] = usePinnedUsers();
 
   const { data: followedChannels = [], isValidating, mutate } = useFollowedChannels();
-  const { data: users = [], isLoading } = useUsersByIds(map(followedChannels, "broadcaster_id"));
+  const { data: users = [], isLoading } = useUsersByIds(map(followedChannels, "broadcasterId"));
 
   const items = useMemo(() => {
     const items = new Array<any>();
 
     users.forEach((user) => {
-      const matchesFields = matchFields(user, ["display_name", "login"], searchQuery);
+      const matchesFields = matchFields(user, ["displayName", "login"], searchQuery);
       const isLive = some(followedStreams, {
-        user_id: user.id,
+        userId: user.id,
         type: "live",
       });
 
       if (matchesFields && [isLive, null].includes(followedUserState.status)) {
         const channel = find(followedChannels, {
-          broadcaster_id: user.id,
+          broadcasterId: user.id,
         });
 
         items.push({
           ...user,
 
-          followedAt: new Date(channel.followed_at),
+          followedAt: new Date(channel?.followedAt ?? 0),
           isLive,
         });
       }

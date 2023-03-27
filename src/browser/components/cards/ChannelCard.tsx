@@ -2,6 +2,7 @@ import { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";
+import { HelixChannelSearchResult } from "~/common/types";
 
 import { useClickAction } from "~/browser/helpers/hooks";
 
@@ -35,39 +36,39 @@ const CategoryName = styled.div`
 `;
 
 export interface ChannelCardProps {
-  channel: any;
+  channel: HelixChannelSearchResult;
 }
 
 const ChannelCard: FC<ChannelCardProps> = (props) => {
   const { channel } = props;
 
-  const defaultAction = useClickAction(channel.broadcaster_login);
+  const defaultAction = useClickAction(channel.broadcasterLogin);
 
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        isLive={channel.is_live}
+        isLive={channel.isLive}
         overflowMenu={{
           items: [
             {
               type: "link",
               children: t("optionValue_openChannel"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}`, event);
+                openUrl(`https://twitch.tv/${channel.broadcasterLogin}`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_openChat"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/chat`, event);
+                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/chat`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_popout"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/popout`, event);
+                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/popout`, event);
               },
             },
             {
@@ -77,27 +78,27 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
               type: "link",
               children: t("optionValue_about"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/about`, event);
+                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/about`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_schedule"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/schedule`, event);
+                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/schedule`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_videos"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/videos`, event);
+                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/videos`, event);
               },
             },
           ],
         }}
         titleProps={{
-          children: <ChannelName login={channel.broadcaster_login} name={channel.display_name} />,
+          children: <ChannelName login={channel.broadcasterLogin} name={channel.displayName} />,
         }}
         subtitleProps={{
           children: channel.title || <i>{t("detailText_noTitle")}</i>,
@@ -105,12 +106,12 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
         }}
         aside={
           <Thumbnail>
-            <Image src={channel.thumbnail_url} ratio={1} />
+            <Image src={channel.thumbnailUrl} ratio={1} />
           </Thumbnail>
         }
       >
-        <CategoryName title={channel.game_name}>
-          {channel.game_name || <i>{t("detailText_noCategory")}</i>}
+        <CategoryName title={channel.gameName}>
+          {channel.gameName || <i>{t("detailText_noCategory")}</i>}
         </CategoryName>
       </Wrapper>
     </Anchor>

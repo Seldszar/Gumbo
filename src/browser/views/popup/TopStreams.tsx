@@ -34,7 +34,7 @@ const TopStreams: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredStreams = useMemo(
-    () => filterList(streams, ["game_name", "title", "user_login"], searchQuery),
+    () => filterList(streams, ["gameName", "title", "userLogin"], searchQuery),
     [streams, searchQuery]
   );
 

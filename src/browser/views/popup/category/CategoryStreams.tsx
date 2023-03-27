@@ -26,11 +26,11 @@ const CategoryStreams: FC = () => {
   const { category, searchQuery } = useOutletContext<any>();
 
   const [streams = [], { error, fetchMore, hasMore, isLoadingMore }] = useStreams({
-    game_id: category.id,
+    gameId: category.id,
   });
 
   const filteredStreams = useMemo(
-    () => filterList(streams, ["game_name", "title", "user_login"], searchQuery),
+    () => filterList(streams, ["gameName", "title", "userLogin"], searchQuery),
     [streams, searchQuery]
   );
 

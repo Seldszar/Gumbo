@@ -38,9 +38,7 @@ const TopCategories: FC = () => {
   const [pinnedCategories, { toggle }] = usePinnedCategories();
 
   const [categories, { refresh: refreshCategories }] = useCategories(
-    {
-      id: pinnedCategories,
-    },
+    pinnedCategories.length > 0 ? { id: pinnedCategories } : null,
     {
       use: [onceMiddleware],
     }
@@ -52,7 +50,7 @@ const TopCategories: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const allCategories = useMemo(
-    () => uniqBy(concat(sortBy(categories, "name"), topCategories), "id"),
+    () => uniqBy(concat(sortBy(categories, "name"), topCategories ?? []), "id"),
     [categories, topCategories]
   );
 

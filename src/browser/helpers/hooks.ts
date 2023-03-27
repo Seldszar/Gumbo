@@ -6,7 +6,13 @@ import { useEffectOnce, useHarmonicIntervalFn } from "react-use";
 import { ClickAction } from "~/common/constants";
 import { sendRuntimeMessage } from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
-import { FollowedStreamState, FollowedUserState } from "~/common/types";
+import {
+  FollowedStreamSortField,
+  FollowedStreamState,
+  FollowedUserSortField,
+  FollowedUserState,
+  SortDirection,
+} from "~/common/types";
 
 export function useNow(interval = 1000): Date {
   const [now, setNow] = useState(new Date());
@@ -82,8 +88,8 @@ export function useSettings() {
 export type UseFollowedStreamStateReturn = [
   FollowedStreamState,
   {
-    setSortDirection(value: "desc" | "asc"): void;
-    setSortField(value: string): void;
+    setSortDirection(value: SortDirection): void;
+    setSortField(value: FollowedStreamSortField): void;
   }
 ];
 
@@ -102,8 +108,8 @@ export function useFollowedStreamState(): UseFollowedStreamStateReturn {
 export type UseFollowedUserStateReturn = [
   FollowedUserState,
   {
-    setSortDirection(value: "desc" | "asc"): void;
-    setSortField(value: string): void;
+    setSortDirection(value: SortDirection): void;
+    setSortField(value: FollowedUserSortField): void;
     setStatus(value: boolean | null): void;
   }
 ];

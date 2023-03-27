@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
+import { HelixClip } from "~/common/types";
 
 import { formatTime } from "~/browser/helpers/time";
 
@@ -28,18 +29,18 @@ const Details = styled.ul`
 `;
 
 export interface ClipCardProps {
-  clip: any;
+  clip: HelixClip;
 }
 
 const ClipCard: FC<ClipCardProps> = (props) => {
   const { clip } = props;
 
   const previewImage = useMemo(
-    () => template(clip.thumbnail_url, { "{width}": 96, "{height}": 54 }),
-    [clip.thumbnail_url]
+    () => template(clip.thumbnailUrl, { "{width}": 96, "{height}": 54 }),
+    [clip.thumbnailUrl]
   );
 
-  const createdAt = useMemo(() => new Date(clip.created_at), [clip.created_at]);
+  const createdAt = useMemo(() => new Date(clip.createdAt), [clip.createdAt]);
   const timeString = useMemo(() => formatTime(clip.duration * 1000), [clip.duration]);
 
   return (
@@ -50,7 +51,7 @@ const ClipCard: FC<ClipCardProps> = (props) => {
           title: clip.title,
         }}
         subtitleProps={{
-          children: clip.broadcaster_name,
+          children: clip.broadcasterName,
         }}
         aside={
           <Thumbnail>
@@ -61,7 +62,7 @@ const ClipCard: FC<ClipCardProps> = (props) => {
       >
         <Details>
           <li>{createdAt.toLocaleString()}</li>
-          <li>{t("detailText_viewCount", clip.view_count.toLocaleString())}</li>
+          <li>{t("detailText_viewCount", clip.viewCount.toLocaleString())}</li>
         </Details>
       </Wrapper>
     </Anchor>

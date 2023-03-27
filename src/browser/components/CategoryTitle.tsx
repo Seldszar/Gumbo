@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
+import { HelixGame } from "~/common/types";
 
 import Image from "./Image";
 
@@ -65,15 +66,15 @@ const Tab = styled(NavLink)`
 
 export interface CategoryTitleProps {
   className?: string;
-  category: any;
+  category: HelixGame;
 }
 
 const CategoryTitle: FC<CategoryTitleProps> = (props) => {
   const { category } = props;
 
   const boxArtUrl = useMemo(
-    () => template(category.box_art_url, { "{width}": 78, "{height}": 104 }),
-    [category.box_art_url]
+    () => template(category.boxArtUrl, { "{width}": 78, "{height}": 104 }),
+    [category.boxArtUrl]
   );
 
   return (

@@ -42,9 +42,9 @@ const CategoryClips: FC = () => {
   }, [duration]);
 
   const [clips = [], { error, fetchMore, hasMore, isLoadingMore }] = useClips({
-    started_at: period?.startedAt,
-    ended_at: period?.endedAt,
-    game_id: category.id,
+    startedAt: period?.startedAt,
+    endedAt: period?.endedAt,
+    gameId: category.id,
   });
 
   const filteredClips = useMemo(

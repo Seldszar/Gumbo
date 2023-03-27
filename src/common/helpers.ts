@@ -1,5 +1,5 @@
 import { init } from "@sentry/browser";
-import { lowerCase, reduce } from "lodash-es";
+import { isPlainObject, lowerCase, reduce } from "lodash-es";
 import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
@@ -121,4 +121,22 @@ export function tokenify(input: string): string {
 
 export function matchString(input: string, searchString: string): boolean {
   return tokenify(input).includes(tokenify(searchString));
+}
+
+export function changeCase(input: any, mapper: (key: string) => string): any {
+  if (Array.isArray(input)) {
+    return input.map((value) => changeCase(value, mapper));
+  }
+
+  if (isPlainObject(input)) {
+    const result: any = {};
+
+    for (const [name, value] of Object.entries(input)) {
+      result[mapper(name)] = changeCase(value, mapper);
+    }
+
+    return result;
+  }
+
+  return input;
 }

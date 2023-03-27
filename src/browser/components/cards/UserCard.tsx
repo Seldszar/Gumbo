@@ -2,6 +2,7 @@ import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";
+import { HelixUser } from "~/common/types";
 
 import { useClickAction } from "~/browser/helpers/hooks";
 
@@ -35,7 +36,7 @@ export interface UserCardProps {
   children?: ReactNode;
   isPinned?: boolean;
   isLive?: boolean;
-  user: any;
+  user: HelixUser;
 }
 
 const UserCard: FC<UserCardProps> = (props) => {
@@ -129,7 +130,7 @@ const UserCard: FC<UserCardProps> = (props) => {
           ],
         }}
         titleProps={{
-          children: <ChannelName login={user.login} name={user.display_name} />,
+          children: <ChannelName login={user.login} name={user.displayName} />,
         }}
         subtitleProps={{
           children: user.description || <i>{t("detailText_noDescription")}</i>,
@@ -137,7 +138,7 @@ const UserCard: FC<UserCardProps> = (props) => {
         }}
         aside={
           <Thumbnail>
-            <Image src={user.profile_image_url} ratio={1} />
+            <Image src={user.profileImageUrl} ratio={1} />
           </Thumbnail>
         }
       >

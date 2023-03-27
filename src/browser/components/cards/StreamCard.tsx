@@ -2,6 +2,7 @@ import { FC, HTMLAttributes, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { openUrl, t, template } from "~/common/helpers";
+import { FollowedStream, HelixStream } from "~/common/types";
 
 import { useClickAction } from "~/browser/helpers/hooks";
 
@@ -41,23 +42,23 @@ const CategoryName = styled.div`
 export interface StreamCardProps {
   onTogglePinClick?(): void;
   isPinned?: boolean;
-  stream: any;
+  stream: FollowedStream | HelixStream;
 }
 
 const StreamCard: FC<StreamCardProps> = (props) => {
   const { stream } = props;
 
   const startDate = useMemo(
-    () => (stream.started_at ? new Date(stream.started_at) : null),
-    [stream.started_at]
+    () => (stream.startedAt ? new Date(stream.startedAt) : null),
+    [stream.startedAt]
   );
 
   const backgroundImage = useMemo(
-    () => template(stream.thumbnail_url, { "{width}": 96, "{height}": 54 }),
-    [stream.thumbnail_url]
+    () => template(stream.thumbnailUrl, { "{width}": 96, "{height}": 54 }),
+    [stream.thumbnailUrl]
   );
 
-  const defaultAction = useClickAction(stream.user_login);
+  const defaultAction = useClickAction(stream.userLogin);
 
   const actionButtons = useMemo(() => {
     const result = new Array<HTMLAttributes<HTMLButtonElement>>();
@@ -100,21 +101,21 @@ const StreamCard: FC<StreamCardProps> = (props) => {
               type: "link",
               children: t("optionValue_openChannel"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${stream.user_login}`, event);
+                openUrl(`https://twitch.tv/${stream.userLogin}`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_openChat"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${stream.user_login}/chat`, event);
+                openUrl(`https://twitch.tv/${stream.userLogin}/chat`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_popout"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${stream.user_login}/popout`, event);
+                openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event);
               },
             },
             {
@@ -124,21 +125,21 @@ const StreamCard: FC<StreamCardProps> = (props) => {
               type: "link",
               children: t("optionValue_about"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${stream.user_login}/about`, event);
+                openUrl(`https://twitch.tv/${stream.userLogin}/about`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_schedule"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${stream.user_login}/schedule`, event);
+                openUrl(`https://twitch.tv/${stream.userLogin}/schedule`, event);
               },
             },
             {
               type: "link",
               children: t("optionValue_videos"),
               onClick(event) {
-                openUrl(`https://twitch.tv/${stream.user_login}/videos`, event);
+                openUrl(`https://twitch.tv/${stream.userLogin}/videos`, event);
               },
             },
           ],
@@ -146,7 +147,7 @@ const StreamCard: FC<StreamCardProps> = (props) => {
         titleProps={{
           children: (
             <Title>
-              <UserName login={stream.user_login} name={stream.user_name} />
+              <UserName login={stream.userLogin} name={stream.userName} />
               <ViewerCount stream={stream} />
             </Title>
           ),
@@ -162,8 +163,8 @@ const StreamCard: FC<StreamCardProps> = (props) => {
           </Thumbnail>
         }
       >
-        <CategoryName title={stream.game_name}>
-          {stream.game_name || <i>{t("detailText_noCategory")}</i>}
+        <CategoryName title={stream.gameName}>
+          {stream.gameName || <i>{t("detailText_noCategory")}</i>}
         </CategoryName>
       </Wrapper>
     </Anchor>

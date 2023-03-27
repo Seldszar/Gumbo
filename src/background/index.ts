@@ -1,52 +1,45 @@
-import ky from "ky";
-import { castArray, chunk, filter, find, map, sortBy } from "lodash-es";
+import {
+  camelCase,
+  castArray,
+  chunk,
+  filter,
+  find,
+  flatMap,
+  get,
+  map,
+  snakeCase,
+  toString,
+} from "lodash-es";
 
 import { AUTHORIZE_URL } from "~/common/constants";
-import { matchString, openUrl, settlePromises, setupSentry, t } from "~/common/helpers";
+import { changeCase, matchString, openUrl, settlePromises, setupSentry, t } from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
-import { Dictionary } from "~/common/types";
+import { Dictionary, HelixStream, HelixUser } from "~/common/types";
 
 setupSentry();
 
-export const client = ky.extend({
-  prefixUrl: "https://api.twitch.tv/helix/",
-  cache: "no-store",
-  headers: {
-    "Client-ID": process.env.TWITCH_CLIENT_ID,
-  },
-  hooks: {
-    beforeRequest: [
-      async (request) => {
-        const accessToken = await stores.accessToken.get();
+class RequestError extends Error {
+  constructor(readonly request: Request, readonly response: Response) {
+    super(response.statusText);
 
-        if (accessToken == null) {
-          return;
-        }
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, RequestError);
+    }
+  }
+}
 
-        request.headers.set("Authorization", `Bearer ${accessToken}`);
-      },
-    ],
-    afterResponse: [
-      async (input, options, response) => {
-        if (response.status === 401 && (await stores.accessToken.set(null))) {
-          browser.notifications.create(`${Date.now()}:authorize`, {
-            title: t("notificationTitle_accessExpired"),
-            contextMessage: t("notificationContextMessage_accessExpired"),
-            message: t("notificationMessage_accessExpired"),
-            iconUrl: browser.runtime.getURL("icon-96.png"),
-            isClickable: true,
-            type: "basic",
-          });
-        }
+interface TwitchResponse<T> {
+  data: T[];
+  pagination: {
+    cursor?: string;
+  };
+}
 
-        return response;
-      },
-    ],
-  },
-});
-
-async function request(url: string, params: Dictionary<any> = {}) {
-  const searchParams = new URLSearchParams();
+async function request<T>(
+  path: string,
+  params: Dictionary<unknown> = {}
+): Promise<TwitchResponse<T>> {
+  const url = new URL(path, "https://api.twitch.tv/helix/");
 
   for (const [name, value] of Object.entries(params ?? {})) {
     for (const v of castArray(value)) {
@@ -54,36 +47,84 @@ async function request(url: string, params: Dictionary<any> = {}) {
         continue;
       }
 
-      searchParams.append(name, v.toString());
+      url.searchParams.append(snakeCase(name), toString(v));
     }
   }
 
-  return client(url, { searchParams }).json<any>();
+  const request = new Request(url, {
+    cache: "no-cache",
+    headers: {
+      "Client-ID": process.env.TWITCH_CLIENT_ID as string,
+    },
+  });
+
+  const accessToken = await stores.accessToken.get();
+
+  if (accessToken) {
+    request.headers.set("Authorization", `Bearer ${accessToken}`);
+  }
+
+  const response = await fetch(request);
+
+  switch (response.status) {
+    case 204:
+      return undefined as never;
+
+    case 401: {
+      if (await stores.accessToken.set(null)) {
+        browser.notifications.create(`${Date.now()}:authorize`, {
+          title: t("notificationTitle_accessExpired"),
+          contextMessage: t("notificationContextMessage_accessExpired"),
+          message: t("notificationMessage_accessExpired"),
+          iconUrl: browser.runtime.getURL("icon-96.png"),
+          isClickable: true,
+          type: "basic",
+        });
+      }
+
+      break;
+    }
+  }
+
+  if (response.ok) {
+    return changeCase(await response.json(), camelCase);
+  }
+
+  throw new RequestError(request, response);
 }
 
-async function fetchCurrentUser(): Promise<any> {
-  return (await request("users")).data[0];
+async function getCurrentUser() {
+  return get(await request<HelixUser>("users"), ["data", 0], null);
 }
 
-async function fetchUsers(id: string[]): Promise<any[]> {
-  return (await request("users", { id })).data;
+async function getUsersByIds(id: string[]) {
+  const promises = await Promise.all(
+    map(chunk(id, 100), async (id) => {
+      const { data } = await request<HelixUser>("users", {
+        id,
+      });
+
+      return data;
+    })
+  );
+
+  return flatMap(promises);
 }
 
-async function fetchFollowedStreams(userId: string, after?: string): Promise<any[]> {
-  const { data: followedStreams, pagination } = await request("streams/followed", {
-    user_id: userId,
+async function getFollowedStreams(userId: string, after?: string) {
+  const { data: followedStreams, pagination } = await request<HelixStream>("streams/followed", {
     first: 100,
+    userId,
     after,
   });
 
-  const { data: streams } = await request("streams", {
-    user_id: map(followedStreams, "user_id"),
-    first: 100,
+  const { data: streams } = await request<HelixStream>("streams", {
+    userId: map(followedStreams, "userId"),
   });
 
   for (const followedStream of followedStreams) {
     const stream = find(streams, {
-      user_id: followedStream.user_id,
+      userId: followedStream.userId,
     });
 
     if (stream == null) {
@@ -92,13 +133,13 @@ async function fetchFollowedStreams(userId: string, after?: string): Promise<any
   }
 
   if (pagination.cursor) {
-    followedStreams.push(...(await fetchFollowedStreams(userId, pagination.cursor)));
+    followedStreams.push(...(await getFollowedStreams(userId, pagination.cursor)));
   }
 
   return followedStreams;
 }
 
-async function getStreamNotifications(streams: any[]): Promise<any[]> {
+async function filterFollowedStreams(streams: HelixStream[]) {
   const [followedStreams, settings] = await Promise.all([
     stores.followedStreams.get(),
     stores.settings.get(),
@@ -110,17 +151,17 @@ async function getStreamNotifications(streams: any[]): Promise<any[]> {
 
   return streams.filter((stream) => {
     if (
-      (withFilters && !selectedUsers.includes(stream.user_id)) ||
-      ignoredCategories.some(matchString.bind(null, stream.game_name))
+      (withFilters && !selectedUsers.includes(stream.userId)) ||
+      ignoredCategories.some(matchString.bind(null, stream.gameName))
     ) {
       return false;
     }
 
     const oldStream = find(followedStreams, {
-      user_id: stream.user_id,
+      userId: stream.userId,
     });
 
-    return oldStream == null || (withCategoryChanges && oldStream.game_id !== stream.game_id);
+    return oldStream == null || (withCategoryChanges && oldStream.gameId !== stream.gameId);
   });
 }
 
@@ -128,7 +169,7 @@ async function refreshCurrentUser(accessToken: string | null) {
   let currentUser = null;
 
   if (accessToken) {
-    currentUser = await fetchCurrentUser();
+    currentUser = await getCurrentUser();
   }
 
   await stores.currentUser.set(currentUser);
@@ -136,13 +177,13 @@ async function refreshCurrentUser(accessToken: string | null) {
   return currentUser;
 }
 
-async function refreshFollowedStreams(currentUser: any, showNotifications = true) {
+async function refreshFollowedStreams(user: HelixUser, showNotifications = true) {
   const settings = await stores.settings.get();
 
-  let followedStreams = [];
+  let followedStreams = new Array<HelixStream>();
 
-  if (currentUser) {
-    followedStreams = await fetchFollowedStreams(currentUser.id);
+  if (user) {
+    followedStreams = await getFollowedStreams(user.id);
 
     if (!settings.streams.withReruns) {
       followedStreams = filter(followedStreams, {
@@ -151,36 +192,33 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
     }
 
     if (showNotifications && settings.notifications.enabled) {
-      const notifications = await getStreamNotifications(followedStreams);
+      const streams = await filterFollowedStreams(followedStreams);
+      const users = await getUsersByIds(map(streams, "userId"));
 
-      for (const items of chunk(notifications, 100)) {
-        const users = await fetchUsers(map(items, "user_id"));
+      settlePromises(streams, async (stream) => {
+        const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
+          browser.notifications.create(`${Date.now()}:stream:${stream.userLogin}`, {
+            title: t(`notificationMessage_stream${stream.gameName ? "Playing" : "Online"}`, [
+              stream.userName || stream.userLogin,
+              stream.gameName,
+            ]),
+            message: stream.title || t("detailText_noTitle"),
+            type: "basic",
+            iconUrl,
+          });
 
-        settlePromises(items, async (stream) => {
-          const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-            browser.notifications.create(`${Date.now()}:stream:${stream.user_login}`, {
-              title: t(`notificationMessage_stream${stream.game_name ? "Playing" : "Online"}`, [
-                stream.user_name || stream.user_login,
-                stream.game_name,
-              ]),
-              message: stream.title || t("detailText_noTitle"),
-              type: "basic",
-              iconUrl,
-            });
+        try {
+          const user = find(users, {
+            id: stream.userId,
+          });
 
-          try {
-            const user = find(users, {
-              id: stream.user_id,
-            });
+          if (user) {
+            return await create(user.profileImageUrl);
+          }
+        } catch {} // eslint-disable-line no-empty
 
-            if (user) {
-              return await create(user.profile_image_url);
-            }
-          } catch {} // eslint-disable-line no-empty
-
-          await create();
-        });
-      }
+        await create();
+      });
     }
   }
 
@@ -189,9 +227,11 @@ async function refreshFollowedStreams(currentUser: any, showNotifications = true
 
 async function refresh(withNotifications: boolean) {
   try {
-    const currentUser = await refreshCurrentUser(await stores.accessToken.get());
+    const user = await refreshCurrentUser(await stores.accessToken.get());
 
-    await refreshFollowedStreams(currentUser, withNotifications);
+    if (user) {
+      await refreshFollowedStreams(user, withNotifications);
+    }
   } catch {} // eslint-disable-line no-empty
 
   browser.alarms.create("refresh", {
@@ -199,7 +239,7 @@ async function refresh(withNotifications: boolean) {
   });
 }
 
-async function refreshActionBadge(): Promise<void> {
+async function refreshActionBadge() {
   const manifest = browser.runtime.getManifest();
   const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
 
@@ -234,7 +274,7 @@ async function refreshActionBadge(): Promise<void> {
   ]);
 }
 
-async function backup(): Promise<any> {
+async function backup() {
   const [followedStreamState, followedUserState, pinnedCategories, pinnedUsers, settings] =
     await Promise.all([
       stores.followedStreamState.getState(),
@@ -253,7 +293,7 @@ async function backup(): Promise<any> {
   };
 }
 
-async function restore(data: any): Promise<void> {
+async function restore(data: any) {
   const restoreStore = async (store: Store<any>) => {
     const state = data[store.name];
 
@@ -271,11 +311,11 @@ async function restore(data: any): Promise<void> {
   ]);
 }
 
-async function authorize(): Promise<void> {
+async function authorize() {
   return openUrl(AUTHORIZE_URL, undefined, true);
 }
 
-async function ping(): Promise<Date> {
+async function ping() {
   return new Date();
 }
 
@@ -303,11 +343,15 @@ async function reset(): Promise<void> {
   await setup();
 }
 
-async function revoke(): Promise<void> {
+async function revoke() {
   const token = await stores.accessToken.get();
 
   if (token) {
-    ky.post("https://id.twitch.tv/oauth2/revoke", {
+    fetch("https://id.twitch.tv/oauth2/revoke", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
       body: new URLSearchParams({
         client_id: process.env.TWITCH_CLIENT_ID as string,
         token,

@@ -48,8 +48,8 @@ const NotificationSettings: FC = () => {
           {...register("notifications.selectedUsers")}
           disabled={!settings.notifications.enabled || !settings.notifications.withFilters}
           options={followedChannels.map((follow) => ({
-            title: <ChannelName login={follow.broadcaster_login} name={follow.broadcaster_name} />,
-            value: follow.broadcaster_id,
+            title: <ChannelName login={follow.broadcasterLogin} name={follow.broadcasterName} />,
+            value: follow.broadcasterId,
           }))}
         />
       </Section>
