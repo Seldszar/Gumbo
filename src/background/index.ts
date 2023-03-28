@@ -70,14 +70,14 @@ async function fetchUsers(id: string[]): Promise<any[]> {
 }
 
 async function fetchFollowedUsers(userId: string, after?: string): Promise<any[]> {
-  const { data: follows, pagination } = await request("users/follows", {
-    from_id: userId,
+  const { data: follows, pagination } = await request("channels/followed", {
+    user_id: userId,
     first: 100,
     after,
   });
 
   const { data: users } = await request("users", {
-    id: map(follows, "to_id"),
+    id: map(follows, "broadcaster_id"),
   });
 
   if (pagination.cursor) {
