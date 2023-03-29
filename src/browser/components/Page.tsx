@@ -1,4 +1,4 @@
-import React, { ReactNode, FC } from "react";
+import { ReactNode, FC } from "react";
 import { useTitle } from "react-use";
 import tw, { styled } from "twin.macro";
 

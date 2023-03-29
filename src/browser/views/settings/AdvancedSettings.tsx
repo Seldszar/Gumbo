@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useState } from "react";
+import { FC, MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";

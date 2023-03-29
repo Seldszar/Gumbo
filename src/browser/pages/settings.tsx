@@ -1,7 +1,6 @@
 import { get, set } from "lodash-es";
-import React, { createContext, FC, useContext } from "react";
-import { Navigate, NavLink, Route, Routes } from "react-router-dom";
-import tw, { styled } from "twin.macro";
+import { createContext, useContext } from "react";
+import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import { t } from "~/common/helpers";
 import { Settings } from "~/common/types";
@@ -12,32 +11,13 @@ import AdvancedSettings from "~/browser/views/settings/AdvancedSettings";
 import BadgeSettings from "~/browser/views/settings/BadgeSettings";
 import GeneralSettings from "~/browser/views/settings/GeneralSettings";
 import NotificationSettings from "~/browser/views/settings/NotificationSettings";
+import Root from "~/browser/views/settings/Root";
 import SearchSettings from "~/browser/views/settings/SearchSettings";
 import StreamSettings from "~/browser/views/settings/StreamSettings";
 
 import Page from "~/browser/components/Page";
 
 import ReloadModal from "~/browser/components/modals/ReloadModal";
-
-const Wrapper = styled.div`
-  ${tw`flex gap-6 items-start max-w-2xl w-full`}
-`;
-
-const Aside = styled.div`
-  ${tw`flex-shrink-0 grid gap-4 sticky top-6 w-64`}
-`;
-
-const MenuItem = styled(NavLink)`
-  ${tw`block text-neutral-600 text-lg hover:text-black dark:(text-neutral-400 hover:text-white)`}
-
-  &.active {
-    ${tw`text-purple-500!`}
-  }
-`;
-
-const Inner = styled.div`
-  ${tw`flex-1`}
-`;
 
 const Context = createContext<any>(null);
 
@@ -50,7 +30,43 @@ export function useSettingsContext(): SettingsContext {
   return useContext(Context);
 }
 
-const SettingsPage: FC = () => {
+const router = createHashRouter([
+  {
+    index: true,
+    loader: () => redirect("general"),
+  },
+  {
+    element: <Root />,
+    children: [
+      {
+        path: "advanced",
+        element: <AdvancedSettings />,
+      },
+      {
+        path: "badge",
+        element: <BadgeSettings />,
+      },
+      {
+        path: "general",
+        element: <GeneralSettings />,
+      },
+      {
+        path: "notification",
+        element: <NotificationSettings />,
+      },
+      {
+        path: "search",
+        element: <SearchSettings />,
+      },
+      {
+        path: "stream",
+        element: <StreamSettings />,
+      },
+    ],
+  },
+]);
+
+function SettingsPage() {
   const [error] = usePingError();
   const [settings, store] = useSettings();
 
@@ -64,32 +80,12 @@ const SettingsPage: FC = () => {
   return (
     <Context.Provider value={{ register, settings }}>
       <Page title={t("titleText_settings")}>
-        <Wrapper>
-          <Aside>
-            <MenuItem to="general">{t("titleText_general")}</MenuItem>
-            <MenuItem to="badge">{t("titleText_badge")}</MenuItem>
-            <MenuItem to="notification">{t("titleText_notifications")}</MenuItem>
-            <MenuItem to="search">{t("titleText_search")}</MenuItem>
-            <MenuItem to="stream">{t("titleText_streams")}</MenuItem>
-            <MenuItem to="advanced">{t("titleText_advanced")}</MenuItem>
-          </Aside>
-          <Inner>
-            <Routes>
-              <Route index element={<Navigate to="general" />} />
-              <Route path="advanced" element={<AdvancedSettings />} />
-              <Route path="badge" element={<BadgeSettings />} />
-              <Route path="general" element={<GeneralSettings />} />
-              <Route path="notification" element={<NotificationSettings />} />
-              <Route path="search" element={<SearchSettings />} />
-              <Route path="stream" element={<StreamSettings />} />
-            </Routes>
-          </Inner>
-        </Wrapper>
-
-        <ReloadModal isOpen={!!error} />
+        <RouterProvider router={router} />
       </Page>
+
+      <ReloadModal isOpen={!!error} />
     </Context.Provider>
   );
-};
+}
 
 export default SettingsPage;

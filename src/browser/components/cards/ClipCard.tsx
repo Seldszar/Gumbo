@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";

@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 

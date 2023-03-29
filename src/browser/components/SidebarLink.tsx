@@ -1,5 +1,5 @@
 import { PropsOf } from "@emotion/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 

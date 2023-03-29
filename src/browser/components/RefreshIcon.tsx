@@ -1,5 +1,5 @@
 import { keyframes, PropsOf } from "@emotion/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import { css, styled } from "twin.macro";
 
 const rotateAnimation = keyframes`

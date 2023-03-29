@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, ReactNode, useMemo } from "react";
+import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.ul``;

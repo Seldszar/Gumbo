@@ -1,5 +1,5 @@
 import { m } from "framer-motion";
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 interface WrapperProps {

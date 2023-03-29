@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { useDebounce, useMount } from "react-use";
 import tw, { styled } from "twin.macro";
 

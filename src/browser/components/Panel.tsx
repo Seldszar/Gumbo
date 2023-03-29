@@ -1,4 +1,4 @@
-import React, { ReactNode, FC, MouseEventHandler } from "react";
+import { ReactNode, FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.div`

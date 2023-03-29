@@ -1,5 +1,5 @@
 import { filter } from "lodash-es";
-import React, { FC, useMemo } from "react";
+import { FC, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";

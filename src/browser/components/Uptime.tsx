@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import { FC, useMemo } from "react";
 
 import { useNow } from "../helpers/hooks";
 import { formatTime } from "../helpers/time";

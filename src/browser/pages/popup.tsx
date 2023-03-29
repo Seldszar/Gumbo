@@ -1,9 +1,7 @@
 import { css, Global } from "@emotion/react";
-import React, { FC } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import tw, { styled } from "twin.macro";
+import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
-import { useCurrentUser, usePingError } from "~/browser/helpers/hooks";
+import { usePingError } from "~/browser/helpers/hooks";
 
 import CategoryClips from "~/browser/views/popup/category/CategoryClips";
 import CategoryStreams from "~/browser/views/popup/category/CategoryStreams";
@@ -13,38 +11,105 @@ import SearchChannels from "~/browser/views/popup/search/SearchChannels";
 import CategoryDetail from "~/browser/views/popup/CategoryDetail";
 import FollowedStreams from "~/browser/views/popup/FollowedStreams";
 import FollowedUsers from "~/browser/views/popup/FollowedUsers";
+import Root from "~/browser/views/popup/Root";
 import Search from "~/browser/views/popup/Search";
 import TopCategories from "~/browser/views/popup/TopCategories";
 import TopStreams from "~/browser/views/popup/TopStreams";
-import Welcome from "~/browser/views/popup/Welcome";
 
 import ReloadModal from "~/browser/components/modals/ReloadModal";
 
-import Sidebar from "~/browser/components/Sidebar";
-import Splash from "~/browser/components/Splash";
+const router = createHashRouter([
+  {
+    index: true,
+    loader: () => redirect("streams/followed"),
+  },
+  {
+    element: <Root />,
+    children: [
+      {
+        path: "streams",
+        children: [
+          {
+            index: true,
+            element: <TopStreams />,
+          },
+          {
+            path: "followed",
+            element: <FollowedStreams />,
+          },
+        ],
+      },
+      {
+        path: "users",
+        children: [
+          {
+            index: true,
+            loader: () => redirect("followed"),
+          },
+          {
+            path: "followed",
+            element: <FollowedUsers />,
+          },
+        ],
+      },
+      {
+        path: "search",
+        element: <Search />,
+        children: [
+          {
+            index: true,
+            loader: () => redirect("channels"),
+          },
+          {
+            path: "channels",
+            element: <SearchChannels />,
+          },
+          {
+            path: "categories",
+            element: <SearchCategories />,
+          },
+        ],
+      },
+      {
+        path: "categories",
+        children: [
+          {
+            index: true,
+            element: <TopCategories />,
+          },
+          {
+            path: ":categoryId",
+            element: <CategoryDetail />,
+            children: [
+              {
+                index: true,
+                loader: () => redirect("streams"),
+              },
+              {
+                path: "streams",
+                element: <CategoryStreams />,
+              },
+              {
+                path: "videos",
+                element: <CategoryVideos />,
+              },
+              {
+                path: "clips",
+                element: <CategoryClips />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]);
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col h-full relative`}
-`;
-
-const Inner = styled.div`
-  ${tw`flex flex-1 overflow-hidden`}
-`;
-
-const Body = styled.div`
-  ${tw`flex-1 overflow-y-scroll`}
-`;
-
-const PopupPage: FC = () => {
+function PopupPage() {
   const [error] = usePingError();
-  const [currentUser, { isLoading }] = useCurrentUser();
-
-  if (isLoading) {
-    return <Splash isLoading />;
-  }
 
   return (
-    <Wrapper>
+    <>
       <Global
         styles={css`
           body {
@@ -54,46 +119,10 @@ const PopupPage: FC = () => {
         `}
       />
 
-      <Inner>
-        {currentUser ? (
-          <>
-            <Sidebar user={currentUser} />
-            <Body>
-              <Routes>
-                <Route index element={<Navigate to="streams/followed" />} />
-                <Route path="streams">
-                  <Route index element={<TopStreams />} />
-                  <Route path="followed" element={<FollowedStreams />} />
-                </Route>
-                <Route path="users">
-                  <Route index element={<FollowedUsers />} />
-                  <Route path="followed" element={<FollowedUsers />} />
-                </Route>
-                <Route path="search" element={<Search />}>
-                  <Route index element={<Navigate to="channels" />} />
-                  <Route path="channels" element={<SearchChannels />} />
-                  <Route path="categories" element={<SearchCategories />} />
-                </Route>
-                <Route path="categories">
-                  <Route index element={<TopCategories />} />
-                  <Route path=":categoryId" element={<CategoryDetail />}>
-                    <Route index element={<Navigate to="streams" />} />
-                    <Route path="streams" element={<CategoryStreams />} />
-                    <Route path="videos" element={<CategoryVideos />} />
-                    <Route path="clips" element={<CategoryClips />} />
-                  </Route>
-                </Route>
-              </Routes>
-            </Body>
-          </>
-        ) : (
-          <Welcome />
-        )}
-      </Inner>
-
+      <RouterProvider router={router} />
       <ReloadModal isOpen={!!error} />
-    </Wrapper>
+    </>
   );
-};
+}
 
 export default PopupPage;

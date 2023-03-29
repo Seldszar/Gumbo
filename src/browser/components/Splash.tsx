@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 import Spinner from "./Spinner";

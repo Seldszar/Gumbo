@@ -1,5 +1,5 @@
 import { find, groupBy, map, orderBy, some } from "lodash-es";
-import React, { FC, useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";

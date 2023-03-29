@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";

@@ -1,6 +1,6 @@
 import { PropsOf } from "@emotion/react";
 import { m } from "framer-motion";
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import Spinner from "./Spinner";

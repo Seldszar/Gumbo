@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useMemo } from "react";
+import { FC, MouseEventHandler, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { template } from "~/common/helpers";

@@ -1,5 +1,5 @@
 import { find } from "lodash-es";
-import React, { FC, ReactNode, useMemo } from "react";
+import { FC, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";

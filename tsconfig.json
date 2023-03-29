@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "strict": true,
-    "jsx": "react",
     "target": "esnext",
     "moduleResolution": "node",
+    "jsx": "react-jsx",
     "strictNullChecks": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

@@ -1,6 +1,6 @@
 import { flip, offset, Placement, shift, size, useFloating } from "@floating-ui/react-dom";
 import { AnimatePresence, m, useDomEvent, Variants } from "framer-motion";
-import React, { FC, ReactNode, Ref } from "react";
+import { FC, ReactNode, Ref } from "react";
 import { createPortal } from "react-dom";
 import { useClickAway, useToggle } from "react-use";
 import tw, { styled, theme } from "twin.macro";

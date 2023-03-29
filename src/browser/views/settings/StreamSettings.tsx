@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { LANGUAGE_OPTIONS } from "~/common/constants";

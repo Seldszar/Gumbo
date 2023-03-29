@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, ReactNode } from "react";
+import { FC, MouseEventHandler, ReactNode } from "react";
 
 import { openUrl } from "~/common/helpers";
 

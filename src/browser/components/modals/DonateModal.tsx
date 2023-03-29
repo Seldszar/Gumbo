@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
