@@ -279,6 +279,20 @@ async function ping(): Promise<Date> {
   return new Date();
 }
 
+async function setup(): Promise<void> {
+  const keys = Object.keys(await browser.storage.local.get());
+
+  await settlePromises(keys, async (key) => {
+    if (key in stores) {
+      return;
+    }
+
+    return browser.storage.local.remove(key);
+  });
+
+  await settlePromises(Object.values(stores), (store) => store.setup(true));
+}
+
 async function reset(): Promise<void> {
   await Promise.allSettled([
     browser.storage.local.clear(),
@@ -330,10 +344,6 @@ browser.notifications.onClicked.addListener((notificationId) => {
       return openUrl(`https://twitch.tv/${data}`);
   }
 });
-
-async function setup(): Promise<void> {
-  await settlePromises(Object.values(stores), (store) => store.setup(true));
-}
 
 browser.runtime.onInstalled.addListener(() => {
   setup();
