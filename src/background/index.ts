@@ -315,10 +315,6 @@ async function authorize() {
   return openUrl(AUTHORIZE_URL, undefined, true);
 }
 
-async function ping() {
-  return new Date();
-}
-
 async function setup(): Promise<void> {
   const keys = Object.keys(await browser.storage.local.get());
 
@@ -365,7 +361,6 @@ async function revoke() {
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   authorize,
   backup,
-  ping,
   refresh,
   request,
   reset,

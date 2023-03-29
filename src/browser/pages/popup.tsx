@@ -1,8 +1,6 @@
 import { css, Global } from "@emotion/react";
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
-import { usePingError } from "~/browser/helpers/hooks";
-
 import CategoryClips from "~/browser/views/popup/category/CategoryClips";
 import CategoryStreams from "~/browser/views/popup/category/CategoryStreams";
 import CategoryVideos from "~/browser/views/popup/category/CategoryVideos";
@@ -15,8 +13,6 @@ import Root from "~/browser/views/popup/Root";
 import Search from "~/browser/views/popup/Search";
 import TopCategories from "~/browser/views/popup/TopCategories";
 import TopStreams from "~/browser/views/popup/TopStreams";
-
-import ReloadModal from "~/browser/components/modals/ReloadModal";
 
 const router = createHashRouter([
   {
@@ -106,8 +102,6 @@ const router = createHashRouter([
 ]);
 
 function PopupPage() {
-  const [error] = usePingError();
-
   return (
     <>
       <Global
@@ -120,7 +114,6 @@ function PopupPage() {
       />
 
       <RouterProvider router={router} />
-      <ReloadModal isOpen={!!error} />
     </>
   );
 }

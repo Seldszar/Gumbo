@@ -14,7 +14,6 @@
     "@sentry/browser": "^7.45.0",
     "framer-motion": "^6.3.4",
     "lodash-es": "^4.17.21",
-    "p-timeout": "^5.0.2",
     "preact": "^10.7.2",
     "react-router-dom": "^6.9.0",
     "react-use": "^17.4.0",

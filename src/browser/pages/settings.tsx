@@ -5,7 +5,7 @@ import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 import { t } from "~/common/helpers";
 import { Settings } from "~/common/types";
 
-import { usePingError, useSettings } from "~/browser/helpers/hooks";
+import { useSettings } from "~/browser/helpers/hooks";
 
 import AdvancedSettings from "~/browser/views/settings/AdvancedSettings";
 import BadgeSettings from "~/browser/views/settings/BadgeSettings";
@@ -16,8 +16,6 @@ import SearchSettings from "~/browser/views/settings/SearchSettings";
 import StreamSettings from "~/browser/views/settings/StreamSettings";
 
 import Page from "~/browser/components/Page";
-
-import ReloadModal from "~/browser/components/modals/ReloadModal";
 
 const Context = createContext<any>(null);
 
@@ -67,7 +65,6 @@ const router = createHashRouter([
 ]);
 
 function SettingsPage() {
-  const [error] = usePingError();
   const [settings, store] = useSettings();
 
   const register = (path: string) => ({
@@ -82,8 +79,6 @@ function SettingsPage() {
       <Page title={t("titleText_settings")}>
         <RouterProvider router={router} />
       </Page>
-
-      <ReloadModal isOpen={!!error} />
     </Context.Provider>
   );
 }

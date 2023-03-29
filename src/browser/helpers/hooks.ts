@@ -1,10 +1,8 @@
 import { xor } from "lodash-es";
-import pTimeout from "p-timeout";
 import { RefObject, useCallback, useEffect, useState } from "react";
-import { useEffectOnce, useHarmonicIntervalFn } from "react-use";
+import { useHarmonicIntervalFn } from "react-use";
 
 import { ClickAction } from "~/common/constants";
-import { sendRuntimeMessage } from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
 import {
   FollowedStreamSortField,
@@ -175,24 +173,6 @@ export function useClickAction(userLogin: string): string {
   }
 
   return `https://twitch.tv/${userLogin}`;
-}
-
-export function usePingError(): [Error | null, () => void] {
-  const [error, setError] = useState<Error | null>(null);
-
-  const check = () => {
-    const promise = pTimeout(sendRuntimeMessage("ping"), 1000);
-
-    promise.then(
-      () => setError(null),
-      (error) => setError(error)
-    );
-  };
-
-  useEffectOnce(check);
-  useHarmonicIntervalFn(check, 30000);
-
-  return [error, check];
 }
 
 export function useHover(ref: RefObject<Element>): boolean {
