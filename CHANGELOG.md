@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.16.9](https://github.com/Seldszar/Gumbo/compare/v1.16.8...v1.16.9) (2023-03-28)
+
+
+### Bug Fixes
+
+* always setup after install ([ac602d4](https://github.com/Seldszar/Gumbo/commit/ac602d4798586b557686e169ce4c114be54f369f))
+* followed users fetcher ([a6a8913](https://github.com/Seldszar/Gumbo/commit/a6a8913bcaa1d1dea9b36435e1f938f21c692dda))
+* refresh alarm & prevent task from being called twice during setup ([30b4117](https://github.com/Seldszar/Gumbo/commit/30b41176b199529b8c9f0fb68ac523f01d503810))
+
 ## [1.16.8](https://github.com/Seldszar/Gumbo/compare/v1.16.7...v1.16.8) (2023-03-26)
 
 
