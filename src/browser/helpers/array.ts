@@ -1,27 +1,31 @@
 import { escapeRegExp } from "lodash-es";
 
-import { Dictionary } from "~/common/types";
-
 export function isEmpty<T extends unknown[]>(value?: T): value is undefined {
   return !value?.length;
 }
 
-export function filterList<T extends Dictionary<any>, K extends keyof T>(
-  values: undefined | T[],
-  searchFields: K[],
-  searchQuery: string
-): T[] {
-  if (isEmpty(values)) {
-    return [];
+export function matchFields<T>(value: T, fields: Array<keyof T>, query: string): boolean {
+  if (query.length === 0) {
+    return true;
   }
 
-  if (searchQuery.length === 0) {
+  const searchPattern = new RegExp(escapeRegExp(query), "i");
+
+  return fields.some((fieldName) => {
+    const fieldValue = value[fieldName];
+
+    if (typeof fieldValue !== "string") {
+      return false;
+    }
+
+    return searchPattern.test(fieldValue);
+  });
+}
+
+export function filterList<T>(values: T[], fields: Array<keyof T>, query: string): T[] {
+  if (query.length === 0) {
     return values;
   }
 
-  const searchPattern = new RegExp(escapeRegExp(searchQuery), "i");
-
-  return values.filter((value) =>
-    searchFields.some((fieldName) => searchPattern.test(value[fieldName]))
-  );
+  return values.filter((value) => matchFields(value, fields, query));
 }

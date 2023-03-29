@@ -47,6 +47,9 @@
   "confirmTitle_reset": {
     "message": "Vous êtes sur le point de réinitialiser Gumbo !"
   },
+  "detailText_followingSince": {
+    "message": "Suivi depuis $1"
+  },
   "detailText_noCategory": {
     "message": "Aucune catégorie"
   },
@@ -235,6 +238,9 @@
   },
   "optionValue_sort_category": {
     "message": "Catégorie"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "Date de suivi"
   },
   "optionValue_sort_login": {
     "message": "Diffuseur"

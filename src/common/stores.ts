@@ -185,10 +185,6 @@ export const stores = {
     schema: array(any()),
     defaultValue: [],
   }),
-  followedUsers: new Store<any[]>("local", "followedUsers", {
-    schema: array(any()),
-    defaultValue: [],
-  }),
   pinnedCategories: new Store<string[]>("local", "pinnedCategories", {
     schema: array(string()),
     defaultValue: [],

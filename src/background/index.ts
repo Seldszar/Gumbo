@@ -69,24 +69,6 @@ async function fetchUsers(id: string[]): Promise<any[]> {
   return (await request("users", { id })).data;
 }
 
-async function fetchFollowedUsers(userId: string, after?: string): Promise<any[]> {
-  const { data: follows, pagination } = await request("channels/followed", {
-    user_id: userId,
-    first: 100,
-    after,
-  });
-
-  const { data: users } = await request("users", {
-    id: map(follows, "broadcaster_id"),
-  });
-
-  if (pagination.cursor) {
-    users.push(...(await fetchFollowedUsers(userId, pagination.cursor)));
-  }
-
-  return sortBy(users, "login");
-}
-
 async function fetchFollowedStreams(userId: string, after?: string): Promise<any[]> {
   const { data: followedStreams, pagination } = await request("streams/followed", {
     user_id: userId,
@@ -154,16 +136,6 @@ async function refreshCurrentUser(accessToken: string | null) {
   return currentUser;
 }
 
-async function refreshFollowedUsers(currentUser: any) {
-  let followedUsers = [];
-
-  if (currentUser) {
-    followedUsers = await fetchFollowedUsers(currentUser.id);
-  }
-
-  await stores.followedUsers.set(followedUsers);
-}
-
 async function refreshFollowedStreams(currentUser: any, showNotifications = true) {
   const settings = await stores.settings.get();
 
@@ -219,10 +191,7 @@ async function refresh(withNotifications: boolean) {
   try {
     const currentUser = await refreshCurrentUser(await stores.accessToken.get());
 
-    await Promise.allSettled([
-      refreshFollowedStreams(currentUser, withNotifications),
-      refreshFollowedUsers(currentUser),
-    ]);
+    await refreshFollowedStreams(currentUser, withNotifications);
   } catch {} // eslint-disable-line no-empty
 
   browser.alarms.create("refresh", {

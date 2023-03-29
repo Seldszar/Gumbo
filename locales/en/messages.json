@@ -47,6 +47,9 @@
   "confirmTitle_reset": {
     "message": "You are about to reset Gumbo!"
   },
+  "detailText_followingSince": {
+    "message": "Following since $1"
+  },
   "detailText_noCategory": {
     "message": "No category"
   },
@@ -235,6 +238,9 @@
   },
   "optionValue_sort_category": {
     "message": "Category"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "Followed At"
   },
   "optionValue_sort_login": {
     "message": "Broadcaster"

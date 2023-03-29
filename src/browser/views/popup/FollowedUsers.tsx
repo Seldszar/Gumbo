@@ -1,20 +1,17 @@
-import { find, groupBy, orderBy } from "lodash-es";
+import { find, groupBy, map, orderBy, some } from "lodash-es";
 import React, { FC, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import {
-  useFollowedStreams,
-  useFollowedUsers,
-  useFollowedUserState,
-  usePinnedUsers,
-} from "~/browser/helpers/hooks";
+import { isEmpty, matchFields } from "~/browser/helpers/array";
+import { useFollowedStreams, useFollowedUserState, usePinnedUsers } from "~/browser/helpers/hooks";
+import { useFollowedChannels, useUsersByIds } from "~/browser/helpers/queries";
 
 import UserCard from "~/browser/components/cards/UserCard";
 
 import FilterBar from "~/browser/components/FilterBar";
+import RefreshIcon from "~/browser/components/RefreshIcon";
 import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
@@ -42,77 +39,96 @@ const Group = styled.div`
 
 const Item = styled.div``;
 
+const FollowingSince = styled.div`
+  ${tw`truncate`}
+`;
+
 const FollowedUsers: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [followedStreams] = useFollowedStreams();
-  const [followedUsers, { isLoading }] = useFollowedUsers();
   const [followedUserState, { setSortDirection, setSortField, setStatus }] = useFollowedUserState();
   const [pinnedUsers, { toggle }] = usePinnedUsers();
 
-  const itemGroups = useMemo(() => {
-    const users = orderBy(
-      filterList(followedUsers, ["description", "login"], searchQuery),
-      followedUserState.sortField,
-      followedUserState.sortDirection
-    );
+  const { data: followedChannels = [], isValidating, mutate } = useFollowedChannels();
+  const { data: users = [], isLoading } = useUsersByIds(map(followedChannels, "broadcaster_id"));
 
-    return Object.values(
-      groupBy(
-        users.reduce<any[]>((result, user) => {
-          const stream = find(followedStreams, {
-            user_id: user.id,
-            type: "live",
-          });
+  const items = useMemo(() => {
+    const items = new Array<any>();
 
-          if ([!!stream, null].includes(followedUserState.status)) {
-            result.push({ stream, user });
-          }
+    users.forEach((user) => {
+      const matchesFields = matchFields(user, ["display_name", "login"], searchQuery);
+      const isLive = some(followedStreams, {
+        user_id: user.id,
+        type: "live",
+      });
 
-          return result;
-        }, []),
-        ({ user }) => (pinnedUsers.includes(user.id) ? 0 : 1)
-      )
-    );
-  }, [followedUserState, followedUsers, followedStreams, pinnedUsers, searchQuery]);
+      if (matchesFields && [isLive, null].includes(followedUserState.status)) {
+        const channel = find(followedChannels, {
+          broadcaster_id: user.id,
+        });
+
+        items.push({
+          ...user,
+
+          followedAt: new Date(channel.followed_at),
+          isLive,
+        });
+      }
+    });
+
+    return orderBy(items, followedUserState.sortField, followedUserState.sortDirection);
+  }, [followedChannels, followedStreams, followedUserState, searchQuery, users]);
 
   const children = useMemo(() => {
     if (isLoading) {
       return <Splash isLoading />;
     }
 
-    if (isEmpty(followedUsers)) {
+    if (isEmpty(items)) {
       return <Splash>{t("errorText_emptyFollowingUsers")}</Splash>;
     }
 
-    if (isEmpty(itemGroups)) {
-      return <Splash>{t("errorText_emptyUsers")}</Splash>;
-    }
+    const itemGroups = Object.values(
+      groupBy(items, (user) => (pinnedUsers.includes(user.id) ? 0 : 1))
+    );
 
     return (
       <>
         {itemGroups.map((items, index) => (
           <Group key={index}>
-            {items.map(({ user, stream }) => (
+            {items.map((user) => (
               <Item key={user.id}>
                 <UserCard
                   user={user}
-                  isLive={!!stream}
+                  isLive={user.isLive}
                   onTogglePinClick={() => toggle(user.id)}
                   isPinned={pinnedUsers.includes(user.id)}
-                />
+                >
+                  <FollowingSince>
+                    {t("detailText_followingSince", user.followedAt.toLocaleString())}
+                  </FollowingSince>
+                </UserCard>
               </Item>
             ))}
           </Group>
         ))}
       </>
     );
-  }, [itemGroups, followedUsers, pinnedUsers, isLoading]);
+  }, [items, pinnedUsers, isLoading]);
 
   return (
     <Wrapper>
       <Header>
-        <SearchInput onChange={setSearchQuery} />
+        <SearchInput
+          onChange={setSearchQuery}
+          actionButtons={[
+            {
+              onClick: () => mutate(),
+              children: <RefreshIcon isRefreshing={isValidating} />,
+            },
+          ]}
+        />
       </Header>
 
       <StyledFilterBar
@@ -148,8 +164,8 @@ const FollowedUsers: FC = () => {
                 label: t("optionValue_sort_name"),
               },
               {
-                value: "view_count",
-                label: t("optionValue_sort_views"),
+                value: "followedAt",
+                label: t("optionValue_sort_followedAt"),
               },
             ],
           },

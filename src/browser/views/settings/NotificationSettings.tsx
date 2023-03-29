@@ -3,7 +3,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { useFollowedUsers } from "~/browser/helpers/hooks";
+import { useFollowedChannels } from "~/browser/helpers/queries";
 
 import ChannelName from "~/browser/components/ChannelName";
 import CheckboxGrid from "~/browser/components/CheckboxGrid";
@@ -22,7 +22,7 @@ const StyledSwitch = styled(Switch)`
 const NotificationSettings: FC = () => {
   const { register, settings } = useSettingsContext();
 
-  const [followedUsers] = useFollowedUsers();
+  const { data: followedChannels = [] } = useFollowedChannels();
 
   return (
     <Wrapper>
@@ -47,9 +47,9 @@ const NotificationSettings: FC = () => {
         <CheckboxGrid
           {...register("notifications.selectedUsers")}
           disabled={!settings.notifications.enabled || !settings.notifications.withFilters}
-          options={followedUsers.map((user) => ({
-            title: <ChannelName login={user.login} name={user.display_name} />,
-            value: user.id,
+          options={followedChannels.map((follow) => ({
+            title: <ChannelName login={follow.broadcaster_login} name={follow.broadcaster_name} />,
+            value: follow.broadcaster_id,
           }))}
         />
       </Section>

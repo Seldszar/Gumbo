@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, useMemo } from "react";
+import React, { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";
@@ -32,6 +32,7 @@ const Thumbnail = styled.div`
 
 export interface UserCardProps {
   onTogglePinClick?(): void;
+  children?: ReactNode;
   isPinned?: boolean;
   isLive?: boolean;
   user: any;
@@ -140,7 +141,7 @@ const UserCard: FC<UserCardProps> = (props) => {
           </Thumbnail>
         }
       >
-        {t("detailText_viewCount", user.view_count.toLocaleString())}
+        {props.children}
       </Wrapper>
     </Anchor>
   );

@@ -25,7 +25,7 @@ const LoadMore = styled.div`
 const CategoryStreams: FC = () => {
   const { category, searchQuery } = useOutletContext<any>();
 
-  const [streams, { error, fetchMore, hasMore, isLoadingMore }] = useStreams({
+  const [streams = [], { error, fetchMore, hasMore, isLoadingMore }] = useStreams({
     game_id: category.id,
   });
 

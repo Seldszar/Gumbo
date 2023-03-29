@@ -67,10 +67,6 @@ export function useCurrentUser() {
   return useStore(stores.currentUser);
 }
 
-export function useFollowedUsers() {
-  return useStore(stores.followedUsers);
-}
-
 export function useFollowedStreams() {
   return useStore(stores.followedStreams);
 }

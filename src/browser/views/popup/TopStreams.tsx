@@ -28,7 +28,7 @@ const LoadMore = styled.div`
 `;
 
 const TopStreams: FC = () => {
-  const [streams, { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
+  const [streams = [], { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
     useStreams();
 
   const [searchQuery, setSearchQuery] = useState("");

@@ -32,7 +32,7 @@ const CategoryVideos: FC = () => {
   const [sort, setSort] = useState("time");
   const [type, setType] = useState("all");
 
-  const [videos, { error, fetchMore, hasMore, isLoadingMore }] = useVideos({
+  const [videos = [], { error, fetchMore, hasMore, isLoadingMore }] = useVideos({
     game_id: category.id,
     period,
     sort,
