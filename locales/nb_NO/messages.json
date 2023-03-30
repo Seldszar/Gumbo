@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Legg til"
+  },
   "buttonText_cancel": {
     "message": "Avbryt"
   },
@@ -68,6 +71,9 @@
   "errorText_emptyFollowingUsers": {
     "message": "Ingen brukere følger"
   },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Ingen ignorerte kategorier"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Ingen tilgjengelige strømmer"
   },
@@ -136,6 +142,9 @@
   },
   "notificationMessage_streamOnline": {
     "message": "$1 er pålogget!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 spiller $2."
   },
   "notificationTitle_accessExpired": {
     "message": "Tilgangen har utløpt"
@@ -281,6 +290,9 @@
   "optionValue_videos": {
     "message": "Videoer"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "Legg til kategori å ignorere"
+  },
   "titleText_advanced": {
     "message": "Avansert"
   },
@@ -313,6 +325,9 @@
   },
   "titleText_general": {
     "message": "Generelt"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Ignorerte kategorier"
   },
   "titleText_live": {
     "message": "Direkte"
