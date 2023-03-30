@@ -32,5 +32,8 @@
   "commands": {
     "_execute_action": {}
   },
-  "options_page": "settings.html"
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
+  }
 }
