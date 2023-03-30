@@ -223,9 +223,9 @@ export interface UseQueryListResponse {
 
 export type UseQueryListReturn<T> = [T[] | undefined, UseQueryListResponse];
 
-export function useQueryList<T = any>(
+export function useQueryList<T = any, V = any>(
   path: string,
-  params?: any,
+  params?: V | null,
   config?: SWRInfiniteConfiguration
 ): UseQueryListReturn<T> {
   const { data, error, isLoading, isValidating, mutate, setSize, size } = useSWRInfinite(
@@ -246,7 +246,10 @@ export function useQueryList<T = any>(
 
       return [path, params];
     },
-    config
+    {
+      fetcher: () => sendRuntimeMessage("request", path, params),
+      ...config,
+    }
   );
 
   const pageData = get(data, size - 1);
@@ -275,12 +278,15 @@ export interface UseQueryDetailResponse {
 
 export type UseQueryDetailReturn<T> = [T | undefined, UseQueryDetailResponse];
 
-export function useQueryDetail<T = any>(
-  url: string,
-  params?: any,
+export function useQueryDetail<T = any, V = any>(
+  path: string,
+  params?: V | null,
   config?: SWRConfiguration
 ): UseQueryDetailReturn<T> {
-  const { data, error, isLoading } = useSWR(params ? [url, params] : null, config);
+  const { data, error, isLoading } = useSWR(params ? [path, params] : null, {
+    fetcher: () => sendRuntimeMessage("request", path, params),
+    ...config,
+  });
 
   return [
     get(data, "data.0"),

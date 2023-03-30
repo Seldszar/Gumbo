@@ -4,10 +4,9 @@ import { Global } from "@emotion/react";
 import { domAnimation, LazyMotion } from "framer-motion";
 import { ExoticComponent, FC, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
-import { getBaseFontSize, sendRuntimeMessage, setupSentry, t } from "~/common/helpers";
+import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
 
 import { useSettings } from "./hooks";
 
@@ -27,52 +26,50 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
     }, [settings.general.theme]);
 
     return (
-      <SWRConfig value={{ fetcher: sendRuntimeMessage.bind(null, "request") }}>
-        <LazyMotion features={domAnimation} strict>
-          <GlobalStyles />
+      <LazyMotion features={domAnimation} strict>
+        <GlobalStyles />
 
-          <Global
-            styles={css`
-              ::selection {
-                ${tw`bg-purple-500 text-white`}
-              }
+        <Global
+          styles={css`
+            ::selection {
+              ${tw`bg-purple-500 text-white`}
+            }
 
-              ::-webkit-scrollbar {
-                ${tw`bg-black/10 dark:bg-black/25`}
+            ::-webkit-scrollbar {
+              ${tw`bg-black/10 dark:bg-black/25`}
 
-                height: ${theme`spacing.2`};
-                width: ${theme`spacing.2`};
-              }
+              height: ${theme`spacing.2`};
+              width: ${theme`spacing.2`};
+            }
 
-              ::-webkit-scrollbar-track,
-              ::-webkit-scrollbar-thumb {
-                background-clip: padding-box;
-                border: 1px solid ${theme`colors.transparent`};
-              }
+            ::-webkit-scrollbar-track,
+            ::-webkit-scrollbar-thumb {
+              background-clip: padding-box;
+              border: 1px solid ${theme`colors.transparent`};
+            }
 
-              ::-webkit-scrollbar-thumb {
-                ${tw`bg-purple-500 hover:bg-purple-600 active:bg-purple-400`}
-              }
+            ::-webkit-scrollbar-thumb {
+              ${tw`bg-purple-500 hover:bg-purple-600 active:bg-purple-400`}
+            }
 
-              * {
-                scrollbar-color: ${theme`colors.purple.500`} ${theme`colors.transparent`};
-                scrollbar-width: thin;
-              }
+            * {
+              scrollbar-color: ${theme`colors.purple.500`} ${theme`colors.transparent`};
+              scrollbar-width: thin;
+            }
 
-              html,
-              body {
-                font-size: ${getBaseFontSize(settings.general.fontSize)};
-              }
+            html,
+            body {
+              font-size: ${getBaseFontSize(settings.general.fontSize)};
+            }
 
-              body {
-                ${tw`bg-neutral-100 text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
-              }
-            `}
-          />
+            body {
+              ${tw`bg-neutral-100 text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
+            }
+          `}
+        />
 
-          <Component />
-        </LazyMotion>
-      </SWRConfig>
+        <Component />
+      </LazyMotion>
     );
   };
 
