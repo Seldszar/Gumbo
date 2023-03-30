@@ -2,7 +2,7 @@ import { FC, useMemo, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { useCategory } from "~/browser/helpers/queries";
+import { useCategory } from "~/browser/hooks";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
 import SearchInput from "~/browser/components/SearchInput";

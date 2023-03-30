@@ -5,12 +5,8 @@ import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import {
-  useFollowedStreams,
-  useFollowedStreamState,
-  usePinnedUsers,
-} from "~/browser/helpers/hooks";
+import { filterList, isEmpty } from "~/browser/helpers";
+import { useFollowedStreams, useFollowedStreamState, usePinnedUsers } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 

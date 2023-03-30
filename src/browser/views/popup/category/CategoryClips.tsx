@@ -4,8 +4,8 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import { useClips } from "~/browser/helpers/queries";
+import { filterList, isEmpty } from "~/browser/helpers";
+import { useClips } from "~/browser/hooks";
 
 import ClipCard from "~/browser/components/cards/ClipCard";
 

@@ -4,8 +4,8 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import { useVideos } from "~/browser/helpers/queries";
+import { filterList, isEmpty } from "~/browser/helpers";
+import { useVideos } from "~/browser/hooks";
 
 import VideoCard from "~/browser/components/cards/VideoCard";
 

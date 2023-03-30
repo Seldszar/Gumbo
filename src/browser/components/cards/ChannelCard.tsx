@@ -4,7 +4,7 @@ import tw, { css, styled } from "twin.macro";
 import { openUrl, t } from "~/common/helpers";
 import { HelixChannelSearchResult } from "~/common/types";
 
-import { useClickAction } from "~/browser/helpers/hooks";
+import { useClickAction } from "~/browser/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";

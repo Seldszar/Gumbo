@@ -4,8 +4,8 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { isEmpty } from "~/browser/helpers/array";
-import { useSearchChannels } from "~/browser/helpers/queries";
+import { isEmpty } from "~/browser/helpers";
+import { useSearchChannels } from "~/browser/hooks";
 
 import ChannelCard from "~/browser/components/cards/ChannelCard";
 

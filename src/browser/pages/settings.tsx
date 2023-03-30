@@ -5,7 +5,7 @@ import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 import { t } from "~/common/helpers";
 import { Settings } from "~/common/types";
 
-import { useSettings } from "~/browser/helpers/hooks";
+import { useSettings } from "~/browser/hooks";
 
 import AdvancedSettings from "~/browser/views/settings/AdvancedSettings";
 import BadgeSettings from "~/browser/views/settings/BadgeSettings";

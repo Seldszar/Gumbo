@@ -12,7 +12,15 @@ import {
 } from "lodash-es";
 
 import { AUTHORIZE_URL } from "~/common/constants";
-import { changeCase, matchString, openUrl, settlePromises, setupSentry, t } from "~/common/helpers";
+import {
+  allPromises,
+  changeCase,
+  matchString,
+  openUrl,
+  settlePromises,
+  setupSentry,
+  t,
+} from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
 import { Dictionary, HelixStream, HelixUser } from "~/common/types";
 
@@ -93,15 +101,15 @@ async function getCurrentUser() {
 }
 
 async function getUsersByIds(id: string[]) {
-  const promises = await Promise.all(
-    map(chunk(id, 100), async (id) => {
-      const { data } = await request<HelixUser>("users", {
-        id,
-      });
+  const groups = chunk(id, 100);
 
-      return data;
-    })
-  );
+  const promises = await allPromises(groups, async (id) => {
+    const { data } = await request<HelixUser>("users", {
+      id,
+    });
+
+    return data;
+  });
 
   return flatMap(promises);
 }

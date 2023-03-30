@@ -7,10 +7,9 @@ import { createRoot } from "react-dom/client";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
-import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
+import { getBaseFontSize, sendRuntimeMessage, setupSentry, t } from "~/common/helpers";
 
-import { usePreferDarkMode, useSettings } from "./helpers/hooks";
-import { backgroundFetcher } from "./helpers/queries";
+import { useSettings } from "./hooks";
 
 setupSentry();
 
@@ -23,17 +22,12 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
   const App: FC = () => {
     const [settings] = useSettings();
 
-    const darkMode = usePreferDarkMode();
-
     useEffect(() => {
-      const force =
-        settings.general.theme === "system" ? darkMode : settings.general.theme === "dark";
-
-      document.documentElement.classList.toggle("dark", force);
-    }, [darkMode, settings.general.theme]);
+      document.documentElement.classList.toggle("dark", settings.general.theme === "dark");
+    }, [settings.general.theme]);
 
     return (
-      <SWRConfig value={{ fetcher: backgroundFetcher }}>
+      <SWRConfig value={{ fetcher: sendRuntimeMessage.bind(null, "request") }}>
         <LazyMotion features={domAnimation} strict>
           <GlobalStyles />
 

@@ -4,7 +4,7 @@ import tw, { styled } from "twin.macro";
 import { openUrl, t, template } from "~/common/helpers";
 import { FollowedStream, HelixStream } from "~/common/types";
 
-import { useClickAction } from "~/browser/helpers/hooks";
+import { useClickAction } from "~/browser/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";

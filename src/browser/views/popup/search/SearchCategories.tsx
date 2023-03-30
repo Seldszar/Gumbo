@@ -4,8 +4,8 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { isEmpty } from "~/browser/helpers/array";
-import { useSearchCategories } from "~/browser/helpers/queries";
+import { isEmpty } from "~/browser/helpers";
+import { useSearchCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 

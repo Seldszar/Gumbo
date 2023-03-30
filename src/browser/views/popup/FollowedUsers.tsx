@@ -4,9 +4,14 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { isEmpty, matchFields } from "~/browser/helpers/array";
-import { useFollowedStreams, useFollowedUserState, usePinnedUsers } from "~/browser/helpers/hooks";
-import { useFollowedChannels, useUsersByIds } from "~/browser/helpers/queries";
+import { isEmpty, matchFields } from "~/browser/helpers";
+import {
+  useFollowedChannels,
+  useFollowedStreams,
+  useFollowedUserState,
+  usePinnedUsers,
+  useUsersByID,
+} from "~/browser/hooks";
 
 import UserCard from "~/browser/components/cards/UserCard";
 
@@ -51,7 +56,7 @@ const FollowedUsers: FC = () => {
   const [pinnedUsers, { toggle }] = usePinnedUsers();
 
   const { data: followedChannels = [], isValidating, mutate } = useFollowedChannels();
-  const { data: users = [], isLoading } = useUsersByIds(map(followedChannels, "broadcasterId"));
+  const { data: users = [], isLoading } = useUsersByID(map(followedChannels, "broadcasterId"));
 
   const items = useMemo(() => {
     const items = new Array<any>();

@@ -107,8 +107,12 @@ export function template(input: string, data: Dictionary<unknown>) {
   return reduce(data, (result, value, key) => result.replace(key, String(value)), input);
 }
 
-export function sendRuntimeMessage<T extends unknown[], V>(type: string, ...args: T): Promise<V> {
+export function sendRuntimeMessage(type: string, ...args: any[]): Promise<any> {
   return browser.runtime.sendMessage({ type, args });
+}
+
+export function allPromises<T, V>(values: Iterable<T>, iteratee: (value: T) => Promise<V>) {
+  return Promise.all(Array.from(values, iteratee));
 }
 
 export function settlePromises<T, V>(values: Iterable<T>, iteratee: (value: T) => Promise<V>) {

@@ -4,7 +4,7 @@ import tw, { styled } from "twin.macro";
 import { t, template } from "~/common/helpers";
 import { HelixClip } from "~/common/types";
 
-import { formatTime } from "~/browser/helpers/time";
+import { formatTime } from "~/browser/helpers";
 
 import Anchor from "../Anchor";
 import Card from "../Card";

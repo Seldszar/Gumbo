@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 
-import { useNow } from "../helpers/hooks";
-import { formatTime } from "../helpers/time";
+import { formatTime } from "~/browser/helpers";
+import { useNow } from "~/browser/hooks";
 
 export interface UptimeProps {
   className?: string;

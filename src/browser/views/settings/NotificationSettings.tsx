@@ -3,7 +3,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { useFollowedChannels } from "~/browser/helpers/queries";
+import { useFollowedChannels } from "~/browser/hooks";
 
 import ChannelName from "~/browser/components/ChannelName";
 import CheckboxGrid from "~/browser/components/CheckboxGrid";

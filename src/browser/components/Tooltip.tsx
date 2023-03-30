@@ -4,7 +4,7 @@ import { FC, ReactNode, Ref } from "react";
 import { createPortal } from "react-dom";
 import tw, { styled } from "twin.macro";
 
-import { useHover } from "../helpers/hooks";
+import { useHover } from "../hooks";
 
 const Panel = styled(m.div)`
   ${tw`fixed bg-purple-500 max-w-full pointer-events-none px-4 py-2 rounded shadow-lg text-white z-20`}

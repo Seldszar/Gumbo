@@ -4,7 +4,7 @@ import tw, { styled } from "twin.macro";
 import { t, template } from "~/common/helpers";
 import { HelixVideo } from "~/common/types";
 
-import { parseFormatDuration } from "~/browser/helpers/time";
+import { parseFormatDuration } from "~/browser/helpers";
 
 import Anchor from "../Anchor";
 import Card from "../Card";

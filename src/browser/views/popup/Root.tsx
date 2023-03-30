@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { useCurrentUser } from "~/browser/helpers/hooks";
-
-import Welcome from "~/browser/views/popup/Welcome";
+import { useCurrentUser } from "~/browser/hooks";
 
 import Sidebar from "~/browser/components/Sidebar";
 import Splash from "~/browser/components/Splash";
+
+import Welcome from "~/browser/views/popup/Welcome";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col h-full relative`}
