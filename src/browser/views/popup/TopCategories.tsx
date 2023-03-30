@@ -7,7 +7,7 @@ import { t } from "~/common/helpers";
 
 import { filterList, isEmpty } from "~/browser/helpers/array";
 import { usePinnedCategories } from "~/browser/helpers/hooks";
-import { onceMiddleware, useCategories, useTopCategories } from "~/browser/helpers/queries";
+import { useCategories, useTopCategories } from "~/browser/helpers/queries";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
@@ -38,9 +38,13 @@ const TopCategories: FC = () => {
   const [pinnedCategories, { toggle }] = usePinnedCategories();
 
   const [categories, { refresh: refreshCategories }] = useCategories(
-    pinnedCategories.length > 0 ? { id: pinnedCategories } : null,
     {
-      use: [onceMiddleware],
+      id: pinnedCategories,
+    },
+    {
+      revalidateIfStale: false,
+      revalidateOnReconnect: false,
+      revalidateOnFocus: false,
     }
   );
 

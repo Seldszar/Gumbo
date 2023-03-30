@@ -1,6 +1,6 @@
 import { chunk, flatMap, get, has } from "lodash-es";
-import { useEffect, useMemo, useState } from "react";
-import useSWR, { Fetcher, Middleware, SWRConfiguration } from "swr";
+import { useMemo } from "react";
+import useSWR, { Fetcher, SWRConfiguration } from "swr";
 import useSWRInfinite, { SWRInfiniteConfiguration } from "swr/infinite";
 
 import { sendRuntimeMessage } from "~/common/helpers";
@@ -16,30 +16,6 @@ import {
 } from "~/common/types";
 
 import { useCurrentUser, useSettings } from "./hooks";
-
-export const onceMiddleware: Middleware = (useSWRNext) => (key, fetcher, config) => {
-  const [data, setData] = useState<any>();
-
-  const swr = useSWRNext(data ? null : key, fetcher, config);
-
-  useEffect(() => {
-    if (swr.data === undefined) {
-      return;
-    }
-
-    setData(swr.data);
-  }, [swr.data]);
-
-  return {
-    ...swr,
-    data,
-    mutate(data) {
-      setData(undefined);
-
-      return swr.mutate(data);
-    },
-  };
-};
 
 export const backgroundFetcher: Fetcher<any, [string, any]> = ([url, params]) =>
   sendRuntimeMessage("request", url, params);
