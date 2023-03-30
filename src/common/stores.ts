@@ -18,7 +18,6 @@ import {
   CurrentUser,
   FollowedStream,
   FollowedStreamState,
-  FollowedUser,
   FollowedUserState,
   Settings,
 } from "./types";
