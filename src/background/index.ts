@@ -35,10 +35,7 @@ interface TwitchResponse<T> {
   };
 }
 
-async function request<T>(
-  path: string,
-  params: Dictionary<unknown> = {}
-): Promise<TwitchResponse<T>> {
+async function request<T>(path: string, params?: Dictionary<unknown>): Promise<TwitchResponse<T>> {
   const url = new URL(path, "https://api.twitch.tv/helix/");
 
   for (const [name, value] of Object.entries(params ?? {})) {
@@ -74,10 +71,8 @@ async function request<T>(
       if (await stores.accessToken.set(null)) {
         browser.notifications.create(`${Date.now()}:authorize`, {
           title: t("notificationTitle_accessExpired"),
-          contextMessage: t("notificationContextMessage_accessExpired"),
           message: t("notificationMessage_accessExpired"),
           iconUrl: browser.runtime.getURL("icon-96.png"),
-          isClickable: true,
           type: "basic",
         });
       }
