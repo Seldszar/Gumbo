@@ -14,175 +14,88 @@
   "buttonText_importSettings": {
     "message": "Cancelar"
   },
-  "buttonText_login": {
-    "message": ""
-  },
   "buttonText_resetExtension": {
-    "message": ""
-  },
-  "buttonText_selectNone": {
     "message": ""
   },
   "confirmMessage_reset": {
     "message": ""
   },
-  "confirmTitle_reset": {
-    "message": ""
-  },
   "detailText_noDescription": {
-    "message": ""
-  },
-  "detailText_viewCount": {
     "message": ""
   },
   "errorText_emptyChannels": {
     "message": ""
   },
-  "errorText_emptyFollowingUsers": {
-    "message": ""
-  },
   "errorText_emptyOnlineStreams": {
-    "message": ""
-  },
-  "errorText_emptyUsers": {
     "message": ""
   },
   "extensionDescription": {
     "message": ""
   },
-  "inputLabel_categoryChangeNotifications": {
-    "message": ""
-  },
   "inputLabel_filterNotificationsByChannel": {
-    "message": ""
-  },
-  "inputLabel_showIconBadge": {
     "message": ""
   },
   "inputLabel_showRerunsInFollowedStreams": {
     "message": ""
   },
-  "linkText_releases": {
-    "message": ""
-  },
   "linkText_translate": {
-    "message": ""
-  },
-  "messageText_typeSearchCategories": {
     "message": ""
   },
   "notificationContextMessage_accessExpired": {
     "message": ""
   },
-  "notificationMessage_streamOnline": {
-    "message": ""
-  },
   "notificationTitle_accessExpired": {
-    "message": ""
-  },
-  "optionTitle_clickBehavior": {
     "message": ""
   },
   "optionTitle_theme": {
     "message": ""
   },
-  "optionValue_aboutHelp": {
-    "message": ""
-  },
   "optionValue_clickBehavior_createTab": {
-    "message": ""
-  },
-  "optionValue_donate": {
     "message": ""
   },
   "optionValue_fontSize_largest": {
     "message": ""
   },
-  "optionValue_fontSize_small": {
-    "message": ""
-  },
   "optionValue_logout": {
-    "message": ""
-  },
-  "optionValue_openChat": {
     "message": ""
   },
   "optionValue_period_lastDay": {
     "message": ""
   },
-  "optionValue_period_lastHours": {
-    "message": ""
-  },
   "optionValue_period_lastWeek": {
-    "message": ""
-  },
-  "optionValue_schedule": {
     "message": ""
   },
   "optionValue_settings": {
     "message": ""
   },
-  "optionValue_sort_login": {
-    "message": ""
-  },
   "optionValue_sort_time": {
-    "message": ""
-  },
-  "optionValue_sort_uptime": {
     "message": ""
   },
   "optionValue_sort_views": {
     "message": ""
   },
-  "optionValue_status_offlineOnly": {
-    "message": ""
-  },
   "optionValue_theme_dark": {
-    "message": ""
-  },
-  "optionValue_unknown": {
     "message": ""
   },
   "optionValue_videoType_archive": {
     "message": ""
   },
-  "optionValue_videoType_upload": {
-    "message": ""
-  },
   "placeholderText_ignoredCategories": {
-    "message": ""
-  },
-  "titleText_backgroundColor": {
     "message": ""
   },
   "titleText_categories": {
     "message": ""
   },
-  "titleText_clips": {
-    "message": ""
-  },
   "titleText_donate": {
-    "message": ""
-  },
-  "titleText_followedUsers": {
     "message": ""
   },
   "titleText_ignoredCategories": {
     "message": ""
   },
-  "titleText_notifications": {
-    "message": ""
-  },
   "titleText_search": {
     "message": ""
   },
-  "titleText_settingsManagement": {
-    "message": ""
-  },
   "titleText_topCategories": {
-    "message": ""
-  },
-  "titleText_videos": {
     "message": ""
   }
 }
