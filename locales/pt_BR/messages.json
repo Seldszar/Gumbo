@@ -14,43 +14,22 @@
   "buttonText_importSettings": {
     "message": "Cancelar"
   },
-  "confirmMessage_reset": {
-    "message": ""
-  },
   "errorText_emptyChannels": {
-    "message": ""
-  },
-  "extensionDescription": {
     "message": ""
   },
   "inputLabel_showRerunsInFollowedStreams": {
     "message": ""
   },
-  "notificationContextMessage_accessExpired": {
-    "message": ""
-  },
   "optionTitle_theme": {
-    "message": ""
-  },
-  "optionValue_fontSize_largest": {
     "message": ""
   },
   "optionValue_period_lastDay": {
     "message": ""
   },
-  "optionValue_settings": {
-    "message": ""
-  },
   "optionValue_sort_views": {
     "message": ""
   },
-  "optionValue_videoType_archive": {
-    "message": ""
-  },
   "titleText_categories": {
-    "message": ""
-  },
-  "titleText_ignoredCategories": {
     "message": ""
   },
   "titleText_topCategories": {
