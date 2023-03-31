@@ -14,25 +14,13 @@
   "buttonText_importSettings": {
     "message": "Cancelar"
   },
-  "errorText_emptyChannels": {
-    "message": ""
-  },
   "inputLabel_showRerunsInFollowedStreams": {
-    "message": ""
-  },
-  "optionTitle_theme": {
     "message": ""
   },
   "optionValue_period_lastDay": {
     "message": ""
   },
-  "optionValue_sort_views": {
-    "message": ""
-  },
   "titleText_categories": {
-    "message": ""
-  },
-  "titleText_topCategories": {
     "message": ""
   }
 }
