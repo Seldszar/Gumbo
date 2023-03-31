@@ -14,85 +14,43 @@
   "buttonText_importSettings": {
     "message": "Cancelar"
   },
-  "buttonText_resetExtension": {
-    "message": ""
-  },
   "confirmMessage_reset": {
-    "message": ""
-  },
-  "detailText_noDescription": {
     "message": ""
   },
   "errorText_emptyChannels": {
     "message": ""
   },
-  "errorText_emptyOnlineStreams": {
-    "message": ""
-  },
   "extensionDescription": {
-    "message": ""
-  },
-  "inputLabel_filterNotificationsByChannel": {
     "message": ""
   },
   "inputLabel_showRerunsInFollowedStreams": {
     "message": ""
   },
-  "linkText_translate": {
-    "message": ""
-  },
   "notificationContextMessage_accessExpired": {
-    "message": ""
-  },
-  "notificationTitle_accessExpired": {
     "message": ""
   },
   "optionTitle_theme": {
     "message": ""
   },
-  "optionValue_clickBehavior_createTab": {
-    "message": ""
-  },
   "optionValue_fontSize_largest": {
-    "message": ""
-  },
-  "optionValue_logout": {
     "message": ""
   },
   "optionValue_period_lastDay": {
     "message": ""
   },
-  "optionValue_period_lastWeek": {
-    "message": ""
-  },
   "optionValue_settings": {
-    "message": ""
-  },
-  "optionValue_sort_time": {
     "message": ""
   },
   "optionValue_sort_views": {
     "message": ""
   },
-  "optionValue_theme_dark": {
-    "message": ""
-  },
   "optionValue_videoType_archive": {
-    "message": ""
-  },
-  "placeholderText_ignoredCategories": {
     "message": ""
   },
   "titleText_categories": {
     "message": ""
   },
-  "titleText_donate": {
-    "message": ""
-  },
   "titleText_ignoredCategories": {
-    "message": ""
-  },
-  "titleText_search": {
     "message": ""
   },
   "titleText_topCategories": {
