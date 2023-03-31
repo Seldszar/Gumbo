@@ -14,13 +14,7 @@
   "buttonText_importSettings": {
     "message": "Cancelar"
   },
-  "inputLabel_showRerunsInFollowedStreams": {
-    "message": ""
-  },
   "optionValue_period_lastDay": {
-    "message": ""
-  },
-  "titleText_categories": {
     "message": ""
   }
 }
