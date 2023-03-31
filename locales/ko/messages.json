@@ -1,7 +1,4 @@
 {
-  "buttonText_add": {
-    "message": ""
-  },
   "buttonText_cancel": {
     "message": "취소"
   },
@@ -71,9 +68,6 @@
   "errorText_emptyFollowingUsers": {
     "message": "팔로우 중인 채널이 없습니다"
   },
-  "errorText_emptyIgnoredCategories": {
-    "message": ""
-  },
   "errorText_emptyOnlineStreams": {
     "message": "생방송이 없습니다"
   },
@@ -142,9 +136,6 @@
   },
   "notificationMessage_streamOnline": {
     "message": "$1 생방송 중입니다!"
-  },
-  "notificationMessage_streamPlaying": {
-    "message": ""
   },
   "notificationTitle_accessExpired": {
     "message": "액세스 만료됨"
@@ -290,9 +281,6 @@
   "optionValue_videos": {
     "message": "동영상"
   },
-  "placeholderText_ignoredCategories": {
-    "message": ""
-  },
   "titleText_advanced": {
     "message": "고급"
   },
@@ -325,9 +313,6 @@
   },
   "titleText_general": {
     "message": "일반"
-  },
-  "titleText_ignoredCategories": {
-    "message": ""
   },
   "titleText_live": {
     "message": "생방송"

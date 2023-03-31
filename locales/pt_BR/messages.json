@@ -1,7 +1,4 @@
 {
-  "buttonText_add": {
-    "message": ""
-  },
   "buttonText_cancel": {
     "message": "Cancelar"
   },
@@ -17,343 +14,172 @@
   "buttonText_importSettings": {
     "message": "Cancelar"
   },
-  "buttonText_loadMore": {
-    "message": ""
-  },
   "buttonText_login": {
-    "message": ""
-  },
-  "buttonText_reloadExtension": {
     "message": ""
   },
   "buttonText_resetExtension": {
     "message": ""
   },
-  "buttonText_selectAll": {
-    "message": ""
-  },
   "buttonText_selectNone": {
-    "message": ""
-  },
-  "confirmMessage_reload": {
     "message": ""
   },
   "confirmMessage_reset": {
     "message": ""
   },
-  "confirmTitle_reload": {
-    "message": ""
-  },
   "confirmTitle_reset": {
-    "message": ""
-  },
-  "detailText_noCategory": {
     "message": ""
   },
   "detailText_noDescription": {
     "message": ""
   },
-  "detailText_noTitle": {
-    "message": ""
-  },
   "detailText_viewCount": {
-    "message": ""
-  },
-  "errorText_emptyCategories": {
     "message": ""
   },
   "errorText_emptyChannels": {
     "message": ""
   },
-  "errorText_emptyClips": {
-    "message": ""
-  },
   "errorText_emptyFollowingUsers": {
-    "message": ""
-  },
-  "errorText_emptyIgnoredCategories": {
     "message": ""
   },
   "errorText_emptyOnlineStreams": {
     "message": ""
   },
-  "errorText_emptyStreams": {
-    "message": ""
-  },
   "errorText_emptyUsers": {
-    "message": ""
-  },
-  "errorText_emptyVideos": {
     "message": ""
   },
   "extensionDescription": {
     "message": ""
   },
-  "extensionName": {
-    "message": ""
-  },
   "inputLabel_categoryChangeNotifications": {
-    "message": ""
-  },
-  "inputLabel_enableNotifications": {
     "message": ""
   },
   "inputLabel_filterNotificationsByChannel": {
     "message": ""
   },
-  "inputLabel_filterStreamsByLanguage": {
-    "message": ""
-  },
   "inputLabel_showIconBadge": {
-    "message": ""
-  },
-  "inputLabel_showLiveChannelsOnly": {
     "message": ""
   },
   "inputLabel_showRerunsInFollowedStreams": {
     "message": ""
   },
-  "linkText_issues": {
-    "message": ""
-  },
   "linkText_releases": {
-    "message": ""
-  },
-  "linkText_repository": {
     "message": ""
   },
   "linkText_translate": {
     "message": ""
   },
-  "messageText_donate": {
-    "message": ""
-  },
   "messageText_typeSearchCategories": {
-    "message": ""
-  },
-  "messageText_typeSearchChannels": {
     "message": ""
   },
   "notificationContextMessage_accessExpired": {
     "message": ""
   },
-  "notificationMessage_accessExpired": {
-    "message": ""
-  },
   "notificationMessage_streamOnline": {
-    "message": ""
-  },
-  "notificationMessage_streamPlaying": {
     "message": ""
   },
   "notificationTitle_accessExpired": {
     "message": ""
   },
-  "optionTitle_clickAction": {
-    "message": ""
-  },
   "optionTitle_clickBehavior": {
-    "message": ""
-  },
-  "optionTitle_fontSize": {
     "message": ""
   },
   "optionTitle_theme": {
     "message": ""
   },
-  "optionValue_about": {
-    "message": ""
-  },
   "optionValue_aboutHelp": {
-    "message": ""
-  },
-  "optionValue_clickBehavior_createCurrentTab": {
     "message": ""
   },
   "optionValue_clickBehavior_createTab": {
     "message": ""
   },
-  "optionValue_clickBehavior_createWindow": {
-    "message": ""
-  },
   "optionValue_donate": {
-    "message": ""
-  },
-  "optionValue_fontSize_large": {
     "message": ""
   },
   "optionValue_fontSize_largest": {
     "message": ""
   },
-  "optionValue_fontSize_medium": {
-    "message": ""
-  },
   "optionValue_fontSize_small": {
-    "message": ""
-  },
-  "optionValue_fontSize_smallest": {
     "message": ""
   },
   "optionValue_logout": {
     "message": ""
   },
-  "optionValue_openChannel": {
-    "message": ""
-  },
   "optionValue_openChat": {
-    "message": ""
-  },
-  "optionValue_period_allTime": {
     "message": ""
   },
   "optionValue_period_lastDay": {
     "message": ""
   },
-  "optionValue_period_lastDays": {
-    "message": ""
-  },
   "optionValue_period_lastHours": {
-    "message": ""
-  },
-  "optionValue_period_lastMonth": {
     "message": ""
   },
   "optionValue_period_lastWeek": {
     "message": ""
   },
-  "optionValue_popout": {
-    "message": ""
-  },
   "optionValue_schedule": {
-    "message": ""
-  },
-  "optionValue_search": {
     "message": ""
   },
   "optionValue_settings": {
     "message": ""
   },
-  "optionValue_sort_category": {
-    "message": ""
-  },
   "optionValue_sort_login": {
-    "message": ""
-  },
-  "optionValue_sort_name": {
     "message": ""
   },
   "optionValue_sort_time": {
     "message": ""
   },
-  "optionValue_sort_trending": {
-    "message": ""
-  },
   "optionValue_sort_uptime": {
-    "message": ""
-  },
-  "optionValue_sort_viewers": {
     "message": ""
   },
   "optionValue_sort_views": {
     "message": ""
   },
-  "optionValue_status_any": {
-    "message": ""
-  },
   "optionValue_status_offlineOnly": {
-    "message": ""
-  },
-  "optionValue_status_onlineOnly": {
     "message": ""
   },
   "optionValue_theme_dark": {
     "message": ""
   },
-  "optionValue_theme_light": {
-    "message": ""
-  },
   "optionValue_unknown": {
-    "message": ""
-  },
-  "optionValue_videoType_all": {
     "message": ""
   },
   "optionValue_videoType_archive": {
     "message": ""
   },
-  "optionValue_videoType_highlight": {
-    "message": ""
-  },
   "optionValue_videoType_upload": {
-    "message": ""
-  },
-  "optionValue_videos": {
     "message": ""
   },
   "placeholderText_ignoredCategories": {
     "message": ""
   },
-  "titleText_advanced": {
-    "message": ""
-  },
   "titleText_backgroundColor": {
-    "message": ""
-  },
-  "titleText_badge": {
     "message": ""
   },
   "titleText_categories": {
     "message": ""
   },
-  "titleText_channels": {
-    "message": ""
-  },
   "titleText_clips": {
-    "message": ""
-  },
-  "titleText_dangerZone": {
     "message": ""
   },
   "titleText_donate": {
     "message": ""
   },
-  "titleText_followedStreams": {
-    "message": ""
-  },
   "titleText_followedUsers": {
-    "message": ""
-  },
-  "titleText_general": {
     "message": ""
   },
   "titleText_ignoredCategories": {
     "message": ""
   },
-  "titleText_live": {
-    "message": ""
-  },
   "titleText_notifications": {
-    "message": ""
-  },
-  "titleText_rerun": {
     "message": ""
   },
   "titleText_search": {
     "message": ""
   },
-  "titleText_settings": {
-    "message": ""
-  },
   "titleText_settingsManagement": {
     "message": ""
   },
-  "titleText_streams": {
-    "message": ""
-  },
   "titleText_topCategories": {
-    "message": ""
-  },
-  "titleText_topStreams": {
     "message": ""
   },
   "titleText_videos": {
