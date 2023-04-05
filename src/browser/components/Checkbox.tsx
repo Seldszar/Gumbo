@@ -1,3 +1,4 @@
+import { IconCheck } from "@tabler/icons-react";
 import { FC, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -11,15 +12,6 @@ interface ControlProps {
 
 const Control = styled.div<ControlProps>`
   ${tw`bg-black/50 flex flex-none h-6 items-center justify-center rounded text-white w-6`}
-
-  svg {
-    ${tw`stroke-current w-4`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 3px;
-  }
 
   ${(props) => props.isChecked && tw`bg-purple-500 text-white`}
 `;
@@ -43,11 +35,7 @@ const Checkbox: FC<CheckboxProps> = (props) => (
     onClick={() => props.onChange?.(!props.value)}
   >
     <Control isChecked={props.value}>
-      {props.value && (
-        <svg viewBox="0 0 24 24">
-          <path d="M5 12l5 5l10 -10" />
-        </svg>
-      )}
+      {props.value && <IconCheck size="1rem" strokeWidth={3} />}
     </Control>
     {props.children && <Inner>{props.children}</Inner>}
   </Wrapper>

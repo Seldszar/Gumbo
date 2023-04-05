@@ -1,8 +1,6 @@
 import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.ul``;
-
 const Separator = styled.li`
   ${tw`bg-black/10 dark:bg-white/10 h-px mx-2 my-1`}
 `;
@@ -13,15 +11,6 @@ const Link = styled.li`
 
 const ItemIcon = styled.div`
   ${tw`flex-none opacity-50 w-5`}
-
-  svg {
-    ${tw`flex-none stroke-current`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
 `;
 
 const ItemInner = styled.div`
@@ -48,7 +37,7 @@ const Menu: FC<MenuProps> = (props) => {
   const hasIcons = useMemo(() => props.items.some((item) => "icon" in item), [props.items]);
 
   return (
-    <Wrapper className={props.className}>
+    <ul className={props.className}>
       {props.items.map((item, index) => {
         switch (item.type) {
           case "separator": {
@@ -67,7 +56,7 @@ const Menu: FC<MenuProps> = (props) => {
           }
         }
       })}
-    </Wrapper>
+    </ul>
   );
 };
 

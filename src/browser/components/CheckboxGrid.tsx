@@ -6,8 +6,6 @@ import { t } from "~/common/helpers";
 
 import Checkbox from "./Checkbox";
 
-const Wrapper = styled.fieldset``;
-
 const PresetButton = styled.button`
   ${tw`font-medium text-sm text-neutral-600 dark:text-neutral-400 uppercase hover:(text-black dark:text-white) disabled:(cursor-default opacity-25 text-neutral-600 dark:text-neutral-400)!`}
 `;
@@ -40,7 +38,7 @@ const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
   });
 
   return (
-    <Wrapper className={props.className} disabled={props.disabled}>
+    <fieldset className={props.className} disabled={props.disabled}>
       <PresetList>
         <PresetButton onClick={() => props.onChange?.([])}>
           {t("buttonText_selectNone")}
@@ -56,7 +54,7 @@ const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
           </Checkbox>
         ))}
       </Grid>
-    </Wrapper>
+    </fieldset>
   );
 };
 

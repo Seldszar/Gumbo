@@ -1,3 +1,4 @@
+import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import { find } from "lodash-es";
 import { FC, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
@@ -11,7 +12,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  ${tw`cursor-pointer flex gap-1 disabled:(cursor-default opacity-25)!`}
+  ${tw`cursor-pointer flex gap-1 items-center disabled:(cursor-default opacity-25)!`}
 
   ${(props) =>
     props.fullWidth
@@ -21,15 +22,6 @@ const Wrapper = styled.div<WrapperProps>`
 
 const Inner = styled.div`
   ${tw`flex-1`}
-`;
-
-const Icon = styled.svg`
-  ${tw`flex-none stroke-current w-5`}
-
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2px;
 `;
 
 export interface SelectOption {
@@ -59,11 +51,7 @@ const Select: FC<SelectProps> = (props) => {
           let icon;
 
           if (option.value === value) {
-            icon = (
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12l5 5l10 -10" />
-              </svg>
-            );
+            icon = <IconCheck size="1.25rem" />;
           }
 
           return {
@@ -78,9 +66,7 @@ const Select: FC<SelectProps> = (props) => {
       {(ref) => (
         <Wrapper fullWidth={props.fullWidth} className={props.className} ref={ref}>
           <Inner>{selectedOption?.label ?? t("optionValue_unknown")}</Inner>
-          <Icon viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9" />
-          </Icon>
+          <IconChevronDown size="1.25rem" />
         </Wrapper>
       )}
     </ContextMenu>

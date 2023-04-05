@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.8.1",
     "@floating-ui/react-dom": "^0.7.1",
     "@sentry/browser": "^7.45.0",
+    "@tabler/icons-react": "^2.14.0",
     "framer-motion": "^6.3.4",
     "lodash-es": "^4.17.21",
     "preact": "^10.7.2",

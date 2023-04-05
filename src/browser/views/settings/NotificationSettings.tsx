@@ -12,8 +12,6 @@ import ListManager from "~/browser/components/ListManager";
 import Section from "~/browser/components/Section";
 import Switch from "~/browser/components/Switch";
 
-const Wrapper = styled.div``;
-
 const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
@@ -24,7 +22,7 @@ const NotificationSettings: FC = () => {
   const { data: followedChannels = [] } = useFollowedChannels();
 
   return (
-    <Wrapper>
+    <div>
       <Section>
         <StyledSwitch {...register("notifications.enabled")}>
           {t("inputLabel_enableNotifications")}
@@ -59,7 +57,7 @@ const NotificationSettings: FC = () => {
           emptyMessage={t("errorText_emptyIgnoredCategories")}
         />
       </Section>
-    </Wrapper>
+    </div>
   );
 };
 

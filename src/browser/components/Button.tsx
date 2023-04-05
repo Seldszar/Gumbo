@@ -7,15 +7,6 @@ import Spinner from "./Spinner";
 
 const Icon = styled.div`
   ${tw`flex-none`}
-
-  svg {
-    ${tw`stroke-current w-6`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.5px;
-  }
 `;
 
 const Inner = styled.div``;

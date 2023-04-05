@@ -17,10 +17,6 @@ const Header = styled.div`
   ${tw`py-3 px-4`}
 `;
 
-const List = styled.div``;
-
-const Item = styled.div``;
-
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
@@ -68,13 +64,11 @@ const CategoryClips: FC = () => {
 
     return (
       <>
-        <List>
+        <div>
           {filteredClips.map((clip) => (
-            <Item key={clip.id}>
-              <ClipCard clip={clip} />
-            </Item>
+            <ClipCard key={clip.id} clip={clip} />
           ))}
-        </List>
+        </div>
 
         {hasMore && (
           <LoadMore>

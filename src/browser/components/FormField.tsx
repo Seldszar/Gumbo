@@ -9,8 +9,6 @@ const Header = styled.div`
   ${tw`text-black dark:text-white`}
 `;
 
-const Inner = styled.div``;
-
 const Footer = styled.div`
   ${tw`text-sm text-neutral-600 dark:text-neutral-400`}
 `;
@@ -27,7 +25,7 @@ const FormField: FC<FormFieldProps> = (props) => (
   <Wrapper className={props.className} disabled={props.disabled}>
     {props.title && <Header>{props.title}</Header>}
 
-    <Inner>{props.children}</Inner>
+    <div>{props.children}</div>
 
     {props.helpText && <Footer>{props.helpText}</Footer>}
   </Wrapper>

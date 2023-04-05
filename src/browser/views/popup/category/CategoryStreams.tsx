@@ -16,8 +16,6 @@ const List = styled.div`
   ${tw`pt-3`}
 `;
 
-const Item = styled.div``;
-
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
@@ -50,9 +48,7 @@ const CategoryStreams: FC = () => {
     <>
       <List>
         {filteredStreams.map((stream) => (
-          <Item key={stream.id}>
-            <StreamCard stream={stream} />
-          </Item>
+          <StreamCard key={stream.id} stream={stream} />
         ))}
       </List>
 

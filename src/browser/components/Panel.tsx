@@ -1,3 +1,4 @@
+import { IconX } from "@tabler/icons-react";
 import { ReactNode, FC, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -15,15 +16,6 @@ const Title = styled.div`
 
 const CloseButton = styled.button`
   ${tw`flex-none ltr:-mr-1 rtl:-ml-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
-
-  svg {
-    ${tw`stroke-current w-6`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
 `;
 
 const Inner = styled.div`
@@ -43,10 +35,7 @@ const Panel: FC<PanelProps> = (props) => (
       <Title>{props.title}</Title>
       {props.onClose && (
         <CloseButton onClick={props.onClose}>
-          <svg viewBox="0 0 24 24">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          <IconX size="1.5rem" />
         </CloseButton>
       )}
     </Header>

@@ -10,8 +10,6 @@ import CheckboxGrid from "~/browser/components/CheckboxGrid";
 import Section from "~/browser/components/Section";
 import Switch from "~/browser/components/Switch";
 
-const Wrapper = styled.div``;
-
 const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
@@ -20,7 +18,7 @@ const StreamSettings: FC = () => {
   const { register, settings } = useSettingsContext();
 
   return (
-    <Wrapper>
+    <div>
       <Section>
         <StyledSwitch {...register("streams.withReruns")}>
           {t("inputLabel_showRerunsInFollowedStreams")}
@@ -36,7 +34,7 @@ const StreamSettings: FC = () => {
           options={LANGUAGE_OPTIONS}
         />
       </Section>
-    </Wrapper>
+    </div>
   );
 };
 

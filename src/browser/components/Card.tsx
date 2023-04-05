@@ -1,4 +1,5 @@
 import { PropsOf } from "@emotion/react";
+import { IconDotsVertical } from "@tabler/icons-react";
 import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -28,15 +29,6 @@ const Body = styled.div`
 
 const ActionButton = styled.button`
   ${tw`p-1 rounded transition text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
-
-  svg {
-    ${tw`flex-none stroke-current w-5`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
 `;
 
 const ActionList = styled.div`
@@ -71,11 +63,7 @@ const Card: FC<CardProps> = (props) => {
         <ContextMenu placement="bottom-end" menu={props.overflowMenu}>
           {(ref) => (
             <ActionButton ref={ref}>
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="19" r="1" />
-                <circle cx="12" cy="5" r="1" />
-              </svg>
+              <IconDotsVertical size="1.25rem" />
             </ActionButton>
           )}
         </ContextMenu>
