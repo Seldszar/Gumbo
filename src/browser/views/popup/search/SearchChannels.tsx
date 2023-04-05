@@ -12,10 +12,6 @@ import ChannelCard from "~/browser/components/cards/ChannelCard";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
-const List = styled.div``;
-
-const Item = styled.div``;
-
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
@@ -23,20 +19,23 @@ const LoadMore = styled.div`
 const SearchChannels: FC = () => {
   const { searchQuery } = useOutletContext<any>();
 
-  const [channels, { error, fetchMore, hasMore, isLoadingMore }] = useSearchChannels(
-    searchQuery.length > 0 ? { query: searchQuery } : null
+  const [channels, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchChannels(
+    searchQuery.length > 0 && {
+      query: searchQuery,
+      first: 100,
+    }
   );
 
   if (searchQuery.length === 0) {
     return <Splash>{t("messageText_typeSearchChannels")}</Splash>;
   }
 
-  if (error) {
-    return <Splash>{error.message}</Splash>;
+  if (isLoading) {
+    return <Splash isLoading />;
   }
 
-  if (channels == null) {
-    return <Splash isLoading />;
+  if (error) {
+    return <Splash>{error.message}</Splash>;
   }
 
   if (isEmpty(channels)) {
@@ -45,17 +44,15 @@ const SearchChannels: FC = () => {
 
   return (
     <>
-      <List>
+      <div>
         {channels.map((channel) => (
-          <Item key={channel.id}>
-            <ChannelCard channel={channel} />
-          </Item>
+          <ChannelCard key={channel.id} channel={channel} />
         ))}
-      </List>
+      </div>
 
       {hasMore && (
         <LoadMore>
-          <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
+          <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
             {t("buttonText_loadMore")}
           </MoreButton>
         </LoadMore>

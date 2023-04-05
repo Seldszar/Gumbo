@@ -15,7 +15,7 @@ const Background = styled.div`
   ${tw`absolute bg-white dark:bg-black inset-0 -mt-20 overflow-hidden`}
 
   &::after {
-    ${tw`absolute inset-0 bg-gradient-to-b content from-transparent to-white dark:to-black z-10`}
+    ${tw`absolute inset-0 bg-gradient-to-b content-[''] from-transparent to-white dark:to-black z-10`}
   }
 `;
 

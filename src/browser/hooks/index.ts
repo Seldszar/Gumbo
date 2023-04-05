@@ -8,6 +8,7 @@ import { ClickAction } from "~/common/constants";
 import { allPromises, sendRuntimeMessage } from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
 import {
+  Dictionary,
   FollowedStreamSortField,
   FollowedStreamState,
   FollowedUserSortField,
@@ -214,18 +215,17 @@ export function useHover(ref: RefObject<Element>): boolean {
 export interface UseQueryListResponse {
   fetchMore(): void;
   refresh(): void;
-  isLoadingMore: boolean;
   hasMore: boolean;
   isLoading: boolean;
-  isRefreshing: boolean;
+  isValidating: boolean;
   error?: Error;
 }
 
 export type UseQueryListReturn<T> = [T[] | undefined, UseQueryListResponse];
 
-export function useQueryList<T = any, V = any>(
+export function useQueryList<T = any>(
   path: string,
-  params?: V | null,
+  params?: Dictionary<unknown> | null,
   config?: SWRInfiniteConfiguration
 ): UseQueryListReturn<T> {
   const { data, error, isLoading, isValidating, mutate, setSize, size } = useSWRInfinite(
@@ -235,27 +235,25 @@ export function useQueryList<T = any, V = any>(
       }
 
       if (pageIndex > 0) {
-        const cursor = get(previousPageData, "pagination.cursor");
+        const after = get(previousPageData, "pagination.cursor");
 
-        if (cursor == null) {
+        if (after == null) {
           return null;
         }
 
-        return [path, { ...params, after: cursor }];
+        params = { ...params, after };
       }
 
       return [path, params];
     },
     {
-      fetcher: () => sendRuntimeMessage("request", path, params),
+      fetcher: (args) => sendRuntimeMessage("request", ...args),
       ...config,
     }
   );
 
-  const pageData = get(data, size - 1);
-  const isRefreshing = isValidating && data?.length === size;
-  const isLoadingMore = isLoading || (size > 0 && pageData == null);
-  const hasMore = isLoading || isLoadingMore || has(pageData, "pagination.cursor");
+  const page = get(data, size - 1);
+  const hasMore = has(page, "pagination.cursor") || (size > 0 && isValidating);
 
   return [
     data?.flatMap((page) => page.data),
@@ -263,8 +261,7 @@ export function useQueryList<T = any, V = any>(
       fetchMore: () => setSize((size) => size + 1),
       refresh: () => mutate(),
       isLoading,
-      isLoadingMore,
-      isRefreshing,
+      isValidating,
       hasMore,
       error,
     },
@@ -278,13 +275,13 @@ export interface UseQueryDetailResponse {
 
 export type UseQueryDetailReturn<T> = [T | undefined, UseQueryDetailResponse];
 
-export function useQueryDetail<T = any, V = any>(
+export function useQueryDetail<T = any>(
   path: string,
-  params?: V | null,
+  params?: Dictionary<unknown> | null,
   config?: SWRConfiguration
 ): UseQueryDetailReturn<T> {
   const { data, error, isLoading } = useSWR(params ? [path, params] : null, {
-    fetcher: () => sendRuntimeMessage("request", path, params),
+    fetcher: (args) => sendRuntimeMessage("request", ...args),
     ...config,
   });
 
@@ -298,11 +295,11 @@ export function useQueryDetail<T = any, V = any>(
 }
 
 export function useClips(params?: any, config?: SWRInfiniteConfiguration) {
-  return useQueryList<HelixClip>("clips", { ...params, first: 100 }, config);
+  return useQueryList<HelixClip>("clips", params, config);
 }
 
 export function useVideos(params?: any, config?: SWRInfiniteConfiguration) {
-  return useQueryList<HelixVideo>("videos", { ...params, first: 100 }, config);
+  return useQueryList<HelixVideo>("videos", params, config);
 }
 
 export function useStreams(params?: any, config?: SWRInfiniteConfiguration) {
@@ -324,44 +321,19 @@ export function useStreams(params?: any, config?: SWRInfiniteConfiguration) {
 }
 
 export function useSearchChannels(params?: any, config?: SWRInfiniteConfiguration) {
-  const [settings, { isLoading }] = useSettings();
-
-  const queryParams = useMemo(() => {
-    if (isLoading || params == null) {
-      return null;
-    }
-
-    return {
-      ...params,
-      liveOnly: settings.channels.liveOnly,
-      first: 100,
-    };
-  }, [isLoading, params, settings]);
-
-  return useQueryList<HelixChannelSearchResult>("search/channels", queryParams, config);
+  return useQueryList<HelixChannelSearchResult>("search/channels", params, config);
 }
 
 export function useSearchCategories(params?: any, config?: SWRInfiniteConfiguration) {
-  const queryParams = useMemo(() => {
-    if (params == null) {
-      return null;
-    }
-
-    return {
-      ...params,
-      first: 100,
-    };
-  }, [params]);
-
-  return useQueryList<HelixCategorySearchResult>("search/categories", queryParams, config);
+  return useQueryList<HelixCategorySearchResult>("search/categories", params, config);
 }
 
 export function useTopCategories(params?: any, config?: SWRInfiniteConfiguration) {
-  return useQueryList<HelixGame>("games/top", { ...params, first: 100 }, config);
+  return useQueryList<HelixGame>("games/top", params, config);
 }
 
 export function useCategories(params?: any, config?: SWRInfiniteConfiguration) {
-  return useQueryList<HelixGame>("games", { ...params, first: 100 }, config);
+  return useQueryList<HelixGame>("games", params, config);
 }
 
 export function useCategory(id?: number | string, config?: SWRConfiguration) {

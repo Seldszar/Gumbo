@@ -22,7 +22,7 @@ import {
   t,
 } from "~/common/helpers";
 import { Store, stores } from "~/common/stores";
-import { Dictionary, HelixStream, HelixUser } from "~/common/types";
+import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/types";
 
 setupSentry();
 
@@ -36,14 +36,7 @@ class RequestError extends Error {
   }
 }
 
-interface TwitchResponse<T> {
-  data: T[];
-  pagination: {
-    cursor?: string;
-  };
-}
-
-async function request<T>(path: string, params?: Dictionary<unknown>): Promise<TwitchResponse<T>> {
+async function request<T>(path: string, params?: Dictionary<unknown>): Promise<HelixResponse<T>> {
   const url = new URL(path, "https://api.twitch.tv/helix/");
 
   for (const [name, value] of Object.entries(params ?? {})) {

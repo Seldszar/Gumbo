@@ -5,7 +5,7 @@ import tw, { styled } from "twin.macro";
 import { t } from "~/common/helpers";
 
 const ActionBadge = styled.div`
-  ${tw`absolute bg-purple-500 content h-2 pointer-events-none ring-2 ring-neutral-200 dark:ring-neutral-800 right-0 rounded-full top-0 w-2`}
+  ${tw`absolute bg-purple-500 content-[''] h-2 pointer-events-none ring-2 ring-neutral-200 dark:ring-neutral-800 right-0 rounded-full top-0 w-2`}
 `;
 
 const ActionButton = styled.button`

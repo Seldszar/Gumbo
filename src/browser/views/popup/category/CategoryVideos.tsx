@@ -32,8 +32,9 @@ const CategoryVideos: FC = () => {
   const [sort, setSort] = useState("time");
   const [type, setType] = useState("all");
 
-  const [videos = [], { error, fetchMore, hasMore, isLoadingMore }] = useVideos({
+  const [videos = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useVideos({
     gameId: category.id,
+    first: 100,
     period,
     sort,
     type,
@@ -45,12 +46,12 @@ const CategoryVideos: FC = () => {
   );
 
   const children = useMemo(() => {
-    if (error) {
-      return <Splash>{error.message}</Splash>;
+    if (isLoading) {
+      return <Splash isLoading />;
     }
 
-    if (videos == null) {
-      return <Splash isLoading />;
+    if (error) {
+      return <Splash>{error.message}</Splash>;
     }
 
     if (isEmpty(filteredVideos)) {
@@ -69,14 +70,14 @@ const CategoryVideos: FC = () => {
 
         {hasMore && (
           <LoadMore>
-            <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
+            <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
               {t("buttonText_loadMore")}
             </MoreButton>
           </LoadMore>
         )}
       </>
     );
-  }, [error, filteredVideos, hasMore, isLoadingMore, videos]);
+  }, [error, filteredVideos, hasMore, isLoading, isValidating, videos]);
 
   return (
     <>

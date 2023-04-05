@@ -41,10 +41,11 @@ const CategoryClips: FC = () => {
     };
   }, [duration]);
 
-  const [clips = [], { error, fetchMore, hasMore, isLoadingMore }] = useClips({
+  const [clips = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useClips({
     startedAt: period?.startedAt,
     endedAt: period?.endedAt,
     gameId: category.id,
+    first: 100,
   });
 
   const filteredClips = useMemo(
@@ -53,12 +54,12 @@ const CategoryClips: FC = () => {
   );
 
   const children = useMemo(() => {
-    if (error) {
-      return <Splash>{error.message}</Splash>;
+    if (isLoading) {
+      return <Splash isLoading />;
     }
 
-    if (clips == null) {
-      return <Splash isLoading />;
+    if (error) {
+      return <Splash>{error.message}</Splash>;
     }
 
     if (isEmpty(filteredClips)) {
@@ -77,14 +78,14 @@ const CategoryClips: FC = () => {
 
         {hasMore && (
           <LoadMore>
-            <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
+            <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
               {t("buttonText_loadMore")}
             </MoreButton>
           </LoadMore>
         )}
       </>
     );
-  }, [clips, error, filteredClips, hasMore, isLoadingMore]);
+  }, [clips, error, filteredClips, hasMore, isLoading, isValidating]);
 
   return (
     <>

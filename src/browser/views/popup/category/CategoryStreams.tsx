@@ -25,7 +25,7 @@ const LoadMore = styled.div`
 const CategoryStreams: FC = () => {
   const { category, searchQuery } = useOutletContext<any>();
 
-  const [streams = [], { error, fetchMore, hasMore, isLoadingMore }] = useStreams({
+  const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useStreams({
     gameId: category.id,
   });
 
@@ -34,12 +34,12 @@ const CategoryStreams: FC = () => {
     [streams, searchQuery]
   );
 
-  if (error) {
-    return <Splash>{error.message}</Splash>;
+  if (isLoading) {
+    return <Splash isLoading />;
   }
 
-  if (streams == null) {
-    return <Splash isLoading />;
+  if (error) {
+    return <Splash>{error.message}</Splash>;
   }
 
   if (isEmpty(filteredStreams)) {
@@ -58,7 +58,7 @@ const CategoryStreams: FC = () => {
 
       {hasMore && (
         <LoadMore>
-          <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
+          <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
             {t("buttonText_loadMore")}
           </MoreButton>
         </LoadMore>

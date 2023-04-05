@@ -2,21 +2,21 @@ import { keyframes, PropsOf } from "@emotion/react";
 import { FC } from "react";
 import { css, styled } from "twin.macro";
 
-const rotateAnimation = keyframes`
+const spinAnimation = keyframes`
   100% {
     transform: rotate(-360deg);
   }
 `;
 
 interface WrapperProps {
-  isRefreshing?: boolean;
+  isSpinning?: boolean;
 }
 
 const Wrapper = styled.svg<WrapperProps>`
   ${(props) =>
-    props.isRefreshing &&
+    props.isSpinning &&
     css`
-      animation: ${rotateAnimation} 1s infinite;
+      animation: ${spinAnimation} 1s infinite;
     `}
 `;
 

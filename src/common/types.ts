@@ -32,10 +32,6 @@ export interface NotificationSettings {
   selectedUsers: string[];
 }
 
-export interface ChannelSettings {
-  liveOnly: boolean;
-}
-
 export type FollowedStreamSortField = "gameName" | "startedAt" | "userLogin" | "viewerCount";
 
 export interface FollowedStreamState {
@@ -54,7 +50,6 @@ export interface FollowedUserState {
 export interface Settings {
   general: GeneralSettings;
   badge: BadgeSettings;
-  channels: ChannelSettings;
   notifications: NotificationSettings;
   streams: StreamSettings;
 }
@@ -188,4 +183,12 @@ export interface HelixVideo {
   language: string;
   type: string;
   duration: string;
+}
+
+export interface HelixResponse<T> {
+  data: Array<T>;
+
+  pagination: {
+    cursor?: string;
+  };
 }

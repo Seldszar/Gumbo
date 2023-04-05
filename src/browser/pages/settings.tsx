@@ -12,7 +12,6 @@ import BadgeSettings from "~/browser/views/settings/BadgeSettings";
 import GeneralSettings from "~/browser/views/settings/GeneralSettings";
 import NotificationSettings from "~/browser/views/settings/NotificationSettings";
 import Root from "~/browser/views/settings/Root";
-import SearchSettings from "~/browser/views/settings/SearchSettings";
 import StreamSettings from "~/browser/views/settings/StreamSettings";
 
 import Page from "~/browser/components/Page";
@@ -51,10 +50,6 @@ const router = createHashRouter([
       {
         path: "notification",
         element: <NotificationSettings />,
-      },
-      {
-        path: "search",
-        element: <SearchSettings />,
       },
       {
         path: "stream",

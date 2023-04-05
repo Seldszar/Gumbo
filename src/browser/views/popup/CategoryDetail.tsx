@@ -2,6 +2,7 @@ import { FC, useMemo, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
+import { t } from "~/common/helpers";
 import { useCategory } from "~/browser/hooks";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
@@ -25,15 +26,19 @@ const CategoryDetail: FC = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
-  const [category, { error }] = useCategory(params.categoryId);
+  const [category, { error, isLoading }] = useCategory(params.categoryId);
 
   const children = useMemo(() => {
-    if (category == null) {
+    if (isLoading) {
       return <Splash isLoading />;
     }
 
     if (error) {
       return <Splash>{error.message}</Splash>;
+    }
+
+    if (category == null) {
+      return <Splash>{t("detailText_noCategory")}</Splash>;
     }
 
     return (
@@ -43,7 +48,7 @@ const CategoryDetail: FC = () => {
         <Outlet context={{ searchQuery, category }} />
       </>
     );
-  }, [category, error, searchQuery]);
+  }, [category, isLoading, searchQuery]);
 
   return (
     <Wrapper>

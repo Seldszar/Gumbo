@@ -21,14 +21,12 @@ const Header = styled.div`
   ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
 `;
 
-const Item = styled.div``;
-
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
 const TopStreams: FC = () => {
-  const [streams = [], { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
+  const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating, refresh }] =
     useStreams();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,12 +37,12 @@ const TopStreams: FC = () => {
   );
 
   const children = useMemo(() => {
-    if (error) {
-      return <Splash>{error.message}</Splash>;
+    if (isLoading) {
+      return <Splash isLoading />;
     }
 
-    if (streams == null) {
-      return <Splash isLoading />;
+    if (error) {
+      return <Splash>{error.message}</Splash>;
     }
 
     if (isEmpty(filteredStreams)) {
@@ -53,22 +51,22 @@ const TopStreams: FC = () => {
 
     return (
       <>
-        {filteredStreams.map((stream) => (
-          <Item key={stream.id}>
-            <StreamCard stream={stream} />
-          </Item>
-        ))}
+        <div>
+          {filteredStreams.map((stream) => (
+            <StreamCard key={stream.id} stream={stream} />
+          ))}
+        </div>
 
         {hasMore && (
           <LoadMore>
-            <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
+            <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
               {t("buttonText_loadMore")}
             </MoreButton>
           </LoadMore>
         )}
       </>
     );
-  }, [error, filteredStreams, hasMore, isLoadingMore, streams]);
+  }, [error, filteredStreams, hasMore, isLoading, isValidating, streams]);
 
   return (
     <Wrapper>
@@ -78,7 +76,7 @@ const TopStreams: FC = () => {
           actionButtons={[
             {
               onClick: () => refresh(),
-              children: <RefreshIcon isRefreshing={isRefreshing} />,
+              children: <RefreshIcon isSpinning={isValidating} />,
             },
           ]}
         />

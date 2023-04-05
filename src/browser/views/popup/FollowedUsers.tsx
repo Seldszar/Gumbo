@@ -33,16 +33,8 @@ const StyledFilterBar = styled(FilterBar)`
 `;
 
 const Group = styled.div`
-  &::after {
-    ${tw`block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1`}
-  }
-
-  &:last-of-type::after {
-    ${tw`hidden`}
-  }
+  ${tw`after:(block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1 last:hidden)`}
 `;
-
-const Item = styled.div``;
 
 const FollowingSince = styled.div`
   ${tw`truncate`}
@@ -103,18 +95,17 @@ const FollowedUsers: FC = () => {
         {itemGroups.map((items, index) => (
           <Group key={index}>
             {items.map((user) => (
-              <Item key={user.id}>
-                <UserCard
-                  user={user}
-                  isLive={user.isLive}
-                  onTogglePinClick={() => toggle(user.id)}
-                  isPinned={pinnedUsers.includes(user.id)}
-                >
-                  <FollowingSince>
-                    {t("detailText_followingSince", user.followedAt.toLocaleString())}
-                  </FollowingSince>
-                </UserCard>
-              </Item>
+              <UserCard
+                key={user.id}
+                onTogglePinClick={() => toggle(user.id)}
+                isPinned={pinnedUsers.includes(user.id)}
+                isLive={user.isLive}
+                user={user}
+              >
+                <FollowingSince>
+                  {t("detailText_followingSince", user.followedAt.toLocaleString())}
+                </FollowingSince>
+              </UserCard>
             ))}
           </Group>
         ))}
@@ -130,7 +121,7 @@ const FollowedUsers: FC = () => {
           actionButtons={[
             {
               onClick: () => mutate(),
-              children: <RefreshIcon isRefreshing={isValidating} />,
+              children: <RefreshIcon isSpinning={isValidating} />,
             },
           ]}
         />

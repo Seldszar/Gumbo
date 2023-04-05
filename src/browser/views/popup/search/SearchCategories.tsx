@@ -16,8 +16,6 @@ const Grid = styled.div`
   ${tw`gap-3 grid grid-cols-4 p-3`}
 `;
 
-const Item = styled(Link)``;
-
 const LoadMore = styled.div`
   ${tw`p-3 pt-0`}
 `;
@@ -25,20 +23,23 @@ const LoadMore = styled.div`
 const SearchCategories: FC = () => {
   const { searchQuery } = useOutletContext<any>();
 
-  const [categories, { error, fetchMore, hasMore, isLoadingMore }] = useSearchCategories(
-    searchQuery.length > 0 ? { query: searchQuery } : null
+  const [categories, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchCategories(
+    searchQuery.length > 0 && {
+      query: searchQuery,
+      first: 100,
+    }
   );
 
   if (searchQuery.length === 0) {
     return <Splash>{t("messageText_typeSearchCategories")}</Splash>;
   }
 
-  if (error) {
-    return <Splash>{error.message}</Splash>;
+  if (isLoading) {
+    return <Splash isLoading />;
   }
 
-  if (categories == null) {
-    return <Splash isLoading />;
+  if (error) {
+    return <Splash>{error.message}</Splash>;
   }
 
   if (isEmpty(categories)) {
@@ -49,15 +50,15 @@ const SearchCategories: FC = () => {
     <>
       <Grid>
         {categories.map((category) => (
-          <Item key={category.id} to={`/categories/${category.id}`}>
+          <Link key={category.id} to={`/categories/${category.id}`}>
             <CategoryCard category={category} />
-          </Item>
+          </Link>
         ))}
       </Grid>
 
       {hasMore && (
         <LoadMore>
-          <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
+          <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
             {t("buttonText_loadMore")}
           </MoreButton>
         </LoadMore>

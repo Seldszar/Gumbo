@@ -30,7 +30,6 @@ function Root() {
         <MenuItem to="general">{t("titleText_general")}</MenuItem>
         <MenuItem to="badge">{t("titleText_badge")}</MenuItem>
         <MenuItem to="notification">{t("titleText_notifications")}</MenuItem>
-        <MenuItem to="search">{t("titleText_search")}</MenuItem>
         <MenuItem to="stream">{t("titleText_streams")}</MenuItem>
         <MenuItem to="advanced">{t("titleText_advanced")}</MenuItem>
       </Aside>

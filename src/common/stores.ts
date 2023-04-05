@@ -232,9 +232,6 @@ export const stores = {
         enabled: boolean(),
         color: string(),
       }),
-      channels: object({
-        liveOnly: boolean(),
-      }),
       notifications: object({
         enabled: boolean(),
         withFilters: boolean(),
@@ -258,9 +255,6 @@ export const stores = {
       badge: {
         enabled: true,
         color: "#737373",
-      },
-      channels: {
-        liveOnly: false,
       },
       notifications: {
         enabled: true,

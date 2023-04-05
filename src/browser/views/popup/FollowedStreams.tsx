@@ -28,16 +28,8 @@ const StyledFilterBar = styled(FilterBar)`
 `;
 
 const Group = styled.div`
-  &::after {
-    ${tw`block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1`}
-  }
-
-  &:last-of-type::after {
-    ${tw`hidden`}
-  }
+  ${tw`after:(block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1 last:hidden)`}
 `;
-
-const Item = styled.div``;
 
 const FollowedStreams: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -85,13 +77,12 @@ const FollowedStreams: FC = () => {
         {itemGroups.map((streams, index) => (
           <Group key={index}>
             {streams.map((stream) => (
-              <Item key={stream.id}>
-                <StreamCard
-                  stream={stream}
-                  onTogglePinClick={() => toggle(stream.userId)}
-                  isPinned={pinnedUsers.includes(stream.userId)}
-                />
-              </Item>
+              <StreamCard
+                key={stream.id}
+                onTogglePinClick={() => toggle(stream.userId)}
+                isPinned={pinnedUsers.includes(stream.userId)}
+                stream={stream}
+              />
             ))}
           </Group>
         ))}
@@ -106,8 +97,8 @@ const FollowedStreams: FC = () => {
           onChange={setSearchQuery}
           actionButtons={[
             {
+              children: <RefreshIcon isSpinning={refreshState.loading} />,
               onClick: () => doRefresh(),
-              children: <RefreshIcon isRefreshing={refreshState.loading} />,
             },
           ]}
         />
