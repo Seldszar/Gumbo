@@ -1,11 +1,8 @@
-import { get, set } from "lodash-es";
-import { createContext, useContext } from "react";
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import { t } from "~/common/helpers";
-import { Settings } from "~/common/types";
 
-import { useSettings } from "~/browser/hooks";
+import { SettingsProvider } from "~/browser/contexts";
 
 import AdvancedSettings from "~/browser/views/settings/AdvancedSettings";
 import BadgeSettings from "~/browser/views/settings/BadgeSettings";
@@ -15,17 +12,6 @@ import Root from "~/browser/views/settings/Root";
 import StreamSettings from "~/browser/views/settings/StreamSettings";
 
 import Page from "~/browser/components/Page";
-
-const Context = createContext<any>(null);
-
-export interface SettingsContext {
-  register(name: string): any;
-  settings: Settings;
-}
-
-export function useSettingsContext(): SettingsContext {
-  return useContext(Context);
-}
 
 const router = createHashRouter([
   {
@@ -60,21 +46,12 @@ const router = createHashRouter([
 ]);
 
 function SettingsPage() {
-  const [settings, store] = useSettings();
-
-  const register = (path: string) => ({
-    value: get(settings, path),
-    onChange(value: unknown) {
-      store.set(set(settings, path, value));
-    },
-  });
-
   return (
-    <Context.Provider value={{ register, settings }}>
+    <SettingsProvider>
       <Page title={t("titleText_settings")}>
         <RouterProvider router={router} />
       </Page>
-    </Context.Provider>
+    </SettingsProvider>
   );
 }
 

@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useSettingsContext } from "~/browser/contexts";
 import { useFollowedChannels } from "~/browser/hooks";
 
 import ChannelName from "~/browser/components/ChannelName";
@@ -10,8 +11,6 @@ import CheckboxGrid from "~/browser/components/CheckboxGrid";
 import ListManager from "~/browser/components/ListManager";
 import Section from "~/browser/components/Section";
 import Switch from "~/browser/components/Switch";
-
-import { useSettingsContext } from "~/browser/pages/settings";
 
 const Wrapper = styled.div``;
 
