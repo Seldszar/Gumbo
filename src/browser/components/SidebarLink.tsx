@@ -1,5 +1,5 @@
 import { PropsOf } from "@emotion/react";
-import { FC } from "react";
+
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -9,7 +9,7 @@ const Wrapper = styled(NavLink)`
   ${tw`grid p-2 place-content-center text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:text-purple-500!`}
 `;
 
-const SidebarLink: FC<PropsOf<typeof Wrapper>> = (props) => {
+function SidebarLink(props: PropsOf<typeof Wrapper>) {
   const { title, ...rest } = props;
 
   return (
@@ -21,6 +21,6 @@ const SidebarLink: FC<PropsOf<typeof Wrapper>> = (props) => {
       )}
     </Tooltip>
   );
-};
+}
 
 export default SidebarLink;

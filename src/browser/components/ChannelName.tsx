@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 const Login = styled.span`
@@ -11,7 +11,7 @@ export interface ChannelNameProps {
   name: string;
 }
 
-const ChannelName: FC<ChannelNameProps> = (props) => {
+function ChannelName(props: ChannelNameProps) {
   const displayName = useMemo(() => props.name || props.login, [props.login, props.name]);
 
   const isDifferent = useMemo(
@@ -29,6 +29,6 @@ const ChannelName: FC<ChannelNameProps> = (props) => {
       {displayName} {isDifferent && <Login>({props.login})</Login>}
     </div>
   );
-};
+}
 
 export default ChannelName;

@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { ClickAction, ClickBehavior } from "~/common/constants";
 import { t } from "~/common/helpers";
 
@@ -9,7 +7,7 @@ import FormField from "~/browser/components/FormField";
 import Section from "~/browser/components/Section";
 import Select from "~/browser/components/Select";
 
-const GeneralSettings: FC = () => {
+function GeneralSettings() {
   const { register } = useSettingsContext();
 
   return (
@@ -106,6 +104,6 @@ const GeneralSettings: FC = () => {
       </Section>
     </div>
   );
-};
+}
 
 export default GeneralSettings;

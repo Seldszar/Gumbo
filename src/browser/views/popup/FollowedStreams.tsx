@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { groupBy, orderBy } from "lodash-es";
 import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
@@ -31,7 +31,7 @@ const Group = styled.div`
   ${tw`after:(block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1 last:hidden)`}
 `;
 
-const FollowedStreams: FC = () => {
+function FollowedStreams() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [followedStreams, { isLoading }] = useFollowedStreams();
@@ -137,6 +137,6 @@ const FollowedStreams: FC = () => {
       {children}
     </Wrapper>
   );
-};
+}
 
 export default FollowedStreams;

@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
@@ -33,7 +33,7 @@ export interface VideoCardProps {
   video: HelixVideo;
 }
 
-const VideoCard: FC<VideoCardProps> = (props) => {
+function VideoCard(props: VideoCardProps) {
   const { video } = props;
 
   const previewImage = useMemo(
@@ -68,6 +68,6 @@ const VideoCard: FC<VideoCardProps> = (props) => {
       </Wrapper>
     </Anchor>
   );
-};
+}
 
 export default VideoCard;

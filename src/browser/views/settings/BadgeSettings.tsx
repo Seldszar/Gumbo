@@ -1,4 +1,3 @@
-import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -13,7 +12,7 @@ const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-const BadgeSettings: FC = () => {
+function BadgeSettings() {
   const { register, settings } = useSettingsContext();
 
   return (
@@ -26,6 +25,6 @@ const BadgeSettings: FC = () => {
       </Section>
     </div>
   );
-};
+}
 
 export default BadgeSettings;

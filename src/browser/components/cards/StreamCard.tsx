@@ -1,5 +1,5 @@
 import { IconPinnedOff, IconPin } from "@tabler/icons-react";
-import { FC, HTMLAttributes, useMemo } from "react";
+import { HTMLAttributes, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { openUrl, t, template } from "~/common/helpers";
@@ -44,7 +44,7 @@ export interface StreamCardProps {
   stream: FollowedStream | HelixStream;
 }
 
-const StreamCard: FC<StreamCardProps> = (props) => {
+function StreamCard(props: StreamCardProps) {
   const { stream } = props;
 
   const startDate = useMemo(
@@ -155,6 +155,6 @@ const StreamCard: FC<StreamCardProps> = (props) => {
       </Wrapper>
     </Anchor>
   );
-};
+}
 
 export default StreamCard;

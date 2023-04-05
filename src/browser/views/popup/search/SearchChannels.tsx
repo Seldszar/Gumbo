@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -16,7 +15,7 @@ const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
-const SearchChannels: FC = () => {
+function SearchChannels() {
   const { searchQuery } = useOutletContext<any>();
 
   const [channels, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchChannels(
@@ -59,6 +58,6 @@ const SearchChannels: FC = () => {
       )}
     </>
   );
-};
+}
 
 export default SearchChannels;

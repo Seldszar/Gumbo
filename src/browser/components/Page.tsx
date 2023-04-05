@@ -41,7 +41,7 @@ export interface PageProps {
   title?: ReactNode;
 }
 
-const Page: FC<PageProps> = (props) => {
+function Page(props: PageProps) {
   useTitle(`${props.title ? `${props.title} ━ ` : ""}${t("extensionName")}`);
 
   return (
@@ -56,6 +56,6 @@ const Page: FC<PageProps> = (props) => {
       <Inner>{props.children}</Inner>
     </Wrapper>
   );
-};
+}
 
 export default Page;

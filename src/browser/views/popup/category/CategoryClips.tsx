@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -21,7 +21,7 @@ const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
-const CategoryClips: FC = () => {
+function CategoryClips() {
   const { category, searchQuery } = useOutletContext<any>();
 
   const [duration, setDuration] = useState<number | null>(null);
@@ -116,6 +116,6 @@ const CategoryClips: FC = () => {
       {children}
     </>
   );
-};
+}
 
 export default CategoryClips;

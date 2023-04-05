@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
+import { HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 const Separator = styled.li`
@@ -33,7 +33,7 @@ export interface MenuProps {
   className?: string;
 }
 
-const Menu: FC<MenuProps> = (props) => {
+function Menu(props: MenuProps) {
   const hasIcons = useMemo(() => props.items.some((item) => "icon" in item), [props.items]);
 
   return (
@@ -58,6 +58,6 @@ const Menu: FC<MenuProps> = (props) => {
       })}
     </ul>
   );
-};
+}
 
 export default Menu;

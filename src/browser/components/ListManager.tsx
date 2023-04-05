@@ -1,6 +1,6 @@
 import { IconTrash } from "@tabler/icons-react";
 import { concat, map, without } from "lodash-es";
-import { FC, FormEventHandler, useState } from "react";
+import { FormEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -45,7 +45,7 @@ export interface ListManagerProps<T> {
   value: T[];
 }
 
-const ListManager: FC<ListManagerProps<any>> = (props) => {
+function ListManager(props: ListManagerProps<any>) {
   const [inputText, setInputText] = useState("");
 
   const handleSubmit: FormEventHandler = (event) => {
@@ -80,6 +80,6 @@ const ListManager: FC<ListManagerProps<any>> = (props) => {
       )}
     </fieldset>
   );
-};
+}
 
 export default ListManager;

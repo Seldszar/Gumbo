@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -20,7 +19,7 @@ const LoadMore = styled.div`
   ${tw`p-3 pt-0`}
 `;
 
-const SearchCategories: FC = () => {
+function SearchCategories() {
   const { searchQuery } = useOutletContext<any>();
 
   const [categories, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchCategories(
@@ -65,6 +64,6 @@ const SearchCategories: FC = () => {
       )}
     </>
   );
-};
+}
 
 export default SearchCategories;

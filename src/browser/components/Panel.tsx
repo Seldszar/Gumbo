@@ -1,5 +1,5 @@
 import { IconX } from "@tabler/icons-react";
-import { ReactNode, FC, MouseEventHandler } from "react";
+import { ReactNode, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.div`
@@ -29,18 +29,20 @@ export interface PanelProps {
   title?: ReactNode;
 }
 
-const Panel: FC<PanelProps> = (props) => (
-  <Wrapper className={props.className}>
-    <Header>
-      <Title>{props.title}</Title>
-      {props.onClose && (
-        <CloseButton onClick={props.onClose}>
-          <IconX size="1.5rem" />
-        </CloseButton>
-      )}
-    </Header>
-    <Inner>{props.children}</Inner>
-  </Wrapper>
-);
+function Panel(props: PanelProps) {
+  return (
+    <Wrapper className={props.className}>
+      <Header>
+        <Title>{props.title}</Title>
+        {props.onClose && (
+          <CloseButton onClick={props.onClose}>
+            <IconX size="1.5rem" />
+          </CloseButton>
+        )}
+      </Header>
+      <Inner>{props.children}</Inner>
+    </Wrapper>
+  );
+}
 
 export default Panel;

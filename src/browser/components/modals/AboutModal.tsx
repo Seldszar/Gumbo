@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -37,23 +37,25 @@ interface AboutModalProps {
   isOpen?: boolean;
 }
 
-const AboutModal: FC<AboutModalProps> = (props) => (
-  <Modal isOpen={props.isOpen}>
-    <Panel onClose={props.onClose}>
-      <Section>
-        <Hero />
-      </Section>
-      <Section>
-        <LinkGrid>
-          {allLinks.map((props, index) => (
-            <ExternalAnchor key={index} to={props.url}>
-              {props.title}
-            </ExternalAnchor>
-          ))}
-        </LinkGrid>
-      </Section>
-    </Panel>
-  </Modal>
-);
+function AboutModal(props: AboutModalProps) {
+  return (
+    <Modal isOpen={props.isOpen}>
+      <Panel onClose={props.onClose}>
+        <Section>
+          <Hero />
+        </Section>
+        <Section>
+          <LinkGrid>
+            {allLinks.map((props, index) => (
+              <ExternalAnchor key={index} to={props.url}>
+                {props.title}
+              </ExternalAnchor>
+            ))}
+          </LinkGrid>
+        </Section>
+      </Panel>
+    </Modal>
+  );
+}
 
 export default AboutModal;

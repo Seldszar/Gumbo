@@ -1,4 +1,3 @@
-import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { LANGUAGE_OPTIONS } from "~/common/constants";
@@ -14,7 +13,7 @@ const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-const StreamSettings: FC = () => {
+function StreamSettings() {
   const { register, settings } = useSettingsContext();
 
   return (
@@ -36,6 +35,6 @@ const StreamSettings: FC = () => {
       </Section>
     </div>
   );
-};
+}
 
 export default StreamSettings;

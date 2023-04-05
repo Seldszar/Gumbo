@@ -2,7 +2,7 @@ import type { EntryWrapper } from "@seldszar/yael";
 
 import { Global } from "@emotion/react";
 import { domAnimation, LazyMotion } from "framer-motion";
-import { ExoticComponent, FC, useEffect } from "react";
+import { ExoticComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
@@ -18,7 +18,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
   document.documentElement.dir = t("@@bidi_dir");
   document.documentElement.lang = t("@@ui_locale");
 
-  const App: FC = () => {
+  function App() {
     const [settings] = useSettings();
 
     useEffect(() => {
@@ -36,10 +36,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
             }
 
             ::-webkit-scrollbar {
-              ${tw`bg-black/10 dark:bg-black/25`}
-
-              height: ${theme`spacing.2`};
-              width: ${theme`spacing.2`};
+              ${tw`bg-black/10 dark:bg-black/25 h-2 w-2`}
             }
 
             ::-webkit-scrollbar-track,
@@ -71,7 +68,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
         <Component />
       </LazyMotion>
     );
-  };
+  }
 
   root.render(<App />);
 };

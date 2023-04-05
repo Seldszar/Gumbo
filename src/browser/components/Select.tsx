@@ -1,6 +1,6 @@
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import { find } from "lodash-es";
-import { FC, ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -37,7 +37,7 @@ export interface SelectProps {
   value: any;
 }
 
-const Select: FC<SelectProps> = (props) => {
+function Select(props: SelectProps) {
   const { options, value } = props;
 
   const selectedOption = useMemo(() => find(options, { value }), [options, value]);
@@ -71,6 +71,6 @@ const Select: FC<SelectProps> = (props) => {
       )}
     </ContextMenu>
   );
-};
+}
 
 export default Select;

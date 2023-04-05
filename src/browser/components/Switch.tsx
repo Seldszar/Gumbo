@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const Wrapper = styled.fieldset`
@@ -39,18 +39,20 @@ export interface SwitchProps {
   value?: boolean;
 }
 
-const Switch: FC<SwitchProps> = (props) => (
-  <Wrapper
-    disabled={props.disabled}
-    className={props.className}
-    onClick={() => props.onChange?.(!props.value)}
-  >
-    {props.children && <Inner>{props.children}</Inner>}
+function Switch(props: SwitchProps) {
+  return (
+    <Wrapper
+      disabled={props.disabled}
+      className={props.className}
+      onClick={() => props.onChange?.(!props.value)}
+    >
+      {props.children && <Inner>{props.children}</Inner>}
 
-    <Control isChecked={props.value}>
-      <Handle />
-    </Control>
-  </Wrapper>
-);
+      <Control isChecked={props.value}>
+        <Handle />
+      </Control>
+    </Wrapper>
+  );
+}
 
 export default Switch;

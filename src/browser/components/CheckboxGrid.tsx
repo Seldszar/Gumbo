@@ -1,5 +1,5 @@
 import { map, xor } from "lodash-es";
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -31,7 +31,7 @@ export interface CheckboxGridProps<T> {
   value?: T[];
 }
 
-const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
+function CheckboxGrid(props: CheckboxGridProps<any>) {
   const register = (value: any) => ({
     onChange: () => props.onChange?.(xor(props.value, [value])),
     value: props.value?.includes(value) ?? false,
@@ -56,6 +56,6 @@ const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
       </Grid>
     </fieldset>
   );
-};
+}
 
 export default CheckboxGrid;

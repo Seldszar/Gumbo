@@ -1,5 +1,5 @@
 import { IconPin, IconPinnedOff } from "@tabler/icons-react";
-import { FC, MouseEventHandler, useMemo } from "react";
+import { MouseEventHandler, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { template } from "~/common/helpers";
@@ -30,7 +30,7 @@ export interface CategoryCardProps {
   category: HelixGame | HelixCategorySearchResult;
 }
 
-const CategoryCard: FC<CategoryCardProps> = (props) => {
+function CategoryCard(props: CategoryCardProps) {
   const { category } = props;
 
   const boxArtUrl = useMemo(
@@ -59,6 +59,6 @@ const CategoryCard: FC<CategoryCardProps> = (props) => {
       <Tooltip content={category.name}>{(ref) => <Name ref={ref}>{category.name}</Name>}</Tooltip>
     </div>
   );
-};
+}
 
 export default CategoryCard;

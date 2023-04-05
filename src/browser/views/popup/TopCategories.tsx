@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -34,7 +34,7 @@ const LoadMore = styled.div`
   ${tw`p-3 pt-0`}
 `;
 
-const TopCategories: FC = () => {
+function TopCategories() {
   const [pinnedCategories, { toggle }] = usePinnedCategories();
 
   const [categories = [], pinnedResponse] = useCategories({
@@ -131,6 +131,6 @@ const TopCategories: FC = () => {
       {children}
     </Wrapper>
   );
-};
+}
 
 export default TopCategories;

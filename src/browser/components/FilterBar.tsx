@@ -1,5 +1,5 @@
 import { filter } from "lodash-es";
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";
@@ -26,7 +26,7 @@ export interface FilterBarProps {
   filters: FilterProps[];
 }
 
-const FilterBar: FC<FilterBarProps> = (props) => {
+function FilterBar(props: FilterBarProps) {
   const leftFilters = useMemo(() => filter(props.filters, { side: "left" }), [props.filters]);
   const rightFilters = useMemo(() => filter(props.filters, { side: "right" }), [props.filters]);
 
@@ -47,6 +47,6 @@ const FilterBar: FC<FilterBarProps> = (props) => {
       )}
     </Wrapper>
   );
-};
+}
 
 export default FilterBar;

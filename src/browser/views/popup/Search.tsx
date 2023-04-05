@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -26,7 +26,7 @@ const Tab = styled(NavLink)`
   }
 `;
 
-const Search: FC = () => {
+function Search() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
@@ -43,6 +43,6 @@ const Search: FC = () => {
       <Outlet context={{ searchQuery }} />
     </Wrapper>
   );
-};
+}
 
 export default Search;

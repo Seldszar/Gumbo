@@ -1,5 +1,5 @@
 import { IconHeart, IconInfoCircle, IconPower, IconSettings } from "@tabler/icons-react";
-import { FC, useState } from "react";
+import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
@@ -20,7 +20,7 @@ interface ProfileBadgeProps {
   user: CurrentUser;
 }
 
-const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
+function ProfileBadge(props: ProfileBadgeProps) {
   const [isAboutOpen, setAboutOpen] = useState(false);
   const [isDonateOpen, setDonateOpen] = useState(false);
 
@@ -82,6 +82,6 @@ const ProfileBadge: FC<ProfileBadgeProps> = (props) => {
       <DonateModal isOpen={isDonateOpen} onClose={() => setDonateOpen(false)} />
     </>
   );
-};
+}
 
 export default ProfileBadge;

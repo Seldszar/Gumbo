@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Header = styled.div`
@@ -19,11 +19,13 @@ interface Props {
   title?: ReactNode;
 }
 
-const Section: FC<Props> = (props) => (
-  <Wrapper className={props.className}>
-    {props.title && <Header>{props.title}</Header>}
-    {props.children}
-  </Wrapper>
-);
+function Section(props: Props) {
+  return (
+    <Wrapper className={props.className}>
+      {props.title && <Header>{props.title}</Header>}
+      {props.children}
+    </Wrapper>
+  );
+}
 
 export default Section;

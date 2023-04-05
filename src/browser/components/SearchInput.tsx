@@ -1,4 +1,5 @@
-import { FC, useRef, useState } from "react";
+import { IconSearch } from "@tabler/icons-react";
+import { useRef, useState } from "react";
 import { useDebounce, useMount } from "react-use";
 import tw, { styled } from "twin.macro";
 
@@ -10,15 +11,6 @@ const ActionBadge = styled.div`
 
 const ActionButton = styled.button`
   ${tw`flex flex-none text-neutral-600 dark:text-neutral-400 hover:(text-black dark:text-white)`}
-
-  svg {
-    ${tw`stroke-current w-5`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
 `;
 
 const ActionList = styled.ul`
@@ -29,17 +21,12 @@ const ActionList = styled.ul`
   }
 `;
 
-const SearchIcon = styled.svg`
-  ${tw`block flex-none pointer-events-none stroke-current text-neutral-600 dark:text-neutral-400 w-5`}
-
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2px;
+const SearchIcon = styled(IconSearch)`
+  ${tw`flex-none pointer-events-none text-neutral-600 dark:text-neutral-400`}
 `;
 
 const Wrapper = styled.label`
-  ${tw`bg-neutral-200 dark:bg-neutral-800 cursor-text flex gap-3 px-4 rounded-full shadow-md`}
+  ${tw`bg-neutral-200 dark:bg-neutral-800 cursor-text flex gap-3 items-center px-4 rounded-full shadow-md`}
 
   input {
     ${tw`appearance-none bg-transparent flex-1 outline-none py-2 text-black dark:text-white`}
@@ -64,7 +51,7 @@ export interface SearchInputProps {
   value?: string;
 }
 
-const SearchInput: FC<SearchInputProps> = (props) => {
+function SearchInput(props: SearchInputProps) {
   const ref = useRef<HTMLInputElement>(null);
 
   const [value, setValue] = useState(props.value ?? "");
@@ -74,10 +61,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
 
   return (
     <Wrapper tabIndex={-1} className={props.className}>
-      <SearchIcon viewBox="0 0 24 24">
-        <circle cx="10" cy="10" r="7" />
-        <line x1="21" y1="21" x2="15" y2="15" />
-      </SearchIcon>
+      <SearchIcon size="1.25rem" />
 
       <input
         ref={ref}
@@ -98,6 +82,6 @@ const SearchInput: FC<SearchInputProps> = (props) => {
       )}
     </Wrapper>
   );
-};
+}
 
 export default SearchInput;

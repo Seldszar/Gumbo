@@ -1,5 +1,5 @@
 import { find, groupBy, map, orderBy, some } from "lodash-es";
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -40,7 +40,7 @@ const FollowingSince = styled.div`
   ${tw`truncate`}
 `;
 
-const FollowedUsers: FC = () => {
+function FollowedUsers() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [followedStreams] = useFollowedStreams();
@@ -171,6 +171,6 @@ const FollowedUsers: FC = () => {
       {children}
     </Wrapper>
   );
-};
+}
 
 export default FollowedUsers;

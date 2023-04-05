@@ -1,6 +1,6 @@
 import { flip, offset, Placement, shift, size, useFloating } from "@floating-ui/react-dom";
 import { AnimatePresence, m, useDomEvent, Variants } from "framer-motion";
-import { FC, ReactNode, Ref } from "react";
+import { ReactNode, Ref } from "react";
 import { createPortal } from "react-dom";
 import { useClickAway, useToggle } from "react-use";
 import tw, { styled, theme } from "twin.macro";
@@ -45,7 +45,7 @@ interface ContextMenu {
   fullWidth?: boolean;
 }
 
-const ContextMenu: FC<ContextMenu> = (props) => {
+function ContextMenu(props: ContextMenu) {
   const [isOpen, toggleOpen] = useToggle(false);
 
   const { floating, reference, refs, x, y } = useFloating<Element>({
@@ -121,6 +121,6 @@ const ContextMenu: FC<ContextMenu> = (props) => {
       {portal}
     </>
   );
-};
+}
 
 export default ContextMenu;

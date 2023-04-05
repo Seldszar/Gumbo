@@ -1,5 +1,5 @@
 import { IconCategory, IconHeart, IconSearch, IconUser, IconVideo } from "@tabler/icons-react";
-import { FC } from "react";
+
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -48,34 +48,36 @@ export interface SidebarProps {
   user: CurrentUser;
 }
 
-const Sidebar: FC<SidebarProps> = (props) => (
-  <Wrapper className={props.className}>
-    <Header>
-      <StyledLogo />
-    </Header>
-    <Inner>
-      <SidebarLink title={t("titleText_followedStreams")} to="/streams/followed">
-        <IconHeart size="1.5rem" />
-      </SidebarLink>
-      <SidebarLink title={t("titleText_followedUsers")} to="/users/followed">
-        <IconUser size="1.5rem" />
-      </SidebarLink>
-      <Separator />
-      <SidebarLink title={t("titleText_topStreams")} to="/streams" end>
-        <IconVideo size="1.5rem" />
-      </SidebarLink>
-      <SidebarLink title={t("titleText_topCategories")} to="/categories">
-        <IconCategory size="1.5rem" />
-      </SidebarLink>
-      <Separator />
-      <SidebarLink title={t("titleText_search")} to="/search">
-        <IconSearch size="1.5rem" />
-      </SidebarLink>
-    </Inner>
-    <Footer>
-      <StyledProfileBadge user={props.user} />
-    </Footer>
-  </Wrapper>
-);
+function Sidebar(props: SidebarProps) {
+  return (
+    <Wrapper className={props.className}>
+      <Header>
+        <StyledLogo />
+      </Header>
+      <Inner>
+        <SidebarLink title={t("titleText_followedStreams")} to="/streams/followed">
+          <IconHeart size="1.5rem" />
+        </SidebarLink>
+        <SidebarLink title={t("titleText_followedUsers")} to="/users/followed">
+          <IconUser size="1.5rem" />
+        </SidebarLink>
+        <Separator />
+        <SidebarLink title={t("titleText_topStreams")} to="/streams" end>
+          <IconVideo size="1.5rem" />
+        </SidebarLink>
+        <SidebarLink title={t("titleText_topCategories")} to="/categories">
+          <IconCategory size="1.5rem" />
+        </SidebarLink>
+        <Separator />
+        <SidebarLink title={t("titleText_search")} to="/search">
+          <IconSearch size="1.5rem" />
+        </SidebarLink>
+      </Inner>
+      <Footer>
+        <StyledProfileBadge user={props.user} />
+      </Footer>
+    </Wrapper>
+  );
+}
 
 export default Sidebar;

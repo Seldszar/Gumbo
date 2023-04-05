@@ -1,4 +1,3 @@
-import { FC } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";
@@ -39,7 +38,7 @@ export interface ChannelCardProps {
   channel: HelixChannelSearchResult;
 }
 
-const ChannelCard: FC<ChannelCardProps> = (props) => {
+function ChannelCard(props: ChannelCardProps) {
   const { channel } = props;
 
   const defaultAction = useClickAction(channel.broadcasterLogin);
@@ -116,6 +115,6 @@ const ChannelCard: FC<ChannelCardProps> = (props) => {
       </Wrapper>
     </Anchor>
   );
-};
+}
 
 export default ChannelCard;

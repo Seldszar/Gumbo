@@ -1,5 +1,5 @@
 import { IconSortDescending, IconSortAscending } from "@tabler/icons-react";
-import { FC } from "react";
+
 import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";
@@ -14,7 +14,7 @@ export interface SortButtonProps {
   value?: SortDirection;
 }
 
-const SortButton: FC<SortButtonProps> = (props) => {
+function SortButton(props: SortButtonProps) {
   const handleClick = () => props.onChange?.(props.value === "asc" ? "desc" : "asc");
 
   return (
@@ -26,6 +26,6 @@ const SortButton: FC<SortButtonProps> = (props) => {
       )}
     </Wrapper>
   );
-};
+}
 
 export default SortButton;

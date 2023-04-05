@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -20,7 +20,7 @@ const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
-const CategoryStreams: FC = () => {
+function CategoryStreams() {
   const { category, searchQuery } = useOutletContext<any>();
 
   const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useStreams({
@@ -61,6 +61,6 @@ const CategoryStreams: FC = () => {
       )}
     </>
   );
-};
+}
 
 export default CategoryStreams;

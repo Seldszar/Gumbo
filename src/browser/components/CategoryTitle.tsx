@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -69,7 +69,7 @@ export interface CategoryTitleProps {
   category: HelixGame;
 }
 
-const CategoryTitle: FC<CategoryTitleProps> = (props) => {
+function CategoryTitle(props: CategoryTitleProps) {
   const { category } = props;
 
   const boxArtUrl = useMemo(
@@ -101,6 +101,6 @@ const CategoryTitle: FC<CategoryTitleProps> = (props) => {
       </Inner>
     </Wrapper>
   );
-};
+}
 
 export default CategoryTitle;

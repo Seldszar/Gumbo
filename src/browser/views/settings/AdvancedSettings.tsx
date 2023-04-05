@@ -1,5 +1,5 @@
 import { IconAlertTriangle, IconDownload, IconRefresh, IconUpload } from "@tabler/icons-react";
-import { FC, MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
@@ -13,7 +13,7 @@ const ButtonGroup = styled.div`
   ${tw`gap-3 grid`}
 `;
 
-const AdvancedSettings: FC = () => {
+function AdvancedSettings() {
   const [isResetModalOpen, setResetModalOpen] = useState(false);
 
   const onExportClick: MouseEventHandler<HTMLButtonElement> = async () => {
@@ -100,6 +100,6 @@ const AdvancedSettings: FC = () => {
       />
     </div>
   );
-};
+}
 
 export default AdvancedSettings;

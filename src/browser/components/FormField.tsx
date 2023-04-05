@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.fieldset`
@@ -21,14 +21,16 @@ interface FormFieldProps {
   title?: ReactNode;
 }
 
-const FormField: FC<FormFieldProps> = (props) => (
-  <Wrapper className={props.className} disabled={props.disabled}>
-    {props.title && <Header>{props.title}</Header>}
+function FormField(props: FormFieldProps) {
+  return (
+    <Wrapper className={props.className} disabled={props.disabled}>
+      {props.title && <Header>{props.title}</Header>}
 
-    <div>{props.children}</div>
+      <div>{props.children}</div>
 
-    {props.helpText && <Footer>{props.helpText}</Footer>}
-  </Wrapper>
-);
+      {props.helpText && <Footer>{props.helpText}</Footer>}
+    </Wrapper>
+  );
+}
 
 export default FormField;

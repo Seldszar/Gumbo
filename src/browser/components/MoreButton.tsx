@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 
 import Button from "./Button";
 
@@ -8,15 +8,17 @@ export interface MoreButtonProps {
   fetchMore(): void;
 }
 
-const MoreButton: FC<MoreButtonProps> = (props) => (
-  <Button
-    fullWidth
-    isLoading={props.isLoading}
-    onViewportEnter={() => props.fetchMore()}
-    onClick={() => props.fetchMore()}
-  >
-    {props.children}
-  </Button>
-);
+function MoreButton(props: MoreButtonProps) {
+  return (
+    <Button
+      fullWidth
+      isLoading={props.isLoading}
+      onViewportEnter={() => props.fetchMore()}
+      onClick={() => props.fetchMore()}
+    >
+      {props.children}
+    </Button>
+  );
+}
 
 export default MoreButton;

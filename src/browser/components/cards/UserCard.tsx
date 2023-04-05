@@ -1,5 +1,5 @@
 import { IconPin, IconPinnedOff } from "@tabler/icons-react";
-import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
+import { HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";
@@ -40,7 +40,7 @@ export interface UserCardProps {
   user: HelixUser;
 }
 
-const UserCard: FC<UserCardProps> = (props) => {
+function UserCard(props: UserCardProps) {
   const { user } = props;
 
   const defaultAction = useClickAction(user.login);
@@ -134,6 +134,6 @@ const UserCard: FC<UserCardProps> = (props) => {
       </Wrapper>
     </Anchor>
   );
-};
+}
 
 export default UserCard;

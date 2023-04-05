@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -25,7 +25,7 @@ const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
-const TopStreams: FC = () => {
+function TopStreams() {
   const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating, refresh }] =
     useStreams();
 
@@ -85,6 +85,6 @@ const TopStreams: FC = () => {
       {children}
     </Wrapper>
   );
-};
+}
 
 export default TopStreams;

@@ -1,6 +1,6 @@
 import { PropsOf } from "@emotion/react";
 import { m } from "framer-motion";
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import Spinner from "./Spinner";
@@ -59,7 +59,7 @@ export interface ButtonProps extends PropsOf<typeof Wrapper> {
   icon?: ReactNode;
 }
 
-const Button: FC<ButtonProps> = (props) => {
+function Button(props: ButtonProps) {
   const { children, icon, ...rest } = props;
 
   return (
@@ -75,6 +75,6 @@ const Button: FC<ButtonProps> = (props) => {
       )}
     </Wrapper>
   );
-};
+}
 
 export default Button;

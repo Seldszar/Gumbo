@@ -1,6 +1,6 @@
 import { PropsOf } from "@emotion/react";
 import { IconDotsVertical } from "@tabler/icons-react";
-import { FC, HTMLAttributes, ReactNode, useMemo } from "react";
+import { HTMLAttributes, ReactNode, useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { MenuProps } from "./Menu";
@@ -53,7 +53,7 @@ export interface CardProps {
   className?: string;
 }
 
-const Card: FC<CardProps> = (props) => {
+function Card(props: CardProps) {
   const actionList = useMemo(() => {
     const result =
       props.actionButtons?.map((props, index) => <ActionButton key={index} {...props} />) ?? [];
@@ -90,6 +90,6 @@ const Card: FC<CardProps> = (props) => {
       {actionList}
     </Wrapper>
   );
-};
+}
 
 export default Card;

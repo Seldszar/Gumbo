@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 
 import { formatTime } from "~/browser/helpers";
 import { useNow } from "~/browser/hooks";
@@ -8,7 +8,7 @@ export interface UptimeProps {
   startDate: Date;
 }
 
-const Uptime: FC<UptimeProps> = (props) => {
+function Uptime(props: UptimeProps) {
   const now = useNow();
 
   const timeString = useMemo(
@@ -21,6 +21,6 @@ const Uptime: FC<UptimeProps> = (props) => {
       {timeString}
     </div>
   );
-};
+}
 
 export default Uptime;

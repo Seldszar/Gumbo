@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 import { openUrl } from "~/common/helpers";
 
@@ -8,7 +8,7 @@ export interface AnchorProps {
   to: string;
 }
 
-const Anchor: FC<AnchorProps> = (props) => {
+function Anchor(props: AnchorProps) {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => openUrl(props.to, event);
 
   return (
@@ -16,6 +16,6 @@ const Anchor: FC<AnchorProps> = (props) => {
       {props.children}
     </a>
   );
-};
+}
 
 export default Anchor;

@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -30,7 +30,7 @@ export interface ViewerCountProps {
   stream: FollowedStream | HelixStream;
 }
 
-const ViewerCount: FC<ViewerCountProps> = (props) => {
+function ViewerCount(props: ViewerCountProps) {
   const { stream } = props;
 
   const status = useMemo(() => {
@@ -65,6 +65,6 @@ const ViewerCount: FC<ViewerCountProps> = (props) => {
       {status.icon}
     </Wrapper>
   );
-};
+}
 
 export default ViewerCount;

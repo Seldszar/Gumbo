@@ -1,4 +1,3 @@
-import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.input`
@@ -12,13 +11,15 @@ export interface InputProps {
   value?: string;
 }
 
-const Input: FC<InputProps> = (props) => (
-  <Wrapper
-    value={props.value}
-    className={props.className}
-    placeholder={props.placeholder}
-    onChange={(event) => props.onChange?.(event.target.value)}
-  />
-);
+function Input(props: InputProps) {
+  return (
+    <Wrapper
+      value={props.value}
+      className={props.className}
+      placeholder={props.placeholder}
+      onChange={(event) => props.onChange?.(event.target.value)}
+    />
+  );
+}
 
 export default Input;

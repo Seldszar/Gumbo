@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 import Spinner from "./Spinner";
@@ -21,11 +21,13 @@ export interface SplashProps {
   isLoading?: boolean;
 }
 
-const Splash: FC<SplashProps> = (props) => (
-  <Wrapper>
-    {props.isLoading && <StyledSpinner />}
-    {props.children && <Inner>{props.children}</Inner>}
-  </Wrapper>
-);
+function Splash(props: SplashProps) {
+  return (
+    <Wrapper>
+      {props.isLoading && <StyledSpinner />}
+      {props.children && <Inner>{props.children}</Inner>}
+    </Wrapper>
+  );
+}
 
 export default Splash;

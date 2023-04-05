@@ -1,4 +1,3 @@
-import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import Logo from "./Logo";
@@ -32,7 +31,7 @@ interface HeroProps {
   className?: string;
 }
 
-const Hero: FC<HeroProps> = (props) => {
+function Hero(props: HeroProps) {
   const manifest = browser.runtime.getManifest();
 
   return (
@@ -48,6 +47,6 @@ const Hero: FC<HeroProps> = (props) => {
       <Description>{manifest.description}</Description>
     </Wrapper>
   );
-};
+}
 
 export default Hero;

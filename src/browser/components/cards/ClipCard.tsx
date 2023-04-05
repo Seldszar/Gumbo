@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
@@ -32,7 +32,7 @@ export interface ClipCardProps {
   clip: HelixClip;
 }
 
-const ClipCard: FC<ClipCardProps> = (props) => {
+function ClipCard(props: ClipCardProps) {
   const { clip } = props;
 
   const previewImage = useMemo(
@@ -67,6 +67,6 @@ const ClipCard: FC<ClipCardProps> = (props) => {
       </Wrapper>
     </Anchor>
   );
-};
+}
 
 export default ClipCard;

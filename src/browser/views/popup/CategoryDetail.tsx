@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -21,7 +21,7 @@ const Title = styled(CategoryTitle)`
   ${tw`flex-none`}
 `;
 
-const CategoryDetail: FC = () => {
+function CategoryDetail() {
   const params = useParams();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -59,6 +59,6 @@ const CategoryDetail: FC = () => {
       {children}
     </Wrapper>
   );
-};
+}
 
 export default CategoryDetail;

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { PRESET_COLORS } from "~/common/constants";
@@ -35,20 +34,22 @@ export interface ColorPickerProps {
   value?: string;
 }
 
-const ColorPicker: FC<ColorPickerProps> = (props) => (
-  <Wrapper className={props.className} disabled={props.disabled}>
-    {PRESET_COLORS.map((color, index) => (
-      <Button
-        key={index}
-        color={color}
-        isSelected={color === props.value}
-        onClick={() => props.onChange?.(color)}
-        title={color}
-      />
-    ))}
+function ColorPicker(props: ColorPickerProps) {
+  return (
+    <Wrapper className={props.className} disabled={props.disabled}>
+      {PRESET_COLORS.map((color, index) => (
+        <Button
+          key={index}
+          color={color}
+          isSelected={color === props.value}
+          onClick={() => props.onChange?.(color)}
+          title={color}
+        />
+      ))}
 
-    <ColorInput value={props.value} onChange={props.onChange} />
-  </Wrapper>
-);
+      <ColorInput value={props.value} onChange={props.onChange} />
+    </Wrapper>
+  );
+}
 
 export default ColorPicker;

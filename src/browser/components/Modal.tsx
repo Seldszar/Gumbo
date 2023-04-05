@@ -47,7 +47,7 @@ export interface ModalProps {
   isOpen?: boolean;
 }
 
-const Modal: FC<ModalProps> = (props) => {
+function Modal(props: ModalProps) {
   const children = (
     <AnimatePresence initial={false}>
       {props.isOpen && (
@@ -67,6 +67,6 @@ const Modal: FC<ModalProps> = (props) => {
   );
 
   return createPortal(children, document.body);
-};
+}
 
 export default Modal;

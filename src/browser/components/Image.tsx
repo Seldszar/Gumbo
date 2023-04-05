@@ -1,5 +1,5 @@
 import { m } from "framer-motion";
-import { FC, useState } from "react";
+import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
 interface WrapperProps {
@@ -22,7 +22,7 @@ export interface ImageProps {
   src: string;
 }
 
-const Image: FC<ImageProps> = (props) => {
+function Image(props: ImageProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -35,6 +35,6 @@ const Image: FC<ImageProps> = (props) => {
       />
     </Wrapper>
   );
-};
+}
 
 export default Image;

@@ -1,6 +1,6 @@
 import { autoPlacement, offset, useFloating } from "@floating-ui/react-dom";
 import { AnimatePresence, m, Variants } from "framer-motion";
-import { FC, ReactNode, Ref } from "react";
+import { ReactNode, Ref } from "react";
 import { createPortal } from "react-dom";
 import tw, { styled } from "twin.macro";
 
@@ -33,7 +33,7 @@ interface ContextMenu {
   content?: ReactNode;
 }
 
-const Tooltip: FC<ContextMenu> = (props) => {
+function Tooltip(props: ContextMenu) {
   const { floating, reference, refs, x, y } = useFloating<Element>({
     middleware: [autoPlacement(), offset(4)],
     strategy: "fixed",
@@ -66,6 +66,6 @@ const Tooltip: FC<ContextMenu> = (props) => {
       {portal}
     </>
   );
-};
+}
 
 export default Tooltip;
