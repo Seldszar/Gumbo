@@ -23,7 +23,7 @@ const Header = styled.div`
 `;
 
 const Group = styled.div`
-  ${tw`after:(block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1 last:hidden)`}
+  ${tw`after:(block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1) last:after:hidden`}
 `;
 
 const Grid = styled.div`
