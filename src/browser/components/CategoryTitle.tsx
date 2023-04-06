@@ -12,18 +12,11 @@ const Wrapper = styled.div`
 `;
 
 const Background = styled.div`
-  ${tw`absolute bg-white dark:bg-black inset-0 -mt-20 overflow-hidden`}
-
-  &::after {
-    ${tw`absolute inset-0 bg-gradient-to-b content-[''] from-transparent to-white dark:to-black z-10`}
-  }
+  ${tw`absolute bg-white dark:bg-black inset-0 -mt-20 overflow-hidden after:(absolute inset-0 bg-gradient-to-b content-[''] from-transparent to-white dark:to-black z-10)`}
 `;
 
 const BackgroundImage = styled(Image)`
-  ${tw`h-full inset-0 object-cover w-full`}
-
-  filter: blur(4px) opacity(0.5);
-  mix-blend-mode: screen;
+  ${tw`h-full inset-0 object-cover w-full mix-blend-screen blur opacity-50`}
 `;
 
 const Aside = styled.div`

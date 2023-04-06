@@ -32,14 +32,14 @@ const ActionButton = styled.button`
 `;
 
 const ActionList = styled.div`
-  ${tw`flex flex-none gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
+  ${tw`hidden flex-none gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
 `;
 
 const Wrapper = styled.div`
   ${tw`flex items-center px-4 hover:(bg-neutral-200 dark:bg-neutral-800)`}
 
-  :not(:hover) ${ActionList} {
-    ${tw`hidden`}
+  :hover ${ActionList} {
+    ${tw`flex`}
   }
 `;
 

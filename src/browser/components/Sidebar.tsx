@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 
   scrollbar-width: none;
 
-  &::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     display: none;
   }
 `;
