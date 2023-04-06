@@ -97,15 +97,15 @@ function CategoryClips() {
                 },
                 {
                   value: 86400000,
-                  label: t("optionValue_period_lastHours", 24),
+                  label: t("optionValue_period_lastHours", "24"),
                 },
                 {
                   value: 604800000,
-                  label: t("optionValue_period_lastDays", 7),
+                  label: t("optionValue_period_lastDays", "7"),
                 },
                 {
                   value: 2592000000,
-                  label: t("optionValue_period_lastDays", 30),
+                  label: t("optionValue_period_lastDays", "30"),
                 },
               ],
             },
