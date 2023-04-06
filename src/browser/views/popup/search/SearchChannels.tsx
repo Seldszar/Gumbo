@@ -11,12 +11,14 @@ import ChannelCard from "~/browser/components/cards/ChannelCard";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
+import { OutletContext } from "../Search";
+
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
 function SearchChannels() {
-  const { searchQuery } = useOutletContext<any>();
+  const { searchQuery } = useOutletContext<OutletContext>();
 
   const [channels, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchChannels(
     searchQuery.length > 0 && {

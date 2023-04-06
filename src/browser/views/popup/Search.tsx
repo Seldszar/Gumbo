@@ -26,6 +26,10 @@ const Tab = styled(NavLink)`
   }
 `;
 
+export interface OutletContext {
+  searchQuery: string;
+}
+
 function Search() {
   const [searchQuery, setSearchQuery] = useState("");
 

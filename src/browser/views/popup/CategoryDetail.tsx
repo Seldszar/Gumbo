@@ -3,6 +3,8 @@ import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+import { HelixGame } from "~/common/types";
+
 import { useCategory } from "~/browser/hooks";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
@@ -20,6 +22,11 @@ const Header = styled.div`
 const Title = styled(CategoryTitle)`
   ${tw`flex-none`}
 `;
+
+export interface OutletContext {
+  category: HelixGame;
+  searchQuery: string;
+}
 
 function CategoryDetail() {
   const params = useParams();

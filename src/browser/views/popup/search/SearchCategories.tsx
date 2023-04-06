@@ -11,6 +11,8 @@ import CategoryCard from "~/browser/components/cards/CategoryCard";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
+import { OutletContext } from "../Search";
+
 const Grid = styled.div`
   ${tw`gap-3 grid grid-cols-4 p-3`}
 `;
@@ -20,7 +22,7 @@ const LoadMore = styled.div`
 `;
 
 function SearchCategories() {
-  const { searchQuery } = useOutletContext<any>();
+  const { searchQuery } = useOutletContext<OutletContext>();
 
   const [categories, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchCategories(
     searchQuery.length > 0 && {

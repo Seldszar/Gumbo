@@ -12,6 +12,8 @@ import StreamCard from "~/browser/components/cards/StreamCard";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
+import { OutletContext } from "../CategoryDetail";
+
 const List = styled.div`
   ${tw`pt-3`}
 `;
@@ -21,7 +23,7 @@ const LoadMore = styled.div`
 `;
 
 function CategoryStreams() {
-  const { category, searchQuery } = useOutletContext<any>();
+  const { category, searchQuery } = useOutletContext<OutletContext>();
 
   const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useStreams({
     gameId: category.id,

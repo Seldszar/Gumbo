@@ -13,6 +13,8 @@ import FilterBar from "~/browser/components/FilterBar";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
+import { OutletContext } from "../CategoryDetail";
+
 const Header = styled.div`
   ${tw`py-3 px-4`}
 `;
@@ -22,7 +24,7 @@ const LoadMore = styled.div`
 `;
 
 function CategoryClips() {
-  const { category, searchQuery } = useOutletContext<any>();
+  const { category, searchQuery } = useOutletContext<OutletContext>();
 
   const [duration, setDuration] = useState<number | null>(null);
 
