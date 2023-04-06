@@ -16,7 +16,7 @@ import {
 import UserCard from "~/browser/components/cards/UserCard";
 
 import FilterBar from "~/browser/components/FilterBar";
-import RefreshIcon from "~/browser/components/RefreshIcon";
+import ReloadIcon from "~/browser/components/ReloadIcon";
 import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
@@ -121,7 +121,7 @@ function FollowedUsers() {
           actionButtons={[
             {
               onClick: () => mutate(),
-              children: <RefreshIcon isSpinning={isValidating} />,
+              children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,
             },
           ]}
         />

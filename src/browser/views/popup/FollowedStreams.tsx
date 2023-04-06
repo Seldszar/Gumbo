@@ -11,7 +11,7 @@ import { useFollowedStreams, useFollowedStreamState, usePinnedUsers } from "~/br
 import StreamCard from "~/browser/components/cards/StreamCard";
 
 import FilterBar from "~/browser/components/FilterBar";
-import RefreshIcon from "~/browser/components/RefreshIcon";
+import ReloadIcon from "~/browser/components/ReloadIcon";
 import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
@@ -97,7 +97,7 @@ function FollowedStreams() {
           onChange={setSearchQuery}
           actionButtons={[
             {
-              children: <RefreshIcon isSpinning={refreshState.loading} />,
+              children: <ReloadIcon size="1.25rem" isSpinning={refreshState.loading} />,
               onClick: () => doRefresh(),
             },
           ]}

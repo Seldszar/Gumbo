@@ -10,7 +10,7 @@ import { useCategories, usePinnedCategories, useTopCategories } from "~/browser/
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import MoreButton from "~/browser/components/MoreButton";
-import RefreshIcon from "~/browser/components/RefreshIcon";
+import ReloadIcon from "~/browser/components/ReloadIcon";
 import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
@@ -121,7 +121,7 @@ function TopCategories() {
           onChange={setSearchQuery}
           actionButtons={[
             {
-              children: <RefreshIcon isSpinning={topResponse.isValidating} />,
+              children: <ReloadIcon size="1.25rem" isSpinning={topResponse.isValidating} />,
               onClick: () => topResponse.refresh(),
             },
           ]}

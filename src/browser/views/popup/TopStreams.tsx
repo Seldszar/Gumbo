@@ -9,7 +9,7 @@ import { useStreams } from "~/browser/hooks";
 import StreamCard from "~/browser/components/cards/StreamCard";
 
 import MoreButton from "~/browser/components/MoreButton";
-import RefreshIcon from "~/browser/components/RefreshIcon";
+import ReloadIcon from "~/browser/components/ReloadIcon";
 import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
@@ -76,7 +76,7 @@ function TopStreams() {
           actionButtons={[
             {
               onClick: () => refresh(),
-              children: <RefreshIcon isSpinning={isValidating} />,
+              children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,
             },
           ]}
         />
