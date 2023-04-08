@@ -118,7 +118,7 @@ function FollowedUsers() {
       <Header>
         <SearchInput
           onChange={setSearchQuery}
-          actionButtons={[
+          rightOrnament={[
             {
               onClick: () => mutate(),
               children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,

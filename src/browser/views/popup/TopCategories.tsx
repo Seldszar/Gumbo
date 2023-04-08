@@ -1,3 +1,4 @@
+import { sortBy } from "lodash-es";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
@@ -47,6 +48,7 @@ function TopCategories() {
     first: 100,
   });
 
+  const sortedCategories = useMemo(() => sortBy(categories, "name"), [categories]);
   const filteredCategories = useMemo(
     () => filterList(topCategories, ["name"], searchQuery),
     [topCategories, searchQuery]
@@ -72,10 +74,10 @@ function TopCategories() {
     return (
       <>
         <div>
-          {categories.length > 0 && (
+          {sortedCategories.length > 0 && (
             <Group>
               <Grid>
-                {categories.map((category) => (
+                {sortedCategories.map((category) => (
                   <Link key={category.id} to={`/categories/${category.id}`}>
                     <CategoryCard
                       category={category}
@@ -119,7 +121,7 @@ function TopCategories() {
       <Header>
         <SearchInput
           onChange={setSearchQuery}
-          actionButtons={[
+          rightOrnament={[
             {
               children: <ReloadIcon size="1.25rem" isSpinning={topResponse.isValidating} />,
               onClick: () => topResponse.refresh(),

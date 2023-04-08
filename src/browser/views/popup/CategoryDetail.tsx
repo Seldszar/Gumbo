@@ -1,5 +1,6 @@
+import { IconArrowLeft } from "@tabler/icons-react";
 import { useMemo, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -29,6 +30,7 @@ export interface OutletContext {
 }
 
 function CategoryDetail() {
+  const navigate = useNavigate();
   const params = useParams();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,7 +62,15 @@ function CategoryDetail() {
   return (
     <Wrapper>
       <Header>
-        <SearchInput onChange={setSearchQuery} />
+        <SearchInput
+          onChange={setSearchQuery}
+          leftOrnament={[
+            {
+              children: <IconArrowLeft size="1.25rem" />,
+              onClick: () => navigate(".."),
+            },
+          ]}
+        />
       </Header>
 
       {children}

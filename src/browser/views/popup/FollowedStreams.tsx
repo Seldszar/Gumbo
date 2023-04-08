@@ -95,7 +95,7 @@ function FollowedStreams() {
       <Header>
         <SearchInput
           onChange={setSearchQuery}
-          actionButtons={[
+          rightOrnament={[
             {
               children: <ReloadIcon size="1.25rem" isSpinning={refreshState.loading} />,
               onClick: () => doRefresh(),
