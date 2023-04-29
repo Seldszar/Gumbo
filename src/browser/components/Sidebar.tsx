@@ -36,7 +36,7 @@ const Inner = styled.div`
 `;
 
 const Separator = styled.hr`
-  ${tw`border-black/10 dark:border-white/10 m-1`}
+  ${tw`border-neutral-200 dark:border-neutral-800 m-1`}
 `;
 
 const Footer = styled.div`

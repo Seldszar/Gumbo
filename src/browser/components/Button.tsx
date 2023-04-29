@@ -56,6 +56,7 @@ const Wrapper = styled(m.button)<WrapperProps>`
 `;
 
 export interface ButtonProps extends PropsOf<typeof Wrapper> {
+  children?: ReactNode;
   icon?: ReactNode;
 }
 

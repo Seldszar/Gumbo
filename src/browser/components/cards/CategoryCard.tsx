@@ -56,7 +56,9 @@ function CategoryCard(props: CategoryCardProps) {
           </TogglePin>
         )}
       </Cover>
-      <Tooltip content={category.name}>{(ref) => <Name ref={ref}>{category.name}</Name>}</Tooltip>
+      <Tooltip content={category.name}>
+        {(getReferenceProps) => <Name {...getReferenceProps()}>{category.name}</Name>}
+      </Tooltip>
     </div>
   );
 }

@@ -1,10 +1,9 @@
-import { useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers";
+import { isEmpty } from "~/browser/helpers";
 import { useStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
@@ -23,16 +22,11 @@ const LoadMore = styled.div`
 `;
 
 function CategoryStreams() {
-  const { category, searchQuery } = useOutletContext<OutletContext>();
+  const { category } = useOutletContext<OutletContext>();
 
   const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useStreams({
     gameId: category.id,
   });
-
-  const filteredStreams = useMemo(
-    () => filterList(streams, ["gameName", "title", "userLogin"], searchQuery),
-    [streams, searchQuery]
-  );
 
   if (isLoading) {
     return <Splash isLoading />;
@@ -42,14 +36,14 @@ function CategoryStreams() {
     return <Splash>{error.message}</Splash>;
   }
 
-  if (isEmpty(filteredStreams)) {
+  if (isEmpty(streams)) {
     return <Splash>{t("errorText_emptyStreams")}</Splash>;
   }
 
   return (
     <>
       <List>
-        {filteredStreams.map((stream) => (
+        {streams.map((stream) => (
           <StreamCard key={stream.id} stream={stream} />
         ))}
       </List>

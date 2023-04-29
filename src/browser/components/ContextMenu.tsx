@@ -1,8 +1,17 @@
-import { flip, offset, Placement, shift, size, useFloating } from "@floating-ui/react-dom";
-import { AnimatePresence, m, useDomEvent, Variants } from "framer-motion";
-import { ReactNode, Ref } from "react";
-import { createPortal } from "react-dom";
-import { useClickAway, useToggle } from "react-use";
+import {
+  flip,
+  FloatingFocusManager,
+  FloatingPortal,
+  offset,
+  Placement,
+  shift,
+  size,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from "@floating-ui/react";
+import { HTMLProps, ReactNode, useState } from "react";
 import tw, { styled, theme } from "twin.macro";
 
 import Menu, { MenuProps } from "./Menu";
@@ -11,7 +20,7 @@ interface PanelProps {
   fullWidth?: boolean;
 }
 
-const Panel = styled(m.div)<PanelProps>`
+const Panel = styled.div<PanelProps>`
   ${tw`fixed bg-white dark:bg-black max-h-80 py-2 rounded shadow-lg z-20`}
 
   max-width: ${theme<string>("spacing.64")};
@@ -20,37 +29,20 @@ const Panel = styled(m.div)<PanelProps>`
   ${(props) => props.fullWidth && tw`max-w-none min-w-0`}
 `;
 
-const panelVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.1,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.1,
-    },
-  },
-};
-
 interface ContextMenu {
-  children(ref: Ref<never>): ReactNode;
   menu: MenuProps;
   placement?: Placement;
   fullWidth?: boolean;
+
+  children(
+    getReferenceProps: (userProps?: HTMLProps<Element>) => Record<string, unknown>
+  ): ReactNode;
 }
 
 function ContextMenu(props: ContextMenu) {
-  const [isOpen, toggleOpen] = useToggle(false);
+  const [isOpen, setOpen] = useState(false);
 
-  const { floating, reference, refs, x, y } = useFloating<Element>({
-    placement: props.placement,
-    strategy: "fixed",
+  const { context, refs, x, y } = useFloating<Element>({
     middleware: [
       flip(),
       shift(),
@@ -67,58 +59,44 @@ function ContextMenu(props: ContextMenu) {
         },
       }),
     ],
+    onOpenChange: setOpen,
+    placement: props.placement,
+    strategy: "fixed",
+    open: isOpen,
   });
 
-  useClickAway(
-    refs.floating,
-    (event) => {
-      const target = event.target as Element;
-      const node = refs.reference.current;
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
 
-      if (event.type === "mousedown" && node?.contains(target)) {
-        return;
-      }
-
-      toggleOpen(false);
-    },
-    ["mousedown", "contextmenu"]
-  );
-
-  useDomEvent(refs.reference, "click", (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    toggleOpen();
-  });
-
-  useDomEvent(refs.floating, "click", () => {
-    toggleOpen(false);
-  });
-
-  const children = (
-    <AnimatePresence initial={false}>
-      {isOpen && (
-        <Panel
-          fullWidth={props.fullWidth}
-          ref={floating}
-          style={{ top: y ?? "", left: x ?? "" }}
-          variants={panelVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          <Menu {...props.menu} />
-        </Panel>
-      )}
-    </AnimatePresence>
-  );
-
-  const portal = createPortal(children, document.body);
+  const { getFloatingProps, getReferenceProps } = useInteractions([click, dismiss]);
 
   return (
     <>
-      {props.children(reference)}
-      {portal}
+      {props.children((userProps) =>
+        getReferenceProps({
+          onClick: (event) => event.stopPropagation(),
+          ref: refs.setReference,
+
+          ...userProps,
+        })
+      )}
+
+      {isOpen && (
+        <FloatingPortal>
+          <FloatingFocusManager context={context} initialFocus={-1}>
+            <Panel
+              {...getFloatingProps({
+                children: <Menu {...props.menu} />,
+                ref: refs.setFloating,
+                style: {
+                  left: x ?? 0,
+                  top: y ?? 0,
+                },
+              })}
+            />
+          </FloatingFocusManager>
+        </FloatingPortal>
+      )}
     </>
   );
 }

@@ -4,7 +4,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers";
+import { isEmpty } from "~/browser/helpers";
 import { useClips } from "~/browser/hooks";
 
 import ClipCard from "~/browser/components/cards/ClipCard";
@@ -24,7 +24,7 @@ const LoadMore = styled.div`
 `;
 
 function CategoryClips() {
-  const { category, searchQuery } = useOutletContext<OutletContext>();
+  const { category } = useOutletContext<OutletContext>();
 
   const [duration, setDuration] = useState<number | null>(null);
 
@@ -46,11 +46,6 @@ function CategoryClips() {
     first: 100,
   });
 
-  const filteredClips = useMemo(
-    () => filterList(clips, ["title"], searchQuery),
-    [clips, searchQuery]
-  );
-
   const children = useMemo(() => {
     if (isLoading) {
       return <Splash isLoading />;
@@ -60,14 +55,14 @@ function CategoryClips() {
       return <Splash>{error.message}</Splash>;
     }
 
-    if (isEmpty(filteredClips)) {
+    if (isEmpty(clips)) {
       return <Splash>{t("errorText_emptyClips")}</Splash>;
     }
 
     return (
       <>
         <div>
-          {filteredClips.map((clip) => (
+          {clips.map((clip) => (
             <ClipCard key={clip.id} clip={clip} />
           ))}
         </div>
@@ -81,7 +76,7 @@ function CategoryClips() {
         )}
       </>
     );
-  }, [clips, error, filteredClips, hasMore, isLoading, isValidating]);
+  }, [clips, error, hasMore, isLoading, isValidating]);
 
   return (
     <>

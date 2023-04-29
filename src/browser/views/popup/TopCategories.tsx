@@ -12,19 +12,15 @@ import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import MoreButton from "~/browser/components/MoreButton";
 import ReloadIcon from "~/browser/components/ReloadIcon";
-import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
+import TopBar from "~/browser/components/TopBar";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
 `;
 
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
-`;
-
 const Group = styled.div`
-  ${tw`after:(block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1) last:after:hidden`}
+  ${tw`after:(block border-b border-neutral-200 content-[''] mx-4 my-1 dark:border-neutral-800) last:after:hidden`}
 `;
 
 const Grid = styled.div`
@@ -118,17 +114,14 @@ function TopCategories() {
 
   return (
     <Wrapper>
-      <Header>
-        <SearchInput
-          onChange={setSearchQuery}
-          rightOrnament={[
-            {
-              children: <ReloadIcon size="1.25rem" isSpinning={topResponse.isValidating} />,
-              onClick: () => topResponse.refresh(),
-            },
-          ]}
-        />
-      </Header>
+      <TopBar
+        rightOrnament={[
+          {
+            children: <ReloadIcon size="1.25rem" isSpinning={topResponse.isValidating} />,
+            onClick: () => topResponse.refresh(),
+          },
+        ]}
+      />
 
       {children}
     </Wrapper>

@@ -71,8 +71,8 @@ function ProfileBadge(props: ProfileBadgeProps) {
           ],
         }}
       >
-        {(ref) => (
-          <Wrapper className={props.className} ref={ref}>
+        {(getReferenceProps) => (
+          <Wrapper className={props.className} {...getReferenceProps()}>
             {props.user && <Image src={props.user.profileImageUrl} ratio={1} />}
           </Wrapper>
         )}

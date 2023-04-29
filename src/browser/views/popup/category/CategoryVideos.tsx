@@ -4,7 +4,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers";
+import { isEmpty } from "~/browser/helpers";
 import { useVideos } from "~/browser/hooks";
 
 import VideoCard from "~/browser/components/cards/VideoCard";
@@ -24,7 +24,7 @@ const LoadMore = styled.div`
 `;
 
 function CategoryVideos() {
-  const { category, searchQuery } = useOutletContext<OutletContext>();
+  const { category } = useOutletContext<OutletContext>();
 
   const [period, setPeriod] = useState("all");
   const [sort, setSort] = useState("time");
@@ -38,11 +38,6 @@ function CategoryVideos() {
     type,
   });
 
-  const filteredVideos = useMemo(
-    () => filterList(videos, ["description", "title", "userLogin"], searchQuery),
-    [videos, searchQuery]
-  );
-
   const children = useMemo(() => {
     if (isLoading) {
       return <Splash isLoading />;
@@ -52,14 +47,14 @@ function CategoryVideos() {
       return <Splash>{error.message}</Splash>;
     }
 
-    if (isEmpty(filteredVideos)) {
+    if (isEmpty(videos)) {
       return <Splash>{t("errorText_emptyVideos")}</Splash>;
     }
 
     return (
       <>
         <div>
-          {filteredVideos.map((video) => (
+          {videos.map((video) => (
             <VideoCard key={video.id} video={video} />
           ))}
         </div>
@@ -73,7 +68,7 @@ function CategoryVideos() {
         )}
       </>
     );
-  }, [error, filteredVideos, hasMore, isLoading, isValidating, videos]);
+  }, [error, hasMore, isLoading, isValidating, videos]);
 
   return (
     <>

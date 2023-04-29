@@ -14,8 +14,8 @@ function SidebarLink(props: PropsOf<typeof Wrapper>) {
 
   return (
     <Tooltip content={title}>
-      {(ref) => (
-        <Wrapper {...rest} ref={ref}>
+      {(getReferenceProps) => (
+        <Wrapper {...rest} {...getReferenceProps()}>
           {props.children}
         </Wrapper>
       )}

@@ -1,6 +1,5 @@
-import { IconArrowLeft } from "@tabler/icons-react";
-import { useMemo, useState } from "react";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { useMemo } from "react";
+import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -9,15 +8,11 @@ import { HelixGame } from "~/common/types";
 import { useCategory } from "~/browser/hooks";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
-import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
+import TopBar from "~/browser/components/TopBar";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
-`;
-
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-20`}
 `;
 
 const Title = styled(CategoryTitle)`
@@ -26,14 +21,10 @@ const Title = styled(CategoryTitle)`
 
 export interface OutletContext {
   category: HelixGame;
-  searchQuery: string;
 }
 
 function CategoryDetail() {
-  const navigate = useNavigate();
   const params = useParams();
-
-  const [searchQuery, setSearchQuery] = useState("");
 
   const [category, { error, isLoading }] = useCategory(params.categoryId);
 
@@ -54,24 +45,14 @@ function CategoryDetail() {
       <>
         <Title category={category} />
 
-        <Outlet context={{ searchQuery, category }} />
+        <Outlet context={{ category }} />
       </>
     );
-  }, [category, isLoading, searchQuery]);
+  }, [category, isLoading]);
 
   return (
     <Wrapper>
-      <Header>
-        <SearchInput
-          onChange={setSearchQuery}
-          leftOrnament={[
-            {
-              children: <IconArrowLeft size="1.25rem" />,
-              onClick: () => navigate(".."),
-            },
-          ]}
-        />
-      </Header>
+      <TopBar />
 
       {children}
     </Wrapper>

@@ -1,6 +1,8 @@
 import { css, Global } from "@emotion/react";
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
+import { HistoryProvider } from "../contexts/history";
+
 import CategoryClips from "~/browser/views/popup/category/CategoryClips";
 import CategoryStreams from "~/browser/views/popup/category/CategoryStreams";
 import CategoryVideos from "~/browser/views/popup/category/CategoryVideos";
@@ -103,7 +105,7 @@ const router = createHashRouter([
 
 function PopupPage() {
   return (
-    <>
+    <HistoryProvider router={router}>
       <Global
         styles={css`
           body {
@@ -114,7 +116,7 @@ function PopupPage() {
       />
 
       <RouterProvider router={router} />
-    </>
+    </HistoryProvider>
   );
 }
 

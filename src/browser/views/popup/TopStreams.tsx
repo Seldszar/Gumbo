@@ -10,15 +10,11 @@ import StreamCard from "~/browser/components/cards/StreamCard";
 
 import MoreButton from "~/browser/components/MoreButton";
 import ReloadIcon from "~/browser/components/ReloadIcon";
-import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
+import TopBar from "~/browser/components/TopBar";
 
 const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
-`;
-
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
 `;
 
 const LoadMore = styled.div`
@@ -70,17 +66,14 @@ function TopStreams() {
 
   return (
     <Wrapper>
-      <Header>
-        <SearchInput
-          onChange={setSearchQuery}
-          rightOrnament={[
-            {
-              onClick: () => refresh(),
-              children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,
-            },
-          ]}
-        />
-      </Header>
+      <TopBar
+        rightOrnament={[
+          {
+            onClick: () => refresh(),
+            children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,
+          },
+        ]}
+      />
 
       {children}
     </Wrapper>

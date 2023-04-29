@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex items-start py-6 sticky top-0 z-10`}
+  ${tw`bg-gradient-to-b from-neutral-100 from-50% dark:from-neutral-900 to-transparent flex items-start py-6 sticky top-0 z-10`}
 `;
 
 const Title = styled.div`

@@ -1,69 +1,68 @@
-import { autoPlacement, offset, useFloating } from "@floating-ui/react-dom";
-import { AnimatePresence, m, Variants } from "framer-motion";
-import { ReactNode, Ref } from "react";
-import { createPortal } from "react-dom";
+import {
+  FloatingPortal,
+  autoPlacement,
+  offset,
+  useFloating,
+  useHover,
+  useInteractions,
+} from "@floating-ui/react";
+import { HTMLProps, ReactNode, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { useHover } from "../hooks";
-
-const Panel = styled(m.div)`
+const Panel = styled.div`
   ${tw`fixed bg-purple-500 max-w-full pointer-events-none px-4 py-2 rounded shadow-lg text-white z-20`}
 `;
 
-const panelVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.05,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.05,
-    },
-  },
-};
-
-interface ContextMenu {
-  children(ref: Ref<never>): ReactNode;
+interface TooltipProps {
   content?: ReactNode;
+
+  children(
+    getReferenceProps: (userProps?: HTMLProps<Element>) => Record<string, unknown>
+  ): ReactNode;
 }
 
-function Tooltip(props: ContextMenu) {
-  const { floating, reference, refs, x, y } = useFloating<Element>({
+function Tooltip(props: TooltipProps) {
+  const [isOpen, setOpen] = useState(false);
+
+  const { context, refs, x, y } = useFloating<Element>({
     middleware: [autoPlacement(), offset(4)],
+    onOpenChange: setOpen,
     strategy: "fixed",
+    open: isOpen,
   });
 
-  const isHovering = useHover(refs.reference);
+  const hover = useHover(context, {
+    delay: {
+      open: 500,
+    },
+  });
 
-  const children = (
-    <AnimatePresence initial={false}>
-      {isHovering && (
-        <Panel
-          ref={floating}
-          style={{ top: y ?? "", left: x ?? "" }}
-          variants={panelVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          {props.content}
-        </Panel>
-      )}
-    </AnimatePresence>
-  );
-
-  const portal = createPortal(children, document.body);
+  const { getFloatingProps, getReferenceProps } = useInteractions([hover]);
 
   return (
     <>
-      {props.children(reference)}
-      {portal}
+      {props.children((userProps) =>
+        getReferenceProps({
+          ref: refs.setReference,
+
+          ...userProps,
+        })
+      )}
+
+      {isOpen && (
+        <FloatingPortal>
+          <Panel
+            {...getFloatingProps({
+              children: props.content,
+              ref: refs.setFloating,
+              style: {
+                left: x ?? 0,
+                top: y ?? 0,
+              },
+            })}
+          />
+        </FloatingPortal>
+      )}
     </>
   );
 }

@@ -63,8 +63,8 @@ function Select(props: SelectProps) {
         }),
       }}
     >
-      {(ref) => (
-        <Wrapper fullWidth={props.fullWidth} className={props.className} ref={ref}>
+      {(getReferenceProps) => (
+        <Wrapper fullWidth={props.fullWidth} className={props.className} {...getReferenceProps()}>
           <Inner>{selectedOption?.label ?? t("optionValue_unknown")}</Inner>
           <IconChevronDown size="1.25rem" />
         </Wrapper>

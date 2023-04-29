@@ -1,6 +1,6 @@
 import { Global } from "@emotion/react";
 import { AnimatePresence, m, Variants } from "framer-motion";
-import { ReactNode, FC } from "react";
+import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import tw, { css, styled } from "twin.macro";
 

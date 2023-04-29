@@ -61,8 +61,8 @@ function Card(props: CardProps) {
     if (props.overflowMenu) {
       result.push(
         <ContextMenu placement="bottom-end" menu={props.overflowMenu}>
-          {(ref) => (
-            <ActionButton ref={ref}>
+          {(getReferenceProps) => (
+            <ActionButton {...getReferenceProps()}>
               <IconDotsVertical size="1.25rem" />
             </ActionButton>
           )}
