@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Dodaj"
+  },
   "buttonText_cancel": {
     "message": "Anuluj"
   },
@@ -21,7 +24,7 @@
     "message": "Zaloguj za pomocą Twitch"
   },
   "buttonText_reloadExtension": {
-    "message": "Przeładuj rozszerzenie"
+    "message": "Wczytaj ponownie rozszerzenie"
   },
   "buttonText_resetExtension": {
     "message": "Zresetuj rozszerzenie"
@@ -67,6 +70,9 @@
   },
   "errorText_emptyFollowingUsers": {
     "message": "Brak następujących użytkowników"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Brak ignorowanych kategorii"
   },
   "errorText_emptyOnlineStreams": {
     "message": "Brak transmisji na żywo"
@@ -136,6 +142,9 @@
   },
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 gra w $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Dostęp wygasł"
@@ -281,6 +290,9 @@
   "optionValue_videos": {
     "message": "Filmy"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "Wprowadź kategorię, którą chcesz ignorować"
+  },
   "titleText_advanced": {
     "message": "Zaawansowany"
   },
@@ -313,6 +325,9 @@
   },
   "titleText_general": {
     "message": "Ogólny"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Ignorowane kategorie"
   },
   "titleText_live": {
     "message": "Na żywo"
