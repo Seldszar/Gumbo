@@ -52,6 +52,10 @@ const GeneralSettings: FC = () => {
             fullWidth
             options={[
               {
+                label: t("optionValue_theme_system"),
+                value: "system",
+              },
+              {
                 label: t("optionValue_theme_dark"),
                 value: "dark",
               },

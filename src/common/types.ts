@@ -4,7 +4,7 @@ export type Dictionary<T> = Record<string, T>;
 
 export type FontSize = "smallest" | "small" | "medium" | "large" | "largest";
 export type SortDirection = "asc" | "desc";
-export type Theme = "dark" | "light";
+export type Theme = "system" | "dark" | "light";
 
 export interface GeneralSettings {
   clickBehavior: ClickBehavior;

@@ -217,3 +217,23 @@ export function useHover(ref: RefObject<Element>): boolean {
 
   return value;
 }
+
+const mediaQueryList = matchMedia("(prefers-color-scheme: dark)");
+
+export function usePreferDarkMode() {
+  const [darkMode, setDarkMode] = useState(mediaQueryList.matches);
+
+  useEffect(() => {
+    const listener = (event: MediaQueryListEvent) => {
+      setDarkMode(event.matches);
+    };
+
+    mediaQueryList.addEventListener("change", listener);
+
+    return () => {
+      mediaQueryList.removeEventListener("change", listener);
+    };
+  }, []);
+
+  return darkMode;
+}

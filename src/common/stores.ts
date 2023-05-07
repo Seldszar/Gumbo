@@ -203,7 +203,7 @@ export const stores = {
         clickAction: number(),
         clickBehavior: number(),
         fontSize: enums(["smallest", "small", "medium", "large", "largest"]),
-        theme: enums(["dark", "light"]),
+        theme: enums(["system", "dark", "light"]),
       }),
       badge: object({
         enabled: boolean(),
@@ -230,7 +230,7 @@ export const stores = {
         clickBehavior: ClickBehavior.CreateTab,
         clickAction: ClickAction.OpenChannel,
         fontSize: "medium",
-        theme: "dark",
+        theme: "system",
       },
       badge: {
         enabled: true,
