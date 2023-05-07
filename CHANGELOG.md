@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.17.0](https://github.com/Seldszar/Gumbo/compare/v1.16.9...v1.17.0) (2023-05-07)
+
+
+### Features
+
+* system theme ([e79c694](https://github.com/Seldszar/Gumbo/commit/e79c694da4740cd857fcafa9b982e0aacacda85d))
+
+
+### Bug Fixes
+
+* update norwegian bokmål translation ([#137](https://github.com/Seldszar/Gumbo/issues/137)) ([026bdf6](https://github.com/Seldszar/Gumbo/commit/026bdf669a49d269960fce70ca24d359c0c059a1))
+* update translations ([#144](https://github.com/Seldszar/Gumbo/issues/144)) ([74b2aa3](https://github.com/Seldszar/Gumbo/commit/74b2aa3d6d18bf313b8e0029d4f07a1dd3746e22))
+
 ## [1.16.9](https://github.com/Seldszar/Gumbo/compare/v1.16.8...v1.16.9) (2023-03-28)
 
 
