@@ -10,7 +10,7 @@ const ClearButton = styled.button`
 `;
 
 const Wrapper = styled.fieldset`
-  ${tw`bg-neutral-200 dark:bg-neutral-800 cursor-text flex gap-3 px-4 py-2 rounded-full disabled:(cursor-default opacity-50)`}
+  ${tw`bg-neutral-200 dark:bg-neutral-800 cursor-text flex gap-3 items-center pl-6 pr-3 py-2 rounded-full disabled:(cursor-default opacity-50)`}
 
   input {
     ${tw`appearance-none bg-transparent flex-1 outline-none text-black dark:text-white`}

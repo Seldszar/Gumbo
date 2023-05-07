@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useVideos } from "~/browser/hooks";
 
@@ -30,12 +31,16 @@ function CategoryVideos() {
   const [sort, setSort] = useState("time");
   const [type, setType] = useState("all");
 
-  const [videos = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useVideos({
+  const [videos = [], { error, fetchMore, hasMore, isLoading, isValidating, refresh }] = useVideos({
     gameId: category.id,
     first: 100,
     period,
     sort,
     type,
+  });
+
+  useRefreshHandler(async () => {
+    await refresh();
   });
 
   const children = useMemo(() => {

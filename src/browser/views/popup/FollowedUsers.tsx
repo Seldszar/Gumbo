@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty, matchFields } from "~/browser/helpers";
 import {
   useFollowedChannels,
@@ -16,7 +17,6 @@ import {
 import UserCard from "~/browser/components/cards/UserCard";
 
 import FilterBar from "~/browser/components/FilterBar";
-import ReloadIcon from "~/browser/components/ReloadIcon";
 import Splash from "~/browser/components/Splash";
 import TopBar from "~/browser/components/TopBar";
 
@@ -43,7 +43,7 @@ function FollowedUsers() {
   const [followedUserState, { setSortDirection, setSortField, setStatus }] = useFollowedUserState();
   const [pinnedUsers, { toggle }] = usePinnedUsers();
 
-  const { data: followedChannels = [], isValidating, mutate } = useFollowedChannels();
+  const { data: followedChannels = [], mutate } = useFollowedChannels();
   const { data: users = [], isLoading } = useUsersByID(map(followedChannels, "broadcasterId"));
 
   const items = useMemo(() => {
@@ -109,17 +109,13 @@ function FollowedUsers() {
     );
   }, [items, pinnedUsers, isLoading]);
 
+  useRefreshHandler(async () => {
+    await mutate();
+  });
+
   return (
     <Wrapper>
-      <TopBar
-        onChange={setSearchQuery}
-        rightOrnament={[
-          {
-            onClick: () => mutate(),
-            children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,
-          },
-        ]}
-      />
+      <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
 
       <StyledFilterBar
         direction={followedUserState.sortDirection}

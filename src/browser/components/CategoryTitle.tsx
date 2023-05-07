@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   ${tw`relative`}
 `;
 
-const Header = styled.div`
+const Inner = styled.div`
   ${tw`flex flex-col place-items-center py-6 relative z-10`}
 `;
 
@@ -20,7 +20,7 @@ const Background = styled.div`
 `;
 
 const BackgroundImage = styled(Image)`
-  ${tw`h-full inset-0 object-cover w-full mix-blend-screen blur-sm opacity-50`}
+  ${tw`h-full object-cover w-full blur-sm opacity-50`}
 `;
 
 const Thumbnail = styled.div`
@@ -40,7 +40,7 @@ const TabList = styled.div`
 `;
 
 const Tab = styled(NavLink)`
-  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex-1 py-3 relative text-center text-neutral-600 dark:text-neutral-400 [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
+  ${tw`border-b border-neutral-200 flex-1 py-3 relative text-center text-neutral-600 dark:(border-neutral-800 text-neutral-400) [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
 `;
 
 export interface CategoryTitleProps {
@@ -62,13 +62,13 @@ function CategoryTitle(props: CategoryTitleProps) {
         <BackgroundImage src={boxArtUrl} />
       </Background>
 
-      <Header>
+      <Inner>
         <Thumbnail>
           <ThumbnailImage src={boxArtUrl} ratio={4 / 3} />
         </Thumbnail>
 
         <Name>{category.name}</Name>
-      </Header>
+      </Inner>
 
       <TabList>
         <Tab to="streams">{t("titleText_streams")}</Tab>

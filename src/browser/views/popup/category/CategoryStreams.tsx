@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useStreams } from "~/browser/hooks";
 
@@ -24,8 +25,13 @@ const LoadMore = styled.div`
 function CategoryStreams() {
   const { category } = useOutletContext<OutletContext>();
 
-  const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useStreams({
-    gameId: category.id,
+  const [streams = [], { error, fetchMore, refresh, hasMore, isLoading, isValidating }] =
+    useStreams({
+      gameId: category.id,
+    });
+
+  useRefreshHandler(async () => {
+    await refresh();
   });
 
   if (isLoading) {

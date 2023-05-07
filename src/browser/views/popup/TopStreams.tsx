@@ -1,15 +1,15 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers";
+import { useRefreshHandler } from "~/browser/contexts";
+import { isEmpty } from "~/browser/helpers";
 import { useStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
 import MoreButton from "~/browser/components/MoreButton";
-import ReloadIcon from "~/browser/components/ReloadIcon";
 import Splash from "~/browser/components/Splash";
 import TopBar from "~/browser/components/TopBar";
 
@@ -25,13 +25,6 @@ function TopStreams() {
   const [streams = [], { error, fetchMore, hasMore, isLoading, isValidating, refresh }] =
     useStreams();
 
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredStreams = useMemo(
-    () => filterList(streams, ["gameName", "title", "userLogin"], searchQuery),
-    [streams, searchQuery]
-  );
-
   const children = useMemo(() => {
     if (isLoading) {
       return <Splash isLoading />;
@@ -41,14 +34,14 @@ function TopStreams() {
       return <Splash>{error.message}</Splash>;
     }
 
-    if (isEmpty(filteredStreams)) {
+    if (isEmpty(streams)) {
       return <Splash>{t("errorText_emptyStreams")}</Splash>;
     }
 
     return (
       <>
         <div>
-          {filteredStreams.map((stream) => (
+          {streams.map((stream) => (
             <StreamCard key={stream.id} stream={stream} />
           ))}
         </div>
@@ -62,18 +55,15 @@ function TopStreams() {
         )}
       </>
     );
-  }, [error, filteredStreams, hasMore, isLoading, isValidating, streams]);
+  }, [error, hasMore, isLoading, isValidating, streams]);
+
+  useRefreshHandler(async () => {
+    await refresh();
+  });
 
   return (
     <Wrapper>
-      <TopBar
-        rightOrnament={[
-          {
-            onClick: () => refresh(),
-            children: <ReloadIcon size="1.25rem" isSpinning={isValidating} />,
-          },
-        ]}
-      />
+      <TopBar />
 
       {children}
     </Wrapper>

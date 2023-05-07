@@ -1,7 +1,13 @@
 import { Location, Router } from "@remix-run/router";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-const Context = createContext(new Array<Location>());
+interface HistoryContext {
+  locations: Location[];
+}
+
+const Context = createContext<HistoryContext>({
+  locations: [],
+});
 
 interface HistoryProviderProps {
   children: ReactNode;
@@ -9,7 +15,7 @@ interface HistoryProviderProps {
 }
 
 export function HistoryProvider(props: HistoryProviderProps) {
-  const [stack, setStack] = useState(new Array<Location>());
+  const [locations, setLocations] = useState(new Array<Location>());
 
   useEffect(
     () =>
@@ -18,22 +24,22 @@ export function HistoryProvider(props: HistoryProviderProps) {
 
         switch (historyAction) {
           case "PUSH":
-            return setStack((stack) => {
-              if (stack.some((item) => item.key === location.key)) {
-                return stack;
+            return setLocations((locations) => {
+              if (locations.some(({ key }) => key === location.key)) {
+                return locations;
               }
 
-              return stack.concat(location);
+              return locations.concat(location);
             });
 
           case "POP":
-            return setStack((stack) => stack.slice(0, -1));
+            return setLocations((locations) => locations.slice(0, -1));
         }
       }),
     []
   );
 
-  return <Context.Provider value={stack}>{props.children}</Context.Provider>;
+  return <Context.Provider value={{ locations }}>{props.children}</Context.Provider>;
 }
 
 export function useHistoryContext() {

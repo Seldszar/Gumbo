@@ -1,17 +1,16 @@
 import { IconChevronLeft } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
+import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
 
 import { useHistoryContext } from "../contexts/history";
+import { useSearchContext } from "../contexts/search";
 
 import SearchInput from "./SearchInput";
+import ReloadIcon from "./ReloadIcon";
 
-const OrnamentButton = styled.button`
+const Button = styled.button`
   ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 [&:not(:disabled)]:hover:(bg-white text-black dark:(bg-black text-white)) disabled:(cursor-default opacity-25)!`}
-`;
-
-const Ornament = styled.div`
-  ${tw`border-neutral-300 dark:border-neutral-700 flex flex-none gap-4 items-center`}
 `;
 
 const Inner = styled.div`
@@ -23,41 +22,36 @@ const Wrapper = styled.div`
 `;
 
 export interface TopBarProps {
-  onChange?(value: string): void;
-
-  leftOrnament?: any[];
-  rightOrnament?: any[];
-
   className?: string;
+  searchQuery?: string;
+
+  onSearchQueryChange?(value: string): void;
 }
 
 function TopBar(props: TopBarProps) {
-  const { leftOrnament, rightOrnament } = props;
-
-  const stack = useHistoryContext();
   const navigate = useNavigate();
+
+  const { locations } = useHistoryContext();
+  const { refreshHandlers } = useSearchContext();
+
+  const [state, doRefresh] = useAsyncFn(
+    () => Promise.all(Array.from(refreshHandlers, (handler) => handler())),
+    [refreshHandlers]
+  );
 
   return (
     <Wrapper className={props.className}>
-      <Ornament>
-        <OrnamentButton disabled={stack.length === 0} onClick={() => navigate(-1)}>
-          <IconChevronLeft size="1.25rem" />
-        </OrnamentButton>
-
-        {leftOrnament?.map((props, index) => (
-          <OrnamentButton key={index} {...props} />
-        ))}
-      </Ornament>
+      <Button disabled={locations.length === 0} onClick={() => navigate(-1)}>
+        <IconChevronLeft size="1.25rem" />
+      </Button>
 
       <Inner>
-        <SearchInput onChange={props.onChange} />
+        <SearchInput value={props.searchQuery} onChange={props.onSearchQueryChange} />
       </Inner>
 
-      <Ornament>
-        {rightOrnament?.map((props, index) => (
-          <OrnamentButton key={index} {...props} />
-        ))}
-      </Ornament>
+      <Button disabled={refreshHandlers.size === 0} onClick={doRefresh}>
+        <ReloadIcon size="1.25rem" isSpinning={state.loading} />
+      </Button>
     </Wrapper>
   );
 }

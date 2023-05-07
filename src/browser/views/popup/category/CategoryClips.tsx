@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useClips } from "~/browser/hooks";
 
@@ -39,7 +40,7 @@ function CategoryClips() {
     };
   }, [duration]);
 
-  const [clips = [], { error, fetchMore, hasMore, isLoading, isValidating }] = useClips({
+  const [clips = [], { error, fetchMore, refresh, hasMore, isLoading, isValidating }] = useClips({
     startedAt: period?.startedAt,
     endedAt: period?.endedAt,
     gameId: category.id,
@@ -77,6 +78,10 @@ function CategoryClips() {
       </>
     );
   }, [clips, error, hasMore, isLoading, isValidating]);
+
+  useRefreshHandler(async () => {
+    await refresh();
+  });
 
   return (
     <>

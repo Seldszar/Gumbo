@@ -213,8 +213,8 @@ export function useHover(ref: RefObject<Element>): boolean {
 }
 
 export interface UseQueryListResponse {
-  fetchMore(): void;
-  refresh(): void;
+  fetchMore(): Promise<void>;
+  refresh(): Promise<void>;
   hasMore: boolean;
   isLoading: boolean;
   isValidating: boolean;
@@ -264,6 +264,14 @@ export function useQueryList<T = any>(
       isValidating,
       hasMore,
       error,
+
+      async fetchMore() {
+        await setSize((size) => size + 1);
+      },
+
+      async refresh() {
+        await mutate();
+      },
     },
   ];
 }

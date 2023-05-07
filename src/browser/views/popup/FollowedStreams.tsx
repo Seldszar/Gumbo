@@ -1,17 +1,16 @@
-import { useMemo, useState } from "react";
 import { groupBy, orderBy } from "lodash-es";
-import { useAsyncFn } from "react-use";
+import { useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { filterList, isEmpty } from "~/browser/helpers";
 import { useFollowedStreams, useFollowedStreamState, usePinnedUsers } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
 import FilterBar from "~/browser/components/FilterBar";
-import ReloadIcon from "~/browser/components/ReloadIcon";
 import Splash from "~/browser/components/Splash";
 import TopBar from "~/browser/components/TopBar";
 
@@ -33,8 +32,6 @@ function FollowedStreams() {
   const [followedStreams, { isLoading }] = useFollowedStreams();
   const [followedStreamState, { setSortDirection, setSortField }] = useFollowedStreamState();
   const [pinnedUsers, { toggle }] = usePinnedUsers();
-
-  const [refreshState, doRefresh] = useAsyncFn(() => sendRuntimeMessage("refresh", true), []);
 
   const itemGroups = useMemo(() => {
     let { sortDirection } = followedStreamState;
@@ -86,17 +83,13 @@ function FollowedStreams() {
     );
   }, [itemGroups, followedStreams, isLoading, pinnedUsers]);
 
+  useRefreshHandler(async () => {
+    await sendRuntimeMessage("refresh", true);
+  });
+
   return (
     <Wrapper>
-      <TopBar
-        onChange={setSearchQuery}
-        rightOrnament={[
-          {
-            children: <ReloadIcon size="1.25rem" isSpinning={refreshState.loading} />,
-            onClick: () => doRefresh(),
-          },
-        ]}
-      />
+      <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
 
       <StyledFilterBar
         direction={followedStreamState.sortDirection}

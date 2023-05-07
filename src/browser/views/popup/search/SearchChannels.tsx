@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useSearchChannels } from "~/browser/hooks";
 
@@ -13,6 +14,10 @@ import Splash from "~/browser/components/Splash";
 
 import { OutletContext } from "../Search";
 
+const List = styled.div`
+  ${tw`pt-3`}
+`;
+
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
@@ -20,12 +25,17 @@ const LoadMore = styled.div`
 function SearchChannels() {
   const { searchQuery } = useOutletContext<OutletContext>();
 
-  const [channels, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchChannels(
-    searchQuery.length > 0 && {
-      query: searchQuery,
-      first: 100,
-    }
-  );
+  const [channels, { error, fetchMore, refresh, hasMore, isLoading, isValidating }] =
+    useSearchChannels(
+      searchQuery.length > 0 && {
+        query: searchQuery,
+        first: 100,
+      }
+    );
+
+  useRefreshHandler(async () => {
+    await refresh();
+  });
 
   if (searchQuery.length === 0) {
     return <Splash>{t("messageText_typeSearchChannels")}</Splash>;
@@ -45,11 +55,11 @@ function SearchChannels() {
 
   return (
     <>
-      <div>
+      <List>
         {channels.map((channel) => (
           <ChannelCard key={channel.id} channel={channel} />
         ))}
-      </div>
+      </List>
 
       {hasMore && (
         <LoadMore>

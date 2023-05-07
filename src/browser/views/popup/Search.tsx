@@ -27,7 +27,7 @@ function Search() {
 
   return (
     <Wrapper>
-      <TopBar onChange={setSearchQuery} />
+      <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
 
       <TabList>
         <Tab to="channels">{t("titleText_channels")}</Tab>

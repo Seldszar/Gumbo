@@ -1,17 +1,17 @@
 import { sortBy } from "lodash-es";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers";
+import { useRefreshHandler } from "~/browser/contexts";
+import { isEmpty } from "~/browser/helpers";
 import { useCategories, usePinnedCategories, useTopCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import MoreButton from "~/browser/components/MoreButton";
-import ReloadIcon from "~/browser/components/ReloadIcon";
 import Splash from "~/browser/components/Splash";
 import TopBar from "~/browser/components/TopBar";
 
@@ -38,17 +38,11 @@ function TopCategories() {
     id: pinnedCategories,
   });
 
-  const [searchQuery, setSearchQuery] = useState("");
-
   const [topCategories = [], topResponse] = useTopCategories({
     first: 100,
   });
 
   const sortedCategories = useMemo(() => sortBy(categories, "name"), [categories]);
-  const filteredCategories = useMemo(
-    () => filterList(topCategories, ["name"], searchQuery),
-    [topCategories, searchQuery]
-  );
 
   const children = useMemo(() => {
     if (topResponse.isLoading) {
@@ -63,7 +57,7 @@ function TopCategories() {
       return <Splash>{topResponse.error.message}</Splash>;
     }
 
-    if (isEmpty(filteredCategories)) {
+    if (isEmpty(topCategories)) {
       return <Splash>{t("errorText_emptyCategories")}</Splash>;
     }
 
@@ -88,7 +82,7 @@ function TopCategories() {
 
           <Group>
             <Grid>
-              {filteredCategories.map((category) => (
+              {topCategories.map((category) => (
                 <Link key={category.id} to={`/categories/${category.id}`}>
                   <CategoryCard
                     category={category}
@@ -110,18 +104,15 @@ function TopCategories() {
         )}
       </>
     );
-  }, [categories, filteredCategories, pinnedResponse, topResponse]);
+  }, [categories, pinnedResponse, topCategories, topResponse]);
+
+  useRefreshHandler(async () => {
+    await topResponse.refresh();
+  });
 
   return (
     <Wrapper>
-      <TopBar
-        rightOrnament={[
-          {
-            children: <ReloadIcon size="1.25rem" isSpinning={topResponse.isValidating} />,
-            onClick: () => topResponse.refresh(),
-          },
-        ]}
-      />
+      <TopBar />
 
       {children}
     </Wrapper>

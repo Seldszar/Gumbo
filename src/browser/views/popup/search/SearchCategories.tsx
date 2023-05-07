@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useSearchCategories } from "~/browser/hooks";
 
@@ -24,12 +25,17 @@ const LoadMore = styled.div`
 function SearchCategories() {
   const { searchQuery } = useOutletContext<OutletContext>();
 
-  const [categories, { error, fetchMore, hasMore, isLoading, isValidating }] = useSearchCategories(
-    searchQuery.length > 0 && {
-      query: searchQuery,
-      first: 100,
-    }
-  );
+  const [categories, { error, fetchMore, hasMore, isLoading, isValidating, refresh }] =
+    useSearchCategories(
+      searchQuery.length > 0 && {
+        query: searchQuery,
+        first: 100,
+      }
+    );
+
+  useRefreshHandler(async () => {
+    await refresh();
+  });
 
   if (searchQuery.length === 0) {
     return <Splash>{t("messageText_typeSearchCategories")}</Splash>;

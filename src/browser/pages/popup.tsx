@@ -2,6 +2,7 @@ import { css, Global } from "@emotion/react";
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import { HistoryProvider } from "../contexts/history";
+import { SearchProvider } from "../contexts/search";
 
 import CategoryClips from "~/browser/views/popup/category/CategoryClips";
 import CategoryStreams from "~/browser/views/popup/category/CategoryStreams";
@@ -115,7 +116,9 @@ function PopupPage() {
         `}
       />
 
-      <RouterProvider router={router} />
+      <SearchProvider>
+        <RouterProvider router={router} />
+      </SearchProvider>
     </HistoryProvider>
   );
 }
