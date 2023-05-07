@@ -258,8 +258,6 @@ export function useQueryList<T = any>(
   return [
     data?.flatMap((page) => page.data),
     {
-      fetchMore: () => setSize((size) => size + 1),
-      refresh: () => mutate(),
       isLoading,
       isValidating,
       hasMore,
