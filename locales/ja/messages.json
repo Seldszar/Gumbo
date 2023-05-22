@@ -272,6 +272,9 @@
   "optionValue_theme_light": {
     "message": "ライト"
   },
+  "optionValue_theme_system": {
+    "message": "システム"
+  },
   "optionValue_unknown": {
     "message": "不明"
   },
