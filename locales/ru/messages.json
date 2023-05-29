@@ -272,6 +272,9 @@
   "optionValue_theme_light": {
     "message": "Светлая"
   },
+  "optionValue_theme_system": {
+    "message": "Системная"
+  },
   "optionValue_unknown": {
     "message": "Неизвестно"
   },
