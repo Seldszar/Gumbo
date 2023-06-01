@@ -272,6 +272,9 @@
   "optionValue_theme_light": {
     "message": "Hell"
   },
+  "optionValue_theme_system": {
+    "message": "System"
+  },
   "optionValue_unknown": {
     "message": "Unbekannt"
   },

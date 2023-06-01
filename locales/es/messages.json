@@ -272,6 +272,9 @@
   "optionValue_theme_light": {
     "message": "Claro"
   },
+  "optionValue_theme_system": {
+    "message": "Sistema"
+  },
   "optionValue_unknown": {
     "message": "Desconocido"
   },
