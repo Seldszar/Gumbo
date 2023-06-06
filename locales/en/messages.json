@@ -35,6 +35,9 @@
   "buttonText_selectNone": {
     "message": "Select None"
   },
+  "buttonText_submit": {
+    "message": "Submit"
+  },
   "confirmMessage_reload": {
     "message": "Please use the button below to reload the extension."
   },
@@ -320,6 +323,9 @@
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_createItem": {
+    "message": "Create Item"
+  },
   "titleText_dangerZone": {
     "message": "Danger Zone"
   },
@@ -364,6 +370,9 @@
   },
   "titleText_topStreams": {
     "message": "Top Streams"
+  },
+  "titleText_updateItem": {
+    "message": "Update Item"
   },
   "titleText_videos": {
     "message": "Videos"

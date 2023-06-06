@@ -30,12 +30,11 @@ const ButtonGrid = styled.div`
 
 interface DonateModalProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;
-  isOpen?: boolean;
 }
 
 function DonateModal(props: DonateModalProps) {
   return (
-    <Modal isOpen={props.isOpen}>
+    <Modal>
       <Panel title={t("titleText_donate")} onClose={props.onClose}>
         <Section>
           <Renderer content={t("messageText_donate")} />

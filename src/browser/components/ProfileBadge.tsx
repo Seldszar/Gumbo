@@ -1,4 +1,5 @@
 import { IconHeart, IconInfoCircle, IconPower, IconSettings } from "@tabler/icons-react";
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -78,8 +79,13 @@ function ProfileBadge(props: ProfileBadgeProps) {
         )}
       </ContextMenu>
 
-      <AboutModal isOpen={isAboutOpen} onClose={() => setAboutOpen(false)} />
-      <DonateModal isOpen={isDonateOpen} onClose={() => setDonateOpen(false)} />
+      <AnimatePresence initial={false}>
+        {isAboutOpen && <AboutModal onClose={() => setAboutOpen(false)} />}
+      </AnimatePresence>
+
+      <AnimatePresence initial={false}>
+        {isDonateOpen && <DonateModal onClose={() => setDonateOpen(false)} />}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { IconAlertTriangle, IconDownload, IconRefresh, IconUpload } from "@tabler/icons-react";
+import { AnimatePresence } from "framer-motion";
 import { MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -14,7 +15,7 @@ const ButtonGroup = styled.div`
 `;
 
 function AdvancedSettings() {
-  const [isResetModalOpen, setResetModalOpen] = useState(false);
+  const [isResetOpen, setResetOpen] = useState(false);
 
   const onExportClick: MouseEventHandler<HTMLButtonElement> = async () => {
     const url = URL.createObjectURL(
@@ -84,7 +85,7 @@ function AdvancedSettings() {
           </Button>
           <Button
             color="red"
-            onClick={() => setResetModalOpen(true)}
+            onClick={() => setResetOpen(true)}
             icon={<IconAlertTriangle size="1.5rem" strokeWidth={1.5} />}
             fullWidth
           >
@@ -93,11 +94,11 @@ function AdvancedSettings() {
         </ButtonGroup>
       </Section>
 
-      <ResetModal
-        isOpen={isResetModalOpen}
-        onCancel={() => setResetModalOpen(false)}
-        onConfirm={onResetConfirm}
-      />
+      <AnimatePresence initial={false}>
+        {isResetOpen && (
+          <ResetModal onCancel={() => setResetOpen(false)} onConfirm={onResetConfirm} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

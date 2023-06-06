@@ -27,12 +27,11 @@ const ButtonGroup = styled.div`
 interface ResetModalProps {
   onCancel?: MouseEventHandler<HTMLButtonElement>;
   onConfirm?: MouseEventHandler<HTMLButtonElement>;
-  isOpen?: boolean;
 }
 
 function ResetModal(props: ResetModalProps) {
   return (
-    <Modal isOpen={props.isOpen}>
+    <Modal>
       <Inner>
         <IconAlertTriangle size="2.5rem" strokeWidth={1.5} />
 

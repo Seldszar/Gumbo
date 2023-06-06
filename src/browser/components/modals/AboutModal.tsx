@@ -34,12 +34,11 @@ const LinkGrid = styled.div`
 
 interface AboutModalProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;
-  isOpen?: boolean;
 }
 
 function AboutModal(props: AboutModalProps) {
   return (
-    <Modal isOpen={props.isOpen}>
+    <Modal>
       <Panel onClose={props.onClose}>
         <Section>
           <Hero />

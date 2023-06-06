@@ -11,6 +11,8 @@ import ListManager from "~/browser/components/ListManager";
 import Section from "~/browser/components/Section";
 import Switch from "~/browser/components/Switch";
 
+import IgnoredCategoryForm from "~/browser/components/forms/IgnoredCategoryForm";
+
 const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
@@ -50,10 +52,12 @@ function NotificationSettings() {
         />
       </Section>
       <Section title={t("titleText_ignoredCategories")}>
-        <ListManager
+        <ListManager<string>
           {...register("notifications.ignoredCategories")}
-          placeholder={t("placeholderText_ignoredCategories")}
           emptyMessage={t("errorText_emptyIgnoredCategories")}
+          renderForm={(props) => <IgnoredCategoryForm {...props} />}
+          renderTitle={(value) => value}
+          getKey={(value) => value}
         />
       </Section>
     </div>

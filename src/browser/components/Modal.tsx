@@ -1,5 +1,5 @@
 import { Global } from "@emotion/react";
-import { AnimatePresence, m, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import tw, { css, styled } from "twin.macro";
@@ -9,7 +9,7 @@ const Wrapper = styled(m.div)`
 `;
 
 const Inner = styled(m.div)`
-  ${tw`m-auto p-6 w-full`}
+  ${tw`m-auto max-w-xl p-6 w-full`}
 `;
 
 const wrapperVariants: Variants = {
@@ -44,26 +44,21 @@ const innerVariants: Variants = {
 
 export interface ModalProps {
   children?: ReactNode;
-  isOpen?: boolean;
 }
 
 function Modal(props: ModalProps) {
   const children = (
-    <AnimatePresence initial={false}>
-      {props.isOpen && (
-        <Wrapper variants={wrapperVariants} initial="hide" animate="show" exit="hide">
-          <Global
-            styles={css`
-              body {
-                ${tw`overflow-hidden`}
-              }
-            `}
-          />
+    <Wrapper variants={wrapperVariants} initial="hide" animate="show" exit="hide">
+      <Global
+        styles={css`
+          body {
+            ${tw`overflow-hidden`}
+          }
+        `}
+      />
 
-          <Inner variants={innerVariants}>{props.children}</Inner>
-        </Wrapper>
-      )}
-    </AnimatePresence>
+      <Inner variants={innerVariants}>{props.children}</Inner>
+    </Wrapper>
   );
 
   return createPortal(children, document.body);
