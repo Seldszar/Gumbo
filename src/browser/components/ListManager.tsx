@@ -1,8 +1,11 @@
+import { DndContext, DragOverlay, UniqueIdentifier, closestCenter } from "@dnd-kit/core";
+import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { FloatingPortal } from "@floating-ui/react";
 import { IconEdit, IconGripVertical, IconTrash } from "@tabler/icons-react";
-import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
 import { concat, set, without } from "lodash-es";
-import { Key, ReactNode, useState } from "react";
-import tw, { styled } from "twin.macro";
+import { HTMLAttributes, Key, ReactNode, forwardRef, useState } from "react";
+import tw, { css, styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
@@ -14,27 +17,33 @@ const AddButton = styled(Button)`
   ${tw`mt-2`}
 `;
 
-const List = styled(Reorder.Group)`
+const List = styled.div`
   ${tw`flex flex-col gap-px`}
 `;
 
 interface ItemProps {
-  isDragging?: boolean;
+  dragOverlay?: boolean;
 }
 
-const Item = styled(Reorder.Item)<ItemProps>`
+const Item = styled.div<ItemProps>`
   ${tw`bg-neutral-200 dark:bg-neutral-800 flex items-center gap-4 px-4 py-3 relative rounded`}
 
   ${(props) =>
-    props.isDragging &&
-    tw`shadow-lg bg-neutral-300 dark:bg-neutral-700 after:(absolute content-[''] cursor-grabbing inset-0)`}
+    props.dragOverlay &&
+    css`
+      ${tw`shadow-lg bg-neutral-300 dark:bg-neutral-700`}
+
+      &, ${ItemHandle} {
+        ${tw`cursor-grabbing`}
+      }
+    `}
 `;
 
 const ItemTitle = styled.div`
   ${tw`flex-1`}
 `;
 
-const DragIcon = styled.button`
+const ItemHandle = styled.button`
   ${tw`cursor-grab flex-none text-neutral-500`}
 `;
 
@@ -46,31 +55,48 @@ const EmptyMessage = styled.div`
   ${tw`bg-black/10 py-5 rounded text-center text-neutral-500 dark:bg-black/25`}
 `;
 
-interface ListItemProps<T> {
-  children: ReactNode;
-  value: T;
+export type ItemType = UniqueIdentifier | { id: UniqueIdentifier };
+
+interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
+  handleProps?: HTMLAttributes<HTMLButtonElement>;
+  dragOverlay?: boolean;
 }
 
-function ListItem<T>(props: ListItemProps<T>) {
-  const [isDragging, setDragging] = useState(false);
-
-  const controls = useDragControls();
+const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
+  const { children, handleProps, ...rest } = props;
 
   return (
-    <Item
-      value={props.value}
-      dragListener={false}
-      dragControls={controls}
-      onDragStart={() => setDragging(true)}
-      onDragEnd={() => setDragging(false)}
-      isDragging={isDragging}
-    >
-      <DragIcon onPointerDown={(event) => controls.start(event)}>
+    <Item ref={ref} {...rest}>
+      <ItemHandle {...handleProps}>
         <IconGripVertical size="1.25rem" />
-      </DragIcon>
+      </ItemHandle>
 
-      {props.children}
+      {children}
     </Item>
+  );
+});
+
+interface SortableListItemProps {
+  id: UniqueIdentifier;
+
+  children: ReactNode;
+}
+
+function SortableListItem(props: SortableListItemProps) {
+  const { isDragging, listeners, setNodeRef, transform, transition } = useSortable({
+    id: props.id,
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    opacity: isDragging ? 0.5 : undefined,
+    transition,
+  };
+
+  return (
+    <ListItem ref={setNodeRef} style={style} handleProps={listeners}>
+      {props.children}
+    </ListItem>
   );
 }
 
@@ -86,7 +112,9 @@ interface ModalProps<T> {
   onCancel(): void;
 }
 
-export interface ListManagerProps<T> {
+const getKey = (item: ItemType) => (typeof item === "object" ? item.id : item);
+
+export interface ListManagerProps<T extends ItemType> {
   className?: string;
   placeholder?: string;
   emptyMessage?: string;
@@ -99,25 +127,74 @@ export interface ListManagerProps<T> {
   getKey(value: T): Key;
 }
 
-function ListManager<T>(props: ListManagerProps<T>) {
+function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
+  const [items, setItems] = useState(props.value);
+
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [modalState, setModalState] = useState<ModalState<T> | null>(null);
+
+  const getItem = (id: UniqueIdentifier) => items.find((item) => getKey(item) === id);
+  const getIndex = (id: UniqueIdentifier) => items.findIndex((item) => getKey(item) === id);
+
+  const activeItem = activeId ? getItem(activeId) : undefined;
 
   return (
     <fieldset className={props.className} disabled={props.disabled}>
-      {props.value.length > 0 ? (
-        <List axis="y" values={props.value} onReorder={props.onChange}>
-          {props.value.map((value, index) => (
-            <ListItem key={props.getKey(value)} value={value}>
-              <ItemTitle>{props.renderTitle(value)}</ItemTitle>
-              <ItemButton onClick={() => setModalState({ index, item: value })}>
-                <IconEdit size="1.25rem" />
-              </ItemButton>
-              <ItemButton onClick={() => props.onChange(without(props.value, value))}>
-                <IconTrash size="1.25rem" />
-              </ItemButton>
-            </ListItem>
-          ))}
-        </List>
+      {items.length > 0 ? (
+        <DndContext
+          collisionDetection={closestCenter}
+          onDragStart={({ active }) => {
+            if (active == null) {
+              return;
+            }
+
+            setActiveId(active.id);
+          }}
+          onDragEnd={({ active, over }) => {
+            setActiveId(null);
+
+            if (over == null) {
+              return;
+            }
+
+            setItems((items) => {
+              const oldIndex = getIndex(active.id);
+              const newIndex = getIndex(over.id);
+
+              if (oldIndex !== newIndex) {
+                props.onChange((items = arrayMove(items, oldIndex, newIndex)));
+              }
+
+              return items;
+            });
+          }}
+        >
+          <SortableContext items={items}>
+            <List>
+              {items.map((value, index) => (
+                <SortableListItem key={getKey(value)} id={getKey(value)}>
+                  <ItemTitle>{props.renderTitle(value)}</ItemTitle>
+                  <ItemButton onClick={() => setModalState({ index, item: value })}>
+                    <IconEdit size="1.25rem" />
+                  </ItemButton>
+                  <ItemButton onClick={() => props.onChange(without(items, value))}>
+                    <IconTrash size="1.25rem" />
+                  </ItemButton>
+                </SortableListItem>
+              ))}
+            </List>
+          </SortableContext>
+
+          <FloatingPortal id="modal-root">
+            <DragOverlay>
+              {activeItem && (
+                <ListItem dragOverlay>
+                  <ItemTitle>{props.renderTitle(activeItem)}</ItemTitle>
+                </ListItem>
+              )}
+            </DragOverlay>
+          </FloatingPortal>
+        </DndContext>
       ) : (
         <EmptyMessage>{props.emptyMessage}</EmptyMessage>
       )}
@@ -126,34 +203,32 @@ function ListManager<T>(props: ListManagerProps<T>) {
         {t("buttonText_add")}
       </AddButton>
 
-      <AnimatePresence initial={false}>
-        {modalState && (
-          <Modal>
-            <Panel
-              title={t(modalState.item ? "titleText_updateItem" : "titleText_createItem")}
-              onClose={() => setModalState(null)}
-            >
-              {props.renderForm({
-                value: modalState.item,
-                onSubmit(item) {
-                  setModalState(null);
+      {modalState && (
+        <Modal>
+          <Panel
+            title={t(modalState.item ? "titleText_updateItem" : "titleText_createItem")}
+            onClose={() => setModalState(null)}
+          >
+            {props.renderForm({
+              value: modalState.item,
+              onSubmit(item) {
+                setModalState(null);
 
-                  switch (modalState.index) {
-                    case -1:
-                      return props.onChange(concat(props.value, item));
+                switch (modalState.index) {
+                  case -1:
+                    return props.onChange(concat(items, item));
 
-                    default:
-                      return props.onChange(set(props.value, modalState.index, item));
-                  }
-                },
-                onCancel() {
-                  setModalState(null);
-                },
-              })}
-            </Panel>
-          </Modal>
-        )}
-      </AnimatePresence>
+                  default:
+                    return props.onChange(set(items, modalState.index, item));
+                }
+              },
+              onCancel() {
+                setModalState(null);
+              },
+            })}
+          </Panel>
+        </Modal>
+      )}
     </fieldset>
   );
 }
