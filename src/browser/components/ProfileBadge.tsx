@@ -9,7 +9,7 @@ import { CurrentUser } from "~/common/types";
 import AboutModal from "./modals/AboutModal";
 import DonateModal from "./modals/DonateModal";
 
-import ContextMenu from "./ContextMenu";
+import DropdownMenu from "./DropdownMenu";
 import Image from "./Image";
 
 const Wrapper = styled.button`
@@ -27,57 +27,53 @@ function ProfileBadge(props: ProfileBadgeProps) {
 
   return (
     <>
-      <ContextMenu
+      <DropdownMenu
         placement="right-end"
-        menu={{
-          items: [
-            {
-              type: "link",
-              children: t("optionValue_settings"),
-              icon: <IconSettings size="1.25rem" />,
-              onClick() {
-                open(browser.runtime.getURL("settings.html"), "_blank");
-              },
+        items={[
+          {
+            type: "normal",
+            title: t("optionValue_settings"),
+            icon: <IconSettings size="1.25rem" />,
+            onClick() {
+              open(browser.runtime.getURL("settings.html"), "_blank");
             },
-            {
-              type: "link",
-              children: t("optionValue_aboutHelp"),
-              icon: <IconInfoCircle size="1.25rem" />,
-              onClick() {
-                setAboutOpen(true);
-              },
+          },
+          {
+            type: "normal",
+            title: t("optionValue_aboutHelp"),
+            icon: <IconInfoCircle size="1.25rem" />,
+            onClick() {
+              setAboutOpen(true);
             },
-            {
-              type: "separator",
+          },
+          {
+            type: "separator",
+          },
+          {
+            type: "normal",
+            title: t("optionValue_donate"),
+            icon: <IconHeart size="1.25rem" />,
+            onClick() {
+              setDonateOpen(true);
             },
-            {
-              type: "link",
-              children: t("optionValue_donate"),
-              icon: <IconHeart size="1.25rem" />,
-              onClick() {
-                setDonateOpen(true);
-              },
+          },
+          {
+            type: "separator",
+          },
+          {
+            type: "normal",
+            title: t("optionValue_logout"),
+            icon: <IconPower size="1.25rem" />,
+            onClick() {
+              sendRuntimeMessage("revoke");
             },
-            {
-              type: "separator",
-            },
-            {
-              type: "link",
-              children: t("optionValue_logout"),
-              icon: <IconPower size="1.25rem" />,
-              onClick() {
-                sendRuntimeMessage("revoke");
-              },
-            },
-          ],
-        }}
+          },
+        ]}
       >
-        {(getReferenceProps) => (
-          <Wrapper className={props.className} {...getReferenceProps()}>
-            {props.user && <Image src={props.user.profileImageUrl} ratio={1} />}
-          </Wrapper>
-        )}
-      </ContextMenu>
+        <Wrapper className={props.className}>
+          {props.user && <Image src={props.user.profileImageUrl} ratio={1} />}
+        </Wrapper>
+      </DropdownMenu>
 
       <AnimatePresence initial={false}>
         {isAboutOpen && <AboutModal onClose={() => setAboutOpen(false)} />}

@@ -1,11 +1,10 @@
-import { IconCheck, IconChevronDown } from "@tabler/icons-react";
-import { find } from "lodash-es";
-import { ReactNode, useMemo } from "react";
+import { IconChevronDown, IconPointFilled } from "@tabler/icons-react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import ContextMenu from "~/browser/components/ContextMenu";
+import DropdownMenu from "~/browser/components/DropdownMenu";
 
 interface WrapperProps {
   fullWidth?: boolean;
@@ -24,52 +23,53 @@ const Inner = styled.div`
   ${tw`flex-1`}
 `;
 
-export interface SelectOption {
-  label: ReactNode;
-  value: any;
+export interface SelectOption<T> {
+  label: string;
+  value: T;
 }
 
-export interface SelectProps {
-  onChange(value: any): void;
-  className?: string;
-  options: SelectOption[];
+export interface SelectProps<T> {
   fullWidth?: boolean;
-  value: any;
+  className?: string;
+
+  options: Array<SelectOption<T>>;
+  value: T;
+
+  onChange(value: any): void;
 }
 
-function Select(props: SelectProps) {
+function Select<T>(props: SelectProps<T>) {
   const { options, value } = props;
 
-  const selectedOption = useMemo(() => find(options, { value }), [options, value]);
+  const selectedOption = useMemo(
+    () => options.find((option) => option.value === value),
+    [options, value]
+  );
 
   return (
-    <ContextMenu
-      fullWidth={props.fullWidth}
+    <DropdownMenu
       placement="bottom-end"
-      menu={{
-        items: options.map((option) => {
-          let icon;
+      fullWidth={props.fullWidth}
+      items={options.map((option) => {
+        let icon;
 
-          if (option.value === value) {
-            icon = <IconCheck size="1.25rem" />;
-          }
+        if (option.value === value) {
+          icon = <IconPointFilled size="1.25rem" />;
+        }
 
-          return {
-            onClick: () => props.onChange?.(option.value),
-            children: option.label,
-            type: "link",
-            icon,
-          };
-        }),
-      }}
+        return {
+          onClick: () => props.onChange(option.value),
+          title: option.label,
+          type: "normal",
+          icon,
+        };
+      })}
     >
-      {(getReferenceProps) => (
-        <Wrapper fullWidth={props.fullWidth} className={props.className} {...getReferenceProps()}>
-          <Inner>{selectedOption?.label ?? t("optionValue_unknown")}</Inner>
-          <IconChevronDown size="1.25rem" />
-        </Wrapper>
-      )}
-    </ContextMenu>
+      <Wrapper fullWidth={props.fullWidth} className={props.className}>
+        <Inner>{selectedOption?.label ?? t("optionValue_unknown")}</Inner>
+        <IconChevronDown size="1.25rem" />
+      </Wrapper>
+    </DropdownMenu>
   );
 }
 

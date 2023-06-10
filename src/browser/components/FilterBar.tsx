@@ -15,7 +15,7 @@ const Spacer = styled.div`
   ${tw`flex-1`}
 `;
 
-export interface FilterProps extends SelectProps {
+export interface FilterProps extends SelectProps<any> {
   side: "left" | "right";
 }
 

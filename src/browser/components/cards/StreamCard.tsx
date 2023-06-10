@@ -1,5 +1,5 @@
-import { IconPinnedOff, IconPin } from "@tabler/icons-react";
-import { HTMLAttributes, useMemo } from "react";
+import { IconPin } from "@tabler/icons-react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { openUrl, t, template } from "~/common/helpers";
@@ -59,47 +59,28 @@ function StreamCard(props: StreamCardProps) {
 
   const defaultAction = useClickAction(stream.userLogin);
 
-  const actionButtons = useMemo(() => {
-    const result = new Array<HTMLAttributes<HTMLButtonElement>>();
-
-    if (props.onTogglePinClick) {
-      result.push({
-        onClick(event) {
-          event.stopPropagation();
-          event.preventDefault();
-
-          props.onTogglePinClick?.();
-        },
-        children: props.isPinned ? <IconPinnedOff size="1.25rem" /> : <IconPin size="1.25rem" />,
-      });
-    }
-
-    return result;
-  }, [props.isPinned, props.onTogglePinClick]);
-
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        actionButtons={actionButtons}
         overflowMenu={{
           items: [
             {
-              type: "link",
-              children: t("optionValue_openChannel"),
+              type: "normal",
+              title: t("optionValue_openChannel"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${stream.userLogin}`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_openChat"),
+              type: "normal",
+              title: t("optionValue_openChat"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${stream.userLogin}/chat`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_popout"),
+              type: "normal",
+              title: t("optionValue_popout"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event);
               },
@@ -108,22 +89,34 @@ function StreamCard(props: StreamCardProps) {
               type: "separator",
             },
             {
-              type: "link",
-              children: t("optionValue_about"),
+              type: "checkbox",
+              title: "Is Pinned",
+              icon: <IconPin size="1.25rem" />,
+              checked: pinnedUsers.includes(stream.userId),
+              onChange() {
+                toggle(stream.userId);
+              },
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "normal",
+              title: t("optionValue_about"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${stream.userLogin}/about`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_schedule"),
+              type: "normal",
+              title: t("optionValue_schedule"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${stream.userLogin}/schedule`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_videos"),
+              type: "normal",
+              title: t("optionValue_videos"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${stream.userLogin}/videos`, event);
               },

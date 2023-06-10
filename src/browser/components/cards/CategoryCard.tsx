@@ -57,7 +57,7 @@ function CategoryCard(props: CategoryCardProps) {
         )}
       </Cover>
       <Tooltip content={category.name}>
-        {(getReferenceProps) => <Name {...getReferenceProps()}>{category.name}</Name>}
+        <Name>{category.name}</Name>
       </Tooltip>
     </div>
   );

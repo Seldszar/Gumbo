@@ -1,5 +1,5 @@
-import { IconPin, IconPinnedOff } from "@tabler/icons-react";
-import { HTMLAttributes, ReactNode, useMemo } from "react";
+import { IconPin } from "@tabler/icons-react";
+import { ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { openUrl, t } from "~/common/helpers";
@@ -45,48 +45,29 @@ function UserCard(props: UserCardProps) {
 
   const defaultAction = useClickAction(user.login);
 
-  const actionButtons = useMemo(() => {
-    const result = new Array<HTMLAttributes<HTMLButtonElement>>();
-
-    if (props.onTogglePinClick) {
-      result.push({
-        onClick(event) {
-          event.stopPropagation();
-          event.preventDefault();
-
-          props.onTogglePinClick?.();
-        },
-        children: props.isPinned ? <IconPinnedOff size="1.25rem" /> : <IconPin size="1.25rem" />,
-      });
-    }
-
-    return result;
-  }, [props.isPinned, props.onTogglePinClick]);
-
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        actionButtons={actionButtons}
         isLive={props.isLive}
         overflowMenu={{
           items: [
             {
-              type: "link",
-              children: t("optionValue_openChannel"),
+              type: "normal",
+              title: t("optionValue_openChannel"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${user.login}`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_openChat"),
+              type: "normal",
+              title: t("optionValue_openChat"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${user.login}/chat`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_popout"),
+              type: "normal",
+              title: t("optionValue_popout"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${user.login}/popout`, event);
               },
@@ -95,22 +76,34 @@ function UserCard(props: UserCardProps) {
               type: "separator",
             },
             {
-              type: "link",
-              children: t("optionValue_about"),
+              type: "checkbox",
+              title: "Is Pinned",
+              icon: <IconPin size="1.25rem" />,
+              checked: !!props.isPinned,
+              onChange() {
+                props.onTogglePinClick?.();
+              },
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "normal",
+              title: t("optionValue_about"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${user.login}/about`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_schedule"),
+              type: "normal",
+              title: t("optionValue_schedule"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${user.login}/schedule`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_videos"),
+              type: "normal",
+              title: t("optionValue_videos"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${user.login}/videos`, event);
               },

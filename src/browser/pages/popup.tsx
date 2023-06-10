@@ -109,7 +109,7 @@ function PopupPage() {
     <HistoryProvider router={router}>
       <Global
         styles={css`
-          body {
+          #app-root {
             height: 600px;
             width: 420px;
           }

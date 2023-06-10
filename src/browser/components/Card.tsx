@@ -1,11 +1,9 @@
 import { PropsOf } from "@emotion/react";
 import { IconDotsVertical } from "@tabler/icons-react";
-import { HTMLAttributes, ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
-import { MenuProps } from "./Menu";
-
-import ContextMenu from "./ContextMenu";
+import DropdownMenu, { DropdownMenuProps } from "./DropdownMenu";
 
 const Aside = styled.div`
   ${tw`flex-none ltr:mr-4 rtl:ml-4`}
@@ -32,15 +30,11 @@ const ActionButton = styled.button`
 `;
 
 const ActionList = styled.div`
-  ${tw`hidden flex-none gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
+  ${tw`flex-none gap-1 items-center ltr:(-mr-1 pl-3) rtl:(-ml-1 pr-3)`}
 `;
 
 const Wrapper = styled.div`
   ${tw`flex items-center px-4 hover:(bg-neutral-200 dark:bg-neutral-800)`}
-
-  :hover ${ActionList} {
-    ${tw`flex`}
-  }
 `;
 
 export interface CardProps {
@@ -48,35 +42,11 @@ export interface CardProps {
   subtitleProps?: PropsOf<typeof Subtitle>;
   aside?: ReactNode;
   children?: ReactNode;
-  actionButtons?: HTMLAttributes<HTMLButtonElement>[];
-  overflowMenu?: MenuProps;
+  overflowMenu?: Omit<DropdownMenuProps, "children">;
   className?: string;
 }
 
 function Card(props: CardProps) {
-  const actionList = useMemo(() => {
-    const result =
-      props.actionButtons?.map((props, index) => <ActionButton key={index} {...props} />) ?? [];
-
-    if (props.overflowMenu) {
-      result.push(
-        <ContextMenu placement="bottom-end" menu={props.overflowMenu}>
-          {(getReferenceProps) => (
-            <ActionButton {...getReferenceProps()}>
-              <IconDotsVertical size="1.25rem" />
-            </ActionButton>
-          )}
-        </ContextMenu>
-      );
-    }
-
-    if (result.length === 0) {
-      return null;
-    }
-
-    return <ActionList>{result}</ActionList>;
-  }, [props.actionButtons, props.overflowMenu]);
-
   return (
     <Wrapper className={props.className}>
       {props.aside && <Aside>{props.aside}</Aside>}
@@ -87,7 +57,15 @@ function Card(props: CardProps) {
         <Body>{props.children}</Body>
       </Inner>
 
-      {actionList}
+      {props.overflowMenu && (
+        <ActionList>
+          <DropdownMenu {...props.overflowMenu}>
+            <ActionButton>
+              <IconDotsVertical size="1.25rem" />
+            </ActionButton>
+          </DropdownMenu>
+        </ActionList>
+      )}
     </Wrapper>
   );
 }

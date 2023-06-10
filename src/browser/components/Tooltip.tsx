@@ -5,8 +5,9 @@ import {
   useFloating,
   useHover,
   useInteractions,
+  useMergeRefs,
 } from "@floating-ui/react";
-import { HTMLProps, ReactNode, useState } from "react";
+import { ReactElement, ReactNode, cloneElement, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 const Panel = styled.div`
@@ -14,17 +15,14 @@ const Panel = styled.div`
 `;
 
 interface TooltipProps {
+  children: ReactElement;
   content?: ReactNode;
-
-  children(
-    getReferenceProps: (userProps?: HTMLProps<Element>) => Record<string, unknown>
-  ): ReactNode;
 }
 
 function Tooltip(props: TooltipProps) {
   const [isOpen, setOpen] = useState(false);
 
-  const { context, refs, x, y } = useFloating<Element>({
+  const { context, floatingStyles, refs } = useFloating({
     middleware: [autoPlacement(), offset(4)],
     onOpenChange: setOpen,
     strategy: "fixed",
@@ -41,26 +39,16 @@ function Tooltip(props: TooltipProps) {
 
   return (
     <>
-      {props.children((userProps) =>
-        getReferenceProps({
-          ref: refs.setReference,
-
-          ...userProps,
-        })
-      )}
+      {cloneElement(props.children, {
+        ...getReferenceProps(),
+        ref: useMergeRefs([refs.setReference, (props.children as any).ref]),
+      })}
 
       {isOpen && (
-        <FloatingPortal>
-          <Panel
-            {...getFloatingProps({
-              children: props.content,
-              ref: refs.setFloating,
-              style: {
-                left: x ?? 0,
-                top: y ?? 0,
-              },
-            })}
-          />
+        <FloatingPortal id="modal-root">
+          <Panel ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
+            {props.content}
+          </Panel>
         </FloatingPortal>
       )}
     </>

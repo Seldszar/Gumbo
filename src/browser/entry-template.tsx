@@ -13,7 +13,13 @@ import { useSettings } from "./hooks";
 setupSentry();
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
-  const root = createRoot(document.body);
+  const container = document.getElementById("app-root");
+
+  if (container == null) {
+    return;
+  }
+
+  const root = createRoot(container);
 
   document.documentElement.dir = t("@@bidi_dir");
   document.documentElement.lang = t("@@ui_locale");
@@ -61,6 +67,10 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
 
             body {
               ${tw`bg-neutral-100 font-sans text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
+            }
+
+            #modal-root {
+              ${tw`absolute z-50`}
             }
           `}
         />

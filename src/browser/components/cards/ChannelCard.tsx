@@ -50,22 +50,22 @@ function ChannelCard(props: ChannelCardProps) {
         overflowMenu={{
           items: [
             {
-              type: "link",
-              children: t("optionValue_openChannel"),
+              type: "normal",
+              title: t("optionValue_openChannel"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${channel.broadcasterLogin}`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_openChat"),
+              type: "normal",
+              title: t("optionValue_openChat"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${channel.broadcasterLogin}/chat`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_popout"),
+              type: "normal",
+              title: t("optionValue_popout"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${channel.broadcasterLogin}/popout`, event);
               },
@@ -74,22 +74,22 @@ function ChannelCard(props: ChannelCardProps) {
               type: "separator",
             },
             {
-              type: "link",
-              children: t("optionValue_about"),
+              type: "normal",
+              title: t("optionValue_about"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${channel.broadcasterLogin}/about`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_schedule"),
+              type: "normal",
+              title: t("optionValue_schedule"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${channel.broadcasterLogin}/schedule`, event);
               },
             },
             {
-              type: "link",
-              children: t("optionValue_videos"),
+              type: "normal",
+              title: t("optionValue_videos"),
               onClick(event) {
                 openUrl(`https://twitch.tv/${channel.broadcasterLogin}/videos`, event);
               },
