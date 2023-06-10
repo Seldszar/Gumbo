@@ -6,8 +6,8 @@ const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 
 const { EntryWrapperPlugin } = require("@seldszar/yael");
+
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const localeReplacements = [
@@ -29,10 +29,6 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
       alias: {
-        react: "preact/compat",
-        "react-dom/test-utils": "preact/test-utils",
-        "react-dom": "preact/compat",
-        "react/jsx-runtime": "preact/jsx-runtime",
         "~": path.resolve("src"),
       },
     },
@@ -53,11 +49,6 @@ module.exports = (env, argv) => {
       }),
       new webpack.ProvidePlugin({
         browser: "webextension-polyfill",
-      }),
-      new ForkTsCheckerWebpackPlugin({
-        typescript: {
-          mode: "write-references",
-        },
       }),
       new CopyWebpackPlugin({
         patterns: [
@@ -111,6 +102,12 @@ module.exports = (env, argv) => {
       entry: {
         popup: "./src/browser/pages/popup.tsx",
         settings: "./src/browser/pages/settings.tsx",
+      },
+      optimization: {
+        splitChunks: {
+          name: "commons",
+          chunks: "all",
+        },
       },
       plugins: [
         new EntryWrapperPlugin({

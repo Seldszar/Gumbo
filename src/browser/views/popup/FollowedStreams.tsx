@@ -96,9 +96,9 @@ function FollowedStreams() {
         onDirectionChange={setSortDirection}
         filters={[
           {
-            onChange: setSortField,
             side: "right",
             value: followedStreamState.sortField,
+            onChange: setSortField,
             options: [
               {
                 value: "userLogin",

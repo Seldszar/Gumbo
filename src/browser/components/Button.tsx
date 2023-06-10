@@ -1,6 +1,5 @@
 import { PropsOf } from "@emotion/react";
-import { m } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import Spinner from "./Spinner";
@@ -25,7 +24,7 @@ interface WrapperProps {
   color?: string;
 }
 
-const Wrapper = styled(m.button)<WrapperProps>`
+const Wrapper = styled.button<WrapperProps>`
   ${tw`flex gap-2 place-content-center px-4 py-2 relative rounded transition disabled:(cursor-default opacity-25)!`}
 
   ${(props) =>
@@ -60,11 +59,11 @@ export interface ButtonProps extends PropsOf<typeof Wrapper> {
   icon?: ReactNode;
 }
 
-function Button(props: ButtonProps) {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const { children, icon, ...rest } = props;
 
   return (
-    <Wrapper {...rest} disabled={rest.disabled || rest.isLoading}>
+    <Wrapper {...rest} ref={ref} disabled={rest.disabled || rest.isLoading}>
       {icon && <Icon>{icon}</Icon>}
 
       <Inner>{children}</Inner>
@@ -76,6 +75,6 @@ function Button(props: ButtonProps) {
       )}
     </Wrapper>
   );
-}
+});
 
 export default Button;

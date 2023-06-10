@@ -1,5 +1,4 @@
 import { IconAlertTriangle, IconDownload, IconRefresh, IconUpload } from "@tabler/icons-react";
-import { AnimatePresence } from "framer-motion";
 import { MouseEventHandler, useState } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -94,11 +93,9 @@ function AdvancedSettings() {
         </ButtonGroup>
       </Section>
 
-      <AnimatePresence initial={false}>
-        {isResetOpen && (
-          <ResetModal onCancel={() => setResetOpen(false)} onConfirm={onResetConfirm} />
-        )}
-      </AnimatePresence>
+      {isResetOpen && (
+        <ResetModal onCancel={() => setResetOpen(false)} onConfirm={onResetConfirm} />
+      )}
     </div>
   );
 }

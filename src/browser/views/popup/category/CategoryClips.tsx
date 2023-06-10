@@ -89,9 +89,9 @@ function CategoryClips() {
         <FilterBar
           filters={[
             {
-              onChange: setDuration,
               side: "left",
               value: duration,
+              onChange: setDuration,
               options: [
                 {
                   value: null,

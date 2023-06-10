@@ -81,9 +81,9 @@ function CategoryVideos() {
         <FilterBar
           filters={[
             {
-              onChange: setPeriod,
               side: "left",
               value: period,
+              onChange: setPeriod,
               options: [
                 {
                   value: "all",

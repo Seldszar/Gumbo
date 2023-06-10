@@ -122,9 +122,9 @@ function FollowedUsers() {
         onDirectionChange={setSortDirection}
         filters={[
           {
-            onChange: setStatus,
             side: "left",
             value: followedUserState.status,
+            onChange: setStatus,
             options: [
               {
                 value: null,
@@ -141,9 +141,9 @@ function FollowedUsers() {
             ],
           },
           {
-            onChange: setSortField,
             side: "right",
             value: followedUserState.sortField,
+            onChange: setSortField,
             options: [
               {
                 value: "login",

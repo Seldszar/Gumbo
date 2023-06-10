@@ -1,7 +1,6 @@
 import type { EntryWrapper } from "@seldszar/yael";
 
 import { Global } from "@emotion/react";
-import { domAnimation, LazyMotion } from "framer-motion";
 import { ExoticComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
@@ -32,7 +31,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
     }, [settings.general.theme]);
 
     return (
-      <LazyMotion features={domAnimation} strict>
+      <>
         <GlobalStyles />
 
         <Global
@@ -76,7 +75,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
         />
 
         <Component />
-      </LazyMotion>
+      </>
     );
   }
 

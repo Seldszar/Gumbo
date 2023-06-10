@@ -1,4 +1,3 @@
-import { m } from "framer-motion";
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -12,7 +11,7 @@ const Wrapper = styled.div<WrapperProps>`
   padding-top: ${(props) => props.ratio && `${props.ratio * 100}%`};
 
   img {
-    ${tw`absolute h-full inset-0 object-center object-cover w-full`}
+    ${tw`absolute h-full inset-0 object-center object-cover transition-opacity w-full`}
   }
 `;
 
@@ -27,12 +26,7 @@ function Image(props: ImageProps) {
 
   return (
     <Wrapper className={props.className} ratio={props.ratio}>
-      <m.img
-        initial={false}
-        onLoad={() => setLoaded(true)}
-        animate={{ opacity: loaded ? 1 : 0 }}
-        src={props.src}
-      />
+      <img onLoad={() => setLoaded(true)} style={{ opacity: loaded ? 1 : 0 }} src={props.src} />
     </Wrapper>
   );
 }
