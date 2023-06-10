@@ -5,7 +5,7 @@ import tw, { styled } from "twin.macro";
 import { openUrl, t, template } from "~/common/helpers";
 import { FollowedStream, HelixStream } from "~/common/types";
 
-import { useClickAction } from "~/browser/hooks";
+import { useClickAction, useNow } from "~/browser/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
@@ -47,17 +47,26 @@ export interface StreamCardProps {
 function StreamCard(props: StreamCardProps) {
   const { stream } = props;
 
+  const defaultAction = useClickAction(stream.userLogin);
+  const currentTime = useNow(60_000);
+
   const startDate = useMemo(
     () => (stream.startedAt ? new Date(stream.startedAt) : null),
     [stream.startedAt]
   );
 
-  const backgroundImage = useMemo(
-    () => template(stream.thumbnailUrl, { "{width}": 96, "{height}": 54 }),
-    [stream.thumbnailUrl]
-  );
+  const previewImage = useMemo(() => {
+    const url = new URL(
+      template(stream.thumbnailUrl, {
+        "{height}": 54,
+        "{width}": 96,
+      })
+    );
 
-  const defaultAction = useClickAction(stream.userLogin);
+    url.searchParams.set("t", String(currentTime.getTime()));
+
+    return url.href;
+  }, [currentTime, stream.thumbnailUrl]);
 
   return (
     <Anchor to={defaultAction}>
@@ -137,7 +146,7 @@ function StreamCard(props: StreamCardProps) {
         }}
         aside={
           <Thumbnail>
-            <Image src={backgroundImage} ratio={9 / 16} />
+            <Image src={previewImage} ratio={9 / 16} />
             {startDate && <StyledStreamUptime startDate={startDate} />}
           </Thumbnail>
         }
