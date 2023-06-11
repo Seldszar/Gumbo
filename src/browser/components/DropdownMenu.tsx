@@ -339,18 +339,19 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
 
   return (
     <FloatingNode id={nodeId}>
-      {cloneElement(children, {
-        ...getReferenceProps(parent.getItemProps(rest)),
+      {cloneElement(
+        children,
+        getReferenceProps(
+          parent.getItemProps({
+            ...rest,
 
-        ref: useMergeRefs([refs.setReference, item.ref, ref, (children as any).ref]),
-        tabIndex: isNested ? (parent.activeIndex === item.index ? 0 : -1) : undefined,
+            ref: useMergeRefs([refs.setReference, item.ref, ref, (children as any).ref]),
+            tabIndex: isNested ? (parent.activeIndex === item.index ? 0 : -1) : undefined,
 
-        onClick(event: MouseEvent<HTMLElement>) {
-          event.stopPropagation();
-
-          props.onClick?.(event);
-        },
-      })}
+            onClick: (event) => event.preventDefault(),
+          })
+        )
+      )}
 
       <MenuContext.Provider value={{ activeIndex, setActiveIndex, getItemProps, isOpen }}>
         <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
@@ -365,8 +366,9 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
                 <Wrapper
                   ref={refs.setFloating}
                   style={floatingStyles}
-                  onClick={(event) => event.stopPropagation()}
-                  {...getFloatingProps()}
+                  {...getFloatingProps({
+                    onClick: (event) => event.preventDefault(),
+                  })}
                 >
                   {items.map((props, index) => {
                     switch (props.type) {
