@@ -9,7 +9,13 @@ export interface AnchorProps {
 }
 
 function Anchor(props: AnchorProps) {
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => openUrl(props.to, event);
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    openUrl(props.to, event);
+  };
 
   return (
     <a className={props.className} href={props.to} onClick={handleClick} onAuxClick={handleClick}>
