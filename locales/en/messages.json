@@ -38,6 +38,9 @@
   "buttonText_submit": {
     "message": "Submit"
   },
+  "buttonText_viewOn": {
+    "message": "View on $1"
+  },
   "confirmMessage_reload": {
     "message": "Please use the button below to reload the extension."
   },

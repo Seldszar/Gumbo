@@ -5,6 +5,7 @@ import tw, { styled } from "twin.macro";
 import { t, template } from "~/common/helpers";
 import { HelixGame } from "~/common/types";
 
+import ExternalAnchor from "./ExternalAnchor";
 import Image from "./Image";
 
 const Wrapper = styled.div`
@@ -28,7 +29,7 @@ const Thumbnail = styled.div`
 `;
 
 const ThumbnailImage = styled(Image)`
-  ${tw`object-cover object-top w-[78px]`}
+  ${tw`object-cover object-top w-[66px]`}
 `;
 
 const Name = styled.div`
@@ -52,7 +53,7 @@ function CategoryTitle(props: CategoryTitleProps) {
   const { category } = props;
 
   const boxArtUrl = useMemo(
-    () => template(category.boxArtUrl, { "{width}": 78, "{height}": 104 }),
+    () => template(category.boxArtUrl, { "{width}": 66, "{height}": 88 }),
     [category.boxArtUrl]
   );
 
@@ -68,6 +69,12 @@ function CategoryTitle(props: CategoryTitleProps) {
         </Thumbnail>
 
         <Name>{category.name}</Name>
+
+        {category.igdbId && (
+          <ExternalAnchor to={`https://igdb.com/g/${parseInt(category.igdbId).toString(36)}`}>
+            {t("buttonText_viewOn", "IGDB")}
+          </ExternalAnchor>
+        )}
       </Inner>
 
       <TabList>
