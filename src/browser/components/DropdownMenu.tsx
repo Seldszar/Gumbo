@@ -39,7 +39,6 @@ import {
   ReactElement,
   MouseEventHandler,
   ReactNode,
-  MouseEvent,
 } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -54,15 +53,15 @@ const ItemTitle = styled.div`
 `;
 
 const Item = styled.button`
-  ${tw`cursor-pointer flex font-medium gap-3 h-10 items-center px-3 text-left w-full focus:(bg-black/10 outline-none) dark:focus:bg-white/10`}
+  ${tw`flex font-medium gap-3 h-10 items-center px-3 rounded text-left w-full focus:(bg-neutral-200 outline-none) dark:focus:bg-neutral-700 disabled:opacity-25`}
 `;
 
 const Separator = styled.div`
-  ${tw`bg-black/10 dark:bg-white/10 h-px mx-2 my-1`}
+  ${tw`bg-neutral-300 dark:bg-neutral-700 h-px my-1`}
 `;
 
 const Wrapper = styled.div`
-  ${tw`bg-neutral-200 border border-neutral-300 py-2 overflow-auto rounded shadow-lg w-52 focus:outline-none dark:(bg-neutral-800 border-neutral-700)`}
+  ${tw`bg-white border border-neutral-300 p-1 overflow-auto rounded shadow-lg min-w-[theme('spacing.52')] focus:outline-none dark:(bg-neutral-800 border-neutral-700)`}
 `;
 
 type GetItemProps = (userProps?: HTMLProps<HTMLElement>) => Record<string, unknown>;
@@ -164,6 +163,7 @@ const MenuCheckbox = forwardRef<HTMLButtonElement, MenuCheckboxProps>((props, re
     <BaseItem
       ref={ref}
       title={props.title}
+      disabled={props.disabled}
       leftOrnament={props.icon}
       rightOrnament={
         props.checked ? (
@@ -194,10 +194,11 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>((props, ref
     <BaseItem
       ref={ref}
       title={props.title}
+      disabled={props.disabled}
       leftOrnament={props.icon}
       onClick={(event) => {
         props.onClick?.(event);
-        tree?.events.emit("click");
+        tree?.events.emit("close");
       }}
     />
   );
@@ -237,6 +238,7 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
   const { floatingStyles, refs, context } = useFloating({
     nodeId,
     open: isOpen,
+    strategy: "fixed",
     onOpenChange: setIsOpen,
     whileElementsMounted: autoUpdate,
     placement: isNested ? "right-start" : placement ?? "bottom-start",
@@ -246,12 +248,15 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
         mainAxis: remToPixels(isNested ? -0.5 : 0.5),
       }),
       flip(),
-      shift(),
+      shift({
+        padding: remToPixels(0.5),
+      }),
       size({
+        padding: remToPixels(0.5),
         apply({ availableHeight, availableWidth, elements, rects }) {
           Object.assign(elements.floating.style, {
-            maxHeight: `${availableHeight - remToPixels(1)}px`,
-            maxWidth: `${availableWidth - remToPixels(1)}px`,
+            maxHeight: `${availableHeight}px`,
+            maxWidth: `${availableWidth}px`,
           });
 
           if (props.fullWidth) {
@@ -310,7 +315,7 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
       return;
     }
 
-    function onMenuClick() {
+    function onMenuClose() {
       setIsOpen(false);
     }
 
@@ -322,18 +327,18 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
       setIsOpen(false);
     }
 
-    tree.events.on("click", onMenuClick);
+    tree.events.on("close", onMenuClose);
     tree.events.on("open", onMenuOpen);
 
     return () => {
-      tree.events.off("click", onMenuClick);
+      tree.events.off("close", onMenuClose);
       tree.events.off("open", onMenuOpen);
     };
   }, [tree, nodeId, parentId]);
 
   useEffect(() => {
-    if (isOpen && tree) {
-      tree.events.emit("open", { parentId, nodeId });
+    if (isOpen) {
+      tree?.events.emit("open", { parentId, nodeId });
     }
   }, [tree, isOpen, nodeId, parentId]);
 
@@ -348,7 +353,10 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
             ref: useMergeRefs([refs.setReference, item.ref, ref, (children as any).ref]),
             tabIndex: isNested ? (parent.activeIndex === item.index ? 0 : -1) : undefined,
 
-            onClick: (event) => event.preventDefault(),
+            onClick(event) {
+              event.stopPropagation();
+              event.preventDefault();
+            },
           })
         )
       )}
@@ -364,10 +372,14 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
                 modal={false}
               >
                 <Wrapper
-                  ref={refs.setFloating}
-                  style={floatingStyles}
                   {...getFloatingProps({
-                    onClick: (event) => event.preventDefault(),
+                    ref: refs.setFloating,
+                    style: floatingStyles,
+
+                    onClick(event) {
+                      event.stopPropagation();
+                      event.preventDefault();
+                    },
                   })}
                 >
                   {items.map((props, index) => {
@@ -410,18 +422,10 @@ export interface DropdownMenuProps {
   items: DropdownMenuItemProps[];
 }
 
-function DropdownMenu(props: DropdownMenuProps) {
-  const parentId = useFloatingParentNodeId();
-
-  if (parentId == null) {
-    return (
-      <FloatingTree>
-        <Menu {...props} />
-      </FloatingTree>
-    );
-  }
-
-  return <Menu {...props} />;
-}
+export const DropdownMenu = forwardRef<HTMLElement, DropdownMenuProps>((props, ref) => (
+  <FloatingTree>
+    <Menu ref={ref} {...props} />
+  </FloatingTree>
+));
 
 export default DropdownMenu;
