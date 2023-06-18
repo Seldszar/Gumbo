@@ -399,7 +399,7 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
                         );
 
                       case "separator":
-                        return <Separator />;
+                        return <Separator key={index} />;
                     }
 
                     return <MenuItem {...props} key={index} />;
