@@ -4,7 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { FloatingPortal } from "@floating-ui/react";
 import { IconEdit, IconGripVertical, IconTrash } from "@tabler/icons-react";
 import { concat, set, without } from "lodash-es";
-import { HTMLAttributes, Key, ReactNode, forwardRef, useState } from "react";
+import { HTMLAttributes, Key, ReactNode, forwardRef, useEffect, useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -132,6 +132,8 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [modalState, setModalState] = useState<ModalState<T> | null>(null);
+
+  useEffect(() => setItems(props.value), [props.value]);
 
   const getItem = (id: UniqueIdentifier) => items.find((item) => getKey(item) === id);
   const getIndex = (id: UniqueIdentifier) => items.findIndex((item) => getKey(item) === id);
