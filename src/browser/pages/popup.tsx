@@ -4,37 +4,24 @@ import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 import { HistoryProvider } from "../contexts/history";
 import { SearchProvider } from "../contexts/search";
 
-import CategoryClips from "~/browser/views/popup/category/CategoryClips";
-import CategoryStreams from "~/browser/views/popup/category/CategoryStreams";
-import CategoryVideos from "~/browser/views/popup/category/CategoryVideos";
-import SearchCategories from "~/browser/views/popup/search/SearchCategories";
-import SearchChannels from "~/browser/views/popup/search/SearchChannels";
-import CategoryDetail from "~/browser/views/popup/CategoryDetail";
-import FollowedStreams from "~/browser/views/popup/FollowedStreams";
-import FollowedUsers from "~/browser/views/popup/FollowedUsers";
-import Root from "~/browser/views/popup/Root";
-import Search from "~/browser/views/popup/Search";
-import TopCategories from "~/browser/views/popup/TopCategories";
-import TopStreams from "~/browser/views/popup/TopStreams";
-
 const router = createHashRouter([
   {
     index: true,
     loader: () => redirect("streams/followed"),
   },
   {
-    element: <Root />,
+    lazy: () => import("../views/popup/Root"),
     children: [
       {
         path: "streams",
         children: [
           {
             index: true,
-            element: <TopStreams />,
+            lazy: () => import("../views/popup/TopStreams"),
           },
           {
             path: "followed",
-            element: <FollowedStreams />,
+            lazy: () => import("../views/popup/FollowedStreams"),
           },
         ],
       },
@@ -47,13 +34,13 @@ const router = createHashRouter([
           },
           {
             path: "followed",
-            element: <FollowedUsers />,
+            lazy: () => import("../views/popup/FollowedUsers"),
           },
         ],
       },
       {
         path: "search",
-        element: <Search />,
+        lazy: () => import("../views/popup/Search"),
         children: [
           {
             index: true,
@@ -61,11 +48,11 @@ const router = createHashRouter([
           },
           {
             path: "channels",
-            element: <SearchChannels />,
+            lazy: () => import("../views/popup/SearchChannels"),
           },
           {
             path: "categories",
-            element: <SearchCategories />,
+            lazy: () => import("../views/popup/SearchCategories"),
           },
         ],
       },
@@ -74,11 +61,11 @@ const router = createHashRouter([
         children: [
           {
             index: true,
-            element: <TopCategories />,
+            lazy: () => import("../views/popup/TopCategories"),
           },
           {
             path: ":categoryId",
-            element: <CategoryDetail />,
+            lazy: () => import("../views/popup/Category"),
             children: [
               {
                 index: true,
@@ -86,15 +73,15 @@ const router = createHashRouter([
               },
               {
                 path: "streams",
-                element: <CategoryStreams />,
+                lazy: () => import("../views/popup/CategoryStreams"),
               },
               {
                 path: "videos",
-                element: <CategoryVideos />,
+                lazy: () => import("../views/popup/CategoryVideos"),
               },
               {
                 path: "clips",
-                element: <CategoryClips />,
+                lazy: () => import("../views/popup/CategoryClips"),
               },
             ],
           },
@@ -104,7 +91,7 @@ const router = createHashRouter([
   },
 ]);
 
-function PopupPage() {
+function Page() {
   return (
     <HistoryProvider router={router}>
       <Global
@@ -123,4 +110,4 @@ function PopupPage() {
   );
 }
 
-export default PopupPage;
+export default Page;

@@ -1,34 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useTopCategories } from "~/browser/hooks";
+import { useSearchCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import Loader from "~/browser/components/Loader";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
-import TopBar from "~/browser/components/TopBar";
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
+import type { OutletContext } from "./Search";
 
 const Grid = styled.div`
   ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-4`}
 `;
 
 const LoadMore = styled.div`
-  ${tw`p-3`}
+  ${tw`p-3 pt-0`}
 `;
 
-export function ChildComponent() {
-  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useTopCategories(
+interface ChildComponentProps {
+  searchQuery: string;
+}
+
+function ChildComponent(props: ChildComponentProps) {
+  const { searchQuery } = props;
+
+  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useSearchCategories(
     {
+      query: searchQuery,
       first: 100,
     },
     {
@@ -70,13 +74,17 @@ export function ChildComponent() {
 }
 
 export function Component() {
-  return (
-    <Wrapper>
-      <TopBar />
+  const { searchQuery } = useOutletContext<OutletContext>();
 
-      <Loader>
-        <ChildComponent />
-      </Loader>
-    </Wrapper>
+  if (searchQuery.length === 0) {
+    return <Splash>{t("messageText_typeSearchCategories")}</Splash>;
+  }
+
+  return (
+    <Loader>
+      <ChildComponent {...{ searchQuery }} />
+    </Loader>
   );
 }
+
+export default Component;

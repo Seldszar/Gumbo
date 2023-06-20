@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -8,6 +7,7 @@ import { HelixGame } from "~/common/types";
 import { useCategory } from "~/browser/hooks";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
+import Loader from "~/browser/components/Loader";
 import Splash from "~/browser/components/Splash";
 import TopBar from "~/browser/components/TopBar";
 
@@ -23,40 +23,40 @@ export interface OutletContext {
   category: HelixGame;
 }
 
-function CategoryDetail() {
+function ChildComponent() {
   const params = useParams();
 
-  const [category, { error, isLoading }] = useCategory(params.categoryId);
+  const [category] = useCategory(params.categoryId, {
+    suspense: true,
+  });
 
-  const children = useMemo(() => {
-    if (isLoading) {
-      return <Splash isLoading />;
-    }
+  if (category == null) {
+    return <Splash>{t("detailText_noCategory")}</Splash>;
+  }
 
-    if (error) {
-      return <Splash>{error.message}</Splash>;
-    }
+  return (
+    <>
+      <Title category={category} />
 
-    if (category == null) {
-      return <Splash>{t("detailText_noCategory")}</Splash>;
-    }
+      <Outlet
+        context={{
+          category,
+        }}
+      />
+    </>
+  );
+}
 
-    return (
-      <>
-        <Title category={category} />
-
-        <Outlet context={{ category }} />
-      </>
-    );
-  }, [category, isLoading]);
-
+export function Component() {
   return (
     <Wrapper>
       <TopBar />
 
-      {children}
+      <Loader>
+        <ChildComponent />
+      </Loader>
     </Wrapper>
   );
 }
 
-export default CategoryDetail;
+export default Component;

@@ -9,48 +9,47 @@ import { useStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
+import Loader from "~/browser/components/Loader";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
-import { OutletContext } from "../CategoryDetail";
+import type { OutletContext } from "./Category";
 
-const List = styled.div`
-  ${tw`pt-3`}
-`;
+const List = styled.div``;
 
 const LoadMore = styled.div`
   ${tw`p-3`}
 `;
 
-function CategoryStreams() {
+function ChildComponent() {
   const { category } = useOutletContext<OutletContext>();
 
-  const [streams = [], { error, fetchMore, refresh, hasMore, isLoading, isValidating }] =
-    useStreams({
+  const [pages, { fetchMore, refresh, hasMore, isValidating }] = useStreams(
+    {
       gameId: category.id,
-    });
+    },
+    {
+      suspense: true,
+    }
+  );
 
   useRefreshHandler(async () => {
     await refresh();
   });
 
-  if (isLoading) {
-    return <Splash isLoading />;
-  }
-
-  if (error) {
-    return <Splash>{error.message}</Splash>;
-  }
-
-  if (isEmpty(streams)) {
+  if (isEmpty(pages)) {
     return <Splash>{t("errorText_emptyStreams")}</Splash>;
   }
 
   return (
     <>
       <List>
-        {streams.map((stream) => (
-          <StreamCard key={stream.id} stream={stream} />
+        {pages.map((page) => (
+          <>
+            {page.data.map((stream) => (
+              <StreamCard key={stream.id} stream={stream} />
+            ))}
+          </>
         ))}
       </List>
 
@@ -65,4 +64,12 @@ function CategoryStreams() {
   );
 }
 
-export default CategoryStreams;
+export function Component() {
+  return (
+    <Loader>
+      <ChildComponent />
+    </Loader>
+  );
+}
+
+export default Component;

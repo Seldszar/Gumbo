@@ -1,5 +1,5 @@
 import { IconAlertTriangle, IconDownload, IconRefresh, IconUpload } from "@tabler/icons-react";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
@@ -13,10 +13,10 @@ const ButtonGroup = styled.div`
   ${tw`gap-3 grid`}
 `;
 
-function AdvancedSettings() {
+export function Component() {
   const [isResetOpen, setResetOpen] = useState(false);
 
-  const onExportClick: MouseEventHandler<HTMLButtonElement> = async () => {
+  const onExportClick = async () => {
     const url = URL.createObjectURL(
       new Blob([JSON.stringify(await sendRuntimeMessage("backup"))], {
         type: "application/json",
@@ -32,7 +32,7 @@ function AdvancedSettings() {
     URL.revokeObjectURL(url);
   };
 
-  const onImportClick: MouseEventHandler<HTMLButtonElement> = async () => {
+  const onImportClick = async () => {
     const input = document.createElement("input");
 
     input.addEventListener("change", async () => {
@@ -47,9 +47,8 @@ function AdvancedSettings() {
     input.click();
   };
 
-  const onResetConfirm: MouseEventHandler<HTMLButtonElement> = async () => {
-    await sendRuntimeMessage("reset");
-
+  const onResetConfirm = async () => {
+    sendRuntimeMessage("reset");
     close();
   };
 
@@ -99,5 +98,3 @@ function AdvancedSettings() {
     </div>
   );
 }
-
-export default AdvancedSettings;

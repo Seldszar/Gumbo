@@ -7,7 +7,7 @@ import FormField from "~/browser/components/FormField";
 import Section from "~/browser/components/Section";
 import Select from "~/browser/components/Select";
 
-function GeneralSettings() {
+export function Component() {
   const { register } = useSettingsContext();
 
   return (
@@ -105,5 +105,3 @@ function GeneralSettings() {
     </div>
   );
 }
-
-export default GeneralSettings;

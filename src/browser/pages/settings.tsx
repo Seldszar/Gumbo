@@ -1,17 +1,6 @@
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
-import { t } from "~/common/helpers";
-
-import { SettingsProvider } from "~/browser/contexts";
-
-import AdvancedSettings from "~/browser/views/settings/AdvancedSettings";
-import BadgeSettings from "~/browser/views/settings/BadgeSettings";
-import GeneralSettings from "~/browser/views/settings/GeneralSettings";
-import NotificationSettings from "~/browser/views/settings/NotificationSettings";
-import Root from "~/browser/views/settings/Root";
-import StreamSettings from "~/browser/views/settings/StreamSettings";
-
-import Page from "~/browser/components/Page";
+import { SettingsProvider } from "../contexts";
 
 const router = createHashRouter([
   {
@@ -19,40 +8,38 @@ const router = createHashRouter([
     loader: () => redirect("general"),
   },
   {
-    element: <Root />,
+    lazy: () => import("../views/settings/Root"),
     children: [
       {
         path: "advanced",
-        element: <AdvancedSettings />,
+        lazy: () => import("../views/settings/AdvancedSettings"),
       },
       {
         path: "badge",
-        element: <BadgeSettings />,
+        lazy: () => import("../views/settings/BadgeSettings"),
       },
       {
         path: "general",
-        element: <GeneralSettings />,
+        lazy: () => import("../views/settings/GeneralSettings"),
       },
       {
         path: "notification",
-        element: <NotificationSettings />,
+        lazy: () => import("../views/settings/NotificationSettings"),
       },
       {
         path: "stream",
-        element: <StreamSettings />,
+        lazy: () => import("../views/settings/StreamSettings"),
       },
     ],
   },
 ]);
 
-function SettingsPage() {
+function Page() {
   return (
     <SettingsProvider>
-      <Page title={t("titleText_settings")}>
-        <RouterProvider router={router} />
-      </Page>
+      <RouterProvider router={router} />
     </SettingsProvider>
   );
 }
 
-export default SettingsPage;
+export default Page;

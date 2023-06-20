@@ -13,7 +13,7 @@ const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-function StreamSettings() {
+export function Component() {
   const { register, settings } = useSettingsContext();
 
   return (
@@ -36,5 +36,3 @@ function StreamSettings() {
     </div>
   );
 }
-
-export default StreamSettings;

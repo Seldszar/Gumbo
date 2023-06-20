@@ -17,7 +17,7 @@ const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-function NotificationSettings() {
+export function Component() {
   const { register, settings } = useSettingsContext();
 
   const { data: followedChannels = [] } = useFollowedChannels();
@@ -63,5 +63,3 @@ function NotificationSettings() {
     </div>
   );
 }
-
-export default NotificationSettings;

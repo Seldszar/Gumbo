@@ -22,7 +22,7 @@ export interface OutletContext {
   searchQuery: string;
 }
 
-function Search() {
+export function Component() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
@@ -39,4 +39,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Component;

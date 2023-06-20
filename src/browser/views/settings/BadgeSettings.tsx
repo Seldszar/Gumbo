@@ -12,7 +12,7 @@ const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-function BadgeSettings() {
+export function Component() {
   const { register, settings } = useSettingsContext();
 
   return (
@@ -26,5 +26,3 @@ function BadgeSettings() {
     </div>
   );
 }
-
-export default BadgeSettings;
