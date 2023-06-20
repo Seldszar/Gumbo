@@ -3,7 +3,7 @@ import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FloatingPortal } from "@floating-ui/react";
 import { IconEdit, IconGripVertical, IconTrash } from "@tabler/icons-react";
-import { concat, set, without } from "lodash-es";
+import { concat, pullAt, set } from "lodash-es";
 import { HTMLAttributes, Key, ReactNode, forwardRef, useEffect, useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
@@ -12,6 +12,8 @@ import { t } from "~/common/helpers";
 import Button from "./Button";
 import Modal from "./Modal";
 import Panel from "./Panel";
+
+import DeleteModal from "./modals/DeleteModal";
 
 const AddButton = styled(Button)`
   ${tw`mt-2`}
@@ -101,6 +103,8 @@ function SortableListItem(props: SortableListItemProps) {
 }
 
 interface ModalState<T> {
+  type: "delete" | "mutate";
+
   index: number;
   item?: T;
 }
@@ -122,7 +126,7 @@ export interface ListManagerProps<T extends ItemType> {
   value: T[];
 
   onChange(value: T[]): void;
-  renderTitle(value: T): ReactNode;
+  renderTitle(value: T): string;
   renderForm(props: ModalProps<T>): ReactNode;
   getKey(value: T): Key;
 }
@@ -173,13 +177,13 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
         >
           <SortableContext items={items}>
             <List>
-              {items.map((value, index) => (
-                <SortableListItem key={getKey(value)} id={getKey(value)}>
-                  <ItemTitle>{props.renderTitle(value)}</ItemTitle>
-                  <ItemButton onClick={() => setModalState({ index, item: value })}>
+              {items.map((item, index) => (
+                <SortableListItem key={getKey(item)} id={getKey(item)}>
+                  <ItemTitle>{props.renderTitle(item)}</ItemTitle>
+                  <ItemButton onClick={() => setModalState({ index, item, type: "mutate" })}>
                     <IconEdit size="1.25rem" />
                   </ItemButton>
-                  <ItemButton onClick={() => props.onChange(without(items, value))}>
+                  <ItemButton onClick={() => setModalState({ index, item, type: "delete" })}>
                     <IconTrash size="1.25rem" />
                   </ItemButton>
                 </SortableListItem>
@@ -201,35 +205,55 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
         <EmptyMessage>{props.emptyMessage}</EmptyMessage>
       )}
 
-      <AddButton color="purple" fullWidth onClick={() => setModalState({ index: -1 })}>
+      <AddButton
+        fullWidth
+        color="purple"
+        onClick={() => setModalState({ index: -1, type: "mutate" })}
+      >
         {t("buttonText_add")}
       </AddButton>
 
       {modalState && (
-        <Modal>
-          <Panel
-            title={t(modalState.item ? "titleText_updateItem" : "titleText_createItem")}
-            onClose={() => setModalState(null)}
-          >
-            {props.renderForm({
-              value: modalState.item,
-              onSubmit(item) {
+        <>
+          {modalState.type === "delete" ? (
+            <DeleteModal
+              name={modalState.item && props.renderTitle(modalState.item)}
+              onCancel={() => setModalState(null)}
+              onConfirm={() => {
                 setModalState(null);
 
-                switch (modalState.index) {
-                  case -1:
-                    return props.onChange(concat(items, item));
-
-                  default:
-                    return props.onChange(set(items, modalState.index, item));
+                if (modalState.index > -1) {
+                  props.onChange(pullAt(items, modalState.index));
                 }
-              },
-              onCancel() {
-                setModalState(null);
-              },
-            })}
-          </Panel>
-        </Modal>
+              }}
+            />
+          ) : (
+            <Modal>
+              <Panel
+                title={t(modalState.item ? "titleText_updateItem" : "titleText_createItem")}
+                onClose={() => setModalState(null)}
+              >
+                {props.renderForm({
+                  value: modalState.item,
+                  onSubmit(item) {
+                    setModalState(null);
+
+                    switch (modalState.index) {
+                      case -1:
+                        return props.onChange(concat(items, item));
+
+                      default:
+                        return props.onChange(set(items, modalState.index, item));
+                    }
+                  },
+                  onCancel() {
+                    setModalState(null);
+                  },
+                })}
+              </Panel>
+            </Modal>
+          )}
+        </>
       )}
     </fieldset>
   );
