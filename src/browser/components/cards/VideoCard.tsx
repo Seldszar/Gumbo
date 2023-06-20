@@ -10,23 +10,22 @@ import Anchor from "../Anchor";
 import Card from "../Card";
 import ChannelName from "../ChannelName";
 import Image from "../Image";
-
-const Wrapper = styled(Card)`
-  ${tw`h-20`}
-`;
+import Tooltip from "../Tooltip";
 
 const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded shadow-md w-24`}
+  ${tw`bg-black overflow-hidden relative rounded w-24`}
 `;
 
 const VideoDuration = styled.div`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-sm text-white`}
-
-  font-feature-settings: "tnum";
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 end-0 rounded-ss tabular-nums text-sm text-white`}
 `;
 
 const Details = styled.ul`
   ${tw`flex gap-4`}
+`;
+
+const Wrapper = styled(Card)`
+  ${tw`h-20`}
 `;
 
 export interface VideoCardProps {
@@ -47,14 +46,13 @@ function VideoCard(props: VideoCardProps) {
   return (
     <Anchor to={video.url}>
       <Wrapper
-        titleProps={{
-          children: video.title || <i>{t("detailText_noTitle")}</i>,
-          title: video.title,
-        }}
-        subtitleProps={{
-          children: <ChannelName login={video.userLogin} name={video.userName} />,
-        }}
-        aside={
+        title={
+          <Tooltip content={video.title}>
+            <span>{video.title || <i>{t("detailText_noTitle")}</i>}</span>
+          </Tooltip>
+        }
+        subtitle={<ChannelName login={video.userLogin} name={video.userName} />}
+        leftOrnament={
           <Thumbnail>
             <Image src={previewImage} ratio={9 / 16} />
             <VideoDuration>{durationString}</VideoDuration>

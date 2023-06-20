@@ -1,22 +1,28 @@
-import { IconPin, IconPinnedOff } from "@tabler/icons-react";
-import { MouseEventHandler, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { template } from "~/common/helpers";
 import { HelixCategorySearchResult, HelixGame } from "~/common/types";
 
+import DropdownButton from "../DropdownButton";
 import Image from "../Image";
 import Tooltip from "../Tooltip";
 
-const TogglePin = styled.button`
-  ${tw`absolute bg-neutral-700 hidden p-1 rounded right-1 top-1 shadow transition hover:(bg-neutral-600 visible) active:bg-neutral-800`}
+import CategoryDropdown from "../dropdowns/CategoryDropdown";
+
+const StyledDropdownButton = styled(DropdownButton)`
+  ${tw`absolute invisible end-2 -top-2 z-20`}
+`;
+
+const CoverImage = styled(Image)`
+  ${tw`bg-black rounded`}
 `;
 
 const Cover = styled.div`
-  ${tw`bg-black mb-1 overflow-hidden relative rounded shadow`}
+  ${tw`mb-1 relative`}
 
-  :hover ${TogglePin} {
-    ${tw`block`}
+  :hover ${StyledDropdownButton} {
+    ${tw`visible`}
   }
 `;
 
@@ -25,8 +31,6 @@ const Name = styled.div`
 `;
 
 export interface CategoryCardProps {
-  onTogglePinClick?(): void;
-  isPinned?: boolean;
   category: HelixGame | HelixCategorySearchResult;
 }
 
@@ -38,27 +42,20 @@ function CategoryCard(props: CategoryCardProps) {
     [category.boxArtUrl]
   );
 
-  const onTogglePinClick: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    props.onTogglePinClick?.();
-  };
-
   return (
     <div>
       <Cover>
-        <Image src={boxArtUrl} ratio={4 / 3} />
+        <CoverImage src={boxArtUrl} ratio={4 / 3} />
 
-        {props.onTogglePinClick && (
-          <TogglePin onClick={onTogglePinClick}>
-            {props.isPinned ? <IconPinnedOff size="1.25rem" /> : <IconPin size="1.25rem" />}
-          </TogglePin>
-        )}
+        <CategoryDropdown category={category}>
+          <StyledDropdownButton />
+        </CategoryDropdown>
       </Cover>
-      <Tooltip content={category.name}>
-        <Name>{category.name}</Name>
-      </Tooltip>
+      <Name>
+        <Tooltip content={category.name}>
+          <span>{category.name}</span>
+        </Tooltip>
+      </Name>
     </div>
   );
 }

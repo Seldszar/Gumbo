@@ -1,37 +1,47 @@
-import tw, { css, styled } from "twin.macro";
+import tw, { styled } from "twin.macro";
 
-import { openUrl, t } from "~/common/helpers";
+import { t } from "~/common/helpers";
 import { HelixChannelSearchResult } from "~/common/types";
 
 import { useClickAction } from "~/browser/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
+import DropdownButton from "../DropdownButton";
 import ChannelName from "../ChannelName";
 import Image from "../Image";
+import Tooltip from "../Tooltip";
+
+import ChannelDropdown from "../dropdowns/ChannelDropdown";
+
+const StyledDropdownButton = styled(DropdownButton)`
+  ${tw`absolute invisible end-2 -top-2 z-20`}
+`;
+
+const Thumbnail = styled.div`
+  ${tw`bg-black overflow-hidden relative rounded-full w-12`}
+`;
+
+const CategoryName = styled.div`
+  ${tw`truncate`}
+`;
 
 export interface WrapperProps {
   isLive?: boolean;
 }
 
 const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`h-20`}
+  ${tw`h-20 relative`}
 
-  ${(props) =>
-    props.isLive &&
-    css`
-      ${Thumbnail} {
-        ${tw`ring-2 ring-offset-2 ring-offset-neutral-900 ring-red-500`}
-      }
-    `}
-`;
+  :hover ${StyledDropdownButton} {
+    ${tw`visible`}
+  }
 
-const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded-full shadow-md w-12`}
-`;
-
-const CategoryName = styled.div`
-  ${tw`truncate`}
+  ${Thumbnail} {
+    ${(props) =>
+      props.isLive &&
+      tw`ring-2 ring-offset-2 ring-offset-white ring-red-500 dark:ring-offset-black`}
+  }
 `;
 
 export interface ChannelCardProps {
@@ -47,63 +57,13 @@ function ChannelCard(props: ChannelCardProps) {
     <Anchor to={defaultAction}>
       <Wrapper
         isLive={channel.isLive}
-        overflowMenu={{
-          items: [
-            {
-              type: "normal",
-              title: t("optionValue_openChannel"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcasterLogin}`, event);
-              },
-            },
-            {
-              type: "normal",
-              title: t("optionValue_openChat"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/chat`, event);
-              },
-            },
-            {
-              type: "normal",
-              title: t("optionValue_popout"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/popout`, event);
-              },
-            },
-            {
-              type: "separator",
-            },
-            {
-              type: "normal",
-              title: t("optionValue_about"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/about`, event);
-              },
-            },
-            {
-              type: "normal",
-              title: t("optionValue_schedule"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/schedule`, event);
-              },
-            },
-            {
-              type: "normal",
-              title: t("optionValue_videos"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcasterLogin}/videos`, event);
-              },
-            },
-          ],
-        }}
-        titleProps={{
-          children: <ChannelName login={channel.broadcasterLogin} name={channel.displayName} />,
-        }}
-        subtitleProps={{
-          children: channel.title || <i>{t("detailText_noTitle")}</i>,
-          title: channel.title,
-        }}
-        aside={
+        title={<ChannelName login={channel.broadcasterLogin} name={channel.displayName} />}
+        subtitle={
+          <Tooltip content={channel.title}>
+            <span>{channel.title || <i>{t("detailText_noTitle")}</i>}</span>
+          </Tooltip>
+        }
+        leftOrnament={
           <Thumbnail>
             <Image src={channel.thumbnailUrl} ratio={1} />
           </Thumbnail>
@@ -112,6 +72,10 @@ function ChannelCard(props: ChannelCardProps) {
         <CategoryName title={channel.gameName}>
           {channel.gameName || <i>{t("detailText_noCategory")}</i>}
         </CategoryName>
+
+        <ChannelDropdown channel={channel}>
+          <StyledDropdownButton />
+        </ChannelDropdown>
       </Wrapper>
     </Anchor>
   );

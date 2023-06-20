@@ -9,23 +9,22 @@ import { formatTime } from "~/browser/helpers";
 import Anchor from "../Anchor";
 import Card from "../Card";
 import Image from "../Image";
-
-const Wrapper = styled(Card)`
-  ${tw`h-20`}
-`;
+import Tooltip from "../Tooltip";
 
 const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded shadow-md w-24`}
+  ${tw`bg-black overflow-hidden relative rounded w-24`}
 `;
 
 const Duration = styled.div`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 ltr:(right-0 rounded-tl) rtl:(left-0 rounded-tr) text-sm text-white`}
-
-  font-feature-settings: "tnum";
+  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 end-0 rounded-ss tabular-nums text-sm text-white`}
 `;
 
 const Details = styled.ul`
   ${tw`flex gap-4`}
+`;
+
+const Wrapper = styled(Card)`
+  ${tw`h-20`}
 `;
 
 export interface ClipCardProps {
@@ -36,7 +35,7 @@ function ClipCard(props: ClipCardProps) {
   const { clip } = props;
 
   const previewImage = useMemo(
-    () => template(clip.thumbnailUrl, { "{width}": 96, "{height}": 54 }),
+    () => template(clip.thumbnailUrl, { "{height}": 54, "{width}": 96 }),
     [clip.thumbnailUrl]
   );
 
@@ -46,14 +45,13 @@ function ClipCard(props: ClipCardProps) {
   return (
     <Anchor to={clip.url}>
       <Wrapper
-        titleProps={{
-          children: clip.title || <i>{t("detailText_noTitle")}</i>,
-          title: clip.title,
-        }}
-        subtitleProps={{
-          children: clip.broadcasterName,
-        }}
-        aside={
+        title={
+          <Tooltip content={clip.title}>
+            <span>{clip.title || <i>{t("detailText_noTitle")}</i>}</span>
+          </Tooltip>
+        }
+        subtitle={clip.broadcasterName}
+        leftOrnament={
           <Thumbnail>
             <Image src={previewImage} ratio={9 / 16} />
             <Duration>{timeString}</Duration>

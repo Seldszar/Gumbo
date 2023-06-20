@@ -41,11 +41,17 @@
   "buttonText_viewOn": {
     "message": "View on $1"
   },
+  "confirmMessage_deleteItem": {
+    "message": "Do you want to delete \"$1\"?"
+  },
   "confirmMessage_reload": {
     "message": "Please use the button below to reload the extension."
   },
   "confirmMessage_reset": {
     "message": "All data is going to be deleted and you will be logged out.<br />Are you sure you want to proceed?"
+  },
+  "confirmTitle_deleteItem": {
+    "message": "Confirm Deletion"
   },
   "confirmTitle_reload": {
     "message": "Uh-oh, Gumbo is not responding anymore!"
@@ -326,11 +332,17 @@
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_createCollection": {
+    "message": "Create Collection"
+  },
   "titleText_createItem": {
     "message": "Create Item"
   },
   "titleText_dangerZone": {
     "message": "Danger Zone"
+  },
+  "titleText_deleteCollection": {
+    "message": "Delete Collection"
   },
   "titleText_donate": {
     "message": "Donate"
@@ -373,6 +385,9 @@
   },
   "titleText_topStreams": {
     "message": "Top Streams"
+  },
+  "titleText_updateCollection": {
+    "message": "Update Collection"
   },
   "titleText_updateItem": {
     "message": "Update Item"

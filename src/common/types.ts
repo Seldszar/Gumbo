@@ -61,6 +61,15 @@ export interface CurrentUser {
   profileImageUrl: string;
 }
 
+export type CollectionType = "category" | "user";
+
+export interface Collection {
+  id: string;
+  name: string;
+  type: CollectionType;
+  items: string[];
+}
+
 export interface FollowedUser {
   id: string;
   login: string;
