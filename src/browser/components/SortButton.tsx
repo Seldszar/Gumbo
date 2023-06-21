@@ -9,21 +9,22 @@ const Wrapper = styled.button`
 `;
 
 export interface SortButtonProps {
-  onChange?(value: SortDirection): void;
   className?: string;
+
   value?: SortDirection;
+  onChange?(value: SortDirection): void;
 }
 
 function SortButton(props: SortButtonProps) {
-  const handleClick = () => props.onChange?.(props.value === "asc" ? "desc" : "asc");
+  const isDescending = props.value === "desc";
+
+  const handleClick = () => {
+    props.onChange?.(isDescending ? "asc" : "desc");
+  };
 
   return (
     <Wrapper className={props.className} onClick={handleClick}>
-      {props.value === "desc" ? (
-        <IconSortDescending size="1.25rem" />
-      ) : (
-        <IconSortAscending size="1.25rem" />
-      )}
+      {isDescending ? <IconSortDescending size="1.25rem" /> : <IconSortAscending size="1.25rem" />}
     </Wrapper>
   );
 }

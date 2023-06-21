@@ -14,7 +14,7 @@ interface ButtonProps {
 }
 
 const Button = styled.button<ButtonProps>`
-  ${tw`h-10 rounded shadow-lg w-10 disabled:(cursor-default opacity-25)!`}
+  ${tw`h-10 rounded w-10 disabled:(cursor-default opacity-25)!`}
 
   background-color: ${(props) => props.color};
 
@@ -28,10 +28,11 @@ const ColorInput = styled(Input)`
 `;
 
 export interface ColorPickerProps {
-  onChange?(value: string): void;
   className?: string;
   disabled?: boolean;
-  value?: string;
+
+  value: string;
+  onChange(value: string): void;
 }
 
 function ColorPicker(props: ColorPickerProps) {
@@ -42,7 +43,7 @@ function ColorPicker(props: ColorPickerProps) {
           key={index}
           color={color}
           isSelected={color === props.value}
-          onClick={() => props.onChange?.(color)}
+          onClick={() => props.onChange(color)}
           title={color}
         />
       ))}

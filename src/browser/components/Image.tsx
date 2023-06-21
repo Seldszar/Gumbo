@@ -1,18 +1,8 @@
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
-interface WrapperProps {
-  ratio?: number;
-}
-
-const Wrapper = styled.div<WrapperProps>`
-  ${tw`relative`}
-
-  padding-top: ${(props) => props.ratio && `${props.ratio * 100}%`};
-
-  img {
-    ${tw`absolute h-full inset-0 object-center object-cover transition-opacity w-full`}
-  }
+const Wrapper = styled.div`
+  ${tw`overflow-hidden relative [&_img]:(absolute h-full inset-0 object-center object-cover transition-opacity w-full)`}
 `;
 
 export interface ImageProps {
@@ -24,8 +14,12 @@ export interface ImageProps {
 function Image(props: ImageProps) {
   const [loaded, setLoaded] = useState(false);
 
+  const style = {
+    paddingTop: props.ratio && `${props.ratio * 100}%`,
+  };
+
   return (
-    <Wrapper className={props.className} ratio={props.ratio}>
+    <Wrapper className={props.className} style={style}>
       <img onLoad={() => setLoaded(true)} style={{ opacity: loaded ? 1 : 0 }} src={props.src} />
     </Wrapper>
   );

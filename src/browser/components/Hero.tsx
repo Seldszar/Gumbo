@@ -16,11 +16,7 @@ const StyledWordmark = styled(Wordmark)`
 `;
 
 const Author = styled.div`
-  ${tw`mb-4 text-center text-sm`}
-
-  a {
-    ${tw`hover:underline`}
-  }
+  ${tw`mb-4 text-center text-sm [&_a]:hover:underline`}
 `;
 
 const Description = styled.div`

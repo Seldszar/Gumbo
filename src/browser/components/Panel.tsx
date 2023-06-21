@@ -15,7 +15,7 @@ const Title = styled.div`
 `;
 
 const CloseButton = styled.button`
-  ${tw`flex-none ltr:-mr-1 rtl:-ml-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
+  ${tw`flex-none -me-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
 `;
 
 const Inner = styled.div`

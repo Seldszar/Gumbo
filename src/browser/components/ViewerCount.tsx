@@ -11,9 +11,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  ${tw`flex gap-1 text-red-600 dark:text-red-400`}
-
-  font-feature-settings: "tnum";
+  ${tw`flex gap-1 tabular-nums text-red-600 dark:text-red-400`}
 
   svg {
     ${tw`stroke-current w-5`}

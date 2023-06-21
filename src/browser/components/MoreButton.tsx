@@ -6,6 +6,7 @@ import Button from "./Button";
 export interface MoreButtonProps {
   children?: ReactNode;
   isLoading: boolean;
+
   fetchMore(): void;
 }
 

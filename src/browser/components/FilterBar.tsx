@@ -20,10 +20,12 @@ export interface FilterProps extends SelectProps<any> {
 }
 
 export interface FilterBarProps {
-  onDirectionChange?(value: SortDirection): void;
   className?: string;
-  direction?: SortDirection;
+
   filters: FilterProps[];
+
+  direction?: SortDirection;
+  onDirectionChange?(value: SortDirection): void;
 }
 
 function FilterBar(props: FilterBarProps) {

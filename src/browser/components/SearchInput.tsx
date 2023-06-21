@@ -18,11 +18,12 @@ const Wrapper = styled.fieldset`
 `;
 
 export interface SearchInputProps {
-  onChange?(value: string): void;
   placeholder?: string;
   autoFocus?: boolean;
   className?: string;
+
   value?: string;
+  onChange?(value: string): void;
 }
 
 function SearchInput(props: SearchInputProps) {

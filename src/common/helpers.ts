@@ -4,7 +4,7 @@ import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
-import { Dictionary } from "./types";
+import { Dictionary, FontSize } from "./types";
 
 export const t = browser.i18n.getMessage;
 
@@ -12,12 +12,12 @@ export function setupSentry() {
   const manifest = browser.runtime.getManifest();
 
   init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.SENTRY_DSN as string,
     release: manifest.version,
   });
 }
 
-export function getBaseFontSize(value: string): string {
+export function getBaseFontSize(value: FontSize): string {
   switch (value) {
     case "smallest":
       return "12px";

@@ -18,7 +18,7 @@ const Aside = styled.div`
 `;
 
 const MenuItem = styled(NavLink)`
-  ${tw`block text-neutral-600 text-lg hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:text-purple-500!`}
+  ${tw`block text-neutral-600 text-lg hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:!text-purple-500`}
 `;
 
 const Header = styled.div`

@@ -11,9 +11,9 @@ interface ControlProps {
 }
 
 const Control = styled.div<ControlProps>`
-  ${tw`bg-black/50 flex flex-none h-6 items-center justify-center rounded text-white w-6`}
+  ${tw`bg-neutral-300 dark:bg-neutral-700 flex flex-none h-6 items-center justify-center rounded w-6`}
 
-  ${(props) => props.isChecked && tw`bg-purple-500 text-white`}
+  ${(props) => props.isChecked && tw`!(bg-purple-500 text-white)`}
 `;
 
 const Inner = styled.div`

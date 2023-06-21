@@ -17,7 +17,7 @@ const Inner = styled.div`
 `;
 
 const Background = styled.div`
-  ${tw`absolute inset-0 -mt-16 overflow-hidden after:(absolute inset-0 bg-gradient-to-b content-[''] from-transparent to-white dark:to-neutral-900)`}
+  ${tw`absolute inset-0 overflow-hidden after:(absolute inset-0 bg-gradient-to-b content-[''] from-transparent to-white dark:to-neutral-900)`}
 `;
 
 const BackgroundImage = styled(Image)`

@@ -10,12 +10,12 @@ import ProfileBadge from "./ProfileBadge";
 import SidebarLink from "./SidebarLink";
 
 const Wrapper = styled.div`
-  ${tw`ltr:bg-gradient-to-r rtl:bg-gradient-to-l grid gap-8 content-between from-transparent overflow-x-hidden overflow-y-scroll to-black/10 dark:to-black/20 w-16`}
+  ${tw`bg-black/10 dark:bg-black/20 grid gap-8 content-between overflow-x-hidden overflow-y-scroll w-16`}
 
   scrollbar-width: none;
 
   ::-webkit-scrollbar {
-    display: none;
+    ${tw`hidden`}
   }
 `;
 

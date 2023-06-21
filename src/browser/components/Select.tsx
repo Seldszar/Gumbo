@@ -15,7 +15,7 @@ const Wrapper = styled.div<WrapperProps>`
 
   ${(props) =>
     props.fullWidth
-      ? tw`py-2 rounded shadow-lg bg-neutral-300 hover:bg-neutral-400 dark:(bg-neutral-700 hover:bg-neutral-600) ltr:(pl-4 pr-3) rtl:(pl-3 pr-4)`
+      ? tw`py-2 rounded bg-neutral-300 hover:bg-neutral-400 dark:(bg-neutral-700 hover:bg-neutral-600) ps-4 pe-3`
       : tw`text-sm text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
 `;
 

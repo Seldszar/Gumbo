@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const Wrapper = styled.div`
-  ${tw`backdrop-blur-md bg-black/50 grid fixed inset-0 overflow-auto z-20`}
+  ${tw`bg-black/90 grid fixed inset-0 overflow-auto z-20`}
 `;
 
 const Inner = styled.div`

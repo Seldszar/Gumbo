@@ -24,17 +24,19 @@ export interface OptionProps<T> {
 }
 
 export interface CheckboxGridProps<T> {
-  onChange?(value: T[]): void;
-  options: OptionProps<T>[];
   className?: string;
   disabled?: boolean;
-  value?: T[];
+
+  options: OptionProps<T>[];
+
+  value: T[];
+  onChange(value: T[]): void;
 }
 
-function CheckboxGrid(props: CheckboxGridProps<any>) {
-  const register = (value: any) => ({
-    onChange: () => props.onChange?.(xor(props.value, [value])),
-    value: props.value?.includes(value) ?? false,
+function CheckboxGrid<T extends number | string>(props: CheckboxGridProps<T>) {
+  const register = (value: T) => ({
+    onChange: () => props.onChange(xor(props.value, [value])),
+    value: props.value.includes(value) ?? false,
   });
 
   return (

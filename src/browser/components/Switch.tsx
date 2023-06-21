@@ -14,12 +14,12 @@ interface ControlProps {
 }
 
 const Control = styled.div<ControlProps>`
-  ${tw`bg-black/50 flex flex-none justify-start p-1 rounded-full w-12`}
+  ${tw`bg-neutral-300 dark:bg-neutral-700 flex flex-none justify-start p-1 rounded-full w-12`}
 
   ${(props) =>
     props.isChecked &&
     css`
-      ${tw`bg-purple-500 justify-end`}
+      ${tw`!bg-purple-500 justify-end`}
 
       ${Handle} {
         ${tw`bg-white`}

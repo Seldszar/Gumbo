@@ -1,4 +1,4 @@
-import { IconChevronLeft } from "@tabler/icons-react";
+import { IconChevronLeft, IconReload } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
@@ -7,10 +7,17 @@ import { useHistoryContext } from "../contexts/history";
 import { useSearchContext } from "../contexts/search";
 
 import SearchInput from "./SearchInput";
-import ReloadIcon from "./ReloadIcon";
+
+interface IconProps {
+  isSpinning?: boolean;
+}
+
+const Icon = styled(IconReload)<IconProps>`
+  ${(props) => props.isSpinning && tw`animate-spin`}
+`;
 
 const Button = styled.button`
-  ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 [&:not(:disabled)]:hover:(bg-white text-black dark:(bg-black text-white)) disabled:(cursor-default opacity-25)!`}
+  ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 [&:not(:disabled)]:hover:(bg-neutral-200 text-black dark:(bg-black text-white)) disabled:(cursor-default opacity-25)!`}
 `;
 
 const Inner = styled.div`
@@ -18,7 +25,7 @@ const Inner = styled.div`
 `;
 
 const Wrapper = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 from-50% dark:from-neutral-900 to-transparent flex flex-none gap-2 items-center px-2 py-3 sticky top-0 z-20`}
+  ${tw`bg-neutral-100 dark:bg-neutral-900 flex flex-none gap-2 items-center px-2 py-3 shadow-sm dark:shadow-black/25 sticky top-0 z-20`}
 `;
 
 export interface TopBarProps {
@@ -50,7 +57,7 @@ function TopBar(props: TopBarProps) {
       </Inner>
 
       <Button disabled={refreshHandlers.size === 0} onClick={doRefresh}>
-        <ReloadIcon size="1.25rem" isSpinning={state.loading} />
+        <Icon size="1.25rem" isSpinning={state.loading} />
       </Button>
     </Wrapper>
   );
