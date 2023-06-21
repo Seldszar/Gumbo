@@ -13,7 +13,7 @@ function SidebarLink(props: PropsOf<typeof Wrapper>) {
   const { title, ...rest } = props;
 
   return (
-    <Tooltip content={title}>
+    <Tooltip placement="right" content={title}>
       <Wrapper {...rest}>{props.children}</Wrapper>
     </Tooltip>
   );

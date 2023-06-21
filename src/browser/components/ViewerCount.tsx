@@ -4,6 +4,8 @@ import tw, { styled } from "twin.macro";
 import { t } from "~/common/helpers";
 import { FollowedStream, HelixStream } from "~/common/types";
 
+import Tooltip from "./Tooltip";
+
 interface WrapperProps {
   type: string;
 }
@@ -60,10 +62,12 @@ function ViewerCount(props: ViewerCountProps) {
   }, [stream.type]);
 
   return (
-    <Wrapper type={stream.type} title={status.title} className={props.className}>
-      {stream.viewerCount.toLocaleString("en-US")}
-      {status.icon}
-    </Wrapper>
+    <Tooltip content={status.title}>
+      <Wrapper type={stream.type} className={props.className}>
+        {stream.viewerCount.toLocaleString("en-US")}
+        {status.icon}
+      </Wrapper>
+    </Tooltip>
   );
 }
 

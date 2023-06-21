@@ -3,6 +3,8 @@ import { useMemo } from "react";
 import { formatTime } from "~/browser/helpers";
 import { useNow } from "~/browser/hooks";
 
+import Tooltip from "./Tooltip";
+
 export interface UptimeProps {
   className?: string;
   startDate: Date;
@@ -17,8 +19,10 @@ function Uptime(props: UptimeProps) {
   );
 
   return (
-    <div className={props.className} title={props.startDate.toLocaleString("en-US")}>
-      {timeString}
+    <div className={props.className}>
+      <Tooltip content={props.startDate.toLocaleString("en-US")}>
+        <span>{timeString}</span>
+      </Tooltip>
     </div>
   );
 }
