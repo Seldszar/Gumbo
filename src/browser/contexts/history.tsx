@@ -24,6 +24,10 @@ export function HistoryProvider(props: HistoryProviderProps) {
 
         switch (historyAction) {
           case "PUSH":
+            if (location.state?._isRedirect) {
+              return;
+            }
+
             return setLocations((locations) => {
               if (locations.some(({ key }) => key === location.key)) {
                 return locations;
