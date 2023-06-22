@@ -10,7 +10,7 @@ import Button from "~/browser/components/Button";
 import ResetModal from "~/browser/components/modals/ResetModal";
 
 const ButtonGroup = styled.div`
-  ${tw`gap-3 grid`}
+  ${tw`gap-2 grid`}
 `;
 
 export function Component() {
@@ -60,6 +60,7 @@ export function Component() {
             onClick={onImportClick}
             icon={<IconUpload size="1.5rem" strokeWidth={1.5} />}
             fullWidth
+            disabled
           >
             {t("buttonText_importSettings")}
           </Button>

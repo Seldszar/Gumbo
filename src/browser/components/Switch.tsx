@@ -19,7 +19,7 @@ const Control = styled.div<ControlProps>`
   ${(props) =>
     props.isChecked &&
     css`
-      ${tw`!bg-purple-500 justify-end`}
+      ${tw`bg-purple-500! justify-end`}
 
       ${Handle} {
         ${tw`bg-white`}

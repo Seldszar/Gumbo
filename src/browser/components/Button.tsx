@@ -34,16 +34,16 @@ const Wrapper = styled.button<WrapperProps>`
   ${(props) => {
     switch (props.color) {
       case "purple":
-        return tw`bg-purple-500 text-white hover:bg-purple-400 active:bg-purple-600 disabled:!bg-purple-500`;
+        return tw`bg-purple-500 text-white hover:bg-purple-400 active:bg-purple-600 disabled:bg-purple-500!`;
 
       case "red":
-        return tw`bg-red-500 text-white hover:bg-red-400 active:bg-red-600 disabled:!bg-red-500`;
+        return tw`bg-red-500 text-white hover:bg-red-400 active:bg-red-600 disabled:bg-red-500!`;
 
       case "transparent":
-        return tw`hover:(bg-black/10 dark:bg-white/10) active:!bg-black/25 disabled:!bg-transparent`;
+        return tw`bg-transparent hover:(bg-black/10 dark:bg-white/10) active:bg-black/25 disabled:bg-transparent!`;
 
       default:
-        return tw`bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 disabled:!bg-neutral-300 dark:(bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-800 disabled:!bg-neutral-700)`;
+        return tw`bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 disabled:bg-neutral-300! dark:(bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-800 disabled:bg-neutral-700!)`;
     }
   }}
 

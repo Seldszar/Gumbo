@@ -17,7 +17,7 @@ const Icon = styled(IconReload)<IconProps>`
 `;
 
 const Button = styled.button`
-  ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 [&:not(:disabled)]:hover:(bg-neutral-200 text-black dark:(bg-black text-white)) disabled:(cursor-default opacity-25)!`}
+  ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 hover:(bg-neutral-200 text-black dark:(bg-black text-white)) disabled:(bg-transparent opacity-25 text-neutral-600 dark:text-neutral-400)!`}
 `;
 
 const Inner = styled.div`
