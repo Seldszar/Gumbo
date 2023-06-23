@@ -10,7 +10,7 @@ import Wordmark from "~/browser/components/Wordmark";
 const Wrapper = styled.div``;
 
 const Inner = styled.div`
-  ${tw`flex gap-6 items-start max-w-2xl p-6 w-full`}
+  ${tw`flex gap-6 items-start p-6`}
 `;
 
 const Aside = styled.div`
@@ -42,7 +42,7 @@ const Title = styled.div`
 `;
 
 const Body = styled.div`
-  ${tw`flex-1`}
+  ${tw`flex-1 max-w-sm w-full`}
 `;
 
 export function Component() {
