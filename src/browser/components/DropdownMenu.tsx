@@ -249,6 +249,7 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
       }),
       flip(),
       shift({
+        crossAxis: true,
         padding: remToPixels(0.5),
       }),
       size({

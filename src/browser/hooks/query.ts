@@ -220,5 +220,5 @@ function createFetcherByID<T>(path: string) {
     );
 }
 
-export const useGamesByID = createFetcherByID("games");
-export const useUsersByID = createFetcherByID("users");
+export const useGamesByID = createFetcherByID<HelixGame>("games");
+export const useUsersByID = createFetcherByID<HelixUser>("users");
