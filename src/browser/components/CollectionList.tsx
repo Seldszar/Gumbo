@@ -27,9 +27,7 @@ const Divider = styled.div`
 
 const DefaultCollection = styled.div``;
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col gap-2`}
-`;
+const Wrapper = styled.div``;
 
 interface ModalState {
   type: "delete" | "mutate";
