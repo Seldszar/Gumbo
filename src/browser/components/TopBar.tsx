@@ -38,7 +38,7 @@ export interface TopBarProps {
 function TopBar(props: TopBarProps) {
   const navigate = useNavigate();
 
-  const { locations } = useHistoryContext();
+  const { index } = useHistoryContext();
   const { refreshHandlers } = useSearchContext();
 
   const [state, doRefresh] = useAsyncFn(
@@ -48,7 +48,7 @@ function TopBar(props: TopBarProps) {
 
   return (
     <Wrapper className={props.className}>
-      <Button disabled={locations.length === 0} onClick={() => navigate(-1)}>
+      <Button disabled={index < 1} onClick={() => navigate(-1)}>
         <IconChevronLeft size="1.25rem" />
       </Button>
 
