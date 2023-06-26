@@ -26,18 +26,18 @@ const HeaderAside = styled.div`
 const Header = styled.div`
   ${tw`flex gap-1 items-center px-4 text-neutral-600 dark:text-neutral-400`}
 
-  &:hover ${HeaderInner} {
-    ${tw`text-black dark:text-white`}
-  }
+  &:hover {
+    ${HeaderAside} {
+      ${tw`visible`}
+    }
 
-  &:hover ${HeaderAside} {
-    ${tw`visible`}
+    ${HeaderInner} {
+      ${tw`text-black dark:text-white`}
+    }
   }
 `;
 
-const Inner = styled.div`
-  ${tw`pt-1`}
-`;
+const Inner = styled.div``;
 
 const Wrapper = styled.div<WrapperProps>`
   ${Icon} {

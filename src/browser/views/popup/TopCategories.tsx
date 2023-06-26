@@ -5,10 +5,11 @@ import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useTopCategories } from "~/browser/hooks";
+import { useCollections, useGamesByID, useTopCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
+import CollectionList from "~/browser/components/CollectionList";
 import Loader from "~/browser/components/Loader";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
@@ -23,10 +24,21 @@ const Grid = styled.div`
 `;
 
 const LoadMore = styled.div`
-  ${tw`p-3`}
+  ${tw`p-4 pt-0`}
 `;
 
 export function ChildComponent() {
+  const [collections] = useCollections("category", {
+    suspense: true,
+  });
+
+  const { data: categories = [] } = useGamesByID(
+    collections.flatMap((collection) => collection.items),
+    {
+      suspense: true,
+    }
+  );
+
   const [pages, { fetchMore, hasMore, isValidating, refresh }] = useTopCategories(
     {
       first: 100,
@@ -46,25 +58,34 @@ export function ChildComponent() {
 
   return (
     <>
-      <Grid>
-        {pages.map((page) => (
+      <CollectionList
+        type="category"
+        items={categories}
+        getItemIdentifier={(item) => item.id}
+        defaultItems={pages.flatMap((page) => page.data)}
+        render={({ collection, items, createCollection }) => (
           <>
-            {page.data.map((category) => (
-              <Link key={category.id} to={`/categories/${category.id}`}>
-                <CategoryCard category={category} />
-              </Link>
-            ))}
-          </>
-        ))}
-      </Grid>
+            <Grid>
+              {items.map((category) => (
+                <Link key={category.id} to={`/categories/${category.id}`}>
+                  <CategoryCard
+                    category={category}
+                    onNewCollection={() => createCollection([category.id])}
+                  />
+                </Link>
+              ))}
+            </Grid>
 
-      {hasMore && (
-        <LoadMore>
-          <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
-            {t("buttonText_loadMore")}
-          </MoreButton>
-        </LoadMore>
-      )}
+            {collection == null && hasMore && (
+              <LoadMore>
+                <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
+                  {t("buttonText_loadMore")}
+                </MoreButton>
+              </LoadMore>
+            )}
+          </>
+        )}
+      />
     </>
   );
 }

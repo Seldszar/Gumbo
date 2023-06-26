@@ -218,3 +218,23 @@ export function useUsersByID(id: string[], config?: SWRConfiguration) {
     config
   );
 }
+
+export function useGamesByID(id: string[], config?: SWRConfiguration) {
+  return useSWR(
+    id.length > 0 ? ["gamesByID", id] : null,
+    async () => {
+      const groups = chunk(id, 100);
+
+      const promises = await allPromises(groups, async (id) => {
+        const { data } = await sendRuntimeMessage("request", "games", {
+          id,
+        });
+
+        return data as HelixGame[];
+      });
+
+      return flatMap(promises);
+    },
+    config
+  );
+}

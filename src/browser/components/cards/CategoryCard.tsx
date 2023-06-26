@@ -32,6 +32,8 @@ const Name = styled.div`
 
 export interface CategoryCardProps {
   category: HelixGame | HelixCategorySearchResult;
+
+  onNewCollection?(): void;
 }
 
 function CategoryCard(props: CategoryCardProps) {
@@ -47,7 +49,7 @@ function CategoryCard(props: CategoryCardProps) {
       <Cover>
         <CoverImage src={boxArtUrl} ratio={4 / 3} />
 
-        <CategoryDropdown category={category}>
+        <CategoryDropdown category={category} onNewCollection={props.onNewCollection}>
           <StyledDropdownButton />
         </CategoryDropdown>
       </Cover>

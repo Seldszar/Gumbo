@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Store, stores } from "~/common/stores";
 import {
   Collection,
+  CollectionType,
   FollowedStreamSortField,
   FollowedStreamState,
   FollowedUserSortField,
@@ -113,23 +114,26 @@ export function useStore<T>(store: Store<T>, options: UseStoreOptions = {}): Use
 }
 
 export type UseCollectionsReturn = [
-  Collection<string>[],
+  Collection[],
   {
-    addCollection(data: Omit<Collection<string>, "id">): void;
-    updateCollection(id: string, data: Partial<Omit<Collection<string>, "id">>): void;
+    addCollection(data: Omit<Collection, "id">): void;
+    updateCollection(id: string, data: Partial<Omit<Collection, "id">>): void;
     toggleCollectionItem(id: string, item: string): void;
     removeCollection(id: string): void;
   }
 ];
 
-export function useCollections(options?: UseStoreOptions): UseCollectionsReturn {
-  const [value, store] = useStore(stores.collections, options);
+export function useCollections(
+  type: CollectionType,
+  options?: UseStoreOptions
+): UseCollectionsReturn {
+  const [collections, store] = useStore(stores.collections, options);
 
   return [
-    value,
+    collections.filter((collection) => collection.type === type),
     {
       addCollection(data) {
-        store.set((collections) => collections.concat({ ...data, id: crypto.randomUUID() }));
+        store.set((collections) => collections.concat({ ...data, type, id: crypto.randomUUID() }));
       },
       updateCollection(id, data) {
         store.set((collections) =>

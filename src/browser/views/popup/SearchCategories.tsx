@@ -20,7 +20,7 @@ const Grid = styled.div`
 `;
 
 const LoadMore = styled.div`
-  ${tw`p-3 pt-0`}
+  ${tw`p-4 pt-0`}
 `;
 
 interface ChildComponentProps {

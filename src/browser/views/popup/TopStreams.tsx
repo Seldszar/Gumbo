@@ -17,8 +17,12 @@ const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
 `;
 
+const List = styled.div`
+  ${tw`py-2`}
+`;
+
 const LoadMore = styled.div`
-  ${tw`p-3`}
+  ${tw`p-4 pt-0`}
 `;
 
 export function ChildComponent() {
@@ -45,7 +49,7 @@ export function ChildComponent() {
 
   return (
     <>
-      <div>
+      <List>
         {pages.map((page) => (
           <>
             {page.data.map((stream) => (
@@ -53,7 +57,7 @@ export function ChildComponent() {
             ))}
           </>
         ))}
-      </div>
+      </List>
 
       {hasMore && (
         <LoadMore>

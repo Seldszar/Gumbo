@@ -26,8 +26,8 @@ const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
 `;
 
-const StyledFilterBar = styled(FilterBar)`
-  ${tw`px-4 py-3`}
+const Collection = styled.div`
+  ${tw`py-2`}
 `;
 
 const FollowingSince = styled.div`
@@ -99,20 +99,22 @@ function ChildComponent(props: ChildComponentProps) {
       type="user"
       items={filteredUsers}
       getItemIdentifier={(item) => item.id}
-      renderCollection={(items, actions) =>
-        items.map((item) => (
-          <UserCard
-            key={item.id}
-            onNewCollection={() => actions.createCollection([item.id])}
-            isLive={item.isLive}
-            user={item}
-          >
-            <FollowingSince>
-              {t("detailText_followingSince", item.followedAt.toLocaleString())}
-            </FollowingSince>
-          </UserCard>
-        ))
-      }
+      render={({ items, createCollection }) => (
+        <Collection>
+          {items.map((item) => (
+            <UserCard
+              key={item.id}
+              onNewCollection={() => createCollection([item.id])}
+              isLive={item.isLive}
+              user={item}
+            >
+              <FollowingSince>
+                {t("detailText_followingSince", item.followedAt.toLocaleString())}
+              </FollowingSince>
+            </UserCard>
+          ))}
+        </Collection>
+      )}
     />
   );
 }
@@ -126,7 +128,7 @@ export function Component() {
     <Wrapper>
       <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
 
-      <StyledFilterBar
+      <FilterBar
         direction={followedUserState.sortDirection}
         onDirectionChange={setSortDirection}
         filters={[

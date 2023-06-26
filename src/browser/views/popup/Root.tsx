@@ -27,7 +27,9 @@ const Welcome = styled.div`
 `;
 
 export function ChildComponent() {
-  const [currentUser] = useCurrentUser();
+  const [currentUser] = useCurrentUser({
+    suspense: true,
+  });
 
   if (currentUser == null) {
     return (

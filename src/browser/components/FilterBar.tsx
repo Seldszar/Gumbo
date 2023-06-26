@@ -8,7 +8,7 @@ import Select, { SelectProps } from "./Select";
 import SortButton from "./SortButton";
 
 const Wrapper = styled.div`
-  ${tw`flex gap-4 items-center`}
+  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex gap-4 items-center p-4`}
 `;
 
 const Spacer = styled.div`

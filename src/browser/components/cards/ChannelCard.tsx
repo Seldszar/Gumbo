@@ -31,16 +31,16 @@ export interface WrapperProps {
 }
 
 const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`h-20 relative`}
-
-  :hover ${StyledDropdownButton} {
-    ${tw`visible`}
-  }
+  ${tw`py-2 relative`}
 
   ${Thumbnail} {
     ${(props) =>
       props.isLive &&
       tw`ring-2 ring-offset-2 ring-offset-white ring-red-500 dark:ring-offset-black`}
+  }
+
+  &:hover ${StyledDropdownButton} {
+    ${tw`visible`}
   }
 `;
 

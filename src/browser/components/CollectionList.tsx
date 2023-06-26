@@ -1,6 +1,6 @@
 import { IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
 import { reject } from "lodash-es";
-import { ReactNode, useMemo, useState } from "react";
+import { Fragment, ReactNode, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { Collection, CollectionType } from "~/common/types";
@@ -10,8 +10,8 @@ import { useCollections } from "~/browser/hooks";
 import Accordion from "./Accordion";
 import DropdownMenu from "./DropdownMenu";
 
-import DeleteModal from "./modals/DeleteModal";
 import CollectionModal from "./modals/CollectionModal";
+import DeleteModal from "./modals/DeleteModal";
 
 const StyledAccordion = styled(Accordion)`
   ${tw`pt-4`}
@@ -21,11 +21,15 @@ const StyledIconSettings = styled(IconSettings)`
   ${tw`cursor-pointer hover:(text-black dark:text-white)`}
 `;
 
-const DefaultCollection = styled.div`
-  ${tw`before:(block border-t border-neutral-200 dark:border-neutral-800 content-[''] m-4) first-of-type:before:hidden`}
+const Divider = styled.div`
+  ${tw`border-t border-neutral-200 dark:border-neutral-800 mx-4`}
 `;
 
-const Wrapper = styled.div``;
+const DefaultCollection = styled.div``;
+
+const Wrapper = styled.div`
+  ${tw`flex flex-col gap-2`}
+`;
 
 interface ModalState {
   type: "delete" | "mutate";
@@ -34,13 +38,13 @@ interface ModalState {
   items?: string[];
 }
 
-interface Actions {
-  createCollection(items?: string[]): void;
-}
-
 interface Chunk<T> {
   collection?: Collection;
   items: T[];
+}
+
+interface RenderProps<T> extends Chunk<T> {
+  createCollection(items?: string[]): void;
 }
 
 interface CollectionListProps<T> {
@@ -52,11 +56,13 @@ interface CollectionListProps<T> {
   defaultItems?: T[];
 
   getItemIdentifier(item: T): string;
-  renderCollection(items: T[], actions: Actions): ReactNode;
+  render(props: RenderProps<T>, index: number): ReactNode;
 }
 
 function CollectionList<T extends object>(props: CollectionListProps<T>) {
-  const [collections, { addCollection, removeCollection, updateCollection }] = useCollections();
+  const [collections, { addCollection, removeCollection, updateCollection }] = useCollections(
+    props.type
+  );
 
   const [modalState, setModalState] = useState<ModalState | null>(null);
 
@@ -89,9 +95,15 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
     return result;
   }, [collections, props.items]);
 
+  const createCollection = (items?: string[]) => {
+    setModalState({ items, type: "mutate" });
+  };
+
   return (
     <Wrapper className={props.className}>
-      {chunks.map(({ collection, items }) => {
+      {chunks.map((chunk, index) => {
+        const { collection } = chunk;
+
         if (collection) {
           return (
             <StyledAccordion
@@ -118,19 +130,19 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
                 </DropdownMenu>
               }
             >
-              {props.renderCollection(items, {
-                createCollection: (items) => setModalState({ items, type: "mutate" }),
-              })}
+              {props.render({ ...chunk, createCollection }, index)}
             </StyledAccordion>
           );
         }
 
         return (
-          <DefaultCollection key="default">
-            {props.renderCollection(items, {
-              createCollection: (items) => setModalState({ items, type: "mutate" }),
-            })}
-          </DefaultCollection>
+          <Fragment key="default">
+            {index > 0 && <Divider />}
+
+            <DefaultCollection>
+              {props.render({ ...chunk, createCollection }, index)}
+            </DefaultCollection>
+          </Fragment>
         );
       })}
 

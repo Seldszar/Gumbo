@@ -25,7 +25,7 @@ const Details = styled.ul`
 `;
 
 const Wrapper = styled(Card)`
-  ${tw`h-20`}
+  ${tw`py-2`}
 `;
 
 export interface VideoCardProps {

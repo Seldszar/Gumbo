@@ -21,8 +21,8 @@ const Wrapper = styled.div`
   ${tw`flex flex-col min-h-full`}
 `;
 
-const StyledFilterBar = styled(FilterBar)`
-  ${tw`px-4 py-3`}
+const List = styled.div`
+  ${tw`py-2`}
 `;
 
 interface ChildComponentProps {
@@ -68,15 +68,17 @@ function ChildComponent(props: ChildComponentProps) {
       type="user"
       items={filteredStreams}
       getItemIdentifier={(item) => item.userId}
-      renderCollection={(items, actions) =>
-        items.map((item) => (
-          <StreamCard
-            key={item.id}
-            stream={item}
-            onNewCollection={() => actions.createCollection([item.userId])}
-          />
-        ))
-      }
+      render={({ items, createCollection }) => (
+        <List>
+          {items.map((item) => (
+            <StreamCard
+              key={item.id}
+              stream={item}
+              onNewCollection={() => createCollection([item.userId])}
+            />
+          ))}
+        </List>
+      )}
     />
   );
 }
@@ -90,7 +92,7 @@ export function Component() {
     <Wrapper>
       <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
 
-      <StyledFilterBar
+      <FilterBar
         direction={followedStreamState.sortDirection}
         onDirectionChange={setSortDirection}
         filters={[

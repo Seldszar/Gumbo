@@ -17,12 +17,12 @@ import Splash from "~/browser/components/Splash";
 
 import type { OutletContext } from "./Category";
 
-const StyledFilterBar = styled(FilterBar)`
-  ${tw`px-4 py-3`}
+const List = styled.div`
+  ${tw`py-2`}
 `;
 
 const LoadMore = styled.div`
-  ${tw`p-3`}
+  ${tw`p-4 pt-0`}
 `;
 
 interface ChildComponentProps {
@@ -57,7 +57,7 @@ function ChildComponent(props: ChildComponentProps) {
 
   return (
     <>
-      <div>
+      <List>
         {pages.map((page) => (
           <>
             {page.data.map((video) => (
@@ -65,7 +65,7 @@ function ChildComponent(props: ChildComponentProps) {
             ))}
           </>
         ))}
-      </div>
+      </List>
 
       {hasMore && (
         <LoadMore>
@@ -85,7 +85,7 @@ export function Component() {
 
   return (
     <>
-      <StyledFilterBar
+      <FilterBar
         filters={[
           {
             side: "left",

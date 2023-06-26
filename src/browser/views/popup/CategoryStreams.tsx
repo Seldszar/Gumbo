@@ -15,10 +15,12 @@ import Splash from "~/browser/components/Splash";
 
 import type { OutletContext } from "./Category";
 
-const List = styled.div``;
+const List = styled.div`
+  ${tw`py-2`}
+`;
 
 const LoadMore = styled.div`
-  ${tw`p-3`}
+  ${tw`p-4 pt-0`}
 `;
 
 function ChildComponent() {
