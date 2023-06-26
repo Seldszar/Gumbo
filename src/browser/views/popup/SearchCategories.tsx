@@ -9,6 +9,7 @@ import { useSearchCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
+import CollectionList from "~/browser/components/CollectionList";
 import Loader from "~/browser/components/Loader";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
@@ -49,27 +50,34 @@ function ChildComponent(props: ChildComponentProps) {
   }
 
   return (
-    <>
-      <Grid>
-        {pages.map((page) => (
-          <>
-            {page.data.map((category) => (
+    <CollectionList
+      type="category"
+      items={[]}
+      getItemIdentifier={(item) => item.id}
+      defaultItems={pages.flatMap((page) => page.data)}
+      render={({ collection, items, createCollection }) => (
+        <>
+          <Grid>
+            {items.map((category) => (
               <Link key={category.id} to={`/categories/${category.id}`}>
-                <CategoryCard category={category} />
+                <CategoryCard
+                  category={category}
+                  onNewCollection={() => createCollection([category.id])}
+                />
               </Link>
             ))}
-          </>
-        ))}
-      </Grid>
+          </Grid>
 
-      {hasMore && (
-        <LoadMore>
-          <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
-            {t("buttonText_loadMore")}
-          </MoreButton>
-        </LoadMore>
+          {collection == null && hasMore && (
+            <LoadMore>
+              <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
+                {t("buttonText_loadMore")}
+              </MoreButton>
+            </LoadMore>
+          )}
+        </>
       )}
-    </>
+    />
   );
 }
 
