@@ -21,7 +21,7 @@ import {
   setupSentry,
   t,
 } from "~/common/helpers";
-import { Store, stores } from "~/common/stores";
+import { stores } from "~/common/stores";
 import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/types";
 
 setupSentry();
@@ -286,21 +286,14 @@ async function backup() {
   };
 }
 
-async function restore(data: any) {
-  const restoreStore = async (store: Store<any>) => {
-    const state = data[store.name];
+async function restore(data: Dictionary<unknown>) {
+  await settlePromises(Object.entries(data), async ([name, state]) => {
+    const store = get(stores, name);
 
-    if (state) {
+    if (store) {
       await store.restore(state);
     }
-  };
-
-  await Promise.all([
-    restoreStore(stores.followedStreamState),
-    restoreStore(stores.followedUserState),
-    restoreStore(stores.collections),
-    restoreStore(stores.settings),
-  ]);
+  });
 }
 
 async function authorize() {
@@ -308,17 +301,16 @@ async function authorize() {
 }
 
 async function setup(): Promise<void> {
-  const keys = Object.keys(await browser.storage.local.get());
+  const items = await browser.storage.local.get();
 
-  await settlePromises(keys, async (key) => {
+  await settlePromises(Object.values(stores), (store) => store.setup(true));
+  await settlePromises(Object.keys(items), async (key) => {
     if (key in stores) {
       return;
     }
 
     return browser.storage.local.remove(key);
   });
-
-  await settlePromises(Object.values(stores), (store) => store.setup(true));
 }
 
 async function reset(): Promise<void> {

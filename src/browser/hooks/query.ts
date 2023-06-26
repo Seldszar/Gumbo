@@ -199,42 +199,26 @@ export function useFollowedChannels(options?: UseStoreOptions) {
   );
 }
 
-export function useUsersByID(id: string[], config?: SWRConfiguration) {
-  return useSWR(
-    id.length > 0 ? ["usersByID", id] : null,
-    async () => {
-      const groups = chunk(id, 100);
+function createFetcherByID<T>(path: string) {
+  return (id: string[], config?: SWRConfiguration) =>
+    useSWR(
+      id.length > 0 ? ["itemsByID", path, id] : null,
+      async () => {
+        const groups = chunk(id, 100);
 
-      const promises = await allPromises(groups, async (id) => {
-        const { data } = await sendRuntimeMessage("request", "users", {
-          id,
+        const promises = await allPromises(groups, async (id) => {
+          const { data } = await sendRuntimeMessage("request", path, {
+            id,
+          });
+
+          return data as T[];
         });
 
-        return data as HelixUser[];
-      });
-
-      return flatMap(promises);
-    },
-    config
-  );
+        return flatMap(promises);
+      },
+      config
+    );
 }
 
-export function useGamesByID(id: string[], config?: SWRConfiguration) {
-  return useSWR(
-    id.length > 0 ? ["gamesByID", id] : null,
-    async () => {
-      const groups = chunk(id, 100);
-
-      const promises = await allPromises(groups, async (id) => {
-        const { data } = await sendRuntimeMessage("request", "games", {
-          id,
-        });
-
-        return data as HelixGame[];
-      });
-
-      return flatMap(promises);
-    },
-    config
-  );
-}
+export const useGamesByID = createFetcherByID("games");
+export const useUsersByID = createFetcherByID("users");
