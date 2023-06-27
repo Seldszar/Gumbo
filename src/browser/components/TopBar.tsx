@@ -12,7 +12,9 @@ interface IconProps {
   isSpinning?: boolean;
 }
 
-const Icon = styled(IconReload)<IconProps>`
+const Icon = styled(IconReload, {
+  shouldForwardProp: (propName) => propName !== "isSpinning",
+})<IconProps>`
   ${(props) => props.isSpinning && tw`animate-spin`}
 `;
 

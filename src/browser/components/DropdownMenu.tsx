@@ -96,7 +96,6 @@ export interface NormalItemProps {
 
   icon?: ReactNode;
   disabled?: boolean;
-  closeOnClick?: boolean;
   title: string;
 
   onClick?: MouseEventHandler;
