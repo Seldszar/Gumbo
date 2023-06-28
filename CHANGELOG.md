@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.2](https://github.com/Seldszar/Gumbo/compare/v1.17.1...v1.17.2) (2023-06-28)
+
+
+### Bug Fixes
+
+* filter by display name ([e74cabe](https://github.com/Seldszar/Gumbo/commit/e74cabe2a41efddcefba3e0eda8f8f8de0790c06))
+
 ## [1.17.1](https://github.com/Seldszar/Gumbo/compare/v1.17.0...v1.17.1) (2023-06-01)
 
 
