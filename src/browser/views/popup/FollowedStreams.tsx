@@ -62,7 +62,11 @@ const FollowedStreams: FC = () => {
     return Object.values(
       groupBy(
         orderBy(
-          filterList(followedStreams, ["game_name", "title", "user_login"], searchQuery),
+          filterList(
+            followedStreams,
+            ["game_name", "title", "user_login", "user_name"],
+            searchQuery
+          ),
           [(stream) => pinnedUsers.includes(stream.user_id), followedStreamState.sortField],
           ["desc", sortDirection]
         ),

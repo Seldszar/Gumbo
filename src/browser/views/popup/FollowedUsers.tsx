@@ -52,7 +52,7 @@ const FollowedUsers: FC = () => {
 
   const itemGroups = useMemo(() => {
     const users = orderBy(
-      filterList(followedUsers, ["description", "login"], searchQuery),
+      filterList(followedUsers, ["description", "display_name", "login"], searchQuery),
       followedUserState.sortField,
       followedUserState.sortDirection
     );
