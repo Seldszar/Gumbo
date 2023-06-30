@@ -1,3 +1,4 @@
+import { flatMap, sortBy } from "lodash-es";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -32,12 +33,9 @@ export function ChildComponent() {
     suspense: true,
   });
 
-  const { data: categories = [] } = useGamesByID(
-    collections.flatMap((collection) => collection.items),
-    {
-      suspense: true,
-    }
-  );
+  const { data: categories = [] } = useGamesByID(flatMap(collections, "items"), {
+    suspense: true,
+  });
 
   const [pages, { fetchMore, hasMore, isValidating, refresh }] = useTopCategories(
     {
@@ -60,7 +58,7 @@ export function ChildComponent() {
     <>
       <CollectionList
         type="category"
-        items={categories}
+        items={sortBy(categories, "name")}
         getItemIdentifier={(item) => item.id}
         defaultItems={pages.flatMap((page) => page.data)}
         render={({ collection, items, createCollection }) => (
