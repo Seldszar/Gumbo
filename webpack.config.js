@@ -103,6 +103,14 @@ module.exports = (env, argv) => {
         popup: "./src/browser/pages/popup.tsx",
         settings: "./src/browser/pages/settings.tsx",
       },
+      module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: ["style-loader", "css-loader", "postcss-loader"],
+          },
+        ],
+      },
       optimization: {
         splitChunks: {
           name: "commons",

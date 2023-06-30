@@ -10,6 +10,7 @@ import { useCurrentUser } from "~/browser/hooks";
 import Button from "~/browser/components/Button";
 import Hero from "~/browser/components/Hero";
 import Loader from "~/browser/components/Loader";
+import Scrollable from "~/browser/components/Scrollable";
 import Section from "~/browser/components/Section";
 import Sidebar from "~/browser/components/Sidebar";
 import Splash from "~/browser/components/Splash";
@@ -18,8 +19,8 @@ const Wrapper = styled.div`
   ${tw`flex h-full relative`}
 `;
 
-const Body = styled.div`
-  ${tw`flex-1 overflow-y-scroll`}
+const Body = styled(Scrollable)`
+  ${tw`flex-1`}
 `;
 
 const Welcome = styled.div`

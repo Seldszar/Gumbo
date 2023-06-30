@@ -1,6 +1,7 @@
-import type { EntryWrapper } from "@seldszar/yael";
+import "overlayscrollbars/overlayscrollbars.css";
 
 import { Global } from "@emotion/react";
+import { EntryWrapper } from "@seldszar/yael";
 import { ExoticComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
@@ -45,28 +46,13 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
               ${tw`bg-purple-500 text-white`}
             }
 
-            ::-webkit-scrollbar {
-              ${tw`bg-black/10 dark:bg-black/25 h-2 w-2`}
-            }
-
-            ::-webkit-scrollbar-track,
-            ::-webkit-scrollbar-thumb {
-              background-clip: padding-box;
-              border: 1px solid ${theme`colors.transparent`};
-            }
-
-            ::-webkit-scrollbar-thumb {
-              ${tw`bg-purple-500 hover:bg-purple-600 active:bg-purple-400`}
-            }
-
-            * {
-              scrollbar-color: ${theme`colors.purple.500`} ${theme`colors.transparent`};
-              scrollbar-width: thin;
-            }
-
             html,
             body {
               font-size: ${getBaseFontSize(settings.general.fontSize)};
+            }
+
+            html {
+              color-scheme: dark;
             }
 
             body {
@@ -75,6 +61,17 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
 
             #modal-root {
               ${tw`absolute z-50`}
+            }
+
+            .os-theme-gumbo {
+              --os-handle-bg-active: ${theme("colors.purple.600")};
+              --os-handle-bg-hover: ${theme("colors.purple.400")};
+              --os-handle-bg: ${theme("colors.purple.500")};
+              --os-handle-border-radius: ${theme("borderRadius.full")};
+              --os-handle-interactive-area-offset: 3px;
+              --os-padding-axis: 3px;
+              --os-padding-perpendicular: 3px;
+              --os-size: 10px;
             }
           `}
         />
