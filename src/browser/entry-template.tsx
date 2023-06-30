@@ -4,6 +4,7 @@ import { Global } from "@emotion/react";
 import { EntryWrapper } from "@seldszar/yael";
 import { ExoticComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
+import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
 import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
@@ -37,7 +38,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
     }, [darkMode, settings.general.theme]);
 
     return (
-      <>
+      <SWRConfig value={{ keepPreviousData: true }}>
         <GlobalStyles />
 
         <Global
@@ -77,7 +78,7 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
         />
 
         <Component />
-      </>
+      </SWRConfig>
     );
   }
 
