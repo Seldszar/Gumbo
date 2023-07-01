@@ -15,7 +15,7 @@ import Tooltip from "../Tooltip";
 import ChannelDropdown from "../dropdowns/ChannelDropdown";
 
 const StyledDropdownButton = styled(DropdownButton)`
-  ${tw`absolute invisible end-2 -top-2 z-20`}
+  ${tw`absolute invisible end-6 -top-2 z-20`}
 `;
 
 const Thumbnail = styled.div`

@@ -38,7 +38,7 @@ const CategoryName = styled.div`
 `;
 
 const StyledDropdownButton = styled(DropdownButton)`
-  ${tw`absolute invisible end-2 -top-2 z-20`}
+  ${tw`absolute invisible end-6 -top-2 z-20`}
 `;
 
 const Wrapper = styled(Card)`
