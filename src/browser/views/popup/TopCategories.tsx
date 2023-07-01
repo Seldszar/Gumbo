@@ -11,14 +11,9 @@ import { useCollections, useGamesByID, useTopCategories } from "~/browser/hooks"
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import CollectionList from "~/browser/components/CollectionList";
-import Loader from "~/browser/components/Loader";
+import Layout from "~/browser/components/Layout";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
-import TopBar from "~/browser/components/TopBar";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
 
 const Grid = styled.div`
   ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-4`}
@@ -90,12 +85,8 @@ export function ChildComponent() {
 
 export function Component() {
   return (
-    <Wrapper>
-      <TopBar />
-
-      <Loader>
-        <ChildComponent />
-      </Loader>
-    </Wrapper>
+    <Layout>
+      <ChildComponent />
+    </Layout>
   );
 }

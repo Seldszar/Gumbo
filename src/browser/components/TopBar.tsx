@@ -22,12 +22,12 @@ const Button = styled.button`
   ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 hover:(bg-neutral-200 text-black dark:(bg-black text-white)) disabled:(bg-transparent opacity-25 text-neutral-600 dark:text-neutral-400)!`}
 `;
 
-const Inner = styled.div`
+const Input = styled(SearchInput)`
   ${tw`flex-1`}
 `;
 
 const Wrapper = styled.div`
-  ${tw`bg-neutral-100 dark:bg-neutral-900 flex flex-none gap-2 items-center px-2 py-3 shadow-sm dark:shadow-black/25 sticky top-0 z-20`}
+  ${tw`bg-neutral-100 dark:bg-neutral-900 flex gap-2 items-center px-2 py-3 shadow-sm dark:shadow-black/25`}
 `;
 
 export interface TopBarProps {
@@ -54,9 +54,7 @@ function TopBar(props: TopBarProps) {
         <IconChevronLeft size="1.25rem" />
       </Button>
 
-      <Inner>
-        <SearchInput value={props.searchQuery} onChange={props.onSearchQueryChange} />
-      </Inner>
+      <Input value={props.searchQuery} onChange={props.onSearchQueryChange} />
 
       <Button disabled={refreshHandlers.size === 0} onClick={doRefresh}>
         <Icon size="1.25rem" isSpinning={state.loading} />

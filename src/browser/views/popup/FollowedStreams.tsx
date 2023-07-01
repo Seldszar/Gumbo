@@ -13,13 +13,8 @@ import StreamCard from "~/browser/components/cards/StreamCard";
 
 import CollectionList from "~/browser/components/CollectionList";
 import FilterBar from "~/browser/components/FilterBar";
-import Loader from "~/browser/components/Loader";
+import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
-import TopBar from "~/browser/components/TopBar";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
 
 const List = styled.div`
   ${tw`py-2`}
@@ -89,9 +84,7 @@ export function Component() {
   const [followedStreamState, { setSortDirection, setSortField }] = useFollowedStreamState();
 
   return (
-    <Wrapper>
-      <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
-
+    <Layout searchQuery={searchQuery} onSearchQueryChange={setSearchQuery}>
       <FilterBar
         direction={followedStreamState.sortDirection}
         onDirectionChange={setSortDirection}
@@ -122,10 +115,8 @@ export function Component() {
         ]}
       />
 
-      <Loader>
-        <ChildComponent {...{ followedStreamState, searchQuery }} />
-      </Loader>
-    </Wrapper>
+      <ChildComponent {...{ followedStreamState, searchQuery }} />
+    </Layout>
   );
 }
 

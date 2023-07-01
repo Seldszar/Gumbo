@@ -7,13 +7,8 @@ import { HelixGame } from "~/common/types";
 import { useCategory } from "~/browser/hooks";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
-import Loader from "~/browser/components/Loader";
+import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
-import TopBar from "~/browser/components/TopBar";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
 
 const Title = styled(CategoryTitle)`
   ${tw`flex-none`}
@@ -49,13 +44,9 @@ function ChildComponent() {
 
 export function Component() {
   return (
-    <Wrapper>
-      <TopBar />
-
-      <Loader>
-        <ChildComponent />
-      </Loader>
-    </Wrapper>
+    <Layout>
+      <ChildComponent />
+    </Layout>
   );
 }
 

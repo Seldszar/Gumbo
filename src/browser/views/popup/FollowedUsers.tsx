@@ -18,13 +18,8 @@ import UserCard from "~/browser/components/cards/UserCard";
 
 import CollectionList from "~/browser/components/CollectionList";
 import FilterBar from "~/browser/components/FilterBar";
-import Loader from "~/browser/components/Loader";
+import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
-import TopBar from "~/browser/components/TopBar";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
 
 const Collection = styled.div`
   ${tw`py-2`}
@@ -125,9 +120,7 @@ export function Component() {
   const [followedUserState, { setSortDirection, setSortField, setStatus }] = useFollowedUserState();
 
   return (
-    <Wrapper>
-      <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
-
+    <Layout searchQuery={searchQuery} onSearchQueryChange={setSearchQuery}>
       <FilterBar
         direction={followedUserState.sortDirection}
         onDirectionChange={setSortDirection}
@@ -169,10 +162,8 @@ export function Component() {
         ]}
       />
 
-      <Loader>
-        <ChildComponent {...{ followedUserState, searchQuery }} />
-      </Loader>
-    </Wrapper>
+      <ChildComponent {...{ followedUserState, searchQuery }} />
+    </Layout>
   );
 }
 

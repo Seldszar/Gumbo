@@ -8,14 +8,9 @@ import { useStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
-import Loader from "~/browser/components/Loader";
+import Layout from "~/browser/components/Layout";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
-import TopBar from "~/browser/components/TopBar";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
 
 const List = styled.div`
   ${tw`py-2`}
@@ -72,12 +67,8 @@ export function ChildComponent() {
 
 export function Component() {
   return (
-    <Wrapper>
-      <TopBar />
-
-      <Loader>
-        <ChildComponent />
-      </Loader>
-    </Wrapper>
+    <Layout>
+      <ChildComponent />
+    </Layout>
   );
 }

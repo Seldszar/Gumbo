@@ -4,11 +4,7 @@ import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import TopBar from "~/browser/components/TopBar";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
+import Layout from "~/browser/components/Layout";
 
 const TabList = styled.div`
   ${tw`flex`}
@@ -26,16 +22,14 @@ export function Component() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <Wrapper>
-      <TopBar searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
-
+    <Layout searchQuery={searchQuery} onSearchQueryChange={setSearchQuery}>
       <TabList>
         <Tab to="channels">{t("titleText_channels")}</Tab>
         <Tab to="categories">{t("titleText_categories")}</Tab>
       </TabList>
 
       <Outlet context={{ searchQuery }} />
-    </Wrapper>
+    </Layout>
   );
 }
 
