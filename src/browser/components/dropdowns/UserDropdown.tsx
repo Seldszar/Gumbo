@@ -18,7 +18,7 @@ export interface UserDropdownProps {
 function UserDropdown(props: UserDropdownProps) {
   const { user } = props;
 
-  const [collections, { toggleCollectionItem }] = useCollections();
+  const [collections, { toggleCollectionItem }] = useCollections("user");
 
   const items = useMemo(() => {
     const result = new Array<DropdownMenuItemProps>(

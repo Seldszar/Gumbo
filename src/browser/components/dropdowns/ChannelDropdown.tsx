@@ -60,7 +60,7 @@ function ChannelDropdown(props: ChannelDropdownProps) {
         onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/videos`, event),
       }
     );
-  }, [settings.contextMenu.items, props, channel]);
+  }, [props, channel]);
 
   return <DropdownMenu items={items}>{props.children}</DropdownMenu>;
 }

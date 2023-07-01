@@ -18,7 +18,7 @@ export interface StreamDropdownProps {
 function StreamDropdown(props: StreamDropdownProps) {
   const { stream } = props;
 
-  const [collections, { toggleCollectionItem }] = useCollections();
+  const [collections, { toggleCollectionItem }] = useCollections("user");
 
   const items = useMemo(() => {
     const result = new Array<DropdownMenuItemProps>(
