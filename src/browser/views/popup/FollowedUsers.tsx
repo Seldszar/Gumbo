@@ -58,7 +58,7 @@ function ChildComponent(props: ChildComponentProps) {
     const items = new Array<FormattedUser>();
 
     followedUsers.forEach((user) => {
-      const matchesFields = matchFields(user, ["displayName", "login"], searchQuery);
+      const matchesFields = matchFields(user, ["description", "displayName", "login"], searchQuery);
       const isLive = some(followedStreams, {
         userId: user.id,
         type: "live",

@@ -40,7 +40,7 @@ function ChildComponent(props: ChildComponentProps) {
     }
 
     return orderBy(
-      filterList(followedStreams, ["gameName", "title", "userLogin"], searchQuery),
+      filterList(followedStreams, ["gameName", "title", "userLogin", "userName"], searchQuery),
       followedStreamState.sortField,
       sortDirection
     );
