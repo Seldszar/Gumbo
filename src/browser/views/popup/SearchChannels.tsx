@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -51,12 +52,12 @@ function ChildComponent(props: ChildComponentProps) {
   return (
     <>
       <List>
-        {pages.map((page) => (
-          <>
+        {pages.map((page, index) => (
+          <Fragment key={index}>
             {page.data.map((channel) => (
               <ChannelCard key={channel.id} channel={channel} />
             ))}
-          </>
+          </Fragment>
         ))}
       </List>
 

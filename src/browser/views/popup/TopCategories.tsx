@@ -50,36 +50,34 @@ export function ChildComponent() {
   }
 
   return (
-    <>
-      <CollectionList
-        type="category"
-        items={sortBy(categories, "name")}
-        getItemIdentifier={(item) => item.id}
-        defaultItems={pages.flatMap((page) => page.data)}
-        render={({ collection, items, createCollection }) => (
-          <>
-            <Grid>
-              {items.map((category) => (
-                <Link key={category.id} to={`/categories/${category.id}`}>
-                  <CategoryCard
-                    category={category}
-                    onNewCollection={() => createCollection([category.id])}
-                  />
-                </Link>
-              ))}
-            </Grid>
+    <CollectionList
+      type="category"
+      items={sortBy(categories, "name")}
+      getItemIdentifier={(item) => item.id}
+      defaultItems={pages.flatMap((page) => page.data)}
+      render={({ collection, items, createCollection }) => (
+        <>
+          <Grid>
+            {items.map((category) => (
+              <Link key={category.id} to={`/categories/${category.id}`}>
+                <CategoryCard
+                  category={category}
+                  onNewCollection={() => createCollection([category.id])}
+                />
+              </Link>
+            ))}
+          </Grid>
 
-            {collection == null && hasMore && (
-              <LoadMore>
-                <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
-                  {t("buttonText_loadMore")}
-                </MoreButton>
-              </LoadMore>
-            )}
-          </>
-        )}
-      />
-    </>
+          {collection == null && hasMore && (
+            <LoadMore>
+              <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
+                {t("buttonText_loadMore")}
+              </MoreButton>
+            </LoadMore>
+          )}
+        </>
+      )}
+    />
   );
 }
 

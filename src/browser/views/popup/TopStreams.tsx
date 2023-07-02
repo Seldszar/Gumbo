@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -45,12 +46,12 @@ export function ChildComponent() {
   return (
     <>
       <List>
-        {pages.map((page) => (
-          <>
+        {pages.map((page, index) => (
+          <Fragment key={index}>
             {page.data.map((stream) => (
               <StreamCard key={stream.id} stream={stream} />
             ))}
-          </>
+          </Fragment>
         ))}
       </List>
 

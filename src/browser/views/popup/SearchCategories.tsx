@@ -49,8 +49,6 @@ function ChildComponent(props: ChildComponentProps) {
     return <Splash>{t("errorText_emptyCategories")}</Splash>;
   }
 
-  console.log(pages);
-
   return (
     <CollectionList
       type="category"

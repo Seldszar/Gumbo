@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -46,12 +47,12 @@ function ChildComponent() {
   return (
     <>
       <List>
-        {pages.map((page) => (
-          <>
+        {pages.map((page, index) => (
+          <Fragment key={index}>
             {page.data.map((stream) => (
               <StreamCard key={stream.id} stream={stream} />
             ))}
-          </>
+          </Fragment>
         ))}
       </List>
 
