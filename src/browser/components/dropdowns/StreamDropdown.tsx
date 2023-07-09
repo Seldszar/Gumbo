@@ -1,5 +1,6 @@
 import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { openUrl, t } from "~/common/helpers";
 import { FollowedStream, HelixStream } from "~/common/types";
@@ -18,6 +19,8 @@ export interface StreamDropdownProps {
 function StreamDropdown(props: StreamDropdownProps) {
   const { stream } = props;
 
+  const navigate = useNavigate();
+
   const [collections, { toggleCollectionItem }] = useCollections("user");
 
   const items = useMemo(() => {
@@ -25,23 +28,17 @@ function StreamDropdown(props: StreamDropdownProps) {
       {
         type: "normal",
         title: t("optionValue_openChannel"),
-        onClick(event) {
-          openUrl(`https://twitch.tv/${stream.userLogin}`, event);
-        },
+        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}`, event),
       },
       {
         type: "normal",
         title: t("optionValue_openChat"),
-        onClick(event) {
-          openUrl(`https://twitch.tv/${stream.userLogin}/chat`, event);
-        },
+        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/chat`, event),
       },
       {
         type: "normal",
         title: t("optionValue_popout"),
-        onClick(event) {
-          openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event);
-        },
+        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event),
       },
       {
         type: "separator",
@@ -99,6 +96,15 @@ function StreamDropdown(props: StreamDropdownProps) {
         type: "normal",
         title: t("optionValue_videos"),
         onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/videos`, event),
+      },
+      {
+        type: "separator",
+      },
+      {
+        type: "normal",
+        disabled: !stream.gameId,
+        title: t("optionValue_gotoCategory"),
+        onClick: () => navigate(`/categories/${stream.gameId}`),
       }
     );
 

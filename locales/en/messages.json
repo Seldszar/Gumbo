@@ -209,6 +209,9 @@
   "optionValue_fontSize_smallest": {
     "message": "Smallest"
   },
+  "optionValue_gotoCategory": {
+    "message": "Go to category"
+  },
   "optionValue_logout": {
     "message": "Logout"
   },

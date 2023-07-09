@@ -25,23 +25,17 @@ function UserDropdown(props: UserDropdownProps) {
       {
         type: "normal",
         title: t("optionValue_openChannel"),
-        onClick(event) {
-          openUrl(`https://twitch.tv/${user.login}`, event);
-        },
+        onClick: (event) => openUrl(`https://twitch.tv/${user.login}`, event),
       },
       {
         type: "normal",
         title: t("optionValue_openChat"),
-        onClick(event) {
-          openUrl(`https://twitch.tv/${user.login}/chat`, event);
-        },
+        onClick: (event) => openUrl(`https://twitch.tv/${user.login}/chat`, event),
       },
       {
         type: "normal",
         title: t("optionValue_popout"),
-        onClick(event) {
-          openUrl(`https://twitch.tv/${user.login}/popout`, event);
-        },
+        onClick: (event) => openUrl(`https://twitch.tv/${user.login}/popout`, event),
       },
       {
         type: "separator",
