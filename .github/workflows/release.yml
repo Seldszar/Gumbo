@@ -13,6 +13,7 @@ jobs:
     outputs:
       created: ${{ steps.release.outputs.release_created }}
       version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
 
     steps:
       - id: release
@@ -54,11 +55,11 @@ jobs:
       - name: Update Manifest
         run: npx dot-json@1 dist/manifest.json version ${{ needs.release-please.outputs.version }}
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.platform }}-artifact
-          path: dist
+      - name: Upload Release Artifact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ matrix.platform }}-${{ needs.release-please.outputs.version }}.zip
+        run: cd dist && zip -r $ARCHIVE_NAME . && gh release upload ${{ needs.release-please.outputs.tag_name }} $ARCHIVE_NAME
 
       - name: Submit
         run: |
