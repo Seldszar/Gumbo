@@ -221,6 +221,27 @@ export const stores = {
       })
     ),
     defaultValue: () => [],
+    migrations: [
+      async (value) => {
+        const { pinnedCategories, pinnedUsers } = await browser.storage.local.get({
+          pinnedCategories: { value: [] },
+          pinnedUsers: { value: [] },
+        });
+
+        const addCollection = (data: Omit<Collection, "id" | "name">) =>
+          value.push({ ...data, name: "Pinned Items", id: crypto.randomUUID() });
+
+        if (pinnedCategories.value.length > 0) {
+          addCollection({ type: "category", items: pinnedCategories.value });
+        }
+
+        if (pinnedUsers.value.length > 0) {
+          addCollection({ type: "user", items: pinnedUsers.value });
+        }
+
+        return value;
+      },
+    ],
   }),
   settings: new Store<Settings>("local", "settings", {
     schema: object({
