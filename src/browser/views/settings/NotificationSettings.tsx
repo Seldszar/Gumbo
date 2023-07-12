@@ -54,7 +54,6 @@ export function Component() {
       <Section title={t("titleText_ignoredCategories")}>
         <ListManager<string>
           {...register("notifications.ignoredCategories")}
-          emptyMessage={t("errorText_emptyIgnoredCategories")}
           renderForm={(props) => <IgnoredCategoryForm {...props} />}
           renderTitle={(value) => value}
           getKey={(value) => value}

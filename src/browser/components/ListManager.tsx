@@ -2,8 +2,8 @@ import { DndContext, DragOverlay, UniqueIdentifier, closestCenter } from "@dnd-k
 import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FloatingPortal } from "@floating-ui/react";
-import { IconEdit, IconGripVertical, IconTrash } from "@tabler/icons-react";
-import { concat, pullAt, set } from "lodash-es";
+import { IconEdit, IconGripVertical, IconList, IconPlus, IconTrash } from "@tabler/icons-react";
+import { concat, set, without } from "lodash-es";
 import { HTMLAttributes, Key, ReactNode, forwardRef, useEffect, useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
@@ -15,12 +15,8 @@ import Panel from "./Panel";
 
 import DeleteModal from "./modals/DeleteModal";
 
-const AddButton = styled(Button)`
-  ${tw`mt-2`}
-`;
-
 const List = styled.div`
-  ${tw`flex flex-col gap-px`}
+  ${tw`flex flex-col gap-px mb-2`}
 `;
 
 interface ItemProps {
@@ -53,8 +49,12 @@ const ItemButton = styled.button`
   ${tw`flex-none`}
 `;
 
+const Empty = styled.div`
+  ${tw`bg-black/5 border border-neutral-300 flex flex-col items-center py-12 rounded dark:(bg-black/25 border-neutral-800)`}
+`;
+
 const EmptyMessage = styled.div`
-  ${tw`bg-black/10 py-5 rounded text-center text-neutral-500 dark:bg-black/25`}
+  ${tw`mb-6 text-center text-xl`}
 `;
 
 export type ItemType = UniqueIdentifier | { id: UniqueIdentifier };
@@ -121,7 +121,6 @@ const getKey = (item: ItemType) => (typeof item === "object" ? item.id : item);
 export interface ListManagerProps<T extends ItemType> {
   className?: string;
   placeholder?: string;
-  emptyMessage?: string;
   disabled?: boolean;
   value: T[];
 
@@ -191,6 +190,15 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
             </List>
           </SortableContext>
 
+          <Button
+            fullWidth
+            color="purple"
+            icon={<IconPlus size="1.25rem" />}
+            onClick={() => setModalState({ index: -1, type: "mutate" })}
+          >
+            {t("buttonText_add")}
+          </Button>
+
           <FloatingPortal id="modal-root">
             <DragOverlay>
               {activeItem && (
@@ -202,16 +210,18 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
           </FloatingPortal>
         </DndContext>
       ) : (
-        <EmptyMessage>{props.emptyMessage}</EmptyMessage>
+        <Empty>
+          <IconList size="1.75rem" />
+          <EmptyMessage>{t("errorText_emptyList")}</EmptyMessage>
+          <Button
+            color="purple"
+            icon={<IconPlus size="1.25rem" />}
+            onClick={() => setModalState({ index: -1, type: "mutate" })}
+          >
+            {t("buttonText_add")}
+          </Button>
+        </Empty>
       )}
-
-      <AddButton
-        fullWidth
-        color="purple"
-        onClick={() => setModalState({ index: -1, type: "mutate" })}
-      >
-        {t("buttonText_add")}
-      </AddButton>
 
       {modalState && (
         <>
@@ -222,8 +232,8 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
               onConfirm={() => {
                 setModalState(null);
 
-                if (modalState.index > -1) {
-                  props.onChange(pullAt(items, modalState.index));
+                if (modalState.item) {
+                  props.onChange(without(items, modalState.item));
                 }
               }}
             />

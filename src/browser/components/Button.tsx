@@ -5,7 +5,7 @@ import tw, { styled } from "twin.macro";
 import Spinner from "./Spinner";
 
 const Icon = styled.div`
-  ${tw`flex-none`}
+  ${tw`flex-none self-center`}
 `;
 
 const Inner = styled.div``;

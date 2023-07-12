@@ -89,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "No ignored categories"
   },
+  "errorText_emptyList": {
+    "message": "List is empty"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "No streams online"
   },
