@@ -161,8 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "Click to authorize"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Click to view changes"
+  },
   "notificationMessage_accessExpired": {
     "message": "Your Twitch access token expired, please re-authorize to get a new one."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo as been updated to version $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 is online!"

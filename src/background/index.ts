@@ -365,11 +365,24 @@ browser.notifications.onClicked.addListener((notificationId) => {
 
     case "stream":
       return openUrl(`https://twitch.tv/${data}`);
+
+    case "update":
+      return openUrl("https://github.com/Seldszar/Gumbo/blob/main/CHANGELOG.md");
   }
 });
 
-browser.runtime.onInstalled.addListener(() => {
+browser.runtime.onInstalled.addListener((details) => {
   setup();
+
+  if (details.reason === "update") {
+    const manifest = browser.runtime.getManifest();
+
+    browser.notifications.create(`${Date.now()}:update`, {
+      title: t("notificationMessage_extensionUpdated", manifest.version),
+      message: t("notificationContextMessage_extensionUpdated"),
+      type: "basic",
+    });
+  }
 });
 
 browser.runtime.onStartup.addListener(() => {
