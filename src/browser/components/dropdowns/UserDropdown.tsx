@@ -1,10 +1,10 @@
 import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
 
-import { openUrl, t } from "~/common/helpers";
+import { openUrl, t, template } from "~/common/helpers";
 import { FollowedUser, HelixUser } from "~/common/types";
 
-import { useCollections } from "~/browser/hooks";
+import { useCollections, useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
@@ -18,7 +18,12 @@ export interface UserDropdownProps {
 function UserDropdown(props: UserDropdownProps) {
   const { user } = props;
 
+  const [settings] = useSettings();
   const [collections, { toggleCollectionItem }] = useCollections("user");
+
+  const {
+    dropdownMenu: { customActions },
+  } = settings;
 
   const items = useMemo(() => {
     const result = new Array<DropdownMenuItemProps>(
@@ -36,11 +41,27 @@ function UserDropdown(props: UserDropdownProps) {
         type: "normal",
         title: t("optionValue_popout"),
         onClick: (event) => openUrl(`https://twitch.tv/${user.login}/popout`, event),
-      },
-      {
-        type: "separator",
       }
     );
+
+    if (customActions.length > 0) {
+      result.push({
+        type: "menu",
+        title: t("optionValue_customActions"),
+        items: customActions.map<DropdownMenuItemProps>((item) => ({
+          type: "normal",
+          title: item.title,
+          onClick: (event) =>
+            openUrl(
+              template(item.url, {
+                "{login}": user.login,
+                "{id}": user.id,
+              }),
+              event
+            ),
+        })),
+      });
+    }
 
     if (props.onNewCollection) {
       const userCollections = collections.filter((collection) => collection.type === "user");
@@ -68,17 +89,20 @@ function UserDropdown(props: UserDropdownProps) {
 
       result.push(
         {
+          type: "separator",
+        },
+        {
           type: "menu",
           title: "Collections",
           items,
-        },
-        {
-          type: "separator",
         }
       );
     }
 
     result.push(
+      {
+        type: "separator",
+      },
       {
         type: "normal",
         title: t("optionValue_about"),
@@ -97,7 +121,7 @@ function UserDropdown(props: UserDropdownProps) {
     );
 
     return result;
-  }, [collections, props, user]);
+  }, [collections, customActions, props.onNewCollection, user]);
 
   return <DropdownMenu items={items}>{props.children}</DropdownMenu>;
 }

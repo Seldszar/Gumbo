@@ -255,6 +255,15 @@ export const stores = {
         enabled: boolean(),
         color: string(),
       }),
+      dropdownMenu: object({
+        customActions: array(
+          object({
+            id: string(),
+            title: string(),
+            url: string(),
+          })
+        ),
+      }),
       notifications: object({
         enabled: boolean(),
         withFilters: boolean(),
@@ -278,6 +287,9 @@ export const stores = {
       badge: {
         enabled: true,
         color: "#737373",
+      },
+      dropdownMenu: {
+        customActions: [],
       },
       notifications: {
         enabled: true,

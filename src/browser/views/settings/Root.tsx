@@ -60,6 +60,7 @@ export function Component() {
         <Aside>
           <MenuItem to="general">{t("titleText_general")}</MenuItem>
           <MenuItem to="badge">{t("titleText_badge")}</MenuItem>
+          <MenuItem to="dropdown-menu">{t("titleText_dropdownMenu")}</MenuItem>
           <MenuItem to="notification">{t("titleText_notifications")}</MenuItem>
           <MenuItem to="stream">{t("titleText_streams")}</MenuItem>
           <MenuItem to="advanced">{t("titleText_advanced")}</MenuItem>

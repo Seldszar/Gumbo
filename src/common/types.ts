@@ -32,6 +32,16 @@ export interface NotificationSettings {
   selectedUsers: string[];
 }
 
+export interface CustomAction {
+  id: string;
+  title: string;
+  url: string;
+}
+
+export interface DropdownMenuSettings {
+  customActions: CustomAction[];
+}
+
 export type FollowedStreamSortField = "gameName" | "startedAt" | "userLogin" | "viewerCount";
 
 export interface FollowedStreamState {
@@ -51,6 +61,7 @@ export interface Settings {
   general: GeneralSettings;
   badge: BadgeSettings;
   notifications: NotificationSettings;
+  dropdownMenu: DropdownMenuSettings;
   streams: StreamSettings;
 }
 

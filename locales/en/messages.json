@@ -110,6 +110,12 @@
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
   },
+  "helpText_customAction_url": {
+    "message": "Example: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Available placeholders"
+  },
   "inputLabel_categoryChangeNotifications": {
     "message": "Include category change notifications"
   },
@@ -193,6 +199,9 @@
   },
   "optionValue_clickBehavior_createWindow": {
     "message": "Open in a new window"
+  },
+  "optionValue_customActions": {
+    "message": "Custom actions"
   },
   "optionValue_donate": {
     "message": "Donate"
@@ -332,17 +341,29 @@
   "titleText_categories": {
     "message": "Categories"
   },
+  "titleText_channelId": {
+    "message": "Channel ID"
+  },
+  "titleText_channelLogin": {
+    "message": "Channel Login"
+  },
   "titleText_channels": {
     "message": "Channels"
   },
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_dropdownMenu": {
+    "message": "Dropwdown Menu"
+  },
   "titleText_createCollection": {
     "message": "Create Collection"
   },
   "titleText_createItem": {
     "message": "Create Item"
+  },
+  "titleText_customActions": {
+    "message": "Custom Actions"
   },
   "titleText_dangerZone": {
     "message": "Danger Zone"

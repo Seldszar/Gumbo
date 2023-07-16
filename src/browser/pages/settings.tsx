@@ -19,6 +19,10 @@ const router = createHashRouter([
         lazy: () => import("../views/settings/BadgeSettings"),
       },
       {
+        path: "dropdown-menu",
+        lazy: () => import("../views/settings/DropdownMenuSettings"),
+      },
+      {
         path: "general",
         lazy: () => import("../views/settings/GeneralSettings"),
       },

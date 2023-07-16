@@ -1,8 +1,10 @@
 import { ReactElement, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { openUrl, t } from "~/common/helpers";
+import { openUrl, t, template } from "~/common/helpers";
 import { HelixChannelSearchResult } from "~/common/types";
+
+import { useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
@@ -16,8 +18,14 @@ function ChannelDropdown(props: ChannelDropdownProps) {
 
   const navigate = useNavigate();
 
+  const [settings] = useSettings();
+
+  const {
+    dropdownMenu: { customActions },
+  } = settings;
+
   const items = useMemo(() => {
-    return new Array<DropdownMenuItemProps>(
+    const result = new Array<DropdownMenuItemProps>(
       {
         type: "normal",
         title: t("optionValue_openChannel"),
@@ -32,7 +40,29 @@ function ChannelDropdown(props: ChannelDropdownProps) {
         type: "normal",
         title: t("optionValue_popout"),
         onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/popout`, event),
-      },
+      }
+    );
+
+    if (customActions.length > 0) {
+      result.push({
+        type: "menu",
+        title: t("optionValue_customActions"),
+        items: customActions.map<DropdownMenuItemProps>((item) => ({
+          type: "normal",
+          title: item.title,
+          onClick: (event) =>
+            openUrl(
+              template(item.url, {
+                "{login}": channel.broadcasterLogin,
+                "{id}": channel.id,
+              }),
+              event
+            ),
+        })),
+      });
+    }
+
+    result.push(
       {
         type: "separator",
       },
@@ -62,7 +92,9 @@ function ChannelDropdown(props: ChannelDropdownProps) {
         onClick: () => navigate(`/categories/${channel.gameId}`),
       }
     );
-  }, [props, channel]);
+
+    return result;
+  }, [channel, customActions]);
 
   return <DropdownMenu items={items}>{props.children}</DropdownMenu>;
 }

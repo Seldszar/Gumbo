@@ -2,10 +2,10 @@ import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { openUrl, t } from "~/common/helpers";
+import { openUrl, t, template } from "~/common/helpers";
 import { FollowedStream, HelixStream } from "~/common/types";
 
-import { useCollections } from "~/browser/hooks";
+import { useCollections, useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
@@ -21,7 +21,12 @@ function StreamDropdown(props: StreamDropdownProps) {
 
   const navigate = useNavigate();
 
+  const [settings] = useSettings();
   const [collections, { toggleCollectionItem }] = useCollections("user");
+
+  const {
+    dropdownMenu: { customActions },
+  } = settings;
 
   const items = useMemo(() => {
     const result = new Array<DropdownMenuItemProps>(
@@ -39,11 +44,27 @@ function StreamDropdown(props: StreamDropdownProps) {
         type: "normal",
         title: t("optionValue_popout"),
         onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event),
-      },
-      {
-        type: "separator",
       }
     );
+
+    if (customActions.length > 0) {
+      result.push({
+        type: "menu",
+        title: t("optionValue_customActions"),
+        items: customActions.map<DropdownMenuItemProps>((item) => ({
+          type: "normal",
+          title: item.title,
+          onClick: (event) =>
+            openUrl(
+              template(item.url, {
+                "{login}": stream.userLogin,
+                "{id}": stream.userId,
+              }),
+              event
+            ),
+        })),
+      });
+    }
 
     if (props.onNewCollection) {
       const userCollections = collections.filter((collection) => collection.type === "user");
@@ -57,31 +78,34 @@ function StreamDropdown(props: StreamDropdownProps) {
 
       if (userCollections.length > 0) {
         items.unshift(
+          {
+            type: "separator",
+          },
           ...userCollections.map<DropdownMenuItemProps>((collection) => ({
             type: "checkbox",
             title: collection.name,
             checked: collection.items.includes(stream.userId),
             onChange: () => toggleCollectionItem(collection.id, stream.userId),
-          })),
-          {
-            type: "separator",
-          }
+          }))
         );
       }
 
       result.push(
         {
+          type: "separator",
+        },
+        {
           type: "menu",
           title: "Collections",
           items,
-        },
-        {
-          type: "separator",
         }
       );
     }
 
     result.push(
+      {
+        type: "separator",
+      },
       {
         type: "normal",
         title: t("optionValue_about"),
@@ -109,7 +133,7 @@ function StreamDropdown(props: StreamDropdownProps) {
     );
 
     return result;
-  }, [collections, props, stream]);
+  }, [collections, customActions, props.onNewCollection, stream]);
 
   return <DropdownMenu items={items}>{props.children}</DropdownMenu>;
 }
