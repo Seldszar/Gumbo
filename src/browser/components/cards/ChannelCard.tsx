@@ -39,7 +39,7 @@ const Wrapper = styled(Card)<WrapperProps>`
       tw`ring-2 ring-offset-2 ring-offset-white ring-red-500 dark:ring-offset-black`}
   }
 
-  &:hover ${StyledDropdownButton} {
+  :hover ${StyledDropdownButton} {
     ${tw`visible`}
   }
 `;

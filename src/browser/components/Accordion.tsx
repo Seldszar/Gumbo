@@ -26,7 +26,7 @@ const HeaderAside = styled.div`
 const Header = styled.div`
   ${tw`flex gap-1 items-center px-4 text-neutral-600 dark:text-neutral-400`}
 
-  &:hover {
+  :hover {
     ${HeaderAside} {
       ${tw`visible`}
     }

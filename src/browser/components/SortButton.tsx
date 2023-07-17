@@ -1,5 +1,4 @@
 import { IconSortDescending, IconSortAscending } from "@tabler/icons-react";
-
 import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";

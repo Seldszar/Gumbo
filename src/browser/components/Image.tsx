@@ -20,7 +20,7 @@ function Image(props: ImageProps) {
 
   return (
     <Wrapper className={props.className} style={style}>
-      <img onLoad={() => setLoaded(true)} style={{ opacity: loaded ? 1 : 0 }} src={props.src} />
+      <img onLoad={() => setLoaded(true)} style={{ opacity: Number(loaded) }} src={props.src} />
     </Wrapper>
   );
 }

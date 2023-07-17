@@ -1,5 +1,4 @@
 import { IconCategory, IconHeart, IconSearch, IconUser, IconVideo } from "@tabler/icons-react";
-
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";

@@ -44,7 +44,7 @@ const StyledDropdownButton = styled(DropdownButton)`
 const Wrapper = styled(Card)`
   ${tw`py-2 relative`}
 
-  &:hover ${StyledDropdownButton} {
+  :hover ${StyledDropdownButton} {
     ${tw`visible`}
   }
 `;
