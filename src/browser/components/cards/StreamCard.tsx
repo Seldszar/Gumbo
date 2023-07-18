@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
-import { FollowedStream, HelixStream } from "~/common/types";
+import { HelixStream } from "~/common/types";
 
 import { useClickAction, useNow } from "~/browser/hooks";
 
@@ -50,7 +50,7 @@ const Wrapper = styled(Card)`
 `;
 
 export interface StreamCardProps {
-  stream: FollowedStream | HelixStream;
+  stream: HelixStream;
 
   onNewCollection?(): void;
 }

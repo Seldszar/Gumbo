@@ -15,10 +15,10 @@ import { Storage } from "webextension-polyfill";
 import { ClickAction, ClickBehavior } from "./constants";
 import {
   Collection,
-  CurrentUser,
-  FollowedStream,
   FollowedStreamState,
   FollowedUserState,
+  HelixStream,
+  HelixUser,
   Settings,
 } from "./types";
 
@@ -182,18 +182,22 @@ export const stores = {
     schema: nullable(string()),
     defaultValue: () => null,
   }),
-  currentUser: new Store<CurrentUser | null>("local", "currentUser", {
+  currentUser: new Store<HelixUser | null>("local", "currentUser", {
     schema: nullable(
       object({
         id: string(),
         login: string(),
         displayName: string(),
+        broadcasterType: string(),
+        description: string(),
         profileImageUrl: string(),
+        offlineImageUrl: string(),
+        createdAt: string(),
       })
     ),
     defaultValue: () => null,
   }),
-  followedStreams: new Store<FollowedStream[]>("local", "followedStreams", {
+  followedStreams: new Store<HelixStream[]>("local", "followedStreams", {
     schema: array(
       object({
         id: string(),
@@ -204,9 +208,12 @@ export const stores = {
         gameName: string(),
         type: string(),
         title: string(),
+        tags: array(string()),
         viewerCount: number(),
         startedAt: string(),
+        language: string(),
         thumbnailUrl: string(),
+        isMature: boolean(),
       })
     ),
     defaultValue: () => [],

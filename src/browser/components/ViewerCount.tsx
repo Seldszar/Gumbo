@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
-import { FollowedStream, HelixStream } from "~/common/types";
+import { HelixStream } from "~/common/types";
 
 import Tooltip from "./Tooltip";
 
@@ -26,15 +26,16 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 export interface ViewerCountProps {
+  stream: HelixStream;
+
   className?: string;
-  stream: FollowedStream | HelixStream;
 }
 
 function ViewerCount(props: ViewerCountProps) {
   const { stream } = props;
 
   const status = useMemo(() => {
-    if (stream.type === "rerun") {
+    if (stream.tags.includes("Rerun")) {
       return {
         title: t("titleText_rerun"),
         icon: (

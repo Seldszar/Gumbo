@@ -2,11 +2,11 @@ import {
   camelCase,
   castArray,
   chunk,
-  filter,
   find,
   flatMap,
   get,
   map,
+  remove,
   snakeCase,
   toString,
 } from "lodash-es";
@@ -89,14 +89,22 @@ async function request<T>(path: string, params?: Dictionary<unknown>): Promise<H
   throw new RequestError(request, response);
 }
 
+async function paginate<T>(path: string, params?: Dictionary<unknown>): Promise<T[]> {
+  const { data, pagination } = await request<T>(path, params);
+
+  if (pagination.cursor) {
+    return data.concat(await paginate(path, { ...params, after: pagination.cursor }));
+  }
+
+  return data;
+}
+
 async function getCurrentUser() {
   return get(await request<HelixUser>("users"), ["data", 0], null);
 }
 
-async function getUsersByIds(id: string[]) {
-  const groups = chunk(id, 100);
-
-  const promises = await allPromises(groups, async (id) => {
+async function getUsersByIds(userIds: string[]) {
+  const pages = await allPromises(chunk(userIds, 100), async (id) => {
     const { data } = await request<HelixUser>("users", {
       id,
     });
@@ -104,33 +112,14 @@ async function getUsersByIds(id: string[]) {
     return data;
   });
 
-  return flatMap(promises);
+  return flatMap(pages);
 }
 
-async function getFollowedStreams(userId: string, after?: string) {
-  const { data: followedStreams, pagination } = await request<HelixStream>("streams/followed", {
+async function getFollowedStreams(userId: string) {
+  const followedStreams = await paginate<HelixStream>("streams/followed", {
     first: 100,
     userId,
-    after,
   });
-
-  const { data: streams } = await request<HelixStream>("streams", {
-    userId: map(followedStreams, "userId"),
-  });
-
-  for (const followedStream of followedStreams) {
-    const stream = find(streams, {
-      userId: followedStream.userId,
-    });
-
-    if (stream == null) {
-      followedStream.type = "rerun";
-    }
-  }
-
-  if (pagination.cursor) {
-    followedStreams.push(...(await getFollowedStreams(userId, pagination.cursor)));
-  }
 
   return followedStreams;
 }
@@ -182,9 +171,7 @@ async function refreshFollowedStreams(user: HelixUser, showNotifications = true)
     followedStreams = await getFollowedStreams(user.id);
 
     if (!settings.streams.withReruns) {
-      followedStreams = filter(followedStreams, {
-        type: "live",
-      });
+      remove(followedStreams, (stream) => stream.tags.includes("Rerun"));
     }
 
     if (showNotifications && settings.notifications.enabled) {

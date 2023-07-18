@@ -81,29 +81,6 @@ export interface Collection {
   items: string[];
 }
 
-export interface FollowedUser {
-  id: string;
-  login: string;
-  displayName: string;
-  profileImageUrl: string;
-  description: string;
-  viewCount: number;
-}
-
-export interface FollowedStream {
-  id: string;
-  userId: string;
-  userLogin: string;
-  userName: string;
-  gameId: string;
-  gameName: string;
-  type: string;
-  title: string;
-  viewerCount: number;
-  startedAt: string;
-  thumbnailUrl: string;
-}
-
 export interface HelixCategorySearchResult {
   boxArtUrl: string;
   id: string;
@@ -168,7 +145,6 @@ export interface HelixStream {
   startedAt: string;
   language: string;
   thumbnailUrl: string;
-  tagsIds: string[];
   isMature: boolean;
 }
 
@@ -176,13 +152,10 @@ export interface HelixUser {
   id: string;
   login: string;
   displayName: string;
-  type: string;
   broadcasterType: string;
   description: string;
   profileImageUrl: string;
   offlineImageUrl: string;
-  viewCount: number;
-  email: string;
   createdAt: string;
 }
 

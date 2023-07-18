@@ -2,15 +2,15 @@ import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
 
 import { openUrl, t, template } from "~/common/helpers";
-import { FollowedUser, HelixUser } from "~/common/types";
+import { HelixUser } from "~/common/types";
 
 import { useCollections, useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
 export interface UserDropdownProps {
-  user: FollowedUser | HelixUser;
   children: ReactElement;
+  user: HelixUser;
 
   onNewCollection?(): void;
 }
