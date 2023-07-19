@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "Adicionar"
+  },
   "buttonText_cancel": {
     "message": "Cancelar"
   },
@@ -13,5 +16,119 @@
   },
   "buttonText_importSettings": {
     "message": "Cancelar"
+  },
+  "buttonText_loadMore": {
+    "message": "Carregar Mais"
+  },
+  "buttonText_login": {
+    "message": "Entrar com Twitch"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Recarregar Extensão"
+  },
+  "buttonText_resetExtension": {
+    "message": "Resetar Extensão"
+  },
+  "buttonText_selectAll": {
+    "message": "Selecionar Tudo"
+  },
+  "buttonText_selectNone": {
+    "message": "Desmarcar Tudo"
+  },
+  "confirmMessage_reload": {
+    "message": "Por favor use o botão abaixo para recarregar a extensão."
+  },
+  "confirmMessage_reset": {
+    "message": "Todos os dados serão deletados e você será deslogado.<br />Deseja mesmo prosseguir?"
+  },
+  "confirmTitle_reload": {
+    "message": "Uh-on, Gumbo não está mais respondendo!"
+  },
+  "confirmTitle_reset": {
+    "message": "Você está prestes a resetar Gumbo!"
+  },
+  "detailText_noCategory": {
+    "message": "Sem categoria"
+  },
+  "detailText_noDescription": {
+    "message": "Sem descrição"
+  },
+  "detailText_noTitle": {
+    "message": "Sem título"
+  },
+  "detailText_viewCount": {
+    "message": "$1 visualizações"
+  },
+  "errorText_emptyCategories": {
+    "message": "Nenhuma categoria foi encontrada"
+  },
+  "errorText_emptyChannels": {
+    "message": "Nenhum canal foi encontrado"
+  },
+  "errorText_emptyClips": {
+    "message": "Nenhum clipe foi encontrado"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Nenhum seguidor"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Nenhuma categoria ignorada"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Nenhum stream online"
+  },
+  "errorText_emptyStreams": {
+    "message": "Nenhum stream encontrado"
+  },
+  "errorText_emptyUsers": {
+    "message": "Nenhum usuário encontrado"
+  },
+  "errorText_emptyVideos": {
+    "message": "Nenhum vídeo encontrado"
+  },
+  "extensionDescription": {
+    "message": "A companhia Swollen te mantém atualizado com a sua experiência no Twitch"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch Companion"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Incluir categoria alterar notificações"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Habilitar notificações"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Filtrar notificações por canal"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Filtrar streams por idioma"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Mostrar a contagem de streams online"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Mostrar somente os canais em live"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Mostrar Reprises nos seguintes streams"
+  },
+  "linkText_issues": {
+    "message": "Bugs & Sugestões"
+  },
+  "linkText_releases": {
+    "message": "Notas do Lançamento"
+  },
+  "linkText_repository": {
+    "message": "Código Fonte"
+  },
+  "linkText_translate": {
+    "message": "Traduzir"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo é uma extensão grátis que não coleta e não vende as informações pessoais dos usuários.</p><p>Doações, embora opcionais são muito apreciadas, apoia o meu trabalho e me encoraja a oferecer a melhor qualidade possível em meus produtos.</p><p>Obrigado por seu suporte!</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Comece digitando para buscar categorias"
   }
 }
