@@ -130,5 +130,236 @@
   },
   "messageText_typeSearchCategories": {
     "message": "Comece digitando para buscar categorias"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Comece a digitar para procurar canais"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Clique para autorizar"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Seu token de acesso do Twitch expirou, por favor faça uma nova autorização."
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 está online!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 está jogando $2!"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Acesso Expirado"
+  },
+  "optionTitle_clickAction": {
+    "message": "Clique em Ação"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Clique em Comportamento"
+  },
+  "optionTitle_fontSize": {
+    "message": "Tamanho da Fonte"
+  },
+  "optionTitle_theme": {
+    "message": "Tema"
+  },
+  "optionValue_about": {
+    "message": "Sobre"
+  },
+  "optionValue_aboutHelp": {
+    "message": "Sobre & Ajuda"
+  },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Abrir na aba atual"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Abrir em uma nova aba"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Abrir em uma nova janela"
+  },
+  "optionValue_donate": {
+    "message": "Doar"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Largo"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Maior"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Médio"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Pequeno"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Menor ainda"
+  },
+  "optionValue_logout": {
+    "message": "Sair"
+  },
+  "optionValue_openChannel": {
+    "message": "Abrir canal"
+  },
+  "optionValue_openChat": {
+    "message": "Abrir chat"
+  },
+  "optionValue_period_allTime": {
+    "message": "Sempre"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Ontem"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Últimos $1 dias"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Últimas $1 horas"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Último mês"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Última semana"
+  },
+  "optionValue_popout": {
+    "message": "Destacar"
+  },
+  "optionValue_schedule": {
+    "message": "Programação"
+  },
+  "optionValue_search": {
+    "message": "Buscar"
+  },
+  "optionValue_settings": {
+    "message": "Configurações"
+  },
+  "optionValue_sort_category": {
+    "message": "Categoria"
+  },
+  "optionValue_sort_login": {
+    "message": "Broadcaster"
+  },
+  "optionValue_sort_name": {
+    "message": "Nome"
+  },
+  "optionValue_sort_time": {
+    "message": "Tempo"
+  },
+  "optionValue_sort_trending": {
+    "message": "Em tendência"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Tempo de atividade"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Espectadores"
+  },
+  "optionValue_sort_views": {
+    "message": "Visualizações"
+  },
+  "optionValue_status_any": {
+    "message": "Qualquer"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Somente offline"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Somente online"
+  },
+  "optionValue_theme_dark": {
+    "message": "Escuro"
+  },
+  "optionValue_theme_light": {
+    "message": "Light"
+  },
+  "optionValue_theme_system": {
+    "message": "Sistema"
+  },
+  "optionValue_unknown": {
+    "message": "Desconhecido"
+  },
+  "optionValue_videoType_all": {
+    "message": "Todos os vídeos"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Arquivos"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Destaques"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Uploads"
+  },
+  "optionValue_videos": {
+    "message": "Vídeos"
+  },
+  "placeholderText_ignoredCategories": {
+    "message": "Selecione uma categoria para ignorar"
+  },
+  "titleText_advanced": {
+    "message": "Avançado"
+  },
+  "titleText_backgroundColor": {
+    "message": "Cor de Fundo"
+  },
+  "titleText_badge": {
+    "message": "Emblema"
+  },
+  "titleText_categories": {
+    "message": "Categorias"
+  },
+  "titleText_channels": {
+    "message": "Canais"
+  },
+  "titleText_clips": {
+    "message": "Clipes"
+  },
+  "titleText_dangerZone": {
+    "message": "Zona de Perigo"
+  },
+  "titleText_donate": {
+    "message": "Doar"
+  },
+  "titleText_followedStreams": {
+    "message": "Streams Seguidos"
+  },
+  "titleText_followedUsers": {
+    "message": "Usuários Seguidos"
+  },
+  "titleText_general": {
+    "message": "Geral"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Categorias Ignoradas"
+  },
+  "titleText_live": {
+    "message": "Ao Vivo"
+  },
+  "titleText_notifications": {
+    "message": "Notificações"
+  },
+  "titleText_rerun": {
+    "message": "Reprise"
+  },
+  "titleText_search": {
+    "message": "Busca"
+  },
+  "titleText_settings": {
+    "message": "Configurações"
+  },
+  "titleText_settingsManagement": {
+    "message": "Configurações de Controle"
+  },
+  "titleText_streams": {
+    "message": "Streams"
+  },
+  "titleText_topCategories": {
+    "message": "Melhores Categorias"
+  },
+  "titleText_topStreams": {
+    "message": "Melhores Streams"
+  },
+  "titleText_videos": {
+    "message": "Vídeos"
   }
 }
