@@ -35,7 +35,7 @@ function ViewerCount(props: ViewerCountProps) {
   const { stream } = props;
 
   const status = useMemo(() => {
-    if (stream.tags.includes("Rerun")) {
+    if (stream.tags?.includes("Rerun")) {
       return {
         title: t("titleText_rerun"),
         icon: (

@@ -208,7 +208,7 @@ export const stores = {
         gameName: string(),
         type: string(),
         title: string(),
-        tags: array(string()),
+        tags: nullable(array(string())),
         viewerCount: number(),
         startedAt: string(),
         language: string(),

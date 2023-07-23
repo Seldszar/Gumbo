@@ -140,7 +140,7 @@ export interface HelixStream {
   gameName: string;
   type: string;
   title: string;
-  tags: string[];
+  tags: null | string[];
   viewerCount: number;
   startedAt: string;
   language: string;
