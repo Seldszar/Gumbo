@@ -27,7 +27,7 @@ const Input = styled(SearchInput)`
 `;
 
 const Wrapper = styled.div`
-  ${tw`bg-neutral-100 dark:bg-neutral-900 flex gap-2 items-center px-2 py-3 shadow-sm dark:shadow-black/25`}
+  ${tw`bg-neutral-100 dark:bg-neutral-900 flex gap-2 items-center px-2 py-3 shadow shadow-black/10 dark:shadow-black/20`}
 `;
 
 export interface TopBarProps {
