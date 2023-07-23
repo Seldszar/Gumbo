@@ -3,15 +3,15 @@ import { ReactElement, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { openUrl, t, template } from "~/common/helpers";
-import { FollowedStream, HelixStream } from "~/common/types";
+import { HelixStream } from "~/common/types";
 
 import { useCollections, useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
 export interface StreamDropdownProps {
-  stream: FollowedStream | HelixStream;
   children: ReactElement;
+  stream: HelixStream;
 
   onNewCollection?(): void;
 }
@@ -78,15 +78,15 @@ function StreamDropdown(props: StreamDropdownProps) {
 
       if (userCollections.length > 0) {
         items.unshift(
-          {
-            type: "separator",
-          },
           ...userCollections.map<DropdownMenuItemProps>((collection) => ({
             type: "checkbox",
             title: collection.name,
             checked: collection.items.includes(stream.userId),
             onChange: () => toggleCollectionItem(collection.id, stream.userId),
-          }))
+          })),
+          {
+            type: "separator",
+          }
         );
       }
 
