@@ -5,7 +5,7 @@
     "develop:chrome": "webpack --env platform=chrome --mode=development --watch",
     "develop:firefox": "webpack --env platform=firefox --mode=development --watch",
     "prepare": "husky install",
-    "test": "eslint --ext=tsx,ts ."
+    "test": "tsc --noEmit && eslint --ext=tsx,ts ."
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
