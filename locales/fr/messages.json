@@ -35,11 +35,23 @@
   "buttonText_selectNone": {
     "message": "Sélectionner aucun"
   },
+  "buttonText_submit": {
+    "message": "Soumettre"
+  },
+  "buttonText_viewOn": {
+    "message": "Voir sur $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "Voulez-vous supprimer « $1 » ?"
+  },
   "confirmMessage_reload": {
     "message": "Veuillez utiliser le bouton ci-dessous pour recharger l'extension."
   },
   "confirmMessage_reset": {
     "message": "Toutes les données seront supprimées et vous serez déconnecté(e).<br />Êtes-vous sûr(e) de vouloir continuer ?"
+  },
+  "confirmTitle_deleteItem": {
+    "message": "Confirmer la suppression"
   },
   "confirmTitle_reload": {
     "message": "Oh-oh, Gumbo ne répond plus !"
@@ -77,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Aucune catégorie ignorée"
   },
+  "errorText_emptyList": {
+    "message": "La liste est vide"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Aucun stream en ligne"
   },
@@ -94,6 +109,9 @@
   },
   "extensionName": {
     "message": "Gumbo : Compagnon Twitch"
+  },
+  "helpText_customAction_url": {
+    "message": "Exemple : $1"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Inclure les notifications de changement de catégorie"
