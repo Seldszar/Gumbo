@@ -361,14 +361,17 @@ browser.notifications.onClicked.addListener((notificationId) => {
 browser.runtime.onInstalled.addListener((details) => {
   setup();
 
-  if (details.reason === "update") {
+  if (details.previousVersion) {
     const manifest = browser.runtime.getManifest();
 
-    browser.notifications.create(`${Date.now()}:update`, {
-      title: t("notificationMessage_extensionUpdated", manifest.version),
-      message: t("notificationContextMessage_extensionUpdated"),
-      type: "basic",
-    });
+    if (manifest.version > details.previousVersion) {
+      browser.notifications.create(`${Date.now()}:update`, {
+        title: t("notificationMessage_extensionUpdated", manifest.version),
+        message: t("notificationContextMessage_extensionUpdated"),
+        iconUrl: browser.runtime.getURL("icon-96.png"),
+        type: "basic",
+      });
+    }
   }
 });
 
