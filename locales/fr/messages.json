@@ -113,6 +113,9 @@
   "helpText_customAction_url": {
     "message": "Exemple : $1"
   },
+  "inputLabel_availablePlaceholders": {
+    "message": "Substituts disponibles"
+  },
   "inputLabel_categoryChangeNotifications": {
     "message": "Inclure les notifications de changement de catégorie"
   },
@@ -158,8 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "Cliquez pour autoriser"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Cliquez pour voir les changements"
+  },
   "notificationMessage_accessExpired": {
     "message": "Votre jeton d'accès Twitch a expiré, veuillez renouveler votre autorisation pour en obtenir un nouveau."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo a été mis à jour vers la version $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 est en ligne !"
@@ -197,6 +206,9 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Ouvrir dans une nouvelle fenêtre"
   },
+  "optionValue_customActions": {
+    "message": "Actions personnalisées"
+  },
   "optionValue_donate": {
     "message": "Faire un don"
   },
@@ -214,6 +226,9 @@
   },
   "optionValue_fontSize_smallest": {
     "message": "Très petite"
+  },
+  "optionValue_gotoCategory": {
+    "message": "Aller à la catégorie"
   },
   "optionValue_logout": {
     "message": "Déconnexion"
@@ -332,17 +347,38 @@
   "titleText_categories": {
     "message": "Catégories"
   },
+  "titleText_channelId": {
+    "message": "Identifiant de la chaine"
+  },
+  "titleText_channelLogin": {
+    "message": "Nom de la chaîne"
+  },
   "titleText_channels": {
     "message": "Chaînes"
   },
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_createCollection": {
+    "message": "Créer une collection"
+  },
+  "titleText_createItem": {
+    "message": "Créer un élément"
+  },
+  "titleText_customActions": {
+    "message": "Actions personnalisées"
+  },
   "titleText_dangerZone": {
     "message": "Zone à risque"
   },
+  "titleText_deleteCollection": {
+    "message": "Supprimer la collection"
+  },
   "titleText_donate": {
     "message": "Faire un don"
+  },
+  "titleText_dropdownMenu": {
+    "message": "Menu déroulant"
   },
   "titleText_followedStreams": {
     "message": "Streams suivis"
@@ -382,6 +418,12 @@
   },
   "titleText_topStreams": {
     "message": "Streams populaires"
+  },
+  "titleText_updateCollection": {
+    "message": "Mettre à jour la collection"
+  },
+  "titleText_updateItem": {
+    "message": "Mettre à jour l’élément"
   },
   "titleText_videos": {
     "message": "Vidéos"
