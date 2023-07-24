@@ -1,5 +1,5 @@
 import { filter } from "lodash-es";
-import React, { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";
@@ -8,25 +8,27 @@ import Select, { SelectProps } from "./Select";
 import SortButton from "./SortButton";
 
 const Wrapper = styled.div`
-  ${tw`flex gap-4 items-center`}
+  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex gap-4 items-center p-4`}
 `;
 
 const Spacer = styled.div`
   ${tw`flex-1`}
 `;
 
-export interface FilterProps extends SelectProps {
+export interface FilterProps extends SelectProps<any> {
   side: "left" | "right";
 }
 
 export interface FilterBarProps {
-  onDirectionChange?(value: SortDirection): void;
   className?: string;
-  direction?: SortDirection;
+
   filters: FilterProps[];
+
+  direction?: SortDirection;
+  onDirectionChange?(value: SortDirection): void;
 }
 
-const FilterBar: FC<FilterBarProps> = (props) => {
+function FilterBar(props: FilterBarProps) {
   const leftFilters = useMemo(() => filter(props.filters, { side: "left" }), [props.filters]);
   const rightFilters = useMemo(() => filter(props.filters, { side: "right" }), [props.filters]);
 
@@ -47,6 +49,6 @@ const FilterBar: FC<FilterBarProps> = (props) => {
       )}
     </Wrapper>
   );
-};
+}
 
 export default FilterBar;

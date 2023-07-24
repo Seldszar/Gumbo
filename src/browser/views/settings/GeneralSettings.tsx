@@ -1,22 +1,17 @@
-import React, { FC } from "react";
-import { styled } from "twin.macro";
-
 import { ClickAction, ClickBehavior } from "~/common/constants";
 import { t } from "~/common/helpers";
+
+import { useSettingsContext } from "~/browser/contexts";
 
 import FormField from "~/browser/components/FormField";
 import Section from "~/browser/components/Section";
 import Select from "~/browser/components/Select";
 
-import { useSettingsContext } from "~/browser/pages/settings";
-
-const Wrapper = styled.div``;
-
-const GeneralSettings: FC = () => {
+export function Component() {
   const { register } = useSettingsContext();
 
   return (
-    <Wrapper>
+    <div>
       <Section>
         <FormField title={t("optionTitle_fontSize")}>
           <Select
@@ -107,8 +102,6 @@ const GeneralSettings: FC = () => {
           />
         </FormField>
       </Section>
-    </Wrapper>
+    </div>
   );
-};
-
-export default GeneralSettings;
+}

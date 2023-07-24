@@ -1,9 +1,9 @@
-import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { useFollowedUsers } from "~/browser/helpers/hooks";
+import { useSettingsContext } from "~/browser/contexts";
+import { useFollowedChannels } from "~/browser/hooks";
 
 import ChannelName from "~/browser/components/ChannelName";
 import CheckboxGrid from "~/browser/components/CheckboxGrid";
@@ -11,21 +11,19 @@ import ListManager from "~/browser/components/ListManager";
 import Section from "~/browser/components/Section";
 import Switch from "~/browser/components/Switch";
 
-import { useSettingsContext } from "~/browser/pages/settings";
-
-const Wrapper = styled.div``;
+import IgnoredCategoryForm from "~/browser/components/forms/IgnoredCategoryForm";
 
 const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-const NotificationSettings: FC = () => {
+export function Component() {
   const { register, settings } = useSettingsContext();
 
-  const [followedUsers] = useFollowedUsers();
+  const { data: followedChannels = [] } = useFollowedChannels();
 
   return (
-    <Wrapper>
+    <div>
       <Section>
         <StyledSwitch {...register("notifications.enabled")}>
           {t("inputLabel_enableNotifications")}
@@ -47,21 +45,20 @@ const NotificationSettings: FC = () => {
         <CheckboxGrid
           {...register("notifications.selectedUsers")}
           disabled={!settings.notifications.enabled || !settings.notifications.withFilters}
-          options={followedUsers.map((user) => ({
-            title: <ChannelName login={user.login} name={user.display_name} />,
-            value: user.id,
+          options={followedChannels.map((follow) => ({
+            title: <ChannelName login={follow.broadcasterLogin} name={follow.broadcasterName} />,
+            value: follow.broadcasterId,
           }))}
         />
       </Section>
       <Section title={t("titleText_ignoredCategories")}>
-        <ListManager
+        <ListManager<string>
           {...register("notifications.ignoredCategories")}
-          placeholder={t("placeholderText_ignoredCategories")}
-          emptyMessage={t("errorText_emptyIgnoredCategories")}
+          getKey={(value) => value}
+          renderTitle={(value) => value}
+          renderForm={(props) => <IgnoredCategoryForm {...props} />}
         />
       </Section>
-    </Wrapper>
+    </div>
   );
-};
-
-export default NotificationSettings;
+}

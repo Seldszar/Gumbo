@@ -1,12 +1,10 @@
 import { map, xor } from "lodash-es";
-import React, { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import Checkbox from "./Checkbox";
-
-const Wrapper = styled.fieldset``;
 
 const PresetButton = styled.button`
   ${tw`font-medium text-sm text-neutral-600 dark:text-neutral-400 uppercase hover:(text-black dark:text-white) disabled:(cursor-default opacity-25 text-neutral-600 dark:text-neutral-400)!`}
@@ -26,21 +24,23 @@ export interface OptionProps<T> {
 }
 
 export interface CheckboxGridProps<T> {
-  onChange?(value: T[]): void;
-  options: OptionProps<T>[];
   className?: string;
   disabled?: boolean;
-  value?: T[];
+
+  options: OptionProps<T>[];
+
+  value: T[];
+  onChange(value: T[]): void;
 }
 
-const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
-  const register = (value: any) => ({
-    onChange: () => props.onChange?.(xor(props.value, [value])),
-    value: props.value?.includes(value) ?? false,
+function CheckboxGrid<T extends number | string>(props: CheckboxGridProps<T>) {
+  const register = (value: T) => ({
+    onChange: () => props.onChange(xor(props.value, [value])),
+    value: props.value.includes(value) ?? false,
   });
 
   return (
-    <Wrapper className={props.className} disabled={props.disabled}>
+    <fieldset className={props.className} disabled={props.disabled}>
       <PresetList>
         <PresetButton onClick={() => props.onChange?.([])}>
           {t("buttonText_selectNone")}
@@ -56,8 +56,8 @@ const CheckboxGrid: FC<CheckboxGridProps<any>> = (props) => {
           </Checkbox>
         ))}
       </Grid>
-    </Wrapper>
+    </fieldset>
   );
-};
+}
 
 export default CheckboxGrid;

@@ -1,92 +1,75 @@
-import React, { FC, useMemo, useState } from "react";
+import { Fragment } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import { useStreams } from "~/browser/helpers/queries";
+import { useRefreshHandler } from "~/browser/contexts";
+import { isEmpty } from "~/browser/helpers";
+import { useStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
+import Layout from "~/browser/components/Layout";
 import MoreButton from "~/browser/components/MoreButton";
-import RefreshIcon from "~/browser/components/RefreshIcon";
-import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
+const List = styled.div`
+  ${tw`py-2`}
 `;
-
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
-`;
-
-const Item = styled.div``;
 
 const LoadMore = styled.div`
-  ${tw`p-3`}
+  ${tw`p-4 pt-0`}
 `;
 
-const TopStreams: FC = () => {
-  const [streams, { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
-    useStreams();
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredStreams = useMemo(
-    () => filterList(streams, ["game_name", "title", "user_login", "user_name"], searchQuery),
-    [streams, searchQuery]
+export function ChildComponent() {
+  const [pages, { error, fetchMore, hasMore, isValidating, refresh }] = useStreams(
+    {
+      first: 100,
+    },
+    {
+      suspense: true,
+    }
   );
 
-  const children = useMemo(() => {
-    if (error) {
-      return <Splash>{error.message}</Splash>;
-    }
+  useRefreshHandler(async () => {
+    await refresh();
+  });
 
-    if (streams == null) {
-      return <Splash isLoading />;
-    }
+  if (error) {
+    return <Splash>{error.message}</Splash>;
+  }
 
-    if (isEmpty(filteredStreams)) {
-      return <Splash>{t("errorText_emptyStreams")}</Splash>;
-    }
-
-    return (
-      <>
-        {filteredStreams.map((stream) => (
-          <Item key={stream.id}>
-            <StreamCard stream={stream} />
-          </Item>
-        ))}
-
-        {hasMore && (
-          <LoadMore>
-            <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
-              {t("buttonText_loadMore")}
-            </MoreButton>
-          </LoadMore>
-        )}
-      </>
-    );
-  }, [error, filteredStreams, hasMore, isLoadingMore, streams]);
+  if (isEmpty(pages)) {
+    return <Splash>{t("errorText_emptyStreams")}</Splash>;
+  }
 
   return (
-    <Wrapper>
-      <Header>
-        <SearchInput
-          onChange={setSearchQuery}
-          actionButtons={[
-            {
-              onClick: () => refresh(),
-              children: <RefreshIcon isRefreshing={isRefreshing} />,
-            },
-          ]}
-        />
-      </Header>
+    <>
+      <List>
+        {pages.map((page, index) => (
+          <Fragment key={index}>
+            {page.data.map((stream) => (
+              <StreamCard key={stream.id} stream={stream} />
+            ))}
+          </Fragment>
+        ))}
+      </List>
 
-      {children}
-    </Wrapper>
+      {hasMore && (
+        <LoadMore>
+          <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
+            {t("buttonText_loadMore")}
+          </MoreButton>
+        </LoadMore>
+      )}
+    </>
   );
-};
+}
 
-export default TopStreams;
+export function Component() {
+  return (
+    <Layout>
+      <ChildComponent />
+    </Layout>
+  );
+}

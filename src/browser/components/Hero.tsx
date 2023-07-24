@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import Logo from "./Logo";
@@ -17,11 +16,7 @@ const StyledWordmark = styled(Wordmark)`
 `;
 
 const Author = styled.div`
-  ${tw`mb-4 text-center text-sm`}
-
-  a {
-    ${tw`hover:underline`}
-  }
+  ${tw`mb-4 text-center text-sm [&_a]:hover:underline`}
 `;
 
 const Description = styled.div`
@@ -32,7 +27,7 @@ interface HeroProps {
   className?: string;
 }
 
-const Hero: FC<HeroProps> = (props) => {
+function Hero(props: HeroProps) {
   const manifest = browser.runtime.getManifest();
 
   return (
@@ -48,6 +43,6 @@ const Hero: FC<HeroProps> = (props) => {
       <Description>{manifest.description}</Description>
     </Wrapper>
   );
-};
+}
 
 export default Hero;

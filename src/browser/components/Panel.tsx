@@ -1,4 +1,5 @@
-import React, { ReactNode, FC, MouseEventHandler } from "react";
+import { IconX } from "@tabler/icons-react";
+import { ReactNode, MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.div`
@@ -6,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex items-start py-6 sticky top-0 z-10`}
+  ${tw`bg-gradient-to-b from-neutral-100 from-50% dark:from-neutral-900 to-transparent flex items-start py-6 sticky top-0 z-10`}
 `;
 
 const Title = styled.div`
@@ -14,16 +15,7 @@ const Title = styled.div`
 `;
 
 const CloseButton = styled.button`
-  ${tw`flex-none ltr:-mr-1 rtl:-ml-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
-
-  svg {
-    ${tw`stroke-current w-6`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
+  ${tw`flex-none -me-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
 `;
 
 const Inner = styled.div`
@@ -37,21 +29,20 @@ export interface PanelProps {
   title?: ReactNode;
 }
 
-const Panel: FC<PanelProps> = (props) => (
-  <Wrapper className={props.className}>
-    <Header>
-      <Title>{props.title}</Title>
-      {props.onClose && (
-        <CloseButton onClick={props.onClose}>
-          <svg viewBox="0 0 24 24">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </CloseButton>
-      )}
-    </Header>
-    <Inner>{props.children}</Inner>
-  </Wrapper>
-);
+function Panel(props: PanelProps) {
+  return (
+    <Wrapper className={props.className}>
+      <Header>
+        <Title>{props.title}</Title>
+        {props.onClose && (
+          <CloseButton onClick={props.onClose}>
+            <IconX size="1.5rem" />
+          </CloseButton>
+        )}
+      </Header>
+      <Inner>{props.children}</Inner>
+    </Wrapper>
+  );
+}
 
 export default Panel;

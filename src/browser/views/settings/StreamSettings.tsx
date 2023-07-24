@@ -1,26 +1,23 @@
-import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { LANGUAGE_OPTIONS } from "~/common/constants";
 import { t } from "~/common/helpers";
 
+import { useSettingsContext } from "~/browser/contexts";
+
 import CheckboxGrid from "~/browser/components/CheckboxGrid";
 import Section from "~/browser/components/Section";
 import Switch from "~/browser/components/Switch";
-
-import { useSettingsContext } from "~/browser/pages/settings";
-
-const Wrapper = styled.div``;
 
 const StyledSwitch = styled(Switch)`
   ${tw`mb-3 last:mb-0`}
 `;
 
-const StreamSettings: FC = () => {
+export function Component() {
   const { register, settings } = useSettingsContext();
 
   return (
-    <Wrapper>
+    <div>
       <Section>
         <StyledSwitch {...register("streams.withReruns")}>
           {t("inputLabel_showRerunsInFollowedStreams")}
@@ -36,8 +33,6 @@ const StreamSettings: FC = () => {
           options={LANGUAGE_OPTIONS}
         />
       </Section>
-    </Wrapper>
+    </div>
   );
-};
-
-export default StreamSettings;
+}

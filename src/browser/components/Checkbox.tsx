@@ -1,4 +1,5 @@
-import React, { FC, ReactNode } from "react";
+import { IconCheck } from "@tabler/icons-react";
+import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Wrapper = styled.button`
@@ -10,18 +11,9 @@ interface ControlProps {
 }
 
 const Control = styled.div<ControlProps>`
-  ${tw`bg-black/50 flex flex-none h-6 items-center justify-center rounded text-white w-6`}
+  ${tw`bg-neutral-300 dark:bg-neutral-700 flex flex-none h-6 items-center justify-center rounded w-6`}
 
-  svg {
-    ${tw`stroke-current w-4`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 3px;
-  }
-
-  ${(props) => props.isChecked && tw`bg-purple-500 text-white`}
+  ${(props) => props.isChecked && tw`!(bg-purple-500 text-white)`}
 `;
 
 const Inner = styled.div`
@@ -36,21 +28,19 @@ export interface CheckboxProps {
   value?: boolean;
 }
 
-const Checkbox: FC<CheckboxProps> = (props) => (
-  <Wrapper
-    disabled={props.disabled}
-    className={props.className}
-    onClick={() => props.onChange?.(!props.value)}
-  >
-    <Control isChecked={props.value}>
-      {props.value && (
-        <svg viewBox="0 0 24 24">
-          <path d="M5 12l5 5l10 -10" />
-        </svg>
-      )}
-    </Control>
-    {props.children && <Inner>{props.children}</Inner>}
-  </Wrapper>
-);
+function Checkbox(props: CheckboxProps) {
+  return (
+    <Wrapper
+      disabled={props.disabled}
+      className={props.className}
+      onClick={() => props.onChange?.(!props.value)}
+    >
+      <Control isChecked={props.value}>
+        {props.value && <IconCheck size="1rem" strokeWidth={3} />}
+      </Control>
+      {props.children && <Inner>{props.children}</Inner>}
+    </Wrapper>
+  );
+}
 
 export default Checkbox;

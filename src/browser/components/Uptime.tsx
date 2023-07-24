@@ -1,14 +1,16 @@
-import React, { FC, useMemo } from "react";
+import { useMemo } from "react";
 
-import { useNow } from "../helpers/hooks";
-import { formatTime } from "../helpers/time";
+import { formatTime } from "~/browser/helpers";
+import { useNow } from "~/browser/hooks";
+
+import Tooltip from "./Tooltip";
 
 export interface UptimeProps {
   className?: string;
   startDate: Date;
 }
 
-const Uptime: FC<UptimeProps> = (props) => {
+function Uptime(props: UptimeProps) {
   const now = useNow();
 
   const timeString = useMemo(
@@ -17,10 +19,12 @@ const Uptime: FC<UptimeProps> = (props) => {
   );
 
   return (
-    <div className={props.className} title={props.startDate.toLocaleString("en-US")}>
-      {timeString}
+    <div className={props.className}>
+      <Tooltip content={props.startDate.toLocaleString("en-US")}>
+        <span>{timeString}</span>
+      </Tooltip>
     </div>
   );
-};
+}
 
 export default Uptime;

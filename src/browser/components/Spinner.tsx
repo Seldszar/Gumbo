@@ -1,5 +1,5 @@
 import { keyframes } from "@emotion/react";
-import React, { FC, HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import tw, { styled } from "twin.macro";
 
 const rotateAnimation = keyframes`
@@ -37,10 +37,12 @@ const Wrapper = styled.svg`
   }
 `;
 
-const Spinner: FC<HTMLAttributes<SVGElement>> = (props) => (
-  <Wrapper {...props} viewBox="0 0 50 50">
-    <circle cx="25" cy="25" r="20" fill="none" strokeWidth="5" />
-  </Wrapper>
-);
+function Spinner(props: HTMLAttributes<SVGElement>) {
+  return (
+    <Wrapper {...props} viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20" fill="none" strokeWidth="5" />
+    </Wrapper>
+  );
+}
 
 export default Spinner;

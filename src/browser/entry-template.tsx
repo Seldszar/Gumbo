@@ -1,27 +1,31 @@
-import type { EntryWrapper } from "@seldszar/yael";
+import "overlayscrollbars/overlayscrollbars.css";
 
 import { Global } from "@emotion/react";
-import { domAnimation, LazyMotion } from "framer-motion";
-import React, { ExoticComponent, FC, useEffect } from "react";
+import { EntryWrapper } from "@seldszar/yael";
+import { ExoticComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
 import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
 
-import { usePreferDarkMode, useSettings } from "./helpers/hooks";
-import { backgroundFetcher } from "./helpers/queries";
+import { usePreferDarkMode, useSettings } from "./hooks";
 
 setupSentry();
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
-  const root = createRoot(document.body);
+  const container = document.getElementById("app-root");
+
+  if (container == null) {
+    return;
+  }
+
+  const root = createRoot(container);
 
   document.documentElement.dir = t("@@bidi_dir");
   document.documentElement.lang = t("@@ui_locale");
 
-  const App: FC = () => {
+  function App() {
     const [settings] = useSettings();
 
     const darkMode = usePreferDarkMode();
@@ -34,56 +38,49 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
     }, [darkMode, settings.general.theme]);
 
     return (
-      <SWRConfig value={{ fetcher: backgroundFetcher }}>
-        <HashRouter>
-          <LazyMotion features={domAnimation} strict>
-            <GlobalStyles />
+      <SWRConfig value={{ keepPreviousData: true }}>
+        <GlobalStyles />
 
-            <Global
-              styles={css`
-                ::selection {
-                  ${tw`bg-purple-500 text-white`}
-                }
+        <Global
+          styles={css`
+            ::selection {
+              ${tw`bg-purple-500 text-white`}
+            }
 
-                ::-webkit-scrollbar {
-                  ${tw`bg-black/10 dark:bg-black/25`}
+            html,
+            body {
+              font-size: ${getBaseFontSize(settings.general.fontSize)};
+            }
 
-                  height: ${theme`spacing.2`};
-                  width: ${theme`spacing.2`};
-                }
+            html {
+              color-scheme: dark;
+            }
 
-                ::-webkit-scrollbar-track,
-                ::-webkit-scrollbar-thumb {
-                  background-clip: padding-box;
-                  border: 1px solid ${theme`colors.transparent`};
-                }
+            body {
+              ${tw`bg-neutral-100 font-sans text-black dark:(bg-neutral-900 text-white)`}
+            }
 
-                ::-webkit-scrollbar-thumb {
-                  ${tw`bg-purple-500 hover:bg-purple-600 active:bg-purple-400`}
-                }
+            #modal-root {
+              ${tw`absolute z-50`}
+            }
 
-                * {
-                  scrollbar-color: ${theme`colors.purple.500`} ${theme`colors.transparent`};
-                  scrollbar-width: thin;
-                }
+            .os-theme-gumbo {
+              --os-handle-bg-active: ${theme("colors.purple.600")};
+              --os-handle-bg-hover: ${theme("colors.purple.400")};
+              --os-handle-bg: ${theme("colors.purple.500")};
+              --os-handle-border-radius: ${theme("borderRadius.full")};
+              --os-handle-interactive-area-offset: 3px;
+              --os-padding-axis: 3px;
+              --os-padding-perpendicular: 3px;
+              --os-size: 10px;
+            }
+          `}
+        />
 
-                html,
-                body {
-                  font-size: ${getBaseFontSize(settings.general.fontSize)};
-                }
-
-                body {
-                  ${tw`bg-neutral-100 text-black overflow-hidden dark:(bg-neutral-900 text-white)`}
-                }
-              `}
-            />
-
-            <Component />
-          </LazyMotion>
-        </HashRouter>
+        <Component />
       </SWRConfig>
     );
-  };
+  }
 
   root.render(<App />);
 };

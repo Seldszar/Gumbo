@@ -1,124 +1,90 @@
-import { concat, sortBy, uniqBy } from "lodash";
-import React, { FC, useMemo, useState } from "react";
+import { flatMap, sortBy } from "lodash-es";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import { usePinnedCategories } from "~/browser/helpers/hooks";
-import { onceMiddleware, useCategories, useTopCategories } from "~/browser/helpers/queries";
+import { useRefreshHandler } from "~/browser/contexts";
+import { isEmpty } from "~/browser/helpers";
+import { useCollections, useGamesByID, useTopCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
+import CollectionList from "~/browser/components/CollectionList";
+import Layout from "~/browser/components/Layout";
 import MoreButton from "~/browser/components/MoreButton";
-import RefreshIcon from "~/browser/components/RefreshIcon";
-import SearchInput from "~/browser/components/SearchInput";
 import Splash from "~/browser/components/Splash";
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
-
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
-`;
-
 const Grid = styled.div`
-  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-3`}
+  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-4`}
 `;
-
-const Item = styled(Link)``;
 
 const LoadMore = styled.div`
-  ${tw`p-3 pt-0`}
+  ${tw`p-4 pt-0`}
 `;
 
-const TopCategories: FC = () => {
-  const [pinnedCategories, { toggle }] = usePinnedCategories();
+export function ChildComponent() {
+  const [collections] = useCollections("category", {
+    suspense: true,
+  });
 
-  const [categories, { refresh: refreshCategories }] = useCategories(
+  const { data: categories = [] } = useGamesByID(flatMap(collections, "items"), {
+    suspense: true,
+  });
+
+  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useTopCategories(
     {
-      id: pinnedCategories,
+      first: 100,
     },
     {
-      use: [onceMiddleware],
+      suspense: true,
     }
   );
 
-  const [topCategories, { error, fetchMore, hasMore, isLoadingMore, isRefreshing, refresh }] =
-    useTopCategories();
+  useRefreshHandler(async () => {
+    await refresh();
+  });
 
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const allCategories = useMemo(
-    () => uniqBy(concat(sortBy(categories, "name"), topCategories), "id"),
-    [categories, topCategories]
-  );
-
-  const filteredCategories = useMemo(
-    () => filterList(allCategories, ["name"], searchQuery),
-    [allCategories, searchQuery]
-  );
-
-  const children = useMemo(() => {
-    if (error) {
-      return <Splash>{error.message}</Splash>;
-    }
-
-    if (topCategories == null) {
-      return <Splash isLoading />;
-    }
-
-    if (isEmpty(filteredCategories)) {
-      return <Splash>{t("errorText_emptyCategories")}</Splash>;
-    }
-
-    return (
-      <>
-        <Grid>
-          {filteredCategories.map((category) => (
-            <Item key={category.id} to={`/categories/${category.id}`}>
-              <CategoryCard
-                category={category}
-                isPinned={pinnedCategories.includes(category.id)}
-                onTogglePinClick={() => toggle(category.id)}
-              />
-            </Item>
-          ))}
-        </Grid>
-
-        {hasMore && (
-          <LoadMore>
-            <MoreButton isLoading={isLoadingMore} fetchMore={fetchMore}>
-              {t("buttonText_loadMore")}
-            </MoreButton>
-          </LoadMore>
-        )}
-      </>
-    );
-  }, [error, filteredCategories, hasMore, isLoadingMore, topCategories]);
+  if (isEmpty(pages)) {
+    return <Splash>{t("errorText_emptyCategories")}</Splash>;
+  }
 
   return (
-    <Wrapper>
-      <Header>
-        <SearchInput
-          onChange={setSearchQuery}
-          actionButtons={[
-            {
-              children: <RefreshIcon isRefreshing={isRefreshing} />,
-              onClick() {
-                refreshCategories();
-                refresh();
-              },
-            },
-          ]}
-        />
-      </Header>
+    <CollectionList
+      type="category"
+      items={sortBy(categories, "name")}
+      getItemIdentifier={(item) => item.id}
+      defaultItems={pages.flatMap((page) => page.data)}
+      render={({ collection, items, createCollection }) => (
+        <>
+          <Grid>
+            {items.map((category) => (
+              <Link key={category.id} to={`/categories/${category.id}`}>
+                <CategoryCard
+                  category={category}
+                  onNewCollection={() => createCollection([category.id])}
+                />
+              </Link>
+            ))}
+          </Grid>
 
-      {children}
-    </Wrapper>
+          {collection == null && hasMore && (
+            <LoadMore>
+              <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
+                {t("buttonText_loadMore")}
+              </MoreButton>
+            </LoadMore>
+          )}
+        </>
+      )}
+    />
   );
-};
+}
 
-export default TopCategories;
+export function Component() {
+  return (
+    <Layout>
+      <ChildComponent />
+    </Layout>
+  );
+}

@@ -1,101 +1,272 @@
-import { concat, map, without } from "lodash-es";
-import React, { FC, FormEventHandler, useState } from "react";
-import tw, { styled } from "twin.macro";
+import { DndContext, DragOverlay, UniqueIdentifier, closestCenter } from "@dnd-kit/core";
+import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { FloatingPortal } from "@floating-ui/react";
+import { IconEdit, IconGripVertical, IconList, IconPlus, IconTrash } from "@tabler/icons-react";
+import { concat, set, without } from "lodash-es";
+import { HTMLAttributes, Key, ReactNode, forwardRef, useEffect, useState } from "react";
+import tw, { css, styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import Button from "./Button";
-import Input from "./Input";
+import Modal from "./Modal";
+import Panel from "./Panel";
 
-const Wrapper = styled.fieldset``;
-
-const Form = styled.form`
-  ${tw`flex gap-x-3 mb-3`}
-`;
-
-const StyledInput = styled(Input)`
-  ${tw`flex-1`}
-`;
+import DeleteModal from "./modals/DeleteModal";
 
 const List = styled.div`
-  ${tw`bg-neutral-800 overflow-hidden rounded shadow`}
+  ${tw`flex flex-col gap-px mb-2`}
 `;
 
-const Item = styled.div`
-  ${tw`border-b border-neutral-900 flex px-4 py-3 last:border-none`}
+interface ItemProps {
+  dragOverlay?: boolean;
+}
+
+const Item = styled.div<ItemProps>`
+  ${tw`bg-neutral-200 dark:bg-neutral-800 flex items-center gap-4 px-4 py-3 relative rounded`}
+
+  ${(props) =>
+    props.dragOverlay &&
+    css`
+      ${tw`shadow-lg bg-neutral-300 dark:bg-neutral-700`}
+
+      &, ${ItemHandle} {
+        ${tw`cursor-grabbing`}
+      }
+    `}
 `;
 
-const ItemValue = styled.div`
+const ItemTitle = styled.div`
   ${tw`flex-1`}
 `;
 
-const DeleteButton = styled.button`
-  ${tw`flex-none text-red-500 hover:text-red-400`}
+const ItemHandle = styled.button`
+  ${tw`cursor-grab flex-none text-neutral-500`}
+`;
 
-  svg {
-    ${tw`stroke-current w-5`}
+const ItemButton = styled.button`
+  ${tw`flex-none`}
+`;
 
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
+const Empty = styled.div`
+  ${tw`bg-black/5 border border-neutral-300 flex flex-col items-center py-12 rounded dark:(bg-black/25 border-neutral-800)`}
 `;
 
 const EmptyMessage = styled.div`
-  ${tw`bg-black/10 py-5 rounded text-center text-neutral-500 dark:bg-black/25`}
+  ${tw`mb-6 text-center text-xl`}
 `;
 
-export interface ListManagerProps<T> {
-  onChange(value: T[]): void;
-  className?: string;
-  placeholder?: string;
-  emptyMessage?: string;
-  disabled?: boolean;
-  value: T[];
+export type ItemType = UniqueIdentifier | { id: UniqueIdentifier };
+
+interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
+  handleProps?: HTMLAttributes<HTMLButtonElement>;
+  dragOverlay?: boolean;
 }
 
-const ListManager: FC<ListManagerProps<any>> = (props) => {
-  const [inputText, setInputText] = useState("");
+const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
+  const { children, handleProps, ...rest } = props;
 
-  const handleSubmit: FormEventHandler = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
+  return (
+    <Item ref={ref} {...rest}>
+      <ItemHandle {...handleProps}>
+        <IconGripVertical size="1.25rem" />
+      </ItemHandle>
 
-    props.onChange(concat(props.value, inputText));
+      {children}
+    </Item>
+  );
+});
 
-    setInputText("");
+interface SortableListItemProps {
+  id: UniqueIdentifier;
+
+  children: ReactNode;
+}
+
+function SortableListItem(props: SortableListItemProps) {
+  const { isDragging, listeners, setNodeRef, transform, transition } = useSortable({
+    id: props.id,
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    opacity: isDragging ? 0.5 : undefined,
+    transition,
   };
 
   return (
-    <Wrapper className={props.className} disabled={props.disabled}>
-      <Form onSubmit={handleSubmit}>
-        <StyledInput placeholder={props.placeholder} value={inputText} onChange={setInputText} />
-        <Button color="purple">{t("buttonText_add")}</Button>
-      </Form>
-
-      {props.value.length > 0 ? (
-        <List>
-          {map(props.value, (option, index) => (
-            <Item key={index}>
-              <ItemValue>{option}</ItemValue>
-              <DeleteButton onClick={() => props.onChange(without(props.value, option))}>
-                <svg viewBox="0 0 24 24">
-                  <line x1="4" y1="7" x2="20" y2="7" />
-                  <line x1="10" y1="11" x2="10" y2="17" />
-                  <line x1="14" y1="11" x2="14" y2="17" />
-                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                </svg>
-              </DeleteButton>
-            </Item>
-          ))}
-        </List>
-      ) : (
-        <EmptyMessage>{props.emptyMessage}</EmptyMessage>
-      )}
-    </Wrapper>
+    <ListItem ref={setNodeRef} style={style} handleProps={listeners}>
+      {props.children}
+    </ListItem>
   );
-};
+}
+
+interface ModalState<T> {
+  type: "delete" | "mutate";
+
+  index: number;
+  item?: T;
+}
+
+interface ModalProps<T> {
+  value?: T;
+
+  onSubmit(value: T): void;
+  onCancel(): void;
+}
+
+const getKey = (item: ItemType) => (typeof item === "object" ? item.id : item);
+
+export interface ListManagerProps<T extends ItemType> {
+  className?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  value: T[];
+
+  onChange(value: T[]): void;
+  renderTitle(value: T): string;
+  renderForm(props: ModalProps<T>): ReactNode;
+  getKey(value: T): Key;
+}
+
+function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
+  const [items, setItems] = useState(props.value);
+
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [modalState, setModalState] = useState<ModalState<T> | null>(null);
+
+  useEffect(() => setItems(props.value), [props.value]);
+
+  const getItem = (id: UniqueIdentifier) => items.find((item) => getKey(item) === id);
+  const getIndex = (id: UniqueIdentifier) => items.findIndex((item) => getKey(item) === id);
+
+  const activeItem = activeId ? getItem(activeId) : undefined;
+
+  return (
+    <fieldset className={props.className} disabled={props.disabled}>
+      {items.length > 0 ? (
+        <DndContext
+          collisionDetection={closestCenter}
+          onDragStart={({ active }) => {
+            if (active == null) {
+              return;
+            }
+
+            setActiveId(active.id);
+          }}
+          onDragEnd={({ active, over }) => {
+            setActiveId(null);
+
+            if (over == null) {
+              return;
+            }
+
+            setItems((items) => {
+              const oldIndex = getIndex(active.id);
+              const newIndex = getIndex(over.id);
+
+              if (oldIndex !== newIndex) {
+                props.onChange((items = arrayMove(items, oldIndex, newIndex)));
+              }
+
+              return items;
+            });
+          }}
+        >
+          <SortableContext items={items}>
+            <List>
+              {items.map((item, index) => (
+                <SortableListItem key={getKey(item)} id={getKey(item)}>
+                  <ItemTitle>{props.renderTitle(item)}</ItemTitle>
+                  <ItemButton onClick={() => setModalState({ index, item, type: "mutate" })}>
+                    <IconEdit size="1.25rem" />
+                  </ItemButton>
+                  <ItemButton onClick={() => setModalState({ index, item, type: "delete" })}>
+                    <IconTrash size="1.25rem" />
+                  </ItemButton>
+                </SortableListItem>
+              ))}
+            </List>
+          </SortableContext>
+
+          <Button
+            fullWidth
+            color="purple"
+            icon={<IconPlus size="1.25rem" />}
+            onClick={() => setModalState({ index: -1, type: "mutate" })}
+          >
+            {t("buttonText_add")}
+          </Button>
+
+          <FloatingPortal id="modal-root">
+            <DragOverlay>
+              {activeItem && (
+                <ListItem dragOverlay>
+                  <ItemTitle>{props.renderTitle(activeItem)}</ItemTitle>
+                </ListItem>
+              )}
+            </DragOverlay>
+          </FloatingPortal>
+        </DndContext>
+      ) : (
+        <Empty>
+          <IconList size="1.75rem" />
+          <EmptyMessage>{t("errorText_emptyList")}</EmptyMessage>
+          <Button
+            color="purple"
+            icon={<IconPlus size="1.25rem" />}
+            onClick={() => setModalState({ index: -1, type: "mutate" })}
+          >
+            {t("buttonText_add")}
+          </Button>
+        </Empty>
+      )}
+
+      {modalState && (
+        <>
+          {modalState.type === "delete" ? (
+            <DeleteModal
+              name={modalState.item && props.renderTitle(modalState.item)}
+              onCancel={() => setModalState(null)}
+              onConfirm={() => {
+                setModalState(null);
+
+                if (modalState.item) {
+                  props.onChange(without(items, modalState.item));
+                }
+              }}
+            />
+          ) : (
+            <Modal>
+              <Panel
+                title={t(modalState.item ? "titleText_updateItem" : "titleText_createItem")}
+                onClose={() => setModalState(null)}
+              >
+                {props.renderForm({
+                  value: modalState.item,
+                  onSubmit(item) {
+                    setModalState(null);
+
+                    switch (modalState.index) {
+                      case -1:
+                        return props.onChange(concat(items, item));
+
+                      default:
+                        return props.onChange(set(items, modalState.index, item));
+                    }
+                  },
+                  onCancel() {
+                    setModalState(null);
+                  },
+                })}
+              </Panel>
+            </Modal>
+          )}
+        </>
+      )}
+    </fieldset>
+  );
+}
 
 export default ListManager;

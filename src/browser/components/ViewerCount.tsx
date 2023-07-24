@@ -1,16 +1,17 @@
-import React, { FC, useMemo } from "react";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+import { HelixStream } from "~/common/types";
+
+import Tooltip from "./Tooltip";
 
 interface WrapperProps {
   type: string;
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  ${tw`flex gap-1 text-red-600 dark:text-red-400`}
-
-  font-feature-settings: "tnum";
+  ${tw`flex gap-1 tabular-nums text-red-600 dark:text-red-400`}
 
   svg {
     ${tw`stroke-current w-5`}
@@ -25,15 +26,16 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 export interface ViewerCountProps {
+  stream: HelixStream;
+
   className?: string;
-  stream: any;
 }
 
-const ViewerCount: FC<ViewerCountProps> = (props) => {
+function ViewerCount(props: ViewerCountProps) {
   const { stream } = props;
 
   const status = useMemo(() => {
-    if (stream.type === "rerun") {
+    if (stream.tags?.includes("Rerun")) {
       return {
         title: t("titleText_rerun"),
         icon: (
@@ -59,11 +61,13 @@ const ViewerCount: FC<ViewerCountProps> = (props) => {
   }, [stream.type]);
 
   return (
-    <Wrapper type={stream.type} title={status.title} className={props.className}>
-      {stream.viewer_count.toLocaleString("en-US")}
-      {status.icon}
-    </Wrapper>
+    <Tooltip content={status.title}>
+      <Wrapper type={stream.type} className={props.className}>
+        {stream.viewerCount.toLocaleString("en-US")}
+        {status.icon}
+      </Wrapper>
+    </Tooltip>
   );
-};
+}
 
 export default ViewerCount;

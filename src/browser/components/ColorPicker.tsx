@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import tw, { styled } from "twin.macro";
 
 import { PRESET_COLORS } from "~/common/constants";
@@ -15,7 +14,7 @@ interface ButtonProps {
 }
 
 const Button = styled.button<ButtonProps>`
-  ${tw`h-10 rounded shadow-lg w-10 disabled:(cursor-default opacity-25)!`}
+  ${tw`h-10 rounded w-10 disabled:(cursor-default opacity-25)!`}
 
   background-color: ${(props) => props.color};
 
@@ -29,26 +28,29 @@ const ColorInput = styled(Input)`
 `;
 
 export interface ColorPickerProps {
-  onChange?(value: string): void;
   className?: string;
   disabled?: boolean;
-  value?: string;
+
+  value: string;
+  onChange(value: string): void;
 }
 
-const ColorPicker: FC<ColorPickerProps> = (props) => (
-  <Wrapper className={props.className} disabled={props.disabled}>
-    {PRESET_COLORS.map((color, index) => (
-      <Button
-        key={index}
-        color={color}
-        isSelected={color === props.value}
-        onClick={() => props.onChange?.(color)}
-        title={color}
-      />
-    ))}
+function ColorPicker(props: ColorPickerProps) {
+  return (
+    <Wrapper className={props.className} disabled={props.disabled}>
+      {PRESET_COLORS.map((color, index) => (
+        <Button
+          key={index}
+          color={color}
+          isSelected={color === props.value}
+          onClick={() => props.onChange(color)}
+          title={color}
+        />
+      ))}
 
-    <ColorInput value={props.value} onChange={props.onChange} />
-  </Wrapper>
-);
+      <ColorInput value={props.value} onChange={props.onChange} />
+    </Wrapper>
+  );
+}
 
 export default ColorPicker;

@@ -1,120 +1,84 @@
-import React, { FC } from "react";
-import tw, { css, styled } from "twin.macro";
+import tw, { styled } from "twin.macro";
 
-import { openUrl, t } from "~/common/helpers";
+import { t } from "~/common/helpers";
+import { HelixChannelSearchResult } from "~/common/types";
 
-import { useClickAction } from "~/browser/helpers/hooks";
+import { useClickAction } from "~/browser/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
+import DropdownButton from "../DropdownButton";
 import ChannelName from "../ChannelName";
 import Image from "../Image";
+import Tooltip from "../Tooltip";
 
-export interface WrapperProps {
-  isLive?: boolean;
-}
+import ChannelDropdown from "../dropdowns/ChannelDropdown";
 
-const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`h-20`}
-
-  ${(props) =>
-    props.isLive &&
-    css`
-      ${Thumbnail} {
-        ${tw`ring-2 ring-offset-2 ring-offset-neutral-900 ring-red-500`}
-      }
-    `}
+const StyledDropdownButton = styled(DropdownButton)`
+  ${tw`absolute invisible end-6 -top-2 z-20`}
 `;
 
 const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded-full shadow-md w-12`}
+  ${tw`bg-black overflow-hidden relative rounded-full w-12`}
 `;
 
 const CategoryName = styled.div`
   ${tw`truncate`}
 `;
 
-export interface ChannelCardProps {
-  channel: any;
+export interface WrapperProps {
+  isLive?: boolean;
 }
 
-const ChannelCard: FC<ChannelCardProps> = (props) => {
+const Wrapper = styled(Card)<WrapperProps>`
+  ${tw`py-2 relative`}
+
+  ${Thumbnail} {
+    ${(props) =>
+      props.isLive &&
+      tw`ring-2 ring-offset-2 ring-offset-white ring-red-500 dark:ring-offset-black`}
+  }
+
+  :hover ${StyledDropdownButton} {
+    ${tw`visible`}
+  }
+`;
+
+export interface ChannelCardProps {
+  channel: HelixChannelSearchResult;
+}
+
+function ChannelCard(props: ChannelCardProps) {
   const { channel } = props;
 
-  const defaultAction = useClickAction(channel.broadcaster_login);
+  const defaultAction = useClickAction(channel.broadcasterLogin);
 
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        isLive={channel.is_live}
-        overflowMenu={{
-          items: [
-            {
-              type: "link",
-              children: t("optionValue_openChannel"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}`, event);
-              },
-            },
-            {
-              type: "link",
-              children: t("optionValue_openChat"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/chat`, event);
-              },
-            },
-            {
-              type: "link",
-              children: t("optionValue_popout"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/popout`, event);
-              },
-            },
-            {
-              type: "separator",
-            },
-            {
-              type: "link",
-              children: t("optionValue_about"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/about`, event);
-              },
-            },
-            {
-              type: "link",
-              children: t("optionValue_schedule"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/schedule`, event);
-              },
-            },
-            {
-              type: "link",
-              children: t("optionValue_videos"),
-              onClick(event) {
-                openUrl(`https://twitch.tv/${channel.broadcaster_login}/videos`, event);
-              },
-            },
-          ],
-        }}
-        titleProps={{
-          children: <ChannelName login={channel.broadcaster_login} name={channel.display_name} />,
-        }}
-        subtitleProps={{
-          children: channel.title || <i>{t("detailText_noTitle")}</i>,
-          title: channel.title,
-        }}
-        aside={
+        isLive={channel.isLive}
+        title={<ChannelName login={channel.broadcasterLogin} name={channel.displayName} />}
+        subtitle={
+          <Tooltip content={channel.title}>
+            <span>{channel.title || <i>{t("detailText_noTitle")}</i>}</span>
+          </Tooltip>
+        }
+        leftOrnament={
           <Thumbnail>
-            <Image src={channel.thumbnail_url} ratio={1} />
+            <Image src={channel.thumbnailUrl} ratio={1} />
           </Thumbnail>
         }
       >
-        <CategoryName title={channel.game_name}>
-          {channel.game_name || <i>{t("detailText_noCategory")}</i>}
+        <CategoryName title={channel.gameName}>
+          {channel.gameName || <i>{t("detailText_noCategory")}</i>}
         </CategoryName>
+
+        <ChannelDropdown channel={channel}>
+          <StyledDropdownButton />
+        </ChannelDropdown>
       </Wrapper>
     </Anchor>
   );
-};
+}
 
 export default ChannelCard;

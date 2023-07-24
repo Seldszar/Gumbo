@@ -1,48 +1,36 @@
-import React, { FC, useState } from "react";
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import SearchInput from "~/browser/components/SearchInput";
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
-`;
-
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-20`}
-`;
+import Layout from "~/browser/components/Layout";
 
 const TabList = styled.div`
-  ${tw`bg-white dark:bg-black flex flex-none -mt-20 pt-24 px-4`}
+  ${tw`flex`}
 `;
 
 const Tab = styled(NavLink)`
-  ${tw`flex-auto px-4 py-2 rounded-t text-center hover:(text-black dark:text-white)`}
-
-  &.active {
-    ${tw`(bg-neutral-100 dark:bg-neutral-900 text-purple-500)!`}
-  }
+  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex-1 py-3 relative text-center text-neutral-600 dark:text-neutral-400 [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
 `;
 
-const Search: FC = () => {
+export interface OutletContext {
+  searchQuery: string;
+}
+
+export function Component() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <Wrapper>
-      <Header>
-        <SearchInput onChange={setSearchQuery} />
-      </Header>
-
+    <Layout searchQuery={searchQuery} onSearchQueryChange={setSearchQuery}>
       <TabList>
         <Tab to="channels">{t("titleText_channels")}</Tab>
         <Tab to="categories">{t("titleText_categories")}</Tab>
       </TabList>
 
       <Outlet context={{ searchQuery }} />
-    </Wrapper>
+    </Layout>
   );
-};
+}
 
-export default Search;
+export default Component;

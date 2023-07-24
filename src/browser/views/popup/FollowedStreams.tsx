@@ -1,149 +1,113 @@
-import React, { FC, useMemo, useState } from "react";
-import { groupBy, orderBy } from "lodash-es";
-import { useAsyncFn } from "react-use";
+import { orderBy } from "lodash-es";
+import { useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
+import { FollowedStreamState } from "~/common/types";
 
-import { filterList, isEmpty } from "~/browser/helpers/array";
-import {
-  useFollowedStreams,
-  useFollowedStreamState,
-  usePinnedUsers,
-} from "~/browser/helpers/hooks";
+import { useRefreshHandler } from "~/browser/contexts";
+import { filterList, isEmpty } from "~/browser/helpers";
+import { useFollowedStreams, useFollowedStreamState } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
+import CollectionList from "~/browser/components/CollectionList";
 import FilterBar from "~/browser/components/FilterBar";
-import RefreshIcon from "~/browser/components/RefreshIcon";
-import SearchInput from "~/browser/components/SearchInput";
+import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col min-h-full`}
+const List = styled.div`
+  ${tw`py-2`}
 `;
 
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 via-neutral-100 dark:(from-neutral-900 via-neutral-900) to-transparent flex-none p-3 sticky top-0 z-10`}
-`;
+interface ChildComponentProps {
+  followedStreamState: FollowedStreamState;
+  searchQuery: string;
+}
 
-const StyledFilterBar = styled(FilterBar)`
-  ${tw`px-4 pb-3 pt-1`}
-`;
+function ChildComponent(props: ChildComponentProps) {
+  const { followedStreamState, searchQuery } = props;
 
-const Group = styled.div`
-  &::after {
-    ${tw`block border-b border-neutral-200 dark:border-neutral-800 content mx-4 my-1`}
-  }
+  const [followedStreams] = useFollowedStreams({
+    suspense: true,
+  });
 
-  &:last-of-type::after {
-    ${tw`hidden`}
-  }
-`;
-
-const Item = styled.div``;
-
-const FollowedStreams: FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const [followedStreams, { isLoading }] = useFollowedStreams();
-  const [followedStreamState, { setSortDirection, setSortField }] = useFollowedStreamState();
-  const [pinnedUsers, { toggle }] = usePinnedUsers();
-
-  const [refreshState, doRefresh] = useAsyncFn(() => sendRuntimeMessage("refresh", true), []);
-
-  const itemGroups = useMemo(() => {
+  const filteredStreams = useMemo(() => {
     let { sortDirection } = followedStreamState;
 
-    if (followedStreamState.sortField === "started_at") {
+    if (followedStreamState.sortField === "startedAt") {
       sortDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
-    return Object.values(
-      groupBy(
-        orderBy(
-          filterList(
-            followedStreams,
-            ["game_name", "title", "user_login", "user_name"],
-            searchQuery
-          ),
-          [(stream) => pinnedUsers.includes(stream.user_id), followedStreamState.sortField],
-          ["desc", sortDirection]
-        ),
-        (stream) => (pinnedUsers.includes(stream.user_id) ? 0 : 1)
-      )
+    return orderBy(
+      filterList(followedStreams, ["gameName", "title", "userLogin", "userName"], searchQuery),
+      followedStreamState.sortField,
+      sortDirection
     );
-  }, [followedStreamState, followedStreams, pinnedUsers, searchQuery]);
+  }, [followedStreamState, followedStreams, searchQuery]);
 
-  const children = useMemo(() => {
-    if (isLoading) {
-      return <Splash isLoading />;
-    }
+  useRefreshHandler(async () => {
+    await sendRuntimeMessage("refresh", true);
+  });
 
-    if (isEmpty(followedStreams)) {
-      return <Splash>{t("errorText_emptyOnlineStreams")}</Splash>;
-    }
+  if (isEmpty(followedStreams)) {
+    return <Splash>{t("errorText_emptyOnlineStreams")}</Splash>;
+  }
 
-    if (isEmpty(itemGroups)) {
-      return <Splash>{t("errorText_emptyStreams")}</Splash>;
-    }
-
-    return (
-      <div>
-        {itemGroups.map((streams, index) => (
-          <Group key={index}>
-            {streams.map((stream) => (
-              <Item key={stream.id}>
-                <StreamCard
-                  stream={stream}
-                  onTogglePinClick={() => toggle(stream.user_id)}
-                  isPinned={pinnedUsers.includes(stream.user_id)}
-                />
-              </Item>
-            ))}
-          </Group>
-        ))}
-      </div>
-    );
-  }, [itemGroups, followedStreams, isLoading, pinnedUsers]);
+  if (isEmpty(filteredStreams)) {
+    return <Splash>{t("errorText_emptyStreams")}</Splash>;
+  }
 
   return (
-    <Wrapper>
-      <Header>
-        <SearchInput
-          onChange={setSearchQuery}
-          actionButtons={[
-            {
-              onClick: () => doRefresh(),
-              children: <RefreshIcon isRefreshing={refreshState.loading} />,
-            },
-          ]}
-        />
-      </Header>
+    <CollectionList
+      type="user"
+      items={filteredStreams}
+      getItemIdentifier={(item) => item.userId}
+      render={({ items, createCollection }) => (
+        <List>
+          {items.map((item) => (
+            <StreamCard
+              key={item.id}
+              stream={item}
+              onNewCollection={() => createCollection([item.userId])}
+            />
+          ))}
+        </List>
+      )}
+    />
+  );
+}
 
-      <StyledFilterBar
+export function Component() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [followedStreamState, { setSortDirection, setSortField }] = useFollowedStreamState();
+
+  return (
+    <Layout searchQuery={searchQuery} onSearchQueryChange={setSearchQuery}>
+      <FilterBar
         direction={followedStreamState.sortDirection}
         onDirectionChange={setSortDirection}
         filters={[
           {
-            onChange: setSortField,
             side: "right",
             value: followedStreamState.sortField,
+            onChange: setSortField,
             options: [
               {
-                value: "user_login",
+                value: "userLogin",
                 label: t("optionValue_sort_login"),
               },
               {
-                value: "game_name",
+                value: "gameName",
                 label: t("optionValue_sort_category"),
               },
               {
-                value: "started_at",
+                value: "startedAt",
                 label: t("optionValue_sort_uptime"),
               },
               {
-                value: "viewer_count",
+                value: "viewerCount",
                 label: t("optionValue_sort_viewers"),
               },
             ],
@@ -151,9 +115,9 @@ const FollowedStreams: FC = () => {
         ]}
       />
 
-      {children}
-    </Wrapper>
+      <ChildComponent {...{ followedStreamState, searchQuery }} />
+    </Layout>
   );
-};
+}
 
-export default FollowedStreams;
+export default Component;

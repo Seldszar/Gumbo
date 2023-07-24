@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -34,26 +34,27 @@ const LinkGrid = styled.div`
 
 interface AboutModalProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;
-  isOpen?: boolean;
 }
 
-const AboutModal: FC<AboutModalProps> = (props) => (
-  <Modal isOpen={props.isOpen}>
-    <Panel onClose={props.onClose}>
-      <Section>
-        <Hero />
-      </Section>
-      <Section>
-        <LinkGrid>
-          {allLinks.map((props, index) => (
-            <ExternalAnchor key={index} to={props.url}>
-              {props.title}
-            </ExternalAnchor>
-          ))}
-        </LinkGrid>
-      </Section>
-    </Panel>
-  </Modal>
-);
+function AboutModal(props: AboutModalProps) {
+  return (
+    <Modal>
+      <Panel onClose={props.onClose}>
+        <Section>
+          <Hero />
+        </Section>
+        <Section>
+          <LinkGrid>
+            {allLinks.map((props, index) => (
+              <ExternalAnchor key={index} to={props.url}>
+                {props.title}
+              </ExternalAnchor>
+            ))}
+          </LinkGrid>
+        </Section>
+      </Panel>
+    </Modal>
+  );
+}
 
 export default AboutModal;

@@ -1,86 +1,74 @@
-import { AnimatePresence, m, Variants } from "framer-motion";
-import React, { FC, ReactNode } from "react";
+import { IconChevronRight } from "@tabler/icons-react";
+import { ReactNode } from "react";
 import { useToggle } from "react-use";
 import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.div`
-  ${tw`bg-neutral-200 dark:bg-neutral-800 overflow-hidden rounded shadow-lg`}
-`;
-
-interface IconProps {
+interface WrapperProps {
   isOpen?: boolean;
 }
 
-const Icon = styled.svg<IconProps>`
-  ${tw`flex-none stroke-current transition w-6`}
-
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2px;
-
-  ${(props) => props.isOpen && tw`rotate-90`}
-`;
-
-const Header = styled.div`
-  ${tw`cursor-pointer flex gap-4 items-center p-4 rounded shadow-lg text-black dark:text-white`}
+const Icon = styled(IconChevronRight)`
+  ${tw`transition`}
 `;
 
 const Title = styled.div`
-  ${tw`flex-1 text-lg`}
+  ${tw`flex-1 font-medium text-sm truncate uppercase`}
 `;
 
-const Collapse = styled(m.div)``;
-
-const Inner = styled.div`
-  ${tw`p-4`}
+const HeaderInner = styled.div`
+  ${tw`cursor-pointer flex flex-1 gap-1 items-center`}
 `;
 
-const collapseVariants: Variants = {
-  hide: {
-    height: 0,
-    transition: {
-      ease: "easeOut",
-    },
-  },
-  show: {
-    height: "auto",
-    transition: {
-      ease: "easeOut",
-    },
-  },
-};
+const HeaderAside = styled.div`
+  ${tw`flex-none invisible`}
+`;
 
-interface AccordionProps {
+const Header = styled.div`
+  ${tw`flex gap-1 items-center px-4 text-neutral-600 dark:text-neutral-400`}
+
+  :hover {
+    ${HeaderAside} {
+      ${tw`visible`}
+    }
+
+    ${HeaderInner} {
+      ${tw`text-black dark:text-white`}
+    }
+  }
+`;
+
+const Inner = styled.div``;
+
+const Wrapper = styled.div<WrapperProps>`
+  ${Icon} {
+    ${(props) => props.isOpen && tw`rotate-90`}
+  }
+`;
+
+export interface AccordionProps {
   children?: ReactNode;
+  aside?: ReactNode;
   className?: string;
-  title?: ReactNode;
-  isOpen?: boolean;
+  title: string;
 }
 
-const Accordion: FC<AccordionProps> = (props) => {
-  const [isOpen, toggleOpen] = useToggle(props.isOpen ?? false);
+function Accordion(props: AccordionProps) {
+  const [isOpen, toggleOpen] = useToggle(true);
 
   return (
-    <Wrapper className={props.className}>
-      {props.title && (
-        <Header onClick={() => toggleOpen()}>
+    <Wrapper className={props.className} isOpen={isOpen}>
+      <Header>
+        <HeaderInner onClick={() => toggleOpen()}>
+          <Icon size="1rem" />
           <Title>{props.title}</Title>
-          <Icon viewBox="0 0 24 24" isOpen={isOpen}>
-            <polyline points="9 6 15 12 9 18" />
-          </Icon>
-        </Header>
-      )}
+        </HeaderInner>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <Collapse variants={collapseVariants} initial="hide" animate="show" exit="hide">
-            <Inner>{props.children}</Inner>
-          </Collapse>
-        )}
-      </AnimatePresence>
+        {props.aside && <HeaderAside>{props.aside}</HeaderAside>}
+      </Header>
+
+      {isOpen && <Inner>{props.children}</Inner>}
     </Wrapper>
   );
-};
+}
 
 export default Accordion;

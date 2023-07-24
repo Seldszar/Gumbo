@@ -35,17 +35,32 @@
   "buttonText_selectNone": {
     "message": "Select None"
   },
+  "buttonText_submit": {
+    "message": "Submit"
+  },
+  "buttonText_viewOn": {
+    "message": "View on $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "Do you want to delete \"$1\"?"
+  },
   "confirmMessage_reload": {
     "message": "Please use the button below to reload the extension."
   },
   "confirmMessage_reset": {
     "message": "All data is going to be deleted and you will be logged out.<br />Are you sure you want to proceed?"
   },
+  "confirmTitle_deleteItem": {
+    "message": "Confirm Deletion"
+  },
   "confirmTitle_reload": {
     "message": "Uh-oh, Gumbo is not responding anymore!"
   },
   "confirmTitle_reset": {
     "message": "You are about to reset Gumbo!"
+  },
+  "detailText_followingSince": {
+    "message": "Following since $1"
   },
   "detailText_noCategory": {
     "message": "No category"
@@ -74,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "No ignored categories"
   },
+  "errorText_emptyList": {
+    "message": "List is empty"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "No streams online"
   },
@@ -91,6 +109,12 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
+  },
+  "helpText_customAction_url": {
+    "message": "Example: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Available placeholders"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Include category change notifications"
@@ -137,8 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "Click to authorize"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Click to view changes"
+  },
   "notificationMessage_accessExpired": {
     "message": "Your Twitch access token expired, please re-authorize to get a new one."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo as been updated to version $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 is online!"
@@ -176,6 +206,9 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Open in a new window"
   },
+  "optionValue_customActions": {
+    "message": "Custom actions"
+  },
   "optionValue_donate": {
     "message": "Donate"
   },
@@ -193,6 +226,9 @@
   },
   "optionValue_fontSize_smallest": {
     "message": "Smallest"
+  },
+  "optionValue_gotoCategory": {
+    "message": "Go to category"
   },
   "optionValue_logout": {
     "message": "Logout"
@@ -235,6 +271,9 @@
   },
   "optionValue_sort_category": {
     "message": "Category"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "Followed At"
   },
   "optionValue_sort_login": {
     "message": "Broadcaster"
@@ -308,14 +347,35 @@
   "titleText_categories": {
     "message": "Categories"
   },
+  "titleText_channelId": {
+    "message": "Channel ID"
+  },
+  "titleText_channelLogin": {
+    "message": "Channel Login"
+  },
   "titleText_channels": {
     "message": "Channels"
   },
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_dropdownMenu": {
+    "message": "Dropwdown Menu"
+  },
+  "titleText_createCollection": {
+    "message": "Create Collection"
+  },
+  "titleText_createItem": {
+    "message": "Create Item"
+  },
+  "titleText_customActions": {
+    "message": "Custom Actions"
+  },
   "titleText_dangerZone": {
     "message": "Danger Zone"
+  },
+  "titleText_deleteCollection": {
+    "message": "Delete Collection"
   },
   "titleText_donate": {
     "message": "Donate"
@@ -358,6 +418,12 @@
   },
   "titleText_topStreams": {
     "message": "Top Streams"
+  },
+  "titleText_updateCollection": {
+    "message": "Update Collection"
+  },
+  "titleText_updateItem": {
+    "message": "Update Item"
   },
   "titleText_videos": {
     "message": "Videos"

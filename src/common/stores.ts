@@ -1,5 +1,4 @@
 import {
-  any,
   array,
   boolean,
   defaulted,
@@ -14,16 +13,22 @@ import {
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
-import { FollowedStreamState, FollowedUserState, Settings } from "./types";
+import {
+  Collection,
+  FollowedStreamState,
+  FollowedUserState,
+  HelixStream,
+  HelixUser,
+  Settings,
+} from "./types";
 
 export type StoreAreaName = "local" | "managed" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;
 
 export interface StoreOptions<T> {
-  onChange?(newValue: T, oldValue?: T): void;
-  migrations?: StoreMigration[];
   schema: Describe<T>;
-  defaultValue: T;
+  migrations?: StoreMigration[];
+  defaultValue(): T;
 }
 
 export interface StoreState<T> {
@@ -84,7 +89,7 @@ export class Store<T> {
 
   async getState(): Promise<StoreState<T>> {
     const state = {
-      value: this.options.defaultValue,
+      value: this.options.defaultValue(),
       version: 1,
     };
 
@@ -175,27 +180,75 @@ export class Store<T> {
 export const stores = {
   accessToken: new Store<string | null>("local", "accessToken", {
     schema: nullable(string()),
-    defaultValue: null,
+    defaultValue: () => null,
   }),
-  currentUser: new Store<any>("local", "currentUser", {
-    schema: nullable(object()),
-    defaultValue: null,
+  currentUser: new Store<HelixUser | null>("local", "currentUser", {
+    schema: nullable(
+      object({
+        id: string(),
+        login: string(),
+        displayName: string(),
+        broadcasterType: string(),
+        description: string(),
+        profileImageUrl: string(),
+        offlineImageUrl: string(),
+        createdAt: string(),
+      })
+    ),
+    defaultValue: () => null,
   }),
-  followedStreams: new Store<any[]>("local", "followedStreams", {
-    schema: array(any()),
-    defaultValue: [],
+  followedStreams: new Store<HelixStream[]>("local", "followedStreams", {
+    schema: array(
+      object({
+        id: string(),
+        userId: string(),
+        userLogin: string(),
+        userName: string(),
+        gameId: string(),
+        gameName: string(),
+        type: string(),
+        title: string(),
+        tags: nullable(array(string())),
+        viewerCount: number(),
+        startedAt: string(),
+        language: string(),
+        thumbnailUrl: string(),
+        isMature: boolean(),
+      })
+    ),
+    defaultValue: () => [],
   }),
-  followedUsers: new Store<any[]>("local", "followedUsers", {
-    schema: array(any()),
-    defaultValue: [],
-  }),
-  pinnedCategories: new Store<string[]>("local", "pinnedCategories", {
-    schema: array(string()),
-    defaultValue: [],
-  }),
-  pinnedUsers: new Store<string[]>("local", "pinnedUsers", {
-    schema: array(string()),
-    defaultValue: [],
+  collections: new Store<Collection[]>("local", "collections", {
+    schema: array(
+      object({
+        id: string(),
+        name: string(),
+        type: enums(["category", "user"]),
+        items: array(string()),
+      })
+    ),
+    defaultValue: () => [],
+    migrations: [
+      async (value) => {
+        const { pinnedCategories, pinnedUsers } = await browser.storage.local.get({
+          pinnedCategories: { value: [] },
+          pinnedUsers: { value: [] },
+        });
+
+        const addCollection = (data: Omit<Collection, "id" | "name">) =>
+          value.push({ ...data, name: "Pinned Items", id: crypto.randomUUID() });
+
+        if (pinnedCategories.value.length > 0) {
+          addCollection({ type: "category", items: pinnedCategories.value });
+        }
+
+        if (pinnedUsers.value.length > 0) {
+          addCollection({ type: "user", items: pinnedUsers.value });
+        }
+
+        return value;
+      },
+    ],
   }),
   settings: new Store<Settings>("local", "settings", {
     schema: object({
@@ -209,8 +262,14 @@ export const stores = {
         enabled: boolean(),
         color: string(),
       }),
-      channels: object({
-        liveOnly: boolean(),
+      dropdownMenu: object({
+        customActions: array(
+          object({
+            id: string(),
+            title: string(),
+            url: string(),
+          })
+        ),
       }),
       notifications: object({
         enabled: boolean(),
@@ -222,10 +281,10 @@ export const stores = {
       streams: object({
         withReruns: boolean(),
         withFilters: boolean(),
-        selectedLanguages: array(any()),
+        selectedLanguages: array(string()),
       }),
     }),
-    defaultValue: {
+    defaultValue: () => ({
       general: {
         clickBehavior: ClickBehavior.CreateTab,
         clickAction: ClickAction.OpenChannel,
@@ -236,8 +295,8 @@ export const stores = {
         enabled: true,
         color: "#737373",
       },
-      channels: {
-        liveOnly: false,
+      dropdownMenu: {
+        customActions: [],
       },
       notifications: {
         enabled: true,
@@ -251,29 +310,29 @@ export const stores = {
         withFilters: false,
         selectedLanguages: [],
       },
-    },
+    }),
   }),
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
-      sortField: string(),
+      sortField: enums(["gameName", "startedAt", "userLogin", "viewerCount"]),
     }),
-    defaultValue: {
-      sortField: "viewer_count",
+    defaultValue: () => ({
+      sortField: "viewerCount",
       sortDirection: "desc",
-    },
+    }),
   }),
   followedUserState: new Store<FollowedUserState>("local", "followedUserState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
-      sortField: string(),
+      sortField: enums(["followedAt", "login"]),
       status: nullable(boolean()),
     }),
-    defaultValue: {
+    defaultValue: () => ({
       sortField: "login",
       sortDirection: "asc",
       status: null,
-    },
+    }),
   }),
 };
 
