@@ -7,7 +7,7 @@ import { HelixStream } from "~/common/types";
 import Tooltip from "./Tooltip";
 
 interface WrapperProps {
-  type: string;
+  isRerun: boolean;
 }
 
 const Wrapper = styled.div<WrapperProps>`
@@ -22,7 +22,7 @@ const Wrapper = styled.div<WrapperProps>`
     stroke-width: 2px;
   }
 
-  ${(props) => props.type === "rerun" && tw`text-neutral-600 dark:text-neutral-400`}
+  ${(props) => props.isRerun && tw`text-neutral-600 dark:text-neutral-400`}
 `;
 
 export interface ViewerCountProps {
@@ -34,8 +34,10 @@ export interface ViewerCountProps {
 function ViewerCount(props: ViewerCountProps) {
   const { stream } = props;
 
+  const isRerun = useMemo(() => stream.tags?.includes("Rerun") ?? false, [stream.tags]);
+
   const status = useMemo(() => {
-    if (stream.tags?.includes("Rerun")) {
+    if (isRerun) {
       return {
         title: t("titleText_rerun"),
         icon: (
@@ -58,11 +60,11 @@ function ViewerCount(props: ViewerCountProps) {
         </svg>
       ),
     };
-  }, [stream.type]);
+  }, [isRerun]);
 
   return (
     <Tooltip content={status.title}>
-      <Wrapper type={stream.type} className={props.className}>
+      <Wrapper isRerun={isRerun} className={props.className}>
         {stream.viewerCount.toLocaleString("en-US")}
         {status.icon}
       </Wrapper>
