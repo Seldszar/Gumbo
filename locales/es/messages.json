@@ -35,17 +35,32 @@
   "buttonText_selectNone": {
     "message": "Seleccionar ninguno"
   },
+  "buttonText_submit": {
+    "message": "Enviar"
+  },
+  "buttonText_viewOn": {
+    "message": "Ver en $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "¿Quieres borrar \"$1\"?"
+  },
   "confirmMessage_reload": {
     "message": "Por favor usa el botón de debajo para recargar la extensión."
   },
   "confirmMessage_reset": {
     "message": "Toda la información será borrada y se te desconectará.<br />¿Realmente quieres continuar?"
   },
+  "confirmTitle_deleteItem": {
+    "message": "Confirmar el borrado"
+  },
   "confirmTitle_reload": {
     "message": "Oh no, ¡Gumbo ha dejado de responder!"
   },
   "confirmTitle_reset": {
     "message": "¡Estás a punto de restablecer Gumbo!"
+  },
+  "detailText_followingSince": {
+    "message": "Siguiendo desde $1"
   },
   "detailText_noCategory": {
     "message": "Sin categoría"
@@ -74,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "No hay categorías ignoradas"
   },
+  "errorText_emptyList": {
+    "message": "La lista está vacía"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "No hay streams en directo"
   },
@@ -91,6 +109,12 @@
   },
   "extensionName": {
     "message": "Gumbo: Compañero de Twitch"
+  },
+  "helpText_customAction_url": {
+    "message": "Ejemplo: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Marcadores de posición disponibles"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Incluir notificaciones de cambio de categoría"
@@ -137,8 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "Clic para autorizar"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Haz clic para ver los cambios"
+  },
   "notificationMessage_accessExpired": {
     "message": "Tu token de acceso a Twitch ha expirado, por favor re-autoriza para obtener uno nuevo."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo se ha actualizado a la versión $1."
   },
   "notificationMessage_streamOnline": {
     "message": "¡$1 está en directo!"
@@ -176,6 +206,9 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Abrir en una nueva ventana"
   },
+  "optionValue_customActions": {
+    "message": "Acciones personalizadas"
+  },
   "optionValue_donate": {
     "message": "Donar"
   },
@@ -193,6 +226,9 @@
   },
   "optionValue_fontSize_smallest": {
     "message": "Más pequeño"
+  },
+  "optionValue_gotoCategory": {
+    "message": "Ir a la categoría"
   },
   "optionValue_logout": {
     "message": "Desconectar"
@@ -235,6 +271,9 @@
   },
   "optionValue_sort_category": {
     "message": "Categoría"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "Seguido en"
   },
   "optionValue_sort_login": {
     "message": "Emisora"
@@ -308,17 +347,38 @@
   "titleText_categories": {
     "message": "Categorías"
   },
+  "titleText_channelId": {
+    "message": "Identificador del canal"
+  },
+  "titleText_channelLogin": {
+    "message": "Inicio de sesión en el canal"
+  },
   "titleText_channels": {
     "message": "Canales"
   },
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_createCollection": {
+    "message": "Crear una colección"
+  },
+  "titleText_createItem": {
+    "message": "Crear un artículo"
+  },
+  "titleText_customActions": {
+    "message": "Acciones personalizadas"
+  },
   "titleText_dangerZone": {
     "message": "Zona de peligro"
   },
+  "titleText_deleteCollection": {
+    "message": "Borrar la colección"
+  },
   "titleText_donate": {
     "message": "Donar"
+  },
+  "titleText_dropdownMenu": {
+    "message": "Menú desplegable"
   },
   "titleText_followedStreams": {
     "message": "Streams seguidos"
@@ -358,6 +418,12 @@
   },
   "titleText_topStreams": {
     "message": "Streams Top"
+  },
+  "titleText_updateCollection": {
+    "message": "Actualizar la colección"
+  },
+  "titleText_updateItem": {
+    "message": "Actualizar el artículo"
   },
   "titleText_videos": {
     "message": "Vídeos"
