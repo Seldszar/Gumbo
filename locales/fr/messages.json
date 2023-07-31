@@ -206,8 +206,14 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Ouvrir dans une nouvelle fenêtre"
   },
+  "optionValue_collections": {
+    "message": "Collections"
+  },
   "optionValue_customActions": {
     "message": "Actions personnalisées"
+  },
+  "optionValue_delete": {
+    "message": "Supprimer"
   },
   "optionValue_donate": {
     "message": "Faire un don"
@@ -232,6 +238,9 @@
   },
   "optionValue_logout": {
     "message": "Déconnexion"
+  },
+  "optionValue_newCollection": {
+    "message": "Nouvelle collection"
   },
   "optionValue_openChannel": {
     "message": "Ouvrir la chaîne"
@@ -316,6 +325,9 @@
   },
   "optionValue_unknown": {
     "message": "Inconnu(e)"
+  },
+  "optionValue_update": {
+    "message": "Mettre à jour"
   },
   "optionValue_videoType_all": {
     "message": "Toutes les vidéos"
