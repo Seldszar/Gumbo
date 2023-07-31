@@ -33,7 +33,7 @@ function CategoryDropdown(props: CategoryDropdownProps) {
     if (props.onNewCollection) {
       const items = new Array<DropdownMenuItemProps>({
         type: "normal",
-        title: "New collection",
+        title: t("optionValue_newCollection"),
         icon: <IconPlus size="1.25rem" />,
         onClick: props.onNewCollection,
       });
@@ -55,7 +55,7 @@ function CategoryDropdown(props: CategoryDropdownProps) {
       result.unshift(
         {
           type: "menu",
-          title: "Collections",
+          title: t("optionValue_collections"),
           items,
         },
         {
