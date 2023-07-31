@@ -3,6 +3,7 @@ import { reject } from "lodash-es";
 import { Fragment, ReactNode, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
+import { t } from "~/common/helpers";
 import { Collection, CollectionType } from "~/common/types";
 
 import { useCollections } from "~/browser/hooks";
@@ -112,13 +113,13 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
                   items={[
                     {
                       type: "normal",
-                      title: "Update",
+                      title: t("optionValue_update"),
                       icon: <IconPencil size="1.25rem" />,
                       onClick: () => setModalState({ collection, type: "mutate" }),
                     },
                     {
                       type: "normal",
-                      title: "Delete",
+                      title: t("optionValue_delete"),
                       icon: <IconTrash size="1.25rem" />,
                       onClick: () => setModalState({ collection, type: "delete" }),
                     },

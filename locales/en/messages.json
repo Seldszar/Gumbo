@@ -206,8 +206,14 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Open in a new window"
   },
+  "optionValue_collections": {
+    "message": "Collections"
+  },
   "optionValue_customActions": {
     "message": "Custom actions"
+  },
+  "optionValue_delete": {
+    "message": "Delete"
   },
   "optionValue_donate": {
     "message": "Donate"
@@ -232,6 +238,9 @@
   },
   "optionValue_logout": {
     "message": "Logout"
+  },
+  "optionValue_newCollection": {
+    "message": "New collection"
   },
   "optionValue_openChannel": {
     "message": "Open channel"
@@ -316,6 +325,9 @@
   },
   "optionValue_unknown": {
     "message": "Unknown"
+  },
+  "optionValue_update": {
+    "message": "Update"
   },
   "optionValue_videoType_all": {
     "message": "All videos"

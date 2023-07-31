@@ -68,7 +68,7 @@ function UserDropdown(props: UserDropdownProps) {
 
       const items = new Array<DropdownMenuItemProps>({
         type: "normal",
-        title: "New collection",
+        title: t("optionValue_newCollection"),
         icon: <IconPlus size="1.25rem" />,
         onClick: props.onNewCollection,
       });
@@ -93,7 +93,7 @@ function UserDropdown(props: UserDropdownProps) {
         },
         {
           type: "menu",
-          title: "Collections",
+          title: t("optionValue_collections"),
           items,
         }
       );
