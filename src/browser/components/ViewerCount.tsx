@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
+import { isRerunStream, t } from "~/common/helpers";
 import { HelixStream } from "~/common/types";
 
 import Tooltip from "./Tooltip";
@@ -34,8 +34,7 @@ export interface ViewerCountProps {
 function ViewerCount(props: ViewerCountProps) {
   const { stream } = props;
 
-  const isRerun = useMemo(() => stream.tags?.includes("Rerun") ?? false, [stream.tags]);
-
+  const isRerun = useMemo(() => isRerunStream(stream), [stream.tags]);
   const status = useMemo(() => {
     if (isRerun) {
       return {

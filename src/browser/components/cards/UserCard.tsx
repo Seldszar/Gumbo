@@ -24,6 +24,7 @@ const StyledDropdownButton = styled(DropdownButton)`
 `;
 
 export interface WrapperProps {
+  isRerun?: boolean;
   isLive?: boolean;
 }
 
@@ -31,9 +32,17 @@ const Wrapper = styled(Card)<WrapperProps>`
   ${tw`py-2 relative`}
 
   ${Thumbnail} {
-    ${(props) =>
-      props.isLive &&
-      tw`ring-2 ring-offset-2 ring-offset-white ring-red-500 dark:ring-offset-black`}
+    ${(props) => {
+      if (props.isRerun) {
+        return tw`ring-2 ring-offset-2 ring-offset-white ring-neutral-600 dark:(ring-neutral-400 ring-offset-black)`;
+      }
+
+      if (props.isLive) {
+        return tw`ring-2 ring-offset-2 ring-offset-white ring-red-600 dark:(ring-red-400 ring-offset-black)`;
+      }
+
+      return null;
+    }}
   }
 
   :hover ${StyledDropdownButton} {
@@ -43,6 +52,7 @@ const Wrapper = styled(Card)<WrapperProps>`
 
 export interface UserCardProps {
   children?: ReactNode;
+  isRerun?: boolean;
   isLive?: boolean;
   user: HelixUser;
 
@@ -58,6 +68,7 @@ function UserCard(props: UserCardProps) {
     <Anchor to={defaultAction}>
       <Wrapper
         isLive={props.isLive}
+        isRerun={props.isRerun}
         title={<ChannelName login={user.login} name={user.displayName} />}
         subtitle={
           <Tooltip content={user.description}>
