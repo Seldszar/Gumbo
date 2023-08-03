@@ -41,7 +41,7 @@ function CategoryCard(props: CategoryCardProps) {
 
   const boxArtUrl = useMemo(
     () => template(category.boxArtUrl, { "{width}": 78, "{height}": 104 }),
-    [category.boxArtUrl]
+    [category.boxArtUrl],
   );
 
   return (

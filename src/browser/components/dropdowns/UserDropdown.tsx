@@ -41,7 +41,7 @@ function UserDropdown(props: UserDropdownProps) {
         type: "normal",
         title: t("optionValue_popout"),
         onClick: (event) => openUrl(`https://twitch.tv/${user.login}/popout`, event),
-      }
+      },
     );
 
     if (customActions.length > 0) {
@@ -57,7 +57,7 @@ function UserDropdown(props: UserDropdownProps) {
                 "{login}": user.login,
                 "{id}": user.id,
               }),
-              event
+              event,
             ),
         })),
       });
@@ -83,7 +83,7 @@ function UserDropdown(props: UserDropdownProps) {
           })),
           {
             type: "separator",
-          }
+          },
         );
       }
 
@@ -95,7 +95,7 @@ function UserDropdown(props: UserDropdownProps) {
           type: "menu",
           title: t("optionValue_collections"),
           items,
-        }
+        },
       );
     }
 
@@ -117,7 +117,7 @@ function UserDropdown(props: UserDropdownProps) {
         type: "normal",
         title: t("optionValue_videos"),
         onClick: (event) => openUrl(`https://twitch.tv/${user.login}/videos`, event),
-      }
+      },
     );
 
     return result;

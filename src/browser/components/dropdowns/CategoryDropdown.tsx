@@ -48,7 +48,7 @@ function CategoryDropdown(props: CategoryDropdownProps) {
           })),
           {
             type: "separator",
-          }
+          },
         );
       }
 
@@ -60,7 +60,7 @@ function CategoryDropdown(props: CategoryDropdownProps) {
         },
         {
           type: "separator",
-        }
+        },
       );
     }
 

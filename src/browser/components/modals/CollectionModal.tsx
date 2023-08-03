@@ -20,7 +20,7 @@ function CollectionModal(props: CollectionModalProps) {
 
   const title = useMemo(
     () => t(`titleText_${collection ? "update" : "create"}Collection`),
-    [collection]
+    [collection],
   );
 
   return (

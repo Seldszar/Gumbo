@@ -28,7 +28,10 @@ import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/type
 setupSentry();
 
 class RequestError extends Error {
-  constructor(readonly request: Request, readonly response: Response) {
+  constructor(
+    readonly request: Request,
+    readonly response: Response,
+  ) {
     super(response.statusText);
 
     if (Error.captureStackTrace) {

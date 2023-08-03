@@ -54,7 +54,7 @@ function CategoryTitle(props: CategoryTitleProps) {
 
   const boxArtUrl = useMemo(
     () => template(category.boxArtUrl, { "{width}": 66, "{height}": 88 }),
-    [category.boxArtUrl]
+    [category.boxArtUrl],
   );
 
   return (

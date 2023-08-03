@@ -50,7 +50,7 @@ function fetchLoader<T>(store: Store<T>): StoreLoader<T> {
           loader.error = error;
 
           throw error;
-        }
+        },
       );
 
       return loader;
@@ -77,7 +77,7 @@ export type UseStoreReturn<T> = [
     isLoading: boolean;
     set(value: T): Promise<boolean>;
     set(updater: (value: T) => T): Promise<boolean>;
-  }
+  },
 ];
 
 export function useStore<T>(store: Store<T>, options: UseStoreOptions = {}): UseStoreReturn<T> {
@@ -120,12 +120,12 @@ export type UseCollectionsReturn = [
     updateCollection(id: string, data: Partial<Omit<Collection, "id">>): void;
     toggleCollectionItem(id: string, item: string): void;
     removeCollection(id: string): void;
-  }
+  },
 ];
 
 export function useCollections(
   type: CollectionType,
-  options?: UseStoreOptions
+  options?: UseStoreOptions,
 ): UseCollectionsReturn {
   const [collections, store] = useStore(stores.collections, options);
 
@@ -143,7 +143,7 @@ export function useCollections(
             }
 
             return collection;
-          })
+          }),
         );
       },
       toggleCollectionItem(id, item) {
@@ -154,7 +154,7 @@ export function useCollections(
             }
 
             return collection;
-          })
+          }),
         );
       },
       removeCollection(id) {
@@ -185,7 +185,7 @@ export type UseFollowedStreamStateReturn = [
   {
     setSortDirection(value: SortDirection): void;
     setSortField(value: FollowedStreamSortField): void;
-  }
+  },
 ];
 
 export function useFollowedStreamState(options?: UseStoreOptions): UseFollowedStreamStateReturn {
@@ -206,7 +206,7 @@ export type UseFollowedUserStateReturn = [
     setSortDirection(value: SortDirection): void;
     setSortField(value: FollowedUserSortField): void;
     setStatus(value: boolean | null): void;
-  }
+  },
 ];
 
 export function useFollowedUserState(options?: UseStoreOptions): UseFollowedUserStateReturn {

@@ -48,7 +48,7 @@ export class Store<T> {
   constructor(
     readonly areaName: StoreAreaName,
     readonly name: string,
-    readonly options: StoreOptions<T>
+    readonly options: StoreOptions<T>,
   ) {}
 
   async setup(migrate = false): Promise<void> {
@@ -193,7 +193,7 @@ export const stores = {
         profileImageUrl: string(),
         offlineImageUrl: string(),
         createdAt: string(),
-      })
+      }),
     ),
     defaultValue: () => null,
   }),
@@ -214,7 +214,7 @@ export const stores = {
         language: string(),
         thumbnailUrl: string(),
         isMature: boolean(),
-      })
+      }),
     ),
     defaultValue: () => [],
   }),
@@ -225,7 +225,7 @@ export const stores = {
         name: string(),
         type: enums(["category", "user"]),
         items: array(string()),
-      })
+      }),
     ),
     defaultValue: () => [],
     migrations: [
@@ -268,7 +268,7 @@ export const stores = {
             id: string(),
             title: string(),
             url: string(),
-          })
+          }),
         ),
       }),
       notifications: object({

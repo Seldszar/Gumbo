@@ -33,7 +33,7 @@ function ChildComponent() {
     },
     {
       suspense: true,
-    }
+    },
   );
 
   useRefreshHandler(async () => {

@@ -38,7 +38,7 @@ function ChildComponent(props: ChildComponentProps) {
     },
     {
       suspense: true,
-    }
+    },
   );
 
   useRefreshHandler(async () => {

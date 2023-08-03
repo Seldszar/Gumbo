@@ -44,7 +44,7 @@ function StreamDropdown(props: StreamDropdownProps) {
         type: "normal",
         title: t("optionValue_popout"),
         onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event),
-      }
+      },
     );
 
     if (customActions.length > 0) {
@@ -60,7 +60,7 @@ function StreamDropdown(props: StreamDropdownProps) {
                 "{login}": stream.userLogin,
                 "{id}": stream.userId,
               }),
-              event
+              event,
             ),
         })),
       });
@@ -86,7 +86,7 @@ function StreamDropdown(props: StreamDropdownProps) {
           })),
           {
             type: "separator",
-          }
+          },
         );
       }
 
@@ -98,7 +98,7 @@ function StreamDropdown(props: StreamDropdownProps) {
           type: "menu",
           title: t("optionValue_collections"),
           items,
-        }
+        },
       );
     }
 
@@ -129,7 +129,7 @@ function StreamDropdown(props: StreamDropdownProps) {
         disabled: !stream.gameId,
         title: t("optionValue_gotoCategory"),
         onClick: () => navigate(`/categories/${stream.gameId}`),
-      }
+      },
     );
 
     return result;

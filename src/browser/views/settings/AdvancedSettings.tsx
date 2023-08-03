@@ -20,7 +20,7 @@ export function Component() {
     const url = URL.createObjectURL(
       new Blob([JSON.stringify(await sendRuntimeMessage("backup"))], {
         type: "application/json",
-      })
+      }),
     );
 
     const anchor = document.createElement("a");

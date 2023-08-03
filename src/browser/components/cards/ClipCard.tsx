@@ -36,7 +36,7 @@ function ClipCard(props: ClipCardProps) {
 
   const previewImage = useMemo(
     () => template(clip.thumbnailUrl, { "{height}": 54, "{width}": 96 }),
-    [clip.thumbnailUrl]
+    [clip.thumbnailUrl],
   );
 
   const createdAt = useMemo(() => new Date(clip.createdAt), [clip.createdAt]);

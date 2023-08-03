@@ -60,7 +60,7 @@ interface CollectionListProps<T> {
 
 function CollectionList<T extends object>(props: CollectionListProps<T>) {
   const [collections, { addCollection, removeCollection, updateCollection }] = useCollections(
-    props.type
+    props.type,
   );
 
   const [modalState, setModalState] = useState<ModalState | null>(null);
@@ -73,7 +73,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
       .filter((collection) => collection.type === props.type)
       .forEach((collection) => {
         const items = props.items.filter((item) =>
-          collection.items.includes(props.getItemIdentifier(item))
+          collection.items.includes(props.getItemIdentifier(item)),
         );
 
         if (items.length > 0) {
