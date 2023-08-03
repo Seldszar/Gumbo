@@ -11,7 +11,6 @@ export function Scrollable(props: ScrollableProps) {
     <OverlayScrollbarsComponent
       options={{
         scrollbars: {
-          autoHide: "leave",
           theme: "os-theme-gumbo",
         },
       }}
