@@ -1,5 +1,35 @@
 # Changelog
 
+## [1.18.0](https://github.com/Seldszar/Gumbo/compare/v1.17.2...v1.18.0) (2023-08-04)
+
+
+### Features
+
+* custom dropdown actions ([3ffb9cc](https://github.com/Seldszar/Gumbo/commit/3ffb9cc88b352e8c79ba37956b22b937e3ed649a))
+* go to category dropdown option ([c8010b3](https://github.com/Seldszar/Gumbo/commit/c8010b30b675820dba914321106c089251326900))
+* overlay scrollbars ([19e78bc](https://github.com/Seldszar/Gumbo/commit/19e78bcddf58bc3930deb75b86efb1a963a5fa9a))
+* update notifications ([3768c25](https://github.com/Seldszar/Gumbo/commit/3768c259791bdf3ed61281e36ac1ce69fe9f14d7))
+
+
+### Bug Fixes
+
+* category streams query ([bb29c57](https://github.com/Seldszar/Gumbo/commit/bb29c577587fd89cf345bed5ead2fdea1149f0ba))
+* dropdown button appearence ([0550f41](https://github.com/Seldszar/Gumbo/commit/0550f41cb0d1edad8be0d2a203d5d16fcc59620c))
+* dropdown errors ([12642b6](https://github.com/Seldszar/Gumbo/commit/12642b6c6f68fb436bd335682935239547e4aa0d))
+* errors & cleanup ([cbabf8a](https://github.com/Seldszar/Gumbo/commit/cbabf8a89fa4eccf1c8a64a35dd0bcd81291b226))
+* followed user rerun ring ([3f67605](https://github.com/Seldszar/Gumbo/commit/3f676056a94bc341230e264a640f65114a925509))
+* handle null stream tags ([c224c32](https://github.com/Seldszar/Gumbo/commit/c224c3265e2e8f60977688057cdece6d1a2cbe90))
+* keep previous query data ([ca9b436](https://github.com/Seldszar/Gumbo/commit/ca9b436a8163cc1e23875d64cd17e0643612d44e))
+* **scrollable:** scrollbars always visible ([5b1ac8d](https://github.com/Seldszar/Gumbo/commit/5b1ac8da846fbcf982c00ba244c2018d8e6b35d8))
+* **stores:** collections import ([aedef12](https://github.com/Seldszar/Gumbo/commit/aedef128d3b94c9bb4830500bc841d64e5c7646d))
+* stream dropdown ([a72ce1a](https://github.com/Seldszar/Gumbo/commit/a72ce1a23183c07c8c96991abb2536a6763f17c7))
+* translation messages ([c5bd729](https://github.com/Seldszar/Gumbo/commit/c5bd729b53678403f0c6a0fefb7fc20e3f70e9df))
+* update notification ([5609d6c](https://github.com/Seldszar/Gumbo/commit/5609d6c9c9930a06596adfd0bf8304ba80262527))
+* update translations ([#154](https://github.com/Seldszar/Gumbo/issues/154)) ([12d088e](https://github.com/Seldszar/Gumbo/commit/12d088e5b881138ae10c6145defc864c749207dc))
+* update translations ([#157](https://github.com/Seldszar/Gumbo/issues/157)) ([fc553ce](https://github.com/Seldszar/Gumbo/commit/fc553ce8be077cbe67283116a5bef9f66cf26960))
+* update translations ([#158](https://github.com/Seldszar/Gumbo/issues/158)) ([a42e72b](https://github.com/Seldszar/Gumbo/commit/a42e72b7fb1dd5a0cd97eb6f7e95c597e8ce149a))
+* viewer count rerun style ([f6103df](https://github.com/Seldszar/Gumbo/commit/f6103dfb7eaf0a8864dcfe9f90179caee5d6e6b0))
+
 ## [1.17.2](https://github.com/Seldszar/Gumbo/compare/v1.17.1...v1.17.2) (2023-06-28)
 
 
