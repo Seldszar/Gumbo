@@ -30,6 +30,7 @@ function ChildComponent() {
   const [pages, { fetchMore, refresh, hasMore, isValidating }] = useStreams(
     {
       gameId: category.id,
+      first: 100,
     },
     {
       suspense: true,
