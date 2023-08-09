@@ -174,7 +174,7 @@
     "message": "$1 생방송 중입니다!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1이(가) $2을(를) 하고 있습니다!"
+    "message": "$1 is playing $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "액세스 만료됨"
