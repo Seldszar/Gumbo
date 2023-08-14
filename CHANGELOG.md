@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1](https://github.com/Seldszar/Gumbo/compare/v1.18.0...v1.18.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **settings:** sort followed channels by name ([6542456](https://github.com/Seldszar/Gumbo/commit/65424565e3b06dcb75911926cc51e220f293f93e))
+
 ## [1.18.0](https://github.com/Seldszar/Gumbo/compare/v1.17.2...v1.18.0) (2023-08-04)
 
 
