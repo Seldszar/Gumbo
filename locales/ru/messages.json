@@ -35,17 +35,32 @@
   "buttonText_selectNone": {
     "message": "Отменить выбор"
   },
+  "buttonText_submit": {
+    "message": "Принять"
+  },
+  "buttonText_viewOn": {
+    "message": "Посмотреть на $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "Вы хотите удалить\"$1\"?"
+  },
   "confirmMessage_reload": {
     "message": "Пожалуйста, используйте кнопку ниже, чтобы перезагрузить расширение."
   },
   "confirmMessage_reset": {
     "message": "Все данные будут удалены, и вы выйдите с аккаунта. <br />Вы уверены, что хотите продолжить?"
   },
+  "confirmTitle_deleteItem": {
+    "message": "Подтвердить Удаление"
+  },
   "confirmTitle_reload": {
     "message": "Ой-йо, Gumbo больше не отвечает!"
   },
   "confirmTitle_reset": {
     "message": "Вы собираетесь сбросить Gumbo!"
+  },
+  "detailText_followingSince": {
+    "message": "Отслеживает с $1"
   },
   "detailText_noCategory": {
     "message": "Без категории"
@@ -74,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Нет скрытых категорий"
   },
+  "errorText_emptyList": {
+    "message": "Список пуст"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Нет стримов онлайн"
   },
@@ -91,6 +109,12 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch компаньон"
+  },
+  "helpText_customAction_url": {
+    "message": "Пример:$1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Доступные заполнители"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Включить уведомления об изменении категории"
@@ -137,8 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "Нажмите для авторизации"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Просмотреть изменения"
+  },
   "notificationMessage_accessExpired": {
     "message": "Ваш токен доступа к Twitch просрочен, пожалуйста пере-авторизуйтесь для получения нового."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo обновлён до версии $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 онлайн!"
@@ -176,6 +206,15 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Открыть в новом окне"
   },
+  "optionValue_collections": {
+    "message": "Коллекции"
+  },
+  "optionValue_customActions": {
+    "message": "Настраиваемые действия"
+  },
+  "optionValue_delete": {
+    "message": "Удалить"
+  },
   "optionValue_donate": {
     "message": "Донат"
   },
@@ -194,8 +233,14 @@
   "optionValue_fontSize_smallest": {
     "message": "Мелкий"
   },
+  "optionValue_gotoCategory": {
+    "message": "Перейти в категорию"
+  },
   "optionValue_logout": {
     "message": "Выйти"
+  },
+  "optionValue_newCollection": {
+    "message": "Новая коллекция"
   },
   "optionValue_openChannel": {
     "message": "Открыть канал"
@@ -235,6 +280,9 @@
   },
   "optionValue_sort_category": {
     "message": "Категория"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "Отслеживает"
   },
   "optionValue_sort_login": {
     "message": "Ведущий"
@@ -278,6 +326,9 @@
   "optionValue_unknown": {
     "message": "Неизвестно"
   },
+  "optionValue_update": {
+    "message": "Обновить"
+  },
   "optionValue_videoType_all": {
     "message": "Все видео"
   },
@@ -308,17 +359,38 @@
   "titleText_categories": {
     "message": "Категории"
   },
+  "titleText_channelId": {
+    "message": "ID Канала"
+  },
+  "titleText_channelLogin": {
+    "message": "Логин Канала"
+  },
   "titleText_channels": {
     "message": "Каналы"
   },
   "titleText_clips": {
     "message": "Клипы"
   },
+  "titleText_createCollection": {
+    "message": "Создать Коллекцию"
+  },
+  "titleText_createItem": {
+    "message": "Создать Элемент"
+  },
+  "titleText_customActions": {
+    "message": "Настраиваемые Действия"
+  },
   "titleText_dangerZone": {
     "message": "Опасная зона"
   },
+  "titleText_deleteCollection": {
+    "message": "Удалить Коллекцию"
+  },
   "titleText_donate": {
     "message": "Донат"
+  },
+  "titleText_dropdownMenu": {
+    "message": "Выпадающее Меню"
   },
   "titleText_followedStreams": {
     "message": "Отслеживаемые стримы"
@@ -358,6 +430,12 @@
   },
   "titleText_topStreams": {
     "message": "Топ стримов"
+  },
+  "titleText_updateCollection": {
+    "message": "Обновить Коллекцию"
+  },
+  "titleText_updateItem": {
+    "message": "Обновить Элемент"
   },
   "titleText_videos": {
     "message": "Видео"
