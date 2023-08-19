@@ -60,7 +60,6 @@ export function Component() {
             onClick={onImportClick}
             icon={<IconUpload size="1.5rem" strokeWidth={1.5} />}
             fullWidth
-            disabled
           >
             {t("buttonText_importSettings")}
           </Button>
