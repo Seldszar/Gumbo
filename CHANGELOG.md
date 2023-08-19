@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.2](https://github.com/Seldszar/Gumbo/compare/v1.18.1...v1.18.2) (2023-08-19)
+
+
+### Bug Fixes
+
+* **settings:** enable import button ([f22d74d](https://github.com/Seldszar/Gumbo/commit/f22d74d187b2ca13a7291ac34a9fc3abf4fa3a2c))
+
 ## [1.18.1](https://github.com/Seldszar/Gumbo/compare/v1.18.0...v1.18.1) (2023-08-09)
 
 
