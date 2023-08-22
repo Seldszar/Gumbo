@@ -91,7 +91,17 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
       result.push({ items });
     }
 
-    return result;
+    return result.sort((a, b) => {
+      if (a.collection == null) {
+        return 1;
+      }
+
+      if (b.collection == null) {
+        return -1;
+      }
+
+      return a.collection.name.localeCompare(b.collection.name);
+    });
   }, [collections, props.items]);
 
   const createCollection = (items?: string[]) => {
