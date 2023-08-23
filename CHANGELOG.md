@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.18.3](https://github.com/Seldszar/Gumbo/compare/v1.18.2...v1.18.3) (2023-08-23)
+
+
+### Bug Fixes
+
+* collection sorting ([a0ced3f](https://github.com/Seldszar/Gumbo/commit/a0ced3fbdce1d56fbe861da99512d0e76002e1b3))
+* collection spacing ([26f700e](https://github.com/Seldszar/Gumbo/commit/26f700ee739da4adcc9dc39fe5bbda3cd100069a))
+* update translations ([#165](https://github.com/Seldszar/Gumbo/issues/165)) ([1a24750](https://github.com/Seldszar/Gumbo/commit/1a2475045d0d7fda1e9fe84d0572f738f6dc4754))
+
 ## [1.18.2](https://github.com/Seldszar/Gumbo/compare/v1.18.1...v1.18.2) (2023-08-19)
 
 
