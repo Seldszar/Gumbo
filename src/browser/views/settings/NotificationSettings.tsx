@@ -1,3 +1,5 @@
+import { sortBy } from "lodash-es";
+import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -22,6 +24,11 @@ export function Component() {
 
   const { data: followedChannels = [] } = useFollowedChannels();
 
+  const sortedFollowedChannels = useMemo(
+    () => sortBy(followedChannels, "broadcasterName"),
+    [followedChannels],
+  );
+
   return (
     <div>
       <Section>
@@ -45,7 +52,7 @@ export function Component() {
         <CheckboxGrid
           {...register("notifications.selectedUsers")}
           disabled={!settings.notifications.enabled || !settings.notifications.withFilters}
-          options={followedChannels.map((follow) => ({
+          options={sortedFollowedChannels.map((follow) => ({
             title: <ChannelName login={follow.broadcasterLogin} name={follow.broadcasterName} />,
             value: follow.broadcasterId,
           }))}

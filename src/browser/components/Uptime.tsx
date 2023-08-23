@@ -15,7 +15,7 @@ function Uptime(props: UptimeProps) {
 
   const timeString = useMemo(
     () => formatTime(now.getTime() - props.startDate.getTime()),
-    [props.startDate, now]
+    [props.startDate, now],
   );
 
   return (

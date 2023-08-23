@@ -15,12 +15,12 @@ import Layout from "~/browser/components/Layout";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
-const Grid = styled.div`
-  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-4`}
+const Collection = styled.div`
+  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 px-4 py-2`}
 `;
 
 const LoadMore = styled.div`
-  ${tw`p-4 pt-0`}
+  ${tw`px-4 py-2`}
 `;
 
 export function ChildComponent() {
@@ -38,7 +38,7 @@ export function ChildComponent() {
     },
     {
       suspense: true,
-    }
+    },
   );
 
   useRefreshHandler(async () => {
@@ -57,7 +57,7 @@ export function ChildComponent() {
       defaultItems={pages.flatMap((page) => page.data)}
       render={({ collection, items, createCollection }) => (
         <>
-          <Grid>
+          <Collection>
             {items.map((category) => (
               <Link key={category.id} to={`/categories/${category.id}`}>
                 <CategoryCard
@@ -66,7 +66,7 @@ export function ChildComponent() {
                 />
               </Link>
             ))}
-          </Grid>
+          </Collection>
 
           {collection == null && hasMore && (
             <LoadMore>

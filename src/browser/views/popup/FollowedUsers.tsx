@@ -1,8 +1,8 @@
-import { find, map, orderBy, some } from "lodash-es";
+import { find, map, orderBy } from "lodash-es";
 import { useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
+import { isRerunStream, t } from "~/common/helpers";
 import { FollowedUserState, HelixUser } from "~/common/types";
 
 import { useRefreshHandler } from "~/browser/contexts";
@@ -21,9 +21,7 @@ import FilterBar from "~/browser/components/FilterBar";
 import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
 
-const Collection = styled.div`
-  ${tw`py-2`}
-`;
+const Collection = styled.div``;
 
 const FollowingSince = styled.div`
   ${tw`truncate`}
@@ -31,6 +29,7 @@ const FollowingSince = styled.div`
 
 interface FormattedUser extends HelixUser {
   followedAt: Date;
+  isRerun: boolean;
   isLive: boolean;
 }
 
@@ -59,10 +58,12 @@ function ChildComponent(props: ChildComponentProps) {
 
     followedUsers.forEach((user) => {
       const matchesFields = matchFields(user, ["description", "displayName", "login"], searchQuery);
-      const isLive = some(followedStreams, {
+      const stream = find(followedStreams, {
         userId: user.id,
         type: "live",
       });
+
+      const isLive = !!stream;
 
       if (matchesFields && [isLive, null].includes(followedUserState.status)) {
         const channel = find(followedChannels, {
@@ -73,6 +74,7 @@ function ChildComponent(props: ChildComponentProps) {
           ...user,
 
           followedAt: new Date(channel?.followedAt ?? 0),
+          isRerun: isRerunStream(stream),
           isLive,
         });
       }
@@ -100,6 +102,7 @@ function ChildComponent(props: ChildComponentProps) {
             <UserCard
               key={item.id}
               onNewCollection={() => createCollection([item.id])}
+              isRerun={item.isRerun}
               isLive={item.isLive}
               user={item}
             >

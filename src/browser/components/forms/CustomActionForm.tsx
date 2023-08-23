@@ -24,12 +24,12 @@ export interface CustomActionFormProps {
 
 function CustomActionForm(props: CustomActionFormProps) {
   const [value, setValue] = useState<CustomAction>(
-    props.value ?? { id: crypto.randomUUID(), title: "", url: "" }
+    props.value ?? { id: crypto.randomUUID(), title: "", url: "" },
   );
 
   const exampleUrl = useMemo(
     () => template(value.url, { "{login}": "gumbo", "{id}": "42069" }),
-    [value.url]
+    [value.url],
   );
 
   const isFormValid = useMemo(() => {

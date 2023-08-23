@@ -82,7 +82,7 @@ export function HistoryProvider(props: HistoryProviderProps) {
           }
         }
       }),
-    []
+    [],
   );
 
   return <Context.Provider value={state}>{props.children}</Context.Provider>;

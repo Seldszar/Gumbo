@@ -4,7 +4,7 @@ import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
-import { Dictionary, FontSize } from "./types";
+import { Dictionary, FontSize, HelixStream } from "./types";
 
 export const t = browser.i18n.getMessage;
 
@@ -143,4 +143,8 @@ export function changeCase(input: any, mapper: (key: string) => string): any {
   }
 
   return input;
+}
+
+export function isRerunStream(stream?: HelixStream): boolean {
+  return stream?.tags?.includes("Rerun") ?? false;
 }

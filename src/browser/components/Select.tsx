@@ -43,7 +43,7 @@ function Select<T>(props: SelectProps<T>) {
 
   const selectedOption = useMemo(
     () => options.find((option) => option.value === value),
-    [options, value]
+    [options, value],
   );
 
   return (

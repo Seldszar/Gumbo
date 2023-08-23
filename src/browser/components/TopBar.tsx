@@ -45,7 +45,7 @@ function TopBar(props: TopBarProps) {
 
   const [state, doRefresh] = useAsyncFn(
     () => Promise.all(Array.from(refreshHandlers, (handler) => handler())),
-    [refreshHandlers]
+    [refreshHandlers],
   );
 
   return (

@@ -15,6 +15,7 @@ import { AUTHORIZE_URL } from "~/common/constants";
 import {
   allPromises,
   changeCase,
+  isRerunStream,
   matchString,
   openUrl,
   settlePromises,
@@ -27,7 +28,10 @@ import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/type
 setupSentry();
 
 class RequestError extends Error {
-  constructor(readonly request: Request, readonly response: Response) {
+  constructor(
+    readonly request: Request,
+    readonly response: Response,
+  ) {
     super(response.statusText);
 
     if (Error.captureStackTrace) {
@@ -171,7 +175,7 @@ async function refreshFollowedStreams(user: HelixUser, showNotifications = true)
     followedStreams = await getFollowedStreams(user.id);
 
     if (!settings.streams.withReruns) {
-      remove(followedStreams, (stream) => stream.tags?.includes("Rerun"));
+      remove(followedStreams, isRerunStream);
     }
 
     if (showNotifications && settings.notifications.enabled) {

@@ -63,7 +63,7 @@ function StreamCard(props: StreamCardProps) {
 
   const startDate = useMemo(
     () => (stream.startedAt ? new Date(stream.startedAt) : null),
-    [stream.startedAt]
+    [stream.startedAt],
   );
 
   const previewImage = useMemo(() => {
@@ -71,7 +71,7 @@ function StreamCard(props: StreamCardProps) {
       template(stream.thumbnailUrl, {
         "{height}": 54,
         "{width}": 96,
-      })
+      }),
     );
 
     url.searchParams.set("t", String(currentTime.getTime()));

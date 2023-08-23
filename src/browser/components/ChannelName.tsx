@@ -18,12 +18,12 @@ function ChannelName(props: ChannelNameProps) {
 
   const isDifferent = useMemo(
     () => displayName.toLowerCase().trim() !== props.login.toLowerCase().trim(),
-    [displayName, props.login]
+    [displayName, props.login],
   );
 
   const title = useMemo(
     () => `${displayName}${isDifferent ? ` (${props.login})` : ""}`,
-    [displayName, isDifferent, props.login]
+    [displayName, isDifferent, props.login],
   );
 
   return (

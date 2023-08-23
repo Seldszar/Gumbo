@@ -37,7 +37,7 @@ function VideoCard(props: VideoCardProps) {
 
   const previewImage = useMemo(
     () => template(video.thumbnailUrl, { "%{width}": 96, "%{height}": 54 }),
-    [video.thumbnailUrl]
+    [video.thumbnailUrl],
   );
 
   const createdAt = useMemo(() => new Date(video.createdAt), [video.createdAt]);

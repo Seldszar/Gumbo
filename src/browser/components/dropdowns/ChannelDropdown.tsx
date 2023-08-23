@@ -40,7 +40,7 @@ function ChannelDropdown(props: ChannelDropdownProps) {
         type: "normal",
         title: t("optionValue_popout"),
         onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/popout`, event),
-      }
+      },
     );
 
     if (customActions.length > 0) {
@@ -56,7 +56,7 @@ function ChannelDropdown(props: ChannelDropdownProps) {
                 "{login}": channel.broadcasterLogin,
                 "{id}": channel.id,
               }),
-              event
+              event,
             ),
         })),
       });
@@ -90,7 +90,7 @@ function ChannelDropdown(props: ChannelDropdownProps) {
         disabled: !channel.gameId,
         title: t("optionValue_gotoCategory"),
         onClick: () => navigate(`/categories/${channel.gameId}`),
-      }
+      },
     );
 
     return result;

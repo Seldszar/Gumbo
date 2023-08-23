@@ -33,7 +33,7 @@ export type UseQueryListReturn<T> = [HelixResponse<T>[] | undefined, UseQueryLis
 export function useQueryList<T = any>(
   path: string,
   params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration
+  config?: SWRInfiniteConfiguration,
 ): UseQueryListReturn<T> {
   const { data, error, isLoading, isValidating, mutate, setSize, size } = useSWRInfinite(
     (pageIndex, previousPageData) => {
@@ -56,7 +56,7 @@ export function useQueryList<T = any>(
     {
       fetcher: (args) => sendRuntimeMessage("request", ...args),
       ...config,
-    }
+    },
   );
 
   const page = get(data, size - 1);
@@ -91,7 +91,7 @@ export type UseQueryDetailReturn<T> = [T | undefined, UseQueryDetailResponse];
 export function useQueryDetail<T = any>(
   path: string,
   params?: Dictionary<unknown> | null,
-  config?: SWRConfiguration
+  config?: SWRConfiguration,
 ): UseQueryDetailReturn<T> {
   const { data, error, isLoading } = useSWR(params ? [path, params] : null, {
     fetcher: (args) => sendRuntimeMessage("request", ...args),
@@ -137,28 +137,28 @@ export function useStreams(params?: Dictionary<unknown> | null, config?: SWRInfi
 
 export function useSearchChannels(
   params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration
+  config?: SWRInfiniteConfiguration,
 ) {
   return useQueryList<HelixChannelSearchResult>("search/channels", params, config);
 }
 
 export function useSearchCategories(
   params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration
+  config?: SWRInfiniteConfiguration,
 ) {
   return useQueryList<HelixCategorySearchResult>("search/categories", params, config);
 }
 
 export function useTopCategories(
   params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration
+  config?: SWRInfiniteConfiguration,
 ) {
   return useQueryList<HelixGame>("games/top", params, config);
 }
 
 export function useCategories(
   params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration
+  config?: SWRInfiniteConfiguration,
 ) {
   return useQueryList<HelixGame>("games", params, config);
 }
@@ -195,7 +195,7 @@ export function useFollowedChannels(options?: UseStoreOptions) {
     },
     {
       suspense: true,
-    }
+    },
   );
 }
 
@@ -216,7 +216,7 @@ function createFetcherByID<T>(path: string) {
 
         return flatMap(promises);
       },
-      config
+      config,
     );
 }
 

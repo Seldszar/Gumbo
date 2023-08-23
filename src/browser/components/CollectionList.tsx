@@ -14,9 +14,7 @@ import DropdownMenu from "./DropdownMenu";
 import CollectionModal from "./modals/CollectionModal";
 import DeleteModal from "./modals/DeleteModal";
 
-const StyledAccordion = styled(Accordion)`
-  ${tw`pt-4`}
-`;
+const StyledAccordion = styled(Accordion)``;
 
 const StyledIconSettings = styled(IconSettings)`
   ${tw`cursor-pointer hover:(text-black dark:text-white)`}
@@ -28,7 +26,9 @@ const Divider = styled.div`
 
 const DefaultCollection = styled.div``;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  ${tw`flex flex-col gap-2 py-2`}
+`;
 
 interface ModalState {
   type: "delete" | "mutate";
@@ -60,7 +60,7 @@ interface CollectionListProps<T> {
 
 function CollectionList<T extends object>(props: CollectionListProps<T>) {
   const [collections, { addCollection, removeCollection, updateCollection }] = useCollections(
-    props.type
+    props.type,
   );
 
   const [modalState, setModalState] = useState<ModalState | null>(null);
@@ -73,7 +73,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
       .filter((collection) => collection.type === props.type)
       .forEach((collection) => {
         const items = props.items.filter((item) =>
-          collection.items.includes(props.getItemIdentifier(item))
+          collection.items.includes(props.getItemIdentifier(item)),
         );
 
         if (items.length > 0) {
@@ -91,7 +91,17 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
       result.push({ items });
     }
 
-    return result;
+    return result.sort((a, b) => {
+      if (a.collection == null) {
+        return 1;
+      }
+
+      if (b.collection == null) {
+        return -1;
+      }
+
+      return a.collection.name.localeCompare(b.collection.name);
+    });
   }, [collections, props.items]);
 
   const createCollection = (items?: string[]) => {

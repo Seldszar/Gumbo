@@ -72,7 +72,19 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
               --os-handle-interactive-area-offset: 3px;
               --os-padding-axis: 3px;
               --os-padding-perpendicular: 3px;
-              --os-size: 10px;
+              --os-size: 8px;
+
+              .os-scrollbar-handle {
+                opacity: 0.5;
+              }
+
+              &:hover {
+                --os-size: 10px;
+
+                .os-scrollbar-handle {
+                  opacity: 1;
+                }
+              }
             }
           `}
         />

@@ -357,8 +357,8 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
               event.stopPropagation();
               event.preventDefault();
             },
-          })
-        )
+          }),
+        ),
       )}
 
       <MenuContext.Provider value={{ activeIndex, setActiveIndex, getItemProps, isOpen }}>
