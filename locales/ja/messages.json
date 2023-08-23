@@ -35,6 +35,9 @@
   "buttonText_selectNone": {
     "message": "選択解除"
   },
+  "buttonText_viewOn": {
+    "message": "$1を視聴中"
+  },
   "confirmMessage_reload": {
     "message": "下のボタンから拡張機能を再読み込みしてください。"
   },
@@ -139,6 +142,9 @@
   },
   "notificationMessage_accessExpired": {
     "message": "Twitchのアクセストークンが期限切れです。再認証して新しいものを入手してください。"
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumboがバージョン$1にアップデートされました"
   },
   "notificationMessage_streamOnline": {
     "message": "$1 がオンラインになりました！"

@@ -30,22 +30,37 @@
     "message": "Erweiterung zurücksetzen"
   },
   "buttonText_selectAll": {
-    "message": "Alle auswählen"
+    "message": "Alles auswählen"
   },
   "buttonText_selectNone": {
-    "message": "Nichts auswählen"
+    "message": "Keine auswählen"
+  },
+  "buttonText_submit": {
+    "message": "Einreichen"
+  },
+  "buttonText_viewOn": {
+    "message": "Anschauen auf $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "Möchtest du es löschen \"$1\"?"
   },
   "confirmMessage_reload": {
-    "message": "Bitte benutze den unteren Button, um die Erweiterung neu zu laden."
+    "message": "Um die Erweiterung neu zu laden, klicke bitte auf den unteren Button"
   },
   "confirmMessage_reset": {
     "message": "Alle Daten werden gelöscht und du wirst ausgeloggt.<br />Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "confirmTitle_deleteItem": {
+    "message": "Löschen bestätigen"
   },
   "confirmTitle_reload": {
     "message": "Oh-oh, Gumbo reagiert nicht mehr!"
   },
   "confirmTitle_reset": {
     "message": "Du bist dabei Gumbo zurückzusetzen!"
+  },
+  "detailText_followingSince": {
+    "message": "Folge seit $1"
   },
   "detailText_noCategory": {
     "message": "Keine Kategorie"
@@ -74,8 +89,11 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Keine ignorierten Kategorien"
   },
+  "errorText_emptyList": {
+    "message": "Liste ist leer"
+  },
   "errorText_emptyOnlineStreams": {
-    "message": "Keine Streams verfügbar"
+    "message": "Keine Streams online"
   },
   "errorText_emptyStreams": {
     "message": "Keine Streams gefunden"
@@ -92,6 +110,12 @@
   "extensionName": {
     "message": "Gumbo: Twitch Begleiter"
   },
+  "helpText_customAction_url": {
+    "message": "Beispiel: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Vorhandene Platzhalter"
+  },
   "inputLabel_categoryChangeNotifications": {
     "message": "Benachrichtigung über Kategorieänderungen mit einbeziehen"
   },
@@ -105,13 +129,13 @@
     "message": "Streams nach Sprache sortieren"
   },
   "inputLabel_showIconBadge": {
-    "message": "Anzahl der online Streams anzeigen"
+    "message": "Zeige die Anzahl der Online-Streams"
   },
   "inputLabel_showLiveChannelsOnly": {
-    "message": "Zeige nur Kanäle, die online sind"
+    "message": "Nur Live-Kanäle anzeigen"
   },
   "inputLabel_showRerunsInFollowedStreams": {
-    "message": "Zeige Wiederholungen in gefolgten Kanälen an"
+    "message": "Wiederholungen in gefolgten Kanälen anzeigen"
   },
   "linkText_issues": {
     "message": "Fehler & Vorschläge"
@@ -137,14 +161,20 @@
   "notificationContextMessage_accessExpired": {
     "message": "Klicke hier, um dich zu autorisieren"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Klicken Sie hier, um Änderungen anzuzeigen"
+  },
   "notificationMessage_accessExpired": {
     "message": "Dein Twitch-Zugangstoken ist abgelaufen. Bitte autorisiere dich erneut, um einen neuen Token zu erhalten."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo wurde aktualisiert auf die Version $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 ist online!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1 spielt $2!"
+    "message": "$1 läuft gerade$2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Der Zugang ist abgelaufen"
@@ -176,6 +206,15 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Im neuen Fenster öffnen"
   },
+  "optionValue_collections": {
+    "message": "Auswahl"
+  },
+  "optionValue_customActions": {
+    "message": "Benutzerdefinierte Aktionen"
+  },
+  "optionValue_delete": {
+    "message": "Löschen"
+  },
   "optionValue_donate": {
     "message": "Spenden"
   },
@@ -194,8 +233,14 @@
   "optionValue_fontSize_smallest": {
     "message": "Kleinste"
   },
+  "optionValue_gotoCategory": {
+    "message": "Kategorie wechseln"
+  },
   "optionValue_logout": {
     "message": "Ausloggen"
+  },
+  "optionValue_newCollection": {
+    "message": "Neue Auswahl"
   },
   "optionValue_openChannel": {
     "message": "Kanal öffnen"
@@ -236,6 +281,9 @@
   "optionValue_sort_category": {
     "message": "Kategorie"
   },
+  "optionValue_sort_followedAt": {
+    "message": "Verfolgt seit"
+  },
   "optionValue_sort_login": {
     "message": "Streamer"
   },
@@ -252,7 +300,7 @@
     "message": "Laufzeit"
   },
   "optionValue_sort_viewers": {
-    "message": "Zuschauer"
+    "message": "Zuschauerzahl"
   },
   "optionValue_sort_views": {
     "message": "Aufrufe"
@@ -278,6 +326,9 @@
   "optionValue_unknown": {
     "message": "Unbekannt"
   },
+  "optionValue_update": {
+    "message": "Update"
+  },
   "optionValue_videoType_all": {
     "message": "Alle Videos"
   },
@@ -294,7 +345,7 @@
     "message": "Videos"
   },
   "placeholderText_ignoredCategories": {
-    "message": "Eine Kategorie eingeben, die ignoriert werden soll"
+    "message": "Gebe eine Kategorie ein, die ignoriert werden soll"
   },
   "titleText_advanced": {
     "message": "Erweitert"
@@ -308,23 +359,44 @@
   "titleText_categories": {
     "message": "Kategorien"
   },
+  "titleText_channelId": {
+    "message": "Kanal ID"
+  },
+  "titleText_channelLogin": {
+    "message": "Kanal Login"
+  },
   "titleText_channels": {
     "message": "Kanäle"
   },
   "titleText_clips": {
     "message": "Clips"
   },
+  "titleText_createCollection": {
+    "message": "Auswahl erstellen"
+  },
+  "titleText_createItem": {
+    "message": "Objekt erstellen"
+  },
+  "titleText_customActions": {
+    "message": "Benutzerdefinierte Aktionen"
+  },
   "titleText_dangerZone": {
     "message": "Gefahrenzone"
+  },
+  "titleText_deleteCollection": {
+    "message": "Auswahl löschen"
   },
   "titleText_donate": {
     "message": "Spenden"
   },
+  "titleText_dropdownMenu": {
+    "message": "Dropdown Menü"
+  },
   "titleText_followedStreams": {
-    "message": "Followed Kanäle"
+    "message": "Gefolgte Kanäle"
   },
   "titleText_followedUsers": {
-    "message": "Followed Streamer"
+    "message": "Gefolgte Streamer"
   },
   "titleText_general": {
     "message": "Allgemein"
@@ -358,6 +430,12 @@
   },
   "titleText_topStreams": {
     "message": "Top Streamer"
+  },
+  "titleText_updateCollection": {
+    "message": "Auswahl aktualisierten"
+  },
+  "titleText_updateItem": {
+    "message": "Objekt aktualisieren"
   },
   "titleText_videos": {
     "message": "Videos"

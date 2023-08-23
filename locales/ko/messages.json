@@ -1,4 +1,7 @@
 {
+  "buttonText_add": {
+    "message": "추가"
+  },
   "buttonText_cancel": {
     "message": "취소"
   },
@@ -21,7 +24,7 @@
     "message": "Twitch로 로그인"
   },
   "buttonText_reloadExtension": {
-    "message": "확장 프로그램 다시 불러오기"
+    "message": "확장 프로그램 새로고침"
   },
   "buttonText_resetExtension": {
     "message": "확장 프로그램 재설정"
@@ -32,17 +35,32 @@
   "buttonText_selectNone": {
     "message": "전체 해제"
   },
+  "buttonText_submit": {
+    "message": "저장"
+  },
+  "buttonText_viewOn": {
+    "message": "$1에서 보기"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "\"$1\"을(를) 삭제하시겠습니까?"
+  },
   "confirmMessage_reload": {
     "message": "확장 프로그램을 다시 불러오려면 아래 버튼을 누르세요."
   },
   "confirmMessage_reset": {
     "message": "모든 데이터가 삭제되고 로그아웃됩니다.<br />계속하시겠습니까?"
   },
+  "confirmTitle_deleteItem": {
+    "message": "삭제 확인"
+  },
   "confirmTitle_reload": {
     "message": "Gumbo가 응답하지 않습니다!"
   },
   "confirmTitle_reset": {
     "message": "Gumbo를 재설정하려고 합니다!"
+  },
+  "detailText_followingSince": {
+    "message": "$1 부터 팔로잉"
   },
   "detailText_noCategory": {
     "message": "카테고리 없음"
@@ -68,6 +86,12 @@
   "errorText_emptyFollowingUsers": {
     "message": "팔로우 중인 채널이 없습니다"
   },
+  "errorText_emptyIgnoredCategories": {
+    "message": "무시된 카테고리 없음"
+  },
+  "errorText_emptyList": {
+    "message": "목록이 비어 있습니다"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "생방송이 없습니다"
   },
@@ -85,6 +109,12 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
+  },
+  "helpText_customAction_url": {
+    "message": "예: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "사용 가능한 자리 표시자"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "카테고리 변경 알림 포함"
@@ -131,11 +161,20 @@
   "notificationContextMessage_accessExpired": {
     "message": "승인하려면 누르세요"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "변경 사항을 보려면 클릭하세요"
+  },
   "notificationMessage_accessExpired": {
     "message": "Twitch 액세스 토큰이 만료되었습니다. 새 토큰을 받으려면 다시 인증하세요."
   },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo가 버전 $1(으)로 업데이트되었습니다."
+  },
   "notificationMessage_streamOnline": {
     "message": "$1 생방송 중입니다!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 is playing $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "액세스 만료됨"
@@ -167,6 +206,15 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "새 창에서 열기"
   },
+  "optionValue_collections": {
+    "message": "컬렉션"
+  },
+  "optionValue_customActions": {
+    "message": "커스텀 동작"
+  },
+  "optionValue_delete": {
+    "message": "삭제"
+  },
   "optionValue_donate": {
     "message": "기부"
   },
@@ -185,8 +233,14 @@
   "optionValue_fontSize_smallest": {
     "message": "가장 작게"
   },
+  "optionValue_gotoCategory": {
+    "message": "카테고리로 이동"
+  },
   "optionValue_logout": {
     "message": "로그아웃"
+  },
+  "optionValue_newCollection": {
+    "message": "새 컬렉션"
   },
   "optionValue_openChannel": {
     "message": "채널 열기"
@@ -227,6 +281,9 @@
   "optionValue_sort_category": {
     "message": "카테고리"
   },
+  "optionValue_sort_followedAt": {
+    "message": "팔로우"
+  },
   "optionValue_sort_login": {
     "message": "채널 이름(ID)"
   },
@@ -243,7 +300,7 @@
     "message": "방송시간"
   },
   "optionValue_sort_viewers": {
-    "message": "시청자"
+    "message": "시청자 수"
   },
   "optionValue_sort_views": {
     "message": "조회수"
@@ -258,13 +315,19 @@
     "message": "생방송 만"
   },
   "optionValue_theme_dark": {
-    "message": "어두운"
+    "message": "어둡게"
   },
   "optionValue_theme_light": {
-    "message": "밝은"
+    "message": "밝게"
+  },
+  "optionValue_theme_system": {
+    "message": "시스템"
   },
   "optionValue_unknown": {
     "message": "알 수 없는"
+  },
+  "optionValue_update": {
+    "message": "편집"
   },
   "optionValue_videoType_all": {
     "message": "모든 동영상"
@@ -281,6 +344,9 @@
   "optionValue_videos": {
     "message": "동영상"
   },
+  "placeholderText_ignoredCategories": {
+    "message": "무시할 카테고리를 입력하세요"
+  },
   "titleText_advanced": {
     "message": "고급"
   },
@@ -293,17 +359,38 @@
   "titleText_categories": {
     "message": "카테고리"
   },
+  "titleText_channelId": {
+    "message": "Channel ID"
+  },
+  "titleText_channelLogin": {
+    "message": "Channel Login"
+  },
   "titleText_channels": {
     "message": "채널"
   },
   "titleText_clips": {
     "message": "클립"
   },
+  "titleText_createCollection": {
+    "message": "컬렉션 생성"
+  },
+  "titleText_createItem": {
+    "message": "항목 생성"
+  },
+  "titleText_customActions": {
+    "message": "커스텀 동작"
+  },
   "titleText_dangerZone": {
     "message": "위험 구역"
   },
+  "titleText_deleteCollection": {
+    "message": "컬렉션 삭제"
+  },
   "titleText_donate": {
     "message": "기부"
+  },
+  "titleText_dropdownMenu": {
+    "message": "드롭다운 메뉴"
   },
   "titleText_followedStreams": {
     "message": "팔로우 중인 생방송"
@@ -313,6 +400,9 @@
   },
   "titleText_general": {
     "message": "일반"
+  },
+  "titleText_ignoredCategories": {
+    "message": "무시된 카테고리"
   },
   "titleText_live": {
     "message": "생방송"
@@ -340,6 +430,12 @@
   },
   "titleText_topStreams": {
     "message": "인기 생방송"
+  },
+  "titleText_updateCollection": {
+    "message": "컬렉션 편집"
+  },
+  "titleText_updateItem": {
+    "message": "항목 편집"
   },
   "titleText_videos": {
     "message": "동영상"
