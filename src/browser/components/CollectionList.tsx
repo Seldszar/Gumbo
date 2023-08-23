@@ -14,9 +14,7 @@ import DropdownMenu from "./DropdownMenu";
 import CollectionModal from "./modals/CollectionModal";
 import DeleteModal from "./modals/DeleteModal";
 
-const StyledAccordion = styled(Accordion)`
-  ${tw`pt-4`}
-`;
+const StyledAccordion = styled(Accordion)``;
 
 const StyledIconSettings = styled(IconSettings)`
   ${tw`cursor-pointer hover:(text-black dark:text-white)`}
@@ -28,7 +26,9 @@ const Divider = styled.div`
 
 const DefaultCollection = styled.div``;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  ${tw`flex flex-col gap-2 py-2`}
+`;
 
 interface ModalState {
   type: "delete" | "mutate";

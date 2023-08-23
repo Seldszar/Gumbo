@@ -21,9 +21,7 @@ import FilterBar from "~/browser/components/FilterBar";
 import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
 
-const Collection = styled.div`
-  ${tw`py-2`}
-`;
+const Collection = styled.div``;
 
 const FollowingSince = styled.div`
   ${tw`truncate`}

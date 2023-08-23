@@ -16,12 +16,12 @@ import Splash from "~/browser/components/Splash";
 
 import type { OutletContext } from "./Search";
 
-const Grid = styled.div`
-  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 p-4`}
+const Collection = styled.div`
+  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 px-4 py-2`}
 `;
 
 const LoadMore = styled.div`
-  ${tw`p-4 pt-0`}
+  ${tw`px-4 py-2`}
 `;
 
 interface ChildComponentProps {
@@ -57,7 +57,7 @@ function ChildComponent(props: ChildComponentProps) {
       defaultItems={pages.flatMap((page) => page.data)}
       render={({ collection, items, createCollection }) => (
         <>
-          <Grid>
+          <Collection>
             {items.map((category) => (
               <Link key={category.id} to={`/categories/${category.id}`}>
                 <CategoryCard
@@ -66,7 +66,7 @@ function ChildComponent(props: ChildComponentProps) {
                 />
               </Link>
             ))}
-          </Grid>
+          </Collection>
 
           {collection == null && hasMore && (
             <LoadMore>
