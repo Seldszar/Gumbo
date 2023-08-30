@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const Inner = styled.div`
-  ${tw`flex flex-col place-items-center py-6 relative z-10`}
+  ${tw`flex flex-col place-items-center p-6 relative z-10`}
 `;
 
 const Background = styled.div`
@@ -33,7 +33,7 @@ const ThumbnailImage = styled(Image)`
 `;
 
 const Name = styled.div`
-  ${tw`font-bold text-2xl`}
+  ${tw`font-bold text-2xl text-center`}
 `;
 
 const TabList = styled.div`
