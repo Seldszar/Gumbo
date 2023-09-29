@@ -17,7 +17,7 @@ import tw, { styled } from "twin.macro";
 import { remToPixels } from "../helpers";
 
 const Panel = styled.div`
-  ${tw`fixed bg-purple-500 max-w-full pointer-events-none px-4 py-2 rounded shadow-lg text-white z-20`}
+  ${tw`fixed bg-white max-w-full pointer-events-none px-4 py-2 rounded text-sm shadow-lg z-20 dark:bg-black`}
 `;
 
 interface TooltipProps {
