@@ -35,17 +35,32 @@
   "buttonText_selectNone": {
     "message": "Odznacz wszystkie"
   },
+  "buttonText_submit": {
+    "message": "Wyślij"
+  },
+  "buttonText_viewOn": {
+    "message": "Zobacz $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "Czy chcesz usunąć \"$1\"?"
+  },
   "confirmMessage_reload": {
     "message": "Użyj przycisku niżej by przeładować rozszerzenie."
   },
   "confirmMessage_reset": {
     "message": "Wszystkie dane zostaną usunięte i nastąpi wylogowanie.<br />Czy na pewno chcesz kontynuować?"
   },
+  "confirmTitle_deleteItem": {
+    "message": "Potwierdź usunięcie"
+  },
   "confirmTitle_reload": {
     "message": "O cholibka, Gumbo nie odpowiada!"
   },
   "confirmTitle_reset": {
     "message": "Za chwilę zresetujesz Gumbo!"
+  },
+  "detailText_followingSince": {
+    "message": "Obserwuje od $1"
   },
   "detailText_noCategory": {
     "message": "Brak kategorii"
@@ -74,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Brak ignorowanych kategorii"
   },
+  "errorText_emptyList": {
+    "message": "Lista jest pusta"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "Brak transmisji na żywo"
   },
@@ -91,6 +109,12 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
+  },
+  "helpText_customAction_url": {
+    "message": "Przykład: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Dostępne zastępcze"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Uwzględnij powiadomienia o zmianie kategorii"
@@ -137,8 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "Kliknij by autoryzować"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Kliknij by zobaczyć zmiany"
+  },
   "notificationMessage_accessExpired": {
     "message": "Twój token dostępu Twitch wygasł, proszę ponownie autoryzuj, aby otrzymać nowy."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo został zaktualizowany do wersji $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 jest online!"
@@ -162,7 +192,7 @@
     "message": "Motyw"
   },
   "optionValue_about": {
-    "message": "O"
+    "message": "Informacje"
   },
   "optionValue_aboutHelp": {
     "message": "Informacje i pomoc"
@@ -175,6 +205,15 @@
   },
   "optionValue_clickBehavior_createWindow": {
     "message": "Otwórz w nowym oknie"
+  },
+  "optionValue_collections": {
+    "message": "Kolekcje"
+  },
+  "optionValue_customActions": {
+    "message": "Niestandardowe akcje"
+  },
+  "optionValue_delete": {
+    "message": "Usuń"
   },
   "optionValue_donate": {
     "message": "Donate"
@@ -194,8 +233,14 @@
   "optionValue_fontSize_smallest": {
     "message": "Najmniejszy"
   },
+  "optionValue_gotoCategory": {
+    "message": "Przejdź do kategorii"
+  },
   "optionValue_logout": {
     "message": "Wyloguj się"
+  },
+  "optionValue_newCollection": {
+    "message": "Nowa kolekcja"
   },
   "optionValue_openChannel": {
     "message": "Otwórz kanał"
@@ -272,8 +317,14 @@
   "optionValue_theme_light": {
     "message": "Jasny"
   },
+  "optionValue_theme_system": {
+    "message": "System"
+  },
   "optionValue_unknown": {
     "message": "Nieznany"
+  },
+  "optionValue_update": {
+    "message": "Aktualizacja"
   },
   "optionValue_videoType_all": {
     "message": "Wszystkie filmiki"
@@ -305,17 +356,38 @@
   "titleText_categories": {
     "message": "Kategorie"
   },
+  "titleText_channelId": {
+    "message": "ID kanału"
+  },
+  "titleText_channelLogin": {
+    "message": "Login kanału"
+  },
   "titleText_channels": {
     "message": "Kanały"
   },
   "titleText_clips": {
     "message": "Klipy"
   },
+  "titleText_createCollection": {
+    "message": "Utwórz kolekcję"
+  },
+  "titleText_createItem": {
+    "message": "Utwórz przedmiot"
+  },
+  "titleText_customActions": {
+    "message": "Niestandardowe akcje"
+  },
   "titleText_dangerZone": {
     "message": "Strefa niebezpieczeństwa"
   },
+  "titleText_deleteCollection": {
+    "message": "Usuń kolekcję"
+  },
   "titleText_donate": {
     "message": "Donate"
+  },
+  "titleText_dropdownMenu": {
+    "message": "Menu rozwijane"
   },
   "titleText_followedStreams": {
     "message": "Śledzone transmisje"
@@ -355,6 +427,12 @@
   },
   "titleText_topStreams": {
     "message": "Najpopularniejsze transmisje"
+  },
+  "titleText_updateCollection": {
+    "message": "Zaktualizuj kolekcję"
+  },
+  "titleText_updateItem": {
+    "message": "Zaktualizuj przedmiot"
   },
   "titleText_videos": {
     "message": "Filmy"
