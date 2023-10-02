@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.4](https://github.com/Seldszar/Gumbo/compare/v1.18.3...v1.18.4) (2023-09-29)
+
+
+### Bug Fixes
+
+* category title ([83be1ab](https://github.com/Seldszar/Gumbo/commit/83be1ab3147d2bb4f15724c2b8a3012af439e722))
+* tooltip style ([96f1960](https://github.com/Seldszar/Gumbo/commit/96f196039e992bfc01936b8ef00ed674f624fc2c))
+
 ## [1.18.3](https://github.com/Seldszar/Gumbo/compare/v1.18.2...v1.18.3) (2023-08-23)
 
 
