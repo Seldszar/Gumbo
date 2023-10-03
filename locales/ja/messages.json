@@ -35,8 +35,14 @@
   "buttonText_selectNone": {
     "message": "選択解除"
   },
+  "buttonText_submit": {
+    "message": "送信"
+  },
   "buttonText_viewOn": {
-    "message": "$1を視聴中"
+    "message": "$1を視聴する"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "$1を削除してもよろしいですか？"
   },
   "confirmMessage_reload": {
     "message": "下のボタンから拡張機能を再読み込みしてください。"
@@ -44,11 +50,17 @@
   "confirmMessage_reset": {
     "message": "すべてのデータが消去され、ログアウトします。<br />本当に実行してもよろしいですか？"
   },
+  "confirmTitle_deleteItem": {
+    "message": "削除の確認"
+  },
   "confirmTitle_reload": {
     "message": "あ、Gumboが反応しなくなった！"
   },
   "confirmTitle_reset": {
     "message": "Gumboをリセットしようとしています！"
+  },
+  "detailText_followingSince": {
+    "message": "$1からフォロー中"
   },
   "detailText_noCategory": {
     "message": "カテゴリなし"
@@ -77,6 +89,9 @@
   "errorText_emptyIgnoredCategories": {
     "message": "無視されたカテゴリはありません"
   },
+  "errorText_emptyList": {
+    "message": "リストが空です"
+  },
   "errorText_emptyOnlineStreams": {
     "message": "オンラインの配信なし"
   },
@@ -94,6 +109,12 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitchコンパニオン"
+  },
+  "helpText_customAction_url": {
+    "message": "例：$1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "利用可能なプレースフォルダー"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "カテゴリー変更通知を含む"
@@ -140,11 +161,14 @@
   "notificationContextMessage_accessExpired": {
     "message": "クリックで認証"
   },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "クリックして変更を確認する"
+  },
   "notificationMessage_accessExpired": {
     "message": "Twitchのアクセストークンが期限切れです。再認証して新しいものを入手してください。"
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumboがバージョン$1にアップデートされました"
+    "message": "Gumboがバージョン$1にアップデートされました。"
   },
   "notificationMessage_streamOnline": {
     "message": "$1 がオンラインになりました！"
@@ -182,6 +206,15 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "新しいウィンドウで開く"
   },
+  "optionValue_collections": {
+    "message": "コレクション"
+  },
+  "optionValue_customActions": {
+    "message": "カスタムアクション"
+  },
+  "optionValue_delete": {
+    "message": "削除"
+  },
   "optionValue_donate": {
     "message": "寄付"
   },
@@ -200,8 +233,14 @@
   "optionValue_fontSize_smallest": {
     "message": "最小"
   },
+  "optionValue_gotoCategory": {
+    "message": "カテゴリに移動"
+  },
   "optionValue_logout": {
     "message": "ログアウト"
+  },
+  "optionValue_newCollection": {
+    "message": "新しいコレクション"
   },
   "optionValue_openChannel": {
     "message": "チャンネルを開く"
@@ -241,6 +280,9 @@
   },
   "optionValue_sort_category": {
     "message": "カテゴリー"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "にフォロー"
   },
   "optionValue_sort_login": {
     "message": "配信者"
@@ -284,6 +326,9 @@
   "optionValue_unknown": {
     "message": "不明"
   },
+  "optionValue_update": {
+    "message": "アップデート"
+  },
   "optionValue_videoType_all": {
     "message": "すべてのビデオ"
   },
@@ -314,17 +359,38 @@
   "titleText_categories": {
     "message": "カテゴリ"
   },
+  "titleText_channelId": {
+    "message": "チャンネルID"
+  },
+  "titleText_channelLogin": {
+    "message": "チャンネルログイン"
+  },
   "titleText_channels": {
     "message": "チャンネル"
   },
   "titleText_clips": {
     "message": "クリップ"
   },
+  "titleText_createCollection": {
+    "message": "コレクションを作成する"
+  },
+  "titleText_createItem": {
+    "message": "項目を作成する"
+  },
+  "titleText_customActions": {
+    "message": "カスタムアクション"
+  },
   "titleText_dangerZone": {
     "message": "危険地帯"
   },
+  "titleText_deleteCollection": {
+    "message": "コレクションを削除する"
+  },
   "titleText_donate": {
     "message": "寄付"
+  },
+  "titleText_dropdownMenu": {
+    "message": "ドロップダウンメニュー"
   },
   "titleText_followedStreams": {
     "message": "フォローしている配信"
@@ -364,6 +430,12 @@
   },
   "titleText_topStreams": {
     "message": "トップの配信"
+  },
+  "titleText_updateCollection": {
+    "message": "コレクションをアップデートする"
+  },
+  "titleText_updateItem": {
+    "message": "項目をアップデートする"
   },
   "titleText_videos": {
     "message": "ビデオ"

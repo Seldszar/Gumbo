@@ -42,10 +42,10 @@
     "message": "Anschauen auf $1"
   },
   "confirmMessage_deleteItem": {
-    "message": "Möchtest du es löschen \"$1\"?"
+    "message": "Möchtest du \"$1\" löschen?"
   },
   "confirmMessage_reload": {
-    "message": "Um die Erweiterung neu zu laden, klicke bitte auf den unteren Button"
+    "message": "Bitte nutze den Button unten, um die Erweiterung neu zu laden."
   },
   "confirmMessage_reset": {
     "message": "Alle Daten werden gelöscht und du wirst ausgeloggt.<br />Bist du sicher, dass du fortfahren möchtest?"
@@ -123,13 +123,13 @@
     "message": "Benachrichtigungen aktivieren"
   },
   "inputLabel_filterNotificationsByChannel": {
-    "message": "Benachrichtigungen nach Kanal sortieren"
+    "message": "Benachrichtigungen nach Kanal filtern"
   },
   "inputLabel_filterStreamsByLanguage": {
-    "message": "Streams nach Sprache sortieren"
+    "message": "Streams nach Sprache filtern"
   },
   "inputLabel_showIconBadge": {
-    "message": "Zeige die Anzahl der Online-Streams"
+    "message": "Online-Stream-Anzahl anzeigen"
   },
   "inputLabel_showLiveChannelsOnly": {
     "message": "Nur Live-Kanäle anzeigen"
@@ -162,25 +162,25 @@
     "message": "Klicke hier, um dich zu autorisieren"
   },
   "notificationContextMessage_extensionUpdated": {
-    "message": "Klicken Sie hier, um Änderungen anzuzeigen"
+    "message": "Klicke hier, um Änderungen anzusehen"
   },
   "notificationMessage_accessExpired": {
     "message": "Dein Twitch-Zugangstoken ist abgelaufen. Bitte autorisiere dich erneut, um einen neuen Token zu erhalten."
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumbo wurde aktualisiert auf die Version $1."
+    "message": "Gumbo wurde auf die Version $1 aktualisiert."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 ist online!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1 läuft gerade$2!"
+    "message": "$1 spielt jetzt $2!"
   },
   "notificationTitle_accessExpired": {
-    "message": "Der Zugang ist abgelaufen"
+    "message": "Zugang abgelaufen"
   },
   "optionTitle_clickAction": {
-    "message": "Aktion klicken"
+    "message": "Klick-Aktion"
   },
   "optionTitle_clickBehavior": {
     "message": "Klickverhalten"
@@ -234,7 +234,7 @@
     "message": "Kleinste"
   },
   "optionValue_gotoCategory": {
-    "message": "Kategorie wechseln"
+    "message": "Kategorie öffnen"
   },
   "optionValue_logout": {
     "message": "Ausloggen"
@@ -282,7 +282,7 @@
     "message": "Kategorie"
   },
   "optionValue_sort_followedAt": {
-    "message": "Verfolgt seit"
+    "message": "Folge seit"
   },
   "optionValue_sort_login": {
     "message": "Streamer"
