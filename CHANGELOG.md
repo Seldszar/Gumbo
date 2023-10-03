@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.5](https://github.com/Seldszar/Gumbo/compare/v1.18.4...v1.18.5) (2023-10-03)
+
+
+### Bug Fixes
+
+* update translations ([#170](https://github.com/Seldszar/Gumbo/issues/170)) ([2d45266](https://github.com/Seldszar/Gumbo/commit/2d45266e482d957de3d6a59b62d33554c519a00d))
+
 ## [1.18.4](https://github.com/Seldszar/Gumbo/compare/v1.18.3...v1.18.4) (2023-09-29)
 
 
