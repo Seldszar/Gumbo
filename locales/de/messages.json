@@ -174,7 +174,7 @@
     "message": "$1 ist online!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1 spielt jetzt $2!"
+    "message": "$1 streamt jetzt $2!"
   },
   "notificationTitle_accessExpired": {
     "message": "Zugang abgelaufen"
