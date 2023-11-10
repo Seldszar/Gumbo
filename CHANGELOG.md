@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.6](https://github.com/Seldszar/Gumbo/compare/v1.18.5...v1.18.6) (2023-11-10)
+
+
+### Bug Fixes
+
+* tooltip overflow padding ([406c6c4](https://github.com/Seldszar/Gumbo/commit/406c6c41e19aeceffd8b029eac4d932693963094))
+* update translations ([#173](https://github.com/Seldszar/Gumbo/issues/173)) ([659b4a8](https://github.com/Seldszar/Gumbo/commit/659b4a817936a1dde57d7533e95349f9b7b28519))
+
 ## [1.18.5](https://github.com/Seldszar/Gumbo/compare/v1.18.4...v1.18.5) (2023-10-03)
 
 
