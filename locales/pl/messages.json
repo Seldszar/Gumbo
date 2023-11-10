@@ -281,6 +281,9 @@
   "optionValue_sort_category": {
     "message": "Kategoria"
   },
+  "optionValue_sort_followedAt": {
+    "message": "Obserwujesz od"
+  },
   "optionValue_sort_login": {
     "message": "Nadawca"
   },
