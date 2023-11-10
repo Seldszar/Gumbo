@@ -36,7 +36,9 @@ function Tooltip(props: TooltipProps) {
     whileElementsMounted: autoUpdate,
     placement: props.placement,
     middleware: [
-      flip(),
+      flip({
+        padding: remToPixels(0.5),
+      }),
       shift({
         padding: remToPixels(0.5),
       }),
