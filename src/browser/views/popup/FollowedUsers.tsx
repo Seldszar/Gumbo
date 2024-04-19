@@ -1,6 +1,5 @@
 import { find, map, orderBy } from "lodash-es";
 import { useMemo, useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { isRerunStream, t } from "~/common/helpers";
 import { FollowedUserState, HelixUser } from "~/common/types";
@@ -13,6 +12,7 @@ import {
   useFollowedUserState,
   useUsersByID,
 } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import UserCard from "~/browser/components/cards/UserCard";
 
@@ -21,11 +21,11 @@ import FilterBar from "~/browser/components/FilterBar";
 import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
 
-const Collection = styled.div``;
-
-const FollowingSince = styled.div`
-  ${tw`truncate`}
-`;
+const FollowingSince = styled("div", {
+  base: {
+    truncate: true,
+  },
+});
 
 interface FormattedUser extends HelixUser {
   followedAt: Date;
@@ -97,7 +97,7 @@ function ChildComponent(props: ChildComponentProps) {
       items={filteredUsers}
       getItemIdentifier={(item) => item.id}
       render={({ items, createCollection }) => (
-        <Collection>
+        <div>
           {items.map((item) => (
             <UserCard
               key={item.id}
@@ -111,7 +111,7 @@ function ChildComponent(props: ChildComponentProps) {
               </FollowingSince>
             </UserCard>
           ))}
-        </Collection>
+        </div>
       )}
     />
   );

@@ -1,11 +1,14 @@
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Tooltip from "./Tooltip";
 
-const Login = styled.span`
-  ${tw`font-normal`}
-`;
+const Login = styled("span", {
+  base: {
+    fontWeight: "normal",
+  },
+});
 
 export interface ChannelNameProps {
   className?: string;

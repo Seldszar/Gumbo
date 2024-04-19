@@ -1,15 +1,20 @@
 import { useMemo, useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Button from "../Button";
 import FormField from "../FormField";
 import Input from "../Input";
 
-const ActionList = styled.div`
-  ${tw`flex gap-2 justify-end`}
-`;
+const ActionList = styled("div", {
+  base: {
+    display: "flex",
+    gap: 2,
+    justifyContent: "end",
+  },
+});
 
 export interface CollectionFormProps {
   value?: string;

@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
 import { HelixVideo } from "~/common/types";
 
 import { parseFormatDuration } from "~/browser/helpers";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
@@ -12,21 +12,43 @@ import ChannelName from "../ChannelName";
 import Image from "../Image";
 import Tooltip from "../Tooltip";
 
-const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded w-24`}
-`;
+const Thumbnail = styled("div", {
+  base: {
+    bg: "black",
+    overflow: "hidden",
+    pos: "relative",
+    rounded: "sm",
+    w: 24,
+  },
+});
 
-const VideoDuration = styled.div`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 end-0 rounded-ss tabular-nums text-sm text-white`}
-`;
+const Duration = styled("div", {
+  base: {
+    bg: "black/75",
+    color: "white",
+    bottom: 0,
+    end: 0,
+    fontSize: "sm",
+    fontVariantNumeric: "tabular-nums",
+    fontWeight: "medium",
+    pos: "absolute",
+    px: 1,
+    roundedStartStart: "md",
+  },
+});
 
-const Details = styled.ul`
-  ${tw`flex gap-4`}
-`;
+const Details = styled("ul", {
+  base: {
+    display: "flex",
+    gap: 4,
+  },
+});
 
-const Wrapper = styled(Card)`
-  ${tw`py-2`}
-`;
+const Wrapper = styled(Card, {
+  base: {
+    py: 2,
+  },
+});
 
 export interface VideoCardProps {
   video: HelixVideo;
@@ -55,7 +77,7 @@ function VideoCard(props: VideoCardProps) {
         leftOrnament={
           <Thumbnail>
             <Image src={previewImage} ratio={9 / 16} />
-            <VideoDuration>{durationString}</VideoDuration>
+            <Duration>{durationString}</Duration>
           </Thumbnail>
         }
       >

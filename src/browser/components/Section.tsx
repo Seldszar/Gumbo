@@ -1,13 +1,26 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
-const Header = styled.div`
-  ${tw`font-medium mb-2 text-neutral-600 dark:text-neutral-400 text-sm uppercase`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Wrapper = styled.div`
-  ${tw`mb-6 last:mb-0 [&_p]:(mb-2 last:mb-0)`}
-`;
+const Header = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    fontSize: "sm",
+    fontWeight: "medium",
+    mb: 2,
+    textTransform: "uppercase",
+  },
+});
+
+const Wrapper = styled("div", {
+  base: {
+    mb: { base: 6, _last: 0 },
+
+    "& p": {
+      mb: { base: 2, _last: 0 },
+    },
+  },
+});
 
 interface Props {
   children?: ReactNode;

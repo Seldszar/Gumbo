@@ -9,6 +9,7 @@ const { EntryWrapperPlugin } = require("@seldszar/yael");
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const localeReplacements = [
   {
@@ -37,7 +38,21 @@ module.exports = (env, argv) => {
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          use: "babel-loader",
+          use: {
+            loader: "swc-loader",
+            options: {
+              env: {
+                targets: "last 2 years",
+              },
+              jsc: {
+                transform: {
+                  react: {
+                    runtime: "automatic",
+                  },
+                },
+              },
+            },
+          },
         },
       ],
     },
@@ -81,7 +96,7 @@ module.exports = (env, argv) => {
 
               return `_locales/${localeReplacements.reduce(
                 (result, { source, target }) => result.replace(source, target),
-                relativePath
+                relativePath,
               )}`;
             },
           },
@@ -107,7 +122,7 @@ module.exports = (env, argv) => {
         rules: [
           {
             test: /\.css$/,
-            use: ["style-loader", "css-loader", "postcss-loader"],
+            use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
           },
         ],
       },
@@ -118,6 +133,7 @@ module.exports = (env, argv) => {
         },
       },
       plugins: [
+        new MiniCssExtractPlugin(),
         new EntryWrapperPlugin({
           template: "./src/browser/entry-template.tsx",
           test: /\.tsx$/,

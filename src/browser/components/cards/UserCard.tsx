@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 import { HelixUser } from "~/common/types";
 
 import { useClickAction } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
@@ -15,40 +15,50 @@ import Tooltip from "../Tooltip";
 
 import UserDropdown from "../dropdowns/UserDropdown";
 
-const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded-full w-12`}
-`;
+const Thumbnail = styled("div", {
+  base: {
+    bg: "black",
+    overflow: "hidden",
+    pos: "relative",
+    rounded: "full",
+    w: 12,
+  },
 
-const StyledDropdownButton = styled(DropdownButton)`
-  ${tw`absolute invisible end-6 -top-2 z-20`}
-`;
+  variants: {
+    type: {
+      live: {
+        shadow: {
+          base: "inset 0 0 0 2px {colors.red.600}, inset 0 0 0 4px {colors.white}",
+          _dark: "inset 0 0 0 2px {colors.red.400}, inset 0 0 0 4px {colors.black}",
+        },
+      },
 
-export interface WrapperProps {
-  isRerun?: boolean;
-  isLive?: boolean;
-}
+      rerun: {
+        shadow: {
+          base: "inset 0 0 0 2px {colors.neutral.600}, inset 0 0 0 4px {colors.white}",
+          _dark: "inset 0 0 0 2px {colors.neutral.400}, inset 0 0 0 4px {colors.black}",
+        },
+      },
+    },
+  },
+});
 
-const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`py-2 relative`}
+const StyledDropdownButton = styled(DropdownButton, {
+  base: {
+    end: 6,
+    pos: "absolute",
+    top: -2,
+    visibility: { base: "hidden", _groupHover: "visible" },
+    zIndex: 20,
+  },
+});
 
-  ${Thumbnail} {
-    ${(props) => {
-      if (props.isRerun) {
-        return tw`ring-2 ring-offset-2 ring-offset-white ring-neutral-600 dark:(ring-neutral-400 ring-offset-black)`;
-      }
-
-      if (props.isLive) {
-        return tw`ring-2 ring-offset-2 ring-offset-white ring-red-600 dark:(ring-red-400 ring-offset-black)`;
-      }
-
-      return null;
-    }}
-  }
-
-  :hover ${StyledDropdownButton} {
-    ${tw`visible`}
-  }
-`;
+const Wrapper = styled(Card, {
+  base: {
+    pos: "relative",
+    py: 2,
+  },
+});
 
 export interface UserCardProps {
   children?: ReactNode;
@@ -67,8 +77,7 @@ function UserCard(props: UserCardProps) {
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        isLive={props.isLive}
-        isRerun={props.isRerun}
+        className="group"
         title={<ChannelName login={user.login} name={user.displayName} />}
         subtitle={
           <Tooltip content={user.description}>
@@ -76,7 +85,7 @@ function UserCard(props: UserCardProps) {
           </Tooltip>
         }
         leftOrnament={
-          <Thumbnail>
+          <Thumbnail type={props.isRerun ? "rerun" : props.isLive ? "live" : undefined}>
             <Image src={user.profileImageUrl} ratio={1} />
           </Thumbnail>
         }

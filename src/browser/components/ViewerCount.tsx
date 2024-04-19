@@ -1,29 +1,40 @@
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
 
 import { isRerunStream, t } from "~/common/helpers";
 import { HelixStream } from "~/common/types";
 
+import { styled } from "~/browser/styled-system/jsx";
+
 import Tooltip from "./Tooltip";
 
-interface WrapperProps {
-  isRerun: boolean;
-}
+const Wrapper = styled("div", {
+  base: {
+    color: { base: "red.600", _dark: "red.400" },
+    display: "flex",
+    fontVariantNumeric: "tabular-nums",
+    gap: 1,
 
-const Wrapper = styled.div<WrapperProps>`
-  ${tw`flex gap-1 tabular-nums text-red-600 dark:text-red-400`}
+    "& svg": {
+      fill: "none",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      stroke: "current",
+      strokeWidth: "2px",
+      w: 5,
+    },
+  },
 
-  svg {
-    ${tw`stroke-current w-5`}
-
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-  }
-
-  ${(props) => props.isRerun && tw`text-neutral-600 dark:text-neutral-400`}
-`;
+  variants: {
+    isRerun: {
+      true: {
+        color: { base: "neutral.600", _dark: "neutral.400" },
+      },
+    },
+  },
+  defaultVariants: {
+    isRerun: false,
+  },
+});
 
 export interface ViewerCountProps {
   stream: HelixStream;

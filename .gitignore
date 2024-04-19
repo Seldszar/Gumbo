@@ -1,4 +1,14 @@
+# Node.js dependencies
 node_modules
+
+# Build folder
 dist
+
+# Log files
 *.log
-.env
+
+# Environment files
+.env*
+
+# Styled system
+styled-system

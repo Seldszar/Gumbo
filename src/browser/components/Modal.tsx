@@ -1,31 +1,38 @@
-import { Global } from "@emotion/react";
 import { FloatingPortal } from "@floating-ui/react";
 import { ReactNode } from "react";
-import tw, { css, styled } from "twin.macro";
+import { useLockBodyScroll } from "react-use";
 
-const Wrapper = styled.div`
-  ${tw`bg-black/90 grid fixed inset-0 overflow-auto z-20`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Inner = styled.div`
-  ${tw`m-auto max-w-xl p-6 w-full`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    bg: "black/90",
+    display: "grid",
+    inset: 0,
+    overflow: "auto",
+    pos: "fixed",
+    zIndex: 20,
+  },
+});
+
+const Inner = styled("div", {
+  base: {
+    m: "auto",
+    maxW: "xl",
+    p: 6,
+    w: "full",
+  },
+});
 
 export interface ModalProps {
   children?: ReactNode;
 }
 
 function Modal(props: ModalProps) {
+  useLockBodyScroll(true);
+
   return (
     <FloatingPortal id="modal-root">
-      <Global
-        styles={css`
-          body {
-            ${tw`overflow-hidden`}
-          }
-        `}
-      />
-
       <Wrapper>
         <Inner>{props.children}</Inner>
       </Wrapper>

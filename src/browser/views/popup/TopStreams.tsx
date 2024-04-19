@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useStreams } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
@@ -13,13 +13,18 @@ import Layout from "~/browser/components/Layout";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
-const List = styled.div`
-  ${tw`py-2`}
-`;
+const List = styled("div", {
+  base: {
+    py: 2,
+  },
+});
 
-const LoadMore = styled.div`
-  ${tw`p-4 pt-0`}
-`;
+const LoadMore = styled("div", {
+  base: {
+    p: 4,
+    pt: 0,
+  },
+});
 
 export function ChildComponent() {
   const [pages, { error, fetchMore, hasMore, isValidating, refresh }] = useStreams(

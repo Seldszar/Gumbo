@@ -1,55 +1,102 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useTitle } from "react-use";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Logo from "~/browser/components/Logo";
 import Wordmark from "~/browser/components/Wordmark";
 
-const Wrapper = styled.div``;
+const Inner = styled("div", {
+  base: {
+    alignItems: "start",
+    display: "flex",
+    gap: "6",
+    padding: "6",
+  },
+});
 
-const Inner = styled.div`
-  ${tw`flex gap-6 items-start p-6`}
-`;
+const Aside = styled("div", {
+  base: {
+    display: "grid",
+    flex: "none",
+    gap: 4,
+    position: "sticky",
+    top: 6,
+    width: 64,
+  },
+});
 
-const Aside = styled.div`
-  ${tw`flex-shrink-0 grid gap-4 sticky top-6 w-64`}
-`;
+const MenuItem = styled(NavLink, {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    display: "block",
+    fontSize: "lg",
 
-const MenuItem = styled(NavLink)`
-  ${tw`block text-neutral-600 text-lg hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:text-purple-500!`}
-`;
+    _hover: {
+      color: { base: "black", _dark: "white" },
+    },
 
-const Header = styled.div`
-  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex items-center p-6`}
-`;
+    "&.active": {
+      color: "purple.500",
+    },
+  },
+});
 
-const StyledLogo = styled(Logo)`
-  ${tw`flex-shrink-0 h-8`}
-`;
+const Header = styled("div", {
+  base: {
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: { base: "neutral.200", _dark: "neutral.800" },
+    display: "flex",
+    p: 6,
+  },
+});
 
-const StyledWordmark = styled(Wordmark)`
-  ${tw`flex-shrink-0 h-6 ms-2`}
-`;
+const StyledLogo = styled(Logo, {
+  base: {
+    flex: "none",
+    height: 8,
+  },
+});
 
-const Divider = styled.div`
-  ${tw`mx-6 text-neutral-600 dark:text-neutral-400`}
-`;
+const StyledWordmark = styled(Wordmark, {
+  base: {
+    flex: "none",
+    height: 6,
+    marginInlineStart: 2,
+  },
+});
 
-const Title = styled.div`
-  ${tw`flex-1 font-medium text-xl`}
-`;
+const Divider = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    mx: 6,
+  },
+});
 
-const Body = styled.div`
-  ${tw`flex-1 max-w-sm w-full`}
-`;
+const Title = styled("div", {
+  base: {
+    flex: 1,
+    fontSize: "xl",
+    fontWeight: "md",
+  },
+});
+
+const Body = styled("div", {
+  base: {
+    flex: 1,
+    maxW: "sm",
+    w: "full",
+  },
+});
 
 export function Component() {
   useTitle(`${t("titleText_settings")} ━ ${t("extensionName")}`);
 
   return (
-    <Wrapper>
+    <div>
       <Header>
         <StyledLogo />
         <StyledWordmark />
@@ -69,6 +116,6 @@ export function Component() {
           <Outlet />
         </Body>
       </Inner>
-    </Wrapper>
+    </div>
   );
 }

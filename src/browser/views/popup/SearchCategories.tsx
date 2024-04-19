@@ -1,11 +1,11 @@
 import { Link, useOutletContext } from "react-router-dom";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useSearchCategories } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
@@ -16,13 +16,23 @@ import Splash from "~/browser/components/Splash";
 
 import type { OutletContext } from "./Search";
 
-const Collection = styled.div`
-  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 px-4 py-2`}
-`;
+const Collection = styled("div", {
+  base: {
+    columnGap: 2,
+    display: "grid",
+    gridTemplateColumns: 4,
+    px: 4,
+    py: 2,
+    rowGap: 4,
+  },
+});
 
-const LoadMore = styled.div`
-  ${tw`px-4 py-2`}
-`;
+const LoadMore = styled("div", {
+  base: {
+    px: 4,
+    py: 2,
+  },
+});
 
 interface ChildComponentProps {
   searchQuery: string;
