@@ -1,23 +1,27 @@
 import { ReactElement } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { styled } from "~/browser/styled-system/jsx";
+
 import Tooltip from "../Tooltip";
 
-const Wrapper = styled.div``;
+const Title = styled("div", {
+  base: {
+    mb: 2,
+  },
+});
 
-const Title = styled.div`
-  ${tw`mb-2`}
-`;
+const Table = styled("table", {
+  base: {
+    fontSize: "sm",
 
-const Table = styled.table`
-  ${tw`text-sm`}
-
-  td {
-    ${tw`first-of-type:font-mono last-of-type:pl-4`}
-  }
-`;
+    "& td": {
+      fontFamily: { _firstOfType: "mono" },
+      pl: { _lastOfType: 4 },
+    },
+  },
+});
 
 export interface Placeholder {
   value: string;
@@ -33,7 +37,7 @@ function PlaceholderTooltip(props: PlaceholderTooltipProps) {
   const { placeholders } = props;
 
   const content = (
-    <Wrapper>
+    <div>
       <Title>{t("inputLabel_availablePlaceholders")}</Title>
       <Table>
         {placeholders.map((placeholder, index) => (
@@ -43,7 +47,7 @@ function PlaceholderTooltip(props: PlaceholderTooltipProps) {
           </tr>
         ))}
       </Table>
-    </Wrapper>
+    </div>
   );
 
   return <Tooltip content={content}>{props.children}</Tooltip>;

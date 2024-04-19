@@ -1,4 +1,5 @@
-import { css, Global } from "@emotion/react";
+import "../assets/styles/popup.css";
+
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import { HistoryProvider } from "../contexts/history";
@@ -94,15 +95,6 @@ const router = createHashRouter([
 function Page() {
   return (
     <HistoryProvider router={router}>
-      <Global
-        styles={css`
-          #app-root {
-            height: 600px;
-            width: 420px;
-          }
-        `}
-      />
-
       <SearchProvider>
         <RouterProvider router={router} />
       </SearchProvider>

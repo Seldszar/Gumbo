@@ -1,27 +1,42 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Button from "../Button";
 import Modal from "../Modal";
 import Renderer from "../Renderer";
 
-const Panel = styled.div`
-  ${tw`flex flex-col items-center text-center`}
-`;
+const Panel = styled("div", {
+  base: {
+    alignItems: "center",
+    display: "flex",
+    flexDir: "column",
+    textAlign: "center",
+  },
+});
 
-const Title = styled.div`
-  ${tw`text-xl`}
-`;
+const Title = styled("div", {
+  base: {
+    fontSize: "xl",
+  },
+});
 
-const Message = styled.div`
-  ${tw`mb-6 text-neutral-600 dark:text-neutral-400`}
-`;
+const Message = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    mb: 6,
+  },
+});
 
-const ButtonGroup = styled.div`
-  ${tw`gap-3 grid grid-cols-2`}
-`;
+const ButtonGroup = styled("div", {
+  base: {
+    display: "grid",
+    gap: 3,
+    gridTemplateColumns: 2,
+  },
+});
 
 interface ConfirmationModalProps {
   icon?: ReactNode;

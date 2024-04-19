@@ -1,42 +1,65 @@
 import { ReactNode } from "react";
-import tw, { css, styled } from "twin.macro";
 
-const Wrapper = styled.fieldset`
-  ${tw`cursor-pointer flex gap-4 items-center disabled:(cursor-default opacity-25)!`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Handle = styled.div`
-  ${tw`bg-white h-4 rounded-full w-4`}
-`;
+const Wrapper = styled("fieldset", {
+  base: {
+    alignItems: "center",
+    cursor: "pointer",
+    display: "flex",
+    gap: 4,
 
-interface ControlProps {
-  isChecked?: boolean;
-}
+    _disabled: {
+      cursor: "default",
+      opacity: 0.25,
+    },
+  },
+});
 
-const Control = styled.div<ControlProps>`
-  ${tw`bg-neutral-300 dark:bg-neutral-700 flex flex-none justify-start p-1 rounded-full w-12`}
+const Handle = styled("div", {
+  base: {
+    bg: "white",
+    borderRadius: "full",
+    height: 4,
+    width: 4,
+  },
+});
 
-  ${(props) =>
-    props.isChecked &&
-    css`
-      ${tw`bg-purple-500! justify-end`}
+const Control = styled("div", {
+  base: {
+    bg: { base: "neutral.700", _dark: "neutral.300" },
+    display: "flex",
+    justifyContent: "start",
+    padding: 1,
+    rounded: "full",
+    width: 12,
+  },
 
-      ${Handle} {
-        ${tw`bg-white`}
-      }
-    `}
-`;
+  variants: {
+    isChecked: {
+      true: {
+        bg: "purple.500",
+        justifyContent: "center",
+      },
+    },
+  },
+});
 
-const Inner = styled.div`
-  ${tw`flex-1 leading-tight`}
-`;
+const Inner = styled("div", {
+  base: {
+    flex: 1,
+    lineHeight: "tight",
+  },
+});
 
 export interface SwitchProps {
-  onChange?(checked: boolean): void;
   children?: ReactNode;
   className?: string;
+
   disabled?: boolean;
   value?: boolean;
+
+  onChange?(checked: boolean): void;
 }
 
 function Switch(props: SwitchProps) {

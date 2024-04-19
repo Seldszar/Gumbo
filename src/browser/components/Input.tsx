@@ -1,17 +1,40 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
-const Ornament = styled.div`
-  ${tw`flex-none self-center`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Wrapper = styled.fieldset`
-  ${tw`flex gap-3 rounded bg-neutral-300 dark:bg-neutral-700 px-3 disabled:(cursor-default opacity-25)!`}
+const Ornament = styled("div", {
+  base: {
+    alignSelf: "center",
+    flex: "none",
+  },
+});
 
-  input {
-    ${tw`appearance-none bg-transparent flex-1 outline-none px-1 py-2 text-black dark:text-white`}
-  }
-`;
+const Wrapper = styled("fieldset", {
+  base: {
+    bg: { base: "neutral.300", _dark: "neutral.700" },
+    display: "flex",
+    gap: 3,
+    px: 3,
+    rounded: "sm",
+
+    _disabled: {
+      cursor: "default",
+      opacity: 0.25,
+    },
+
+    "& input": {
+      appearance: "none",
+      bg: "transparent",
+      border: "none",
+      color: { base: "black", _dark: "white" },
+      flex: 1,
+      outline: "none",
+      px: 1,
+      py: 2,
+      w: "full",
+    },
+  },
+});
 
 export interface InputProps {
   className?: string;

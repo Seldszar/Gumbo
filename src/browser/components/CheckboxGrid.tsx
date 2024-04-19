@@ -1,22 +1,47 @@
 import { map, xor } from "lodash-es";
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { styled } from "~/browser/styled-system/jsx";
+
 import Checkbox from "./Checkbox";
 
-const PresetButton = styled.button`
-  ${tw`font-medium text-sm text-neutral-600 dark:text-neutral-400 uppercase hover:(text-black dark:text-white) disabled:(cursor-default opacity-25 text-neutral-600 dark:text-neutral-400)!`}
-`;
+const PresetButton = styled("button", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    fontSize: "sm",
+    fontWeight: "medium",
+    textTransform: "uppercase",
 
-const PresetList = styled.div`
-  ${tw`flex flex-wrap gap-x-6 mb-3`}
-`;
+    _hover: {
+      color: { base: "black", _dark: "white" },
+    },
 
-const Grid = styled.div`
-  ${tw`gap-3 grid grid-cols-2`}
-`;
+    _disabled: {
+      color: { base: "neutral.600", _dark: "neutral.400" },
+      cursor: "default",
+      opacity: 0.25,
+    },
+  },
+});
+
+const PresetList = styled("div", {
+  base: {
+    columnGap: 6,
+    display: "flex",
+    flexWrap: "wrap",
+    mb: 3,
+  },
+});
+
+const Grid = styled("div", {
+  base: {
+    display: "grid",
+    gap: 3,
+    gridTemplateColumns: 2,
+  },
+});
 
 export interface OptionProps<T> {
   title: ReactNode;

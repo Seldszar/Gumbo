@@ -2,10 +2,10 @@ import { ErrorResponse } from "@remix-run/router";
 import { IconBrandTwitch } from "@tabler/icons-react";
 import { useMemo } from "react";
 import { Outlet, useRouteError } from "react-router-dom";
-import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 import { useCurrentUser } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Button from "~/browser/components/Button";
 import Hero from "~/browser/components/Hero";
@@ -14,17 +14,33 @@ import Section from "~/browser/components/Section";
 import Sidebar from "~/browser/components/Sidebar";
 import Splash from "~/browser/components/Splash";
 
-const Wrapper = styled.div`
-  ${tw`flex h-full relative`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    display: "flex",
+    h: "full",
+    pos: "relative",
+  },
+});
 
-const Body = styled.div`
-  ${tw`flex-1 overflow-hidden`}
-`;
+const Body = styled("div", {
+  base: {
+    flex: 1,
+    overflow: "hidden",
+  },
+});
 
-const Welcome = styled.div`
-  ${tw`flex flex-1 flex-col h-full items-center justify-center px-16 text-center`}
-`;
+const Welcome = styled("div", {
+  base: {
+    alignItems: "center",
+    display: "flex",
+    flex: 1,
+    flexDir: "column",
+    h: "full",
+    justifyContent: "center",
+    px: 16,
+    textAlign: "center",
+  },
+});
 
 export function ChildComponent() {
   const [currentUser] = useCurrentUser({

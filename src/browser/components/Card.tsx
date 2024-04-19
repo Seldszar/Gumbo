@@ -1,29 +1,54 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
-const Ornament = styled.div`
-  ${tw`flex-none`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Inner = styled.div`
-  ${tw`flex-1 overflow-hidden`}
-`;
+const Ornament = styled("div", {
+  base: {
+    flex: "none",
+  },
+});
 
-const Title = styled.div`
-  ${tw`font-medium truncate`}
-`;
+const Inner = styled("div", {
+  base: {
+    flex: 1,
+    overflow: "hidden",
+  },
+});
 
-const Subtitle = styled.div`
-  ${tw`text-neutral-600 dark:text-neutral-400 text-sm truncate`}
-`;
+const Title = styled("div", {
+  base: {
+    fontWeight: "medium",
+    truncate: true,
+  },
+});
 
-const Body = styled.div`
-  ${tw`text-neutral-600 dark:text-neutral-400 text-sm`}
-`;
+const Subtitle = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    fontSize: "sm",
+    truncate: true,
+  },
+});
 
-const Wrapper = styled.div`
-  ${tw`flex gap-4 items-center px-4 hover:(bg-neutral-200 dark:bg-neutral-800)`}
-`;
+const Body = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    fontSize: "sm",
+  },
+});
+
+const Wrapper = styled("div", {
+  base: {
+    alignItems: "center",
+    display: "flex",
+    gap: 4,
+    px: 4,
+
+    _hover: {
+      bg: { base: "neutral.200", _dark: "neutral.800" },
+    },
+  },
+});
 
 export interface CardProps {
   children?: ReactNode;

@@ -1,27 +1,53 @@
 import { IconChevronDown, IconPointFilled } from "@tabler/icons-react";
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-import DropdownMenu from "~/browser/components/DropdownMenu";
+import { styled } from "~/browser/styled-system/jsx";
 
-interface WrapperProps {
-  fullWidth?: boolean;
-}
+import DropdownMenu from "./DropdownMenu";
 
-const Wrapper = styled.div<WrapperProps>`
-  ${tw`cursor-pointer flex gap-1 items-center disabled:(cursor-default opacity-25)!`}
+const Wrapper = styled("div", {
+  base: {
+    alignItems: "center",
+    cursor: { base: "pointer", _disabled: "default" },
+    display: "flex",
+    gap: 1,
+    opacity: { _disabled: 0.25 },
+  },
+  variants: {
+    fullWidth: {
+      false: {
+        color: { base: "neutral.600", _dark: "neutral.400" },
+        fontSize: "sm",
 
-  ${(props) =>
-    props.fullWidth
-      ? tw`py-2 rounded bg-neutral-300 hover:bg-neutral-400 dark:(bg-neutral-700 hover:bg-neutral-600) ps-4 pe-3`
-      : tw`text-sm text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
-`;
+        _hover: {
+          color: { base: "black", _dark: "white" },
+        },
+      },
+      true: {
+        bg: { base: "neutral.300", _dark: "neutral.700" },
+        pe: 4,
+        ps: 3,
+        py: 2,
+        rounded: "sm",
 
-const Inner = styled.div`
-  ${tw`flex-1`}
-`;
+        _hover: {
+          color: { base: "neutral.400", _dark: "neutral.600" },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    fullWidth: false,
+  },
+});
+
+const Inner = styled("div", {
+  base: {
+    flex: 1,
+  },
+});
 
 export interface SelectOption<T> {
   label: string;

@@ -1,9 +1,23 @@
 import { useState } from "react";
-import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.div`
-  ${tw`overflow-hidden relative [&_img]:(absolute h-full inset-0 object-center object-cover transition-opacity w-full)`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
+
+const Wrapper = styled("div", {
+  base: {
+    overflow: "hidden",
+    pos: "relative",
+
+    "& img": {
+      h: "full",
+      inset: 0,
+      objectFit: "cover",
+      objectPosition: "center",
+      pos: "absolute",
+      transition: "opacity",
+      w: "full",
+    },
+  },
+});
 
 export interface ImageProps {
   className?: string;

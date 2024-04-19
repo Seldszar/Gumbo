@@ -1,21 +1,51 @@
 import { IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { useDebounce } from "react-use";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
-const ClearButton = styled.button`
-  ${tw`flex flex-none text-neutral-600 dark:text-neutral-400 hover:(text-black dark:text-white)`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Wrapper = styled.fieldset`
-  ${tw`bg-neutral-200 dark:bg-neutral-800 cursor-text flex gap-3 items-center pl-6 pr-3 py-2 rounded-full disabled:(cursor-default opacity-50)`}
+const ClearButton = styled("button", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    display: "flex",
+    flex: "none",
 
-  input {
-    ${tw`appearance-none bg-transparent flex-1 outline-none text-black dark:text-white`}
-  }
-`;
+    _hover: {
+      color: { base: "black", _dark: "white" },
+    },
+  },
+});
+
+const Wrapper = styled("fieldset", {
+  base: {
+    bg: { base: "neutral.200", _dark: "neutral.800" },
+    cursor: "text",
+    display: "flex",
+    gap: 3,
+    pl: 6,
+    pr: 3,
+    py: 2,
+    rounded: "full",
+
+    _disabled: {
+      cursor: "default",
+      opacity: 0.5,
+    },
+  },
+});
+
+const Input = styled("input", {
+  base: {
+    appearance: "none",
+    bg: "transparent",
+    border: "none",
+    color: { base: "black", _dark: "white" },
+    flex: 1,
+    outline: "none",
+  },
+});
 
 export interface SearchInputProps {
   placeholder?: string;
@@ -33,7 +63,7 @@ function SearchInput(props: SearchInputProps) {
 
   return (
     <Wrapper disabled={props.onChange == null} tabIndex={-1} className={props.className}>
-      <input
+      <Input
         value={value}
         placeholder={props.placeholder ?? t("optionValue_search")}
         onChange={(event) => setValue(event.target.value)}

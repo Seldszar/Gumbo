@@ -1,8 +1,11 @@
-import tw, { styled } from "twin.macro";
+import { styled } from "~/browser/styled-system/jsx";
 
-const Wrapper = styled.svg`
-  ${tw`block fill-current`}
-`;
+const Wrapper = styled("svg", {
+  base: {
+    display: "block",
+    fill: "current",
+  },
+});
 
 export interface WordmarkProps {
   className?: string;

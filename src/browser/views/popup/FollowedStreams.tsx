@@ -1,6 +1,5 @@
 import { orderBy } from "lodash-es";
 import { useMemo, useState } from "react";
-import { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 import { FollowedStreamState } from "~/common/types";
@@ -15,8 +14,6 @@ import CollectionList from "~/browser/components/CollectionList";
 import FilterBar from "~/browser/components/FilterBar";
 import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
-
-const Collection = styled.div``;
 
 interface ChildComponentProps {
   followedStreamState: FollowedStreamState;
@@ -62,7 +59,7 @@ function ChildComponent(props: ChildComponentProps) {
       items={filteredStreams}
       getItemIdentifier={(item) => item.userId}
       render={({ items, createCollection }) => (
-        <Collection>
+        <div>
           {items.map((item) => (
             <StreamCard
               key={item.id}
@@ -70,7 +67,7 @@ function ChildComponent(props: ChildComponentProps) {
               onNewCollection={() => createCollection([item.userId])}
             />
           ))}
-        </Collection>
+        </div>
       )}
     />
   );

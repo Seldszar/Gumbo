@@ -1,48 +1,22 @@
-import { keyframes } from "@emotion/react";
-import { HTMLAttributes } from "react";
-import tw, { styled } from "twin.macro";
+import { styled } from "~/browser/styled-system/jsx";
 
-const rotateAnimation = keyframes`
-  100% {
-    transform: rotate(360deg);
-  }
-`;
+const Wrapper = styled("div", {
+  base: {
+    animation: "spin",
+    aspectRatio: "square",
+    borderColor: "purple.500",
+    borderLeftColor: "transparent",
+    borderWidth: 3,
+    rounded: "full",
+  },
+});
 
-const dashAnimation = keyframes`
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
+export interface SpinnerProps {
+  className?: string;
+}
 
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
-  }
-`;
-
-const Wrapper = styled.svg`
-  ${tw`text-purple-500`}
-
-  animation: ${rotateAnimation} 2s linear infinite;
-
-  circle {
-    stroke: currentColor;
-    stroke-linecap: round;
-    animation: ${dashAnimation} 1.5s ease-in-out infinite;
-  }
-`;
-
-function Spinner(props: HTMLAttributes<SVGElement>) {
-  return (
-    <Wrapper {...props} viewBox="0 0 50 50">
-      <circle cx="25" cy="25" r="20" fill="none" strokeWidth="5" />
-    </Wrapper>
-  );
+function Spinner(props: SpinnerProps) {
+  return <Wrapper {...props} />;
 }
 
 export default Spinner;

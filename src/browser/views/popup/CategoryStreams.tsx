@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import { useOutletContext } from "react-router-dom";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
 import { useStreams } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
@@ -16,13 +16,18 @@ import Splash from "~/browser/components/Splash";
 
 import type { OutletContext } from "./Category";
 
-const List = styled.div`
-  ${tw`py-2`}
-`;
+const List = styled("div", {
+  base: {
+    py: 2,
+  },
+});
 
-const LoadMore = styled.div`
-  ${tw`p-4 pt-0`}
-`;
+const LoadMore = styled("div", {
+  base: {
+    p: 4,
+    pt: 0,
+  },
+});
 
 function ChildComponent() {
   const { category } = useOutletContext<OutletContext>();

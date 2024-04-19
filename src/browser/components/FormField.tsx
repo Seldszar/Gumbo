@@ -1,17 +1,31 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.fieldset`
-  ${tw`grid gap-1 mb-4 last:mb-0 disabled:opacity-25`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Header = styled.div`
-  ${tw`text-black dark:text-white`}
-`;
+const Wrapper = styled("fieldset", {
+  base: {
+    display: "grid",
+    gap: 1,
+    mb: { base: 4, _last: 0 },
 
-const Footer = styled.div`
-  ${tw`text-sm text-neutral-600 dark:text-neutral-400`}
-`;
+    _disabled: {
+      opacity: 0.25,
+    },
+  },
+});
+
+const Header = styled("div", {
+  base: {
+    color: { base: "black", _dark: "white" },
+  },
+});
+
+const Footer = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    fontSize: "sm",
+  },
+});
 
 interface FormFieldProps {
   children?: ReactNode;

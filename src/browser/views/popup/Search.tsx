@@ -1,18 +1,35 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
+import { styled } from "~/browser/styled-system/jsx";
+
 import Layout from "~/browser/components/Layout";
 
-const TabList = styled.div`
-  ${tw`flex`}
-`;
+const TabList = styled("div", {
+  base: {
+    display: "flex",
+  },
+});
 
-const Tab = styled(NavLink)`
-  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex-1 py-3 relative text-center text-neutral-600 dark:text-neutral-400 [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
-`;
+const Tab = styled(NavLink, {
+  base: {
+    borderBottomWidth: 1,
+    borderColor: { base: "neutral.200", _dark: "neutral.800" },
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    flex: 1,
+    pos: "relative",
+    py: 3,
+    textAlign: "center",
+
+    "&.active": {
+      borderColor: "purple.500",
+      color: { base: "black", _dark: "white" },
+      fontWeight: "medium",
+    },
+  },
+});
 
 export interface OutletContext {
   searchQuery: string;

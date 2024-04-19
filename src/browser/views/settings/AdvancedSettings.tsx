@@ -1,17 +1,21 @@
 import { IconAlertTriangle, IconDownload, IconRefresh, IconUpload } from "@tabler/icons-react";
 import { useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Section from "~/browser/components/Section";
 import Button from "~/browser/components/Button";
 
 import ResetModal from "~/browser/components/modals/ResetModal";
 
-const ButtonGroup = styled.div`
-  ${tw`gap-2 grid`}
-`;
+const ButtonGroup = styled("div", {
+  base: {
+    display: "grid",
+    gap: 2,
+  },
+});
 
 export function Component() {
   const [isResetOpen, setResetOpen] = useState(false);

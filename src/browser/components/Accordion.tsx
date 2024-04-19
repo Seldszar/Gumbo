@@ -1,49 +1,68 @@
 import { IconChevronRight } from "@tabler/icons-react";
 import { ReactNode } from "react";
 import { useToggle } from "react-use";
-import tw, { styled } from "twin.macro";
 
-interface WrapperProps {
-  isOpen?: boolean;
-}
+import { styled } from "~/browser/styled-system/jsx";
 
-const Icon = styled(IconChevronRight)`
-  ${tw`transition`}
-`;
+const Icon = styled(IconChevronRight, {
+  base: {
+    transition: "common",
+  },
 
-const Title = styled.div`
-  ${tw`flex-1 font-medium text-sm truncate uppercase`}
-`;
+  variants: {
+    isOpen: {
+      true: {
+        rotate: "90deg",
+      },
+    },
+  },
 
-const HeaderInner = styled.div`
-  ${tw`cursor-pointer flex flex-1 gap-1 items-center`}
-`;
+  defaultVariants: {
+    isOpen: false,
+  },
+});
 
-const HeaderAside = styled.div`
-  ${tw`flex-none invisible`}
-`;
+const Title = styled("div", {
+  base: {
+    flex: 1,
+    fontSize: "sm",
+    fontWeight: "medium",
+    textTransform: "uppercase",
+    truncate: true,
+  },
+});
 
-const Header = styled.div`
-  ${tw`flex gap-1 items-center px-4 py-2 text-neutral-600 dark:text-neutral-400`}
+const HeaderInner = styled("div", {
+  base: {
+    alignItems: "center",
+    cursor: "pointer",
+    display: "flex",
+    flex: 1,
+    gap: 1,
 
-  :hover {
-    ${HeaderAside} {
-      ${tw`visible`}
-    }
+    _groupHover: {
+      color: { base: "black", _dark: "white" },
+    },
+  },
+});
 
-    ${HeaderInner} {
-      ${tw`text-black dark:text-white`}
-    }
-  }
-`;
+const HeaderAside = styled("div", {
+  base: {
+    flex: "none",
+    visibility: { base: "hidden", _groupHover: "visible" },
+  },
+});
 
-const Inner = styled.div``;
-
-const Wrapper = styled.div<WrapperProps>`
-  ${Icon} {
-    ${(props) => props.isOpen && tw`rotate-90`}
-  }
-`;
+const Header = styled("div", {
+  base: {
+    alignItems: "center",
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    display: "flex",
+    gap: 1,
+    px: 4,
+    py: 2,
+  },
+});
 
 export interface AccordionProps {
   children?: ReactNode;
@@ -56,18 +75,18 @@ function Accordion(props: AccordionProps) {
   const [isOpen, toggleOpen] = useToggle(true);
 
   return (
-    <Wrapper className={props.className} isOpen={isOpen}>
-      <Header>
+    <div className={props.className}>
+      <Header className="group">
         <HeaderInner onClick={() => toggleOpen()}>
-          <Icon size="1rem" />
+          <Icon size="1rem" isOpen={isOpen} />
           <Title>{props.title}</Title>
         </HeaderInner>
 
         {props.aside && <HeaderAside>{props.aside}</HeaderAside>}
       </Header>
 
-      {isOpen && <Inner>{props.children}</Inner>}
-    </Wrapper>
+      {isOpen && <div>{props.children}</div>}
+    </div>
   );
 }
 

@@ -1,9 +1,8 @@
-import tw, { styled } from "twin.macro";
-
 import { t } from "~/common/helpers";
 import { HelixChannelSearchResult } from "~/common/types";
 
 import { useClickAction } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
@@ -14,35 +13,49 @@ import Tooltip from "../Tooltip";
 
 import ChannelDropdown from "../dropdowns/ChannelDropdown";
 
-const StyledDropdownButton = styled(DropdownButton)`
-  ${tw`absolute invisible end-6 -top-2 z-20`}
-`;
+const StyledDropdownButton = styled(DropdownButton, {
+  base: {
+    end: 6,
+    pos: "absolute",
+    top: -2,
+    visibility: { base: "hidden", _groupHover: "visible" },
+    zIndex: 20,
+  },
+});
 
-const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded-full w-12`}
-`;
+const Thumbnail = styled("div", {
+  base: {
+    bg: "black",
+    overflow: "hidden",
+    pos: "relative",
+    rounded: "full",
+    w: 12,
+  },
 
-const CategoryName = styled.div`
-  ${tw`truncate`}
-`;
+  variants: {
+    isLive: {
+      true: {
+        shadow: {
+          base: "inset 0 0 0 2px {colors.red.500}, inset 0 0 0 4px {colors.white}",
+          _dark: "inset 0 0 0 2px {colors.red.500}, inset 0 0 0 4px {colors.black}",
+        },
+      },
+    },
+  },
+});
 
-export interface WrapperProps {
-  isLive?: boolean;
-}
+const CategoryName = styled("div", {
+  base: {
+    truncate: true,
+  },
+});
 
-const Wrapper = styled(Card)<WrapperProps>`
-  ${tw`py-2 relative`}
-
-  ${Thumbnail} {
-    ${(props) =>
-      props.isLive &&
-      tw`ring-2 ring-offset-2 ring-offset-white ring-red-500 dark:ring-offset-black`}
-  }
-
-  :hover ${StyledDropdownButton} {
-    ${tw`visible`}
-  }
-`;
+const Wrapper = styled(Card, {
+  base: {
+    pos: "relative",
+    py: 2,
+  },
+});
 
 export interface ChannelCardProps {
   channel: HelixChannelSearchResult;
@@ -56,7 +69,7 @@ function ChannelCard(props: ChannelCardProps) {
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        isLive={channel.isLive}
+        className="group"
         title={<ChannelName login={channel.broadcasterLogin} name={channel.displayName} />}
         subtitle={
           <Tooltip content={channel.title}>
@@ -64,7 +77,7 @@ function ChannelCard(props: ChannelCardProps) {
           </Tooltip>
         }
         leftOrnament={
-          <Thumbnail>
+          <Thumbnail isLive={channel.isLive}>
             <Image src={channel.thumbnailUrl} ratio={1} />
           </Thumbnail>
         }

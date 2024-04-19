@@ -1,19 +1,29 @@
 import { filter } from "lodash-es";
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Select, { SelectProps } from "./Select";
 import SortButton from "./SortButton";
 
-const Wrapper = styled.div`
-  ${tw`border-b border-neutral-200 dark:border-neutral-800 flex gap-4 items-center p-4`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: { base: "neutral.200", _dark: "neutral.800" },
+    display: "flex",
+    gap: 4,
+    p: 4,
+  },
+});
 
-const Spacer = styled.div`
-  ${tw`flex-1`}
-`;
+const Spacer = styled("div", {
+  base: {
+    flex: 1,
+  },
+});
 
 export interface FilterProps extends SelectProps<any> {
   side: "left" | "right";

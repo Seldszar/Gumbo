@@ -1,8 +1,9 @@
 import { IconBrandCoinbase, IconBrandPaypal } from "@tabler/icons-react";
 import { MouseEventHandler } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Anchor from "../Anchor";
 import Button from "../Button";
@@ -24,9 +25,12 @@ const allDonateButtons = [
   },
 ];
 
-const ButtonGrid = styled.div`
-  ${tw`grid gap-2`}
-`;
+const ButtonGrid = styled("div", {
+  base: {
+    display: "grid",
+    gap: 2,
+  },
+});
 
 interface DonateModalProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;

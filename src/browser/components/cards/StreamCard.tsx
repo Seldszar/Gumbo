@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
 import { HelixStream } from "~/common/types";
 
 import { useClickAction, useNow } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
@@ -17,37 +17,67 @@ import ViewerCount from "../ViewerCount";
 
 import StreamDropdown from "../dropdowns/StreamDropdown";
 
-const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded w-24`}
-`;
+const Thumbnail = styled("div", {
+  base: {
+    bg: "black",
+    overflow: "hidden",
+    pos: "relative",
+    rounded: "sm",
+    w: 24,
+  },
+});
 
-const StyledStreamUptime = styled(Uptime)`
-  ${tw`absolute bg-black/75 bottom-0 font-medium px-1 end-0 rounded-ss tabular-nums text-sm text-white`}
-`;
+const StyledStreamUptime = styled(Uptime, {
+  base: {
+    bg: "black/75",
+    color: "white",
+    bottom: 0,
+    end: 0,
+    fontSize: "sm",
+    fontVariantNumeric: "tabular-nums",
+    fontWeight: "medium",
+    pos: "absolute",
+    px: 1,
+    roundedStartStart: "md",
+  },
+});
 
-const Title = styled.div`
-  ${tw`flex gap-2`}
-`;
+const Title = styled("div", {
+  base: {
+    display: "flex",
+    gap: 2,
+  },
+});
 
-const UserName = styled(ChannelName)`
-  ${tw`flex-1 truncate`}
-`;
+const UserName = styled(ChannelName, {
+  base: {
+    flex: 1,
+    truncate: true,
+  },
+});
 
-const CategoryName = styled.div`
-  ${tw`truncate`}
-`;
+const CategoryName = styled("div", {
+  base: {
+    truncate: true,
+  },
+});
 
-const StyledDropdownButton = styled(DropdownButton)`
-  ${tw`absolute invisible end-6 -top-2 z-20`}
-`;
+const StyledDropdownButton = styled(DropdownButton, {
+  base: {
+    end: 6,
+    pos: "absolute",
+    visibility: { base: "hidden", _groupHover: "visible" },
+    top: -2,
+    zIndex: 20,
+  },
+});
 
-const Wrapper = styled(Card)`
-  ${tw`py-2 relative`}
-
-  :hover ${StyledDropdownButton} {
-    ${tw`visible`}
-  }
-`;
+const Wrapper = styled(Card, {
+  base: {
+    pos: "relative",
+    py: 2,
+  },
+});
 
 export interface StreamCardProps {
   stream: HelixStream;
@@ -82,6 +112,7 @@ function StreamCard(props: StreamCardProps) {
   return (
     <Anchor to={defaultAction}>
       <Wrapper
+        className="group"
         title={
           <Title>
             <UserName login={stream.userLogin} name={stream.userName} />

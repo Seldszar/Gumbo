@@ -1,9 +1,10 @@
 import { IconHeart, IconInfoCircle, IconPower, IconSettings } from "@tabler/icons-react";
 import { useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 import { CurrentUser } from "~/common/types";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import AboutModal from "./modals/AboutModal";
 import DonateModal from "./modals/DonateModal";
@@ -11,9 +12,22 @@ import DonateModal from "./modals/DonateModal";
 import DropdownMenu from "./DropdownMenu";
 import Image from "./Image";
 
-const Wrapper = styled.button`
-  ${tw`bg-white dark:bg-black flex-none overflow-hidden relative rounded-full w-10 hover:(ring-2 ring-offset-2 ring-offset-white dark:ring-offset-black ring-purple-500)`}
-`;
+const Wrapper = styled("button", {
+  base: {
+    bg: { base: "white", _dark: "black" },
+    flex: "none",
+    overflow: "hidden",
+    pos: "relative",
+    rounded: "full",
+    w: 10,
+
+    _hover: {
+      ring: 2,
+      ringColor: "purple.500",
+      ringOffset: 2,
+    },
+  },
+});
 
 interface ProfileBadgeProps {
   className?: string;

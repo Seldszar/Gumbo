@@ -1,14 +1,27 @@
-import { PropsOf } from "@emotion/react";
 import { NavLink } from "react-router-dom";
-import tw, { styled } from "twin.macro";
+
+import { styled, HTMLStyledProps } from "~/browser/styled-system/jsx";
 
 import Tooltip from "./Tooltip";
 
-const Wrapper = styled(NavLink)`
-  ${tw`grid p-2 place-content-center text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:text-purple-500!`}
-`;
+const Wrapper = styled(NavLink, {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    display: "grid",
+    p: 2,
+    placeContent: "center",
 
-function SidebarLink(props: PropsOf<typeof Wrapper>) {
+    _hover: {
+      color: { base: "black", _dark: "white" },
+    },
+
+    "&.active": {
+      color: "purple.500",
+    },
+  },
+});
+
+function SidebarLink(props: HTMLStyledProps<typeof Wrapper>) {
   const { title, ...rest } = props;
 
   return (

@@ -1,34 +1,66 @@
 import { IconChevronLeft, IconReload } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useAsyncFn } from "react-use";
-import tw, { styled } from "twin.macro";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import { useHistoryContext } from "../contexts/history";
 import { useSearchContext } from "../contexts/search";
 
 import SearchInput from "./SearchInput";
 
-interface IconProps {
-  isSpinning?: boolean;
-}
-
 const Icon = styled(IconReload, {
-  shouldForwardProp: (propName) => propName !== "isSpinning",
-})<IconProps>`
-  ${(props) => props.isSpinning && tw`animate-spin`}
-`;
+  base: {},
+  variants: {
+    isSpinning: {
+      true: {
+        animation: "spin",
+      },
+    },
+  },
+  defaultVariants: {
+    isSpinning: false,
+  },
+});
 
-const Button = styled.button`
-  ${tw`rounded-full flex-none p-2 text-neutral-600 dark:text-neutral-400 hover:(bg-neutral-200 text-black dark:(bg-black text-white)) disabled:(bg-transparent opacity-25 text-neutral-600 dark:text-neutral-400)!`}
-`;
+const Button = styled("button", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    flex: "none",
+    p: 2,
+    rounded: "full",
 
-const Input = styled(SearchInput)`
-  ${tw`flex-1`}
-`;
+    _hover: {
+      bg: { base: "neutral.200", _dark: "black" },
+      color: { base: "black", _dark: "white" },
+    },
 
-const Wrapper = styled.div`
-  ${tw`bg-neutral-100 dark:bg-neutral-900 flex gap-2 items-center px-2 py-3 shadow shadow-black/10 dark:shadow-black/20`}
-`;
+    _disabled: {
+      bg: "transparent",
+      color: { base: "neutral.600", _dark: "neutral.400" },
+      opacity: 0.25,
+    },
+  },
+});
+
+const Input = styled(SearchInput, {
+  base: {
+    flex: 1,
+  },
+});
+
+const Wrapper = styled("div", {
+  base: {
+    alignItems: "center",
+    bg: { base: "neutral.100", _dark: "neutral.900" },
+    display: "flex",
+    gap: 2,
+    px: 2,
+    py: 3,
+    shadow: "md",
+    shadowColor: { base: "black/10", _dark: "black/20" },
+  },
+});
 
 export interface TopBarProps {
   className?: string;

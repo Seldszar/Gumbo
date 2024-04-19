@@ -1,27 +1,52 @@
-import tw, { styled } from "twin.macro";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Logo from "./Logo";
 import Wordmark from "./Wordmark";
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col items-center text-center`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    alignItems: "center",
+    display: "flex",
+    flexDir: "column",
+    textAlign: "center",
+  },
+});
 
-const StyledLogo = styled(Logo)`
-  ${tw`mb-4 mx-auto w-16`}
-`;
+const StyledLogo = styled(Logo, {
+  base: {
+    mb: 4,
+    mx: "auto",
+    w: 16,
+  },
+});
 
-const StyledWordmark = styled(Wordmark)`
-  ${tw`mb-1 w-36`}
-`;
+const StyledWordmark = styled(Wordmark, {
+  base: {
+    mb: 1,
+    w: 36,
+  },
+});
 
-const Author = styled.div`
-  ${tw`mb-4 text-center text-sm [&_a]:hover:underline`}
-`;
+const Author = styled("div", {
+  base: {
+    fontSize: "sm",
+    mb: 4,
+    textAlign: "center",
 
-const Description = styled.div`
-  ${tw`leading-tight text-neutral-600 dark:text-neutral-400`}
-`;
+    "& a": {
+      _hover: {
+        textDecoration: "underline",
+      },
+    },
+  },
+});
+
+const Description = styled("div", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    lineHeight: "tight",
+  },
+});
 
 interface HeroProps {
   className?: string;

@@ -5,9 +5,10 @@ import { FloatingPortal } from "@floating-ui/react";
 import { IconEdit, IconGripVertical, IconList, IconPlus, IconTrash } from "@tabler/icons-react";
 import { concat, set, without } from "lodash-es";
 import { HTMLAttributes, Key, ReactNode, forwardRef, useEffect, useState } from "react";
-import tw, { css, styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Button from "./Button";
 import Modal from "./Modal";
@@ -15,47 +16,82 @@ import Panel from "./Panel";
 
 import DeleteModal from "./modals/DeleteModal";
 
-const List = styled.div`
-  ${tw`flex flex-col gap-px mb-2`}
-`;
+const List = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column",
+    gap: "1px",
+    mb: 2,
+  },
+});
 
-interface ItemProps {
-  dragOverlay?: boolean;
-}
+const Item = styled("div", {
+  base: {
+    alignItems: "center",
+    bg: { base: "neutral.200", _dark: "neutral.800" },
+    display: "flex",
+    gap: 4,
+    pos: "relative",
+    px: 4,
+    py: 3,
+    rounded: "sm",
+  },
 
-const Item = styled.div<ItemProps>`
-  ${tw`bg-neutral-200 dark:bg-neutral-800 flex items-center gap-4 px-4 py-3 relative rounded`}
+  variants: {
+    dragOverlay: {
+      true: {
+        bg: { base: "neutral.300", _dark: "neutral.700" },
+        cursor: "grabbing",
+        shadow: "lg",
 
-  ${(props) =>
-    props.dragOverlay &&
-    css`
-      ${tw`shadow-lg bg-neutral-300 dark:bg-neutral-700`}
+        "& .handle": {
+          cursor: "grabbing",
+        },
+      },
+    },
+  },
+});
 
-      &, ${ItemHandle} {
-        ${tw`cursor-grabbing`}
-      }
-    `}
-`;
+const ItemTitle = styled("div", {
+  base: {
+    flex: 1,
+  },
+});
 
-const ItemTitle = styled.div`
-  ${tw`flex-1`}
-`;
+const ItemHandle = styled("button", {
+  base: {
+    color: "neutral.500",
+    cursor: "grab",
+    flex: "none",
+  },
+});
 
-const ItemHandle = styled.button`
-  ${tw`cursor-grab flex-none text-neutral-500`}
-`;
+const ItemButton = styled("button", {
+  base: {
+    flex: "none",
+  },
+});
 
-const ItemButton = styled.button`
-  ${tw`flex-none`}
-`;
+const Empty = styled("div", {
+  base: {
+    alignItems: "center",
+    bg: { base: "black/5", _dark: "black/25" },
+    borderColor: { base: "neutral.300", _dark: "neutral.800" },
+    borderWidth: 1,
+    display: "flex",
+    flexDir: "column",
+    py: 12,
+    rounded: "sm",
+  },
+});
 
-const Empty = styled.div`
-  ${tw`bg-black/5 border border-neutral-300 flex flex-col items-center py-12 rounded dark:(bg-black/25 border-neutral-800)`}
-`;
-
-const EmptyMessage = styled.div`
-  ${tw`mb-6 text-center text-xl`}
-`;
+const EmptyMessage = styled("div", {
+  base: {
+    fontSize: "xl",
+    mb: 6,
+    textAlign: "center",
+  },
+});
 
 export type ItemType = UniqueIdentifier | { id: UniqueIdentifier };
 
@@ -69,7 +105,7 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
 
   return (
     <Item ref={ref} {...rest}>
-      <ItemHandle {...handleProps}>
+      <ItemHandle {...handleProps} className="handle">
         <IconGripVertical size="1.25rem" />
       </ItemHandle>
 

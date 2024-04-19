@@ -1,57 +1,115 @@
-import { PropsOf } from "@emotion/react";
-import { ReactNode, forwardRef } from "react";
-import tw, { styled } from "twin.macro";
+import { ButtonHTMLAttributes, ReactNode, forwardRef } from "react";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Spinner from "./Spinner";
 
-const Icon = styled.div`
-  ${tw`flex-none self-center`}
-`;
+const Icon = styled("div", {
+  base: {
+    alignSelf: "center",
+    flex: "none",
+  },
+});
 
-const Inner = styled.div``;
+const Inner = styled("div", {
+  base: {},
+  variants: {
+    isLoading: {
+      true: {
+        visibility: "hidden",
+      },
+    },
+  },
 
-const Loading = styled.div`
-  ${tw`absolute grid inset-0 place-content-center`}
-`;
+  defaultVariants: {
+    isLoading: false,
+  },
+});
 
-const StyledSpinner = styled(Spinner)`
-  ${tw`text-white w-6`}
-`;
+const Loading = styled("div", {
+  base: {
+    display: "grid",
+    inset: 0,
+    placeContent: "center",
+    pos: "absolute",
+  },
+});
 
-interface WrapperProps {
-  isLoading?: boolean;
+const StyledSpinner = styled(Spinner, {
+  base: {
+    color: "white",
+    w: 6,
+  },
+});
+
+const Wrapper = styled("button", {
+  base: {
+    display: "flex",
+    gap: 2,
+    placeContent: "center",
+    pos: "relative",
+    px: 4,
+    py: 2,
+    rounded: "sm",
+    transition: "colors",
+
+    _disabled: {
+      cursor: "default",
+      opacity: 0.25,
+    },
+  },
+  variants: {
+    color: {
+      purple: {
+        bg: { base: "purple.500", _hover: "purple.400", _active: "purple.600" },
+        color: "white",
+      },
+
+      red: {
+        bg: { base: "red.500", _hover: "red.400", _active: "red.600" },
+        color: "white",
+      },
+
+      neutral: {
+        bg: { base: "neutral.300", _dark: "neutral.700" },
+
+        _hover: {
+          bg: { base: "neutral.400", _dark: "neutral.600" },
+        },
+
+        _active: {
+          bg: { base: "neutral.200", _dark: "neutral.800" },
+        },
+      },
+
+      transparent: {
+        _hover: {
+          bg: { base: "black/10", _dark: "white/10" },
+        },
+
+        _active: {
+          bg: "black/25",
+        },
+      },
+    },
+
+    fullWidth: {
+      true: {
+        w: "full",
+      },
+    },
+  },
+
+  defaultVariants: {
+    color: "neutral",
+    fullWidth: false,
+  },
+});
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: "purple" | "transparent" | "red" | "neutral";
   fullWidth?: boolean;
-  color?: string;
-}
-
-const Wrapper = styled.button<WrapperProps>`
-  ${tw`flex gap-2 place-content-center px-4 py-2 relative rounded transition disabled:(cursor-default opacity-25)!`}
-
-  ${Inner} {
-    ${(props) => props.isLoading && tw`invisible`}
-  }
-
-  ${(props) => {
-    switch (props.color) {
-      case "purple":
-        return tw`bg-purple-500 text-white hover:bg-purple-400 active:bg-purple-600 disabled:bg-purple-500!`;
-
-      case "red":
-        return tw`bg-red-500 text-white hover:bg-red-400 active:bg-red-600 disabled:bg-red-500!`;
-
-      case "transparent":
-        return tw`bg-transparent hover:(bg-black/10 dark:bg-white/10) active:bg-black/25 disabled:bg-transparent!`;
-
-      default:
-        return tw`bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 disabled:bg-neutral-300! dark:(bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-800 disabled:bg-neutral-700!)`;
-    }
-  }}
-
-  ${(props) => props.fullWidth && tw`w-full`}
-`;
-
-export interface ButtonProps extends PropsOf<typeof Wrapper> {
-  children?: ReactNode;
+  loading?: boolean;
   icon?: ReactNode;
 }
 
@@ -59,12 +117,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const { children, icon, ...rest } = props;
 
   return (
-    <Wrapper {...rest} ref={ref} disabled={rest.disabled || rest.isLoading}>
+    <Wrapper {...rest} ref={ref} disabled={rest.disabled || rest.loading}>
       {icon && <Icon>{icon}</Icon>}
 
       <Inner>{children}</Inner>
 
-      {rest.isLoading && (
+      {rest.loading && (
         <Loading>
           <StyledSpinner />
         </Loading>

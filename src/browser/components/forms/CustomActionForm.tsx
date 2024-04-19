@@ -1,9 +1,10 @@
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useMemo, useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
 import { CustomAction } from "~/common/types";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import PlaceholderTooltip from "../tooltips/PlaceholderTooltip";
 
@@ -11,9 +12,13 @@ import Button from "../Button";
 import FormField from "../FormField";
 import Input from "../Input";
 
-const ActionList = styled.div`
-  ${tw`flex gap-2 justify-end`}
-`;
+const ActionList = styled("div", {
+  base: {
+    display: "flex",
+    gap: 2,
+    justifyContent: "end",
+  },
+});
 
 export interface CustomActionFormProps {
   value?: CustomAction;

@@ -40,29 +40,72 @@ import {
   MouseEventHandler,
   ReactNode,
 } from "react";
-import tw, { styled } from "twin.macro";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import { remToPixels } from "../helpers";
 
-const ItemIcon = styled.div`
-  ${tw`flex-none w-5`}
-`;
+const ItemIcon = styled("div", {
+  base: {
+    flex: "none",
+    w: 5,
+  },
+});
 
-const ItemTitle = styled.div`
-  ${tw`flex-1 truncate`}
-`;
+const ItemTitle = styled("div", {
+  base: {
+    flex: 1,
+    truncate: true,
+  },
+});
 
-const Item = styled.button`
-  ${tw`flex font-medium gap-3 h-10 items-center px-3 rounded text-left w-full focus:(bg-neutral-200 outline-none) dark:focus:bg-neutral-700 disabled:opacity-25`}
-`;
+const Item = styled("button", {
+  base: {
+    alignItems: "center",
+    display: "flex",
+    fontWeight: "medium",
+    gap: 3,
+    h: 10,
+    px: 3,
+    rounded: "sm",
+    textAlign: "left",
+    w: "full",
 
-const Separator = styled.div`
-  ${tw`bg-neutral-300 dark:bg-neutral-700 h-px my-1`}
-`;
+    _focus: {
+      bg: { base: "neutral.200", _dark: "neutral.700" },
+      outline: "none",
+    },
 
-const Wrapper = styled.div`
-  ${tw`bg-white border border-neutral-300 p-1 overflow-auto rounded shadow-lg min-w-[theme('spacing.52')] focus:outline-none dark:(bg-neutral-800 border-neutral-700)`}
-`;
+    _disabled: {
+      opacity: 0.25,
+    },
+  },
+});
+
+const Separator = styled("div", {
+  base: {
+    bg: { base: "neutral.300", _dark: "neutral.700" },
+    h: "1px",
+    my: 1,
+  },
+});
+
+const Wrapper = styled("div", {
+  base: {
+    bg: { base: "white", _dark: "neutral.800" },
+    borderColor: { base: "neutral.300", _dark: "neutral.700" },
+    borderWidth: "1px",
+    minW: 52,
+    overflow: "auto",
+    p: 1,
+    rounded: "sm",
+    shadow: "lg",
+
+    _focus: {
+      outline: "none",
+    },
+  },
+});
 
 type GetItemProps = (userProps?: HTMLProps<HTMLElement>) => Record<string, unknown>;
 

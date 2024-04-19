@@ -1,48 +1,107 @@
 import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
-import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
 import { HelixGame } from "~/common/types";
 
+import { styled } from "~/browser/styled-system/jsx";
+
 import ExternalAnchor from "./ExternalAnchor";
 import Image from "./Image";
 
-const Wrapper = styled.div`
-  ${tw`relative`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    pos: "relative",
+  },
+});
 
-const Inner = styled.div`
-  ${tw`flex flex-col place-items-center p-6 relative z-10`}
-`;
+const Inner = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column",
+    p: 6,
+    placeItems: "center",
+    pos: "relative",
+    zIndex: 10,
+  },
+});
 
-const Background = styled.div`
-  ${tw`absolute inset-0 overflow-hidden after:(absolute inset-0 bg-gradient-to-b content-[''] from-transparent to-white dark:to-neutral-900)`}
-`;
+const Background = styled("div", {
+  base: {
+    inset: 0,
+    overflow: "hidden",
+    pos: "absolute",
 
-const BackgroundImage = styled(Image)`
-  ${tw`h-full object-cover w-full blur-sm opacity-50`}
-`;
+    _after: {
+      bgGradient: "to-b",
+      content: "",
+      gradientFrom: "transparent",
+      gradientTo: { base: "white", _dark: "neutral.900" },
+      inset: 0,
+      pos: "absolute",
+    },
+  },
+});
 
-const Thumbnail = styled.div`
-  ${tw`bg-black mb-2 overflow-hidden rounded shadow`}
-`;
+const BackgroundImage = styled(Image, {
+  base: {
+    blur: "sm",
+    h: "full",
+    objectFit: "cover",
+    opacity: 0.5,
+    w: "full",
+  },
+});
 
-const ThumbnailImage = styled(Image)`
-  ${tw`object-cover object-top w-[66px]`}
-`;
+const Thumbnail = styled("div", {
+  base: {
+    bg: "black",
+    mb: 2,
+    overflow: "hidden",
+    rounded: "sm",
+    shadow: "md",
+  },
+});
 
-const Name = styled.div`
-  ${tw`font-bold text-2xl text-center`}
-`;
+const ThumbnailImage = styled(Image, {
+  base: {
+    objectFit: "cover",
+    objectPosition: "top",
+    w: "66px",
+  },
+});
 
-const TabList = styled.div`
-  ${tw`flex`}
-`;
+const Name = styled("div", {
+  base: {
+    fontSize: "2xl",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});
 
-const Tab = styled(NavLink)`
-  ${tw`border-b border-neutral-200 flex-1 py-3 relative text-center text-neutral-600 dark:(border-neutral-800 text-neutral-400) [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
-`;
+const TabList = styled("div", {
+  base: {
+    display: "flex",
+  },
+});
+
+const Tab = styled(NavLink, {
+  base: {
+    borderBottomWidth: 1,
+    borderColor: { base: "neutral.200", _dark: "neutral.800" },
+    color: { base: "neutral.600", _dark: "neutral.400" },
+    flex: 1,
+    pos: "relative",
+    py: 3,
+    textAlign: "center",
+
+    "&.active": {
+      borderColor: "purple.500",
+      color: { base: "black", _dark: "white" },
+      fontWeight: "medium",
+    },
+  },
+});
 
 export interface CategoryTitleProps {
   className?: string;

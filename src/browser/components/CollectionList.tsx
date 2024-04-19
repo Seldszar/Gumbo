@@ -1,12 +1,12 @@
 import { IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
 import { reject } from "lodash-es";
 import { Fragment, ReactNode, useMemo, useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 import { Collection, CollectionType } from "~/common/types";
 
 import { useCollections } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import Accordion from "./Accordion";
 import DropdownMenu from "./DropdownMenu";
@@ -14,21 +14,32 @@ import DropdownMenu from "./DropdownMenu";
 import CollectionModal from "./modals/CollectionModal";
 import DeleteModal from "./modals/DeleteModal";
 
-const StyledAccordion = styled(Accordion)``;
+const StyledIconSettings = styled(IconSettings, {
+  base: {
+    cursor: "pointer",
 
-const StyledIconSettings = styled(IconSettings)`
-  ${tw`cursor-pointer hover:(text-black dark:text-white)`}
-`;
+    _hover: {
+      color: { base: "black", _dark: "white" },
+    },
+  },
+});
 
-const Divider = styled.div`
-  ${tw`border-t border-neutral-200 dark:border-neutral-800 mx-4`}
-`;
+const Divider = styled("div", {
+  base: {
+    borderTopWidth: 1,
+    borderColor: { base: "neutral.200", _dark: "neutral.800" },
+    mx: 4,
+  },
+});
 
-const DefaultCollection = styled.div``;
-
-const Wrapper = styled.div`
-  ${tw`flex flex-col gap-2 py-2`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column",
+    gap: 2,
+    py: 2,
+  },
+});
 
 interface ModalState {
   type: "delete" | "mutate";
@@ -115,7 +126,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
 
         if (collection) {
           return (
-            <StyledAccordion
+            <Accordion
               key={collection.id}
               title={collection.name}
               aside={
@@ -140,7 +151,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
               }
             >
               {props.render({ ...chunk, createCollection }, index)}
-            </StyledAccordion>
+            </Accordion>
           );
         }
 
@@ -148,9 +159,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
           <Fragment key="default">
             {index > 0 && <Divider />}
 
-            <DefaultCollection>
-              {props.render({ ...chunk, createCollection }, index)}
-            </DefaultCollection>
+            <div>{props.render({ ...chunk, createCollection }, index)}</div>
           </Fragment>
         );
       })}

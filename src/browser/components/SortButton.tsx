@@ -1,11 +1,18 @@
 import { IconSortDescending, IconSortAscending } from "@tabler/icons-react";
-import tw, { styled } from "twin.macro";
 
 import { SortDirection } from "~/common/types";
 
-const Wrapper = styled.button`
-  ${tw`text-neutral-600 hover:text-black dark:(text-neutral-400 hover:text-white)`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
+
+const Wrapper = styled("button", {
+  base: {
+    color: { base: "neutral.600", _dark: "neutral.400" },
+
+    _hover: {
+      color: { base: "black", _dark: "white" },
+    },
+  },
+});
 
 export interface SortButtonProps {
   className?: string;

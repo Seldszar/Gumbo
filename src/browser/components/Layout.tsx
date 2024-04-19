@@ -1,21 +1,33 @@
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
-import Loader from "~/browser/components/Loader";
-import Scrollable from "~/browser/components/Scrollable";
-import TopBar from "~/browser/components/TopBar";
+import { styled } from "~/browser/styled-system/jsx";
 
-const Wrapper = styled.div`
-  ${tw`flex flex-col h-full`}
-`;
+import Loader from "./Loader";
+import Scrollable from "./Scrollable";
+import TopBar from "./TopBar";
 
-const StyledScrollable = styled(Scrollable)`
-  ${tw`flex-1`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    display: "flex",
+    flexDir: "column",
+    h: "full",
+  },
+});
 
-const Inner = styled.div`
-  ${tw`flex flex-1 flex-col min-h-full`}
-`;
+const StyledScrollable = styled(Scrollable, {
+  base: {
+    flex: 1,
+  },
+});
+
+const Inner = styled("div", {
+  base: {
+    display: "flex",
+    flex: 1,
+    flexDir: "column",
+    minH: "full",
+  },
+});
 
 export interface LayoutProps {
   searchQuery?: string;

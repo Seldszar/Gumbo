@@ -1,10 +1,24 @@
 import { IconDots } from "@tabler/icons-react";
 import { HTMLAttributes, forwardRef } from "react";
-import tw, { styled } from "twin.macro";
 
-const Button = styled.button`
-  ${tw`bg-white border border-neutral-300 px-2 rounded transition shadow-lg hover:(bg-neutral-200 shadow-black/25) dark:(bg-neutral-800 border-neutral-700 hover:bg-neutral-700)`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
+
+const Button = styled("button", {
+  base: {
+    bg: { base: "white", _dark: "neutral.800" },
+    borderColor: { base: "neutral.300", _dark: "neutral.700" },
+    borderWidth: 1,
+    px: 2,
+    rounded: "sm",
+    shadow: "lg",
+    transition: "colors",
+
+    _hover: {
+      bg: { base: "neutral.200", _dark: "neutral.700" },
+      shadowColor: "black/25",
+    },
+  },
+});
 
 export type DropdownButtonProps = HTMLAttributes<HTMLButtonElement>;
 

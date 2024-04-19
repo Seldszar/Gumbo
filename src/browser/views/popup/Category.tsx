@@ -1,18 +1,20 @@
 import { Outlet, useParams } from "react-router-dom";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 import { HelixGame } from "~/common/types";
 
 import { useCategory } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import CategoryTitle from "~/browser/components/CategoryTitle";
 import Layout from "~/browser/components/Layout";
 import Splash from "~/browser/components/Splash";
 
-const Title = styled(CategoryTitle)`
-  ${tw`flex-none`}
-`;
+const Title = styled(CategoryTitle, {
+  base: {
+    flex: "none",
+  },
+});
 
 export interface OutletContext {
   category: HelixGame;

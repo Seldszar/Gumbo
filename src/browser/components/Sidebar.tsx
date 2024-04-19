@@ -1,46 +1,74 @@
 import { IconCategory, IconHeart, IconSearch, IconUser, IconVideo } from "@tabler/icons-react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 import { CurrentUser } from "~/common/types";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Logo from "./Logo";
 import ProfileBadge from "./ProfileBadge";
 import SidebarLink from "./SidebarLink";
 
-const Wrapper = styled.div`
-  ${tw`bg-black/10 dark:bg-black/20 grid gap-8 content-between overflow-x-hidden overflow-y-scroll w-16`}
+const Wrapper = styled("div", {
+  base: {
+    bg: { base: "black/10", _dark: "black/20" },
+    display: "flex",
+    flexDir: "column",
+    gap: 8,
+    justifyContent: "space-between",
+    overflowX: "hidden",
+    overflowY: "scroll",
+    scrollbarWidth: "none",
+    w: 16,
+  },
+});
 
-  scrollbar-width: none;
+const Header = styled("div", {
+  base: {
+    display: "grid",
+    flex: "none",
+    p: 4,
+    placeContent: "center",
+  },
+});
 
-  ::-webkit-scrollbar {
-    ${tw`hidden`}
-  }
-`;
+const StyledLogo = styled(Logo, {
+  base: {
+    w: 8,
+  },
+});
 
-const Header = styled.div`
-  ${tw`grid p-4 place-content-center`}
-`;
+const StyledProfileBadge = styled(ProfileBadge, {
+  base: {
+    alignSelf: "center",
+    flex: "none",
+  },
+});
 
-const StyledLogo = styled(Logo)`
-  ${tw`w-8`}
-`;
+const Inner = styled("div", {
+  base: {
+    display: "grid",
+    flex: 1,
+    gap: 3,
+    placeContent: "center",
+  },
+});
 
-const StyledProfileBadge = styled(ProfileBadge)`
-  ${tw`flex-none self-center`}
-`;
+const Separator = styled("hr", {
+  base: {
+    borderColor: { base: "neutral.200", _dark: "neutral.800" },
+    m: 1,
+  },
+});
 
-const Inner = styled.div`
-  ${tw`gap-3 grid place-content-center`}
-`;
-
-const Separator = styled.hr`
-  ${tw`border-neutral-200 dark:border-neutral-800 m-1`}
-`;
-
-const Footer = styled.div`
-  ${tw`grid p-3 place-content-center`}
-`;
+const Footer = styled("div", {
+  base: {
+    display: "grid",
+    flex: "none",
+    p: 3,
+    placeContent: "center",
+  },
+});
 
 export interface SidebarProps {
   className?: string;

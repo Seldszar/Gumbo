@@ -1,31 +1,45 @@
-import tw, { styled } from "twin.macro";
-
 import { PRESET_COLORS } from "~/common/constants";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Input from "./Input";
 
-const Wrapper = styled.fieldset`
-  ${tw`flex flex-wrap gap-2`}
-`;
+const Wrapper = styled("fieldset", {
+  base: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 2,
+  },
+});
 
-interface ButtonProps {
-  color: string;
-  isSelected?: boolean;
-}
+const Button = styled("button", {
+  base: {
+    h: 10,
+    rounded: "sm",
+    w: 10,
 
-const Button = styled.button<ButtonProps>`
-  ${tw`h-10 rounded w-10 disabled:(cursor-default opacity-25)!`}
+    _disabled: {
+      cursor: "default",
+      opacity: 0.25,
+    },
+  },
+  variants: {
+    isSelected: {
+      true: {
+        shadow: {
+          base: "inset 0 0 0 2px {colors.purple.500}, inset 0 0 0 4px {colors.white}",
+          _dark: "inset 0 0 0 2px {colors.purple.500}, inset 0 0 0 4px {colors.black}",
+        },
+      },
+    },
+  },
+});
 
-  background-color: ${(props) => props.color};
-
-  ${(props) =>
-    props.isSelected &&
-    tw`ring-2 ring-inset ring-offset-2 ring-offset-purple-500 ring-white dark:ring-black`}
-`;
-
-const ColorInput = styled(Input)`
-  ${tw`w-32`}
-`;
+const ColorInput = styled(Input, {
+  base: {
+    w: 32,
+  },
+});
 
 export interface ColorPickerProps {
   className?: string;
@@ -41,9 +55,9 @@ function ColorPicker(props: ColorPickerProps) {
       {PRESET_COLORS.map((color, index) => (
         <Button
           key={index}
-          color={color}
           isSelected={color === props.value}
           onClick={() => props.onChange(color)}
+          style={{ backgroundColor: color }}
           title={color}
         />
       ))}

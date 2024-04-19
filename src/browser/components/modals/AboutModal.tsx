@@ -1,7 +1,8 @@
 import { MouseEventHandler } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import ExternalAnchor from "../ExternalAnchor";
 import Hero from "../Hero";
@@ -28,9 +29,15 @@ const allLinks = [
   },
 ];
 
-const LinkGrid = styled.div`
-  ${tw`grid grid-cols-2 gap-x-6 gap-y-1 place-items-center`}
-`;
+const LinkGrid = styled("div", {
+  base: {
+    columnGap: 6,
+    display: "grid",
+    gridTemplateColumns: 2,
+    placeItems: "center",
+    rowGap: 1,
+  },
+});
 
 interface AboutModalProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;

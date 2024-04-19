@@ -1,19 +1,33 @@
 import { IconExternalLink } from "@tabler/icons-react";
-import tw, { styled } from "twin.macro";
+
+import { styled } from "~/browser/styled-system/jsx";
 
 import Anchor, { AnchorProps } from "./Anchor";
 
-const Icon = styled(IconExternalLink)`
-  ${tw`flex-none opacity-50`}
-`;
+const Icon = styled(IconExternalLink, {
+  base: {
+    flex: "none",
+    opacity: 0.5,
+  },
+});
 
-const Inner = styled.span`
-  ${tw`flex-1`}
-`;
+const Inner = styled("span", {
+  base: {
+    flex: 1,
+  },
+});
 
-const Wrapper = styled(Anchor)`
-  ${tw`inline-flex items-center gap-1 hover:underline`}
-`;
+const Wrapper = styled(Anchor, {
+  base: {
+    alignItems: "center",
+    display: "inline-flex",
+    gap: 1,
+
+    _hover: {
+      textDecoration: "underline",
+    },
+  },
+});
 
 function ExternalAnchor(props: AnchorProps) {
   return (

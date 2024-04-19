@@ -12,13 +12,24 @@ import {
   useMergeRefs,
 } from "@floating-ui/react";
 import { ReactElement, ReactNode, cloneElement, useState } from "react";
-import tw, { styled } from "twin.macro";
 
 import { remToPixels } from "../helpers";
+import { styled } from "~/browser/styled-system/jsx";
 
-const Panel = styled.div`
-  ${tw`fixed bg-white max-w-full pointer-events-none px-4 py-2 rounded text-sm shadow-lg z-20 dark:bg-black`}
-`;
+const Panel = styled("div", {
+  base: {
+    bg: { base: "white", _dark: "black" },
+    fontSize: "sm",
+    maxW: "full",
+    pointerEvents: "none",
+    pos: "fixed",
+    px: 4,
+    py: 2,
+    rounded: "sm",
+    shadow: "lg",
+    zIndex: 20,
+  },
+});
 
 interface TooltipProps {
   children: ReactElement;

@@ -1,26 +1,58 @@
 import { IconX } from "@tabler/icons-react";
 import { ReactNode, MouseEventHandler } from "react";
-import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.div`
-  ${tw`bg-neutral-100 dark:bg-neutral-900 px-6 relative rounded shadow-lg`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-const Header = styled.div`
-  ${tw`bg-gradient-to-b from-neutral-100 from-50% dark:from-neutral-900 to-transparent flex items-start py-6 sticky top-0 z-10`}
-`;
+const Wrapper = styled("div", {
+  base: {
+    bg: { base: "neutral.100", _dark: "neutral.900" },
+    pos: "relative",
+    px: 6,
+    rounded: "sm",
+    shadow: "lg",
+  },
+});
 
-const Title = styled.div`
-  ${tw`flex-1 font-bold text-purple-500 text-xl`}
-`;
+const Header = styled("div", {
+  base: {
+    alignItems: "start",
+    bgGradient: "to-b",
+    display: "flex",
+    gradientFrom: { base: "neutral.100", _dark: "neutral.900" },
+    gradientFromPosition: "50%",
+    gradientTo: "transparent",
+    pos: "sticky",
+    py: 6,
+    top: 0,
+    zIndex: 10,
+  },
+});
 
-const CloseButton = styled.button`
-  ${tw`flex-none -me-1 -mt-1 p-1 text-black dark:text-white opacity-50 hover:opacity-100`}
-`;
+const Title = styled("div", {
+  base: {
+    color: "purple.500",
+    flex: 1,
+    fontSize: "xl",
+    fontWeight: "bold",
+  },
+});
 
-const Inner = styled.div`
-  ${tw`pb-6`}
-`;
+const CloseButton = styled("button", {
+  base: {
+    color: { base: "black", _dark: "white" },
+    flex: "none",
+    me: -1,
+    mt: -1,
+    opacity: { base: 0.5, _hover: 1 },
+    p: 1,
+  },
+});
+
+const Inner = styled("div", {
+  base: {
+    pb: 6,
+  },
+});
 
 export interface PanelProps {
   onClose?: MouseEventHandler<HTMLButtonElement>;

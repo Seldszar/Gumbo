@@ -26,7 +26,7 @@ function MoreButton(props: MoreButtonProps) {
   }, [intersection?.isIntersecting]);
 
   return (
-    <Button fullWidth ref={ref} isLoading={props.isLoading} onClick={() => props.fetchMore()}>
+    <Button fullWidth ref={ref} loading={props.isLoading} onClick={() => props.fetchMore()}>
       {props.children}
     </Button>
   );

@@ -1,11 +1,11 @@
 import { sortBy } from "lodash-es";
 import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import { useSettingsContext } from "~/browser/contexts";
 import { useFollowedChannels } from "~/browser/hooks";
+import { styled } from "~/browser/styled-system/jsx";
 
 import ChannelName from "~/browser/components/ChannelName";
 import CheckboxGrid from "~/browser/components/CheckboxGrid";
@@ -15,9 +15,11 @@ import Switch from "~/browser/components/Switch";
 
 import IgnoredCategoryForm from "~/browser/components/forms/IgnoredCategoryForm";
 
-const StyledSwitch = styled(Switch)`
-  ${tw`mb-3 last:mb-0`}
-`;
+const StyledSwitch = styled(Switch, {
+  base: {
+    mb: { base: 3, _last: 0 },
+  },
+});
 
 export function Component() {
   const { register, settings } = useSettingsContext();

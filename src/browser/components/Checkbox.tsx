@@ -1,24 +1,49 @@
 import { IconCheck } from "@tabler/icons-react";
 import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.button`
-  ${tw`cursor-pointer flex gap-3 items-center text-left disabled:(cursor-default opacity-25)`}
-`;
+import { styled } from "~/browser/styled-system/jsx";
 
-interface ControlProps {
-  isChecked?: boolean;
-}
+const Wrapper = styled("button", {
+  base: {
+    alignItems: "center",
+    cursor: { base: "pointer", _disabled: "default" },
+    display: "flex",
+    gap: 3,
+    opacity: { _disabled: 0.25 },
+    textAlign: "left",
+  },
+});
 
-const Control = styled.div<ControlProps>`
-  ${tw`bg-neutral-300 dark:bg-neutral-700 flex flex-none h-6 items-center justify-center rounded w-6`}
+const Control = styled("div", {
+  base: {
+    alignItems: "center",
+    bg: { base: "neutral.300", _dark: "neutral.700" },
+    display: "flex",
+    flex: "none",
+    h: 6,
+    justifyContent: "center",
+    rounded: "sm",
+    w: 6,
+  },
+  variants: {
+    isChecked: {
+      true: {
+        bg: "purple.500",
+        color: "white",
+      },
+    },
+  },
+  defaultVariants: {
+    isChecked: false,
+  },
+});
 
-  ${(props) => props.isChecked && tw`!(bg-purple-500 text-white)`}
-`;
-
-const Inner = styled.div`
-  ${tw`flex-1 truncate`}
-`;
+const Inner = styled("div", {
+  base: {
+    flex: 1,
+    truncate: true,
+  },
+});
 
 export interface CheckboxProps {
   onChange?(checked: boolean): void;
