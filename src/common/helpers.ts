@@ -146,5 +146,5 @@ export function changeCase(input: any, mapper: (key: string) => string): any {
 }
 
 export function isRerunStream(stream?: HelixStream): boolean {
-  return stream?.tags?.includes("Rerun") ?? false;
+  return stream?.tags?.some((tag) => "rerun" === tag.toLowerCase()) ?? false;
 }
