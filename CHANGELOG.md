@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.7](https://github.com/Seldszar/Gumbo/compare/v1.18.6...v1.18.7) (2024-04-21)
+
+
+### Bug Fixes
+
+* rerun stream tag case ([9f4f2bf](https://github.com/Seldszar/Gumbo/commit/9f4f2bf9630ec6c5693f5e4580d5136506ef7b0d))
+
 ## [1.18.6](https://github.com/Seldszar/Gumbo/compare/v1.18.5...v1.18.6) (2023-11-10)
 
 
