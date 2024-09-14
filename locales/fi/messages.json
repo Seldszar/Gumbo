@@ -1,0 +1,443 @@
+{
+  "buttonText_add": {
+    "message": "Lisää"
+  },
+  "buttonText_cancel": {
+    "message": "Peruuta"
+  },
+  "buttonText_confirm": {
+    "message": "Vahvista"
+  },
+  "buttonText_donateWith": {
+    "message": "Lahjoita $1"
+  },
+  "buttonText_exportSettings": {
+    "message": "Vie asetukset"
+  },
+  "buttonText_importSettings": {
+    "message": "Tuo asetukset"
+  },
+  "buttonText_loadMore": {
+    "message": "Lataa lisää"
+  },
+  "buttonText_login": {
+    "message": "Kirjaudu sisään Twitchillä"
+  },
+  "buttonText_reloadExtension": {
+    "message": "Lataa laajennus uudelleen"
+  },
+  "buttonText_resetExtension": {
+    "message": "Nollaa laajennus"
+  },
+  "buttonText_selectAll": {
+    "message": "Valitse kaikki"
+  },
+  "buttonText_selectNone": {
+    "message": "Tyhjää valinta"
+  },
+  "buttonText_submit": {
+    "message": "Lähetä"
+  },
+  "buttonText_viewOn": {
+    "message": "Näytä $1"
+  },
+  "confirmMessage_deleteItem": {
+    "message": "Haluatko poistaa \"$1\"?"
+  },
+  "confirmMessage_reload": {
+    "message": "Käytä alla olevaa painiketta ladataksesi laajennuksen uudelleen."
+  },
+  "confirmMessage_reset": {
+    "message": "Kaikki tiedot poistetaan ja sinut kirjataan ulos.<br />Haluatko varmasti jatkaa?"
+  },
+  "confirmTitle_deleteItem": {
+    "message": "Vahvista poisto"
+  },
+  "confirmTitle_reload": {
+    "message": "Oh-oh, Gumbo ei vastaa!"
+  },
+  "confirmTitle_reset": {
+    "message": "Olet nollaamassa Gumbon!"
+  },
+  "detailText_followingSince": {
+    "message": "Saurannut $1 lähtien"
+  },
+  "detailText_noCategory": {
+    "message": "Ei kategoriaa"
+  },
+  "detailText_noDescription": {
+    "message": "Ei kuvausta"
+  },
+  "detailText_noTitle": {
+    "message": "Ei otsikkoa"
+  },
+  "detailText_viewCount": {
+    "message": "$1 katsojaa"
+  },
+  "errorText_emptyCategories": {
+    "message": "Kategorioita ei löytynyt"
+  },
+  "errorText_emptyChannels": {
+    "message": "Kanavia ei löytynyt"
+  },
+  "errorText_emptyClips": {
+    "message": "Leikkeitä ei löytynyt"
+  },
+  "errorText_emptyFollowingUsers": {
+    "message": "Ei seurattuja käyttäjiä"
+  },
+  "errorText_emptyIgnoredCategories": {
+    "message": "Ei piilotettuja kategorioita"
+  },
+  "errorText_emptyList": {
+    "message": "Lista on tyhjä"
+  },
+  "errorText_emptyOnlineStreams": {
+    "message": "Suoratoistoja ei ole päällä"
+  },
+  "errorText_emptyStreams": {
+    "message": "Suoratoistoja ei löytynyt"
+  },
+  "errorText_emptyUsers": {
+    "message": "Käyttäjiä ei löytynyt"
+  },
+  "errorText_emptyVideos": {
+    "message": "Videoita ei löytynyt"
+  },
+  "extensionDescription": {
+    "message": "Leppoinen Twitch apurisi, joka pitää sinut ajan tasalla"
+  },
+  "extensionName": {
+    "message": "Gumbo: Twitch Apuri"
+  },
+  "helpText_customAction_url": {
+    "message": "Esimerkki: $1"
+  },
+  "inputLabel_availablePlaceholders": {
+    "message": "Käytettävissä olevat tilapäiset muuttujat"
+  },
+  "inputLabel_categoryChangeNotifications": {
+    "message": "Sisällytä kategorian muutosilmoitukset"
+  },
+  "inputLabel_enableNotifications": {
+    "message": "Ota ilmoitukset käyttöön"
+  },
+  "inputLabel_filterNotificationsByChannel": {
+    "message": "Suodata ilmoitukset kanavan mukaan"
+  },
+  "inputLabel_filterStreamsByLanguage": {
+    "message": "Suodata lähetykset kielen mukaan"
+  },
+  "inputLabel_showIconBadge": {
+    "message": "Näytä paikalla olevien lähetysten määrä"
+  },
+  "inputLabel_showLiveChannelsOnly": {
+    "message": "Näytä vain live-kanavat"
+  },
+  "inputLabel_showRerunsInFollowedStreams": {
+    "message": "Näytä uusinnat seuratuissa lähetykissä"
+  },
+  "linkText_issues": {
+    "message": "Bugit & Ehdotukset"
+  },
+  "linkText_releases": {
+    "message": "Julkaisutiedot"
+  },
+  "linkText_repository": {
+    "message": "Lähdekoodi"
+  },
+  "linkText_translate": {
+    "message": "Käännä"
+  },
+  "messageText_donate": {
+    "message": "<p>Gumbo on ilmainen laajennus, joka ei kerää tai myy henkilökohtaisia käyttäjätietoja.</p><p>Lahjoitukset ovat valinnaisia, mutta niitä arvostetaan suuresti, ne auttavat tukemaan työtäni ja auttavat minua tarjoamaan mahdollisimman hyvää tuotetta.</p> p><p>Kiitos tuestanne!</p>"
+  },
+  "messageText_typeSearchCategories": {
+    "message": "Kirjoita kategorian etsimiseksi"
+  },
+  "messageText_typeSearchChannels": {
+    "message": "Kirjoita kanavan etsimiseksi"
+  },
+  "notificationContextMessage_accessExpired": {
+    "message": "Klikkaa valtuuttaaksesi"
+  },
+  "notificationContextMessage_extensionUpdated": {
+    "message": "Klikkaa nähdäksesi muutokset"
+  },
+  "notificationMessage_accessExpired": {
+    "message": "Twitch pääsy tokeni on vanhentunut. Uudelleen valtuuta uusiaksesi sen."
+  },
+  "notificationMessage_extensionUpdated": {
+    "message": "Gumbo päivitetty versioon $1."
+  },
+  "notificationMessage_streamOnline": {
+    "message": "$1 on paikalla!"
+  },
+  "notificationMessage_streamPlaying": {
+    "message": "$1 pelaa $2!"
+  },
+  "notificationTitle_accessExpired": {
+    "message": "Pääsy vanhentunut"
+  },
+  "optionTitle_clickAction": {
+    "message": "Klikkaa toimintoa"
+  },
+  "optionTitle_clickBehavior": {
+    "message": "Klikkaa toimintoa"
+  },
+  "optionTitle_fontSize": {
+    "message": "Fonttikoko"
+  },
+  "optionTitle_theme": {
+    "message": "Teema"
+  },
+  "optionValue_about": {
+    "message": "Tietoja"
+  },
+  "optionValue_aboutHelp": {
+    "message": "Tietoja & Apu"
+  },
+  "optionValue_clickBehavior_createCurrentTab": {
+    "message": "Avaa nykyisessä välilehdessä"
+  },
+  "optionValue_clickBehavior_createTab": {
+    "message": "Avaa uudessa välilehdessä"
+  },
+  "optionValue_clickBehavior_createWindow": {
+    "message": "Avaa uudessa ikkunaan"
+  },
+  "optionValue_collections": {
+    "message": "Kokoelmat"
+  },
+  "optionValue_customActions": {
+    "message": "Mukautetut toiminnot"
+  },
+  "optionValue_delete": {
+    "message": "Poista"
+  },
+  "optionValue_donate": {
+    "message": "Lahjoita"
+  },
+  "optionValue_fontSize_large": {
+    "message": "Suuri"
+  },
+  "optionValue_fontSize_largest": {
+    "message": "Suurin"
+  },
+  "optionValue_fontSize_medium": {
+    "message": "Keskikokoinen"
+  },
+  "optionValue_fontSize_small": {
+    "message": "Pieni"
+  },
+  "optionValue_fontSize_smallest": {
+    "message": "Pienin"
+  },
+  "optionValue_gotoCategory": {
+    "message": "Siirry kategoriaan"
+  },
+  "optionValue_logout": {
+    "message": "Kirjaudu ulos"
+  },
+  "optionValue_newCollection": {
+    "message": "Uusi kokoelma"
+  },
+  "optionValue_openChannel": {
+    "message": "Avaa kanava"
+  },
+  "optionValue_openChat": {
+    "message": "Avaa chatti"
+  },
+  "optionValue_period_allTime": {
+    "message": "Koko aika"
+  },
+  "optionValue_period_lastDay": {
+    "message": "Viime päivä"
+  },
+  "optionValue_period_lastDays": {
+    "message": "Viimeiset $1 päivää"
+  },
+  "optionValue_period_lastHours": {
+    "message": "Viimeiset $1 tuntia"
+  },
+  "optionValue_period_lastMonth": {
+    "message": "Viime kuukautena"
+  },
+  "optionValue_period_lastWeek": {
+    "message": "Viime viikolla"
+  },
+  "optionValue_popout": {
+    "message": "Ponnahdusikkuna"
+  },
+  "optionValue_schedule": {
+    "message": "Aikataulu"
+  },
+  "optionValue_search": {
+    "message": "Haku"
+  },
+  "optionValue_settings": {
+    "message": "Asetukset"
+  },
+  "optionValue_sort_category": {
+    "message": "Kategoria"
+  },
+  "optionValue_sort_followedAt": {
+    "message": "Seuraus aika"
+  },
+  "optionValue_sort_login": {
+    "message": "Lähettäjä"
+  },
+  "optionValue_sort_name": {
+    "message": "Nimi"
+  },
+  "optionValue_sort_time": {
+    "message": "Aika"
+  },
+  "optionValue_sort_trending": {
+    "message": "Trendaavat"
+  },
+  "optionValue_sort_uptime": {
+    "message": "Lähetyksen kesto"
+  },
+  "optionValue_sort_viewers": {
+    "message": "Katsojaa"
+  },
+  "optionValue_sort_views": {
+    "message": "Näyttökertaa"
+  },
+  "optionValue_status_any": {
+    "message": "Mikä tahansa"
+  },
+  "optionValue_status_offlineOnly": {
+    "message": "Pois paikalta-tilassa"
+  },
+  "optionValue_status_onlineOnly": {
+    "message": "Paikalla"
+  },
+  "optionValue_theme_dark": {
+    "message": "Tumma"
+  },
+  "optionValue_theme_light": {
+    "message": "Vaalea"
+  },
+  "optionValue_theme_system": {
+    "message": "Järjestelmä"
+  },
+  "optionValue_unknown": {
+    "message": "Tuntematon"
+  },
+  "optionValue_update": {
+    "message": "Päivittää"
+  },
+  "optionValue_videoType_all": {
+    "message": "Kaikki videot"
+  },
+  "optionValue_videoType_archive": {
+    "message": "Arkistot"
+  },
+  "optionValue_videoType_highlight": {
+    "message": "Kohokohdat"
+  },
+  "optionValue_videoType_upload": {
+    "message": "Lataukset"
+  },
+  "optionValue_videos": {
+    "message": "Videot"
+  },
+  "placeholderText_ignoredCategories": {
+    "message": "Syöttö kategoria ohitettavaksi"
+  },
+  "titleText_advanced": {
+    "message": "Edistynyt"
+  },
+  "titleText_backgroundColor": {
+    "message": "Taustaväri"
+  },
+  "titleText_badge": {
+    "message": "Merkki"
+  },
+  "titleText_categories": {
+    "message": "Kategoriat"
+  },
+  "titleText_channelId": {
+    "message": "Kanavan ID"
+  },
+  "titleText_channelLogin": {
+    "message": "Kanavan kirjautuminen"
+  },
+  "titleText_channels": {
+    "message": "Kanavat"
+  },
+  "titleText_clips": {
+    "message": "Leikkeet"
+  },
+  "titleText_createCollection": {
+    "message": "Luo kokoelma"
+  },
+  "titleText_createItem": {
+    "message": "Luo kohde"
+  },
+  "titleText_customActions": {
+    "message": "Mukautetut toiminnot"
+  },
+  "titleText_dangerZone": {
+    "message": "Vaaravyöhyke"
+  },
+  "titleText_deleteCollection": {
+    "message": "Poista kokoelma"
+  },
+  "titleText_donate": {
+    "message": "Lahjoitta"
+  },
+  "titleText_dropdownMenu": {
+    "message": "Pudotusvalikko"
+  },
+  "titleText_followedStreams": {
+    "message": "Seuratut lähettäjät"
+  },
+  "titleText_followedUsers": {
+    "message": "Seuratut käyttäjät"
+  },
+  "titleText_general": {
+    "message": "Yleinen"
+  },
+  "titleText_ignoredCategories": {
+    "message": "Ohitetut kategoriat"
+  },
+  "titleText_live": {
+    "message": "Suora"
+  },
+  "titleText_notifications": {
+    "message": "Ilmoitukset"
+  },
+  "titleText_rerun": {
+    "message": "Toisto"
+  },
+  "titleText_search": {
+    "message": "Haku"
+  },
+  "titleText_settings": {
+    "message": "Asetukset"
+  },
+  "titleText_settingsManagement": {
+    "message": "Asetusten hallinta"
+  },
+  "titleText_streams": {
+    "message": "Lähetykset"
+  },
+  "titleText_topCategories": {
+    "message": "Top kategoriat"
+  },
+  "titleText_topStreams": {
+    "message": "Top lähetykset"
+  },
+  "titleText_updateCollection": {
+    "message": "Päivitä kokoelma"
+  },
+  "titleText_updateItem": {
+    "message": "Päivitä kohde"
+  },
+  "titleText_videos": {
+    "message": "Videot"
+  }
+}
