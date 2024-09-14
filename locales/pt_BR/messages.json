@@ -35,32 +35,17 @@
   "buttonText_selectNone": {
     "message": "Desmarcar Tudo"
   },
-  "buttonText_submit": {
-    "message": ""
-  },
-  "buttonText_viewOn": {
-    "message": ""
-  },
-  "confirmMessage_deleteItem": {
-    "message": ""
-  },
   "confirmMessage_reload": {
     "message": "Por favor use o botão abaixo para recarregar a extensão."
   },
   "confirmMessage_reset": {
     "message": "Todos os dados serão deletados e você será deslogado.<br />Deseja mesmo prosseguir?"
   },
-  "confirmTitle_deleteItem": {
-    "message": ""
-  },
   "confirmTitle_reload": {
     "message": "Uh-on, Gumbo não está mais respondendo!"
   },
   "confirmTitle_reset": {
     "message": "Você está prestes a resetar Gumbo!"
-  },
-  "detailText_followingSince": {
-    "message": ""
   },
   "detailText_noCategory": {
     "message": "Sem categoria"
@@ -89,9 +74,6 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Nenhuma categoria ignorada"
   },
-  "errorText_emptyList": {
-    "message": ""
-  },
   "errorText_emptyOnlineStreams": {
     "message": "Nenhum stream online"
   },
@@ -109,12 +91,6 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
-  },
-  "helpText_customAction_url": {
-    "message": ""
-  },
-  "inputLabel_availablePlaceholders": {
-    "message": ""
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Incluir categoria alterar notificações"
@@ -161,14 +137,8 @@
   "notificationContextMessage_accessExpired": {
     "message": "Clique para autorizar"
   },
-  "notificationContextMessage_extensionUpdated": {
-    "message": ""
-  },
   "notificationMessage_accessExpired": {
     "message": "Seu token de acesso do Twitch expirou, por favor faça uma nova autorização."
-  },
-  "notificationMessage_extensionUpdated": {
-    "message": ""
   },
   "notificationMessage_streamOnline": {
     "message": "$1 está online!"
@@ -206,15 +176,6 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Abrir em uma nova janela"
   },
-  "optionValue_collections": {
-    "message": ""
-  },
-  "optionValue_customActions": {
-    "message": ""
-  },
-  "optionValue_delete": {
-    "message": ""
-  },
   "optionValue_donate": {
     "message": "Doar"
   },
@@ -233,14 +194,8 @@
   "optionValue_fontSize_smallest": {
     "message": "Menor ainda"
   },
-  "optionValue_gotoCategory": {
-    "message": ""
-  },
   "optionValue_logout": {
     "message": "Sair"
-  },
-  "optionValue_newCollection": {
-    "message": ""
   },
   "optionValue_openChannel": {
     "message": "Abrir canal"
@@ -280,9 +235,6 @@
   },
   "optionValue_sort_category": {
     "message": "Categoria"
-  },
-  "optionValue_sort_followedAt": {
-    "message": ""
   },
   "optionValue_sort_login": {
     "message": "Broadcaster"
@@ -326,9 +278,6 @@
   "optionValue_unknown": {
     "message": "Desconhecido"
   },
-  "optionValue_update": {
-    "message": ""
-  },
   "optionValue_videoType_all": {
     "message": "Todos os vídeos"
   },
@@ -359,38 +308,17 @@
   "titleText_categories": {
     "message": "Categorias"
   },
-  "titleText_channelId": {
-    "message": ""
-  },
-  "titleText_channelLogin": {
-    "message": ""
-  },
   "titleText_channels": {
     "message": "Canais"
   },
   "titleText_clips": {
     "message": "Clipes"
   },
-  "titleText_createCollection": {
-    "message": ""
-  },
-  "titleText_createItem": {
-    "message": ""
-  },
-  "titleText_customActions": {
-    "message": ""
-  },
   "titleText_dangerZone": {
     "message": "Zona de Perigo"
   },
-  "titleText_deleteCollection": {
-    "message": ""
-  },
   "titleText_donate": {
     "message": "Doar"
-  },
-  "titleText_dropdownMenu": {
-    "message": ""
   },
   "titleText_followedStreams": {
     "message": "Streams Seguidos"
@@ -430,12 +358,6 @@
   },
   "titleText_topStreams": {
     "message": "Melhores Streams"
-  },
-  "titleText_updateCollection": {
-    "message": ""
-  },
-  "titleText_updateItem": {
-    "message": ""
   },
   "titleText_videos": {
     "message": "Vídeos"
