@@ -420,3 +420,13 @@ stores.followedStreams.onChange(() => {
 stores.settings.onChange(() => {
   refreshActionBadge();
 });
+
+async function checkAlarm() {
+  if (await browser.alarms.get("refresh")) {
+    return;
+  }
+
+  refresh(false);
+}
+
+checkAlarm();
