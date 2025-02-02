@@ -35,32 +35,17 @@
   "buttonText_selectNone": {
     "message": "Fravelg alt"
   },
-  "buttonText_submit": {
-    "message": ""
-  },
-  "buttonText_viewOn": {
-    "message": ""
-  },
-  "confirmMessage_deleteItem": {
-    "message": ""
-  },
   "confirmMessage_reload": {
     "message": "Bruk knappen nedenfor for å laste inn utvidelsen igjen."
   },
   "confirmMessage_reset": {
     "message": "Alle data kommer til å bli slettet og du vil bli logget ut.<br />Er du sikker på at du vil fortsette?"
   },
-  "confirmTitle_deleteItem": {
-    "message": ""
-  },
   "confirmTitle_reload": {
     "message": "Gumbo svarer ikke lenger!"
   },
   "confirmTitle_reset": {
     "message": "Du er i ferd med å tilbakestille Gumbo!"
-  },
-  "detailText_followingSince": {
-    "message": ""
   },
   "detailText_noCategory": {
     "message": "Ikke kategorisert"
@@ -89,9 +74,6 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Ingen ignorerte kategorier"
   },
-  "errorText_emptyList": {
-    "message": ""
-  },
   "errorText_emptyOnlineStreams": {
     "message": "Ingen tilgjengelige strømmer"
   },
@@ -109,12 +91,6 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch-kompanjong"
-  },
-  "helpText_customAction_url": {
-    "message": ""
-  },
-  "inputLabel_availablePlaceholders": {
-    "message": ""
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Inkluder merknader om kategoriendringer"
@@ -161,14 +137,8 @@
   "notificationContextMessage_accessExpired": {
     "message": "Klikk for å identitetsbekrefte"
   },
-  "notificationContextMessage_extensionUpdated": {
-    "message": ""
-  },
   "notificationMessage_accessExpired": {
     "message": "Ditt Twitch-symbol har utløpt. Identitetsbekreft deg igjen for å få deg et nytt."
-  },
-  "notificationMessage_extensionUpdated": {
-    "message": ""
   },
   "notificationMessage_streamOnline": {
     "message": "$1 er pålogget!"
@@ -206,15 +176,6 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Åpne i nytt vindu"
   },
-  "optionValue_collections": {
-    "message": ""
-  },
-  "optionValue_customActions": {
-    "message": ""
-  },
-  "optionValue_delete": {
-    "message": ""
-  },
   "optionValue_donate": {
     "message": "Doner"
   },
@@ -233,14 +194,8 @@
   "optionValue_fontSize_smallest": {
     "message": "Minst"
   },
-  "optionValue_gotoCategory": {
-    "message": ""
-  },
   "optionValue_logout": {
     "message": "Logg ut"
-  },
-  "optionValue_newCollection": {
-    "message": ""
   },
   "optionValue_openChannel": {
     "message": "Åpne kanal"
@@ -281,9 +236,6 @@
   "optionValue_sort_category": {
     "message": "Kategori"
   },
-  "optionValue_sort_followedAt": {
-    "message": ""
-  },
   "optionValue_sort_login": {
     "message": "Kringkaster"
   },
@@ -320,14 +272,8 @@
   "optionValue_theme_light": {
     "message": "Lys"
   },
-  "optionValue_theme_system": {
-    "message": ""
-  },
   "optionValue_unknown": {
     "message": "Ukjent"
-  },
-  "optionValue_update": {
-    "message": ""
   },
   "optionValue_videoType_all": {
     "message": "Alle videoer"
@@ -359,38 +305,17 @@
   "titleText_categories": {
     "message": "Kategorier"
   },
-  "titleText_channelId": {
-    "message": ""
-  },
-  "titleText_channelLogin": {
-    "message": ""
-  },
   "titleText_channels": {
     "message": "Kanaler"
   },
   "titleText_clips": {
     "message": "Klipp"
   },
-  "titleText_createCollection": {
-    "message": ""
-  },
-  "titleText_createItem": {
-    "message": ""
-  },
-  "titleText_customActions": {
-    "message": ""
-  },
   "titleText_dangerZone": {
     "message": "Faresone"
   },
-  "titleText_deleteCollection": {
-    "message": ""
-  },
   "titleText_donate": {
     "message": "Doner"
-  },
-  "titleText_dropdownMenu": {
-    "message": ""
   },
   "titleText_followedStreams": {
     "message": "Fulgte strømmer"
@@ -430,12 +355,6 @@
   },
   "titleText_topStreams": {
     "message": "Toppstrømmer"
-  },
-  "titleText_updateCollection": {
-    "message": ""
-  },
-  "titleText_updateItem": {
-    "message": ""
   },
   "titleText_videos": {
     "message": "Videoer"

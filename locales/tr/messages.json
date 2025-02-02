@@ -35,32 +35,17 @@
   "buttonText_selectNone": {
     "message": "Hiçbirini Seçme"
   },
-  "buttonText_submit": {
-    "message": ""
-  },
-  "buttonText_viewOn": {
-    "message": ""
-  },
-  "confirmMessage_deleteItem": {
-    "message": ""
-  },
   "confirmMessage_reload": {
     "message": "Lütfen eklentiyi yeniden yüklemek için aşağıdaki düğmeyi kullanın."
   },
   "confirmMessage_reset": {
     "message": "Tüm veriler silinecek ve oturumunuz kapatılacak.<br />Devam etmek istediğinizden emin misiniz?"
   },
-  "confirmTitle_deleteItem": {
-    "message": ""
-  },
   "confirmTitle_reload": {
     "message": "Uh-oh, Gumbo artık yanıt vermiyor!"
   },
   "confirmTitle_reset": {
     "message": "Gumbo'yu sıfırlamak üzeresiniz!"
-  },
-  "detailText_followingSince": {
-    "message": ""
   },
   "detailText_noCategory": {
     "message": "Kategori yok"
@@ -89,9 +74,6 @@
   "errorText_emptyIgnoredCategories": {
     "message": "Yoksayılan kategori yok"
   },
-  "errorText_emptyList": {
-    "message": ""
-  },
   "errorText_emptyOnlineStreams": {
     "message": "Online yayın yok"
   },
@@ -109,12 +91,6 @@
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
-  },
-  "helpText_customAction_url": {
-    "message": ""
-  },
-  "inputLabel_availablePlaceholders": {
-    "message": ""
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Kategori değişikliği bildirimlerini dahil et"
@@ -161,14 +137,8 @@
   "notificationContextMessage_accessExpired": {
     "message": "Yetkilendirmek için tıklayın"
   },
-  "notificationContextMessage_extensionUpdated": {
-    "message": ""
-  },
   "notificationMessage_accessExpired": {
     "message": "Twitch erişim tokeniniz'in süresi doldu, lütfen yeni bir tane almak için yeniden yetkilendirin."
-  },
-  "notificationMessage_extensionUpdated": {
-    "message": ""
   },
   "notificationMessage_streamOnline": {
     "message": "$1 çevrimiçi!"
@@ -206,15 +176,6 @@
   "optionValue_clickBehavior_createWindow": {
     "message": "Yeni pencerede aç"
   },
-  "optionValue_collections": {
-    "message": ""
-  },
-  "optionValue_customActions": {
-    "message": ""
-  },
-  "optionValue_delete": {
-    "message": ""
-  },
   "optionValue_donate": {
     "message": "Bağış"
   },
@@ -233,14 +194,8 @@
   "optionValue_fontSize_smallest": {
     "message": "En Küçük"
   },
-  "optionValue_gotoCategory": {
-    "message": ""
-  },
   "optionValue_logout": {
     "message": "Oturumu Kapat"
-  },
-  "optionValue_newCollection": {
-    "message": ""
   },
   "optionValue_openChannel": {
     "message": "Kanalı Aç"
@@ -281,9 +236,6 @@
   "optionValue_sort_category": {
     "message": "Kategoriler"
   },
-  "optionValue_sort_followedAt": {
-    "message": ""
-  },
   "optionValue_sort_login": {
     "message": "Yayıncı"
   },
@@ -320,14 +272,8 @@
   "optionValue_theme_light": {
     "message": "Aydınlık"
   },
-  "optionValue_theme_system": {
-    "message": ""
-  },
   "optionValue_unknown": {
     "message": "Bilinmeyen"
-  },
-  "optionValue_update": {
-    "message": ""
   },
   "optionValue_videoType_all": {
     "message": "Bütün Videolar"
@@ -359,38 +305,17 @@
   "titleText_categories": {
     "message": "kategoriler"
   },
-  "titleText_channelId": {
-    "message": ""
-  },
-  "titleText_channelLogin": {
-    "message": ""
-  },
   "titleText_channels": {
     "message": "Kanallar"
   },
   "titleText_clips": {
     "message": "Klipler"
   },
-  "titleText_createCollection": {
-    "message": ""
-  },
-  "titleText_createItem": {
-    "message": ""
-  },
-  "titleText_customActions": {
-    "message": ""
-  },
   "titleText_dangerZone": {
     "message": "Tehlikeli Bölge"
   },
-  "titleText_deleteCollection": {
-    "message": ""
-  },
   "titleText_donate": {
     "message": "Bağış"
-  },
-  "titleText_dropdownMenu": {
-    "message": ""
   },
   "titleText_followedStreams": {
     "message": "Takip edilen Yayıncılar"
@@ -430,12 +355,6 @@
   },
   "titleText_topStreams": {
     "message": "Top yayıncılar"
-  },
-  "titleText_updateCollection": {
-    "message": ""
-  },
-  "titleText_updateItem": {
-    "message": ""
   },
   "titleText_videos": {
     "message": "Videolar"
