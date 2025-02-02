@@ -302,6 +302,8 @@ async function setup(): Promise<void> {
 
     return browser.storage.local.remove(key);
   });
+
+  refresh(false);
 }
 
 async function reset(): Promise<void> {
@@ -420,3 +422,13 @@ stores.followedStreams.onChange(() => {
 stores.settings.onChange(() => {
   refreshActionBadge();
 });
+
+async function checkAlarm() {
+  if (await browser.alarms.get("refresh")) {
+    return;
+  }
+
+  setup();
+}
+
+checkAlarm();
