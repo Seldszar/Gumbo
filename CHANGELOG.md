@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.9](https://github.com/Seldszar/Gumbo/compare/v1.18.8...v1.18.9) (2025-02-10)
+
+
+### Bug Fixes
+
+* refresh alarm ([d90e198](https://github.com/Seldszar/Gumbo/commit/d90e198689d7ae5f1f39b4278cd22ef7fb945eb6))
+* remove update notification ([fe8f182](https://github.com/Seldszar/Gumbo/commit/fe8f1823fca7df16c9e6977d2121f5afcdff8c6f))
+
 ## [1.18.8](https://github.com/Seldszar/Gumbo/compare/v1.18.7...v1.18.8) (2024-09-14)
 
 
