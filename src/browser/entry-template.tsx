@@ -1,11 +1,9 @@
-import "overlayscrollbars/overlayscrollbars.css";
-
 import { Global } from "@emotion/react";
 import { EntryWrapper } from "@seldszar/yael";
 import { ExoticComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { SWRConfig } from "swr";
-import tw, { GlobalStyles, css, theme } from "twin.macro";
+import tw, { GlobalStyles, css } from "twin.macro";
 
 import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
 
@@ -62,29 +60,6 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
 
             #modal-root {
               ${tw`absolute z-50`}
-            }
-
-            .os-theme-gumbo {
-              --os-handle-bg-active: ${theme("colors.purple.600")};
-              --os-handle-bg-hover: ${theme("colors.purple.400")};
-              --os-handle-bg: ${theme("colors.purple.500")};
-              --os-handle-border-radius: ${theme("borderRadius.full")};
-              --os-handle-interactive-area-offset: 3px;
-              --os-padding-axis: 3px;
-              --os-padding-perpendicular: 3px;
-              --os-size: 8px;
-
-              .os-scrollbar-handle {
-                opacity: 0.5;
-              }
-
-              &:hover {
-                --os-size: 10px;
-
-                .os-scrollbar-handle {
-                  opacity: 1;
-                }
-              }
             }
           `}
         />
