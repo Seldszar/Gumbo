@@ -292,22 +292,14 @@ async function authorize() {
 }
 
 async function setup(): Promise<void> {
-  const items = await browser.storage.local.get();
-
-  await settlePromises(Object.values(stores), (store) => store.setup(true));
-  await settlePromises(Object.keys(items), async (key) => {
-    if (key in stores) {
-      return;
-    }
-
-    return browser.storage.local.remove(key);
-  });
+  await settlePromises(Object.values(stores), (store) => store.migrate());
+  await refresh(false);
 }
 
 async function reset(): Promise<void> {
   await Promise.allSettled([
     browser.storage.local.clear(),
-    browser.storage.managed.clear(),
+    browser.storage.session.clear(),
     browser.storage.sync.clear(),
   ]);
 
