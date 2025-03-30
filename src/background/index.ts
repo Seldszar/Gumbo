@@ -128,25 +128,22 @@ async function getFollowedStreams(userId: string) {
   return followedStreams;
 }
 
-async function filterFollowedStreams(streams: HelixStream[]) {
-  const [followedStreams, settings] = await Promise.all([
-    stores.followedStreams.get(),
-    stores.settings.get(),
-  ]);
+async function filterNewStreams(newStreams: HelixStream[], oldStreams: HelixStream[]) {
+  const settings = await stores.settings.get();
 
   const {
     notifications: { ignoredCategories, selectedUsers, withCategoryChanges, withFilters },
   } = settings;
 
-  return streams.filter((stream) => {
+  return newStreams.filter((stream) => {
     if (
       (withFilters && !selectedUsers.includes(stream.userId)) ||
-      ignoredCategories.some(matchString.bind(null, stream.gameName))
+      ignoredCategories.some((input) => matchString(stream.gameName, input))
     ) {
       return false;
     }
 
-    const oldStream = find(followedStreams, {
+    const oldStream = find(oldStreams, {
       userId: stream.userId,
     });
 
@@ -166,7 +163,7 @@ async function refreshCurrentUser(accessToken: string | null) {
   return currentUser;
 }
 
-async function refreshFollowedStreams(user: HelixUser, showNotifications = true) {
+async function refreshFollowedStreams(user: HelixUser) {
   const settings = await stores.settings.get();
 
   let followedStreams = new Array<HelixStream>();
@@ -177,66 +174,70 @@ async function refreshFollowedStreams(user: HelixUser, showNotifications = true)
     if (!settings.streams.withReruns) {
       remove(followedStreams, isRerunStream);
     }
-
-    if (showNotifications && settings.notifications.enabled) {
-      const streams = await filterFollowedStreams(followedStreams);
-      const users = await getUsersByIds(map(streams, "userId"));
-
-      settlePromises(streams, async (stream) => {
-        const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-          browser.notifications.create(`${Date.now()}:stream:${stream.userLogin}`, {
-            title: t(`notificationMessage_stream${stream.gameName ? "Playing" : "Online"}`, [
-              stream.userName || stream.userLogin,
-              stream.gameName,
-            ]),
-            message: stream.title || t("detailText_noTitle"),
-            type: "basic",
-            iconUrl,
-          });
-
-        try {
-          const user = find(users, {
-            id: stream.userId,
-          });
-
-          if (user) {
-            return await create(user.profileImageUrl);
-          }
-        } catch {} // eslint-disable-line no-empty
-
-        await create();
-      });
-    }
   }
 
   await stores.followedStreams.set(followedStreams);
 }
 
-async function refresh(withNotifications: boolean) {
+async function refresh() {
   try {
     const user = await refreshCurrentUser(await stores.accessToken.get());
 
     if (user) {
-      await refreshFollowedStreams(user, withNotifications);
+      await refreshFollowedStreams(user);
     }
   } catch {} // eslint-disable-line no-empty
 
+  browser.alarms.clearAll();
   browser.alarms.create("refresh", {
     delayInMinutes: 1,
   });
 }
 
-async function refreshActionBadge() {
-  const [currentUser, followedStreams, settings] = await Promise.all([
+async function sendNotifications(newStreams: HelixStream[], oldStreams: HelixStream[]) {
+  const settings = await stores.settings.get();
+
+  if (settings.notifications.enabled) {
+    const filteredStreams = await filterNewStreams(newStreams, oldStreams);
+    const users = await getUsersByIds(map(filteredStreams, "userId"));
+
+    settlePromises(filteredStreams, async (stream) => {
+      const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
+        browser.notifications.create(`${Date.now()}:stream:${stream.userLogin}`, {
+          title: t(`notificationMessage_stream${stream.gameName ? "Playing" : "Online"}`, [
+            stream.userName || stream.userLogin,
+            stream.gameName,
+          ]),
+          message: stream.title || t("detailText_noTitle"),
+          type: "basic",
+          iconUrl,
+        });
+
+      try {
+        const user = find(users, {
+          id: stream.userId,
+        });
+
+        if (user) {
+          return await create(user.profileImageUrl);
+        }
+      } catch {} // eslint-disable-line no-empty
+
+      await create();
+    });
+  }
+}
+
+async function refreshActionBadge(count: number) {
+  const [currentUser, settings] = await Promise.all([
     stores.currentUser.get(),
-    stores.followedStreams.get(),
     stores.settings.get(),
   ]);
 
   let text = "";
 
-  if (settings.badge.enabled && followedStreams.length > 0) {
-    text = followedStreams.length.toLocaleString("en-US");
+  if (settings.badge.enabled && count > 0) {
+    text = count.toLocaleString("en-US");
   }
 
   const getIconPath = (size: number) =>
@@ -288,11 +289,6 @@ async function authorize() {
   return openUrl(AUTHORIZE_URL, undefined, true);
 }
 
-async function setup(): Promise<void> {
-  await settlePromises(Object.values(stores), (store) => store.migrate());
-  await refresh(false);
-}
-
 async function reset(): Promise<void> {
   await Promise.allSettled([
     browser.storage.local.clear(),
@@ -300,7 +296,7 @@ async function reset(): Promise<void> {
     browser.storage.sync.clear(),
   ]);
 
-  await setup();
+  await refresh();
 }
 
 async function revoke() {
@@ -322,19 +318,7 @@ async function revoke() {
   await stores.accessToken.reset();
 }
 
-const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
-  authorize,
-  backup,
-  refresh,
-  request,
-  reset,
-  restore,
-  revoke,
-};
-
-browser.alarms.onAlarm.addListener((alarm) => {
-  refresh(Date.now() < alarm.scheduledTime + 300_000);
-});
+browser.alarms.onAlarm.addListener(() => refresh());
 
 browser.notifications.onClicked.addListener((notificationId) => {
   const [, type, data] = notificationId.split(":");
@@ -348,13 +332,15 @@ browser.notifications.onClicked.addListener((notificationId) => {
   }
 });
 
-browser.runtime.onInstalled.addListener(() => {
-  setup();
-});
-
-browser.runtime.onStartup.addListener(() => {
-  setup();
-});
+const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
+  authorize,
+  backup,
+  refresh,
+  request,
+  reset,
+  restore,
+  revoke,
+};
 
 browser.runtime.onMessage.addListener((message) => {
   const { [message.type]: handler } = messageHandlers;
@@ -382,24 +368,15 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 });
 
-stores.accessToken.onChange(() => {
-  refresh(false);
-});
+stores.accessToken.onChange(() => refresh());
+stores.settings.onChange(() => refresh());
 
-stores.followedStreams.onChange(() => {
-  refreshActionBadge();
-});
-
-stores.settings.onChange(() => {
-  refreshActionBadge();
-});
-
-async function checkAlarm() {
-  if (await browser.alarms.get("refresh")) {
-    return;
+stores.followedStreams.onChange((newValue, oldValue) => {
+  if (Array.isArray(oldValue)) {
+    sendNotifications(newValue, oldValue);
   }
 
-  refresh(false);
-}
+  refreshActionBadge(newValue.length);
+});
 
-checkAlarm();
+refresh();
