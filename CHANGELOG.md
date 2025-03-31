@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.18.10](https://github.com/Seldszar/Gumbo/compare/v1.18.9...v1.18.10) (2025-03-31)
+
+
+### Bug Fixes
+
+* background ([21fdbbc](https://github.com/Seldszar/Gumbo/commit/21fdbbca32a8c97104eea66aa0f38202815d0d67))
+* manifest ([40923b3](https://github.com/Seldszar/Gumbo/commit/40923b3783460ee205d7158869dcc781356d3049))
+* messages ([14af4b7](https://github.com/Seldszar/Gumbo/commit/14af4b7478ac747a1e5c99a677c5a73226a9dd85))
+
 ## [1.18.9](https://github.com/Seldszar/Gumbo/compare/v1.18.8...v1.18.9) (2025-02-10)
 
 
