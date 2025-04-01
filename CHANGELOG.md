@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.11](https://github.com/Seldszar/Gumbo/compare/v1.18.10...v1.18.11) (2025-04-01)
+
+
+### Bug Fixes
+
+* permissions ([36e3469](https://github.com/Seldszar/Gumbo/commit/36e3469b86338772e41f5ccb98a4c135960d30be))
+
 ## [1.18.10](https://github.com/Seldszar/Gumbo/compare/v1.18.9...v1.18.10) (2025-03-31)
 
 
