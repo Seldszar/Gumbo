@@ -1,6 +1,6 @@
 import "../assets/styles/popup.css";
 
-import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
+import { createHashRouter, redirect, RouterProvider } from "react-router";
 
 import { HistoryProvider } from "../contexts/history";
 import { SearchProvider } from "../contexts/search";

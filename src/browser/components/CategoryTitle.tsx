@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import { t, template } from "~/common/helpers";
 import { HelixGame } from "~/common/types";

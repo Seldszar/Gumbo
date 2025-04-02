@@ -1,6 +1,6 @@
 import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { openUrl, t, template } from "~/common/helpers";
 import { HelixStream } from "~/common/types";

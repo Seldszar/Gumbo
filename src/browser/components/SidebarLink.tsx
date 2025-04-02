@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import { styled, HTMLStyledProps } from "~/browser/styled-system/jsx";
 

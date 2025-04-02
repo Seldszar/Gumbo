@@ -2,14 +2,10 @@ require("dotenv/config");
 
 const fs = require("fs");
 const path = require("path");
-const webpack = require("webpack");
-const { merge } = require("webpack-merge");
 
+const { rspack } = require("@rspack/core");
 const { EntryWrapperPlugin } = require("@seldszar/yael");
-
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { merge } = require("webpack-merge");
 
 const localeReplacements = [
   {
@@ -37,16 +33,17 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.tsx?$/,
-          exclude: /node_modules/,
           use: {
-            loader: "swc-loader",
+            loader: "builtin:swc-loader",
             options: {
-              env: {
-                targets: "last 2 years",
-              },
               jsc: {
+                parser: {
+                  syntax: "typescript",
+                  tsx: true,
+                },
                 transform: {
                   react: {
+                    development: isDevelopment,
                     runtime: "automatic",
                   },
                 },
@@ -57,15 +54,16 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new webpack.EnvironmentPlugin({
+      new rspack.EnvironmentPlugin({
+        SENTRY_DSN: null,
+
         TWITCH_CLIENT_ID: undefined,
         TWITCH_REDIRECT_URI: undefined,
-        SENTRY_DSN: null,
       }),
-      new webpack.ProvidePlugin({
+      new rspack.ProvidePlugin({
         browser: "webextension-polyfill",
       }),
-      new CopyWebpackPlugin({
+      new rspack.CopyRspackPlugin({
         patterns: [
           {
             from: "**/*",
@@ -103,17 +101,14 @@ module.exports = (env, argv) => {
         ],
       }),
     ],
-    cache: {
-      type: "filesystem",
-      buildDependencies: {
-        config: [__filename],
-      },
-    },
   };
 
   return [
     merge(commonConfig, {
       target: "web",
+      experiments: {
+        css: true,
+      },
       entry: {
         popup: "./src/browser/pages/popup.tsx",
         settings: "./src/browser/pages/settings.tsx",
@@ -122,28 +117,21 @@ module.exports = (env, argv) => {
         rules: [
           {
             test: /\.css$/,
-            use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+            use: "postcss-loader",
           },
         ],
       },
-      optimization: {
-        splitChunks: {
-          name: "commons",
-          chunks: "all",
-        },
-      },
       plugins: [
-        new MiniCssExtractPlugin(),
         new EntryWrapperPlugin({
           template: "./src/browser/entry-template.tsx",
           test: /\.tsx$/,
         }),
-        new HtmlWebpackPlugin({
+        new rspack.HtmlRspackPlugin({
           template: "./src/browser/entry-template.html",
           filename: "popup.html",
           chunks: ["popup"],
         }),
-        new HtmlWebpackPlugin({
+        new rspack.HtmlRspackPlugin({
           template: "./src/browser/entry-template.html",
           filename: "settings.html",
           chunks: ["settings"],

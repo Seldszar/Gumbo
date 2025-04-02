@@ -1,5 +1,5 @@
 import { ReactElement, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { openUrl, t, template } from "~/common/helpers";
 import { HelixChannelSearchResult } from "~/common/types";

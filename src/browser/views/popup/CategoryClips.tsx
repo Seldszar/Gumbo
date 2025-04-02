@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router";
 
 import { t } from "~/common/helpers";
 

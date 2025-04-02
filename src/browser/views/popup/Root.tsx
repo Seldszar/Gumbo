@@ -1,7 +1,6 @@
-import { ErrorResponse } from "@remix-run/router";
 import { IconBrandTwitch } from "@tabler/icons-react";
 import { useMemo } from "react";
-import { Outlet, useRouteError } from "react-router-dom";
+import { Outlet, isRouteErrorResponse, useRouteError } from "react-router";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 import { useCurrentUser } from "~/browser/hooks";
@@ -91,7 +90,7 @@ export function ErrorBoundary() {
   const error = useRouteError();
 
   const title = useMemo(() => {
-    if (error instanceof ErrorResponse) {
+    if (isRouteErrorResponse(error)) {
       return error.statusText;
     }
 

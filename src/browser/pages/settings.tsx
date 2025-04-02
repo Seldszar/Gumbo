@@ -1,4 +1,4 @@
-import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
+import { createHashRouter, redirect, RouterProvider } from "react-router";
 
 import { SettingsProvider } from "../contexts";
 
