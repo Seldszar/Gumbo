@@ -1,31 +1,19 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "version": "0.0.0",
-  "applications": {
-    "gecko": {
-      "id": "{59a39734-1e66-452e-a7b8-cc79f72062f0}"
-    }
-  },
-  "permissions": [
-    "alarms",
-    "notifications",
-    "storage",
-    "unlimitedStorage",
-    "https://gumbo.seldszar.fr/*"
-  ],
+  "permissions": ["alarms", "notifications", "storage"],
+  "host_permissions": ["https://gumbo.seldszar.fr/*"],
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "icons": {
     "48": "icon-48.png",
     "96": "icon-96.png"
   },
-  "browser_action": {
+  "action": {
     "default_title": "__MSG_extensionName__",
     "default_popup": "popup.html",
     "default_icon": {
@@ -34,10 +22,15 @@
     }
   },
   "commands": {
-    "_execute_browser_action": {}
+    "_execute_action": {}
   },
   "options_ui": {
     "page": "settings.html",
     "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{59a39734-1e66-452e-a7b8-cc79f72062f0}"
+    }
   }
 }

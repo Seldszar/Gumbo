@@ -22,7 +22,7 @@ import {
   Settings,
 } from "./types";
 
-export type StoreAreaName = "local" | "managed" | "sync";
+export type StoreAreaName = "local" | "session" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;
 
 export interface StoreOptions<T> {
@@ -50,18 +50,6 @@ export class Store<T> {
     readonly name: string,
     readonly options: StoreOptions<T>,
   ) {}
-
-  async setup(migrate = false): Promise<void> {
-    if (migrate) {
-      await this.migrate();
-    }
-
-    const value = await this.get();
-
-    this.listeners.forEach((listener) => {
-      listener(value);
-    });
-  }
 
   applyChange(changes: Record<string, Storage.StorageChange>, areaName: string) {
     if (areaName !== this.areaName) {
@@ -182,7 +170,7 @@ export const stores = {
     schema: nullable(string()),
     defaultValue: () => null,
   }),
-  currentUser: new Store<HelixUser | null>("local", "currentUser", {
+  currentUser: new Store<HelixUser | null>("session", "currentUser", {
     schema: nullable(
       object({
         id: string(),
@@ -197,7 +185,7 @@ export const stores = {
     ),
     defaultValue: () => null,
   }),
-  followedStreams: new Store<HelixStream[]>("local", "followedStreams", {
+  followedStreams: new Store<HelixStream[]>("session", "followedStreams", {
     schema: array(
       object({
         id: string(),

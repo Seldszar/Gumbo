@@ -4,16 +4,8 @@
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "version": "0.0.0",
-  "permissions": [
-    "alarms",
-    "background",
-    "notifications",
-    "storage",
-    "unlimitedStorage"
-  ],
-  "host_permissions": [
-    "https://gumbo.seldszar.fr/*"
-  ],
+  "permissions": ["alarms", "notifications", "storage"],
+  "host_permissions": ["https://gumbo.seldszar.fr/*"],
   "background": {
     "service_worker": "background.js"
   },
