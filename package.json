@@ -10,12 +10,10 @@
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
-    "@floating-ui/react": "^0.27.6",
     "@sentry/browser": "^9.10.1",
     "@tabler/icons-react": "^3.31.0",
     "lodash-es": "^4.17.21",
-    "overlayscrollbars": "^2.11.1",
-    "overlayscrollbars-react": "^0.5.6",
+    "radix-ui": "^1.1.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.4.1",
