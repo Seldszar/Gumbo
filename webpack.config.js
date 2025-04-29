@@ -81,7 +81,7 @@ module.exports = (env, argv) => {
 
               return `_locales/${localeReplacements.reduce(
                 (result, { source, target }) => result.replace(source, target),
-                relativePath
+                relativePath,
               )}`;
             },
           },

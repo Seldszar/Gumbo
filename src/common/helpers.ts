@@ -12,7 +12,7 @@ export function setupSentry() {
   const manifest = browser.runtime.getManifest();
 
   init({
-    dsn: process.env.SENTRY_DSN as string,
+    dsn: process.env.SENTRY_DSN,
     release: manifest.version,
   });
 }
