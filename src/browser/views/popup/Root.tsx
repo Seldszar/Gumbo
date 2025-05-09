@@ -1,10 +1,11 @@
-import { ErrorResponse } from "@remix-run/router";
+import { css, Global } from "@emotion/react";
 import { IconBrandTwitch } from "@tabler/icons-react";
 import { useMemo } from "react";
-import { Outlet, useRouteError } from "react-router-dom";
+import { isRouteErrorResponse, Outlet, useRouteError } from "react-router";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
+import { HistoryProvider, SearchProvider } from "~/browser/contexts";
 import { useCurrentUser } from "~/browser/hooks";
 
 import Button from "~/browser/components/Button";
@@ -63,11 +64,24 @@ export function ChildComponent() {
 
 export function Component() {
   return (
-    <Wrapper>
-      <Loader>
-        <ChildComponent />
-      </Loader>
-    </Wrapper>
+    <HistoryProvider>
+      <SearchProvider>
+        <Global
+          styles={css`
+            #app-root {
+              height: 600px;
+              width: 420px;
+            }
+          `}
+        />
+
+        <Wrapper>
+          <Loader>
+            <ChildComponent />
+          </Loader>
+        </Wrapper>
+      </SearchProvider>
+    </HistoryProvider>
   );
 }
 
@@ -75,7 +89,7 @@ export function ErrorBoundary() {
   const error = useRouteError();
 
   const title = useMemo(() => {
-    if (error instanceof ErrorResponse) {
+    if (isRouteErrorResponse(error)) {
       return error.statusText;
     }
 

@@ -1,4 +1,4 @@
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";

@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router";
 import { useTitle } from "react-use";
 import tw, { styled } from "twin.macro";
 

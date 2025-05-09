@@ -1,5 +1,5 @@
 import { PropsOf } from "@emotion/react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import tw, { styled } from "twin.macro";
 
 import Tooltip from "./Tooltip";

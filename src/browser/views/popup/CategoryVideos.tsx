@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";

@@ -1,4 +1,4 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";

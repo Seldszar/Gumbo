@@ -1,5 +1,5 @@
 import { IconChevronLeft, IconReload } from "@tabler/icons-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useAsyncFn } from "react-use";
 import tw, { styled } from "twin.macro";
 
@@ -40,7 +40,7 @@ export interface TopBarProps {
 function TopBar(props: TopBarProps) {
   const navigate = useNavigate();
 
-  const { index } = useHistoryContext();
+  const { isDefaultLocation } = useHistoryContext();
   const { refreshHandlers } = useSearchContext();
 
   const [state, doRefresh] = useAsyncFn(
@@ -50,7 +50,7 @@ function TopBar(props: TopBarProps) {
 
   return (
     <Wrapper className={props.className}>
-      <Button disabled={index < 1} onClick={() => navigate(-1)}>
+      <Button disabled={isDefaultLocation} onClick={() => navigate(-1)}>
         <IconChevronLeft size="1.25rem" />
       </Button>
 

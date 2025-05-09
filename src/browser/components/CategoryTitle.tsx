@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
