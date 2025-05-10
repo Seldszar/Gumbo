@@ -29,7 +29,7 @@ function fetchLoader<T>(store: Store<T>): StoreLoader<T> {
       const promise = store.get();
 
       const loader: StoreLoader<T> = {
-        value: store.options.defaultValue(),
+        value: store.options.defaultValue,
         status: "pending",
         promise,
       };
