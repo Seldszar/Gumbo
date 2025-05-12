@@ -1,4 +1,10 @@
-import { IconHeart, IconInfoCircle, IconPower, IconSettings } from "@tabler/icons-react";
+import {
+  IconExternalLink,
+  IconHeart,
+  IconInfoCircle,
+  IconPower,
+  IconSettings,
+} from "@tabler/icons-react";
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -31,10 +37,18 @@ function ProfileBadge(props: ProfileBadgeProps) {
         items={[
           {
             type: "normal",
+            title: t("optionValue_popoutWindow"),
+            icon: <IconExternalLink size="1.25rem" />,
+            onClick() {
+              open("popup.html?popout=true", "_blank", "width=440,height=639");
+            },
+          },
+          {
+            type: "normal",
             title: t("optionValue_settings"),
             icon: <IconSettings size="1.25rem" />,
             onClick() {
-              open(browser.runtime.getURL("settings.html"), "_blank");
+              open("settings.html", "_blank");
             },
           },
           {

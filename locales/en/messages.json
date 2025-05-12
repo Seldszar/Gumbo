@@ -269,6 +269,9 @@
   "optionValue_popout": {
     "message": "Popout"
   },
+  "optionValue_popoutWindow": {
+    "message": "Popout"
+  },
   "optionValue_schedule": {
     "message": "Schedule"
   },

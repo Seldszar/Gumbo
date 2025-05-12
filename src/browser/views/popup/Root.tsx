@@ -2,6 +2,7 @@ import { css, Global } from "@emotion/react";
 import { IconBrandTwitch } from "@tabler/icons-react";
 import { useMemo } from "react";
 import { isRouteErrorResponse, Outlet, useRouteError } from "react-router";
+import { useSearchParam } from "react-use";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
@@ -63,14 +64,16 @@ export function ChildComponent() {
 }
 
 export function Component() {
+  const popout = useSearchParam("popout");
+
   return (
     <HistoryProvider>
       <SearchProvider>
         <Global
           styles={css`
             #app-root {
-              height: 600px;
-              width: 420px;
+              height: ${popout ? "100vh" : "600px"};
+              width: ${popout ? "100vw" : "420px"};
             }
           `}
         />
