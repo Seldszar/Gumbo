@@ -61,7 +61,7 @@ export interface SelectProps<T> {
   options: Array<SelectOption<T>>;
   value: T;
 
-  onChange(value: any): void;
+  onChange(value: T): void;
 }
 
 function Select<T>(props: SelectProps<T>) {

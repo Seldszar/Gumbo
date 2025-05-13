@@ -120,7 +120,7 @@ function StreamCard(props: StreamCardProps) {
           </Title>
         }
         subtitle={
-          <Tooltip content={stream.title}>
+          <Tooltip title={stream.title}>
             <span>{stream.title || <i>{t("detailText_noTitle")}</i>}</span>
           </Tooltip>
         }
@@ -132,7 +132,7 @@ function StreamCard(props: StreamCardProps) {
         }
       >
         <CategoryName>
-          <Tooltip content={stream.gameName}>
+          <Tooltip title={stream.gameName}>
             <span>{stream.gameName || <i>{t("detailText_noCategory")}</i>}</span>
           </Tooltip>
         </CategoryName>

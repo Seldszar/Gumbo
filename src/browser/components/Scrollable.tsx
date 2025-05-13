@@ -13,6 +13,10 @@ const StyledRoot = styled(ScrollArea.Root, {
 const StyledViewport = styled(ScrollArea.Viewport, {
   base: {
     pos: "relative",
+
+    "& > div": {
+      display: "block!",
+    },
   },
 });
 

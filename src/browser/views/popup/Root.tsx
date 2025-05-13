@@ -1,8 +1,10 @@
 import { IconBrandTwitch } from "@tabler/icons-react";
 import { useMemo } from "react";
 import { Outlet, isRouteErrorResponse, useRouteError } from "react-router";
+import { useSearchParam } from "react-use";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
+import { HistoryProvider, SearchProvider } from "~/browser/contexts";
 import { useCurrentUser } from "~/browser/hooks";
 import { styled } from "~/browser/styled-system/jsx";
 
@@ -16,8 +18,17 @@ import Splash from "~/browser/components/Splash";
 const Wrapper = styled("div", {
   base: {
     display: "flex",
-    h: "full",
+    h: "600px",
     pos: "relative",
+    w: "420px",
+  },
+  variants: {
+    popout: {
+      true: {
+        h: "screen",
+        w: "screen",
+      },
+    },
   },
 });
 
@@ -77,12 +88,18 @@ export function ChildComponent() {
 }
 
 export function Component() {
+  const popout = useSearchParam("popout");
+
   return (
-    <Wrapper>
-      <Loader>
-        <ChildComponent />
-      </Loader>
-    </Wrapper>
+    <HistoryProvider>
+      <SearchProvider>
+        <Wrapper popout={!!popout}>
+          <Loader>
+            <ChildComponent />
+          </Loader>
+        </Wrapper>
+      </SearchProvider>
+    </HistoryProvider>
   );
 }
 

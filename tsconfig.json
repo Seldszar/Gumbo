@@ -3,7 +3,7 @@
     "strict": true,
     "module": "esnext",
     "target": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "strictNullChecks": true,
     "esModuleInterop": true,

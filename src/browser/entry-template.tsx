@@ -1,4 +1,3 @@
-import "./assets/styles/scrollbars.css";
 import "./assets/styles/base.css";
 
 import { EntryWrapper } from "@seldszar/yael";

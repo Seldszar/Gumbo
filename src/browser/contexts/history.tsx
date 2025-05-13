@@ -1,91 +1,45 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { DataRouter, Location } from "react-router";
+import { ReactNode, createContext, useContext, useRef } from "react";
+import { useLocation } from "react-router";
 
 interface HistoryContext {
-  locations: Location[];
-  index: number;
+  defaultKey: string;
+  defaultState: any;
+
+  isDefaultLocation: boolean;
 }
 
 const Context = createContext<HistoryContext>({
-  locations: [],
-  index: 0,
+  defaultKey: "default",
+  defaultState: {},
+
+  isDefaultLocation: false,
 });
 
 interface HistoryProviderProps {
   children: ReactNode;
-  router: DataRouter;
 }
 
 export function HistoryProvider(props: HistoryProviderProps) {
-  const { router } = props;
+  const location = useLocation();
 
-  const [state, setState] = useState(() => {
-    const { state } = router;
+  const defaultStateRef = useRef(location.state);
+  const defaultKeyRef = useRef(location.key);
 
-    if (state.matches.some(({ route }) => route.children)) {
-      return {
-        locations: [state.location],
-        index: 0,
-      };
-    }
+  const value = {
+    get defaultKey() {
+      return defaultKeyRef.current;
+    },
 
-    return {
-      locations: [],
-      index: -1,
-    };
-  });
+    get defaultState() {
+      return defaultStateRef.current;
+    },
 
-  useEffect(
-    () =>
-      router.subscribe((state) => {
-        switch (state.historyAction) {
-          case "POP": {
-            setState(({ index, locations }) => {
-              index = locations.findIndex((location) => location.key === state.location.key);
+    get isDefaultLocation() {
+      return this.defaultKey === location.key;
+    },
+  };
 
-              return {
-                locations,
-                index,
-              };
-            });
-
-            break;
-          }
-
-          case "PUSH": {
-            setState(({ index, locations }) => {
-              index += 1;
-
-              locations.splice(index);
-              locations.push(state.location);
-
-              return {
-                locations,
-                index,
-              };
-            });
-
-            break;
-          }
-
-          case "REPLACE": {
-            setState(({ index, locations }) => {
-              locations.splice(index, 1, state.location);
-
-              return {
-                locations,
-                index,
-              };
-            });
-
-            break;
-          }
-        }
-      }),
-    [],
-  );
-
-  return <Context.Provider value={state}>{props.children}</Context.Provider>;
+  return <Context.Provider {...props} value={value} />;
 }
 
 export function useHistoryContext() {

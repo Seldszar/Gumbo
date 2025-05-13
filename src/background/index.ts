@@ -1,42 +1,62 @@
+import { get } from "lodash-es";
+
 import { openUrl, setupSentry } from "~/common/helpers";
 import { stores } from "~/common/stores";
-import { HelixStream, HelixUser } from "~/common/types";
+import type { HelixStream, HelixUser } from "~/common/types";
 
 import { refreshActionBadge } from "./modules/badge";
-import { sendNotifications } from "./modules/notification";
-import { authorize, getCurrentUser, getFollowedStreams } from "./modules/twitch";
+import { backup, reset, restore } from "./modules/maintenance";
+import { sendStreamNotifications } from "./modules/notification";
+import {
+  authorize,
+  filterNewStreams,
+  getCurrentUser,
+  getFollowedStreams,
+  request,
+  revoke,
+} from "./modules/twitch";
 
 setupSentry();
 
-async function refresh() {
-  let currentUser: HelixUser | null = null;
-  let followedStreams = new Array<HelixStream>();
-
-  try {
-    const accessToken = await stores.accessToken.get();
-
-    if (accessToken) {
-      currentUser = await getCurrentUser();
-
-      if (currentUser) {
-        followedStreams = await getFollowedStreams(currentUser.id);
-      }
-    }
-
-    await stores.currentUser.set(currentUser);
-    await stores.followedStreams.set(followedStreams);
-  } catch {} // eslint-disable-line no-empty
-
-  browser.alarms.clearAll();
+async function refresh(withNotifications: boolean) {
   browser.alarms.create("refresh", {
     periodInMinutes: 1,
   });
+
+  const accessToken = await stores.accessToken.get();
+
+  let currentUser: HelixUser | null = null;
+  let followedStreams = new Array<HelixStream>();
+
+  if (accessToken) {
+    currentUser = await getCurrentUser();
+
+    if (currentUser) {
+      followedStreams = await getFollowedStreams(currentUser.id);
+    }
+  }
+
+  refreshActionBadge(!!currentUser, followedStreams.length);
+
+  if (withNotifications) {
+    sendStreamNotifications(await filterNewStreams(followedStreams));
+  }
+
+  stores.currentUser.set(currentUser);
+  stores.followedStreams.set(followedStreams);
 }
 
-browser.alarms.onAlarm.addListener(refresh);
+async function checkAlaram() {
+  if (await browser.alarms.get("refresh")) {
+    return;
+  }
 
-browser.runtime.onInstalled.addListener(refresh);
-browser.runtime.onStartup.addListener(refresh);
+  refresh(false);
+}
+
+browser.alarms.onAlarm.addListener((alarm) => {
+  refresh(Date.now() < alarm.scheduledTime + 300_000);
+});
 
 browser.notifications.onClicked.addListener((notificationId) => {
   const [, type, data] = notificationId.split(":");
@@ -50,13 +70,33 @@ browser.notifications.onClicked.addListener((notificationId) => {
   }
 });
 
-stores.accessToken.onChange(refresh);
-stores.settings.onChange(refresh);
+browser.runtime.onInstalled.addListener(() => refresh(false));
+browser.runtime.onStartup.addListener(() => refresh(false));
 
-stores.followedStreams.onChange((newValue, oldValue) => {
-  if (oldValue) {
-    sendNotifications(newValue, oldValue);
+const messageHandlers = { authorize, backup, refresh, request, reset, restore, revoke };
+
+browser.runtime.onMessage.addListener((message) => {
+  const handler = get(messageHandlers, message.type);
+
+  if (handler == null) {
+    throw new RangeError("Message not found");
   }
 
-  refreshActionBadge(newValue.length);
+  return handler(...message.args);
 });
+
+browser.tabs.onUpdated.addListener((_, changeInfo) => {
+  if (!changeInfo.url?.startsWith(process.env.TWITCH_REDIRECT_URI)) {
+    return;
+  }
+
+  const url = new URL(changeInfo.url);
+  const hash = new URLSearchParams(url.hash.substring(1));
+
+  stores.accessToken.set(hash.get("access_token"));
+});
+
+stores.accessToken.onChange(() => refresh(false));
+stores.settings.onChange(() => refresh(false));
+
+checkAlaram();

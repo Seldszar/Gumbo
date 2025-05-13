@@ -72,7 +72,7 @@ function ChannelCard(props: ChannelCardProps) {
         className="group"
         title={<ChannelName login={channel.broadcasterLogin} name={channel.displayName} />}
         subtitle={
-          <Tooltip content={channel.title}>
+          <Tooltip title={channel.title}>
             <span>{channel.title || <i>{t("detailText_noTitle")}</i>}</span>
           </Tooltip>
         }

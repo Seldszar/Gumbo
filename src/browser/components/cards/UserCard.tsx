@@ -80,7 +80,7 @@ function UserCard(props: UserCardProps) {
         className="group"
         title={<ChannelName login={user.login} name={user.displayName} />}
         subtitle={
-          <Tooltip content={user.description}>
+          <Tooltip title={user.description}>
             <span>{user.description || <i>{t("detailText_noDescription")}</i>}</span>
           </Tooltip>
         }

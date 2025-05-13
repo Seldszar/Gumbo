@@ -25,7 +25,7 @@ function SidebarLink(props: HTMLStyledProps<typeof Wrapper>) {
   const { title, ...rest } = props;
 
   return (
-    <Tooltip placement="right" content={title}>
+    <Tooltip placement="right" title={title}>
       <Wrapper {...rest}>{props.children}</Wrapper>
     </Tooltip>
   );

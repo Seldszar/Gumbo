@@ -68,7 +68,7 @@ function ClipCard(props: ClipCardProps) {
     <Anchor to={clip.url}>
       <Wrapper
         title={
-          <Tooltip content={clip.title}>
+          <Tooltip title={clip.title}>
             <span>{clip.title || <i>{t("detailText_noTitle")}</i>}</span>
           </Tooltip>
         }

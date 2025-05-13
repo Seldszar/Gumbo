@@ -69,7 +69,7 @@ function VideoCard(props: VideoCardProps) {
     <Anchor to={video.url}>
       <Wrapper
         title={
-          <Tooltip content={video.title}>
+          <Tooltip title={video.title}>
             <span>{video.title || <i>{t("detailText_noTitle")}</i>}</span>
           </Tooltip>
         }

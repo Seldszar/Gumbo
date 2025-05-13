@@ -1,26 +1,14 @@
-import {
-  FloatingPortal,
-  Placement,
-  autoUpdate,
-  flip,
-  offset,
-  shift,
-  size,
-  useFloating,
-  useHover,
-  useInteractions,
-  useMergeRefs,
-} from "@floating-ui/react";
-import { ReactElement, ReactNode, cloneElement, useState } from "react";
+import { Tooltip as TooltipPrimitive } from "radix-ui";
+import { ReactNode } from "react";
 
-import { remToPixels } from "../helpers";
 import { styled } from "~/browser/styled-system/jsx";
 
-const Panel = styled("div", {
+const Content = styled(TooltipPrimitive.Content, {
   base: {
     bg: { base: "white", _dark: "black" },
     fontSize: "sm",
-    maxW: "full",
+    maxH: "var(--radix-tooltip-content-available-height)",
+    maxW: "var(--radix-tooltip-content-available-width)",
     pointerEvents: "none",
     pos: "fixed",
     px: 4,
@@ -32,64 +20,26 @@ const Panel = styled("div", {
 });
 
 interface TooltipProps {
-  children: ReactElement;
-  placement?: Placement;
-  content?: ReactNode;
+  align?: "end" | "start" | "center";
+  side?: "bottom" | "left" | "right" | "top";
+
+  children: ReactNode;
+  title?: ReactNode;
 }
 
 function Tooltip(props: TooltipProps) {
-  const [isOpen, setOpen] = useState(false);
-
-  const { context, floatingStyles, refs } = useFloating({
-    open: isOpen,
-    strategy: "fixed",
-    onOpenChange: setOpen,
-    whileElementsMounted: autoUpdate,
-    placement: props.placement,
-    middleware: [
-      flip({
-        padding: remToPixels(0.5),
-      }),
-      shift({
-        padding: remToPixels(0.5),
-      }),
-      size({
-        padding: remToPixels(0.5),
-        apply({ availableHeight, availableWidth, elements }) {
-          Object.assign(elements.floating.style, {
-            maxHeight: `${availableHeight}px`,
-            maxWidth: `${availableWidth}px`,
-          });
-        },
-      }),
-      offset(remToPixels(0.25)),
-    ],
-  });
-
-  const hover = useHover(context, {
-    enabled: !!props.content,
-    delay: {
-      open: 500,
-    },
-  });
-
-  const { getFloatingProps, getReferenceProps } = useInteractions([hover]);
-
   return (
-    <>
-      {cloneElement(props.children, {
-        ...getReferenceProps(),
-        ref: useMergeRefs([refs.setReference, (props.children as any).ref]),
-      })}
+    <TooltipPrimitive.Provider>
+      <TooltipPrimitive.Root>
+        <TooltipPrimitive.Trigger asChild>{props.children}</TooltipPrimitive.Trigger>
 
-      {isOpen && (
-        <FloatingPortal id="modal-root">
-          <Panel ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
-            {props.content}
-          </Panel>
-        </FloatingPortal>
-      )}
-    </>
+        <TooltipPrimitive.Portal>
+          <Content align={props.align} side={props.side} sideOffset={2}>
+            {props.title}
+          </Content>
+        </TooltipPrimitive.Portal>
+      </TooltipPrimitive.Root>
+    </TooltipPrimitive.Provider>
   );
 }
 

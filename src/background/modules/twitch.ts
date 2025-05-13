@@ -1,9 +1,10 @@
-import { camelCase, castArray, chunk, flatMap, get, snakeCase, toString } from "lodash-es";
+import { camelCase, castArray, chunk, find, flatMap, get, snakeCase, toString } from "lodash-es";
 
-import { AUTHORIZE_URL } from "~/common/constants";
-import { allPromises, changeCase, openUrl, t } from "~/common/helpers";
+import { allPromises, changeCase, matchString, openUrl, t } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/types";
+
+import { createNotification } from "./notification";
 
 class RequestError extends Error {
   constructor(
@@ -35,7 +36,7 @@ export async function request<T>(
   }
 
   const request = new Request(url, {
-    headers: [["Client-ID", process.env.TWITCH_CLIENT_ID as string]],
+    headers: [["Client-ID", process.env.TWITCH_CLIENT_ID]],
   });
 
   const accessToken = await stores.accessToken.get();
@@ -51,14 +52,12 @@ export async function request<T>(
       return undefined as never;
 
     case 401: {
-      if (await stores.accessToken.set(null)) {
-        browser.notifications.create(`${Date.now()}:authorize`, {
-          title: t("notificationTitle_accessExpired"),
-          message: t("notificationMessage_accessExpired"),
-          iconUrl: browser.runtime.getURL("icon-96.png"),
-          type: "basic",
-        });
-      }
+      stores.accessToken.set(null);
+
+      createNotification("authorize", {
+        title: t("notificationTitle_accessExpired"),
+        message: t("notificationMessage_accessExpired"),
+      });
 
       break;
     }
@@ -103,7 +102,14 @@ export async function getFollowedStreams(userId: string) {
 }
 
 export async function authorize() {
-  return openUrl(AUTHORIZE_URL, undefined, true);
+  const url = new URL("https://id.twitch.tv/oauth2/authorize");
+
+  url.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID);
+  url.searchParams.set("redirect_uri", process.env.TWITCH_REDIRECT_URI);
+  url.searchParams.set("scope", "user:read:follows");
+  url.searchParams.set("response_type", "token");
+
+  return openUrl(url.href, undefined, true);
 }
 
 export async function revoke() {
@@ -116,11 +122,35 @@ export async function revoke() {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        client_id: process.env.TWITCH_CLIENT_ID as string,
+        client_id: process.env.TWITCH_CLIENT_ID,
         token,
       }),
     });
   }
 
-  await stores.accessToken.reset();
+  await stores.accessToken.set(null);
+}
+
+export async function filterNewStreams(streams: HelixStream[]) {
+  const previousStreams = await stores.followedStreams.get();
+  const settings = await stores.settings.get();
+
+  const {
+    notifications: { ignoredCategories, selectedUsers, withCategoryChanges, withFilters },
+  } = settings;
+
+  return streams.filter((stream) => {
+    if (
+      (withFilters && !selectedUsers.includes(stream.userId)) ||
+      ignoredCategories.some((input) => matchString(stream.gameName, input))
+    ) {
+      return false;
+    }
+
+    const oldStream = find(previousStreams, {
+      userId: stream.userId,
+    });
+
+    return oldStream == null || (withCategoryChanges && oldStream.gameId !== stream.gameId);
+  });
 }

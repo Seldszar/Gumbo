@@ -1,14 +1,9 @@
-import "../assets/styles/popup.css";
-
-import { createHashRouter, redirect, RouterProvider } from "react-router";
-
-import { HistoryProvider } from "../contexts/history";
-import { SearchProvider } from "../contexts/search";
+import { createHashRouter, Navigate, RouterProvider } from "react-router";
 
 const router = createHashRouter([
   {
     index: true,
-    loader: () => redirect("streams/followed"),
+    element: <Navigate replace to="streams/followed" />,
   },
   {
     lazy: () => import("../views/popup/Root"),
@@ -31,7 +26,7 @@ const router = createHashRouter([
         children: [
           {
             index: true,
-            loader: () => redirect("followed"),
+            element: <Navigate replace to="followed" />,
           },
           {
             path: "followed",
@@ -45,7 +40,7 @@ const router = createHashRouter([
         children: [
           {
             index: true,
-            loader: () => redirect("channels"),
+            element: <Navigate replace to="channels" />,
           },
           {
             path: "channels",
@@ -70,7 +65,7 @@ const router = createHashRouter([
             children: [
               {
                 index: true,
-                loader: () => redirect("streams"),
+                element: <Navigate replace to="streams" />,
               },
               {
                 path: "streams",
@@ -93,13 +88,7 @@ const router = createHashRouter([
 ]);
 
 function Page() {
-  return (
-    <HistoryProvider router={router}>
-      <SearchProvider>
-        <RouterProvider router={router} />
-      </SearchProvider>
-    </HistoryProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default Page;

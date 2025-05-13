@@ -27,8 +27,7 @@ export type StoreMigration = (value: any) => Promise<any>;
 
 export interface StoreOptions<T> {
   schema: Describe<T>;
-  migrations?: StoreMigration[];
-  defaultValue(): T;
+  defaultValue: T;
 }
 
 export interface StoreState<T> {
@@ -77,7 +76,7 @@ export class Store<T> {
 
   async getState(): Promise<StoreState<T>> {
     const state = {
-      value: this.options.defaultValue(),
+      value: this.options.defaultValue,
       version: 1,
     };
 
@@ -131,33 +130,6 @@ export class Store<T> {
 
   async restore(state: StoreState<T>): Promise<void> {
     await this.setState(state);
-    await this.migrate();
-  }
-
-  async migrate(): Promise<void> {
-    const state = await this.getState();
-
-    const {
-      options: { migrations = [] },
-    } = this;
-
-    for (const [index, migration] of migrations.entries()) {
-      const version = index + 2;
-
-      if (state.version >= version) {
-        break;
-      }
-
-      try {
-        state.value = await migration(state.value);
-      } catch {} // eslint-disable-line no-empty
-
-      state.version = version;
-    }
-
-    await this.areaStorage.set({
-      [this.name]: state,
-    });
   }
 
   validateValue(value: T): T {
@@ -168,7 +140,7 @@ export class Store<T> {
 export const stores = {
   accessToken: new Store<string | null>("local", "accessToken", {
     schema: nullable(string()),
-    defaultValue: () => null,
+    defaultValue: null,
   }),
   currentUser: new Store<HelixUser | null>("session", "currentUser", {
     schema: nullable(
@@ -183,7 +155,7 @@ export const stores = {
         createdAt: string(),
       }),
     ),
-    defaultValue: () => null,
+    defaultValue: null,
   }),
   followedStreams: new Store<HelixStream[]>("session", "followedStreams", {
     schema: array(
@@ -204,7 +176,7 @@ export const stores = {
         isMature: boolean(),
       }),
     ),
-    defaultValue: () => [],
+    defaultValue: [],
   }),
   collections: new Store<Collection[]>("local", "collections", {
     schema: array(
@@ -215,28 +187,7 @@ export const stores = {
         items: array(string()),
       }),
     ),
-    defaultValue: () => [],
-    migrations: [
-      async (value) => {
-        const { pinnedCategories, pinnedUsers } = await browser.storage.local.get({
-          pinnedCategories: { value: [] },
-          pinnedUsers: { value: [] },
-        });
-
-        const addCollection = (data: Omit<Collection, "id" | "name">) =>
-          value.push({ ...data, name: "Pinned Items", id: crypto.randomUUID() });
-
-        if (pinnedCategories.value.length > 0) {
-          addCollection({ type: "category", items: pinnedCategories.value });
-        }
-
-        if (pinnedUsers.value.length > 0) {
-          addCollection({ type: "user", items: pinnedUsers.value });
-        }
-
-        return value;
-      },
-    ],
+    defaultValue: [],
   }),
   settings: new Store<Settings>("local", "settings", {
     schema: object({
@@ -272,7 +223,7 @@ export const stores = {
         selectedLanguages: array(string()),
       }),
     }),
-    defaultValue: () => ({
+    defaultValue: {
       general: {
         clickBehavior: ClickBehavior.CreateTab,
         clickAction: ClickAction.OpenChannel,
@@ -298,17 +249,17 @@ export const stores = {
         withFilters: false,
         selectedLanguages: [],
       },
-    }),
+    },
   }),
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
       sortField: enums(["gameName", "startedAt", "userLogin", "viewerCount"]),
     }),
-    defaultValue: () => ({
+    defaultValue: {
       sortField: "viewerCount",
       sortDirection: "desc",
-    }),
+    },
   }),
   followedUserState: new Store<FollowedUserState>("local", "followedUserState", {
     schema: object({
@@ -316,11 +267,11 @@ export const stores = {
       sortField: enums(["followedAt", "login"]),
       status: nullable(boolean()),
     }),
-    defaultValue: () => ({
+    defaultValue: {
       sortField: "login",
       sortDirection: "asc",
       status: null,
-    }),
+    },
   }),
 };
 

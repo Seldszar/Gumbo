@@ -1,7 +1,6 @@
 import { stores } from "~/common/stores";
 
-export async function refreshActionBadge(count: number) {
-  const currentUser = await stores.currentUser.get();
+export async function refreshActionBadge(enabled: boolean, count: number) {
   const settings = await stores.settings.get();
 
   let text = "";
@@ -11,7 +10,7 @@ export async function refreshActionBadge(count: number) {
   }
 
   const getIconPath = (size: number) =>
-    browser.runtime.getURL(currentUser ? `icon-${size}.png` : `icon-gray-${size}.png`);
+    browser.runtime.getURL(enabled ? `icon-${size}.png` : `icon-gray-${size}.png`);
 
   browser.action.setBadgeBackgroundColor({
     color: settings.badge.color,

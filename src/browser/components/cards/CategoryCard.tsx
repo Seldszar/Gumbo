@@ -67,7 +67,7 @@ function CategoryCard(props: CategoryCardProps) {
         </CategoryDropdown>
       </Cover>
       <Name>
-        <Tooltip content={category.name}>
+        <Tooltip title={category.name}>
           <span>{category.name}</span>
         </Tooltip>
       </Name>

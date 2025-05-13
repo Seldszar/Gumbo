@@ -1,10 +1,12 @@
 {
+  "private": true,
+  "packageManager": "yarn@1.22.22",
   "scripts": {
+    "prepare": "husky && panda codegen",
     "build:chrome": "rspack --env platform=chrome --mode=production",
     "build:firefox": "rspack --env platform=firefox --mode=production",
     "develop:chrome": "rspack --env platform=chrome --mode=development --watch",
     "develop:firefox": "rspack --env platform=firefox --mode=development --watch",
-    "prepare": "husky && panda codegen",
     "test": "tsc --noEmit && eslint --ext=tsx,ts ."
   },
   "dependencies": {

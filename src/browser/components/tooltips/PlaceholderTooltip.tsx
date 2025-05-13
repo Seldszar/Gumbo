@@ -50,7 +50,7 @@ function PlaceholderTooltip(props: PlaceholderTooltipProps) {
     </div>
   );
 
-  return <Tooltip content={content}>{props.children}</Tooltip>;
+  return <Tooltip title={content}>{props.children}</Tooltip>;
 }
 
 export default PlaceholderTooltip;

@@ -31,7 +31,7 @@ function ChannelName(props: ChannelNameProps) {
 
   return (
     <div className={props.className}>
-      <Tooltip content={title}>
+      <Tooltip title={title}>
         <span>
           {displayName} {isDifferent && <Login>({props.login})</Login>}
         </span>

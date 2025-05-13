@@ -1,64 +1,47 @@
-import { find, map } from "lodash-es";
-
-import { matchString, settlePromises, t } from "~/common/helpers";
+import { t } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import { HelixStream } from "~/common/types";
 
 import { getUsersByIds } from "./twitch";
 
-async function filterNewStreams(newStreams: HelixStream[], oldStreams: HelixStream[]) {
-  const settings = await stores.settings.get();
+export interface CreateNotificationOptions {
+  iconUrl?: string;
 
-  const {
-    notifications: { ignoredCategories, selectedUsers, withCategoryChanges, withFilters },
-  } = settings;
+  title: string;
+  message: string;
+}
 
-  return newStreams.filter((stream) => {
-    if (
-      (withFilters && !selectedUsers.includes(stream.userId)) ||
-      ignoredCategories.some((input) => matchString(stream.gameName, input))
-    ) {
-      return false;
-    }
+export function createNotification(notificationId: string, options: CreateNotificationOptions) {
+  return browser.notifications.create(`${Date.now()}:${notificationId}`, {
+    iconUrl: browser.runtime.getURL("icon-96.png"),
+    type: "basic",
 
-    const oldStream = find(oldStreams, {
-      userId: stream.userId,
-    });
-
-    return oldStream == null || (withCategoryChanges && oldStream.gameId !== stream.gameId);
+    ...options,
   });
 }
 
-export async function sendNotifications(newStreams: HelixStream[], oldStreams: HelixStream[]) {
+async function sendStreamNotification(stream: HelixStream, iconUrl?: string) {
+  return createNotification(`stream:${stream.userLogin}`, {
+    iconUrl,
+
+    message: stream.title || t("detailText_noTitle"),
+    title: t(`notificationMessage_stream${stream.gameName ? "Playing" : "Online"}`, [
+      stream.userName || stream.userLogin,
+      stream.gameName,
+    ]),
+  });
+}
+
+export async function sendStreamNotifications(streams: HelixStream[]) {
   const settings = await stores.settings.get();
 
   if (settings.notifications.enabled) {
-    const filteredStreams = await filterNewStreams(newStreams, oldStreams);
-    const users = await getUsersByIds(map(filteredStreams, "userId"));
+    const users = await getUsersByIds(streams.map((stream) => stream.userId));
 
-    settlePromises(filteredStreams, async (stream) => {
-      const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-        browser.notifications.create(`${Date.now()}:stream:${stream.userLogin}`, {
-          title: t(`notificationMessage_stream${stream.gameName ? "Playing" : "Online"}`, [
-            stream.userName || stream.userLogin,
-            stream.gameName,
-          ]),
-          message: stream.title || t("detailText_noTitle"),
-          type: "basic",
-          iconUrl,
-        });
+    streams.forEach((stream) => {
+      const user = users.find((user) => user.id === stream.userId);
 
-      try {
-        const user = find(users, {
-          id: stream.userId,
-        });
-
-        if (user) {
-          return await create(user.profileImageUrl);
-        }
-      } catch {} // eslint-disable-line no-empty
-
-      await create();
+      sendStreamNotification(stream, user?.profileImageUrl);
     });
   }
 }

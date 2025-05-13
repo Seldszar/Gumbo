@@ -73,7 +73,7 @@ function ViewerCount(props: ViewerCountProps) {
   }, [isRerun]);
 
   return (
-    <Tooltip content={status.title}>
+    <Tooltip title={status.title}>
       <Wrapper isRerun={isRerun} className={props.className}>
         {stream.viewerCount.toLocaleString("en-US")}
         {status.icon}

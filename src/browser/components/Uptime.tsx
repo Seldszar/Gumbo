@@ -20,7 +20,7 @@ function Uptime(props: UptimeProps) {
 
   return (
     <div className={props.className}>
-      <Tooltip content={props.startDate.toLocaleString("en-US")}>
+      <Tooltip title={props.startDate.toLocaleString("en-US")}>
         <span>{timeString}</span>
       </Tooltip>
     </div>

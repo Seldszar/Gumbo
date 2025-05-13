@@ -1,126 +1,65 @@
-import {
-  autoUpdate,
-  flip,
-  FloatingFocusManager,
-  FloatingList,
-  FloatingNode,
-  FloatingPortal,
-  FloatingTree,
-  offset,
-  Placement,
-  safePolygon,
-  shift,
-  size,
-  useClick,
-  useDismiss,
-  useFloating,
-  useFloatingNodeId,
-  useFloatingParentNodeId,
-  useFloatingTree,
-  useHover,
-  useInteractions,
-  useListItem,
-  useListNavigation,
-  useMergeRefs,
-  useTypeahead,
-} from "@floating-ui/react";
-import { IconChevronRight, IconSquare, IconSquareCheck } from "@tabler/icons-react";
-import {
-  useContext,
-  HTMLProps,
-  createContext,
-  forwardRef,
-  useRef,
-  useState,
-  useEffect,
-  Dispatch,
-  SetStateAction,
-  cloneElement,
-  ReactElement,
-  MouseEventHandler,
-  ReactNode,
-} from "react";
+import { IconCheck, IconChevronRight } from "@tabler/icons-react";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { ReactElement, MouseEventHandler, ReactNode } from "react";
 
-import { styled } from "~/browser/styled-system/jsx";
+import { sva } from "../styled-system/css";
 
-import { remToPixels } from "../helpers";
-
-const ItemIcon = styled("div", {
+const styles = sva({
+  slots: ["content", "item", "itemIcon", "itemTitle", "separator"],
   base: {
-    flex: "none",
-    w: 5,
-  },
-});
+    content: {
+      bg: { base: "white", _dark: "neutral.800" },
+      borderColor: { base: "neutral.300", _dark: "neutral.700" },
+      borderWidth: "1px",
+      minW: 52,
+      overflow: "auto",
+      p: 1,
+      rounded: "sm",
+      shadow: "lg",
 
-const ItemTitle = styled("div", {
-  base: {
-    flex: 1,
-    truncate: true,
-  },
-});
-
-const Item = styled("button", {
-  base: {
-    alignItems: "center",
-    display: "flex",
-    fontWeight: "medium",
-    gap: 3,
-    h: 10,
-    px: 3,
-    rounded: "sm",
-    textAlign: "left",
-    w: "full",
-
-    _focus: {
-      bg: { base: "neutral.200", _dark: "neutral.700" },
-      outline: "none",
+      _focus: {
+        outline: "none",
+      },
     },
 
-    _disabled: {
-      opacity: 0.25,
+    item: {
+      alignItems: "center",
+      cursor: "pointer",
+      display: "flex",
+      fontWeight: "medium",
+      gap: 3,
+      h: 10,
+      px: 3,
+      rounded: "sm",
+      textAlign: "left",
+      w: "full",
+
+      _focus: {
+        bg: { base: "neutral.200", _dark: "neutral.700" },
+        outline: "none",
+      },
+
+      _disabled: {
+        opacity: 0.25,
+      },
+    },
+
+    itemIcon: {
+      flex: "none",
+      w: 5,
+    },
+
+    itemTitle: {
+      flex: 1,
+      truncate: true,
+    },
+
+    separator: {
+      bg: { base: "neutral.300", _dark: "neutral.700" },
+      h: "1px",
+      my: 1,
     },
   },
-});
-
-const Separator = styled("div", {
-  base: {
-    bg: { base: "neutral.300", _dark: "neutral.700" },
-    h: "1px",
-    my: 1,
-  },
-});
-
-const Wrapper = styled("div", {
-  base: {
-    bg: { base: "white", _dark: "neutral.800" },
-    borderColor: { base: "neutral.300", _dark: "neutral.700" },
-    borderWidth: "1px",
-    minW: 52,
-    overflow: "auto",
-    p: 1,
-    rounded: "sm",
-    shadow: "lg",
-
-    _focus: {
-      outline: "none",
-    },
-  },
-});
-
-type GetItemProps = (userProps?: HTMLProps<HTMLElement>) => Record<string, unknown>;
-
-interface ContextProps {
-  getItemProps: GetItemProps;
-  setActiveIndex: Dispatch<SetStateAction<number | null>>;
-  activeIndex: number | null;
-  isOpen: boolean;
-}
-
-const MenuContext = createContext<ContextProps>({
-  getItemProps: (userProps) => ({ ...userProps }),
-  setActiveIndex: () => void 0,
-  activeIndex: null,
-  isOpen: false,
 });
 
 export interface CheckboxItemProps {
@@ -164,311 +103,84 @@ export type DropdownMenuItemProps =
   | SeparatorItemProps
   | SubmenuItemProps;
 
-interface BaseItemProps extends HTMLProps<HTMLButtonElement> {
-  leftOrnament?: ReactNode;
-  rightOrnament?: ReactNode;
-}
+function ItemRenderer(props: DropdownMenuItemProps) {
+  const classes = styles();
 
-const BaseItem = forwardRef<HTMLButtonElement, BaseItemProps>((props, ref) => {
-  const { leftOrnament, rightOrnament, title, ...rest } = props;
+  switch (props.type) {
+    case "checkbox":
+      return (
+        <DropdownMenuPrimitive.CheckboxItem
+          checked={props.checked}
+          onCheckedChange={props.onChange}
+        >
+          <DropdownMenuPrimitive.ItemIndicator className={classes.itemIcon}>
+            <IconCheck />
+          </DropdownMenuPrimitive.ItemIndicator>
+          <div className={classes.itemTitle}>{props.title}</div>
+          <div className={classes.itemIcon} />
+        </DropdownMenuPrimitive.CheckboxItem>
+      );
 
-  const item = useListItem({
-    label: props.disabled ? null : title,
-  });
+    case "menu":
+      return (
+        <DropdownMenuPrimitive.Sub>
+          <DropdownMenuPrimitive.SubTrigger className={classes.item}>
+            <div className={classes.itemIcon}>{props.icon}</div>
+            <div className={classes.itemTitle}>{props.title}</div>
+            <div className={classes.itemIcon}>
+              <IconChevronRight />
+            </div>
+          </DropdownMenuPrimitive.SubTrigger>
+          <DropdownMenuPrimitive.Portal>
+            <DropdownMenuPrimitive.SubContent className={classes.content}>
+              {props.items.map((props, index) => (
+                <ItemRenderer key={index} {...props} />
+              ))}
+            </DropdownMenuPrimitive.SubContent>
+          </DropdownMenuPrimitive.Portal>
+        </DropdownMenuPrimitive.Sub>
+      );
 
-  const menu = useContext(MenuContext);
-
-  return (
-    <Item
-      {...menu.getItemProps(rest)}
-      ref={useMergeRefs([item.ref, ref])}
-      tabIndex={item.index === menu.activeIndex ? 0 : -1}
-    >
-      <ItemIcon>{leftOrnament}</ItemIcon>
-      <ItemTitle>{title}</ItemTitle>
-      <ItemIcon>{rightOrnament}</ItemIcon>
-    </Item>
-  );
-});
-
-interface MenuCheckboxProps {
-  icon?: ReactNode;
-  disabled?: boolean;
-  checked: boolean;
-  title: string;
-
-  onChange?(checked: boolean): void;
-}
-
-const MenuCheckbox = forwardRef<HTMLButtonElement, MenuCheckboxProps>((props, ref) => {
-  return (
-    <BaseItem
-      ref={ref}
-      title={props.title}
-      disabled={props.disabled}
-      leftOrnament={props.icon}
-      rightOrnament={
-        props.checked ? (
-          <IconSquareCheck size="1.25rem" strokeWidth={1.75} />
-        ) : (
-          <IconSquare size="1.25rem" strokeWidth={1.75} />
-        )
-      }
-      onClick={() => {
-        props.onChange?.(!props.checked);
-      }}
-    />
-  );
-});
-
-interface MenuItemProps {
-  icon?: ReactNode;
-  disabled?: boolean;
-  title: string;
-
-  onClick?: MouseEventHandler;
-}
-
-export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>((props, ref) => {
-  const tree = useFloatingTree();
+    case "separator":
+      return <DropdownMenuPrimitive.Separator className={classes.separator} />;
+  }
 
   return (
-    <BaseItem
-      ref={ref}
-      title={props.title}
-      disabled={props.disabled}
-      leftOrnament={props.icon}
-      onClick={(event) => {
-        props.onClick?.(event);
-        tree?.events.emit("close");
-      }}
-    />
+    <DropdownMenuPrimitive.Item className={classes.item} onClick={props.onClick}>
+      <div className={classes.itemIcon}>{props.icon}</div>
+      <div className={classes.itemTitle}>{props.title}</div>
+      <div className={classes.itemIcon} />
+    </DropdownMenuPrimitive.Item>
   );
-});
-
-interface MenuOpenData {
-  nodeId: string;
-  parentId: string;
 }
-
-interface MenuProps extends HTMLProps<HTMLElement> {
-  children: ReactElement;
-  placement?: Placement;
-  fullWidth?: boolean;
-
-  items: DropdownMenuItemProps[];
-}
-
-const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
-  const { children, items, placement, ...rest } = props;
-
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const elementsRef = useRef<Array<HTMLElement | null>>([]);
-  const labelsRef = useRef<Array<string | null>>([]);
-
-  const parent = useContext(MenuContext);
-
-  const tree = useFloatingTree();
-  const nodeId = useFloatingNodeId();
-  const parentId = useFloatingParentNodeId();
-  const item = useListItem();
-
-  const isNested = typeof parentId === "string";
-
-  const { floatingStyles, refs, context } = useFloating({
-    nodeId,
-    open: isOpen,
-    strategy: "fixed",
-    onOpenChange: setIsOpen,
-    whileElementsMounted: autoUpdate,
-    placement: isNested ? "right-start" : placement ?? "bottom-start",
-    middleware: [
-      offset({
-        alignmentAxis: remToPixels(isNested ? -0.25 : 0),
-        mainAxis: remToPixels(isNested ? -0.5 : 0.5),
-      }),
-      flip(),
-      shift({
-        crossAxis: true,
-        padding: remToPixels(0.5),
-      }),
-      size({
-        padding: remToPixels(0.5),
-        apply({ availableHeight, availableWidth, elements, rects }) {
-          Object.assign(elements.floating.style, {
-            maxHeight: `${availableHeight}px`,
-            maxWidth: `${availableWidth}px`,
-          });
-
-          if (props.fullWidth) {
-            Object.assign(elements.floating.style, {
-              width: `${rects.reference.width}px`,
-            });
-          }
-        },
-      }),
-    ],
-  });
-
-  const hover = useHover(context, {
-    enabled: isNested,
-    delay: {
-      open: 75,
-    },
-    handleClose: safePolygon({
-      blockPointerEvents: true,
-    }),
-  });
-
-  const click = useClick(context, {
-    event: "mousedown",
-    ignoreMouse: isNested,
-    toggle: !isNested,
-  });
-
-  const dismiss = useDismiss(context, {
-    bubbles: true,
-  });
-
-  const listNavigation = useListNavigation(context, {
-    onNavigate: setActiveIndex,
-    listRef: elementsRef,
-    nested: isNested,
-    activeIndex,
-  });
-
-  const typeahead = useTypeahead(context, {
-    onMatch: isOpen ? setActiveIndex : undefined,
-    listRef: labelsRef,
-    activeIndex,
-  });
-
-  const { getFloatingProps, getItemProps, getReferenceProps } = useInteractions([
-    hover,
-    click,
-    dismiss,
-    listNavigation,
-    typeahead,
-  ]);
-
-  useEffect(() => {
-    if (tree == null) {
-      return;
-    }
-
-    function onMenuClose() {
-      setIsOpen(false);
-    }
-
-    function onMenuOpen(data: MenuOpenData) {
-      if (data.nodeId === nodeId || data.parentId !== parentId) {
-        return;
-      }
-
-      setIsOpen(false);
-    }
-
-    tree.events.on("close", onMenuClose);
-    tree.events.on("open", onMenuOpen);
-
-    return () => {
-      tree.events.off("close", onMenuClose);
-      tree.events.off("open", onMenuOpen);
-    };
-  }, [tree, nodeId, parentId]);
-
-  useEffect(() => {
-    if (isOpen) {
-      tree?.events.emit("open", { parentId, nodeId });
-    }
-  }, [tree, isOpen, nodeId, parentId]);
-
-  return (
-    <FloatingNode id={nodeId}>
-      {cloneElement(
-        children,
-        getReferenceProps(
-          parent.getItemProps({
-            ...rest,
-
-            ref: useMergeRefs([refs.setReference, item.ref, ref, (children as any).ref]),
-            tabIndex: isNested ? (parent.activeIndex === item.index ? 0 : -1) : undefined,
-
-            onClick(event) {
-              event.stopPropagation();
-              event.preventDefault();
-            },
-          }),
-        ),
-      )}
-
-      <MenuContext.Provider value={{ activeIndex, setActiveIndex, getItemProps, isOpen }}>
-        <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-          {isOpen && (
-            <FloatingPortal id="modal-root">
-              <FloatingFocusManager
-                initialFocus={isNested ? -1 : 0}
-                returnFocus={!isNested}
-                context={context}
-                modal={false}
-              >
-                <Wrapper
-                  {...getFloatingProps({
-                    ref: refs.setFloating,
-                    style: floatingStyles,
-
-                    onClick(event) {
-                      event.stopPropagation();
-                      event.preventDefault();
-                    },
-                  })}
-                >
-                  {items.map((props, index) => {
-                    switch (props.type) {
-                      case "checkbox":
-                        return <MenuCheckbox {...props} key={index} />;
-
-                      case "menu":
-                        return (
-                          <Menu items={props.items} key={index}>
-                            <BaseItem
-                              title={props.title}
-                              leftOrnament={props.icon}
-                              rightOrnament={<IconChevronRight size="1.25rem" />}
-                            />
-                          </Menu>
-                        );
-
-                      case "separator":
-                        return <Separator key={index} />;
-                    }
-
-                    return <MenuItem {...props} key={index} />;
-                  })}
-                </Wrapper>
-              </FloatingFocusManager>
-            </FloatingPortal>
-          )}
-        </FloatingList>
-      </MenuContext.Provider>
-    </FloatingNode>
-  );
-});
 
 export interface DropdownMenuProps {
   children: ReactElement;
-  placement?: Placement;
+
   fullWidth?: boolean;
+  placement?: string;
 
   items: DropdownMenuItemProps[];
 }
 
-export const DropdownMenu = forwardRef<HTMLElement, DropdownMenuProps>((props, ref) => (
-  <FloatingTree>
-    <Menu ref={ref} {...props} />
-  </FloatingTree>
-));
+function DropdownMenu(props: DropdownMenuProps) {
+  const classes = styles();
+
+  return (
+    <DropdownMenuPrimitive.Root>
+      <DropdownMenuPrimitive.Trigger asChild>{props.children}</DropdownMenuPrimitive.Trigger>
+      <DropdownMenuPrimitive.Portal>
+        <DropdownMenuPrimitive.Content
+          className={classes.content}
+          onClick={(event) => event.stopPropagation()}
+        >
+          {props.items.map((props, index) => (
+            <ItemRenderer key={index} {...props} />
+          ))}
+        </DropdownMenuPrimitive.Content>
+      </DropdownMenuPrimitive.Portal>
+    </DropdownMenuPrimitive.Root>
+  );
+}
 
 export default DropdownMenu;
