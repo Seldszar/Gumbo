@@ -103,25 +103,19 @@ export class Store<T> {
     return (await this.getState()).value;
   }
 
-  async set(value: T): Promise<boolean>;
-  async set(updater: (value: T) => T): Promise<boolean>;
-  async set(value: any): Promise<boolean> {
+  async set(value: T): Promise<void>;
+  async set(updater: (value: T) => T): Promise<void>;
+  async set(value: any): Promise<void> {
     const state = await this.getState();
 
     if (typeof value === "function") {
       value = value(state.value);
     }
 
-    if (state.value === value) {
-      return false;
-    }
-
     await this.setState({
       version: state.version,
       value,
     });
-
-    return true;
   }
 
   async reset(): Promise<void> {
