@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.19.0](https://github.com/Seldszar/Gumbo/compare/v1.18.10...v1.19.0) (2025-05-15)
+
+
+### Features
+
+* add popout window ([e12e514](https://github.com/Seldszar/Gumbo/commit/e12e514145bff15ef440508bf67c9fcdefb90d8d))
+
+
+### Bug Fixes
+
+* build errors ([bb93553](https://github.com/Seldszar/Gumbo/commit/bb9355356aa523afea346491a987fb992655aa61))
+* cleanup router ([cf835da](https://github.com/Seldszar/Gumbo/commit/cf835da2df1128277239e7de29a8635175842cc4))
+* document title ([b8f7adf](https://github.com/Seldszar/Gumbo/commit/b8f7adf61f1537e09c193ea04cd493aa516077f7))
+* permissions ([36e3469](https://github.com/Seldszar/Gumbo/commit/36e3469b86338772e41f5ccb98a4c135960d30be))
+* refactor background ([c069792](https://github.com/Seldszar/Gumbo/commit/c069792bec23ce678cd50a257be20ec92a3bede3))
+* simplify store updater ([361c8c2](https://github.com/Seldszar/Gumbo/commit/361c8c2c8a1f22ef92df02fc2e4b385460d5f4d2))
+* simplify stores ([1493a88](https://github.com/Seldszar/Gumbo/commit/1493a881a75ac492fba16167dbe87f6292d8400c))
+* update translations ([#207](https://github.com/Seldszar/Gumbo/issues/207)) ([326e0e2](https://github.com/Seldszar/Gumbo/commit/326e0e2b79e84fe2cca4a657e9d2f0c6e1bf4ccc))
+
 ## [1.18.10](https://github.com/Seldszar/Gumbo/compare/v1.18.9...v1.18.10) (2025-03-31)
 
 
