@@ -23,7 +23,6 @@ import {
 } from "./types";
 
 export type StoreAreaName = "local" | "session" | "sync";
-export type StoreMigration = (value: any) => Promise<any>;
 
 export interface StoreOptions<T> {
   schema: Describe<T>;
@@ -66,7 +65,7 @@ export class Store<T> {
     });
   }
 
-  onChange(listener: StoreChange<T>): () => void {
+  onChange(listener: StoreChange<T>) {
     this.listeners.add(listener);
 
     return () => {
@@ -74,8 +73,8 @@ export class Store<T> {
     };
   }
 
-  async getState(): Promise<StoreState<T>> {
-    const state = {
+  async getState() {
+    const state: StoreState<T> = {
       value: this.options.defaultValue,
       version: 1,
     };
@@ -91,7 +90,7 @@ export class Store<T> {
     return state;
   }
 
-  async setState(state: StoreState<T>): Promise<void> {
+  async setState(state: StoreState<T>) {
     state.value = this.validateValue(state.value);
 
     await this.areaStorage.set({
@@ -99,40 +98,34 @@ export class Store<T> {
     });
   }
 
-  async get(): Promise<T> {
+  async get() {
     return (await this.getState()).value;
   }
 
-  async set(value: T): Promise<boolean>;
-  async set(updater: (value: T) => T): Promise<boolean>;
-  async set(value: any): Promise<boolean> {
+  async set(value: T): Promise<void>;
+  async set(updater: (value: T) => T): Promise<void>;
+  async set(value: any) {
     const state = await this.getState();
 
     if (typeof value === "function") {
       value = value(state.value);
     }
 
-    if (state.value === value) {
-      return false;
-    }
-
     await this.setState({
       version: state.version,
       value,
     });
-
-    return true;
   }
 
-  async reset(): Promise<void> {
+  async reset() {
     await this.set(this.options.defaultValue);
   }
 
-  async restore(state: StoreState<T>): Promise<void> {
+  async restore(state: StoreState<T>) {
     await this.setState(state);
   }
 
-  validateValue(value: T): T {
+  validateValue(value: T) {
     return mask(value, defaulted(this.options.schema, this.options.defaultValue));
   }
 }

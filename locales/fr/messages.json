@@ -269,6 +269,9 @@
   "optionValue_popout": {
     "message": "Ouvrir la vidéo"
   },
+  "optionValue_popoutWindow": {
+    "message": "Ouvrir dans nouvelle fenêtre"
+  },
   "optionValue_schedule": {
     "message": "Programme"
   },
