@@ -14,6 +14,11 @@ import { usePreferDarkMode, useSettings } from "./hooks";
 setupSentry();
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
+  document.title = t("extensionName");
+
+  document.documentElement.dir = t("@@bidi_dir");
+  document.documentElement.lang = t("@@ui_locale");
+
   const container = document.getElementById("app-root");
 
   if (container == null) {
@@ -21,9 +26,6 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
   }
 
   const root = createRoot(container);
-
-  document.documentElement.dir = t("@@bidi_dir");
-  document.documentElement.lang = t("@@ui_locale");
 
   function App() {
     const [settings] = useSettings();
