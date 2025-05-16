@@ -1,11 +1,11 @@
-import { createHashRouter, redirect, RouterProvider } from "react-router";
+import { createHashRouter, Navigate, RouterProvider } from "react-router";
 
 import { SettingsProvider } from "../contexts";
 
 const router = createHashRouter([
   {
     index: true,
-    loader: () => redirect("general"),
+    element: <Navigate replace to="general" />,
   },
   {
     lazy: () => import("../views/settings/Root"),
