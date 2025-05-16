@@ -14,6 +14,7 @@ import {
   getFollowedStreams,
   request,
   revoke,
+  validate,
 } from "./modules/twitch";
 
 setupSentry();
@@ -24,12 +25,10 @@ async function refresh(withNotifications: boolean) {
   });
 
   if (navigator.onLine) {
-    const accessToken = await stores.accessToken.get();
-
     let currentUser: HelixUser | null = null;
     let followedStreams = new Array<HelixStream>();
 
-    if (accessToken) {
+    if (await validate()) {
       currentUser = await getCurrentUser();
 
       if (currentUser) {
