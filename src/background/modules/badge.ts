@@ -12,18 +12,20 @@ export async function refreshActionBadge(enabled: boolean, count: number) {
   const getIconPath = (size: number) =>
     browser.runtime.getURL(enabled ? `icon-${size}.png` : `icon-gray-${size}.png`);
 
-  browser.action.setBadgeBackgroundColor({
-    color: settings.badge.color,
-  });
+  await Promise.allSettled([
+    browser.action.setBadgeBackgroundColor({
+      color: settings.badge.color,
+    }),
 
-  browser.action.setBadgeText({
-    text,
-  });
+    browser.action.setBadgeText({
+      text,
+    }),
 
-  browser.action.setIcon({
-    path: {
-      16: getIconPath(16),
-      32: getIconPath(32),
-    },
-  });
+    browser.action.setIcon({
+      path: {
+        16: getIconPath(16),
+        32: getIconPath(32),
+      },
+    }),
+  ]);
 }
