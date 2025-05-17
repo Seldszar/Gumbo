@@ -57,7 +57,7 @@
     "message": "Uh-on, Gumbo não está mais respondendo!"
   },
   "confirmTitle_reset": {
-    "message": "Você está prestes a resetar Gumbo!"
+    "message": "Você está prestes a resetar a extensão Gumbo!"
   },
   "detailText_followingSince": {
     "message": "Seguindo desde $1"
@@ -105,7 +105,7 @@
     "message": "Nenhum vídeo encontrado"
   },
   "extensionDescription": {
-    "message": "A companhia Swollen te mantém atualizado com a sua experiência no Twitch"
+    "message": "Companheiro confiável que mantém sua experiência no Twitch sempre atualizada"
   },
   "extensionName": {
     "message": "Gumbo: Twitch Companion"
@@ -117,7 +117,7 @@
     "message": "Substitutos disponíveis"
   },
   "inputLabel_categoryChangeNotifications": {
-    "message": "Incluir categoria alterar notificações"
+    "message": "Incluir notificações de troca de categoria"
   },
   "inputLabel_enableNotifications": {
     "message": "Habilitar notificações"
@@ -135,7 +135,7 @@
     "message": "Mostrar somente os canais em live"
   },
   "inputLabel_showRerunsInFollowedStreams": {
-    "message": "Mostrar Reprises nos seguintes streams"
+    "message": "Mostrar Reprises nos streams seguidos"
   },
   "linkText_issues": {
     "message": "Bugs & Sugestões"
@@ -180,10 +180,10 @@
     "message": "Acesso Expirado"
   },
   "optionTitle_clickAction": {
-    "message": "Clique em Ação"
+    "message": "Ação ao clicar"
   },
   "optionTitle_clickBehavior": {
-    "message": "Clique em Comportamento"
+    "message": "Comportamento ao clicar"
   },
   "optionTitle_fontSize": {
     "message": "Tamanho da Fonte"
@@ -219,7 +219,7 @@
     "message": "Doar"
   },
   "optionValue_fontSize_large": {
-    "message": "Largo"
+    "message": "Grande"
   },
   "optionValue_fontSize_largest": {
     "message": "Maior"
@@ -231,7 +231,7 @@
     "message": "Pequeno"
   },
   "optionValue_fontSize_smallest": {
-    "message": "Menor ainda"
+    "message": "Menor"
   },
   "optionValue_gotoCategory": {
     "message": "Ir para a categoria"
@@ -267,7 +267,10 @@
     "message": "Última semana"
   },
   "optionValue_popout": {
-    "message": "Destacar"
+    "message": "Popout"
+  },
+  "optionValue_popoutWindow": {
+    "message": "Popout"
   },
   "optionValue_schedule": {
     "message": "Programação"
@@ -318,7 +321,7 @@
     "message": "Escuro"
   },
   "optionValue_theme_light": {
-    "message": "Light"
+    "message": "Claro"
   },
   "optionValue_theme_system": {
     "message": "Sistema"
