@@ -1,6 +1,6 @@
 import { get } from "lodash-es";
 
-import { openUrl, setupSentry } from "~/common/helpers";
+import { openUrl } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import type { HelixStream, HelixUser } from "~/common/types";
 
@@ -16,8 +16,6 @@ import {
   revoke,
   validate,
 } from "./modules/twitch";
-
-setupSentry();
 
 async function refresh(withNotifications: boolean) {
   browser.alarms.create("refresh", {

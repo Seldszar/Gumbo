@@ -7,11 +7,9 @@ import { createRoot } from "react-dom/client";
 import { SWRConfig } from "swr";
 import tw, { GlobalStyles, css, theme } from "twin.macro";
 
-import { getBaseFontSize, setupSentry, t } from "~/common/helpers";
+import { getBaseFontSize, t } from "~/common/helpers";
 
 import { usePreferDarkMode, useSettings } from "./hooks";
-
-setupSentry();
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
   document.title = t("extensionName");
