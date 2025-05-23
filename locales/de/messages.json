@@ -18,7 +18,7 @@
     "message": "Einstellungen importieren"
   },
   "buttonText_loadMore": {
-    "message": "Mehr anzeigen"
+    "message": "Mehr laden"
   },
   "buttonText_login": {
     "message": "Mit Twitch einloggen"
@@ -30,37 +30,37 @@
     "message": "Erweiterung zurücksetzen"
   },
   "buttonText_selectAll": {
-    "message": "Alles auswählen"
+    "message": "Alle auswählen"
   },
   "buttonText_selectNone": {
     "message": "Keine auswählen"
   },
   "buttonText_submit": {
-    "message": "Einreichen"
+    "message": "Absenden"
   },
   "buttonText_viewOn": {
-    "message": "Anschauen auf $1"
+    "message": "Ansehen auf $1"
   },
   "confirmMessage_deleteItem": {
-    "message": "Möchtest du \"$1\" löschen?"
+    "message": "„$1“ wirklich löschen?"
   },
   "confirmMessage_reload": {
-    "message": "Bitte nutze den Button unten, um die Erweiterung neu zu laden."
+    "message": "Bitte verwende den Button unten, um die Erweiterung neu zu laden."
   },
   "confirmMessage_reset": {
-    "message": "Alle Daten werden gelöscht und du wirst ausgeloggt.<br />Bist du sicher, dass du fortfahren möchtest?"
+    "message": "Alle Daten werden gelöscht und du wirst abgemeldet.<br />Willst du wirklich fortfahren?"
   },
   "confirmTitle_deleteItem": {
     "message": "Löschen bestätigen"
   },
   "confirmTitle_reload": {
-    "message": "Oh-oh, Gumbo reagiert nicht mehr!"
+    "message": "Uff, Gumbo reagiert nicht mehr!"
   },
   "confirmTitle_reset": {
-    "message": "Du bist dabei Gumbo zurückzusetzen!"
+    "message": "Gumbo wird zurückgesetzt!"
   },
   "detailText_followingSince": {
-    "message": "Folge seit $1"
+    "message": "Folgt seit $1"
   },
   "detailText_noCategory": {
     "message": "Keine Kategorie"
@@ -84,7 +84,7 @@
     "message": "Keine Clips gefunden"
   },
   "errorText_emptyFollowingUsers": {
-    "message": "Keine gefolgten Streamer"
+    "message": "Du folgst aktuell niemandem"
   },
   "errorText_emptyIgnoredCategories": {
     "message": "Keine ignorierten Kategorien"
@@ -105,19 +105,19 @@
     "message": "Keine Videos gefunden"
   },
   "extensionDescription": {
-    "message": "Dein Begleiter mit der geschwollenen Brust hält dich bei Twitch auf dem Laufenden"
+    "message": "Dein treuer Begleiter, der dich über Live-Streams auf dem Laufenden hält."
   },
   "extensionName": {
-    "message": "Gumbo: Twitch Begleiter"
+    "message": "Gumbo: Twitch Companion für Live-Streams"
   },
   "helpText_customAction_url": {
     "message": "Beispiel: $1"
   },
   "inputLabel_availablePlaceholders": {
-    "message": "Vorhandene Platzhalter"
+    "message": "Verfügbare Platzhalter"
   },
   "inputLabel_categoryChangeNotifications": {
-    "message": "Benachrichtigung über Kategorieänderungen mit einbeziehen"
+    "message": "Benachrichtigungen bei Kategoriewechseln"
   },
   "inputLabel_enableNotifications": {
     "message": "Benachrichtigungen aktivieren"
@@ -129,19 +129,19 @@
     "message": "Streams nach Sprache filtern"
   },
   "inputLabel_showIconBadge": {
-    "message": "Online-Stream-Anzahl anzeigen"
+    "message": "Anzahl aktiver Streams im Icon anzeigen"
   },
   "inputLabel_showLiveChannelsOnly": {
     "message": "Nur Live-Kanäle anzeigen"
   },
   "inputLabel_showRerunsInFollowedStreams": {
-    "message": "Wiederholungen in gefolgten Kanälen anzeigen"
+    "message": "Wiederholungen in Streams anzeigen, denen du folgst"
   },
   "linkText_issues": {
-    "message": "Fehler & Vorschläge"
+    "message": "Bugs & Vorschläge"
   },
   "linkText_releases": {
-    "message": "Release Notes"
+    "message": "Release-Notes"
   },
   "linkText_repository": {
     "message": "Quellcode"
@@ -150,46 +150,46 @@
     "message": "Übersetzen"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo ist eine kostenlose Erweiterung, die keine persönlichen Benutzerdaten sammelt oder verkauft.</p><p>Spenden sind freiwillig, aber sehr willkommen. Ihr unterstützt meine Arbeit und ermöglicht es mir, die bestmögliche Qualität zu liefern.</p><p>Vielen Dank für eure Unterstützung!</p>"
+    "message": "<p>Gumbo ist kostenlos und sammelt oder verkauft keine Nutzerdaten.</p><p>Spenden sind optional, aber sehr willkommen – sie unterstützen meine Arbeit und motivieren mich, die Erweiterung weiter zu verbessern.</p><p>Vielen Dank für deinen Support!</p>"
   },
   "messageText_typeSearchCategories": {
-    "message": "Beginne zu tippen, um Kategorien zu durchsuchen"
+    "message": "Kategorien durchsuchen..."
   },
   "messageText_typeSearchChannels": {
-    "message": "Beginne zu tippen, um Kanäle zu durchsuchen"
+    "message": "Kanäle durchsuchen..."
   },
   "notificationContextMessage_accessExpired": {
-    "message": "Klicke hier, um dich zu autorisieren"
+    "message": "Klicken zum Autorisieren"
   },
   "notificationContextMessage_extensionUpdated": {
-    "message": "Klicke hier, um Änderungen anzusehen"
+    "message": "Klicken für Änderungen"
   },
   "notificationMessage_accessExpired": {
-    "message": "Dein Twitch-Zugangstoken ist abgelaufen. Bitte autorisiere dich erneut, um einen neuen Token zu erhalten."
+    "message": "Dein Twitch-Zugriffstoken ist abgelaufen. Bitte neu autorisieren."
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumbo wurde auf die Version $1 aktualisiert."
+    "message": "Gumbo wurde auf Version $1 aktualisiert."
   },
   "notificationMessage_streamOnline": {
-    "message": "$1 ist online!"
+    "message": "$1 ist jetzt live!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1 streamt jetzt $2!"
+    "message": "$1 streamt gerade $2!"
   },
   "notificationTitle_accessExpired": {
-    "message": "Zugang abgelaufen"
+    "message": "Zugriff abgelaufen"
   },
   "optionTitle_clickAction": {
     "message": "Klick-Aktion"
   },
   "optionTitle_clickBehavior": {
-    "message": "Klickverhalten"
+    "message": "Klick-Verhalten"
   },
   "optionTitle_fontSize": {
     "message": "Schriftgröße"
   },
   "optionTitle_theme": {
-    "message": "Thema"
+    "message": "Design"
   },
   "optionValue_about": {
     "message": "Über"
@@ -201,16 +201,16 @@
     "message": "Im aktuellen Tab öffnen"
   },
   "optionValue_clickBehavior_createTab": {
-    "message": "Im neuen Tab öffnen"
+    "message": "In neuem Tab öffnen"
   },
   "optionValue_clickBehavior_createWindow": {
-    "message": "Im neuen Fenster öffnen"
+    "message": "In neuem Fenster öffnen"
   },
   "optionValue_collections": {
-    "message": "Auswahl"
+    "message": "Sammlungen"
   },
   "optionValue_customActions": {
-    "message": "Benutzerdefinierte Aktionen"
+    "message": "Eigene Aktionen"
   },
   "optionValue_delete": {
     "message": "Löschen"
@@ -222,7 +222,7 @@
     "message": "Groß"
   },
   "optionValue_fontSize_largest": {
-    "message": "Größte"
+    "message": "Sehr groß"
   },
   "optionValue_fontSize_medium": {
     "message": "Mittel"
@@ -231,16 +231,16 @@
     "message": "Klein"
   },
   "optionValue_fontSize_smallest": {
-    "message": "Kleinste"
+    "message": "Sehr klein"
   },
   "optionValue_gotoCategory": {
-    "message": "Kategorie öffnen"
+    "message": "Zur Kategorie"
   },
   "optionValue_logout": {
-    "message": "Ausloggen"
+    "message": "Abmelden"
   },
   "optionValue_newCollection": {
-    "message": "Neue Auswahl"
+    "message": "Neue Sammlung"
   },
   "optionValue_openChannel": {
     "message": "Kanal öffnen"
@@ -249,16 +249,16 @@
     "message": "Chat öffnen"
   },
   "optionValue_period_allTime": {
-    "message": "Immer"
+    "message": "Gesamte Zeit"
   },
   "optionValue_period_lastDay": {
     "message": "Letzter Tag"
   },
   "optionValue_period_lastDays": {
-    "message": "Die letzten $1 Tage"
+    "message": "Letzte $1 Tage"
   },
   "optionValue_period_lastHours": {
-    "message": "Die letzten $1 Stunden"
+    "message": "Letzte $1 Stunden"
   },
   "optionValue_period_lastMonth": {
     "message": "Letzter Monat"
@@ -269,11 +269,14 @@
   "optionValue_popout": {
     "message": "Popout"
   },
+  "optionValue_popoutWindow": {
+    "message": "Popout"
+  },
   "optionValue_schedule": {
     "message": "Zeitplan"
   },
   "optionValue_search": {
-    "message": "Suchen"
+    "message": "Suche"
   },
   "optionValue_settings": {
     "message": "Einstellungen"
@@ -282,7 +285,7 @@
     "message": "Kategorie"
   },
   "optionValue_sort_followedAt": {
-    "message": "Folge seit"
+    "message": "Gefolgt am"
   },
   "optionValue_sort_login": {
     "message": "Streamer"
@@ -294,13 +297,13 @@
     "message": "Zeit"
   },
   "optionValue_sort_trending": {
-    "message": "im Trend"
+    "message": "Trend"
   },
   "optionValue_sort_uptime": {
     "message": "Laufzeit"
   },
   "optionValue_sort_viewers": {
-    "message": "Zuschauerzahl"
+    "message": "Zuschauer"
   },
   "optionValue_sort_views": {
     "message": "Aufrufe"
@@ -327,13 +330,13 @@
     "message": "Unbekannt"
   },
   "optionValue_update": {
-    "message": "Update"
+    "message": "Aktualisieren"
   },
   "optionValue_videoType_all": {
     "message": "Alle Videos"
   },
   "optionValue_videoType_archive": {
-    "message": "Archiv"
+    "message": "Aufzeichnungen"
   },
   "optionValue_videoType_highlight": {
     "message": "Highlights"
@@ -345,7 +348,7 @@
     "message": "Videos"
   },
   "placeholderText_ignoredCategories": {
-    "message": "Gebe eine Kategorie ein, die ignoriert werden soll"
+    "message": "Kategorie zum Ignorieren eingeben"
   },
   "titleText_advanced": {
     "message": "Erweitert"
@@ -354,16 +357,16 @@
     "message": "Hintergrundfarbe"
   },
   "titleText_badge": {
-    "message": "Abzeichen"
+    "message": "Badge"
   },
   "titleText_categories": {
     "message": "Kategorien"
   },
   "titleText_channelId": {
-    "message": "Kanal ID"
+    "message": "Kanal-ID"
   },
   "titleText_channelLogin": {
-    "message": "Kanal Login"
+    "message": "Kanalname"
   },
   "titleText_channels": {
     "message": "Kanäle"
@@ -372,31 +375,31 @@
     "message": "Clips"
   },
   "titleText_createCollection": {
-    "message": "Auswahl erstellen"
+    "message": "Sammlung erstellen"
   },
   "titleText_createItem": {
-    "message": "Objekt erstellen"
+    "message": "Element erstellen"
   },
   "titleText_customActions": {
-    "message": "Benutzerdefinierte Aktionen"
+    "message": "Eigene Aktionen"
   },
   "titleText_dangerZone": {
     "message": "Gefahrenzone"
   },
   "titleText_deleteCollection": {
-    "message": "Auswahl löschen"
+    "message": "Sammlung löschen"
   },
   "titleText_donate": {
     "message": "Spenden"
   },
   "titleText_dropdownMenu": {
-    "message": "Dropdown Menü"
+    "message": "Dropdown-Menü"
   },
   "titleText_followedStreams": {
-    "message": "Gefolgte Kanäle"
+    "message": "Streams, denen du folgst"
   },
   "titleText_followedUsers": {
-    "message": "Gefolgte Streamer"
+    "message": "Streamer, denen du folgst"
   },
   "titleText_general": {
     "message": "Allgemein"
@@ -414,28 +417,28 @@
     "message": "Wiederholung"
   },
   "titleText_search": {
-    "message": "Suchen"
+    "message": "Suche"
   },
   "titleText_settings": {
     "message": "Einstellungen"
   },
   "titleText_settingsManagement": {
-    "message": "Einstellungen verwalten"
+    "message": "Einstellungsverwaltung"
   },
   "titleText_streams": {
     "message": "Streams"
   },
   "titleText_topCategories": {
-    "message": "Top Kategorien"
+    "message": "Top-Kategorien"
   },
   "titleText_topStreams": {
-    "message": "Top Streamer"
+    "message": "Top-Streams"
   },
   "titleText_updateCollection": {
-    "message": "Auswahl aktualisierten"
+    "message": "Sammlung aktualisieren"
   },
   "titleText_updateItem": {
-    "message": "Objekt aktualisieren"
+    "message": "Element aktualisieren"
   },
   "titleText_videos": {
     "message": "Videos"
