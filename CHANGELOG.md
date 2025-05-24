@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.19.2](https://github.com/Seldszar/Gumbo/compare/v1.19.1...v1.19.2) (2025-05-24)
+
+
+### Bug Fixes
+
+* missing rerun stream filter ([20f2c2b](https://github.com/Seldszar/Gumbo/commit/20f2c2b677143a634934b3d3149f186abd81cd1a))
+* remove sentry ([05609da](https://github.com/Seldszar/Gumbo/commit/05609da58fe95da345bbd1899a15adc5c5325fa0))
+
 ## [1.19.1](https://github.com/Seldszar/Gumbo/compare/v1.19.0...v1.19.1) (2025-05-17)
 
 
