@@ -1,4 +1,4 @@
-import { get } from "lodash-es";
+import { get } from "es-toolkit/compat";
 
 import { openUrl } from "~/common/helpers";
 import { stores } from "~/common/stores";

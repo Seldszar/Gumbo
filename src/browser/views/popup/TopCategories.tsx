@@ -1,4 +1,4 @@
-import { flatMap, sortBy } from "lodash-es";
+import { flatMap, sortBy } from "es-toolkit/compat";
 import { Link } from "react-router";
 import tw, { styled } from "twin.macro";
 

@@ -2,13 +2,10 @@ require("dotenv/config");
 
 const fs = require("fs");
 const path = require("path");
-const webpack = require("webpack");
-const { merge } = require("webpack-merge");
 
+const { rspack } = require("@rspack/core");
 const { EntryWrapperPlugin } = require("@seldszar/yael");
-
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { merge } = require("webpack-merge");
 
 const localeReplacements = [
   {
@@ -24,13 +21,10 @@ module.exports = (env, argv) => {
     devtool: isDevelopment ? "inline-cheap-source-map" : false,
     output: {
       path: path.resolve("dist"),
-      publicPath: "",
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-      alias: {
-        "~": path.resolve("src"),
-      },
+      extensions: [".tsx", ".ts", ".js", ".json", ".wasm"],
+      tsConfig: path.resolve("tsconfig.json"),
     },
     module: {
       rules: [
@@ -42,15 +36,14 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new webpack.EnvironmentPlugin({
+      new rspack.EnvironmentPlugin({
         TWITCH_CLIENT_ID: undefined,
         TWITCH_REDIRECT_URI: undefined,
-        SENTRY_DSN: null,
       }),
-      new webpack.ProvidePlugin({
+      new rspack.ProvidePlugin({
         browser: "webextension-polyfill",
       }),
-      new CopyWebpackPlugin({
+      new rspack.CopyRspackPlugin({
         patterns: [
           {
             from: "**/*",
@@ -88,12 +81,6 @@ module.exports = (env, argv) => {
         ],
       }),
     ],
-    cache: {
-      type: "filesystem",
-      buildDependencies: {
-        config: [__filename],
-      },
-    },
   };
 
   return [
@@ -103,31 +90,20 @@ module.exports = (env, argv) => {
         popup: "./src/browser/pages/popup.tsx",
         settings: "./src/browser/pages/settings.tsx",
       },
-      module: {
-        rules: [
-          {
-            test: /\.css$/,
-            use: ["style-loader", "css-loader", "postcss-loader"],
-          },
-        ],
-      },
-      optimization: {
-        splitChunks: {
-          name: "commons",
-          chunks: "all",
-        },
+      experiments: {
+        css: true,
       },
       plugins: [
         new EntryWrapperPlugin({
           template: "./src/browser/entry-template.tsx",
           test: /\.tsx$/,
         }),
-        new HtmlWebpackPlugin({
+        new rspack.HtmlRspackPlugin({
           template: "./src/browser/entry-template.html",
           filename: "popup.html",
           chunks: ["popup"],
         }),
-        new HtmlWebpackPlugin({
+        new rspack.HtmlRspackPlugin({
           template: "./src/browser/entry-template.html",
           filename: "settings.html",
           chunks: ["settings"],

@@ -1,4 +1,4 @@
-import { camelCase, castArray, chunk, find, get, snakeCase, toString } from "lodash-es";
+import { camelCase, castArray, chunk, find, get, snakeCase, toString } from "es-toolkit/compat";
 
 import { allPromises, changeCase, isRerunStream, matchString, openUrl, t } from "~/common/helpers";
 import { stores } from "~/common/stores";

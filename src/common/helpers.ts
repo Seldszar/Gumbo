@@ -1,4 +1,4 @@
-import { isPlainObject, lowerCase, reduce } from "lodash-es";
+import { isPlainObject, lowerCase, reduce } from "es-toolkit/compat";
 import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";

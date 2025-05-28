@@ -1,4 +1,4 @@
-import { sortBy } from "lodash-es";
+import { sortBy } from "es-toolkit/compat";
 import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 

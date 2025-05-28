@@ -1,4 +1,4 @@
-import { xor } from "lodash-es";
+import { xor } from "es-toolkit/compat";
 import { useEffect, useState } from "react";
 
 import { Store, stores } from "~/common/stores";
