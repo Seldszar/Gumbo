@@ -38,7 +38,8 @@ const Wrapper = styled("fieldset", {
     error: {
       true: {
         color: "red.500",
-        outline: "2px solid token(colors.red.500)",
+        outlineColor: "red.500",
+        outlineWidth: 2,
       },
     },
   },
