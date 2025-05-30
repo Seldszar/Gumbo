@@ -1,4 +1,4 @@
-import { orderBy } from "lodash-es";
+import { orderBy } from "es-toolkit/compat";
 import { useMemo, useState } from "react";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";

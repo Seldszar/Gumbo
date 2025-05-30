@@ -1,3 +1,5 @@
+import { useEffect, useMemo, useState } from "react";
+
 import { PRESET_COLORS } from "~/common/constants";
 
 import { styled } from "~/browser/styled-system/jsx";
@@ -37,6 +39,7 @@ const Button = styled("button", {
 
 const ColorInput = styled(Input, {
   base: {
+    fontFamily: "mono",
     w: 32,
   },
 });
@@ -50,6 +53,18 @@ export interface ColorPickerProps {
 }
 
 function ColorPicker(props: ColorPickerProps) {
+  const [inputValue, setInputValue] = useState("");
+
+  const computedValue = useMemo(() => inputValue || props.value, [inputValue, props.value]);
+  const isValid = useMemo(() => CSS.supports("color", computedValue), [computedValue]);
+
+  useEffect(() => setInputValue(""), [props.value]);
+  useEffect(() => {
+    if (isValid && inputValue.length > 0) {
+      props.onChange(inputValue);
+    }
+  }, [isValid, inputValue]);
+
   return (
     <Wrapper className={props.className} disabled={props.disabled}>
       {PRESET_COLORS.map((color, index) => (
@@ -62,7 +77,7 @@ function ColorPicker(props: ColorPickerProps) {
         />
       ))}
 
-      <ColorInput value={props.value} onChange={props.onChange} />
+      <ColorInput error={!isValid} value={computedValue} onChange={setInputValue} />
     </Wrapper>
   );
 }

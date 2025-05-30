@@ -1,6 +1,6 @@
-import { get } from "lodash-es";
+import { get } from "es-toolkit/compat";
 
-import { openUrl, setupSentry } from "~/common/helpers";
+import { openUrl } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import type { HelixStream, HelixUser } from "~/common/types";
 
@@ -14,36 +14,35 @@ import {
   getFollowedStreams,
   request,
   revoke,
+  validate,
 } from "./modules/twitch";
-
-setupSentry();
 
 async function refresh(withNotifications: boolean) {
   browser.alarms.create("refresh", {
     periodInMinutes: 1,
   });
 
-  const accessToken = await stores.accessToken.get();
+  if (navigator.onLine) {
+    let currentUser: HelixUser | null = null;
+    let followedStreams = new Array<HelixStream>();
 
-  let currentUser: HelixUser | null = null;
-  let followedStreams = new Array<HelixStream>();
+    if (await validate()) {
+      currentUser = await getCurrentUser();
 
-  if (accessToken) {
-    currentUser = await getCurrentUser();
-
-    if (currentUser) {
-      followedStreams = await getFollowedStreams(currentUser.id);
+      if (currentUser) {
+        followedStreams = await getFollowedStreams(currentUser.id);
+      }
     }
+
+    refreshActionBadge(!!currentUser, followedStreams.length);
+
+    if (withNotifications) {
+      sendStreamNotifications(await filterNewStreams(followedStreams));
+    }
+
+    stores.currentUser.set(currentUser);
+    stores.followedStreams.set(followedStreams);
   }
-
-  refreshActionBadge(!!currentUser, followedStreams.length);
-
-  if (withNotifications) {
-    sendStreamNotifications(await filterNewStreams(followedStreams));
-  }
-
-  stores.currentUser.set(currentUser);
-  stores.followedStreams.set(followedStreams);
 }
 
 async function checkAlaram() {

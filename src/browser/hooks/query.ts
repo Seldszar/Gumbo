@@ -1,4 +1,4 @@
-import { chunk, flatMap, get, has } from "lodash-es";
+import { chunk, flatten, get, has } from "es-toolkit/compat";
 import { useMemo } from "react";
 import useSWR, { SWRConfiguration } from "swr";
 import useSWRInfinite, { SWRInfiniteConfiguration } from "swr/infinite";
@@ -214,7 +214,7 @@ function createFetcherByID<T>(path: string) {
           return data as T[];
         });
 
-        return flatMap(promises);
+        return flatten(promises);
       },
       config,
     );

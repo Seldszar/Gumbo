@@ -1,6 +1,6 @@
-import { camelCase, castArray, chunk, find, flatMap, get, snakeCase, toString } from "lodash-es";
+import { camelCase, castArray, chunk, find, get, snakeCase, toString } from "es-toolkit/compat";
 
-import { allPromises, changeCase, matchString, openUrl, t } from "~/common/helpers";
+import { allPromises, changeCase, isRerunStream, matchString, openUrl, t } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/types";
 
@@ -11,7 +11,7 @@ class RequestError extends Error {
     readonly request: Request,
     readonly response: Response,
   ) {
-    super(response.statusText);
+    super(`Request failed with status code ${response.status}: ${request.method} ${request.url}`);
 
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, RequestError);
@@ -36,7 +36,9 @@ export async function request<T>(
   }
 
   const request = new Request(url, {
-    headers: [["Client-ID", process.env.TWITCH_CLIENT_ID]],
+    headers: {
+      "Client-ID": process.env.TWITCH_CLIENT_ID,
+    },
   });
 
   const accessToken = await stores.accessToken.get();
@@ -47,20 +49,8 @@ export async function request<T>(
 
   const response = await fetch(request);
 
-  switch (response.status) {
-    case 204:
-      return undefined as never;
-
-    case 401: {
-      stores.accessToken.set(null);
-
-      createNotification("authorize", {
-        title: t("notificationTitle_accessExpired"),
-        message: t("notificationMessage_accessExpired"),
-      });
-
-      break;
-    }
+  if (response.status === 204) {
+    return undefined as never;
   }
 
   if (response.ok) {
@@ -89,7 +79,7 @@ export async function getUsersByIds(userIds: string[]) {
     get(await request<HelixUser>("users", { id }), "data"),
   );
 
-  return flatMap(pages);
+  return pages.flat();
 }
 
 export async function getFollowedStreams(userId: string) {
@@ -98,7 +88,13 @@ export async function getFollowedStreams(userId: string) {
     userId,
   });
 
-  return followedStreams;
+  const settings = await stores.settings.get();
+
+  if (settings.streams.withReruns) {
+    return followedStreams;
+  }
+
+  return followedStreams.filter((stream) => !isRerunStream(stream));
 }
 
 export async function authorize() {
@@ -110,6 +106,31 @@ export async function authorize() {
   url.searchParams.set("response_type", "token");
 
   return openUrl(url.href, undefined, true);
+}
+
+export async function validate() {
+  const accessToken = await stores.accessToken.get();
+
+  if (accessToken) {
+    const response = await fetch("https://id.twitch.tv/oauth2/validate", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (response.status === 401) {
+      createNotification("authorize", {
+        title: t("notificationTitle_accessExpired"),
+        message: t("notificationMessage_accessExpired"),
+      });
+
+      stores.accessToken.set(null);
+    }
+
+    return response.ok;
+  }
+
+  return false;
 }
 
 export async function revoke() {

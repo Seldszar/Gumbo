@@ -1,4 +1,4 @@
-import { map, xor } from "lodash-es";
+import { map, xor } from "es-toolkit/compat";
 import { ReactNode } from "react";
 
 import { t } from "~/common/helpers";

@@ -1,5 +1,4 @@
-import { init } from "@sentry/browser";
-import { isPlainObject, lowerCase, reduce } from "lodash-es";
+import { isPlainObject, lowerCase, reduce } from "es-toolkit/compat";
 import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
@@ -7,15 +6,6 @@ import { stores } from "./stores";
 import { Dictionary, FontSize, HelixStream } from "./types";
 
 export const t = browser.i18n.getMessage;
-
-export function setupSentry() {
-  const manifest = browser.runtime.getManifest();
-
-  init({
-    dsn: process.env.SENTRY_DSN,
-    release: manifest.version,
-  });
-}
 
 export function getBaseFontSize(value: FontSize): string {
   switch (value) {

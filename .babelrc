@@ -1,0 +1,4 @@
+{
+  "presets": ["@babel/preset-typescript", ["@babel/preset-react", { "runtime": "automatic" }]],
+  "plugins": ["@emotion/babel-plugin", "babel-plugin-macros"]
+}

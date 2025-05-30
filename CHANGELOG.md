@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.19.2](https://github.com/Seldszar/Gumbo/compare/v1.19.1...v1.19.2) (2025-05-24)
+
+
+### Bug Fixes
+
+* missing rerun stream filter ([20f2c2b](https://github.com/Seldszar/Gumbo/commit/20f2c2b677143a634934b3d3149f186abd81cd1a))
+* remove sentry ([05609da](https://github.com/Seldszar/Gumbo/commit/05609da58fe95da345bbd1899a15adc5c5325fa0))
+
+## [1.19.1](https://github.com/Seldszar/Gumbo/compare/v1.19.0...v1.19.1) (2025-05-17)
+
+
+### Bug Fixes
+
+* color input validation ([d48e842](https://github.com/Seldszar/Gumbo/commit/d48e84298572e46dcd61375e3a595ba4919bdebc))
+* settings router ([e477fd1](https://github.com/Seldszar/Gumbo/commit/e477fd165e66c46d99461e6a1744db235ac12cd4))
+* skip if offline ([8f98c8a](https://github.com/Seldszar/Gumbo/commit/8f98c8a9978397037a03a55ee6ee68e462985fa9))
+* token validation ([e009c65](https://github.com/Seldszar/Gumbo/commit/e009c658a5b2adf90776b0bb6a482025584a3b30))
+* update portuguese (brazil) translation ([#210](https://github.com/Seldszar/Gumbo/issues/210)) ([a3748be](https://github.com/Seldszar/Gumbo/commit/a3748bec90c798253f712fba216dc157ff40e3bf))
+
 ## [1.19.0](https://github.com/Seldszar/Gumbo/compare/v1.18.10...v1.19.0) (2025-05-15)
 
 

@@ -1,4 +1,4 @@
-import { sortBy } from "lodash-es";
+import { sortBy } from "es-toolkit/compat";
 import { useMemo } from "react";
 
 import { t } from "~/common/helpers";

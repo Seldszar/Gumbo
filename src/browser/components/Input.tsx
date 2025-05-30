@@ -34,6 +34,14 @@ const Wrapper = styled("fieldset", {
       w: "full",
     },
   },
+  variants: {
+    error: {
+      true: {
+        color: "red.500",
+        outline: "2px solid token(colors.red.500)",
+      },
+    },
+  },
 });
 
 export interface InputProps {
@@ -41,6 +49,7 @@ export interface InputProps {
 
   value?: string;
   placeholder?: string;
+  error?: boolean;
 
   leftOrnament?: ReactNode;
   rightOrnament?: ReactNode;
@@ -50,7 +59,7 @@ export interface InputProps {
 
 function Input(props: InputProps) {
   return (
-    <Wrapper className={props.className}>
+    <Wrapper error={props.error} className={props.className}>
       {props.leftOrnament && <Ornament>{props.leftOrnament}</Ornament>}
 
       <input

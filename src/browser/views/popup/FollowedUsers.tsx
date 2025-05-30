@@ -1,4 +1,4 @@
-import { find, map, orderBy } from "lodash-es";
+import { find, map, orderBy } from "es-toolkit/compat";
 import { useMemo, useState } from "react";
 
 import { isRerunStream, t } from "~/common/helpers";

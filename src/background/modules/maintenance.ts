@@ -1,4 +1,4 @@
-import { get } from "lodash-es";
+import { get } from "es-toolkit/compat";
 
 import { stores, StoreState } from "~/common/stores";
 import { Dictionary } from "~/common/types";

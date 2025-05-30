@@ -1,5 +1,5 @@
 import { IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
-import { reject } from "lodash-es";
+import { reject } from "es-toolkit/compat";
 import { Fragment, ReactNode, useMemo, useState } from "react";
 
 import { t } from "~/common/helpers";

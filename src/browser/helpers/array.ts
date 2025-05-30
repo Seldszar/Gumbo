@@ -1,4 +1,4 @@
-import { escapeRegExp } from "lodash-es";
+import { escapeRegExp } from "es-toolkit/compat";
 
 export function isEmpty<T extends unknown[]>(value?: T): value is undefined {
   return !value?.length;

@@ -21,13 +21,10 @@ module.exports = (env, argv) => {
     devtool: isDevelopment ? "inline-cheap-source-map" : false,
     output: {
       path: path.resolve("dist"),
-      publicPath: "",
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-      alias: {
-        "~": path.resolve("src"),
-      },
+      extensions: [".tsx", ".ts", ".js", ".json", ".wasm"],
+      tsConfig: path.resolve("tsconfig.json"),
     },
     module: {
       rules: [
@@ -55,8 +52,6 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new rspack.EnvironmentPlugin({
-        SENTRY_DSN: null,
-
         TWITCH_CLIENT_ID: undefined,
         TWITCH_REDIRECT_URI: undefined,
       }),

@@ -3,7 +3,7 @@ import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FloatingPortal } from "@floating-ui/react";
 import { IconEdit, IconGripVertical, IconList, IconPlus, IconTrash } from "@tabler/icons-react";
-import { concat, set, without } from "lodash-es";
+import { concat, set, without } from "es-toolkit/compat";
 import { HTMLAttributes, Key, ReactNode, forwardRef, useEffect, useState } from "react";
 
 import { t } from "~/common/helpers";
