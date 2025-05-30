@@ -6,7 +6,6 @@
     "moduleResolution": "bundler",
     "target": "esnext",
 
-    "jsxImportSource": "@emotion/react",
     "jsx": "react-jsx",
 
     "strictNullChecks": true,
