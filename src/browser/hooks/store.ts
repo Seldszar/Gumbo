@@ -164,6 +164,19 @@ export function useCollections(
   ];
 }
 
+export function useMutedUsers(options?: UseStoreOptions) {
+  const [mutedUsers, store] = useStore(stores.mutedUsers, options);
+
+  return [
+    mutedUsers,
+    {
+      toggle(userId: string) {
+        store.set((mutedUsers) => xor(mutedUsers, [userId]));
+      },
+    },
+  ] as const;
+}
+
 export function useCurrentUser(options?: UseStoreOptions) {
   return useStore(stores.currentUser, options);
 }

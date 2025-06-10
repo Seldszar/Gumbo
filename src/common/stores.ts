@@ -266,6 +266,10 @@ export const stores = {
       status: null,
     },
   }),
+  mutedUsers: new Store<string[]>("local", "mutedUsers", {
+    schema: array(string()),
+    defaultValue: [],
+  }),
 };
 
 browser.storage.onChanged.addListener((changes, areaName) => {

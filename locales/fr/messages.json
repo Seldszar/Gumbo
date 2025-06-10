@@ -239,6 +239,9 @@
   "optionValue_logout": {
     "message": "Déconnexion"
   },
+  "optionValue_muteChannel": {
+    "message": "Chaîne en sourdine"
+  },
   "optionValue_newCollection": {
     "message": "Nouvelle collection"
   },

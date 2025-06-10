@@ -9,6 +9,7 @@ import { backup, reset, restore } from "./modules/maintenance";
 import { sendStreamNotifications } from "./modules/notification";
 import {
   authorize,
+  filterMutedStreams,
   filterNewStreams,
   getCurrentUser,
   getFollowedStreams,
@@ -34,11 +35,13 @@ async function refresh(withNotifications: boolean) {
       }
     }
 
-    refreshActionBadge(!!currentUser, followedStreams.length);
+    const filteredStreams = await filterMutedStreams(followedStreams);
 
     if (withNotifications) {
-      sendStreamNotifications(await filterNewStreams(followedStreams));
+      sendStreamNotifications(await filterNewStreams(filteredStreams));
     }
+
+    refreshActionBadge(!!currentUser, filteredStreams.length);
 
     stores.currentUser.set(currentUser);
     stores.followedStreams.set(followedStreams);

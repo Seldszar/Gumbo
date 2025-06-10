@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { openUrl, t, template } from "~/common/helpers";
 import { HelixStream } from "~/common/types";
 
-import { useCollections, useSettings } from "~/browser/hooks";
+import { useCollections, useMutedUsers, useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
@@ -23,6 +23,7 @@ function StreamDropdown(props: StreamDropdownProps) {
 
   const [settings] = useSettings();
   const [collections, { toggleCollectionItem }] = useCollections("user");
+  const [mutedUsers, { toggle }] = useMutedUsers();
 
   const {
     dropdownMenu: { customActions },
@@ -30,6 +31,12 @@ function StreamDropdown(props: StreamDropdownProps) {
 
   const items = useMemo(() => {
     const result = new Array<DropdownMenuItemProps>(
+      {
+        type: "checkbox",
+        title: t("optionValue_muteChannel"),
+        checked: mutedUsers.includes(stream.userId),
+        onChange: () => toggle(stream.userId),
+      },
       {
         type: "normal",
         title: t("optionValue_openChannel"),

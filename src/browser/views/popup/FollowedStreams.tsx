@@ -7,7 +7,7 @@ import { FollowedStreamState } from "~/common/types";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { filterList, isEmpty } from "~/browser/helpers";
-import { useFollowedStreams, useFollowedStreamState } from "~/browser/hooks";
+import { useFollowedStreams, useFollowedStreamState, useMutedUsers } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
@@ -30,6 +30,10 @@ function ChildComponent(props: ChildComponentProps) {
     suspense: true,
   });
 
+  const [mutedUsers] = useMutedUsers({
+    suspense: true,
+  });
+
   const filteredStreams = useMemo(() => {
     let { sortDirection } = followedStreamState;
 
@@ -39,10 +43,10 @@ function ChildComponent(props: ChildComponentProps) {
 
     return orderBy(
       filterList(followedStreams, ["gameName", "title", "userLogin", "userName"], searchQuery),
-      followedStreamState.sortField,
-      sortDirection,
+      [(stream) => mutedUsers.includes(stream.userId), followedStreamState.sortField],
+      ["asc", sortDirection],
     );
-  }, [followedStreamState, followedStreams, searchQuery]);
+  }, [followedStreamState, followedStreams, mutedUsers, searchQuery]);
 
   useRefreshHandler(async () => {
     await sendRuntimeMessage("refresh", true);
@@ -67,6 +71,7 @@ function ChildComponent(props: ChildComponentProps) {
             <StreamCard
               key={item.id}
               stream={item}
+              isMuted={mutedUsers.includes(item.userId)}
               onNewCollection={() => createCollection([item.userId])}
             />
           ))}

@@ -239,6 +239,9 @@
   "optionValue_logout": {
     "message": "Logout"
   },
+  "optionValue_muteChannel": {
+    "message": "Mute channel"
+  },
   "optionValue_newCollection": {
     "message": "New collection"
   },

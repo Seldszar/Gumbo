@@ -41,16 +41,27 @@ const StyledDropdownButton = styled(DropdownButton)`
   ${tw`absolute invisible end-6 -top-2 z-20`}
 `;
 
-const Wrapper = styled(Card)`
+interface WrapperProps {
+  isMuted?: boolean;
+}
+
+const Wrapper = styled(Card)<WrapperProps>`
   ${tw`py-2 relative`}
 
-  :hover ${StyledDropdownButton} {
-    ${tw`visible`}
+  :hover {
+    ${tw`opacity-100`}
+
+    ${StyledDropdownButton} {
+      ${tw`visible`}
+    }
   }
+
+  ${(props) => props.isMuted && tw`opacity-50`}
 `;
 
 export interface StreamCardProps {
   stream: HelixStream;
+  isMuted?: boolean;
 
   onNewCollection?(): void;
 }
@@ -82,6 +93,7 @@ function StreamCard(props: StreamCardProps) {
   return (
     <Anchor to={defaultAction}>
       <Wrapper
+        isMuted={props.isMuted}
         title={
           <Title>
             <UserName login={stream.userLogin} name={stream.userName} />

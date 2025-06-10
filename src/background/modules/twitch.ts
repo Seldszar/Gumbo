@@ -175,3 +175,11 @@ export async function filterNewStreams(streams: HelixStream[]) {
     return oldStream == null || (withCategoryChanges && oldStream.gameId !== stream.gameId);
   });
 }
+
+export async function filterMutedStreams(streams: HelixStream[]) {
+  const mutedUsers = await stores.mutedUsers.get();
+
+  return streams.filter((stream) => {
+    return !mutedUsers.includes(stream.userId);
+  });
+}
