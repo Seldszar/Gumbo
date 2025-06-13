@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.20.0](https://github.com/Seldszar/Gumbo/compare/v1.19.2...v1.20.0) (2025-06-13)
+
+
+### Features
+
+* muted channels ([9467a27](https://github.com/Seldszar/Gumbo/commit/9467a27517597b5d2fb15a1aaaf5ff5792075a06))
+
+
+### Bug Fixes
+
+* update german translation ([#214](https://github.com/Seldszar/Gumbo/issues/214)) ([d10929b](https://github.com/Seldszar/Gumbo/commit/d10929bfca5e37ebba3c8b4eee5b73ebda4d2505))
+
 ## [1.19.2](https://github.com/Seldszar/Gumbo/compare/v1.19.1...v1.19.2) (2025-05-24)
 
 
