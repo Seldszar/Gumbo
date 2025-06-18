@@ -239,6 +239,9 @@
   "optionValue_logout": {
     "message": "Sair"
   },
+  "optionValue_muteChannel": {
+    "message": "Silenciar canal"
+  },
   "optionValue_newCollection": {
     "message": "Nova coleção"
   },
