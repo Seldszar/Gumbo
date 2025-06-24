@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.1](https://github.com/Seldszar/Gumbo/compare/v1.20.0...v1.20.1) (2025-06-24)
+
+
+### Bug Fixes
+
+* update portuguese (brazil) translation ([#216](https://github.com/Seldszar/Gumbo/issues/216)) ([61fe622](https://github.com/Seldszar/Gumbo/commit/61fe622b7a436ab73b44cf4d2645e1270923d180))
+
 ## [1.20.0](https://github.com/Seldszar/Gumbo/compare/v1.19.2...v1.20.0) (2025-06-13)
 
 
