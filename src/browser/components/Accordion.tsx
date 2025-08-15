@@ -1,6 +1,5 @@
 import { IconChevronRight } from "@tabler/icons-react";
 import { ReactNode } from "react";
-import { useToggle } from "react-use";
 import tw, { styled } from "twin.macro";
 
 interface WrapperProps {
@@ -46,19 +45,22 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 export interface AccordionProps {
+  className?: string;
+
   children?: ReactNode;
   aside?: ReactNode;
-  className?: string;
+
   title: string;
+
+  isOpen?: boolean;
+  onChange?(isOpen: boolean): void;
 }
 
 function Accordion(props: AccordionProps) {
-  const [isOpen, toggleOpen] = useToggle(true);
-
   return (
-    <Wrapper className={props.className} isOpen={isOpen}>
+    <Wrapper className={props.className} isOpen={props.isOpen}>
       <Header>
-        <HeaderInner onClick={() => toggleOpen()}>
+        <HeaderInner onClick={() => props.onChange?.(!props.isOpen)}>
           <Icon size="1rem" />
           <Title>{props.title}</Title>
         </HeaderInner>
@@ -66,7 +68,7 @@ function Accordion(props: AccordionProps) {
         {props.aside && <HeaderAside>{props.aside}</HeaderAside>}
       </Header>
 
-      {isOpen && <Inner>{props.children}</Inner>}
+      {props.isOpen && <Inner>{props.children}</Inner>}
     </Wrapper>
   );
 }
