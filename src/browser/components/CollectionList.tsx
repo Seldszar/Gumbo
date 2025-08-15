@@ -118,6 +118,8 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
             <StyledAccordion
               key={collection.id}
               title={collection.name}
+              open={collection.open}
+              onOpenChange={(open) => updateCollection(collection.id, { open })}
               aside={
                 <DropdownMenu
                   items={[
@@ -187,6 +189,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
                 addCollection({
                   items: modalState.items ?? [],
                   type: props.type,
+                  open: true,
                   name,
                 });
               }}

@@ -78,6 +78,7 @@ export interface Collection {
   id: string;
   name: string;
   type: CollectionType;
+  open?: boolean;
   items: string[];
 }
 

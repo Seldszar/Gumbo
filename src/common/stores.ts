@@ -8,6 +8,7 @@ import {
   nullable,
   number,
   object,
+  optional,
   string,
 } from "superstruct";
 import { Storage } from "webextension-polyfill";
@@ -177,6 +178,7 @@ export const stores = {
         id: string(),
         name: string(),
         type: enums(["category", "user"]),
+        open: optional(boolean()),
         items: array(string()),
       }),
     ),
