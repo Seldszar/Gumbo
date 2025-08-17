@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.2](https://github.com/Seldszar/Gumbo/compare/v1.20.1...v1.20.2) (2025-08-17)
+
+
+### Bug Fixes
+
+* keep collection open state ([44abc4b](https://github.com/Seldszar/Gumbo/commit/44abc4b213cc598d283aba02a009b798df3b072b))
+
 ## [1.20.1](https://github.com/Seldszar/Gumbo/compare/v1.20.0...v1.20.1) (2025-06-24)
 
 
