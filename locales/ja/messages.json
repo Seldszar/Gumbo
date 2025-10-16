@@ -239,6 +239,9 @@
   "optionValue_logout": {
     "message": "ログアウト"
   },
+  "optionValue_muteChannel": {
+    "message": "チャンネルをミュート"
+  },
   "optionValue_newCollection": {
     "message": "新しいコレクション"
   },
@@ -267,6 +270,9 @@
     "message": "先週"
   },
   "optionValue_popout": {
+    "message": "ポップアウト"
+  },
+  "optionValue_popoutWindow": {
     "message": "ポップアウト"
   },
   "optionValue_schedule": {
