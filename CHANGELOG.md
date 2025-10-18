@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.3](https://github.com/Seldszar/Gumbo/compare/v1.20.2...v1.20.3) (2025-10-18)
+
+
+### Bug Fixes
+
+* update japanese translation ([#223](https://github.com/Seldszar/Gumbo/issues/223)) ([cd671b0](https://github.com/Seldszar/Gumbo/commit/cd671b0e4e388c6aff98bf29f02f36212eb8f5f9))
+
 ## [1.20.2](https://github.com/Seldszar/Gumbo/compare/v1.20.1...v1.20.2) (2025-08-17)
 
 
