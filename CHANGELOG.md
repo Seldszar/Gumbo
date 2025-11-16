@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.5](https://github.com/Seldszar/Gumbo/compare/v1.20.4...v1.20.5) (2025-11-16)
+
+
+### Bug Fixes
+
+* collection chunks ([4423bac](https://github.com/Seldszar/Gumbo/commit/4423bac4eb92abd70a2009aefe1d1d662e21f1af))
+
 ## [1.20.4](https://github.com/Seldszar/Gumbo/compare/v1.20.3...v1.20.4) (2025-10-27)
 
 
