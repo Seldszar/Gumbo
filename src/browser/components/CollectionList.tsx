@@ -1,6 +1,6 @@
 import { IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
 import { reject } from "es-toolkit/compat";
-import { Fragment, ReactNode, useMemo, useState } from "react";
+import { Fragment, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
@@ -59,31 +59,35 @@ interface CollectionListProps<T> {
 }
 
 function CollectionList<T extends object>(props: CollectionListProps<T>) {
+  const getItemIdentifierRef = useRef(props.getItemIdentifier);
+
   const [collections, { addCollection, removeCollection, updateCollection }] = useCollections(
     props.type,
   );
 
   const [modalState, setModalState] = useState<ModalState | null>(null);
 
+  useEffect(() => {
+    getItemIdentifierRef.current = props.getItemIdentifier;
+  });
+
   const chunks = useMemo(() => {
     const result = new Array<Chunk<T>>();
     const known = new WeakSet<T>();
 
-    collections
-      .filter((collection) => collection.type === props.type)
-      .forEach((collection) => {
-        const items = props.items.filter((item) =>
-          collection.items.includes(props.getItemIdentifier(item)),
-        );
+    collections.forEach((collection) => {
+      const items = props.items.filter((item) =>
+        collection.items.includes(getItemIdentifierRef.current(item)),
+      );
 
-        if (items.length > 0) {
-          items.forEach((item) => {
-            known.add(item);
-          });
+      if (items.length > 0) {
+        items.forEach((item) => {
+          known.add(item);
+        });
 
-          result.push({ collection, items });
-        }
-      });
+        result.push({ collection, items });
+      }
+    });
 
     const items = (props.defaultItems ?? []).concat(reject(props.items, (item) => known.has(item)));
 
@@ -102,7 +106,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
 
       return a.collection.name.localeCompare(b.collection.name);
     });
-  }, [collections, props.items]);
+  }, [collections, props.defaultItems, props.items]);
 
   const createCollection = (items?: string[]) => {
     setModalState({ items, type: "mutate" });
