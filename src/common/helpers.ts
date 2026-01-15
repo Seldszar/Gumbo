@@ -5,7 +5,7 @@ import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
 import { Dictionary, FontSize, HelixStream } from "./types";
 
-export const t = browser.i18n.getMessage;
+export const t = chrome.i18n.getMessage;
 
 export function getBaseFontSize(value: FontSize): string {
   switch (value) {
@@ -62,7 +62,7 @@ export async function openUrl(url: string, event?: MouseEvent, shiftKey = false)
 
   switch (clickBehavior) {
     case ClickBehavior.CreateTab: {
-      browser.tabs.create({
+      chrome.tabs.create({
         active,
         url,
       });
@@ -71,7 +71,7 @@ export async function openUrl(url: string, event?: MouseEvent, shiftKey = false)
     }
 
     case ClickBehavior.CreateWindow: {
-      browser.windows.create({
+      chrome.windows.create({
         url,
       });
 
@@ -79,7 +79,7 @@ export async function openUrl(url: string, event?: MouseEvent, shiftKey = false)
     }
 
     case ClickBehavior.CreateCurrentTab: {
-      browser.tabs.update(undefined, {
+      chrome.tabs.update(undefined, {
         active,
         url,
       });
@@ -98,7 +98,7 @@ export function template(input: string, data: Dictionary<unknown>) {
 }
 
 export function sendRuntimeMessage(type: string, ...args: any[]): Promise<any> {
-  return browser.runtime.sendMessage({ type, args });
+  return chrome.runtime.sendMessage({ type, args });
 }
 
 export function allPromises<T, V>(values: Iterable<T>, iteratee: (value: T) => Promise<V>) {

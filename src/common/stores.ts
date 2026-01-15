@@ -11,7 +11,6 @@ import {
   optional,
   string,
 } from "superstruct";
-import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
 import {
@@ -41,7 +40,7 @@ export class Store<T> {
   private listeners = new Set<StoreChange<T>>();
 
   private get areaStorage() {
-    return browser.storage[this.areaName];
+    return chrome.storage[this.areaName];
   }
 
   constructor(
@@ -50,7 +49,7 @@ export class Store<T> {
     readonly options: StoreOptions<T>,
   ) {}
 
-  applyChange(changes: Record<string, Storage.StorageChange>, areaName: string) {
+  applyChange(changes: Record<string, chrome.storage.StorageChange>, areaName: string) {
     if (areaName !== this.areaName) {
       return;
     }
@@ -274,7 +273,7 @@ export const stores = {
   }),
 };
 
-browser.storage.onChanged.addListener((changes, areaName) => {
+chrome.storage.onChanged.addListener((changes, areaName) => {
   for (const store of Object.values(stores)) {
     store.applyChange(changes, areaName);
   }

@@ -75,7 +75,7 @@ export function Component() {
       <Section title={t("titleText_dangerZone")}>
         <ButtonGroup>
           <Button
-            onClick={() => browser.runtime.reload()}
+            onClick={() => chrome.runtime.reload()}
             icon={<IconRefresh size="1.5rem" strokeWidth={1.5} />}
             fullWidth
           >

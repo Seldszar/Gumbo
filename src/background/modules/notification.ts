@@ -12,8 +12,8 @@ export interface CreateNotificationOptions {
 }
 
 export function createNotification(notificationId: string, options: CreateNotificationOptions) {
-  return browser.notifications.create(`${Date.now()}:${notificationId}`, {
-    iconUrl: browser.runtime.getURL("icon-96.png"),
+  return chrome.notifications.create(`${Date.now()}:${notificationId}`, {
+    iconUrl: chrome.runtime.getURL("icon-96.png"),
     type: "basic",
 
     ...options,

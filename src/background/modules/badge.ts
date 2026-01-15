@@ -10,17 +10,17 @@ export async function refreshActionBadge(enabled: boolean, count: number) {
   }
 
   const getIconPath = (size: number) =>
-    browser.runtime.getURL(enabled ? `icon-${size}.png` : `icon-gray-${size}.png`);
+    chrome.runtime.getURL(enabled ? `icon-${size}.png` : `icon-gray-${size}.png`);
 
-  browser.action.setBadgeBackgroundColor({
+  chrome.action.setBadgeBackgroundColor({
     color: settings.badge.color,
   });
 
-  browser.action.setBadgeText({
+  chrome.action.setBadgeText({
     text,
   });
 
-  browser.action.setIcon({
+  chrome.action.setIcon({
     path: {
       16: getIconPath(16),
       32: getIconPath(32),

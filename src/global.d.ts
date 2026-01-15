@@ -1,5 +1,3 @@
-import { Browser } from "webextension-polyfill";
-
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
@@ -9,6 +7,4 @@ declare global {
       SENTRY_DSN?: string;
     }
   }
-
-  const browser: Browser;
 }

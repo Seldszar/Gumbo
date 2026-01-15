@@ -19,7 +19,7 @@ import {
 } from "./modules/twitch";
 
 async function refresh(withNotifications: boolean) {
-  browser.alarms.create("refresh", {
+  chrome.alarms.create("refresh", {
     periodInMinutes: 1,
   });
 
@@ -49,18 +49,18 @@ async function refresh(withNotifications: boolean) {
 }
 
 async function checkAlaram() {
-  if (await browser.alarms.get("refresh")) {
+  if (await chrome.alarms.get("refresh")) {
     return;
   }
 
   refresh(false);
 }
 
-browser.alarms.onAlarm.addListener((alarm) => {
+chrome.alarms.onAlarm.addListener((alarm) => {
   refresh(Date.now() < alarm.scheduledTime + 300_000);
 });
 
-browser.notifications.onClicked.addListener((notificationId) => {
+chrome.notifications.onClicked.addListener((notificationId) => {
   const [, type, data] = notificationId.split(":");
 
   switch (type) {
@@ -72,12 +72,12 @@ browser.notifications.onClicked.addListener((notificationId) => {
   }
 });
 
-browser.runtime.onInstalled.addListener(() => refresh(false));
-browser.runtime.onStartup.addListener(() => refresh(false));
+chrome.runtime.onInstalled.addListener(() => refresh(false));
+chrome.runtime.onStartup.addListener(() => refresh(false));
 
 const messageHandlers = { authorize, backup, refresh, request, reset, restore, revoke };
 
-browser.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener((message) => {
   const handler = get(messageHandlers, message.type);
 
   if (handler == null) {
@@ -87,7 +87,7 @@ browser.runtime.onMessage.addListener((message) => {
   return handler(...message.args);
 });
 
-browser.tabs.onUpdated.addListener((_, changeInfo) => {
+chrome.tabs.onUpdated.addListener((_, changeInfo) => {
   if (!changeInfo.url?.startsWith(process.env.TWITCH_REDIRECT_URI)) {
     return;
   }

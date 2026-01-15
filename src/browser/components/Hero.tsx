@@ -28,7 +28,7 @@ interface HeroProps {
 }
 
 function Hero(props: HeroProps) {
-  const manifest = browser.runtime.getManifest();
+  const manifest = chrome.runtime.getManifest();
 
   return (
     <Wrapper className={props.className}>

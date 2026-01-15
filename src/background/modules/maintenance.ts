@@ -23,9 +23,9 @@ export async function restore(data: Dictionary<StoreState<any>>) {
 }
 
 export async function reset() {
-  await browser.storage.local.clear();
-  await browser.storage.session.clear();
-  await browser.storage.sync.clear();
+  await chrome.storage.local.clear();
+  await chrome.storage.session.clear();
+  await chrome.storage.sync.clear();
 
-  browser.runtime.reload();
+  chrome.runtime.reload();
 }
