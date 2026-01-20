@@ -1,6 +1,6 @@
 import { get } from "es-toolkit/compat";
 
-import { openUrl } from "~/common/helpers";
+import { caseString, openUrl } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import type { HelixStream, HelixUser } from "~/common/types";
 
@@ -24,6 +24,8 @@ async function refresh(withNotifications: boolean) {
   });
 
   if (navigator.onLine) {
+    const settings = await stores.settings.get();
+
     let currentUser: HelixUser | null = null;
     let followedStreams = new Array<HelixStream>();
 
@@ -32,6 +34,10 @@ async function refresh(withNotifications: boolean) {
 
       if (currentUser) {
         followedStreams = await getFollowedStreams(currentUser.id);
+
+        for (const stream of followedStreams) {
+          stream.title = caseString(stream.title, settings.streams.titleCase);
+        }
       }
     }
 

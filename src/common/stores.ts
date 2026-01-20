@@ -216,6 +216,7 @@ export const stores = {
         withReruns: boolean(),
         withFilters: boolean(),
         selectedLanguages: array(string()),
+        titleCase: enums(["default", "title", "lower", "upper"]),
       }),
     }),
     defaultValue: {
@@ -243,6 +244,7 @@ export const stores = {
         withReruns: true,
         withFilters: false,
         selectedLanguages: [],
+        titleCase: "default",
       },
     },
   }),

@@ -191,6 +191,9 @@
   "optionTitle_theme": {
     "message": "Thème"
   },
+  "optionTitle_titleCase": {
+    "message": "Format de casse des titres des streams"
+  },
   "optionValue_about": {
     "message": "À propos"
   },
@@ -329,11 +332,26 @@
   "optionValue_theme_system": {
     "message": "Système"
   },
+  "optionValue_titleCase_default": {
+    "message": "Par défaut"
+  },
+  "optionValue_titleCase_lower": {
+    "message": "Minucule"
+  },
+  "optionValue_titleCase_title": {
+    "message": "Titre"
+  },
+  "optionValue_titleCase_upper": {
+    "message": "Majuscule"
+  },
   "optionValue_unknown": {
     "message": "Inconnu(e)"
   },
   "optionValue_update": {
     "message": "Mettre à jour"
+  },
+  "optionValue_videos": {
+    "message": "Vidéos"
   },
   "optionValue_videoType_all": {
     "message": "Toutes les vidéos"
@@ -346,9 +364,6 @@
   },
   "optionValue_videoType_upload": {
     "message": "Vidéos mises en ligne"
-  },
-  "optionValue_videos": {
-    "message": "Vidéos"
   },
   "placeholderText_ignoredCategories": {
     "message": "Saisissez une catégorie à ignorer"

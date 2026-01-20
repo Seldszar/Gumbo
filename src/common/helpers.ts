@@ -1,9 +1,9 @@
-import { isPlainObject, lowerCase, reduce } from "es-toolkit/compat";
+import { capitalize, isPlainObject, lowerCase, reduce } from "es-toolkit/compat";
 import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
-import { Dictionary, FontSize, HelixStream } from "./types";
+import { CaseType, Dictionary, FontSize, HelixStream } from "./types";
 
 export const t = browser.i18n.getMessage;
 
@@ -137,4 +137,19 @@ export function changeCase(input: any, mapper: (key: string) => string): any {
 
 export function isRerunStream(stream?: HelixStream): boolean {
   return stream?.tags?.some((tag) => "rerun" === tag.toLowerCase()) ?? false;
+}
+
+export function caseString(input: string, type: CaseType) {
+  switch (type) {
+    case "lower":
+      return input.toLowerCase();
+
+    case "title":
+      return input.toLowerCase().split(" ").map(capitalize).join(" ");
+
+    case "upper":
+      return input.toUpperCase();
+  }
+
+  return input;
 }

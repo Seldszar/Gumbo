@@ -191,6 +191,9 @@
   "optionTitle_theme": {
     "message": "Theme"
   },
+  "optionTitle_titleCase": {
+    "message": "Stream title capitalization format"
+  },
   "optionValue_about": {
     "message": "About"
   },
@@ -329,11 +332,26 @@
   "optionValue_theme_system": {
     "message": "System"
   },
+  "optionValue_titleCase_default": {
+    "message": "Default"
+  },
+  "optionValue_titleCase_lower": {
+    "message": "Lower case"
+  },
+  "optionValue_titleCase_title": {
+    "message": "Title case"
+  },
+  "optionValue_titleCase_upper": {
+    "message": "Upper case"
+  },
   "optionValue_unknown": {
     "message": "Unknown"
   },
   "optionValue_update": {
     "message": "Update"
+  },
+  "optionValue_videos": {
+    "message": "Videos"
   },
   "optionValue_videoType_all": {
     "message": "All videos"
@@ -346,9 +364,6 @@
   },
   "optionValue_videoType_upload": {
     "message": "Uploads"
-  },
-  "optionValue_videos": {
-    "message": "Videos"
   },
   "placeholderText_ignoredCategories": {
     "message": "Input a category to ignore"
@@ -377,9 +392,6 @@
   "titleText_clips": {
     "message": "Clips"
   },
-  "titleText_dropdownMenu": {
-    "message": "Dropdown Menu"
-  },
   "titleText_createCollection": {
     "message": "Create Collection"
   },
@@ -397,6 +409,9 @@
   },
   "titleText_donate": {
     "message": "Donate"
+  },
+  "titleText_dropdownMenu": {
+    "message": "Dropdown Menu"
   },
   "titleText_followedStreams": {
     "message": "Followed Streams"

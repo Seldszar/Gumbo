@@ -5,6 +5,7 @@ export type Dictionary<T> = Record<string, T>;
 export type FontSize = "smallest" | "small" | "medium" | "large" | "largest";
 export type SortDirection = "asc" | "desc";
 export type Theme = "system" | "dark" | "light";
+export type CaseType = "default" | "title" | "lower" | "upper";
 
 export interface GeneralSettings {
   clickBehavior: ClickBehavior;
@@ -22,6 +23,7 @@ export interface StreamSettings {
   withReruns: boolean;
   withFilters: boolean;
   selectedLanguages: string[];
+  titleCase: CaseType;
 }
 
 export interface NotificationSettings {
