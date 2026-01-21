@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.1](https://github.com/Seldszar/Gumbo/compare/v1.21.0...v1.21.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* simplify store management ([60760c5](https://github.com/Seldszar/Gumbo/commit/60760c56d7cb7ee12d40722d93a92a38d646a6ec))
+
 ## [1.21.0](https://github.com/Seldszar/Gumbo/compare/v1.20.5...v1.21.0) (2026-01-20)
 
 
