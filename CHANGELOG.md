@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.21.0](https://github.com/Seldszar/Gumbo/compare/v1.20.5...v1.21.0) (2026-01-20)
+
+
+### Features
+
+* stream title capitalization format ([5dfb782](https://github.com/Seldszar/Gumbo/commit/5dfb7829bb6f24bc3c7c267d20f4ef9f6adc7097))
+
+
+### Bug Fixes
+
+* message typo ([2309b13](https://github.com/Seldszar/Gumbo/commit/2309b1327a8b5a9175d5827f15a0848ab9f7d6b1))
+* tooltip word wrap ([f4237c9](https://github.com/Seldszar/Gumbo/commit/f4237c976d4797e6d643dd9eddf4e65fffadc07e))
+
 ## [1.20.5](https://github.com/Seldszar/Gumbo/compare/v1.20.4...v1.20.5) (2025-11-16)
 
 
