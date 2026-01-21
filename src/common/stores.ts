@@ -1,16 +1,4 @@
-import {
-  array,
-  boolean,
-  defaulted,
-  Describe,
-  enums,
-  mask,
-  nullable,
-  number,
-  object,
-  optional,
-  string,
-} from "superstruct";
+import { defaultsDeep } from "es-toolkit/compat";
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
@@ -26,7 +14,6 @@ import {
 export type StoreAreaName = "local" | "session" | "sync";
 
 export interface StoreOptions<T> {
-  schema: Describe<T>;
   defaultValue: T;
 }
 
@@ -84,7 +71,7 @@ export class Store<T> {
       const { [this.name]: item } = await this.areaStorage.get(this.name);
 
       if (item) {
-        state.value = this.validateValue(item.value);
+        state.value = defaultsDeep(item.value, this.options.defaultValue);
       }
     } catch {} // eslint-disable-line no-empty
 
@@ -92,11 +79,7 @@ export class Store<T> {
   }
 
   async setState(state: StoreState<T>) {
-    state.value = this.validateValue(state.value);
-
-    await this.areaStorage.set({
-      [this.name]: state,
-    });
+    await this.areaStorage.set({ [this.name]: state });
   }
 
   async get() {
@@ -125,100 +108,22 @@ export class Store<T> {
   async restore(state: StoreState<T>) {
     await this.setState(state);
   }
-
-  validateValue(value: T) {
-    return mask(value, defaulted(this.options.schema, this.options.defaultValue));
-  }
 }
 
 export const stores = {
   accessToken: new Store<string | null>("local", "accessToken", {
-    schema: nullable(string()),
     defaultValue: null,
   }),
   currentUser: new Store<HelixUser | null>("session", "currentUser", {
-    schema: nullable(
-      object({
-        id: string(),
-        login: string(),
-        displayName: string(),
-        broadcasterType: string(),
-        description: string(),
-        profileImageUrl: string(),
-        offlineImageUrl: string(),
-        createdAt: string(),
-      }),
-    ),
     defaultValue: null,
   }),
   followedStreams: new Store<HelixStream[]>("session", "followedStreams", {
-    schema: array(
-      object({
-        id: string(),
-        userId: string(),
-        userLogin: string(),
-        userName: string(),
-        gameId: string(),
-        gameName: string(),
-        type: string(),
-        title: string(),
-        tags: nullable(array(string())),
-        viewerCount: number(),
-        startedAt: string(),
-        language: string(),
-        thumbnailUrl: string(),
-        isMature: boolean(),
-      }),
-    ),
     defaultValue: [],
   }),
   collections: new Store<Collection[]>("local", "collections", {
-    schema: array(
-      object({
-        id: string(),
-        name: string(),
-        type: enums(["category", "user"]),
-        open: optional(boolean()),
-        items: array(string()),
-      }),
-    ),
     defaultValue: [],
   }),
   settings: new Store<Settings>("local", "settings", {
-    schema: object({
-      general: object({
-        clickAction: number(),
-        clickBehavior: number(),
-        fontSize: enums(["smallest", "small", "medium", "large", "largest"]),
-        theme: enums(["system", "dark", "light"]),
-      }),
-      badge: object({
-        enabled: boolean(),
-        color: string(),
-      }),
-      dropdownMenu: object({
-        customActions: array(
-          object({
-            id: string(),
-            title: string(),
-            url: string(),
-          }),
-        ),
-      }),
-      notifications: object({
-        enabled: boolean(),
-        withFilters: boolean(),
-        withCategoryChanges: boolean(),
-        ignoredCategories: array(string()),
-        selectedUsers: array(string()),
-      }),
-      streams: object({
-        withReruns: boolean(),
-        withFilters: boolean(),
-        selectedLanguages: array(string()),
-        titleCase: enums(["default", "title", "lower", "upper"]),
-      }),
-    }),
     defaultValue: {
       general: {
         clickBehavior: ClickBehavior.CreateTab,
@@ -249,21 +154,12 @@ export const stores = {
     },
   }),
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
-    schema: object({
-      sortDirection: enums(["asc", "desc"]),
-      sortField: enums(["gameName", "startedAt", "userLogin", "viewerCount"]),
-    }),
     defaultValue: {
       sortField: "viewerCount",
       sortDirection: "desc",
     },
   }),
   followedUserState: new Store<FollowedUserState>("local", "followedUserState", {
-    schema: object({
-      sortDirection: enums(["asc", "desc"]),
-      sortField: enums(["followedAt", "login"]),
-      status: nullable(boolean()),
-    }),
     defaultValue: {
       sortField: "login",
       sortDirection: "asc",
@@ -271,7 +167,6 @@ export const stores = {
     },
   }),
   mutedUsers: new Store<string[]>("local", "mutedUsers", {
-    schema: array(string()),
     defaultValue: [],
   }),
 };
