@@ -1,4 +1,4 @@
-import { defaultsDeep } from "es-toolkit/compat";
+import { defaultsDeep, isObject } from "es-toolkit/compat";
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
@@ -71,7 +71,9 @@ export class Store<T> {
       const { [this.name]: item } = await this.areaStorage.get(this.name);
 
       if (item) {
-        state.value = defaultsDeep(item.value, this.options.defaultValue);
+        state.value = isObject(item.value)
+          ? defaultsDeep(item.value, this.options.defaultValue)
+          : item.value;
       }
     } catch {} // eslint-disable-line no-empty
 
