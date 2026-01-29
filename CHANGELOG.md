@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.2](https://github.com/Seldszar/Gumbo/compare/v1.21.1...v1.21.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* store value issue ([#236](https://github.com/Seldszar/Gumbo/issues/236)) ([65846b7](https://github.com/Seldszar/Gumbo/commit/65846b7e2deef6d28af92e47f61dc0be521348f3))
+
 ## [1.21.1](https://github.com/Seldszar/Gumbo/compare/v1.21.0...v1.21.1) (2026-01-21)
 
 
