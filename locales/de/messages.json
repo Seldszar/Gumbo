@@ -191,6 +191,9 @@
   "optionTitle_theme": {
     "message": "Design"
   },
+  "optionTitle_titleCase": {
+    "message": "Streamtitel in Großbuchstaben-Format"
+  },
   "optionValue_about": {
     "message": "Über"
   },
@@ -238,6 +241,9 @@
   },
   "optionValue_logout": {
     "message": "Abmelden"
+  },
+  "optionValue_muteChannel": {
+    "message": "Kanal muten"
   },
   "optionValue_newCollection": {
     "message": "Neue Sammlung"
@@ -325,6 +331,18 @@
   },
   "optionValue_theme_system": {
     "message": "System"
+  },
+  "optionValue_titleCase_default": {
+    "message": "Standard"
+  },
+  "optionValue_titleCase_lower": {
+    "message": "Kleinbuchstaben"
+  },
+  "optionValue_titleCase_title": {
+    "message": "Titelstil"
+  },
+  "optionValue_titleCase_upper": {
+    "message": "Großbuchstaben"
   },
   "optionValue_unknown": {
     "message": "Unbekannt"
