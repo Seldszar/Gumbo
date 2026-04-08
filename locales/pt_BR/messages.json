@@ -54,7 +54,7 @@
     "message": "Confirmar exclusão"
   },
   "confirmTitle_reload": {
-    "message": "Uh-on, Gumbo não está mais respondendo!"
+    "message": "Uh-oh, Gumbo não está mais respondendo!"
   },
   "confirmTitle_reset": {
     "message": "Você está prestes a resetar a extensão Gumbo!"
@@ -150,7 +150,7 @@
     "message": "Traduzir"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo é uma extensão grátis que não coleta e não vende as informações pessoais dos usuários.</p><p>Doações, embora opcionais são muito apreciadas, apoia o meu trabalho e me encoraja a oferecer a melhor qualidade possível em meus produtos.</p><p>Obrigado por seu suporte!</p>"
+    "message": "<p>Gumbo é uma extensão grátis que não coleta e não vende as informações pessoais dos usuários.</p><p>Doações, embora opcionais, são muito apreciadas, pois apoiam o meu trabalho e me encorajam a oferecer a melhor qualidade possível em meus produtos.</p><p>Obrigado por seu suporte!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Comece digitando para buscar categorias"
@@ -190,6 +190,9 @@
   },
   "optionTitle_theme": {
     "message": "Tema"
+  },
+  "optionTitle_titleCase": {
+    "message": "Formato de capitalização do título dos streams"
   },
   "optionValue_about": {
     "message": "Sobre"
@@ -329,11 +332,23 @@
   "optionValue_theme_system": {
     "message": "Sistema"
   },
+  "optionValue_titleCase_default": {
+    "message": "Padrão"
+  },
+  "optionValue_titleCase_lower": {
+    "message": "Minúsculas"
+  },
+  "optionValue_titleCase_title": {
+    "message": "Capitalização de Título"
+  },
+  "optionValue_titleCase_upper": {
+    "message": "Maiúsculas"
+  },
   "optionValue_unknown": {
     "message": "Desconhecido"
   },
   "optionValue_update": {
-    "message": "Atualizar"
+    "message": "Editar"
   },
   "optionValue_videoType_all": {
     "message": "Todos os vídeos"
@@ -438,7 +453,7 @@
     "message": "Melhores Streams"
   },
   "titleText_updateCollection": {
-    "message": "Atualizar coleção"
+    "message": "Editar coleção"
   },
   "titleText_updateItem": {
     "message": "Atualizar item"
