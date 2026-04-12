@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.5](https://github.com/Seldszar/Gumbo/compare/v1.21.4...v1.21.5) (2026-04-12)
+
+
+### Bug Fixes
+
+* remove extraneous `tabs` permission ([207a90a](https://github.com/Seldszar/Gumbo/commit/207a90a2cd3fd3334286e532cdc0532809158967)), closes [#243](https://github.com/Seldszar/Gumbo/issues/243)
+
 ## [1.21.4](https://github.com/Seldszar/Gumbo/compare/v1.21.3...v1.21.4) (2026-04-12)
 
 
