@@ -191,9 +191,6 @@
   "optionTitle_theme": {
     "message": "Teema"
   },
-  "optionTitle_titleCase": {
-    "message": ""
-  },
   "optionValue_about": {
     "message": "Tietoja"
   },
@@ -242,9 +239,6 @@
   "optionValue_logout": {
     "message": "Kirjaudu ulos"
   },
-  "optionValue_muteChannel": {
-    "message": ""
-  },
   "optionValue_newCollection": {
     "message": "Uusi kokoelma"
   },
@@ -274,9 +268,6 @@
   },
   "optionValue_popout": {
     "message": "Ponnahdusikkuna"
-  },
-  "optionValue_popoutWindow": {
-    "message": ""
   },
   "optionValue_schedule": {
     "message": "Aikataulu"
@@ -331,18 +322,6 @@
   },
   "optionValue_theme_system": {
     "message": "Järjestelmä"
-  },
-  "optionValue_titleCase_default": {
-    "message": ""
-  },
-  "optionValue_titleCase_lower": {
-    "message": ""
-  },
-  "optionValue_titleCase_title": {
-    "message": ""
-  },
-  "optionValue_titleCase_upper": {
-    "message": ""
   },
   "optionValue_unknown": {
     "message": "Tuntematon"

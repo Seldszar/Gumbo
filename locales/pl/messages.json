@@ -191,9 +191,6 @@
   "optionTitle_theme": {
     "message": "Motyw"
   },
-  "optionTitle_titleCase": {
-    "message": ""
-  },
   "optionValue_about": {
     "message": "Informacje"
   },
@@ -242,9 +239,6 @@
   "optionValue_logout": {
     "message": "Wyloguj się"
   },
-  "optionValue_muteChannel": {
-    "message": ""
-  },
   "optionValue_newCollection": {
     "message": "Nowa kolekcja"
   },
@@ -274,9 +268,6 @@
   },
   "optionValue_popout": {
     "message": "otwórz wideo"
-  },
-  "optionValue_popoutWindow": {
-    "message": ""
   },
   "optionValue_schedule": {
     "message": "Harmonogram"
@@ -331,18 +322,6 @@
   },
   "optionValue_theme_system": {
     "message": "System"
-  },
-  "optionValue_titleCase_default": {
-    "message": ""
-  },
-  "optionValue_titleCase_lower": {
-    "message": ""
-  },
-  "optionValue_titleCase_title": {
-    "message": ""
-  },
-  "optionValue_titleCase_upper": {
-    "message": ""
   },
   "optionValue_unknown": {
     "message": "Nieznany"

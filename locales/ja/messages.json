@@ -191,9 +191,6 @@
   "optionTitle_theme": {
     "message": "テーマ"
   },
-  "optionTitle_titleCase": {
-    "message": ""
-  },
   "optionValue_about": {
     "message": "概要"
   },
@@ -331,18 +328,6 @@
   },
   "optionValue_theme_system": {
     "message": "システム"
-  },
-  "optionValue_titleCase_default": {
-    "message": ""
-  },
-  "optionValue_titleCase_lower": {
-    "message": ""
-  },
-  "optionValue_titleCase_title": {
-    "message": ""
-  },
-  "optionValue_titleCase_upper": {
-    "message": ""
   },
   "optionValue_unknown": {
     "message": "不明"
