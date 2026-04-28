@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.6](https://github.com/Seldszar/Gumbo/compare/v1.21.5...v1.21.6) (2026-04-28)
+
+
+### Bug Fixes
+
+* update translations ([#245](https://github.com/Seldszar/Gumbo/issues/245)) ([07b4249](https://github.com/Seldszar/Gumbo/commit/07b4249ea4a10b6aa6a86770a42b11e157ba6dad))
+
 ## [1.21.5](https://github.com/Seldszar/Gumbo/compare/v1.21.4...v1.21.5) (2026-04-12)
 
 
