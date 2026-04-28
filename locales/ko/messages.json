@@ -191,6 +191,9 @@
   "optionTitle_theme": {
     "message": "테마"
   },
+  "optionTitle_titleCase": {
+    "message": ""
+  },
   "optionValue_about": {
     "message": "정보"
   },
@@ -239,6 +242,9 @@
   "optionValue_logout": {
     "message": "로그아웃"
   },
+  "optionValue_muteChannel": {
+    "message": ""
+  },
   "optionValue_newCollection": {
     "message": "새 컬렉션"
   },
@@ -268,6 +274,9 @@
   },
   "optionValue_popout": {
     "message": "팝업"
+  },
+  "optionValue_popoutWindow": {
+    "message": ""
   },
   "optionValue_schedule": {
     "message": "일정"
@@ -322,6 +331,18 @@
   },
   "optionValue_theme_system": {
     "message": "시스템"
+  },
+  "optionValue_titleCase_default": {
+    "message": ""
+  },
+  "optionValue_titleCase_lower": {
+    "message": ""
+  },
+  "optionValue_titleCase_title": {
+    "message": ""
+  },
+  "optionValue_titleCase_upper": {
+    "message": ""
   },
   "optionValue_unknown": {
     "message": "알 수 없는"
