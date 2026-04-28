@@ -150,7 +150,7 @@
     "message": "Перевод"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo - это бесплатное расширение, которое не собирает и не продает личные данные</p><p>Донаты, хоть и необязательны, но очень ценны, так как поддерживают мою работу и побуждают меня предлагать продукты самого высокого качества.</p><p>Спасибо за вашу поддержку!</p>"
+    "message": "<p>Gumbo - это бесплатное расширение, которое не собирает и не продает личные данные.</p><p>Донаты, хоть и необязательны, но очень ценны, так как поддерживают мою работу и побуждают меня предлагать продукты самого высокого качества.</p><p>Спасибо за вашу поддержку!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Начните печатать для поиска категории"
@@ -190,6 +190,9 @@
   },
   "optionTitle_theme": {
     "message": "Тема"
+  },
+  "optionTitle_titleCase": {
+    "message": "Формат заголовков стримов"
   },
   "optionValue_about": {
     "message": "Описание"
@@ -239,6 +242,9 @@
   "optionValue_logout": {
     "message": "Выйти"
   },
+  "optionValue_muteChannel": {
+    "message": "Заглушить канал"
+  },
   "optionValue_newCollection": {
     "message": "Новая коллекция"
   },
@@ -267,6 +273,9 @@
     "message": "За неделю"
   },
   "optionValue_popout": {
+    "message": "В окне"
+  },
+  "optionValue_popoutWindow": {
     "message": "В окне"
   },
   "optionValue_schedule": {
@@ -322,6 +331,18 @@
   },
   "optionValue_theme_system": {
     "message": "Системная"
+  },
+  "optionValue_titleCase_default": {
+    "message": "По умолчанию"
+  },
+  "optionValue_titleCase_lower": {
+    "message": "Строчные"
+  },
+  "optionValue_titleCase_title": {
+    "message": "С заглавной"
+  },
+  "optionValue_titleCase_upper": {
+    "message": "Прописные"
   },
   "optionValue_unknown": {
     "message": "Неизвестно"

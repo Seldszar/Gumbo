@@ -350,9 +350,6 @@
   "optionValue_update": {
     "message": "Mettre à jour"
   },
-  "optionValue_videos": {
-    "message": "Vidéos"
-  },
   "optionValue_videoType_all": {
     "message": "Toutes les vidéos"
   },
@@ -364,6 +361,9 @@
   },
   "optionValue_videoType_upload": {
     "message": "Vidéos mises en ligne"
+  },
+  "optionValue_videos": {
+    "message": "Vidéos"
   },
   "placeholderText_ignoredCategories": {
     "message": "Saisissez une catégorie à ignorer"
