@@ -174,7 +174,7 @@
     "message": "$1 est en ligne !"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1 joue à $2!"
+    "message": "$1 joue à $2 !"
   },
   "notificationTitle_accessExpired": {
     "message": "Accès expiré"
