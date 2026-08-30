@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.22.0](https://github.com/Seldszar/Gumbo/compare/v1.21.6...v1.22.0) (2026-08-30)
+
+
+### Features
+
+* custom refresh interval ([d9da56e](https://github.com/Seldszar/Gumbo/commit/d9da56e3d02a7380dc843f03b2189a551904f299)), closes [#192](https://github.com/Seldszar/Gumbo/issues/192)
+* twitch category links ([dd77c64](https://github.com/Seldszar/Gumbo/commit/dd77c64d8f29bdec16c67431afdd858037c927d0))
+
+
+### Bug Fixes
+
+* update translations ([#248](https://github.com/Seldszar/Gumbo/issues/248)) ([71f72db](https://github.com/Seldszar/Gumbo/commit/71f72dbfdff2cedb38673d06e620677b557e03b8))
+
 ## [1.21.6](https://github.com/Seldszar/Gumbo/compare/v1.21.5...v1.21.6) (2026-04-28)
 
 
