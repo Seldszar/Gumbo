@@ -128,6 +128,7 @@ export const stores = {
   settings: new Store<Settings>("local", "settings", {
     defaultValue: {
       general: {
+        refreshInterval: 1,
         clickBehavior: ClickBehavior.CreateTab,
         clickAction: ClickAction.OpenChannel,
         fontSize: "medium",

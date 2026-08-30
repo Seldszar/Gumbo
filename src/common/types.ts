@@ -8,6 +8,7 @@ export type Theme = "system" | "dark" | "light";
 export type CaseType = "default" | "title" | "lower" | "upper";
 
 export interface GeneralSettings {
+  refreshInterval: number;
   clickBehavior: ClickBehavior;
   clickAction: ClickAction;
   fontSize: FontSize;

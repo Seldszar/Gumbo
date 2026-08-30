@@ -19,13 +19,13 @@ import {
 } from "./modules/twitch";
 
 async function refresh(withNotifications: boolean) {
+  const settings = await stores.settings.get();
+
   browser.alarms.create("refresh", {
-    periodInMinutes: 1,
+    periodInMinutes: settings.general.refreshInterval,
   });
 
   if (navigator.onLine) {
-    const settings = await stores.settings.get();
-
     let currentUser: HelixUser | null = null;
     let followedStreams = new Array<HelixStream>();
 

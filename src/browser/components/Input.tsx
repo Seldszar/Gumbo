@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { HTMLProps, ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
 const Ornament = styled.div`
@@ -19,11 +19,7 @@ const Wrapper = styled.label<WrapperProps>`
   ${(props) => props.error && tw`outline outline-2 outline-red-500 text-red-500!`}
 `;
 
-export interface InputProps {
-  className?: string;
-
-  value?: string;
-  placeholder?: string;
+export interface InputProps extends Omit<HTMLProps<HTMLInputElement>, "onChange"> {
   error?: boolean;
 
   leftOrnament?: ReactNode;
@@ -33,17 +29,15 @@ export interface InputProps {
 }
 
 function Input(props: InputProps) {
+  const { error, className, leftOrnament, rightOrnament, onChange, ...rest } = props;
+
   return (
-    <Wrapper error={props.error} className={props.className}>
-      {props.leftOrnament && <Ornament>{props.leftOrnament}</Ornament>}
+    <Wrapper error={error} className={className}>
+      {leftOrnament && <Ornament>{leftOrnament}</Ornament>}
 
-      <input
-        value={props.value}
-        placeholder={props.placeholder}
-        onChange={(event) => props.onChange?.(event.target.value)}
-      />
+      <input {...rest} onChange={(event) => onChange?.(event.target.value)} />
 
-      {props.rightOrnament && <Ornament>{props.rightOrnament}</Ornament>}
+      {rightOrnament && <Ornament>{rightOrnament}</Ornament>}
     </Wrapper>
   );
 }
