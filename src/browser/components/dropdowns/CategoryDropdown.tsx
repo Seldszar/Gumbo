@@ -23,12 +23,19 @@ function CategoryDropdown(props: CategoryDropdownProps) {
   const items = useMemo(() => {
     const igdbId = "igdbId" in category ? category.igdbId : "";
 
-    const result = new Array<DropdownMenuItemProps>({
-      type: "normal",
-      disabled: !igdbId,
-      title: t("buttonText_viewOn", "IGDB"),
-      onClick: (event) => openUrl(`https://igdb.com/g/${parseInt(igdbId).toString(36)}`, event),
-    });
+    const result = new Array<DropdownMenuItemProps>(
+      {
+        type: "normal",
+        title: t("buttonText_viewOn", "Twitch"),
+        onClick: (event) => openUrl(`https://twitch.tv/directory/game/${category.name}`, event),
+      },
+      {
+        type: "normal",
+        disabled: !igdbId,
+        title: t("buttonText_viewOn", "IGDB"),
+        onClick: (event) => openUrl(`https://igdb.com/g/${parseInt(igdbId).toString(36)}`, event),
+      },
+    );
 
     if (props.onNewCollection) {
       const items = new Array<DropdownMenuItemProps>({

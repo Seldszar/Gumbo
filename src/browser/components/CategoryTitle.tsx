@@ -40,6 +40,10 @@ const TabList = styled.div`
   ${tw`flex`}
 `;
 
+const LinkList = styled.div`
+  ${tw`flex flex-wrap gap-x-4`}
+`;
+
 const Tab = styled(NavLink)`
   ${tw`border-b border-neutral-200 flex-1 py-3 relative text-center text-neutral-600 dark:(border-neutral-800 text-neutral-400) [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
 `;
@@ -70,11 +74,17 @@ function CategoryTitle(props: CategoryTitleProps) {
 
         <Name>{category.name}</Name>
 
-        {category.igdbId && (
-          <ExternalAnchor to={`https://igdb.com/g/${parseInt(category.igdbId).toString(36)}`}>
-            {t("buttonText_viewOn", "IGDB")}
+        <LinkList>
+          <ExternalAnchor to={`https://twitch.tv/directory/game/${category.name}`}>
+            {t("buttonText_viewOn", "Twitch")}
           </ExternalAnchor>
-        )}
+
+          {category.igdbId && (
+            <ExternalAnchor to={`https://igdb.com/g/${parseInt(category.igdbId).toString(36)}`}>
+              {t("buttonText_viewOn", "IGDB")}
+            </ExternalAnchor>
+          )}
+        </LinkList>
       </Inner>
 
       <TabList>
