@@ -15,21 +15,23 @@ import {
   getFollowedStreams,
   request,
   revoke,
-  validate,
 } from "./modules/twitch";
 
 async function refresh(withNotifications: boolean) {
-  const settings = await stores.settings.get();
+  let currentUser: HelixUser | null = null;
 
-  browser.alarms.create("refresh", {
-    periodInMinutes: settings.general.refreshInterval,
-  });
+  let followedStreams: HelixStream[] = [];
+  let filteredStreams: HelixStream[] = [];
 
-  if (navigator.onLine) {
-    let currentUser: HelixUser | null = null;
-    let followedStreams = new Array<HelixStream>();
+  let periodInMinutes = 1;
 
-    if (await validate()) {
+  try {
+    const settings = await stores.settings.get();
+    const accessToken = await stores.accessToken.get();
+
+    periodInMinutes = settings.general.refreshInterval;
+
+    if (accessToken) {
       currentUser = await getCurrentUser();
 
       if (currentUser) {
@@ -39,19 +41,23 @@ async function refresh(withNotifications: boolean) {
           stream.title = caseString(stream.title, settings.streams.titleCase);
         }
       }
+
+      filteredStreams = await filterMutedStreams(followedStreams);
+
+      if (withNotifications) {
+        sendStreamNotifications(await filterNewStreams(filteredStreams));
+      }
     }
+  } catch {} // eslint-disable-line no-empty
 
-    const filteredStreams = await filterMutedStreams(followedStreams);
+  browser.alarms.create("refresh", {
+    periodInMinutes,
+  });
 
-    if (withNotifications) {
-      sendStreamNotifications(await filterNewStreams(filteredStreams));
-    }
+  refreshActionBadge(!!currentUser, filteredStreams.length);
 
-    refreshActionBadge(!!currentUser, filteredStreams.length);
-
-    stores.currentUser.set(currentUser);
-    stores.followedStreams.set(followedStreams);
-  }
+  stores.currentUser.set(currentUser);
+  stores.followedStreams.set(followedStreams);
 }
 
 async function checkAlaram() {

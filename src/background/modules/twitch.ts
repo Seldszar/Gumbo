@@ -49,8 +49,18 @@ export async function request<T>(
 
   const response = await fetch(request);
 
-  if (response.status === 204) {
-    return undefined as never;
+  switch (response.status) {
+    case 204:
+      return undefined as never;
+
+    case 401: {
+      stores.accessToken.set(null);
+
+      createNotification("authorize", {
+        title: t("notificationTitle_accessExpired"),
+        message: t("notificationMessage_accessExpired"),
+      });
+    }
   }
 
   if (response.ok) {
@@ -106,31 +116,6 @@ export async function authorize() {
   url.searchParams.set("response_type", "token");
 
   return openUrl(url.href, undefined, true);
-}
-
-export async function validate() {
-  const accessToken = await stores.accessToken.get();
-
-  if (accessToken) {
-    const response = await fetch("https://id.twitch.tv/oauth2/validate", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    if (response.status === 401) {
-      createNotification("authorize", {
-        title: t("notificationTitle_accessExpired"),
-        message: t("notificationMessage_accessExpired"),
-      });
-
-      stores.accessToken.set(null);
-    }
-
-    return response.ok;
-  }
-
-  return false;
 }
 
 export async function revoke() {
