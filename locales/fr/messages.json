@@ -128,6 +128,12 @@
   "inputLabel_filterStreamsByLanguage": {
     "message": "Filtrer les streams par langue"
   },
+  "inputLabel_refreshInterval": {
+    "message": "Intervalle d'actualisation"
+  },
+  "inputLabel_refreshInterval_minutes": {
+    "message": "minutes"
+  },
   "inputLabel_showIconBadge": {
     "message": "Afficher le nombre de streams en ligne"
   },
