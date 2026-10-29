@@ -74,7 +74,8 @@ jobs:
         env:
           CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          PUBLISHER_ID: ${{ secrets.GOOGLE_PUBLISHER_ID }}
+          EXTENSION_ID: ${{ secrets.GOOGLE_EXTENSION_ID }}
           REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
-          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
